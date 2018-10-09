@@ -1,0 +1,18 @@
+<configuration>
+
+  <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder>
+      <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %X{sessionId} %logger{36} - %msg%n
+      </pattern>
+    </encoder>
+  </appender>
+
+  <root level="INFO">
+    <appender-ref ref="STDOUT" />
+  </root>
+
+  <logger name="com.precise_service" level="TRACE"/>
+  <logger name="com.precise_service.project_one.service" level="TRACE"/>
+  <logger name="com.precise_service.project_one.repository" level="TRACE"/>
+
+</configuration>

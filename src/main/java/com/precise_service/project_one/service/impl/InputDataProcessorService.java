@@ -17,12 +17,21 @@ public class InputDataProcessorService implements IInputDataProcessorService {
   private CustomerRepository customerRepository;
 
   @Override
-  public void initDatabaseAfterApplicationStart() {
+  public void cleanDatabase() {
+    log.trace("Cleaning mongo database...start");
     customerRepository.deleteAll();
+    log.trace("Cleaning mongo database...finish");
+  }
+
+  @Override
+  public void initDatabaseAfterApplicationStart() {
+    log.trace("DB init...start");
+
+    cleanDatabase();
 
     // save a couple of customers
     customerRepository.save(new Customer("Alice", "Smith"));
-    customerRepository.save(new Customer("Zdenek", "Smith"));
+    customerRepository.save(new Customer("Zdeněk", "Smith"));
     customerRepository.save(new Customer("Bob", "Smith"));
 
     // fetch all customers
@@ -43,12 +52,13 @@ public class InputDataProcessorService implements IInputDataProcessorService {
     for (Customer customer : customerRepository.findByLastName("Smith")) {
       System.out.println(customer);
     }
+    log.trace("DB init...finish");
   }
 
   @Override
   public String loadFromDatabase(String firstName) {
+    log.trace("loadFromDatabase");
     Customer customer = customerRepository.findByFirstName(firstName);
-    log.debug("AAAAAA");
-    return customer.firstName + " " + customer.lastName;
+    return (customer != null) ? customer.firstName + " " + customer.lastName : "";
   }
 }

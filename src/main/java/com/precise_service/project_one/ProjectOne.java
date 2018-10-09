@@ -8,6 +8,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import com.precise_service.project_one.service.IInputDataProcessorService;
 import com.precise_service.project_one.service.impl.InputDataProcessorService;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @SpringBootApplication
 public class ProjectOne implements CommandLineRunner {
 
@@ -15,11 +18,14 @@ public class ProjectOne implements CommandLineRunner {
   private IInputDataProcessorService inputDataProcessorService;
 
   public static void main(String[] args) {
+    log.info("STARTUJEME");
     SpringApplication.run(ProjectOne.class, args);
   }
 
   @Override
   public void run(String... args) {
+    log.trace("ProjectOne...starting and loading input data");
     inputDataProcessorService.initDatabaseAfterApplicationStart();
+    log.trace("ProjectOne...starting and loading input data...finished");
   }
 }
