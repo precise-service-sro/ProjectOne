@@ -9,33 +9,55 @@
   <version>1.0-SNAPSHOT</version>
   <packaging>jar</packaging>
   <name>Project One</name>
+  <url>http://maven.apache.org</url>
+  <description>JSF - PrimeFaces Example using Spring Boot and Maven</description>
 
+  <!--
   <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
     <version>2.0.5.RELEASE</version>
   </parent>
+  -->
+  <parent>
+    <groupId>org.joinfaces</groupId>
+    <artifactId>joinfaces-parent</artifactId>
+    <version>3.2.1</version>
+    <relativePath /> <!-- lookup parent from repository -->
+  </parent>
 
   <properties>
-    <java.version>1.8</java.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <java.version>1.8</java.version>
     <start-class>com.precise_service.project_one.ProjectOne</start-class>
     <lombok.version>1.14.8</lombok.version>
     <log4jdbc.log4j2.version>1.16</log4jdbc.log4j2.version>
     <rest.assured.version>2.3.3</rest.assured.version>
     <spring.boot.starter.data.mongo.version>2.0.3.RELEASE</spring.boot.starter.data.mongo.version>
+    <primefaces.version>6.2</primefaces.version>
   </properties>
-
-  <!--
-     <modules>
-         <module>webapp</module>
-     </modules>
-  -->
 
   <dependencies>
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-data-mongodb</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <version>${lombok.version}</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.joinfaces</groupId>
+      <artifactId>primefaces-spring-boot-starter</artifactId>
+    </dependency>
+
+    <!--
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-web</artifactId>
     </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>
@@ -44,37 +66,62 @@
     </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-web</artifactId>
+      <artifactId>spring-boot-starter-tomcat</artifactId>
+      <version>2.0.3.RELEASE</version>
+      <scope>compile</scope>
     </dependency>
     <dependency>
-      <groupId>org.projectlombok</groupId>
-      <artifactId>lombok</artifactId>
-      <version>${lombok.version}</version>
+      <groupId>org.primefaces</groupId>
+      <artifactId>primefaces</artifactId>
+      <version>${primefaces.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>javax.faces</groupId>
+      <artifactId>jsf-api</artifactId>
+      <version>2.0</version>
       <scope>provided</scope>
     </dependency>
-    <!--
+
     <dependency>
-      <groupId>org.bgee.log4jdbc-log4j2</groupId>
-      <artifactId>log4jdbc-log4j2-jdbc4.1</artifactId>
-      <version>${log4jdbc.log4j2.version}</version>
+      <groupId>com.sun.faces</groupId>
+      <artifactId>jsf-api</artifactId>
+      <version>2.1.7</version>
     </dependency>
     <dependency>
-      <groupId>com.jayway.restassured</groupId>
-      <artifactId>rest-assured</artifactId>
-      <version>${rest.assured.version}</version>
-      <scope>test</scope>
+      <groupId>com.sun.faces</groupId>
+      <artifactId>jsf-impl</artifactId>
+      <version>2.1.7</version>
     </dependency>
+
     <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-test</artifactId>
-      <version>4.0.5.RELEASE</version>
-      <scope>test</scope>
+      <groupId>javax.servlet</groupId>
+      <artifactId>jstl</artifactId>
+      <version>1.2</version>
+    </dependency>
+
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>servlet-api</artifactId>
+      <version>2.5</version>
+    </dependency>
+
+    <dependency>
+      <groupId>javax.servlet.jsp</groupId>
+      <artifactId>jsp-api</artifactId>
+      <version>2.1</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.sun.el</groupId>
+      <artifactId>el-ri</artifactId>
+      <version>1.0</version>
     </dependency>
     -->
-
   </dependencies>
 
-  <build>
+<build>
+    <finalName>ProjectOne</finalName>
     <plugins>
       <plugin>
         <groupId>org.springframework.boot</groupId>
@@ -82,20 +129,4 @@
       </plugin>
     </plugins>
   </build>
-  <!--
-    <repositories>
-      <repository>
-        <id>spring-releases</id>
-        <name>Spring Releases</name>
-        <url>https://repo.spring.io/libs-release</url>
-      </repository>
-    </repositories>
-    <pluginRepositories>
-      <pluginRepository>
-        <id>spring-releases</id>
-        <name>Spring Releases</name>
-        <url>https://repo.spring.io/libs-release</url>
-      </pluginRepository>
-    </pluginRepositories>
-    -->
   </project>

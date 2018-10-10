@@ -6,7 +6,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.precise_service.project_one.service.IInputDataProcessorService;
-import com.precise_service.project_one.service.impl.InputDataProcessorService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -18,7 +17,7 @@ public class ProjectOne implements CommandLineRunner {
   private IInputDataProcessorService inputDataProcessorService;
 
   public static void main(String[] args) {
-    log.info("STARTUJEME");
+    log.info("!!! PROJECT ONE ... STARTUJEME !!!");
     SpringApplication.run(ProjectOne.class, args);
   }
 

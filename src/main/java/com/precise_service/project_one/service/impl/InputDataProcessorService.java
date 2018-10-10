@@ -59,6 +59,6 @@ public class InputDataProcessorService implements IInputDataProcessorService {
   public String loadFromDatabase(String firstName) {
     log.trace("loadFromDatabase");
     Customer customer = customerRepository.findByFirstName(firstName);
-    return (customer != null) ? customer.firstName + " " + customer.lastName : "";
+    return (customer != null) ? customer.firstName + " " + customer.lastName + "a" : "";
   }
 }

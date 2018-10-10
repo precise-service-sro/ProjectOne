@@ -1,4 +1,6 @@
+com/precise_service/project_one/HelloBean.class
 com/precise_service/project_one/controller/HelloController.class
+com/precise_service/project_one/HelloWorld.class
 com/precise_service/project_one/service/IInputDataProcessorService.class
 com/precise_service/project_one/repository/CustomerRepository.class
 com/precise_service/project_one/ProjectOne.class
