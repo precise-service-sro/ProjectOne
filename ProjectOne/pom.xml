@@ -10,15 +10,8 @@
   <packaging>jar</packaging>
   <name>Project One</name>
   <url>http://maven.apache.org</url>
-  <description>JSF - PrimeFaces Example using Spring Boot and Maven</description>
+  <description>ProjectOne - Aplikace na správu pronajímaných nemovitostí a výpočty</description>
 
-  <!--
-  <parent>
-    <groupId>org.springframework.boot</groupId>
-    <artifactId>spring-boot-starter-parent</artifactId>
-    <version>2.0.5.RELEASE</version>
-  </parent>
-  -->
   <parent>
     <groupId>org.joinfaces</groupId>
     <artifactId>joinfaces-parent</artifactId>
@@ -53,74 +46,9 @@
       <groupId>org.joinfaces</groupId>
       <artifactId>primefaces-spring-boot-starter</artifactId>
     </dependency>
-
-    <!--
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-web</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-test</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-tomcat</artifactId>
-      <version>2.0.3.RELEASE</version>
-      <scope>compile</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.primefaces</groupId>
-      <artifactId>primefaces</artifactId>
-      <version>${primefaces.version}</version>
-    </dependency>
-
-    <dependency>
-      <groupId>javax.faces</groupId>
-      <artifactId>jsf-api</artifactId>
-      <version>2.0</version>
-      <scope>provided</scope>
-    </dependency>
-
-    <dependency>
-      <groupId>com.sun.faces</groupId>
-      <artifactId>jsf-api</artifactId>
-      <version>2.1.7</version>
-    </dependency>
-    <dependency>
-      <groupId>com.sun.faces</groupId>
-      <artifactId>jsf-impl</artifactId>
-      <version>2.1.7</version>
-    </dependency>
-
-    <dependency>
-      <groupId>javax.servlet</groupId>
-      <artifactId>jstl</artifactId>
-      <version>1.2</version>
-    </dependency>
-
-    <dependency>
-      <groupId>javax.servlet</groupId>
-      <artifactId>servlet-api</artifactId>
-      <version>2.5</version>
-    </dependency>
-
-    <dependency>
-      <groupId>javax.servlet.jsp</groupId>
-      <artifactId>jsp-api</artifactId>
-      <version>2.1</version>
-    </dependency>
-
-    <dependency>
-      <groupId>com.sun.el</groupId>
-      <artifactId>el-ri</artifactId>
-      <version>1.0</version>
-    </dependency>
-    -->
   </dependencies>
 
-<build>
+  <build>
     <finalName>ProjectOne</finalName>
     <plugins>
       <plugin>
@@ -129,4 +57,4 @@
       </plugin>
     </plugins>
   </build>
-  </project>
+</project>
