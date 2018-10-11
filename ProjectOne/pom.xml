@@ -7,47 +7,86 @@
   <groupId>com.precise_service.project_one</groupId>
   <artifactId>project_one-parent</artifactId>
   <version>1.0-SNAPSHOT</version>
-  <packaging>jar</packaging>
   <name>Project One</name>
   <url>http://maven.apache.org</url>
   <description>ProjectOne - Aplikace na správu pronajímaných nemovitostí a výpočty</description>
+  <packaging>pom</packaging>
 
   <parent>
     <groupId>org.joinfaces</groupId>
     <artifactId>joinfaces-parent</artifactId>
     <version>3.2.1</version>
-    <relativePath /> <!-- lookup parent from repository -->
+    <relativePath/> <!-- lookup parent from repository -->
   </parent>
 
+  <modules>
+    <module>library</module>
+    <module>application</module>
+  </modules>
+
   <properties>
+    <!-- Application configuration -->
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <java.version>1.8</java.version>
     <start-class>com.precise_service.project_one.ProjectOne</start-class>
-    <lombok.version>1.14.8</lombok.version>
     <log4jdbc.log4j2.version>1.16</log4jdbc.log4j2.version>
-    <rest.assured.version>2.3.3</rest.assured.version>
-    <spring.boot.starter.data.mongo.version>2.0.3.RELEASE</spring.boot.starter.data.mongo.version>
-    <primefaces.version>6.2</primefaces.version>
+
+    <!-- Dependencies -->
+    <join.faces.version>3.2.1</join.faces.version>
+    <org.springframework.boot.version>2.0.2.RELEASE</org.springframework.boot.version>
+    <primefaces.spring.boot.starter.version>3.2.5</primefaces.spring.boot.starter.version>
+    <lombok.version>1.18.0</lombok.version>
   </properties>
 
-  <dependencies>
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-data-mongodb</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.projectlombok</groupId>
-      <artifactId>lombok</artifactId>
-      <version>${lombok.version}</version>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.joinfaces</groupId>
-      <artifactId>primefaces-spring-boot-starter</artifactId>
-    </dependency>
-  </dependencies>
+  <dependencyManagement>
+    <dependencies>
+      <!-- Application modules -->
+      <dependency>
+        <groupId>com.precise_service.project_one</groupId>
+        <artifactId>library</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.precise_service.project_one</groupId>
+        <artifactId>application</artifactId>
+        <version>${project.version}</version>
+      </dependency>
 
+      <!-- Spring boot -->
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-data-mongodb</artifactId>
+        <version>${org.springframework.boot.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-actuator</artifactId>
+        <version>${org.springframework.boot.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-web</artifactId>
+        <version>${org.springframework.boot.version}</version>
+      </dependency>
+
+      <!-- Front-end -->
+      <dependency>
+        <groupId>org.joinfaces</groupId>
+        <artifactId>primefaces-spring-boot-starter</artifactId>
+        <version>${primefaces.spring.boot.starter.version}</version>
+      </dependency>
+
+      <!-- Others -->
+      <dependency>
+        <groupId>org.projectlombok</groupId>
+        <artifactId>lombok</artifactId>
+        <version>${lombok.version}</version>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
+  <!--
   <build>
     <finalName>ProjectOne</finalName>
     <plugins>
@@ -57,4 +96,5 @@
       </plugin>
     </plugins>
   </build>
+  -->
 </project>

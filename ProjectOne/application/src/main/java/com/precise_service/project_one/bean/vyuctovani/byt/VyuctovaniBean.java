@@ -8,12 +8,14 @@ import javax.inject.Named;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.precise_service.IPokusService;
 import com.precise_service.project_one.domain.vyuctovani.PolozkaVyuctovani;
 import com.precise_service.project_one.domain.vyuctovani.VyuctovaniEntity;
 import com.precise_service.project_one.service.IVyuctovaniService;
 
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
+
 
 @Slf4j
 @Data
@@ -23,16 +25,14 @@ public class VyuctovaniBean {
   @Autowired
   private IVyuctovaniService vyuctovaniService;
 
-  private String nazev;
+  @Autowired
+  private IPokusService pokusService;
 
+  private String nazev;
   private List<RadekTabulkyDto> radkyVyuctovani;
   private Double celkemZalohy;
   private Double celkemNaklady;
   private Double celkemRozdil;
-
-  public String getNazev() {
-    return nazev;
-  }
 
   @PostConstruct
   private void initTabulkaRadky() {
@@ -41,6 +41,8 @@ public class VyuctovaniBean {
     String idVyuctovani = "5bbf5fce6c6ab027665460e6";
     VyuctovaniEntity vyuctovani = vyuctovaniService.getVyuctovani(idVyuctovani);
 
+    nazev = vyuctovani.getNazev();
+    nazev = pokusService.hello();
     List<PolozkaVyuctovani> seznamPolozek = vyuctovani.getSeznamPolozek();
     for (PolozkaVyuctovani polozkaVyuctovani : seznamPolozek) {
       RadekTabulkyDto radekTabulkyDto = new RadekTabulkyDto();
@@ -64,22 +66,5 @@ public class VyuctovaniBean {
       celkemNaklady += radekTabulkyDto.getNaklady();
       celkemRozdil += radekTabulkyDto.getRozdil();
     }
-  }
-
-  public List<RadekTabulkyDto> getRadkyVyuctovani(){
-    log.trace("getRadkyVyuctovani()");
-    return radkyVyuctovani;
-  }
-
-  public double getCelkemZalohy() {
-    return celkemZalohy;
-  }
-
-  public double getCelkemNaklady(){
-    return celkemNaklady;
-  }
-
-  public double getCelkemRozdil(){
-    return celkemRozdil;
   }
 }
