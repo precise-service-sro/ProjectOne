@@ -11,46 +11,89 @@
 
 <h:body>
   <div style="width: 80%; margin-left: 100px;">
-    <p:dataTable var="polozka" value="#{vyuctovaniService.seznamPolozek}" resizableColumns="true">
-      <f:facet name="header">
-        Byt Praha - Vyúčtování 2018 - BD Pragostav
-      </f:facet>
+    <h:form>
+      <p:dataTable var="polozka" value="#{vyuctovaniService.seznamPolozek}" resizableColumns="true" sortBy="#{1}">
+        <f:facet name="header">
+          Byt Praha - Vyúčtování 2018 - BD Pragostav
+        </f:facet>
 
-      <p:columnGroup type="header">
-        <p:row>
-          <p:column             headerText="Název" style="width: 40%;" />
-          <p:column colspan="2" headerText="Zálohy" style="width: 20%;"/>
-          <p:column colspan="2" headerText="Náklady" style="width: 20%;" />
-          <p:column colspan="2" headerText="Spotřeba" style="width: 20%;" />
-        </p:row>
-      </p:columnGroup>
+        <p:columnGroup type="header">
+          <p:row>
+            <p:column             headerText="Název"    style="width: 30%;" />
+            <p:column colspan="2" headerText="Zálohy"   style="width: 15%;"/>
+            <p:column colspan="2" headerText="Náklady"  style="width: 15%;" />
+            <p:column colspan="2" headerText="Spotřeba" style="width: 15%;" />
+            <p:column colspan="2" headerText="Rozdíl"   style="width: 15%;" />
+          </p:row>
+        </p:columnGroup>
 
-      <p:column>
-        <h:outputText value="#{polozka.nazev}" />
-      </p:column>
+        <p:column>
+          <h:outputText value="#{polozka.nazev}" />
+        </p:column>
 
-      <p:column>
-        <h:outputText value="#{polozka.zalohy.mnozstvi}" />
-      </p:column>
-      <p:column>
-        <h:outputText value="#{polozka.zalohy.jednotka}" />
-      </p:column>
+        <p:column>
+          <h:outputText value="#{polozka.zalohy.mnozstvi}" />
+        </p:column>
+        <p:column>
+          <h:outputText value="#{polozka.zalohy.jednotka}" />
+        </p:column>
 
-      <p:column>
-        <h:outputText value="#{polozka.naklady.mnozstvi}" />
-      </p:column>
-      <p:column>
-        <h:outputText value="#{polozka.naklady.jednotka}" />
-      </p:column>
+        <p:column>
+          <h:outputText value="#{polozka.naklady.mnozstvi}" />
+        </p:column>
+        <p:column>
+          <h:outputText value="#{polozka.naklady.jednotka}" />
+        </p:column>
 
-      <p:column>
-        <h:outputText value="#{polozka.spotreba.mnozstvi}" />
-      </p:column>
-      <p:column>
-        <h:outputText value="#{polozka.spotreba.jednotka}" />
-      </p:column>
+        <p:column>
+          <h:outputText value="#{polozka.spotreba.mnozstvi}" />
+        </p:column>
+        <p:column>
+          <h:outputText value="#{polozka.spotreba.jednotka}" />
+        </p:column>
 
-    </p:dataTable>
+        <p:column>
+          <h:outputText value="#{polozka.spotreba.mnozstvi}" />
+        </p:column>
+        <p:column>
+          <h:outputText value="#{polozka.spotreba.jednotka}" />
+        </p:column>
+
+        <p:summaryRow>
+          <p:column style="text-align:right">
+            <h:outputText value="Celkem:" />
+          </p:column>
+          <p:column>
+            <h:outputText value="#{vyuctovaniBean.celkemZalohy}">
+              <f:convertNumber type="currency" pattern="#0.00 Kč" />
+            </h:outputText>
+          </p:column>
+          <p:column>
+          </p:column>
+          <p:column>
+            <h:outputText value="#{vyuctovaniBean.celkemNaklady}">
+              <f:convertNumber type="currency" pattern="#0.00 Kč" />
+            </h:outputText>
+          </p:column>
+          <p:column>
+          </p:column>
+          <p:column>
+            <h:outputText value="#{vyuctovaniBean.celkemRozdil}">
+              <f:convertNumber type="currency" pattern="#0.00 Kč" />
+            </h:outputText>
+          </p:column>
+          <p:column>
+          </p:column>
+          <p:column>
+            <h:outputText value="#{vyuctovaniBean.celkemRozdil}">
+              <f:convertNumber type="currency" pattern="#0.00 Kč" />
+            </h:outputText>
+          </p:column>
+          <p:column>
+          </p:column>
+        </p:summaryRow>
+      </p:dataTable>
+    </h:form>
   </div>
 </h:body>
 </html>
