@@ -2,22 +2,19 @@ package com.precise_service.project_one.service;
 
 import java.util.List;
 
-import com.precise_service.project_one.domain.Customer;
 import com.precise_service.project_one.domain.PolozkaVyuctovani;
+import com.precise_service.project_one.domain.Vyuctovani;
 
-public interface IInputDataProcessorService {
+public interface IVyuctovaniService {
 
   /**
    * Complete database cleanup before new initialization
    * */
-  void cleanDatabase();
+  void deleteVyuctovaniAll();
 
-  void initDatabaseAfterApplicationStart();
+  Vyuctovani getVyuctovani(String id);
 
-  String loadFromDatabase(String firstName);
-
-  List<Customer> getAll();
+  void createVyuctovani(Vyuctovani vyuctovani);
 
   List<PolozkaVyuctovani> getSeznamPolozek();
-
 }

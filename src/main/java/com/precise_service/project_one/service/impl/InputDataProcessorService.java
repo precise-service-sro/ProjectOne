@@ -1,10 +1,15 @@
 package com.precise_service.project_one.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.precise_service.project_one.domain.Customer;
+import com.precise_service.project_one.domain.PolozkaVyuctovani;
+import com.precise_service.project_one.domain.Vyuctovani;
 import com.precise_service.project_one.repository.CustomerRepository;
+import com.precise_service.project_one.repository.VyuctovaniRepository;
 import com.precise_service.project_one.service.IInputDataProcessorService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -15,6 +20,9 @@ public class InputDataProcessorService implements IInputDataProcessorService {
 
   @Autowired
   private CustomerRepository customerRepository;
+
+  @Autowired
+  private VyuctovaniRepository vyuctovaniRepository;
 
   @Override
   public void cleanDatabase() {
@@ -31,7 +39,7 @@ public class InputDataProcessorService implements IInputDataProcessorService {
 
     // save a couple of customers
     customerRepository.save(new Customer("Alice", "Smith"));
-    customerRepository.save(new Customer("Zdeněk", "Smith"));
+    customerRepository.save(new Customer("Zdeněk", "Vacek"));
     customerRepository.save(new Customer("Bob", "Smith"));
 
     // fetch all customers
@@ -60,5 +68,17 @@ public class InputDataProcessorService implements IInputDataProcessorService {
     log.trace("loadFromDatabase");
     Customer customer = customerRepository.findByFirstName(firstName);
     return (customer != null) ? customer.firstName + " " + customer.lastName + "a" : "";
+  }
+
+  @Override
+  public List<Customer> getAll() {
+    return customerRepository.findAll();
+  }
+
+  @Override
+  public List<PolozkaVyuctovani> getSeznamPolozek(){
+    List<Vyuctovani> vyuctovaniList = vyuctovaniRepository.findAll();
+    List<PolozkaVyuctovani> seznamPolozek = vyuctovaniList.get(0).getSeznamPolozek();
+    return seznamPolozek;
   }
 }

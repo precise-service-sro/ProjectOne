@@ -2,6 +2,9 @@ package com.precise_service.project_one.domain;
 
 import org.springframework.data.annotation.Id;
 
+import lombok.Data;
+
+@Data
 public class Customer {
 
   @Id
