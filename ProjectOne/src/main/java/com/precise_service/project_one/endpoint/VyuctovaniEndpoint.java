@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.precise_service.project_one.domain.Vyuctovani;
+import com.precise_service.project_one.domain.vyuctovani.Vyuctovani;
 import com.precise_service.project_one.service.IVyuctovaniService;
 
 import lombok.extern.slf4j.Slf4j;

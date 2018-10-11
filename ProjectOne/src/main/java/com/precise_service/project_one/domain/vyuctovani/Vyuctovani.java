@@ -1,4 +1,4 @@
-package com.precise_service.project_one.domain;
+package com.precise_service.project_one.domain.vyuctovani;
 
 import java.util.List;
 

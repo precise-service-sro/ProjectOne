@@ -5,8 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.precise_service.project_one.domain.PolozkaVyuctovani;
-import com.precise_service.project_one.domain.Vyuctovani;
+import com.precise_service.project_one.domain.vyuctovani.PolozkaVyuctovani;
+import com.precise_service.project_one.domain.vyuctovani.Vyuctovani;
 import com.precise_service.project_one.repository.VyuctovaniRepository;
 import com.precise_service.project_one.service.IVyuctovaniService;
 
