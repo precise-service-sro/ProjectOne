@@ -1,0 +1,77 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+  <title>PrimeFaces Hello World Example</title>
+</h:head>
+
+<h:body>
+  <div style="width: 80%; margin-left: 100px;">
+    <h:form>
+      <p:dataTable var="polozka" value="#{vyuctovaniNajemnikBean.radkyVyuctovani}" resizableColumns="true" sortBy="#{1}">
+        <f:facet name="header">
+          Byt Praha - Vyúčtování 2018 - Nájemník
+        </f:facet>
+
+        <p:columnGroup type="header">
+          <p:row>
+            <p:column headerText="Název"    style="width: 55%;" />
+            <p:column headerText="Zálohy"   style="width: 15%;"/>
+            <p:column headerText="Náklady"  style="width: 15%;" />
+            <p:column headerText="Rozdíl"   style="width: 15%;" />
+          </p:row>
+        </p:columnGroup>
+
+        <p:column>
+          <h:outputText value="#{polozka.nazev}" />
+          <br />
+          (<h:outputText value="#{polozka.spotrebaMnozstvi}" ><f:convertNumber pattern="#0.00" /></h:outputText> / <h:outputText value="#{polozka.spotrebaJednotka}" />)
+        </p:column>
+
+        <p:column style="text-align: right">
+          <h:outputText value="#{polozka.zalohy}">
+            <f:convertNumber type="currency" pattern="#0.00 Kč" />
+          </h:outputText>
+        </p:column>
+
+        <p:column style="text-align: right">
+          <h:outputText value="#{polozka.naklady}">
+            <f:convertNumber type="currency" pattern="#0.00 Kč" />
+          </h:outputText>
+        </p:column>
+
+        <p:column style="text-align: right">
+          <h:outputText value="#{polozka.rozdil}" >
+            <f:convertNumber type="currency" pattern="#0.00 Kč" />
+          </h:outputText>
+        </p:column>
+
+        <p:summaryRow>
+          <p:column style="text-align:right">
+            <h:outputText value="Celkem:" />
+          </p:column>
+          <p:column style="text-align: right">
+            <h:outputText value="#{vyuctovaniBean.celkemZalohy}">
+              <f:convertNumber type="currency" pattern="#0.00 Kč" />
+            </h:outputText>
+          </p:column>
+          <p:column style="text-align: right">
+            <h:outputText value="#{vyuctovaniBean.celkemNaklady}">
+              <f:convertNumber type="currency" pattern="#0.00 Kč" />
+            </h:outputText>
+          </p:column>
+          <p:column style="text-align: right">
+            <h:outputText value="#{vyuctovaniBean.celkemRozdil}">
+              <f:convertNumber type="currency" pattern="#0.00 Kč" />
+            </h:outputText>
+          </p:column>
+        </p:summaryRow>
+      </p:dataTable>
+    </h:form>
+  </div>
+</h:body>
+</html>

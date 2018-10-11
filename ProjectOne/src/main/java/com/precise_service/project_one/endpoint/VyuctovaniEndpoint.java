@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.precise_service.project_one.domain.vyuctovani.Vyuctovani;
+import com.precise_service.project_one.domain.vyuctovani.VyuctovaniEntity;
 import com.precise_service.project_one.service.IVyuctovaniService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -20,14 +20,14 @@ public class VyuctovaniEndpoint {
   @Autowired
   private IVyuctovaniService vyuctovaniService;
 
-  @RequestMapping(value = "/vyuctovani", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-  void postVyuctovani(@RequestBody Vyuctovani vyuctovani) {
+  @RequestMapping(value = "/vyuctovani", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+  VyuctovaniEntity postVyuctovani(@RequestBody VyuctovaniEntity vyuctovani) {
     log.trace("postVyuctovani()");
-    vyuctovaniService.createVyuctovani(vyuctovani);
+    return vyuctovaniService.postVyuctovani(vyuctovani);
   }
 
   @RequestMapping(value = "/vyuctovani/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-  Vyuctovani getVyuctovani(@PathVariable String id) {
+  VyuctovaniEntity getVyuctovani(@PathVariable String id) {
     log.trace("getVyuctovani()" + id);
     return vyuctovaniService.getVyuctovani(id);
   }

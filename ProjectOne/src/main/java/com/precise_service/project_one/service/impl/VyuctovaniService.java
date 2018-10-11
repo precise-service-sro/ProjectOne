@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.precise_service.project_one.domain.vyuctovani.PolozkaVyuctovani;
-import com.precise_service.project_one.domain.vyuctovani.Vyuctovani;
-import com.precise_service.project_one.repository.VyuctovaniRepository;
+import com.precise_service.project_one.domain.vyuctovani.VyuctovaniEntity;
+import com.precise_service.project_one.repository.VyuctovaniEntityRepository;
 import com.precise_service.project_one.service.IVyuctovaniService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -17,30 +17,30 @@ import lombok.extern.slf4j.Slf4j;
 public class VyuctovaniService implements IVyuctovaniService {
 
   @Autowired
-  private VyuctovaniRepository vyuctovaniRepository;
+  private VyuctovaniEntityRepository vyuctovaniEntityRepository;
 
   @Override
   public void deleteVyuctovaniAll() {
     log.trace("deleteVyuctovaniAll()");
-    vyuctovaniRepository.deleteAll();
+    vyuctovaniEntityRepository.deleteAll();
   }
 
   @Override
-  public Vyuctovani getVyuctovani(String id) {
+  public VyuctovaniEntity getVyuctovani(String id) {
     log.trace("getVyuctovani()");
-    return vyuctovaniRepository.findById(id).get();
+    return vyuctovaniEntityRepository.findById(id).get();
   }
 
   @Override
-  public void createVyuctovani(Vyuctovani vyuctovani) {
-    log.trace("createVyuctovani()");
-    vyuctovaniRepository.save(vyuctovani);
+  public VyuctovaniEntity postVyuctovani(VyuctovaniEntity vyuctovani) {
+    log.trace("postVyuctovani()");
+    return vyuctovaniEntityRepository.save(vyuctovani);
   }
 
   @Override
   public List<PolozkaVyuctovani> getSeznamPolozek(){
     log.trace("getSeznamPolozek()");
-    List<Vyuctovani> vyuctovaniList = vyuctovaniRepository.findAll();
+    List<VyuctovaniEntity> vyuctovaniList = vyuctovaniEntityRepository.findAll();
     List<PolozkaVyuctovani> seznamPolozek = vyuctovaniList.get(0).getSeznamPolozek();
     return seznamPolozek;
   }

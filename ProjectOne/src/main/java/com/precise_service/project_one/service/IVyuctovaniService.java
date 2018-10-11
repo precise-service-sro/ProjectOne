@@ -3,7 +3,7 @@ package com.precise_service.project_one.service;
 import java.util.List;
 
 import com.precise_service.project_one.domain.vyuctovani.PolozkaVyuctovani;
-import com.precise_service.project_one.domain.vyuctovani.Vyuctovani;
+import com.precise_service.project_one.domain.vyuctovani.VyuctovaniEntity;
 
 public interface IVyuctovaniService {
 
@@ -12,9 +12,9 @@ public interface IVyuctovaniService {
    * */
   void deleteVyuctovaniAll();
 
-  Vyuctovani getVyuctovani(String id);
+  VyuctovaniEntity getVyuctovani(String id);
 
-  void createVyuctovani(Vyuctovani vyuctovani);
+  VyuctovaniEntity postVyuctovani(VyuctovaniEntity vyuctovani);
 
   List<PolozkaVyuctovani> getSeznamPolozek();
 }
