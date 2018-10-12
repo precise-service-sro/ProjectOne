@@ -5,9 +5,8 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.precise_service.project_one</groupId>
-  <artifactId>project_one-parent</artifactId>
+  <artifactId>parent</artifactId>
   <version>1.0-SNAPSHOT</version>
-  <name>Project One</name>
   <url>http://maven.apache.org</url>
   <description>ProjectOne - Aplikace na správu pronajímaných nemovitostí a výpočty</description>
   <packaging>pom</packaging>
@@ -20,8 +19,11 @@
   </parent>
 
   <modules>
-    <module>library</module>
-    <module>application</module>
+    <module>domain</module>
+    <module>service-api</module>
+    <module>service-impl</module>
+    <module>endpoint</module>
+    <module>webapp</module>
   </modules>
 
   <properties>
@@ -37,6 +39,7 @@
     <org.springframework.boot.version>2.0.2.RELEASE</org.springframework.boot.version>
     <primefaces.spring.boot.starter.version>3.2.5</primefaces.spring.boot.starter.version>
     <lombok.version>1.18.0</lombok.version>
+    <jackson.annotations.version>2.9.0</jackson.annotations.version>
   </properties>
 
   <dependencyManagement>
@@ -44,12 +47,27 @@
       <!-- Application modules -->
       <dependency>
         <groupId>com.precise_service.project_one</groupId>
-        <artifactId>library</artifactId>
+        <artifactId>domain</artifactId>
         <version>${project.version}</version>
       </dependency>
       <dependency>
         <groupId>com.precise_service.project_one</groupId>
-        <artifactId>application</artifactId>
+        <artifactId>service-api</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.precise_service.project_one</groupId>
+        <artifactId>service-impl</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.precise_service.project_one</groupId>
+        <artifactId>endpoint</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.precise_service.project_one</groupId>
+        <artifactId>webapp</artifactId>
         <version>${project.version}</version>
       </dependency>
 
@@ -86,15 +104,7 @@
     </dependencies>
   </dependencyManagement>
 
-  <!--
   <build>
-    <finalName>ProjectOne</finalName>
-    <plugins>
-      <plugin>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-maven-plugin</artifactId>
-      </plugin>
-    </plugins>
+    <finalName>parent</finalName>
   </build>
-  -->
 </project>
