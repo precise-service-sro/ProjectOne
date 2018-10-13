@@ -1,9 +1,9 @@
-package com.precise_service.project_one.bean.vyuctovani.byt;
+package com.precise_service.project_one.web.vyuctovani.najemnik.dto;
 
 import lombok.Data;
 
 @Data
-public class RadekTabulkyDto {
+public class RadekTabulkyDto2 {
   private String nazev;
   private Double spotrebaMnozstvi;
   private String spotrebaJednotka;

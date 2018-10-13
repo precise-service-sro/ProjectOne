@@ -13,7 +13,6 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @SpringBootApplication
-//@ImportResource("classpath:web.xml")
 public class ProjectOne implements CommandLineRunner {
 
   public static void main(String[] args) {
@@ -25,10 +24,5 @@ public class ProjectOne implements CommandLineRunner {
   public void run(String... args) {
     log.trace("ProjectOne...starting and loading input data");
     log.trace("ProjectOne...starting and loading input data...finished");
-  }
-
-  @Bean
-  public IPokusService iPokusService(){
-    return new PokusService();
   }
 }

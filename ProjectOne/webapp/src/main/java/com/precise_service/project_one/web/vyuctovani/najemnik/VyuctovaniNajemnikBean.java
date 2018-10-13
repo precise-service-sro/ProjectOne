@@ -1,4 +1,4 @@
-package com.precise_service.project_one.bean.vyuctovani.najemnik;
+package com.precise_service.project_one.web.vyuctovani.najemnik;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,9 +8,10 @@ import javax.inject.Named;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.precise_service.project_one.entity.vyuctovani.PolozkaVyuctovani;
-import com.precise_service.project_one.entity.vyuctovani.VyuctovaniEntity;
+import com.precise_service.project_one.entity.byt.vyuctovani.PolozkaVyuctovaniEntity;
+import com.precise_service.project_one.entity.byt.vyuctovani.VyuctovaniEntity;
 import com.precise_service.project_one.service.IVyuctovaniService;
+import com.precise_service.project_one.web.vyuctovani.najemnik.dto.RadekTabulkyDto2;
 
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
@@ -41,15 +42,15 @@ public class VyuctovaniNajemnikBean {
     String idVyuctovani = "5bbf5fce6c6ab027665460e6";
     VyuctovaniEntity vyuctovani = vyuctovaniService.getVyuctovani(idVyuctovani);
 
-    List<PolozkaVyuctovani> seznamPolozek = vyuctovani.getSeznamPolozek();
-    for (PolozkaVyuctovani polozkaVyuctovani : seznamPolozek) {
+    List<PolozkaVyuctovaniEntity> seznamPolozek = vyuctovani.getSeznamPolozek();
+    for (PolozkaVyuctovaniEntity polozkaVyuctovaniEntity : seznamPolozek) {
       RadekTabulkyDto2 radekTabulkyDto = new RadekTabulkyDto2();
-      radekTabulkyDto.setNazev(polozkaVyuctovani.getNazev());
-      radekTabulkyDto.setSpotrebaMnozstvi(polozkaVyuctovani.getSpotreba().getMnozstvi());
-      radekTabulkyDto.setSpotrebaJednotka(polozkaVyuctovani.getSpotreba().getJednotka());
-      radekTabulkyDto.setZalohy(polozkaVyuctovani.getZalohy().getMnozstvi());
-      radekTabulkyDto.setNaklady(polozkaVyuctovani.getNaklady().getMnozstvi());
-      radekTabulkyDto.setRozdil(polozkaVyuctovani.getZalohy().getMnozstvi() - polozkaVyuctovani.getNaklady().getMnozstvi());
+      radekTabulkyDto.setNazev(polozkaVyuctovaniEntity.getNazev());
+      radekTabulkyDto.setSpotrebaMnozstvi(polozkaVyuctovaniEntity.getSpotreba().getMnozstvi());
+      radekTabulkyDto.setSpotrebaJednotka(polozkaVyuctovaniEntity.getSpotreba().getJednotka());
+      radekTabulkyDto.setZalohy(polozkaVyuctovaniEntity.getZalohy().getMnozstvi());
+      radekTabulkyDto.setNaklady(polozkaVyuctovaniEntity.getNaklady().getMnozstvi());
+      radekTabulkyDto.setRozdil(polozkaVyuctovaniEntity.getZalohy().getMnozstvi() - polozkaVyuctovaniEntity.getNaklady().getMnozstvi());
       radkyVyuctovani.add(radekTabulkyDto);
     }
     initTabulkaSoucty();

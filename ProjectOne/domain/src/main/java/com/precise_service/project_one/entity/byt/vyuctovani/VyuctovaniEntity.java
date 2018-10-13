@@ -1,4 +1,4 @@
-package com.precise_service.project_one.entity.vyuctovani;
+package com.precise_service.project_one.entity.byt.vyuctovani;
 
 import java.util.List;
 
@@ -18,6 +18,9 @@ public class VyuctovaniEntity extends BaseEntity {
   @JsonProperty("nazev")
   private String nazev;
 
+  @JsonProperty("zuctovaciObdobi")
+  private ZuctovaciObdobiEntity zuctovaciObdobi;
+
   @JsonProperty("seznamPolozek")
-  private List<PolozkaVyuctovani> seznamPolozek;
+  private List<PolozkaVyuctovaniEntity> seznamPolozek;
 }

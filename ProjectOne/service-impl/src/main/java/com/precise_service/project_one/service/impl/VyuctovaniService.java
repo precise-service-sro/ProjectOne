@@ -5,8 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.precise_service.project_one.entity.vyuctovani.PolozkaVyuctovani;
-import com.precise_service.project_one.entity.vyuctovani.VyuctovaniEntity;
+import com.precise_service.project_one.entity.byt.vyuctovani.PolozkaVyuctovaniEntity;
+import com.precise_service.project_one.entity.byt.vyuctovani.VyuctovaniEntity;
 import com.precise_service.project_one.repository.VyuctovaniEntityRepository;
 import com.precise_service.project_one.service.IVyuctovaniService;
 
@@ -38,10 +38,10 @@ public class VyuctovaniService implements IVyuctovaniService {
   }
 
   @Override
-  public List<PolozkaVyuctovani> getSeznamPolozek(){
+  public List<PolozkaVyuctovaniEntity> getSeznamPolozek(){
     log.trace("getSeznamPolozek()");
     List<VyuctovaniEntity> vyuctovaniList = vyuctovaniEntityRepository.findAll();
-    List<PolozkaVyuctovani> seznamPolozek = vyuctovaniList.get(0).getSeznamPolozek();
+    List<PolozkaVyuctovaniEntity> seznamPolozek = vyuctovaniList.get(0).getSeznamPolozek();
     return seznamPolozek;
   }
 }
