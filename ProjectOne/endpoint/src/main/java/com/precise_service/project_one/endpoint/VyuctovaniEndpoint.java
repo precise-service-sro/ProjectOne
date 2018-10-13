@@ -1,5 +1,7 @@
 package com.precise_service.project_one.endpoint;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -30,6 +32,12 @@ public class VyuctovaniEndpoint {
   VyuctovaniEntity getVyuctovani(@PathVariable String id) {
     log.trace("getVyuctovani()" + id);
     return vyuctovaniService.getVyuctovani(id);
+  }
+
+  @RequestMapping(value = "/vyuctovani/!inRange", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+  List<VyuctovaniEntity> getVyuctovaniInRange(@RequestBody RangeRequest request ) {
+    log.trace("getVyuctovaniInRange()" + request.getFrom().toString() + " - " + request.getTo().toString());
+    return vyuctovaniService.getVyuctovaniInRange(request.getFrom(), request.getTo());
   }
 
   @RequestMapping(value = "/vyuctovani/!all", method = RequestMethod.DELETE)

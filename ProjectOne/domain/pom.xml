@@ -38,6 +38,5 @@
 
   <build>
     <finalName>domain</finalName>
-
   </build>
 </project>

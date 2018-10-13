@@ -1,5 +1,7 @@
 package com.precise_service.project_one.service.impl;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,5 +45,10 @@ public class VyuctovaniService implements IVyuctovaniService {
     List<VyuctovaniEntity> vyuctovaniList = vyuctovaniEntityRepository.findAll();
     List<PolozkaVyuctovaniEntity> seznamPolozek = vyuctovaniList.get(0).getSeznamPolozek();
     return seznamPolozek;
+  }
+
+  @Override
+  public List<VyuctovaniEntity> getVyuctovaniInRange(LocalDate from, LocalDate to) {
+    return vyuctovaniEntityRepository.getVyuctovaniInRange(from, to);
   }
 }

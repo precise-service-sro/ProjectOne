@@ -1,5 +1,6 @@
 package com.precise_service.project_one.service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import com.precise_service.project_one.entity.byt.vyuctovani.PolozkaVyuctovaniEntity;
@@ -17,4 +18,6 @@ public interface IVyuctovaniService {
   VyuctovaniEntity postVyuctovani(VyuctovaniEntity vyuctovani);
 
   List<PolozkaVyuctovaniEntity> getSeznamPolozek();
+
+  List<VyuctovaniEntity> getVyuctovaniInRange(LocalDate from, LocalDate to);
 }

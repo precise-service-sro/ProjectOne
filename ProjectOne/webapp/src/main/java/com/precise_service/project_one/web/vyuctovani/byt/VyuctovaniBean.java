@@ -1,27 +1,23 @@
 package com.precise_service.project_one.web.vyuctovani.byt;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.annotation.PostConstruct;
 import javax.inject.Named;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.precise_service.project_one.commons.DateFormatter;
-import com.precise_service.project_one.entity.byt.vyuctovani.ZuctovaciObdobiEntity;
-import com.precise_service.project_one.service.IPokusService;
 import com.precise_service.project_one.entity.byt.vyuctovani.PolozkaVyuctovaniEntity;
 import com.precise_service.project_one.entity.byt.vyuctovani.VyuctovaniEntity;
+import com.precise_service.project_one.service.IPokusService;
 import com.precise_service.project_one.service.IVyuctovaniService;
 import com.precise_service.project_one.web.vyuctovani.byt.dto.RadekTabulkyDto;
 
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 
-import static com.precise_service.project_one.commons.DateFormatter.*;
+import static com.precise_service.project_one.commons.DateFormatter.format;
 
 
 @Slf4j
@@ -46,7 +42,6 @@ public class VyuctovaniBean {
   public void prepareData(String idVyuctovani) {
     radkyVyuctovani = new ArrayList<>();
 
-    //String idVyuctovani = "5bc1aeac6c6ab07f7f01214f";
     VyuctovaniEntity vyuctovani = vyuctovaniService.getVyuctovani(idVyuctovani);
 
     nazev = vyuctovani.getNazev();

@@ -39,7 +39,7 @@ public class VyuctovaniNajemnikBean {
   private void initTabulkaRadky() {
     radkyVyuctovani = new ArrayList<>();
 
-    String idVyuctovani = "5bbf5fce6c6ab027665460e6";
+    String idVyuctovani = "5bc1c6666c6ab083ca9e5106";
     VyuctovaniEntity vyuctovani = vyuctovaniService.getVyuctovani(idVyuctovani);
 
     List<PolozkaVyuctovaniEntity> seznamPolozek = vyuctovani.getSeznamPolozek();

@@ -19,6 +19,7 @@
   </parent>
 
   <modules>
+    <module>commons</module>
     <module>domain</module>
     <module>service-api</module>
     <module>service-impl</module>
@@ -45,6 +46,11 @@
   <dependencyManagement>
     <dependencies>
       <!-- Application modules -->
+      <dependency>
+        <groupId>com.precise_service.project_one</groupId>
+        <artifactId>commons</artifactId>
+        <version>${project.version}</version>
+      </dependency>
       <dependency>
         <groupId>com.precise_service.project_one</groupId>
         <artifactId>domain</artifactId>
