@@ -1,9 +1,9 @@
-package com.precise_service.project_one.web.vyuctovani.najemnik.dto;
+package com.precise_service.project_one.web.predavaci_protokol.dto;
 
 import lombok.Data;
 
 @Data
-public class RadekTabulkyDto2 {
+public class PredavaciProtokolRadkaDto {
   private String nazev;
   private Double spotrebaMnozstvi;
   private String spotrebaJednotka;

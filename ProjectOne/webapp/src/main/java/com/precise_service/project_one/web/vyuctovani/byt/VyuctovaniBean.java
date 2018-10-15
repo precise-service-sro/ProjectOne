@@ -8,10 +8,10 @@ import javax.inject.Named;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.precise_service.project_one.entity.byt.vyuctovani.CisloNaVyuctovaniEntity;
-import com.precise_service.project_one.entity.byt.vyuctovani.PolozkaVyuctovaniEntity;
+import com.precise_service.project_one.entity.byt.vyuctovani.VyuctovaniCisloEntity;
+import com.precise_service.project_one.entity.byt.vyuctovani.VyuctovaniPolozkaEntity;
 import com.precise_service.project_one.entity.byt.vyuctovani.VyuctovaniEntity;
-import com.precise_service.project_one.service.IPokusService;
+import com.precise_service.project_one.service.IPredavaciProtokolService;
 import com.precise_service.project_one.service.IVyuctovaniService;
 import com.precise_service.project_one.web.vyuctovani.byt.dto.RadekTabulkyDto;
 
@@ -31,7 +31,7 @@ public class VyuctovaniBean {
   private IVyuctovaniService vyuctovaniService;
 
   @Autowired
-  private IPokusService pokusService;
+  private IPredavaciProtokolService pokusService;
 
   private String nazev;
   private String zuctovaciObdobi;
@@ -54,23 +54,23 @@ public class VyuctovaniBean {
       zuctovaciObdobi = "(" + format(zacatekZuctovacihoObdobi, ZUCTOVACI_OBDOBI_DATE_FORMAT) + " - " + format(konecZuctovacihoObdobi, ZUCTOVACI_OBDOBI_DATE_FORMAT) + ")";
     }
 
-    List<PolozkaVyuctovaniEntity> seznamPolozek = vyuctovani.getSeznamPolozek();
-    for (PolozkaVyuctovaniEntity polozkaVyuctovaniEntity : seznamPolozek) {
+    List<VyuctovaniPolozkaEntity> seznamPolozek = vyuctovani.getSeznamPolozek();
+    for (VyuctovaniPolozkaEntity vyuctovaniPolozkaEntity : seznamPolozek) {
       RadekTabulkyDto radekTabulkyDto = new RadekTabulkyDto();
-      radekTabulkyDto.setNazev(polozkaVyuctovaniEntity.getNazev());
-      CisloNaVyuctovaniEntity spotreba = polozkaVyuctovaniEntity.getSpotreba();
+      radekTabulkyDto.setNazev(vyuctovaniPolozkaEntity.getNazev());
+      VyuctovaniCisloEntity spotreba = vyuctovaniPolozkaEntity.getSpotreba();
       if (spotreba == null) {
-        spotreba = new CisloNaVyuctovaniEntity();
+        spotreba = new VyuctovaniCisloEntity();
         spotreba.setMnozstvi(1.00);
         spotreba.setJednotka("Ks");
       }
-      radekTabulkyDto.setSpotrebaJednotka(spotreba.getJednotka());
-      radekTabulkyDto.setPocatecniStav(spotreba.getPocatecniStav());
-      radekTabulkyDto.setKoncovyStav(spotreba.getKoncovyStav());
+      radekTabulkyDto.setPocatecniStav((vyuctovaniPolozkaEntity.getPocatecniStav() != null) ? vyuctovaniPolozkaEntity.getPocatecniStav().getMnozstvi() : 0.0);
+      radekTabulkyDto.setKoncovyStav((vyuctovaniPolozkaEntity.getKoncovyStav() != null) ? vyuctovaniPolozkaEntity.getKoncovyStav().getMnozstvi() : 0.0);
       radekTabulkyDto.setSpotrebaMnozstvi(spotreba.getMnozstvi());
-      CisloNaVyuctovaniEntity zalohy = polozkaVyuctovaniEntity.getZalohy();
+      radekTabulkyDto.setSpotrebaJednotka(spotreba.getJednotka());
+      VyuctovaniCisloEntity zalohy = vyuctovaniPolozkaEntity.getZalohy();
       radekTabulkyDto.setZalohy((zalohy != null) ? zalohy.getMnozstvi() : 0.0);
-      CisloNaVyuctovaniEntity naklady = polozkaVyuctovaniEntity.getNaklady();
+      VyuctovaniCisloEntity naklady = vyuctovaniPolozkaEntity.getNaklady();
       radekTabulkyDto.setNaklady((naklady != null) ? naklady.getMnozstvi() : 0.0);
       radekTabulkyDto.setRozdil(radekTabulkyDto.getZalohy() - radekTabulkyDto.getNaklady());
       radkyVyuctovani.add(radekTabulkyDto);

@@ -1,4 +1,4 @@
-package com.precise_service.project_one.endpoint;
+package com.precise_service.project_one.endpoint.rest_api;
 
 import java.time.LocalDate;
 

@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:vyuctovani="http://java.sun.com/jsf/composite/vyuctovani/component">
+
+<h:head>
+  <title>ProjectOne - Celkový přehled</title>
+</h:head>
+
+<h:body>
+  <div style="width: 98%; margin-left: 10px;">
+
+    Předávací protokol
+
+    <h:form>
+      <p:dataTable var="polozka" value="#{predavaciProtokolBean.getRadky()}" resizableColumns="true" sortBy="#{1}">
+        <f:facet name="header">
+          <h:outputText value="#{predavaciProtokolBean.nazev}"  /> --- <h:outputText value="#{predavaciProtokolBean.nazev}" />
+        </f:facet>
+
+        <p:columnGroup type="header">
+          <p:row>
+            <p:column headerText="Název"       />
+            <p:column headerText="Poč. stav"  style="width: 100px;"/>
+            <p:column headerText="Kon. stav"  style="width: 100px;"/>
+            <p:column headerText="Spotřeba"   style="width: 100px;"/>
+            <p:column headerText="Zálohy"     style="width: 100px;"/>
+            <p:column headerText="Náklady"    style="width: 100px;" />
+            <p:column headerText="Rozdíl"     style="width: 100px;" />
+          </p:row>
+        </p:columnGroup>
+
+        <p:column>
+          <h:outputText value="#{polozka.nazev}" /> [ <h:outputText value="#{polozka.nazev}" /> ]
+        </p:column>
+
+
+
+
+      </p:dataTable>
+
+    </h:form>
+
+
+  </div>
+</h:body>
+</html>

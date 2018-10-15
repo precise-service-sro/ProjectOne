@@ -19,8 +19,8 @@ public class VyuctovaniEntity extends BaseEntity {
   private String nazev;
 
   @JsonProperty("zuctovaciObdobi")
-  private ZuctovaciObdobiEntity zuctovaciObdobi;
+  private VyuctovaniZuctovaciObdobiEntity zuctovaciObdobi;
 
   @JsonProperty("seznamPolozek")
-  private List<PolozkaVyuctovaniEntity> seznamPolozek;
+  private List<VyuctovaniPolozkaEntity> seznamPolozek;
 }
