@@ -46,8 +46,8 @@ public class CelkovyPrehledBean {
     return idVyuctovaniList;
   }
 
-  public List<RadekTabulkyDto> getRadkyVyuctovani(String abc) {
-    vyuctovaniBean.prepareData(abc);
+  public List<RadekTabulkyDto> getRadkyVyuctovani(String idVyuctovani) {
+    vyuctovaniBean.prepareData(idVyuctovani);
     return vyuctovaniBean.getRadkyVyuctovani();
   }
 }

@@ -10,12 +10,13 @@
 </h:head>
 
 <h:body>
-  <div style="width: 80%; margin-left: 100px;">
+  <div style="width: 98%; margin-left: 10px;">
 
     <p:repeat value="#{celkovyPrehledBean.idVyuctovaniList}" var="idVyuctovani">
-      <vyuctovani:tabulka pozdrav="#{idVyuctovani}"/>
+      <vyuctovani:tabulka idVyuctovani="#{idVyuctovani}"/>
       <br/><br/>
     </p:repeat>
+
 
   </div>
 </h:body>

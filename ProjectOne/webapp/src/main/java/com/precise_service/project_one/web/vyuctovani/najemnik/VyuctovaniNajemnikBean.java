@@ -35,7 +35,6 @@ public class VyuctovaniNajemnikBean {
     return nazev;
   }
 
-  @PostConstruct
   private void initTabulkaRadky() {
     radkyVyuctovani = new ArrayList<>();
 

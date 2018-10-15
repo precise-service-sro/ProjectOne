@@ -8,6 +8,7 @@ import javax.inject.Named;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.precise_service.project_one.entity.byt.vyuctovani.CisloNaVyuctovaniEntity;
 import com.precise_service.project_one.entity.byt.vyuctovani.PolozkaVyuctovaniEntity;
 import com.precise_service.project_one.entity.byt.vyuctovani.VyuctovaniEntity;
 import com.precise_service.project_one.service.IPokusService;
@@ -40,6 +41,8 @@ public class VyuctovaniBean {
   private Double celkemRozdil;
 
   public void prepareData(String idVyuctovani) {
+    log.trace("prepareData()");
+    log.debug("idVyuctovani: " + idVyuctovani);
     radkyVyuctovani = new ArrayList<>();
 
     VyuctovaniEntity vyuctovani = vyuctovaniService.getVyuctovani(idVyuctovani);
@@ -55,11 +58,21 @@ public class VyuctovaniBean {
     for (PolozkaVyuctovaniEntity polozkaVyuctovaniEntity : seznamPolozek) {
       RadekTabulkyDto radekTabulkyDto = new RadekTabulkyDto();
       radekTabulkyDto.setNazev(polozkaVyuctovaniEntity.getNazev());
-      radekTabulkyDto.setSpotrebaMnozstvi(polozkaVyuctovaniEntity.getSpotreba().getMnozstvi());
-      radekTabulkyDto.setSpotrebaJednotka(polozkaVyuctovaniEntity.getSpotreba().getJednotka());
-      radekTabulkyDto.setZalohy(polozkaVyuctovaniEntity.getZalohy().getMnozstvi());
-      radekTabulkyDto.setNaklady(polozkaVyuctovaniEntity.getNaklady().getMnozstvi());
-      radekTabulkyDto.setRozdil(polozkaVyuctovaniEntity.getZalohy().getMnozstvi() - polozkaVyuctovaniEntity.getNaklady().getMnozstvi());
+      CisloNaVyuctovaniEntity spotreba = polozkaVyuctovaniEntity.getSpotreba();
+      if (spotreba == null) {
+        spotreba = new CisloNaVyuctovaniEntity();
+        spotreba.setMnozstvi(1.00);
+        spotreba.setJednotka("Ks");
+      }
+      radekTabulkyDto.setSpotrebaJednotka(spotreba.getJednotka());
+      radekTabulkyDto.setPocatecniStav(spotreba.getPocatecniStav());
+      radekTabulkyDto.setKoncovyStav(spotreba.getKoncovyStav());
+      radekTabulkyDto.setSpotrebaMnozstvi(spotreba.getMnozstvi());
+      CisloNaVyuctovaniEntity zalohy = polozkaVyuctovaniEntity.getZalohy();
+      radekTabulkyDto.setZalohy((zalohy != null) ? zalohy.getMnozstvi() : 0.0);
+      CisloNaVyuctovaniEntity naklady = polozkaVyuctovaniEntity.getNaklady();
+      radekTabulkyDto.setNaklady((naklady != null) ? naklady.getMnozstvi() : 0.0);
+      radekTabulkyDto.setRozdil(radekTabulkyDto.getZalohy() - radekTabulkyDto.getNaklady());
       radkyVyuctovani.add(radekTabulkyDto);
     }
     initTabulkaSoucty();
