@@ -1,16 +1,16 @@
 package com.precise_service.project_one.web.predavaci_protokol;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.inject.Named;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.precise_service.project_one.entity.byt.predavaciProtokol.PredavaciProtokolEntity;
 import com.precise_service.project_one.entity.byt.predavaciProtokol.PredavaciProtokolPolozkaEntity;
-import com.precise_service.project_one.entity.byt.vyuctovani.VyuctovaniEntity;
-import com.precise_service.project_one.entity.byt.vyuctovani.VyuctovaniPolozkaEntity;
 import com.precise_service.project_one.service.IPredavaciProtokolService;
 import com.precise_service.project_one.web.predavaci_protokol.dto.PredavaciProtokolRadkaDto;
 
@@ -26,60 +26,37 @@ public class PredavaciProtokolBean {
   private IPredavaciProtokolService predavaciProtokolService;
 
   private String nazev;
-
-  private List<PredavaciProtokolRadkaDto> radkyVyuctovani;
+  private LocalDate datumPodpisu;
+  private List<PredavaciProtokolRadkaDto> radky;
   private Double celkemZalohy;
   private Double celkemNaklady;
   private Double celkemRozdil;
 
-  public String getNazev() {
-    return nazev;
-  }
+  private PredavaciProtokolEntity predavaciProtokolEntity;
 
-  private void initTabulkaRadky() {
-    radkyVyuctovani = new ArrayList<>();
+  @PostConstruct
+  public void init() {
+    List<PredavaciProtokolEntity> predavaciProtokolEntityList = predavaciProtokolService.getPredavaciProtokolEntityList();
+    predavaciProtokolEntity = predavaciProtokolEntityList.get(0);
 
-    String idVyuctovani = "5bc1c6666c6ab083ca9e506";
-    VyuctovaniEntity vyuctovani = new VyuctovaniEntity();  // vyuctovaniService.getVyuctovani(idVyuctovani);
-
-    List<VyuctovaniPolozkaEntity> seznamPolozek = vyuctovani.getSeznamPolozek();
-    for (VyuctovaniPolozkaEntity vyuctovaniPolozkaEntity : seznamPolozek) {
-      PredavaciProtokolRadkaDto radekTabulkyDto = new PredavaciProtokolRadkaDto();
-      radekTabulkyDto.setNazev(vyuctovaniPolozkaEntity.getNazev());
-      radekTabulkyDto.setSpotrebaMnozstvi(vyuctovaniPolozkaEntity.getSpotreba().getMnozstvi());
-      radekTabulkyDto.setSpotrebaJednotka(vyuctovaniPolozkaEntity.getSpotreba().getJednotka());
-      radekTabulkyDto.setZalohy(vyuctovaniPolozkaEntity.getZalohy().getMnozstvi());
-      radekTabulkyDto.setNaklady(vyuctovaniPolozkaEntity.getNaklady().getMnozstvi());
-      radekTabulkyDto.setRozdil(vyuctovaniPolozkaEntity.getZalohy().getMnozstvi() - vyuctovaniPolozkaEntity.getNaklady().getMnozstvi());
-      radkyVyuctovani.add(radekTabulkyDto);
-    }
-    initTabulkaSoucty();
-  }
-
-  private void initTabulkaSoucty(){
-    celkemZalohy = 0.0;
-    celkemNaklady = 0.0;
-    celkemRozdil = 0.0;
-    for (PredavaciProtokolRadkaDto radekTabulkyDto : radkyVyuctovani){
-      celkemZalohy += radekTabulkyDto.getZalohy();
-      celkemNaklady += radekTabulkyDto.getNaklady();
-      celkemRozdil += radekTabulkyDto.getRozdil();
-    }
+    nazev = predavaciProtokolEntity.getNazev();
+    datumPodpisu = predavaciProtokolEntity.getDatumPodpisu();
   }
 
   public List<PredavaciProtokolRadkaDto> getRadky(){
     log.trace("getRadky()");
-    List<PredavaciProtokolEntity> predavaciProtokolEntityList = predavaciProtokolService.getPredavaciProtokolEntityList();
-    PredavaciProtokolEntity predavaciProtokolEntity = predavaciProtokolEntityList.get(0);
-
-    List<PredavaciProtokolRadkaDto> predavaciProtokolRadkaDtoList = new ArrayList<>();
+    radky = new ArrayList<>();
     List<PredavaciProtokolPolozkaEntity> seznamPolozek = predavaciProtokolEntity.getSeznamPolozek();
-    for (PredavaciProtokolPolozkaEntity redavaciProtokolPolozkaEntity : seznamPolozek) {
-      PredavaciProtokolRadkaDto predavaciProtokolRadkaDto = new PredavaciProtokolRadkaDto();
-      predavaciProtokolRadkaDto.setNazev(redavaciProtokolPolozkaEntity.getNazev());
-      predavaciProtokolRadkaDtoList.add(predavaciProtokolRadkaDto);
+    for (PredavaciProtokolPolozkaEntity polozka : seznamPolozek) {
+      PredavaciProtokolRadkaDto radka = new PredavaciProtokolRadkaDto();
+      radka.setNazev(polozka.getNazev());
+      radka.setCisloMeraku(polozka.getCisloMeraku());
+      radka.setStavMeraku(polozka.getStavMeraku());
+      radka.setJednotka(polozka.getJednotka());
+      radka.setFormatovanyStavMeraku(polozka.getStavMeraku() + " " + polozka.getJednotka());
+      radky.add(radka);
     }
 
-    return predavaciProtokolRadkaDtoList;
+    return radky;
   }
 }
