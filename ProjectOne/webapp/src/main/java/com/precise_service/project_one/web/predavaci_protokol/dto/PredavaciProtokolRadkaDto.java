@@ -5,6 +5,8 @@ import lombok.Data;
 @Data
 public class PredavaciProtokolRadkaDto {
   private String nazev;
+  private String popis;
+  private String vyuctovatJako;
   private String cisloMeraku;
   private String stavMeraku;
   private String jednotka;

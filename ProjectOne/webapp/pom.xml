@@ -25,11 +25,7 @@
     </dependency>
     <dependency>
       <groupId>com.precise_service.project_one</groupId>
-      <artifactId>service-api</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>com.precise_service.project_one</groupId>
-      <artifactId>service-impl</artifactId>
+      <artifactId>service</artifactId>
     </dependency>
     <dependency>
       <groupId>com.precise_service.project_one</groupId>

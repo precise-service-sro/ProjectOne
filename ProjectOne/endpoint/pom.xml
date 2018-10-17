@@ -21,7 +21,7 @@
     </dependency>
     <dependency>
       <groupId>com.precise_service.project_one</groupId>
-      <artifactId>service-api</artifactId>
+      <artifactId>service</artifactId>
     </dependency>
 
     <!-- Spring boot -->

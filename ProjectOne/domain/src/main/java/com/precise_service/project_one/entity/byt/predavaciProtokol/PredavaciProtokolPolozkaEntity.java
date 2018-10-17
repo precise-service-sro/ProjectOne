@@ -17,6 +17,9 @@ public class PredavaciProtokolPolozkaEntity {
   @JsonProperty("nazev")
   private String nazev;
 
+  @JsonProperty("idPolozkaTyp")
+  private String idPolozkaTyp;
+
   @JsonProperty("cisloMeraku")
   private String cisloMeraku;
 

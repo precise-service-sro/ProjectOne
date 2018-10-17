@@ -24,18 +24,23 @@
 
       <p:columnGroup type="header">
         <p:row>
-          <p:column headerText="Název"       />
-          <p:column headerText="Poč. stav"  style="width: 100px;"/>
-          <p:column headerText="Kon. stav"  style="width: 100px;"/>
-          <p:column headerText="Spotřeba"   style="width: 100px;"/>
-          <p:column headerText="Zálohy"     style="width: 100px;"/>
-          <p:column headerText="Náklady"    style="width: 100px;" />
-          <p:column headerText="Rozdíl"     style="width: 100px;" />
+          <p:column headerText="Název"                               />
+          <p:column headerText="Vyúčtovat jako" style="width: 200px;"/>
+          <p:column headerText="Poč. stav"      style="width: 100px;"/>
+          <p:column headerText="Kon. stav"      style="width: 100px;"/>
+          <p:column headerText="Spotřeba"       style="width: 100px;"/>
+          <p:column headerText="Zálohy"         style="width: 100px;"/>
+          <p:column headerText="Náklady"        style="width: 100px;" />
+          <p:column headerText="Rozdíl"         style="width: 100px;" />
         </p:row>
       </p:columnGroup>
 
       <p:column>
         <h:outputText value="#{polozka.nazev}" /> [ <h:outputText value="#{polozka.spotrebaJednotka}" /> ]
+      </p:column>
+
+      <p:column>
+        <h:outputText value="#{polozka.vyuctovatJako}" title="#{polozka.popis}"/>
       </p:column>
 
       <p:column style="text-align: right">
@@ -78,6 +83,7 @@
         <p:column style="text-align:left">
           <h:outputText value="Celkem:" />
         </p:column>
+        <p:column></p:column>
         <p:column></p:column>
         <p:column></p:column>
         <p:column></p:column>

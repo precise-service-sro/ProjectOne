@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.precise_service.project_one.entity.byt.predavaciProtokol.PredavaciProtokolEntity;
-import com.precise_service.project_one.entity.byt.vyuctovani.VyuctovaniEntity;
 import com.precise_service.project_one.service.IPredavaciProtokolService;
 
 import lombok.extern.slf4j.Slf4j;

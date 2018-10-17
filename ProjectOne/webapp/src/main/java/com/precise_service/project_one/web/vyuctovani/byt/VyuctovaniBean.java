@@ -11,7 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.precise_service.project_one.entity.byt.vyuctovani.VyuctovaniCisloEntity;
 import com.precise_service.project_one.entity.byt.vyuctovani.VyuctovaniPolozkaEntity;
 import com.precise_service.project_one.entity.byt.vyuctovani.VyuctovaniEntity;
+import com.precise_service.project_one.entity.byt.vyuctovani.VyuctovaniPolozkaTypEntity;
 import com.precise_service.project_one.service.IPredavaciProtokolService;
+import com.precise_service.project_one.service.IVyuctovaniPolozkaTypeService;
 import com.precise_service.project_one.service.IVyuctovaniService;
 import com.precise_service.project_one.web.vyuctovani.byt.dto.RadekTabulkyDto;
 
@@ -31,9 +33,10 @@ public class VyuctovaniBean {
   private IVyuctovaniService vyuctovaniService;
 
   @Autowired
-  private IPredavaciProtokolService pokusService;
+  private IVyuctovaniPolozkaTypeService vyuctovaniPolozkaTypeService;
 
   private String nazev;
+  private String popis;
   private String zuctovaciObdobi;
   private List<RadekTabulkyDto> radkyVyuctovani;
   private Double celkemZalohy;
@@ -57,7 +60,11 @@ public class VyuctovaniBean {
     List<VyuctovaniPolozkaEntity> seznamPolozek = vyuctovani.getSeznamPolozek();
     for (VyuctovaniPolozkaEntity vyuctovaniPolozkaEntity : seznamPolozek) {
       RadekTabulkyDto radekTabulkyDto = new RadekTabulkyDto();
+
+      VyuctovaniPolozkaTypEntity vyuctovaniPolozkaTypEntity = vyuctovaniPolozkaTypeService.getVyuctovaniPolozkaTypEntity(vyuctovaniPolozkaEntity.getIdPolozkaTyp());
       radekTabulkyDto.setNazev(vyuctovaniPolozkaEntity.getNazev());
+      radekTabulkyDto.setVyuctovatJako(vyuctovaniPolozkaTypEntity.getNazev());
+      radekTabulkyDto.setPopis("(" + vyuctovaniPolozkaTypEntity.getPopis() + ")");
       VyuctovaniCisloEntity spotreba = vyuctovaniPolozkaEntity.getSpotreba();
       if (spotreba == null) {
         spotreba = new VyuctovaniCisloEntity();

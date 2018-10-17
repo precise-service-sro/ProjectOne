@@ -11,7 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.precise_service.project_one.entity.byt.predavaciProtokol.PredavaciProtokolEntity;
 import com.precise_service.project_one.entity.byt.predavaciProtokol.PredavaciProtokolPolozkaEntity;
+import com.precise_service.project_one.entity.byt.vyuctovani.VyuctovaniPolozkaTypEntity;
 import com.precise_service.project_one.service.IPredavaciProtokolService;
+import com.precise_service.project_one.service.IVyuctovaniPolozkaTypeService;
 import com.precise_service.project_one.web.predavaci_protokol.dto.PredavaciProtokolRadkaDto;
 
 import lombok.Data;
@@ -24,6 +26,9 @@ public class PredavaciProtokolBean {
 
   @Autowired
   private IPredavaciProtokolService predavaciProtokolService;
+
+  @Autowired
+  private IVyuctovaniPolozkaTypeService vyuctovaniPolozkaTypeService;
 
   private String nazev;
   private LocalDate datumPodpisu;
@@ -50,6 +55,9 @@ public class PredavaciProtokolBean {
     for (PredavaciProtokolPolozkaEntity polozka : seznamPolozek) {
       PredavaciProtokolRadkaDto radka = new PredavaciProtokolRadkaDto();
       radka.setNazev(polozka.getNazev());
+      VyuctovaniPolozkaTypEntity vyuctovaniPolozkaTypEntity = vyuctovaniPolozkaTypeService.getVyuctovaniPolozkaTypEntity(polozka.getIdPolozkaTyp());
+      radka.setVyuctovatJako(vyuctovaniPolozkaTypEntity.getNazev());
+      radka.setPopis(vyuctovaniPolozkaTypEntity.getPopis());
       radka.setCisloMeraku(polozka.getCisloMeraku());
       radka.setStavMeraku(polozka.getStavMeraku());
       radka.setJednotka(polozka.getJednotka());

@@ -5,6 +5,8 @@ import lombok.Data;
 @Data
 public class RadekTabulkyDto {
   private String nazev;
+  private String popis;
+  private String vyuctovatJako;
   private String spotrebaJednotka;
 
   // spotreba

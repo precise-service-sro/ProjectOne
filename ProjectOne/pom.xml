@@ -21,8 +21,7 @@
   <modules>
     <module>commons</module>
     <module>domain</module>
-    <module>service-api</module>
-    <module>service-impl</module>
+    <module>service</module>
     <module>endpoint</module>
     <module>webapp</module>
   </modules>
@@ -58,12 +57,7 @@
       </dependency>
       <dependency>
         <groupId>com.precise_service.project_one</groupId>
-        <artifactId>service-api</artifactId>
-        <version>${project.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>com.precise_service.project_one</groupId>
-        <artifactId>service-impl</artifactId>
+        <artifactId>service</artifactId>
         <version>${project.version}</version>
       </dependency>
       <dependency>

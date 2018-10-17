@@ -23,13 +23,18 @@
         <p:columnGroup type="header">
           <p:row>
             <p:column headerText="Název"/>
-            <p:column headerText="Číslo měřáku" style="width: 150px;"/>
-            <p:column headerText="Stav měřáku"  style="width: 150px;"/>
+            <p:column headerText="Vyúčtovat jako" style="width: 150px;"/>
+            <p:column headerText="Číslo měřáku"   style="width: 150px;"/>
+            <p:column headerText="Stav měřáku"    style="width: 150px;"/>
           </p:row>
         </p:columnGroup>
 
         <p:column>
           <h:outputText value="#{polozka.nazev}" /> [ <h:outputText value="#{polozka.jednotka}" /> ]
+        </p:column>
+
+        <p:column>
+          <h:outputText value="#{polozka.vyuctovatJako}" title="#{polozka.popis}"/>
         </p:column>
 
         <p:column style="text-align: center">

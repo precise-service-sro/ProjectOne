@@ -13,8 +13,12 @@ import lombok.Data;
 @Document(collection = "polozka")
 public class VyuctovaniPolozkaEntity {
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   @JsonProperty("nazev")
   private String nazev;
+
+  @JsonProperty("idPolozkaTyp")
+  private String idPolozkaTyp;
 
   @JsonInclude(JsonInclude.Include.NON_NULL)
   @JsonProperty("pocatecniStav")
