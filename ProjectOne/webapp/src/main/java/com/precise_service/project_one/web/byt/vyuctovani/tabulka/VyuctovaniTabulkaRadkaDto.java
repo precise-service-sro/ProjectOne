@@ -1,4 +1,4 @@
-package com.precise_service.project_one.web.vyuctovani.dto;
+package com.precise_service.project_one.web.byt.vyuctovani.tabulka;
 
 import lombok.Data;
 

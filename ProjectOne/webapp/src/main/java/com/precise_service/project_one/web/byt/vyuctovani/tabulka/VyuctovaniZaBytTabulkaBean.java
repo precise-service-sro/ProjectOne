@@ -1,4 +1,4 @@
-package com.precise_service.project_one.web.vyuctovani;
+package com.precise_service.project_one.web.byt.vyuctovani.tabulka;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -14,7 +14,6 @@ import com.precise_service.project_one.entity.byt.vyuctovani.VyuctovaniEntity;
 import com.precise_service.project_one.entity.byt.vyuctovani.VyuctovaniPolozkaTypEntity;
 import com.precise_service.project_one.service.IVyuctovaniPolozkaTypeService;
 import com.precise_service.project_one.service.IVyuctovaniService;
-import com.precise_service.project_one.web.vyuctovani.dto.VyuctovaniTabulkaRadkaDto;
 
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
@@ -25,7 +24,7 @@ import static com.precise_service.project_one.commons.DateFormatter.format;
 @Slf4j
 @Data
 @Named
-public class VyuctovaniTabulkaBean {
+public class VyuctovaniZaBytTabulkaBean {
 
   public static final String ZUCTOVACI_OBDOBI_DATE_FORMAT = "dd/MM/yyyy";
   @Autowired

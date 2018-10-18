@@ -1,4 +1,4 @@
-package com.precise_service.project_one.web.predavaci_protokol;
+package com.precise_service.project_one.web.najemnik.predavaci_protokol;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -14,7 +14,7 @@ import com.precise_service.project_one.entity.byt.predavaciProtokol.PredavaciPro
 import com.precise_service.project_one.entity.byt.vyuctovani.VyuctovaniPolozkaTypEntity;
 import com.precise_service.project_one.service.IPredavaciProtokolService;
 import com.precise_service.project_one.service.IVyuctovaniPolozkaTypeService;
-import com.precise_service.project_one.web.predavaci_protokol.dto.PredavaciProtokolRadkaDto;
+import com.precise_service.project_one.web.najemnik.predavaci_protokol.dto.PredavaciProtokolRadkaDto;
 
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;

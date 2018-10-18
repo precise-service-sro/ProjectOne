@@ -1,4 +1,4 @@
-package com.precise_service.project_one.web.vyuctovani;
+package com.precise_service.project_one.web.byt.vyuctovani;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -11,7 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.precise_service.project_one.entity.byt.vyuctovani.VyuctovaniEntity;
 import com.precise_service.project_one.service.IVyuctovaniService;
-import com.precise_service.project_one.web.vyuctovani.dto.VyuctovaniTabulkaRadkaDto;
+import com.precise_service.project_one.web.byt.vyuctovani.tabulka.VyuctovaniZaBytTabulkaBean;
+import com.precise_service.project_one.web.byt.vyuctovani.tabulka.VyuctovaniTabulkaRadkaDto;
 
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
@@ -19,13 +20,13 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Data
 @Named
-public class VyuctovaniBean {
+public class VyuctovaniZaBytBean {
 
   @Autowired
   private IVyuctovaniService vyuctovaniService;
 
   @Autowired
-  private VyuctovaniTabulkaBean vyuctovaniTabulkaBean;
+  private VyuctovaniZaBytTabulkaBean vyuctovaniZaBytTabulkaBean;
 
   public List<String> getIdVyuctovaniList(){
     DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
@@ -42,7 +43,7 @@ public class VyuctovaniBean {
   }
 
   public List<VyuctovaniTabulkaRadkaDto> getRadkyVyuctovani(String idVyuctovani) {
-    vyuctovaniTabulkaBean.prepareData(idVyuctovani);
-    return vyuctovaniTabulkaBean.getRadkyVyuctovani();
+    vyuctovaniZaBytTabulkaBean.prepareData(idVyuctovani);
+    return vyuctovaniZaBytTabulkaBean.getRadkyVyuctovani();
   }
 }
