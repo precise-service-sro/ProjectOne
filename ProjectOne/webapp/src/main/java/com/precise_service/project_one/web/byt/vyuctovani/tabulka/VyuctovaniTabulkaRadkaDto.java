@@ -1,9 +1,11 @@
 package com.precise_service.project_one.web.byt.vyuctovani.tabulka;
 
+import java.io.Serializable;
+
 import lombok.Data;
 
 @Data
-public class VyuctovaniTabulkaRadkaDto {
+public class VyuctovaniTabulkaRadkaDto implements Serializable {
   private String nazev;
   private String popis;
   private String vyuctovatJako;

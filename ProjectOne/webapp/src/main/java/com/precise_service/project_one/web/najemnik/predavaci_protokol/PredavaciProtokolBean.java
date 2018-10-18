@@ -1,5 +1,6 @@
 package com.precise_service.project_one.web.najemnik.predavaci_protokol;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +23,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Data
 @Named
-public class PredavaciProtokolBean {
+public class PredavaciProtokolBean implements Serializable {
 
   @Autowired
   private IPredavaciProtokolService predavaciProtokolService;

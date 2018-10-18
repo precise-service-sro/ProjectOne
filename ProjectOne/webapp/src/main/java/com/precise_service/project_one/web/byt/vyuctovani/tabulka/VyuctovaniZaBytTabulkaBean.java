@@ -1,5 +1,6 @@
 package com.precise_service.project_one.web.byt.vyuctovani.tabulka;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +25,7 @@ import static com.precise_service.project_one.commons.DateFormatter.format;
 @Slf4j
 @Data
 @Named
-public class VyuctovaniZaBytTabulkaBean {
+public class VyuctovaniZaBytTabulkaBean implements Serializable {
 
   public static final String ZUCTOVACI_OBDOBI_DATE_FORMAT = "dd/MM/yyyy";
   @Autowired

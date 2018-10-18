@@ -1,5 +1,6 @@
 package com.precise_service.project_one.web.byt.vyuctovani;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -20,7 +21,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Data
 @Named
-public class VyuctovaniZaBytBean {
+public class VyuctovaniZaBytBean implements Serializable {
 
   @Autowired
   private IVyuctovaniService vyuctovaniService;
