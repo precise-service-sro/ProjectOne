@@ -1,4 +1,4 @@
-package com.precise_service.project_one.web.vyuctovani.byt;
+package com.precise_service.project_one.web.vyuctovani;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -12,10 +12,9 @@ import com.precise_service.project_one.entity.byt.vyuctovani.VyuctovaniCisloEnti
 import com.precise_service.project_one.entity.byt.vyuctovani.VyuctovaniPolozkaEntity;
 import com.precise_service.project_one.entity.byt.vyuctovani.VyuctovaniEntity;
 import com.precise_service.project_one.entity.byt.vyuctovani.VyuctovaniPolozkaTypEntity;
-import com.precise_service.project_one.service.IPredavaciProtokolService;
 import com.precise_service.project_one.service.IVyuctovaniPolozkaTypeService;
 import com.precise_service.project_one.service.IVyuctovaniService;
-import com.precise_service.project_one.web.vyuctovani.byt.dto.RadekTabulkyDto;
+import com.precise_service.project_one.web.vyuctovani.dto.VyuctovaniTabulkaRadkaDto;
 
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
@@ -26,7 +25,7 @@ import static com.precise_service.project_one.commons.DateFormatter.format;
 @Slf4j
 @Data
 @Named
-public class VyuctovaniBean {
+public class VyuctovaniTabulkaBean {
 
   public static final String ZUCTOVACI_OBDOBI_DATE_FORMAT = "dd/MM/yyyy";
   @Autowired
@@ -38,7 +37,7 @@ public class VyuctovaniBean {
   private String nazev;
   private String popis;
   private String zuctovaciObdobi;
-  private List<RadekTabulkyDto> radkyVyuctovani;
+  private List<VyuctovaniTabulkaRadkaDto> radkyVyuctovani;
   private Double celkemZalohy;
   private Double celkemNaklady;
   private Double celkemRozdil;
@@ -59,7 +58,7 @@ public class VyuctovaniBean {
 
     List<VyuctovaniPolozkaEntity> seznamPolozek = vyuctovani.getSeznamPolozek();
     for (VyuctovaniPolozkaEntity vyuctovaniPolozkaEntity : seznamPolozek) {
-      RadekTabulkyDto radekTabulkyDto = new RadekTabulkyDto();
+      VyuctovaniTabulkaRadkaDto radekTabulkyDto = new VyuctovaniTabulkaRadkaDto();
 
       VyuctovaniPolozkaTypEntity vyuctovaniPolozkaTypEntity = vyuctovaniPolozkaTypeService.getVyuctovaniPolozkaTypEntity(vyuctovaniPolozkaEntity.getIdPolozkaTyp());
       radekTabulkyDto.setNazev(vyuctovaniPolozkaEntity.getNazev());
@@ -82,17 +81,17 @@ public class VyuctovaniBean {
       radekTabulkyDto.setRozdil(radekTabulkyDto.getZalohy() - radekTabulkyDto.getNaklady());
       radkyVyuctovani.add(radekTabulkyDto);
     }
-    initTabulkaSoucty();
+    spocitatSoucty();
   }
 
-  private void initTabulkaSoucty(){
+  private void spocitatSoucty(){
     celkemZalohy = 0.0;
     celkemNaklady = 0.0;
     celkemRozdil = 0.0;
-    for (RadekTabulkyDto radekTabulkyDto : radkyVyuctovani){
-      celkemZalohy += radekTabulkyDto.getZalohy();
-      celkemNaklady += radekTabulkyDto.getNaklady();
-      celkemRozdil += radekTabulkyDto.getRozdil();
+    for (VyuctovaniTabulkaRadkaDto radka : radkyVyuctovani){
+      celkemZalohy += radka.getZalohy();
+      celkemNaklady += radka.getNaklady();
+      celkemRozdil += radka.getRozdil();
     }
   }
 }

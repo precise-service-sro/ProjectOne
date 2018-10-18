@@ -3,21 +3,21 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:vyuctovani="http://java.sun.com/jsf/composite/vyuctovani/component">
+      xmlns:vyuctovani="http://java.sun.com/jsf/composite/byt/vyuctovani/component">
 
 <h:head>
-  <title>ProjectOne - Celkový přehled</title>
+  <title>ProjectOne - Byt - Vyúčtování</title>
 </h:head>
 
 <h:body>
-  <div style="width: 98%; margin-left: 10px;">
 
-    <p:repeat value="#{celkovyPrehledBean.idVyuctovaniList}" var="idVyuctovani">
+  Byt - Vyúčtování:
+
+  <div style="width: 98%; margin-left: 10px;">
+    <p:repeat value="#{vyuctovaniBean.idVyuctovaniList}" var="idVyuctovani">
       <vyuctovani:tabulka idVyuctovani="#{idVyuctovani}"/>
       <br/><br/>
     </p:repeat>
-
-
   </div>
 </h:body>
 </html>

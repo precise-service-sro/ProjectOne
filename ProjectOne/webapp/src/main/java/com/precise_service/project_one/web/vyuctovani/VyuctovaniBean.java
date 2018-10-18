@@ -1,4 +1,4 @@
-package com.precise_service.project_one.web.vyuctovani.byt;
+package com.precise_service.project_one.web.vyuctovani;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.precise_service.project_one.entity.byt.vyuctovani.VyuctovaniEntity;
 import com.precise_service.project_one.service.IVyuctovaniService;
-import com.precise_service.project_one.web.vyuctovani.byt.dto.RadekTabulkyDto;
+import com.precise_service.project_one.web.vyuctovani.dto.VyuctovaniTabulkaRadkaDto;
 
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
@@ -19,13 +19,13 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Data
 @Named
-public class CelkovyPrehledBean {
+public class VyuctovaniBean {
 
   @Autowired
   private IVyuctovaniService vyuctovaniService;
 
   @Autowired
-  private VyuctovaniBean vyuctovaniBean;
+  private VyuctovaniTabulkaBean vyuctovaniTabulkaBean;
 
   public List<String> getIdVyuctovaniList(){
     DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
@@ -41,8 +41,8 @@ public class CelkovyPrehledBean {
     return idVyuctovaniList;
   }
 
-  public List<RadekTabulkyDto> getRadkyVyuctovani(String idVyuctovani) {
-    vyuctovaniBean.prepareData(idVyuctovani);
-    return vyuctovaniBean.getRadkyVyuctovani();
+  public List<VyuctovaniTabulkaRadkaDto> getRadkyVyuctovani(String idVyuctovani) {
+    vyuctovaniTabulkaBean.prepareData(idVyuctovani);
+    return vyuctovaniTabulkaBean.getRadkyVyuctovani();
   }
 }

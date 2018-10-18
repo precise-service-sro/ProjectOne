@@ -17,9 +17,9 @@
 <composite:implementation>
 
   <h:form>
-    <p:dataTable var="polozka" value="#{celkovyPrehledBean.getRadkyVyuctovani(cc.attrs.idVyuctovani)}" resizableColumns="true" sortBy="#{1}">
+    <p:dataTable var="polozka" value="#{vyuctovaniBean.getRadkyVyuctovani(cc.attrs.idVyuctovani)}" resizableColumns="true" sortBy="#{1}">
       <f:facet name="header">
-        <h:outputText value="#{vyuctovaniBean.nazev}"  /> --- <h:outputText value="#{vyuctovaniBean.zuctovaciObdobi}" />
+        <h:outputText value="#{vyuctovaniTabulkaBean.nazev}"  /> --- <h:outputText value="#{vyuctovaniTabulkaBean.zuctovaciObdobi}" />
       </f:facet>
 
       <p:columnGroup type="header">
@@ -80,25 +80,21 @@
       </p:column>
 
       <p:summaryRow>
-        <p:column style="text-align:left">
+        <p:column colspan="5" style="text-align:left">
           <h:outputText value="Celkem:" />
         </p:column>
-        <p:column></p:column>
-        <p:column></p:column>
-        <p:column></p:column>
-        <p:column></p:column>
         <p:column style="text-align: right">
-          <h:outputText value="#{vyuctovaniBean.celkemZalohy}">
+          <h:outputText value="#{vyuctovaniTabulkaBean.celkemZalohy}">
             <f:convertNumber type="currency" pattern="#0.00 Kč" />
           </h:outputText>
         </p:column>
         <p:column style="text-align: right">
-          <h:outputText value="#{vyuctovaniBean.celkemNaklady}">
+          <h:outputText value="#{vyuctovaniTabulkaBean.celkemNaklady}">
             <f:convertNumber type="currency" pattern="#0.00 Kč" />
           </h:outputText>
         </p:column>
         <p:column style="text-align: right">
-          <h:outputText value="#{vyuctovaniBean.celkemRozdil}">
+          <h:outputText value="#{vyuctovaniTabulkaBean.celkemRozdil}">
             <f:convertNumber type="currency" pattern="#0.00 Kč" />
           </h:outputText>
         </p:column>
