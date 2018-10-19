@@ -1,9 +1,9 @@
-package com.precise_service.project_one.service;
+package com.precise_service.project_one.service.byt.vyuctovani_za_byt;
 
 import java.time.LocalDate;
 import java.util.List;
 
-import com.precise_service.project_one.entity.byt.vyuctovani.VyuctovaniEntity;
+import com.precise_service.project_one.entity.byt.vyuctovani_za_byt.VyuctovaniEntity;
 
 public interface IVyuctovaniService {
 

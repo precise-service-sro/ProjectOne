@@ -9,12 +9,12 @@ import javax.inject.Named;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.precise_service.project_one.entity.byt.vyuctovani.VyuctovaniCisloEntity;
-import com.precise_service.project_one.entity.byt.vyuctovani.VyuctovaniPolozkaEntity;
-import com.precise_service.project_one.entity.byt.vyuctovani.VyuctovaniEntity;
-import com.precise_service.project_one.entity.byt.vyuctovani.VyuctovaniPolozkaTypEntity;
-import com.precise_service.project_one.service.IVyuctovaniPolozkaTypeService;
-import com.precise_service.project_one.service.IVyuctovaniService;
+import com.precise_service.project_one.entity.byt.vyuctovani_za_byt.VyuctovaniCisloEntity;
+import com.precise_service.project_one.entity.byt.vyuctovani_za_byt.VyuctovaniPolozkaEntity;
+import com.precise_service.project_one.entity.byt.vyuctovani_za_byt.VyuctovaniEntity;
+import com.precise_service.project_one.entity.byt.vyuctovani_za_byt.VyuctovaniPolozkaTypEntity;
+import com.precise_service.project_one.service.byt.vyuctovani_za_byt.IVyuctovaniPolozkaTypService;
+import com.precise_service.project_one.service.byt.vyuctovani_za_byt.IVyuctovaniService;
 
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
@@ -32,7 +32,7 @@ public class VyuctovaniZaBytTabulkaBean implements Serializable {
   private IVyuctovaniService vyuctovaniService;
 
   @Autowired
-  private IVyuctovaniPolozkaTypeService vyuctovaniPolozkaTypeService;
+  private IVyuctovaniPolozkaTypService vyuctovaniPolozkaTypeService;
 
   private String nazev;
   private String popis;

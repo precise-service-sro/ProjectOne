@@ -1,19 +1,18 @@
-package com.precise_service.project_one.service.impl;
+package com.precise_service.project_one.service.byt.vyuctovani_za_byt;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.precise_service.project_one.entity.byt.vyuctovani.VyuctovaniPolozkaTypEntity;
-import com.precise_service.project_one.repository.VyuctovaniPolozkaTypEntityRepository;
-import com.precise_service.project_one.service.IVyuctovaniPolozkaTypeService;
+import com.precise_service.project_one.entity.byt.vyuctovani_za_byt.VyuctovaniPolozkaTypEntity;
+import com.precise_service.project_one.repository.byt.vyuctovani_za_byt.VyuctovaniPolozkaTypEntityRepository;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Service
-public class VyuctovaniPolozkaTypeService implements IVyuctovaniPolozkaTypeService {
+public class VyuctovaniPolozkaTypService implements IVyuctovaniPolozkaTypService {
 
   @Autowired
   private VyuctovaniPolozkaTypEntityRepository vyuctovaniPolozkaTypEntityRepository;

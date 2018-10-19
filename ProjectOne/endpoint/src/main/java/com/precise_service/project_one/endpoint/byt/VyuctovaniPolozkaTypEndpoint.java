@@ -1,4 +1,4 @@
-package com.precise_service.project_one.endpoint;
+package com.precise_service.project_one.endpoint.byt;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -7,10 +7,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.precise_service.project_one.entity.byt.vyuctovani.VyuctovaniEntity;
-import com.precise_service.project_one.entity.byt.vyuctovani.VyuctovaniPolozkaTypEntity;
-import com.precise_service.project_one.service.IVyuctovaniPolozkaTypeService;
-import com.precise_service.project_one.service.IVyuctovaniService;
+import com.precise_service.project_one.entity.byt.vyuctovani_za_byt.VyuctovaniPolozkaTypEntity;
+import com.precise_service.project_one.service.byt.vyuctovani_za_byt.IVyuctovaniPolozkaTypService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -19,7 +17,7 @@ import lombok.extern.slf4j.Slf4j;
 public class VyuctovaniPolozkaTypEndpoint {
 
   @Autowired
-  private IVyuctovaniPolozkaTypeService vyuctovaniPolozkaTypeService;
+  private IVyuctovaniPolozkaTypService vyuctovaniPolozkaTypeService;
 
   @RequestMapping(value = "/postVyuctovaniPolozkaTypEntity", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
   VyuctovaniPolozkaTypEntity postVyuctovaniPolozkaTypEntity(@RequestBody VyuctovaniPolozkaTypEntity vyuctovaniPolozkaTypEntity) {

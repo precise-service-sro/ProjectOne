@@ -7,19 +7,20 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
-import org.primefaces.event.CellEditEvent;
 import org.primefaces.event.RowEditEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.precise_service.project_one.entity.byt.predavaciProtokol.PredavaciProtokolEntity;
-import com.precise_service.project_one.entity.byt.predavaciProtokol.PredavaciProtokolPolozkaEntity;
-import com.precise_service.project_one.entity.byt.vyuctovani.VyuctovaniPolozkaTypEntity;
-import com.precise_service.project_one.service.IPredavaciProtokolService;
-import com.precise_service.project_one.service.IVyuctovaniPolozkaTypeService;
-import com.precise_service.project_one.web.Car;
+import com.precise_service.project_one.entity.byt.predavaci_protokol.PredavaciProtokolEntity;
+import com.precise_service.project_one.entity.byt.predavaci_protokol.PredavaciProtokolPolozkaEntity;
+import com.precise_service.project_one.entity.byt.vyuctovani_za_byt.VyuctovaniPolozkaTypEntity;
+import com.precise_service.project_one.repository.najemnik.predavaci_protokol.PredavaciProtokolEntityRepository;
+import com.precise_service.project_one.service.byt.vyuctovani_za_byt.IVyuctovaniPolozkaTypService;
+import com.precise_service.project_one.service.najemnik.predavaci_protokol.IPredavaciProtokolService;
 import com.precise_service.project_one.web.najemnik.predavaci_protokol.dto.PredavaciProtokolRadkaDto;
 
 import lombok.Data;
@@ -28,22 +29,26 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Data
 @Named
+//@ManagedBean(name="predavaciProtokolBean")
+//@ViewScoped
 public class PredavaciProtokolBean implements Serializable {
 
   @Autowired
   private IPredavaciProtokolService predavaciProtokolService;
 
   @Autowired
-  private IVyuctovaniPolozkaTypeService vyuctovaniPolozkaTypeService;
+  private IVyuctovaniPolozkaTypService vyuctovaniPolozkaTypeService;
+
+  @Autowired
+  private PredavaciProtokolEntityRepository predavaciProtokolEntityRepository;
 
   private String nazev;
   private LocalDate datumPodpisu;
-  private List<PredavaciProtokolRadkaDto> radky;
-  private Double celkemZalohy;
-  private Double celkemNaklady;
-  private Double celkemRozdil;
 
   private PredavaciProtokolEntity predavaciProtokolEntity;
+
+  private List<PredavaciProtokolRadkaDto> radky;
+  private List<VyuctovaniPolozkaTypEntity> vyuctovaniPolozkaTypEntityList;
 
   @PostConstruct
   public void init() {
@@ -52,34 +57,42 @@ public class PredavaciProtokolBean implements Serializable {
 
     nazev = predavaciProtokolEntity.getNazev();
     datumPodpisu = predavaciProtokolEntity.getDatumPodpisu();
-  }
 
-  public List<PredavaciProtokolRadkaDto> getRadky(){
-    log.trace("getRadky()");
     radky = new ArrayList<>();
     List<PredavaciProtokolPolozkaEntity> seznamPolozek = predavaciProtokolEntity.getSeznamPolozek();
     for (PredavaciProtokolPolozkaEntity polozka : seznamPolozek) {
-      PredavaciProtokolRadkaDto radka = new PredavaciProtokolRadkaDto();
-      radka.setNazev(polozka.getNazev());
-      VyuctovaniPolozkaTypEntity vyuctovaniPolozkaTypEntity = vyuctovaniPolozkaTypeService.getVyuctovaniPolozkaTypEntity(polozka.getIdPolozkaTyp());
-      radka.setVyuctovatJako(vyuctovaniPolozkaTypEntity.getNazev());
-      radka.setPopis(vyuctovaniPolozkaTypEntity.getPopis());
-      radka.setCisloMeraku(polozka.getCisloMeraku());
-      radka.setStavMeraku(polozka.getStavMeraku());
-      radka.setJednotka(polozka.getJednotka());
-      radka.setFormatovanyStavMeraku(polozka.getStavMeraku() + " " + polozka.getJednotka());
-      radky.add(radka);
+      PredavaciProtokolRadkaDto predavaciProtokolRadkaDto = new PredavaciProtokolRadkaDto();
+      predavaciProtokolRadkaDto.setIdPredavaciProtokol(predavaciProtokolEntity.getId());
+      predavaciProtokolRadkaDto.setNazev(polozka.getNazev());
+      predavaciProtokolRadkaDto.setVyuctovaniPolozkaTypEntity(polozka.getVyuctovaniPolozkaTypEntity());
+      predavaciProtokolRadkaDto.setCisloMeraku(polozka.getCisloMeraku());
+      predavaciProtokolRadkaDto.setJednotka(polozka.getJednotka());
+      predavaciProtokolRadkaDto.setStavMeraku(polozka.getStavMeraku());
+      radky.add(predavaciProtokolRadkaDto);
     }
-    return radky;
-  }
 
-  public List<VyuctovaniPolozkaTypEntity> getVyuctovatJakoList() {
-    List<VyuctovaniPolozkaTypEntity> vyuctovaniPolozkaTypEntityList = vyuctovaniPolozkaTypeService.getVyuctovaniPolozkaTypEntityList();
-    return vyuctovaniPolozkaTypEntityList;
+    vyuctovaniPolozkaTypEntityList = vyuctovaniPolozkaTypeService.getVyuctovaniPolozkaTypEntityList();
   }
 
   public void onRowEdit(RowEditEvent event) {
-    FacesMessage msg = new FacesMessage("Uložena úprava řádky", ((PredavaciProtokolRadkaDto) event.getObject()).getNazev());
+    PredavaciProtokolRadkaDto predavaciProtokolRadkaDto = (PredavaciProtokolRadkaDto) event.getObject();
+
+
+    PredavaciProtokolEntity predavaciProtokol = predavaciProtokolService.getPredavaciProtokol(predavaciProtokolRadkaDto.getIdPredavaciProtokol());
+
+    // najit polozku
+    List<PredavaciProtokolPolozkaEntity> seznamPolozek = predavaciProtokol.getSeznamPolozek();
+    for (PredavaciProtokolPolozkaEntity polozkaEntity : seznamPolozek) {
+      if (polozkaEntity.getNazev().equals(predavaciProtokolRadkaDto.getNazev())) {
+        polozkaEntity.setCisloMeraku(predavaciProtokolRadkaDto.getCisloMeraku());
+        polozkaEntity.setStavMeraku(predavaciProtokolRadkaDto.getStavMeraku());
+        polozkaEntity.setVyuctovaniPolozkaTypEntity(predavaciProtokolRadkaDto.getVyuctovaniPolozkaTypEntity());
+      }
+    }
+
+    predavaciProtokolEntityRepository.save(predavaciProtokol);
+
+    FacesMessage msg = new FacesMessage("Uložena úprava řádky", predavaciProtokolRadkaDto.getNazev());
     FacesContext.getCurrentInstance().addMessage(null, msg);
   }
 

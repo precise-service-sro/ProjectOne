@@ -1,24 +1,27 @@
-package com.precise_service.project_one.entity.byt.predavaciProtokol;
+package com.precise_service.project_one.entity.byt.predavaci_protokol;
 
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.precise_service.project_one.entity.byt.vyuctovani.VyuctovaniCisloEntity;
+import com.precise_service.project_one.entity.byt.vyuctovani_za_byt.VyuctovaniPolozkaTypEntity;
 
 import lombok.Data;
 
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
-@Document(collection = "polozka")
+@Document(collection = "predavaciProtokolPolozka")
 public class PredavaciProtokolPolozkaEntity {
 
   @JsonProperty("nazev")
   private String nazev;
 
-  @JsonProperty("idPolozkaTyp")
-  private String idPolozkaTyp;
+  @DBRef
+  @JsonProperty("vyuctovaniPolozkaTyp")
+  @JsonInclude(JsonInclude.Include.NON_NULL)
+  private VyuctovaniPolozkaTypEntity vyuctovaniPolozkaTypEntity;
 
   @JsonProperty("cisloMeraku")
   private String cisloMeraku;

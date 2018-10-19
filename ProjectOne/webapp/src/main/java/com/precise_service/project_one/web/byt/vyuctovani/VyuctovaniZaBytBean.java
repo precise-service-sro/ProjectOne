@@ -10,8 +10,8 @@ import javax.inject.Named;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.precise_service.project_one.entity.byt.vyuctovani.VyuctovaniEntity;
-import com.precise_service.project_one.service.IVyuctovaniService;
+import com.precise_service.project_one.entity.byt.vyuctovani_za_byt.VyuctovaniEntity;
+import com.precise_service.project_one.service.byt.vyuctovani_za_byt.IVyuctovaniService;
 import com.precise_service.project_one.web.byt.vyuctovani.tabulka.VyuctovaniZaBytTabulkaBean;
 import com.precise_service.project_one.web.byt.vyuctovani.tabulka.VyuctovaniTabulkaRadkaDto;
 

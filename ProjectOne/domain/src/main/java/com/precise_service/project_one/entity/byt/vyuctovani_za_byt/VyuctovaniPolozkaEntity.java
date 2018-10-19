@@ -1,4 +1,4 @@
-package com.precise_service.project_one.entity.byt.vyuctovani;
+package com.precise_service.project_one.entity.byt.vyuctovani_za_byt;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 
