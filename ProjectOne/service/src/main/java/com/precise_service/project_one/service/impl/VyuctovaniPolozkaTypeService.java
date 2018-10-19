@@ -1,5 +1,7 @@
 package com.precise_service.project_one.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,5 +28,11 @@ public class VyuctovaniPolozkaTypeService implements IVyuctovaniPolozkaTypeServi
   public VyuctovaniPolozkaTypEntity postVyuctovaniPolozkaTypEntity(VyuctovaniPolozkaTypEntity vyuctovaniPolozkaTypEntity) {
     log.trace("postVyuctovaniPolozkaTypEntity()");
     return vyuctovaniPolozkaTypEntityRepository.save(vyuctovaniPolozkaTypEntity);
+  }
+
+  @Override
+  public List<VyuctovaniPolozkaTypEntity> getVyuctovaniPolozkaTypEntityList() {
+    log.trace("getVyuctovaniPolozkaTypEntityList()");
+    return vyuctovaniPolozkaTypEntityRepository.findAll();
   }
 }

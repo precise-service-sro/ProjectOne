@@ -14,11 +14,16 @@
 
     Nájemník - Předávací protokol:
 
-    <h:form>
-      <p:dataTable var="polozka" value="#{predavaciProtokolBean.getRadky()}" resizableColumns="true" sortBy="#{1}">
+    <h:form id="form">
+      <p:growl id="msgs" showDetail="true"/>
+
+      <p:dataTable var="polozka" value="#{predavaciProtokolBean.getRadky()}" resizableColumns="true" sortBy="#{1}" editable="true" rowIndexVar="index">
         <f:facet name="header">
           <h:outputText value="#{predavaciProtokolBean.nazev}"  /> --- <h:outputText value="#{predavaciProtokolBean.datumPodpisu}" />
         </f:facet>
+
+        <p:ajax event="rowEdit" listener="#{predavaciProtokolBean.onRowEdit}" update=":form:msgs" />
+        <p:ajax event="rowEditCancel" listener="#{predavaciProtokolBean.onRowCancel}" update=":form:msgs" />
 
         <p:columnGroup type="header">
           <p:row>
@@ -26,25 +31,48 @@
             <p:column headerText="Vyúčtovat jako" style="width: 150px;"/>
             <p:column headerText="Číslo měřáku"   style="width: 150px;"/>
             <p:column headerText="Stav měřáku"    style="width: 150px;"/>
+            <p:column                             style="width:  32px;"/>
           </p:row>
         </p:columnGroup>
 
-        <p:column>
-          <h:outputText value="#{polozka.nazev}" /> [ <h:outputText value="#{polozka.jednotka}" /> ]
+        <p:column headerText="Název">
+          <h:outputText value="#{polozka.nazev}" />
         </p:column>
 
-        <p:column>
-          <h:outputText value="#{polozka.vyuctovatJako}" title="#{polozka.popis}"/>
+        <p:column headerText="Vyúčtovat jako" style="text-align: center">
+          <p:cellEditor>
+            <f:facet name="output"><h:outputText value="#{polozka.vyuctovatJako}" title="#{polozka.popis}"/> </f:facet>
+            <f:facet name="input">
+              <h:selectOneMenu value="#{polozka.vyuctovatJako}" style="width:100%">
+                <f:selectItems value="#{predavaciProtokolBean.vyuctovatJakoList}" var="man" itemLabel="#{man.nazev}" itemValue="#{man}" />
+              </h:selectOneMenu>
+            </f:facet>
+          </p:cellEditor>
         </p:column>
 
-        <p:column style="text-align: center">
-          <h:outputText value="#{polozka.cisloMeraku}" />
+        <p:column headerText="Číslo měřáku" style="text-align: center">
+          <p:cellEditor>
+            <f:facet name="output"><h:outputText value="#{polozka.cisloMeraku}" /> </f:facet>
+            <f:facet name="input"><p:inputText id="cisloMerakuInput" value="#{polozka.cisloMeraku}" style="width:100%"/></f:facet>
+          </p:cellEditor>
         </p:column>
 
-        <p:column style="text-align: right">
-          <h:outputText value="#{polozka.formatovanyStavMeraku}" />
+        <p:column headerText="Stav měřáku"  style="text-align: right">
+          <p:cellEditor>
+            <f:facet name="output"><h:outputText value="#{polozka.stavMeraku}" /> <h:outputText value="&nbsp;" /> <h:outputText value="#{polozka.jednotka}" /> </f:facet>
+            <f:facet name="input"><div style="text-align: left"><p:inputText id="stavMerakuInput" value="#{polozka.stavMeraku}" style="width:40%" />  <h:outputText value="&nbsp;" /> <h:outputText value="#{polozka.jednotka}" style="width:50%"/>  </div></f:facet>
+          </p:cellEditor>
+        </p:column>
+
+        <p:column style="width: 32px;">
+          <p:rowEditor />
         </p:column>
       </p:dataTable>
+
+      Tlačítko na přidání nového řádku
+      <br />
+      Tlačítko na smazání řádku
+      <br />
     </h:form>
 
   </div>
