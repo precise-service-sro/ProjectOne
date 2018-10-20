@@ -3,7 +3,7 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:vyuctovani="http://java.sun.com/jsf/composite/vyuctovani/component">
+      xmlns:component="http://java.sun.com/jsf/composite/byt/informace/component">
 
 <h:head>
   <title>ProjectOne - Byt - Informace - O nemovitosti</title>
@@ -11,11 +11,12 @@
 
 <h:body>
 
-  Byt - Informace - O nemovitosti:
+  Byt - Informace - O nemovitosti: ( <h:outputText value="#{informaceBytBean.nazev}" /> )
 
+  <component:editorTextu vstupniData="#{informaceBytBean.editorTextuBean.text}" />
   <br />
   <br />
-  - adresa
+  - adresa ( <h:outputText value="#{informaceBytBean.adresa}" /> )
   <br />
   - půdorys
   <br />

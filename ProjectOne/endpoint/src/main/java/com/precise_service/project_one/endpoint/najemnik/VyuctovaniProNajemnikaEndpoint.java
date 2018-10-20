@@ -13,12 +13,11 @@ import org.springframework.web.bind.annotation.RestController;
 import com.precise_service.project_one.entity.najemnik.predavaci_protokol.PredavaciProtokolEntity;
 import com.precise_service.project_one.service.najemnik.predavaci_protokol.IPredavaciProtokolService;
 
-
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-@RestController
-public class PredavaciProtokolEndpoint {
+//@RestController
+public class VyuctovaniProNajemnikaEndpoint {
 
   @Autowired
   private IPredavaciProtokolService predavaciProtokolService;

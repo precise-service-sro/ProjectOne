@@ -7,16 +7,14 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
 import org.primefaces.event.RowEditEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.precise_service.project_one.entity.byt.predavaci_protokol.PredavaciProtokolEntity;
-import com.precise_service.project_one.entity.byt.predavaci_protokol.PredavaciProtokolPolozkaEntity;
+import com.precise_service.project_one.entity.najemnik.predavaci_protokol.PredavaciProtokolEntity;
+import com.precise_service.project_one.entity.najemnik.predavaci_protokol.PredavaciProtokolPolozkaEntity;
 import com.precise_service.project_one.entity.byt.vyuctovani_za_byt.VyuctovaniPolozkaTypEntity;
 import com.precise_service.project_one.repository.najemnik.predavaci_protokol.PredavaciProtokolEntityRepository;
 import com.precise_service.project_one.service.byt.vyuctovani_za_byt.IVyuctovaniPolozkaTypService;
@@ -29,8 +27,6 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Data
 @Named
-//@ManagedBean(name="predavaciProtokolBean")
-//@ViewScoped
 public class PredavaciProtokolBean implements Serializable {
 
   @Autowired

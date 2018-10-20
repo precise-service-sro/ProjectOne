@@ -6,8 +6,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.precise_service.project_one.entity.byt.predavaci_protokol.PredavaciProtokolEntity;
-import com.precise_service.project_one.entity.byt.predavaci_protokol.PredavaciProtokolPolozkaEntity;
+import com.precise_service.project_one.entity.najemnik.predavaci_protokol.PredavaciProtokolEntity;
+import com.precise_service.project_one.entity.najemnik.predavaci_protokol.PredavaciProtokolPolozkaEntity;
 import com.precise_service.project_one.entity.byt.vyuctovani_za_byt.VyuctovaniPolozkaTypEntity;
 import com.precise_service.project_one.repository.byt.vyuctovani_za_byt.VyuctovaniPolozkaTypEntityRepository;
 import com.precise_service.project_one.repository.najemnik.predavaci_protokol.PredavaciProtokolEntityRepository;

@@ -17,8 +17,8 @@ import com.precise_service.project_one.service.byt.vyuctovani_za_byt.IVyuctovani
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-@RestController
-public class VyuctovaniEndpoint {
+//@RestController
+public class VyuctovaniZaBytEndpoint {
 
   @Autowired
   private IVyuctovaniService vyuctovaniService;
