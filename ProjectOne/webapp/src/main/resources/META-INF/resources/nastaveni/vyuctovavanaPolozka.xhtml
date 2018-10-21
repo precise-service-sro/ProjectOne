@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:vyuctovani="http://java.sun.com/jsf/composite/vyuctovani/component"
+      xmlns:component="http://java.sun.com/jsf/composite/common/component">
+
+<h:head>
+  <title>ProjectOne - Nájemník - Předávací protokol</title>
+</h:head>
+
+<h:body>
+  <div style="width: 98%; margin-left: 10px;"></div>
+
+    Nastavení - Přehled vyúčtovávaných položek:
+
+    <h:form id="form">
+      <p:growl id="msgs" showDetail="true"/>
+
+      <p:dataTable id="predavaciProtokol" var="polozka" value="#{predavaciProtokolBean.vyuctovaniPolozkaTypEntityList}" resizableColumns="true" sortBy="#{1}" editable="true" rowIndexVar="index">
+
+        <p:ajax event="rowEdit" listener="#{predavaciProtokolBean.onRowEdit}" update=":form:msgs" />
+        <p:ajax event="rowEditCancel" listener="#{predavaciProtokolBean.onRowCancel}" update=":form:msgs" />
+
+        <p:columnGroup type="header">
+          <p:row>
+            <p:column headerText="Název" style="width: 150px;"/>
+            <p:column headerText="Popis" />
+            <p:column                    style="width:  32px;"/>
+          </p:row>
+        </p:columnGroup>
+
+        <p:column headerText="Název">
+          <h:outputText value="#{polozka.nazev}" />
+        </p:column>
+
+        <p:column headerText="Název">
+          <h:outputText value="#{polozka.popis}" />
+        </p:column>
+
+        <p:column style="width: 32px;">
+          <p:rowEditor />
+        </p:column>
+      </p:dataTable>
+
+      Tlačítko na přidání nového řádku
+      <br />
+      Tlačítko na smazání řádku
+      <br />
+    </h:form>
+<div>
+  </div>
+  <component:dockMenu />
+
+</h:body>
+</html>
