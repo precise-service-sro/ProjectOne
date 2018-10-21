@@ -3,7 +3,7 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:vyuctovani="http://java.sun.com/jsf/composite/vyuctovani/component">
+      xmlns:component="http://java.sun.com/jsf/composite/common/component">
 
 <h:head>
   <title>ProjectOne - Najemník - Informace - O nájemníkovi</title>
@@ -13,24 +13,11 @@
 
   Najemník - Informace - O nájemníkovi:
 
-  <br />
-  <br />
-  - osobní a kontaktní / údaje / adresa
-  <br />
-  - nájemní smlouva / předávací protokol
-  <br />
-  - poznámky (co o něm vím)
-  <br />
-  - fotky
-  <br />
-  - platební historie
-  <br />
-  - doklad o pojištění odpovědnosti / domácnosti
-  <br />
-  - co dělá za práci?
-  <br />
-  - předchozí vyúčtování
-  <br />
+  <h3>Jméno a Přijmení:</h3>
+  - <h:outputText value="#{informaceNajemnikBean.jmeno}" />&nbsp;<h:outputText value="#{informaceNajemnikBean.prijmeni}" />
+
+  <h3>Poznámky:</h3>
+  <component:editorTextu vstupniData="#{informaceNajemnikBean}" />
 
 </h:body>
 </html>

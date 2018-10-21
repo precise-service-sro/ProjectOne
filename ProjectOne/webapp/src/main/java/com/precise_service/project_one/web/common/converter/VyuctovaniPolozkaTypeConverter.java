@@ -1,4 +1,4 @@
-package com.precise_service.project_one.web.najemnik.predavaci_protokol.dto;
+package com.precise_service.project_one.web.common.converter;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;

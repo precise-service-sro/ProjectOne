@@ -1,4 +1,4 @@
-package com.precise_service.project_one.web.byt.informace.component;
+package com.precise_service.project_one.web.common.component;
 
 import javax.inject.Named;
 

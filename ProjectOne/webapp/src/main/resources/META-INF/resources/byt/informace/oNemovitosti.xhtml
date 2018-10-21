@@ -3,7 +3,7 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:component="http://java.sun.com/jsf/composite/byt/informace/component">
+      xmlns:component="http://java.sun.com/jsf/composite/common/component">
 
 <h:head>
   <title>ProjectOne - Byt - Informace - O nemovitosti</title>
@@ -11,35 +11,16 @@
 
 <h:body>
 
-  Byt - Informace - O nemovitosti: ( <h:outputText value="#{informaceBytBean.nazev}" /> )
+  Byt - Informace - O nemovitosti:
 
-  <component:editorTextu vstupniData="#{informaceBytBean.editorTextuBean.text}" />
-  <br />
-  <br />
-  - adresa ( <h:outputText value="#{informaceBytBean.adresa}" /> )
-  <br />
-  - půdorys
-  <br />
-  - kupní cena / smlouva
-  <br />
-  - fotky (kde co je, schránka, sklep, stav) ... může být prolinkováno i na předávací protokol
-  <br />
-  - kontakty na důležité osoby (předseda SVJ, sousedi, lokální opraváři)
-  <br />
-  - přehledy (nájemníků, nájmů, plateb, nájemní smlouvy, kontakty na nájemníky)
-  <br />
-  - výpis z katastru (nahrané doklady i odkaz přímo na web)
-  <br />
-  - pojištění nemovitosti / smlouvy
-  <br />
-  - zálohy za služby
-  <br />
-  - smlouvy s dodavateli služeb (elektřina / plyn / internet)
-  <br />
-  - heslo na wifi
-  <br />
-  - energetický šťítek
-  <br />
+  <h3>Název:</h3>
+  - <h:outputText value="#{informaceBytBean.nazev}" />
+
+  <h3>Adresa:</h3>
+  - <h:outputText value="#{informaceBytBean.adresa}" />
+
+  <h3>Poznámky:</h3>
+  <component:editorTextu vstupniData="#{informaceBytBean}" />
 
 </h:body>
 </html>
