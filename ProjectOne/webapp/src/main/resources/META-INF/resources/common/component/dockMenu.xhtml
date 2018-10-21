@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:composite="http://java.sun.com/jsf/composite"
+>
+
+<composite:interface>
+
+  <composite:attribute name="vstupniData" />
+
+</composite:interface>
+
+<composite:implementation>
+
+  <h:form>
+    <p:dock position="bottom">
+      <p:menuitem value="Domů"                     icon="/common/component/icons/home.png"              url="http://localhost:9080/index.xhtml"/>
+      <p:menuitem value="Byty"                     icon="/common/component/icons/byt.png"               url="http://localhost:9080/byt/informace/oNemovitosti.xhtml"/>
+      <p:menuitem value="Nájemníci"                icon="/common/component/icons/najemnik.png"          url="http://localhost:9080/najemnik/informace/oNajemnikovi.xhtml"/>
+      <p:menuitem value="Předávací protokoly"      icon="/common/component/icons/predavaciProtokol.png" url="http://localhost:9080/najemnik/predavaciProtokol.xhtml"/>
+      <p:menuitem value="Vyúčtování za byt"        icon="/common/component/icons/vyuctovani.png"        url="http://localhost:9080/byt/vyuctovani/vyuctovani.xhtml"/>
+      <p:menuitem value="Vyúčtování pro nájemníky" icon="/common/component/icons/vyuctovani.png"        url="http://localhost:9080/najemnik/vyuctovani/vyuctovani.xhtml"/>
+      <p:menuitem value="Nájemní smlouvy"          icon="/common/component/icons/najemniSmlouva.png"    url="http://localhost:9080/najemniSmlouva.xhtml"/>
+    </p:dock>
+  </h:form>
+
+</composite:implementation>
+
+</html>
