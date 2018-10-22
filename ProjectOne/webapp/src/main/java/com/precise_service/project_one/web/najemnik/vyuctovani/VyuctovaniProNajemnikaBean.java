@@ -11,7 +11,7 @@ import javax.inject.Named;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.precise_service.project_one.entity.byt.vyuctovani_za_byt.VyuctovaniEntity;
-import com.precise_service.project_one.service.byt.vyuctovani_za_byt.IVyuctovaniService;
+import com.precise_service.project_one.service.byt.vyuctovani_za_byt.IVyuctovaniZaBytService;
 import com.precise_service.project_one.web.byt.vyuctovani.tabulka.VyuctovaniZaBytTabulkaBean;
 import com.precise_service.project_one.web.byt.vyuctovani.tabulka.VyuctovaniTabulkaRadkaDto;
 
@@ -24,7 +24,7 @@ import lombok.extern.slf4j.Slf4j;
 public class VyuctovaniProNajemnikaBean implements Serializable {
 
   @Autowired
-  private IVyuctovaniService vyuctovaniService;
+  private IVyuctovaniZaBytService vyuctovaniService;
 
   @Autowired
   private VyuctovaniZaBytTabulkaBean vyuctovaniZaBytTabulkaBean;
@@ -36,7 +36,7 @@ public class VyuctovaniProNajemnikaBean implements Serializable {
 
     List<String> idVyuctovaniList = new ArrayList<>();
 
-    List<VyuctovaniEntity> vyuctovaniInRange = vyuctovaniService.getVyuctovaniInRange(from, to);
+    List<VyuctovaniEntity> vyuctovaniInRange = vyuctovaniService.getVyuctovaniZaBytEntityInRange(from, to);
     for (VyuctovaniEntity vyuctovaniEntity : vyuctovaniInRange) {
       idVyuctovaniList.add(vyuctovaniEntity.getId());
     }

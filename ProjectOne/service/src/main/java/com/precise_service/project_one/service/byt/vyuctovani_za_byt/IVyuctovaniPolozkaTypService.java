@@ -6,9 +6,13 @@ import com.precise_service.project_one.entity.byt.vyuctovani_za_byt.VyuctovaniPo
 
 public interface IVyuctovaniPolozkaTypService {
 
-  VyuctovaniPolozkaTypEntity getVyuctovaniPolozkaTypEntity(String id);
-
   VyuctovaniPolozkaTypEntity postVyuctovaniPolozkaTypEntity(VyuctovaniPolozkaTypEntity vyuctovaniPolozkaTypEntity);
 
-  List<VyuctovaniPolozkaTypEntity> getVyuctovaniPolozkaTypEntityList();
+  VyuctovaniPolozkaTypEntity putVyuctovaniPolozkaTypEntity(VyuctovaniPolozkaTypEntity vyuctovaniPolozkaTypEntity);
+
+  VyuctovaniPolozkaTypEntity getVyuctovaniPolozkaTypEntity(String idVyuctovaniPolozkaTypEntity);
+
+  List<VyuctovaniPolozkaTypEntity> getVyuctovaniPolozkaTypEntityAll();
+
+  void deleteVyuctovaniPolozkaTypEntityAll();
 }

@@ -29,10 +29,10 @@ public class PredavaciProtokolEndpoint {
     return predavaciProtokolService.postPredavaciProtokol(predavaciProtokolEntity);
   }
 
-  @RequestMapping(value = "/predavaciProtokolNew", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-  PredavaciProtokolEntity postPredavaciProtokolNew() {
-    log.trace("postPredavaciProtokolNew()");
-    return predavaciProtokolService.postPredavaciProtokolNew();
+  @RequestMapping(value = "/predavaciProtokol", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+  PredavaciProtokolEntity putPredavaciProtokol(@RequestBody PredavaciProtokolEntity predavaciProtokolEntity) {
+    log.trace("putPredavaciProtokol()");
+    return predavaciProtokolService.putPredavaciProtokol(predavaciProtokolEntity);
   }
 
   @RequestMapping(value = "/predavaciProtokol/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -46,14 +46,6 @@ public class PredavaciProtokolEndpoint {
     log.trace("getPredavaciProtokolAll()");
     return predavaciProtokolService.getPredavaciProtokolAll();
   }
-
-  /*
-  @RequestMapping(value = "/vyuctovani/!inRange", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-  List<VyuctovaniEntity> getVyuctovaniInRange(@RequestBody RangeRequest request ) {
-    log.trace("getVyuctovaniInRange()" + request.getFrom().toString() + " - " + request.getTo().toString());
-    return vyuctovaniService.getVyuctovaniInRange(request.getFrom(), request.getTo());
-  }
-  */
 
   @RequestMapping(value = "/predavaciProtokol/!all", method = RequestMethod.DELETE)
   void deletePredavaciProtokolAll() {

@@ -16,7 +16,8 @@ import com.precise_service.project_one.service.najemnik.predavaci_protokol.IPred
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-//@RestController
+@RestController
+@RequestMapping(value = "/najemnik", path = "/najemnik")
 public class VyuctovaniProNajemnikaEndpoint {
 
   @Autowired
@@ -26,12 +27,6 @@ public class VyuctovaniProNajemnikaEndpoint {
   PredavaciProtokolEntity postPredavaciProtokol(@RequestBody PredavaciProtokolEntity predavaciProtokolEntity) {
     log.trace("postPredavaciProtokol()");
     return predavaciProtokolService.postPredavaciProtokol(predavaciProtokolEntity);
-  }
-
-  @RequestMapping(value = "/predavaciProtokolNew", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-  PredavaciProtokolEntity postPredavaciProtokolNew() {
-    log.trace("postPredavaciProtokolNew()");
-    return predavaciProtokolService.postPredavaciProtokolNew();
   }
 
   @RequestMapping(value = "/predavaciProtokol/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)

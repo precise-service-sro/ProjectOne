@@ -7,9 +7,9 @@ import com.precise_service.project_one.entity.najemnik.predavaci_protokol.Predav
 public interface IPredavaciProtokolService {
   PredavaciProtokolEntity postPredavaciProtokol(PredavaciProtokolEntity predavaciProtokolEntity);
 
-  List<PredavaciProtokolEntity> getPredavaciProtokolEntityList();
+  PredavaciProtokolEntity putPredavaciProtokol(PredavaciProtokolEntity predavaciProtokolEntity);
 
-  PredavaciProtokolEntity postPredavaciProtokolNew();
+  List<PredavaciProtokolEntity> getPredavaciProtokolEntityList();
 
   PredavaciProtokolEntity getPredavaciProtokol(String id);
 

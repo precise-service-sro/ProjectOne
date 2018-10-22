@@ -14,7 +14,7 @@ import com.precise_service.project_one.entity.byt.vyuctovani_za_byt.VyuctovaniPo
 import com.precise_service.project_one.entity.byt.vyuctovani_za_byt.VyuctovaniEntity;
 import com.precise_service.project_one.entity.byt.vyuctovani_za_byt.VyuctovaniPolozkaTypEntity;
 import com.precise_service.project_one.service.byt.vyuctovani_za_byt.IVyuctovaniPolozkaTypService;
-import com.precise_service.project_one.service.byt.vyuctovani_za_byt.IVyuctovaniService;
+import com.precise_service.project_one.service.byt.vyuctovani_za_byt.IVyuctovaniZaBytService;
 
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
@@ -29,10 +29,10 @@ public class VyuctovaniZaBytTabulkaBean implements Serializable {
 
   public static final String ZUCTOVACI_OBDOBI_DATE_FORMAT = "dd/MM/yyyy";
   @Autowired
-  private IVyuctovaniService vyuctovaniService;
+  private IVyuctovaniZaBytService vyuctovaniService;
 
   @Autowired
-  private IVyuctovaniPolozkaTypService vyuctovaniPolozkaTypeService;
+  private IVyuctovaniPolozkaTypService vyuctovaniPolozkaTypService;
 
   private String nazev;
   private String popis;
@@ -42,12 +42,12 @@ public class VyuctovaniZaBytTabulkaBean implements Serializable {
   private Double celkemNaklady;
   private Double celkemRozdil;
 
-  public void prepareData(String idVyuctovani) {
+  public void prepareData(String idVyuctovaniZaByt) {
     log.trace("prepareData()");
-    log.debug("idVyuctovani: " + idVyuctovani);
+    log.debug("idVyuctovaniZaByt: " + idVyuctovaniZaByt);
     radkyVyuctovani = new ArrayList<>();
 
-    VyuctovaniEntity vyuctovani = vyuctovaniService.getVyuctovani(idVyuctovani);
+    VyuctovaniEntity vyuctovani = vyuctovaniService.getVyuctovaniZaBytEntity(idVyuctovaniZaByt);
 
     nazev = vyuctovani.getNazev();
     if (vyuctovani.getZuctovaciObdobi() != null) {
@@ -60,7 +60,7 @@ public class VyuctovaniZaBytTabulkaBean implements Serializable {
     for (VyuctovaniPolozkaEntity vyuctovaniPolozkaEntity : seznamPolozek) {
       VyuctovaniTabulkaRadkaDto radekTabulkyDto = new VyuctovaniTabulkaRadkaDto();
 
-      VyuctovaniPolozkaTypEntity vyuctovaniPolozkaTypEntity = vyuctovaniPolozkaTypeService.getVyuctovaniPolozkaTypEntity(vyuctovaniPolozkaEntity.getIdPolozkaTyp());
+      VyuctovaniPolozkaTypEntity vyuctovaniPolozkaTypEntity = vyuctovaniPolozkaTypService.getVyuctovaniPolozkaTypEntity(vyuctovaniPolozkaEntity.getIdPolozkaTyp());
       radekTabulkyDto.setNazev(vyuctovaniPolozkaEntity.getNazev());
       radekTabulkyDto.setVyuctovatJako(vyuctovaniPolozkaTypEntity.getNazev());
       radekTabulkyDto.setPopis("(" + vyuctovaniPolozkaTypEntity.getPopis() + ")");

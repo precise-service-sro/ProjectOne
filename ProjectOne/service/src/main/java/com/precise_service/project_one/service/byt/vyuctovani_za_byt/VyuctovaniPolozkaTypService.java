@@ -18,20 +18,32 @@ public class VyuctovaniPolozkaTypService implements IVyuctovaniPolozkaTypService
   private VyuctovaniPolozkaTypEntityRepository vyuctovaniPolozkaTypEntityRepository;
 
   @Override
-  public VyuctovaniPolozkaTypEntity getVyuctovaniPolozkaTypEntity(String id) {
-    log.trace("getVyuctovaniPolozkaTypEntity()");
-    return vyuctovaniPolozkaTypEntityRepository.findById(id).get();
-  }
-
-  @Override
   public VyuctovaniPolozkaTypEntity postVyuctovaniPolozkaTypEntity(VyuctovaniPolozkaTypEntity vyuctovaniPolozkaTypEntity) {
     log.trace("postVyuctovaniPolozkaTypEntity()");
     return vyuctovaniPolozkaTypEntityRepository.save(vyuctovaniPolozkaTypEntity);
   }
 
   @Override
-  public List<VyuctovaniPolozkaTypEntity> getVyuctovaniPolozkaTypEntityList() {
-    log.trace("getVyuctovaniPolozkaTypEntityList()");
+  public VyuctovaniPolozkaTypEntity putVyuctovaniPolozkaTypEntity(VyuctovaniPolozkaTypEntity vyuctovaniPolozkaTypEntity) {
+    log.trace("putVyuctovaniPolozkaTypEntity()");
+    return vyuctovaniPolozkaTypEntityRepository.save(vyuctovaniPolozkaTypEntity);
+  }
+
+  @Override
+  public VyuctovaniPolozkaTypEntity getVyuctovaniPolozkaTypEntity(String idVyuctovaniPolozkaTypEntity) {
+    log.trace("getVyuctovaniPolozkaTypEntity()");
+    return vyuctovaniPolozkaTypEntityRepository.findById(idVyuctovaniPolozkaTypEntity).get();
+  }
+
+  @Override
+  public List<VyuctovaniPolozkaTypEntity> getVyuctovaniPolozkaTypEntityAll() {
+    log.trace("getVyuctovaniPolozkaTypEntityAll()");
     return vyuctovaniPolozkaTypEntityRepository.findAll();
+  }
+
+  @Override
+  public void deleteVyuctovaniPolozkaTypEntityAll() {
+    log.trace("deleteVyuctovaniPolozkaTypEntityAll()");
+    vyuctovaniPolozkaTypEntityRepository.deleteAll();
   }
 }

@@ -11,5 +11,5 @@ import com.precise_service.project_one.entity.byt.vyuctovani_za_byt.VyuctovaniEn
 public interface VyuctovaniEntityRepository extends MongoRepository<VyuctovaniEntity, String> {
 
   @Query("{ $or: [ { 'zuctovaciObdobi.zacatek' : { $gte: ?0, $lte: ?1 } }, { 'zuctovaciObdobi.konec' : { $gte: ?0, $lte: ?1} } ] }")
-  List<VyuctovaniEntity> getVyuctovaniInRange(LocalDate from, LocalDate to);
+  List<VyuctovaniEntity> getVyuctovaniZaBytEntityInRange(LocalDate from, LocalDate to);
 }

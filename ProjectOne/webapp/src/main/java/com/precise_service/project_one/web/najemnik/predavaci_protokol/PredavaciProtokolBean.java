@@ -13,10 +13,9 @@ import javax.inject.Named;
 import org.primefaces.event.RowEditEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.precise_service.project_one.entity.byt.vyuctovani_za_byt.VyuctovaniPolozkaTypEntity;
 import com.precise_service.project_one.entity.najemnik.predavaci_protokol.PredavaciProtokolEntity;
 import com.precise_service.project_one.entity.najemnik.predavaci_protokol.PredavaciProtokolPolozkaEntity;
-import com.precise_service.project_one.entity.byt.vyuctovani_za_byt.VyuctovaniPolozkaTypEntity;
-import com.precise_service.project_one.repository.najemnik.predavaci_protokol.PredavaciProtokolEntityRepository;
 import com.precise_service.project_one.service.byt.vyuctovani_za_byt.IVyuctovaniPolozkaTypService;
 import com.precise_service.project_one.service.najemnik.predavaci_protokol.IPredavaciProtokolService;
 import com.precise_service.project_one.web.najemnik.predavaci_protokol.dto.PredavaciProtokolRadkaDto;
@@ -33,10 +32,7 @@ public class PredavaciProtokolBean implements Serializable {
   private IPredavaciProtokolService predavaciProtokolService;
 
   @Autowired
-  private IVyuctovaniPolozkaTypService vyuctovaniPolozkaTypeService;
-
-  @Autowired
-  private PredavaciProtokolEntityRepository predavaciProtokolEntityRepository;
+  private IVyuctovaniPolozkaTypService vyuctovaniPolozkaTypService;
 
   private String nazev;
   private LocalDate datumPodpisu;
@@ -48,6 +44,7 @@ public class PredavaciProtokolBean implements Serializable {
 
   @PostConstruct
   public void init() {
+    log.trace("init()");
     List<PredavaciProtokolEntity> predavaciProtokolEntityList = predavaciProtokolService.getPredavaciProtokolEntityList();
     predavaciProtokolEntity = predavaciProtokolEntityList.get(0);
 
@@ -67,12 +64,16 @@ public class PredavaciProtokolBean implements Serializable {
       radky.add(predavaciProtokolRadkaDto);
     }
 
-    vyuctovaniPolozkaTypEntityList = vyuctovaniPolozkaTypeService.getVyuctovaniPolozkaTypEntityList();
+    vyuctovaniPolozkaTypEntityList = vyuctovaniPolozkaTypService.getVyuctovaniPolozkaTypEntityAll();
+  }
+
+  public List<PredavaciProtokolRadkaDto> getRadky(){
+    return radky;
   }
 
   public void onRowEdit(RowEditEvent event) {
+    log.trace("onRowEdit()");
     PredavaciProtokolRadkaDto predavaciProtokolRadkaDto = (PredavaciProtokolRadkaDto) event.getObject();
-
 
     PredavaciProtokolEntity predavaciProtokol = predavaciProtokolService.getPredavaciProtokol(predavaciProtokolRadkaDto.getIdPredavaciProtokol());
 
@@ -86,13 +87,14 @@ public class PredavaciProtokolBean implements Serializable {
       }
     }
 
-    predavaciProtokolEntityRepository.save(predavaciProtokol);
+    predavaciProtokolService.putPredavaciProtokol(predavaciProtokol);
 
     FacesMessage msg = new FacesMessage("Uložena úprava řádky", predavaciProtokolRadkaDto.getNazev());
     FacesContext.getCurrentInstance().addMessage(null, msg);
   }
 
   public void onRowCancel(RowEditEvent event) {
+    log.trace("onRowCancel()");
     FacesMessage msg = new FacesMessage("Zrušena úprava řádky", ((PredavaciProtokolRadkaDto) event.getObject()).getNazev());
     FacesContext.getCurrentInstance().addMessage(null, msg);
   }
