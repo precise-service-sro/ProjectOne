@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.precise_service.project_one.endpoint.rest_api.RangeRequest;
-import com.precise_service.project_one.entity.byt.vyuctovani_za_byt.VyuctovaniEntity;
+import com.precise_service.project_one.entity.byt.vyuctovani_za_byt.VyuctovaniZaBytEntity;
 import com.precise_service.project_one.service.byt.vyuctovani_za_byt.IVyuctovaniZaBytService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -22,29 +22,29 @@ import lombok.extern.slf4j.Slf4j;
 public class VyuctovaniZaBytEndpoint {
 
   @Autowired
-  private IVyuctovaniZaBytService vyuctovaniService;
+  private IVyuctovaniZaBytService vyuctovaniZaBytService;
 
   @RequestMapping(value = "/vyuctovani", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-  VyuctovaniEntity postVyuctovaniZaBytEntity(@RequestBody VyuctovaniEntity vyuctovaniEntity) {
+  VyuctovaniZaBytEntity postVyuctovaniZaBytEntity(@RequestBody VyuctovaniZaBytEntity vyuctovaniEntity) {
     log.trace("postVyuctovaniZaBytEntity()");
-    return vyuctovaniService.postVyuctovaniZaBytEntity(vyuctovaniEntity);
+    return vyuctovaniZaBytService.postVyuctovaniZaBytEntity(vyuctovaniEntity);
   }
 
   @RequestMapping(value = "/vyuctovani/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-  VyuctovaniEntity getVyuctovaniZaBytEntity(@PathVariable String id) {
+  VyuctovaniZaBytEntity getVyuctovaniZaBytEntity(@PathVariable String id) {
     log.trace("getVyuctovaniZaBytEntity()" + id);
-    return vyuctovaniService.getVyuctovaniZaBytEntity(id);
+    return vyuctovaniZaBytService.getVyuctovaniZaBytEntity(id);
   }
 
   @RequestMapping(value = "/vyuctovani/!inRange", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-  List<VyuctovaniEntity> getVyuctovaniZaBytEntityInRange(@RequestBody RangeRequest request ) {
+  List<VyuctovaniZaBytEntity> getVyuctovaniZaBytEntityInRange(@RequestBody RangeRequest request ) {
     log.trace("getVyuctovaniZaBytEntityInRange()" + request.getFrom().toString() + " - " + request.getTo().toString());
-    return vyuctovaniService.getVyuctovaniZaBytEntityInRange(request.getFrom(), request.getTo());
+    return vyuctovaniZaBytService.getVyuctovaniZaBytEntityInRange(request.getFrom(), request.getTo());
   }
 
   @RequestMapping(value = "/vyuctovani/!all", method = RequestMethod.DELETE)
   void deleteVyuctovaniZaBytEntityAll() {
     log.trace("deleteVyuctovaniZaBytEntityAll()");
-    vyuctovaniService.deleteVyuctovaniZaBytEntityAll();
+    vyuctovaniZaBytService.deleteVyuctovaniZaBytEntityAll();
   }
 }

@@ -1,7 +1,5 @@
 package com.precise_service.project_one.entity.byt.vyuctovani_za_byt;
 
-import org.springframework.data.mongodb.core.mapping.Document;
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -10,15 +8,14 @@ import lombok.Data;
 
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
-@Document(collection = "polozka")
-public class VyuctovaniPolozkaEntity {
+public class VyuctovaniZaBytPolozkaEntity {
 
   @JsonInclude(JsonInclude.Include.NON_NULL)
   @JsonProperty("nazev")
   private String nazev;
 
-  @JsonProperty("idPolozkaTyp")
-  private String idPolozkaTyp;
+  @JsonProperty("idVyuctovaniPolozkaTyp")
+  private String idVyuctovaniPolozkaTyp;
 
   @JsonInclude(JsonInclude.Include.NON_NULL)
   @JsonProperty("pocatecniStav")

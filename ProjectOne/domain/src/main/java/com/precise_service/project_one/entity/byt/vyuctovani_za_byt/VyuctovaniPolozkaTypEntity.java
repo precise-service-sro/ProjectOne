@@ -11,7 +11,7 @@ import lombok.Data;
 
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
-@Document(collection = "polozkaTyp")
+@Document(collection = "vyuctovaniPolozkaTyp")
 public class VyuctovaniPolozkaTypEntity extends BaseEntity {
 
   @JsonInclude(JsonInclude.Include.NON_NULL)

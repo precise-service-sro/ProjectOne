@@ -31,7 +31,6 @@ public class InformaceNajemnikBean implements Serializable {
   private String jmeno;
   private String prijmeni;
 
-  @PostConstruct
   public void init() {
     // zatim vzdy vytahuji poznamky pouze k prvnimu najemnikovi v DB
     najemnikEntity = najemnikService.getNajemnikEntityAll().get(0);

@@ -12,7 +12,6 @@ import lombok.Data;
 
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
-@Document(collection = "zuctovaciObdobi")
 public class VyuctovaniZuctovaciObdobiEntity {
 
   @JsonProperty("zacatek")

@@ -10,9 +10,9 @@ import javax.inject.Named;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.precise_service.project_one.entity.byt.vyuctovani_za_byt.VyuctovaniCisloEntity;
-import com.precise_service.project_one.entity.byt.vyuctovani_za_byt.VyuctovaniPolozkaEntity;
-import com.precise_service.project_one.entity.byt.vyuctovani_za_byt.VyuctovaniEntity;
 import com.precise_service.project_one.entity.byt.vyuctovani_za_byt.VyuctovaniPolozkaTypEntity;
+import com.precise_service.project_one.entity.byt.vyuctovani_za_byt.VyuctovaniZaBytEntity;
+import com.precise_service.project_one.entity.byt.vyuctovani_za_byt.VyuctovaniZaBytPolozkaEntity;
 import com.precise_service.project_one.service.byt.vyuctovani_za_byt.IVyuctovaniPolozkaTypService;
 import com.precise_service.project_one.service.byt.vyuctovani_za_byt.IVyuctovaniZaBytService;
 
@@ -47,7 +47,7 @@ public class VyuctovaniZaBytTabulkaBean implements Serializable {
     log.debug("idVyuctovaniZaByt: " + idVyuctovaniZaByt);
     radkyVyuctovani = new ArrayList<>();
 
-    VyuctovaniEntity vyuctovani = vyuctovaniService.getVyuctovaniZaBytEntity(idVyuctovaniZaByt);
+    VyuctovaniZaBytEntity vyuctovani = vyuctovaniService.getVyuctovaniZaBytEntity(idVyuctovaniZaByt);
 
     nazev = vyuctovani.getNazev();
     if (vyuctovani.getZuctovaciObdobi() != null) {
@@ -56,11 +56,11 @@ public class VyuctovaniZaBytTabulkaBean implements Serializable {
       zuctovaciObdobi = "(" + format(zacatekZuctovacihoObdobi, ZUCTOVACI_OBDOBI_DATE_FORMAT) + " - " + format(konecZuctovacihoObdobi, ZUCTOVACI_OBDOBI_DATE_FORMAT) + ")";
     }
 
-    List<VyuctovaniPolozkaEntity> seznamPolozek = vyuctovani.getSeznamPolozek();
-    for (VyuctovaniPolozkaEntity vyuctovaniPolozkaEntity : seznamPolozek) {
+    List<VyuctovaniZaBytPolozkaEntity> seznamPolozek = vyuctovani.getSeznamPolozek();
+    for (VyuctovaniZaBytPolozkaEntity vyuctovaniPolozkaEntity : seznamPolozek) {
       VyuctovaniTabulkaRadkaDto radekTabulkyDto = new VyuctovaniTabulkaRadkaDto();
 
-      VyuctovaniPolozkaTypEntity vyuctovaniPolozkaTypEntity = vyuctovaniPolozkaTypService.getVyuctovaniPolozkaTypEntity(vyuctovaniPolozkaEntity.getIdPolozkaTyp());
+      VyuctovaniPolozkaTypEntity vyuctovaniPolozkaTypEntity = vyuctovaniPolozkaTypService.getVyuctovaniPolozkaTypEntity(vyuctovaniPolozkaEntity.getIdVyuctovaniPolozkaTyp());
       radekTabulkyDto.setNazev(vyuctovaniPolozkaEntity.getNazev());
       radekTabulkyDto.setVyuctovatJako(vyuctovaniPolozkaTypEntity.getNazev());
       radekTabulkyDto.setPopis("(" + vyuctovaniPolozkaTypEntity.getPopis() + ")");

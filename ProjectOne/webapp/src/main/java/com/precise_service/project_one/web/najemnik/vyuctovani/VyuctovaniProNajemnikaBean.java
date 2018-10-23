@@ -10,10 +10,11 @@ import javax.inject.Named;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.precise_service.project_one.entity.byt.vyuctovani_za_byt.VyuctovaniEntity;
+import com.precise_service.project_one.entity.najemnik.vyuctovani_pro_najemnika.VyuctovaniProNajemnikaEntity;
 import com.precise_service.project_one.service.byt.vyuctovani_za_byt.IVyuctovaniZaBytService;
-import com.precise_service.project_one.web.byt.vyuctovani.tabulka.VyuctovaniZaBytTabulkaBean;
+import com.precise_service.project_one.service.najemnik.vyuctovani_pro_najemnika.IVyuctovaniProNajemnikaService;
 import com.precise_service.project_one.web.byt.vyuctovani.tabulka.VyuctovaniTabulkaRadkaDto;
+import com.precise_service.project_one.web.byt.vyuctovani.tabulka.VyuctovaniZaBytTabulkaBean;
 
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
@@ -24,7 +25,7 @@ import lombok.extern.slf4j.Slf4j;
 public class VyuctovaniProNajemnikaBean implements Serializable {
 
   @Autowired
-  private IVyuctovaniZaBytService vyuctovaniService;
+  private IVyuctovaniProNajemnikaService vyuctovaniProNajemnikaService;
 
   @Autowired
   private VyuctovaniZaBytTabulkaBean vyuctovaniZaBytTabulkaBean;
@@ -34,13 +35,13 @@ public class VyuctovaniProNajemnikaBean implements Serializable {
     LocalDate from = LocalDate.parse("01-01-2017", dateTimeFormatter);
     LocalDate to = LocalDate.parse("31-12-2017", dateTimeFormatter);
 
-    List<String> idVyuctovaniList = new ArrayList<>();
+    List<String> idVyuctovaniProNajemnikaList = new ArrayList<>();
 
-    List<VyuctovaniEntity> vyuctovaniInRange = vyuctovaniService.getVyuctovaniZaBytEntityInRange(from, to);
-    for (VyuctovaniEntity vyuctovaniEntity : vyuctovaniInRange) {
-      idVyuctovaniList.add(vyuctovaniEntity.getId());
+    List<VyuctovaniProNajemnikaEntity> vyuctovaniInRange = vyuctovaniProNajemnikaService.getVyuctovaniProNajemnikaEntityAll();
+    for (VyuctovaniProNajemnikaEntity vyuctovaniEntity : vyuctovaniInRange) {
+      idVyuctovaniProNajemnikaList.add(vyuctovaniEntity.getId());
     }
-    return idVyuctovaniList;
+    return idVyuctovaniProNajemnikaList;
   }
 
   public List<VyuctovaniTabulkaRadkaDto> getRadkyVyuctovani() {

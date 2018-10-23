@@ -12,8 +12,8 @@ import lombok.Data;
 
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
-@Document(collection = "vyuctovani")
-public class VyuctovaniEntity extends BaseEntity {
+@Document(collection = "vyuctovaniZaByt")
+public class VyuctovaniZaBytEntity extends BaseEntity {
 
   @JsonProperty("nazev")
   private String nazev;
@@ -22,5 +22,5 @@ public class VyuctovaniEntity extends BaseEntity {
   private VyuctovaniZuctovaciObdobiEntity zuctovaciObdobi;
 
   @JsonProperty("seznamPolozek")
-  private List<VyuctovaniPolozkaEntity> seznamPolozek;
+  private List<VyuctovaniZaBytPolozkaEntity> seznamPolozek;
 }

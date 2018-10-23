@@ -45,7 +45,7 @@ public class VyuctovaniProNajemnikaEndpoint {
   @RequestMapping(value = "/vyuctovani/!inRange", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
   List<VyuctovaniEntity> getVyuctovaniInRange(@RequestBody RangeRequest request ) {
     log.trace("getVyuctovaniInRange()" + request.getFrom().toString() + " - " + request.getTo().toString());
-    return vyuctovaniService.getVyuctovaniInRange(request.getFrom(), request.getTo());
+    return vyuctovaniZaBytService.getVyuctovaniInRange(request.getFrom(), request.getTo());
   }
   */
 

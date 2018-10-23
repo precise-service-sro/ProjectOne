@@ -10,7 +10,7 @@ import javax.inject.Named;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.precise_service.project_one.entity.byt.vyuctovani_za_byt.VyuctovaniEntity;
+import com.precise_service.project_one.entity.byt.vyuctovani_za_byt.VyuctovaniZaBytEntity;
 import com.precise_service.project_one.service.byt.vyuctovani_za_byt.IVyuctovaniZaBytService;
 import com.precise_service.project_one.web.byt.vyuctovani.tabulka.VyuctovaniZaBytTabulkaBean;
 import com.precise_service.project_one.web.byt.vyuctovani.tabulka.VyuctovaniTabulkaRadkaDto;
@@ -24,7 +24,7 @@ import lombok.extern.slf4j.Slf4j;
 public class VyuctovaniZaBytBean implements Serializable {
 
   @Autowired
-  private IVyuctovaniZaBytService vyuctovaniService;
+  private IVyuctovaniZaBytService vyuctovaniZaBytService;
 
   @Autowired
   private VyuctovaniZaBytTabulkaBean vyuctovaniZaBytTabulkaBean;
@@ -34,13 +34,13 @@ public class VyuctovaniZaBytBean implements Serializable {
     LocalDate from = LocalDate.parse("01-01-2017", dateTimeFormatter);
     LocalDate to = LocalDate.parse("31-12-2017", dateTimeFormatter);
 
-    List<String> idVyuctovaniList = new ArrayList<>();
+    List<String> idVyuctovaniZaBytList = new ArrayList<>();
 
-    List<VyuctovaniEntity> vyuctovaniInRange = vyuctovaniService.getVyuctovaniZaBytEntityInRange(from, to);
-    for (VyuctovaniEntity vyuctovaniEntity : vyuctovaniInRange) {
-      idVyuctovaniList.add(vyuctovaniEntity.getId());
+    List<VyuctovaniZaBytEntity> vyuctovaniInRange = vyuctovaniZaBytService.getVyuctovaniZaBytEntityInRange(from, to);
+    for (VyuctovaniZaBytEntity vyuctovaniEntity : vyuctovaniInRange) {
+      idVyuctovaniZaBytList.add(vyuctovaniEntity.getId());
     }
-    return idVyuctovaniList;
+    return idVyuctovaniZaBytList;
   }
 
   public List<VyuctovaniTabulkaRadkaDto> getRadkyVyuctovani(String idVyuctovani) {

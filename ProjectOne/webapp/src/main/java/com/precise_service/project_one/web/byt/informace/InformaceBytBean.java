@@ -31,7 +31,6 @@ public class InformaceBytBean implements Serializable {
   private String nazev;
   private String adresa;
 
-  @PostConstruct
   public void init() {
     // zatim vzdy vytahuji poznamky pouze k prvnimu bytu v DB
     bytEntity = bytService.getBytEntityAll().get(0);
