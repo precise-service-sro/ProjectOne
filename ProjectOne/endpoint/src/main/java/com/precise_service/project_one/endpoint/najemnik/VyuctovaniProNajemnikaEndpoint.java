@@ -17,28 +17,28 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @RestController
-@RequestMapping(value = "/najemnik", path = "/najemnik")
+@RequestMapping(value = "/najemnik/vyuctovani", path = "/najemnik/vyuctovani")
 public class VyuctovaniProNajemnikaEndpoint {
 
   @Autowired
   private IPredavaciProtokolService predavaciProtokolService;
 
-  @RequestMapping(value = "/predavaciProtokol", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+  @RequestMapping(value = "", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
   PredavaciProtokolEntity postPredavaciProtokol(@RequestBody PredavaciProtokolEntity predavaciProtokolEntity) {
-    log.trace("postPredavaciProtokol()");
-    return predavaciProtokolService.postPredavaciProtokol(predavaciProtokolEntity);
+    log.trace("postPredavaciProtokolEntity()");
+    return predavaciProtokolService.postPredavaciProtokolEntity(predavaciProtokolEntity);
   }
 
-  @RequestMapping(value = "/predavaciProtokol/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+  @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
   PredavaciProtokolEntity getPredavaciProtokol(@PathVariable String id) {
-    log.trace("getPredavaciProtokol()" + id);
-    return predavaciProtokolService.getPredavaciProtokol(id);
+    log.trace("getPredavaciProtokolEntity()" + id);
+    return predavaciProtokolService.getPredavaciProtokolEntity(id);
   }
 
-  @RequestMapping(value = "/predavaciProtokol/!all", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+  @RequestMapping(value = "/!all", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
   List<PredavaciProtokolEntity> getPredavaciProtokolAll() {
-    log.trace("getPredavaciProtokolAll()");
-    return predavaciProtokolService.getPredavaciProtokolAll();
+    log.trace("getPredavaciProtokolEntityAll()");
+    return predavaciProtokolService.getPredavaciProtokolEntityAll();
   }
 
   /*
@@ -49,9 +49,9 @@ public class VyuctovaniProNajemnikaEndpoint {
   }
   */
 
-  @RequestMapping(value = "/predavaciProtokol/!all", method = RequestMethod.DELETE)
+  @RequestMapping(value = "/!all", method = RequestMethod.DELETE)
   void deletePredavaciProtokolAll() {
-    log.trace("deletePredavaciProtokolAll()");
-    predavaciProtokolService.deletePredavaciProtokolAll();
+    log.trace("deletePredavaciProtokolEntityAll()");
+    predavaciProtokolService.deletePredavaciProtokolEntityAll();
   }
 }

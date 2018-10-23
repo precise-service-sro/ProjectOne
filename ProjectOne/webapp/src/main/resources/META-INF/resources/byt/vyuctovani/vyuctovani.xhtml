@@ -12,10 +12,35 @@
 
 <h:body>
 
-  Byt - Vyúčtování:
+  Byt - Vyúčtování za byt:
+
+  <h2>Vyúčtování za byt</h2>
+
+  Přehledová stránka všech za rok nasbíraných vyúčtování (vyfiltrované podle datumu na období 01-12/2017)
+  <br />
+  <h3>Byt: (označení bytu / link a proklid na detail na Byt Praha)</h3>
+  <br />
+  <h3>Adresa: (Přesná adresa, možná na téhle stránka ani nedáva smysl, když bude proklik)</h3>
+  <br />
+  <h3>Zúčtovací období:  (možno zadat datumy, aby se to podle toho filtrovalo)</h3>
+
+  <br />
+  <br />
+
+  Takhle stranka a jeji struktura se bude muset nejak prekopat, aby to davalo vetsi smysl a zaroven to slo i pekne editovat
+
+  <br /><br />
+  Tlačítko na přidání celého nového vyúčtování / další celé tabulky
+
+  <br />
+  <br />
+
+
 
   <div style="width: 98%; margin-left: 10px;">
     <p:repeat value="#{vyuctovaniZaBytBean.idVyuctovaniList}" var="idVyuctovani">
+
+  Tlačítko na přidání nového řadku do tabulky
       <vyuctovani:tabulka idVyuctovani="#{idVyuctovani}"/>
       <br/><br/>
     </p:repeat>

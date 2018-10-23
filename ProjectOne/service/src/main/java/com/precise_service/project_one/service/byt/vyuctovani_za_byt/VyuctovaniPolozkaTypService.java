@@ -42,6 +42,12 @@ public class VyuctovaniPolozkaTypService implements IVyuctovaniPolozkaTypService
   }
 
   @Override
+  public void deleteVyuctovaniPolozkaTypEntity(String idVyuctovaniPolozkaTypEntity) {
+    log.trace("deleteVyuctovaniPolozkaTypEntity()");
+    vyuctovaniPolozkaTypEntityRepository.deleteById(idVyuctovaniPolozkaTypEntity);
+  }
+
+  @Override
   public void deleteVyuctovaniPolozkaTypEntityAll() {
     log.trace("deleteVyuctovaniPolozkaTypEntityAll()");
     vyuctovaniPolozkaTypEntityRepository.deleteAll();

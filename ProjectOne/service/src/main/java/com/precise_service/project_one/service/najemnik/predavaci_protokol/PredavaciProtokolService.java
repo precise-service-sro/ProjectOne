@@ -18,14 +18,14 @@ public class PredavaciProtokolService implements IPredavaciProtokolService {
   private PredavaciProtokolEntityRepository predavaciProtokolEntityRepository;
 
   @Override
-  public PredavaciProtokolEntity postPredavaciProtokol(PredavaciProtokolEntity predavaciProtokolEntity) {
-    log.trace("postPredavaciProtokol()");
+  public PredavaciProtokolEntity postPredavaciProtokolEntity(PredavaciProtokolEntity predavaciProtokolEntity) {
+    log.trace("postPredavaciProtokolEntity()");
     return predavaciProtokolEntityRepository.save(predavaciProtokolEntity);
   }
 
   @Override
-  public PredavaciProtokolEntity putPredavaciProtokol(PredavaciProtokolEntity predavaciProtokolEntity) {
-    log.trace("putPredavaciProtokol()");
+  public PredavaciProtokolEntity putPredavaciProtokolEntity(PredavaciProtokolEntity predavaciProtokolEntity) {
+    log.trace("putPredavaciProtokolEntity()");
     return predavaciProtokolEntityRepository.save(predavaciProtokolEntity);
   }
 
@@ -36,20 +36,26 @@ public class PredavaciProtokolService implements IPredavaciProtokolService {
   }
 
   @Override
-  public PredavaciProtokolEntity getPredavaciProtokol(String id) {
-    log.trace("getPredavaciProtokol()");
-    return predavaciProtokolEntityRepository.findById(id).get();
+  public PredavaciProtokolEntity getPredavaciProtokolEntity(String idPredavaciProtokolEntity) {
+    log.trace("getPredavaciProtokolEntity()");
+    return predavaciProtokolEntityRepository.findById(idPredavaciProtokolEntity).get();
   }
 
   @Override
-  public List<PredavaciProtokolEntity> getPredavaciProtokolAll() {
-    log.trace("getPredavaciProtokolAll()");
+  public List<PredavaciProtokolEntity> getPredavaciProtokolEntityAll() {
+    log.trace("getPredavaciProtokolEntityAll()");
     return predavaciProtokolEntityRepository.findAll();
   }
 
   @Override
-  public void deletePredavaciProtokolAll() {
-    log.trace("deletePredavaciProtokolAll()");
+  public void deletePredavaciProtokolEntity(String idPredavaciProtokolEntity) {
+    log.trace("deletePredavaciProtokolEntity()");
+    predavaciProtokolEntityRepository.deleteById(idPredavaciProtokolEntity);
+  }
+
+  @Override
+  public void deletePredavaciProtokolEntityAll() {
+    log.trace("deletePredavaciProtokolEntityAll()");
     predavaciProtokolEntityRepository.deleteAll();
   }
 }

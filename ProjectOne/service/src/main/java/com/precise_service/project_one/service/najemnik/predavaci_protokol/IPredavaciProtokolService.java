@@ -5,15 +5,17 @@ import java.util.List;
 import com.precise_service.project_one.entity.najemnik.predavaci_protokol.PredavaciProtokolEntity;
 
 public interface IPredavaciProtokolService {
-  PredavaciProtokolEntity postPredavaciProtokol(PredavaciProtokolEntity predavaciProtokolEntity);
+  PredavaciProtokolEntity postPredavaciProtokolEntity(PredavaciProtokolEntity predavaciProtokolEntity);
 
-  PredavaciProtokolEntity putPredavaciProtokol(PredavaciProtokolEntity predavaciProtokolEntity);
+  PredavaciProtokolEntity putPredavaciProtokolEntity(PredavaciProtokolEntity predavaciProtokolEntity);
 
   List<PredavaciProtokolEntity> getPredavaciProtokolEntityList();
 
-  PredavaciProtokolEntity getPredavaciProtokol(String id);
+  PredavaciProtokolEntity getPredavaciProtokolEntity(String idPredavaciProtokolEntity);
 
-  List<PredavaciProtokolEntity> getPredavaciProtokolAll();
+  void deletePredavaciProtokolEntity(String idPredavaciProtokolEntity);
 
-  void deletePredavaciProtokolAll();
+  List<PredavaciProtokolEntity> getPredavaciProtokolEntityAll();
+
+  void deletePredavaciProtokolEntityAll();
 }

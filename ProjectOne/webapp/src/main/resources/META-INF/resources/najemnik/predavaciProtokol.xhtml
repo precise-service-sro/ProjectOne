@@ -17,16 +17,34 @@
 
     Nájemník - Předávací protokol:
 
+    <h2>Předávací protokol</h2>
+
+    KDO vs KOMU
+    <br />
+    <h3>Byt: (<h:outputText value="#{predavaciProtokolBean.nazev}"  />)</h3>
+    <br />
+    <h3>Jméno nájemníka: (<h:outputText value="#{predavaciProtokolBean.nazev}"  />)</h3>
+    <br />
+    <h3>Datum podpisu: <h:outputText value="#{predavaciProtokolBean.datumPodpisu}" /></h3>
+
+    <br />
+
     <h:form id="form">
       <p:growl id="msgs" showDetail="true"/>
 
-      <p:dataTable id="predavaciProtokol" var="polozka" value="#{predavaciProtokolBean.getRadky()}" resizableColumns="true" sortBy="#{1}" editable="true" rowIndexVar="index">
-        <f:facet name="header">
-          <h:outputText value="#{predavaciProtokolBean.nazev}"  /> --- <h:outputText value="#{predavaciProtokolBean.datumPodpisu}" />
-        </f:facet>
+      <div class="ui-g" style="text-align: right;">
+        <div class="ui-g-12">
+          <p:commandButton value="Přidat nový záznam" icon="ui-icon-circle-plus" styleClass="ui-priority-primary" process="@this" update=":form:msgs"
+                           actionListener="#{predavaciProtokolBean.addRow()}" oncomplete="PF('predavaciProtokol').addRow();" />
+        </div>
+      </div>
+
+      <p:dataTable id="predavaciProtokol" widgetVar="predavaciProtokol" var="polozka" value="#{predavaciProtokolBean.getRadky()}" resizableColumns="true" sortBy="#{1}" editable="true" rowIndexVar="index">
 
         <p:ajax event="rowEdit" listener="#{predavaciProtokolBean.onRowEdit}" update=":form:msgs" />
         <p:ajax event="rowEditCancel" listener="#{predavaciProtokolBean.onRowCancel}" update=":form:msgs" />
+        <p:ajax event="rowSelect" listener="#{predavaciProtokolBean.onRowSelect}" update=":form:msgs" />
+        <p:ajax event="rowUnselect" listener="#{predavaciProtokolBean.onRowUnselect}" update=":form:msgs" />
 
         <p:columnGroup type="header">
           <p:row>
@@ -35,14 +53,18 @@
             <p:column headerText="Číslo měřáku"   style="width: 150px;"/>
             <p:column headerText="Stav měřáku"    style="width: 150px;"/>
             <p:column                             style="width:  32px;"/>
+            <p:column                             style="width:  50px;"/>
           </p:row>
         </p:columnGroup>
 
-        <p:column headerText="Název">
-          <h:outputText value="#{polozka.nazev}" />
+        <p:column>
+          <p:cellEditor>
+            <f:facet name="output"><h:outputText value="#{polozka.nazev}" /> </f:facet>
+            <f:facet name="input"><p:inputText id="nazevInput" value="#{polozka.nazev}" style="width:100%"/></f:facet>
+          </p:cellEditor>
         </p:column>
 
-        <p:column headerText="Vyúčtovat jako" style="text-align: center">
+        <p:column>
           <p:cellEditor>
             <f:facet name="output"><h:outputText value="#{polozka.vyuctovaniPolozkaTypEntity.nazev}" title="#{polozka.vyuctovaniPolozkaTypEntity.popis}"/> </f:facet>
             <f:facet name="input">
@@ -53,29 +75,28 @@
           </p:cellEditor>
         </p:column>
 
-        <p:column headerText="Číslo měřáku" style="text-align: center">
+        <p:column>
           <p:cellEditor>
             <f:facet name="output"><h:outputText value="#{polozka.cisloMeraku}" /> </f:facet>
             <f:facet name="input"><p:inputText id="cisloMerakuInput" value="#{polozka.cisloMeraku}" style="width:100%"/></f:facet>
           </p:cellEditor>
         </p:column>
 
-        <p:column headerText="Stav měřáku"  style="text-align: right">
+        <p:column>
           <p:cellEditor>
             <f:facet name="output"><h:outputText value="#{polozka.stavMeraku}" /> <h:outputText value="&nbsp;" /> <h:outputText value="#{polozka.jednotka}" /> </f:facet>
             <f:facet name="input"><div style="text-align: left"><p:inputText id="stavMerakuInput" value="#{polozka.stavMeraku}" style="width:40%" />  <h:outputText value="&nbsp;" /> <h:outputText value="#{polozka.jednotka}" style="width:50%"/>  </div></f:facet>
           </p:cellEditor>
         </p:column>
 
-        <p:column style="width: 32px;">
+        <p:column>
           <p:rowEditor />
         </p:column>
-      </p:dataTable>
 
-      Tlačítko na přidání nového řádku
-      <br />
-      Tlačítko na smazání řádku
-      <br />
+        <p:column>
+          <p:commandButton update="@form :form:msgs" icon="ui-icon-circle-minus" actionListener="#{predavaciProtokolBean.deleteRow(polozka)}" />
+        </p:column>
+      </p:dataTable>
     </h:form>
 <div>
   </div>

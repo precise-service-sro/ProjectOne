@@ -9,6 +9,8 @@ import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
 import org.primefaces.event.RowEditEvent;
+import org.primefaces.event.SelectEvent;
+import org.primefaces.event.UnselectEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.precise_service.project_one.entity.byt.vyuctovani_za_byt.VyuctovaniPolozkaTypEntity;
@@ -66,5 +68,21 @@ public class VyuctovavanePolozkyBean implements Serializable {
 
     FacesMessage msg = new FacesMessage("Přidána nová řádka", saved.getId());
     FacesContext.getCurrentInstance().addMessage(null, msg);
+  }
+
+  public void deleteRow(String idVyuctovaniPolozkaTypEntity) {
+    log.trace("deleteRow()");
+
+    if (idVyuctovaniPolozkaTypEntity == null){
+      log.warn("deleted id is null");
+      return;
+    }
+
+    log.trace("deleting row with: " + idVyuctovaniPolozkaTypEntity);
+    vyuctovaniPolozkaTypService.deleteVyuctovaniPolozkaTypEntity(idVyuctovaniPolozkaTypEntity);
+
+    FacesMessage msg = new FacesMessage("Smazán řádek", idVyuctovaniPolozkaTypEntity);
+    FacesContext.getCurrentInstance().addMessage(null, msg);
+    init();
   }
 }

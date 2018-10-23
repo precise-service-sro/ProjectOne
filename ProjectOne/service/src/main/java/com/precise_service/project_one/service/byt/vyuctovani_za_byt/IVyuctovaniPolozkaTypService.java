@@ -14,5 +14,7 @@ public interface IVyuctovaniPolozkaTypService {
 
   List<VyuctovaniPolozkaTypEntity> getVyuctovaniPolozkaTypEntityAll();
 
+  void deleteVyuctovaniPolozkaTypEntity(String idVyuctovaniPolozkaTypEntity);
+
   void deleteVyuctovaniPolozkaTypEntityAll();
 }

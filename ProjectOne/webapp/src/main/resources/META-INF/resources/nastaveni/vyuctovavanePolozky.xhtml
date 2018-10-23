@@ -14,10 +14,27 @@
 
     Nastavení - Přehled vyúčtovávaných položek:
 
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+
     <h:form id="form">
       <p:growl id="msgs" showDetail="true"/>
 
-      <p:dataTable id="prehledVyuctovavanychPolozek" widgetVar="prehledVyuctovavanychPolozek" var="polozka" value="#{vyuctovavanePolozkyBean.radky}" resizableColumns="true" sortBy="#{1}" editable="true" rowIndexVar="index">
+      <div class="ui-g" style="text-align: right;">
+        <div class="ui-g-12">
+          <p:commandButton value="Přidat nový záznam" icon="ui-icon-circle-plus" styleClass="ui-priority-primary" process="@this" update=":form:msgs"
+                           actionListener="#{vyuctovavanePolozkyBean.addRow()}" oncomplete="PF('prehledVyuctovavanychPolozek').addRow();" />
+        </div>
+      </div>
+
+      <p:dataTable id="prehledVyuctovavanychPolozek" widgetVar="prehledVyuctovavanychPolozek"
+                   var="polozka" value="#{vyuctovavanePolozkyBean.radky}"
+                   editable="true" rowIndexVar="index"
+      >
 
         <p:ajax event="rowEdit" listener="#{vyuctovavanePolozkyBean.onRowEdit}" update=":form:msgs" />
         <p:ajax event="rowEditCancel" listener="#{vyuctovavanePolozkyBean.onRowCancel}" update=":form:msgs" />
@@ -27,6 +44,7 @@
             <p:column headerText="Název" style="width: 150px;"/>
             <p:column headerText="Popis" />
             <p:column                    style="width:  32px;"/>
+            <p:column                    style="width:  50px;"/>
           </p:row>
         </p:columnGroup>
 
@@ -44,26 +62,15 @@
           </p:cellEditor>
         </p:column>
 
-        <p:column style="width: 32px;">
+        <p:column>
           <p:rowEditor />
+        </p:column>
+
+        <p:column>
+          <p:commandButton update="@form :form:msgs" icon="ui-icon-circle-minus" actionListener="#{vyuctovavanePolozkyBean.deleteRow(polozka.id)}" />
         </p:column>
       </p:dataTable>
 
-      <br />
-      <br />
-      <br />
-      Tlačítko na přidání nového řádku
-      <div class="ui-g">
-        <div class="ui-g-12">
-          <p:commandButton value="Přidat nový záznam" styleClass="ui-priority-primary" process="@this" update=":form:msgs"
-                           actionListener="#{vyuctovavanePolozkyBean.addRow()}" oncomplete="PF('prehledVyuctovavanychPolozek').addRow();" />
-        </div>
-      </div>
-      <br />
-      <br />
-      <br />
-      Tlačítko na smazání řádku
-      <br />
     </h:form>
   </div>
   <component:dockMenu />
