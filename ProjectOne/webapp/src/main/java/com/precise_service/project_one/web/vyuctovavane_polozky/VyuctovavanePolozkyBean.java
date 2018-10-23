@@ -53,4 +53,18 @@ public class VyuctovavanePolozkyBean implements Serializable {
     FacesMessage msg = new FacesMessage("Zrušena úprava řádky", ((VyuctovaniPolozkaTypEntity) event.getObject()).getNazev());
     FacesContext.getCurrentInstance().addMessage(null, msg);
   }
+
+  public void addRow() {
+    log.trace("addRow()");
+
+    VyuctovaniPolozkaTypEntity vyuctovaniPolozkaTypEntity = new VyuctovaniPolozkaTypEntity();
+    vyuctovaniPolozkaTypEntity.setNazev("!!! Upravit název !!!");
+    vyuctovaniPolozkaTypEntity.setPopis("!!! Upravit popis !!!");
+
+    VyuctovaniPolozkaTypEntity saved = vyuctovaniPolozkaTypService.postVyuctovaniPolozkaTypEntity(vyuctovaniPolozkaTypEntity);
+    init();
+
+    FacesMessage msg = new FacesMessage("Přidána nová řádka", saved.getId());
+    FacesContext.getCurrentInstance().addMessage(null, msg);
+  }
 }

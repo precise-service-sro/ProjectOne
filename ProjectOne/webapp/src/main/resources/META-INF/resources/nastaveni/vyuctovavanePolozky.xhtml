@@ -3,7 +3,6 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:vyuctovani="http://java.sun.com/jsf/composite/vyuctovani/component"
       xmlns:component="http://java.sun.com/jsf/composite/common/component">
 
 <h:head>
@@ -11,14 +10,14 @@
 </h:head>
 
 <h:body>
-  <div style="width: 98%; margin-left: 10px;"></div>
+  <div style="width: 98%; margin-left: 10px;">
 
     Nastavení - Přehled vyúčtovávaných položek:
 
     <h:form id="form">
       <p:growl id="msgs" showDetail="true"/>
 
-      <p:dataTable id="prehledVyuctovavanychPolozek" var="polozka" value="#{vyuctovavanePolozkyBean.radky}" resizableColumns="true" sortBy="#{1}" editable="true" rowIndexVar="index">
+      <p:dataTable id="prehledVyuctovavanychPolozek" widgetVar="prehledVyuctovavanychPolozek" var="polozka" value="#{vyuctovavanePolozkyBean.radky}" resizableColumns="true" sortBy="#{1}" editable="true" rowIndexVar="index">
 
         <p:ajax event="rowEdit" listener="#{vyuctovavanePolozkyBean.onRowEdit}" update=":form:msgs" />
         <p:ajax event="rowEditCancel" listener="#{vyuctovavanePolozkyBean.onRowCancel}" update=":form:msgs" />
@@ -50,12 +49,22 @@
         </p:column>
       </p:dataTable>
 
+      <br />
+      <br />
+      <br />
       Tlačítko na přidání nového řádku
+      <div class="ui-g">
+        <div class="ui-g-12">
+          <p:commandButton value="Přidat nový záznam" styleClass="ui-priority-primary" process="@this" update=":form:msgs"
+                           actionListener="#{vyuctovavanePolozkyBean.addRow()}" oncomplete="PF('prehledVyuctovavanychPolozek').addRow();" />
+        </div>
+      </div>
+      <br />
+      <br />
       <br />
       Tlačítko na smazání řádku
       <br />
     </h:form>
-<div>
   </div>
   <component:dockMenu />
 
