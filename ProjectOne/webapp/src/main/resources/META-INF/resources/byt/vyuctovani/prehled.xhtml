@@ -7,12 +7,12 @@
       xmlns:component="http://java.sun.com/jsf/composite/common/component">
 
 <h:head>
-  <title>ProjectOne - Byt - Vyúčtování</title>
+  <title>ProjectOne - Byt - Vyúčtování - Přehled</title>
 </h:head>
 
 <h:body>
 
-  Byt - Vyúčtování za byt:
+  Byt - Vyúčtování za byt - Přehled:
 
   <h2>Vyúčtování za byt</h2>
 
@@ -45,8 +45,6 @@
 
   <div style="width: 98%; margin-left: 10px;">
     <p:repeat value="#{vyuctovaniZaBytBean.idVyuctovaniList}" var="idVyuctovani">
-
-  Tlačítko na přidání nového řadku do tabulky
       <vyuctovani:tabulka idVyuctovani="#{idVyuctovani}"/>
       <br/><br/>
     </p:repeat>

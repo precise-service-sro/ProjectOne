@@ -43,7 +43,8 @@ public class VyuctovaniZaBytBean implements Serializable {
     return idVyuctovaniZaBytList;
   }
 
-  public List<VyuctovaniZaBytPolozka> getRadkyVyuctovani(String idVyuctovaniZaByt) {
+  public List<VyuctovaniZaBytPolozka> getRadkyVyuctovani() {
+    String idVyuctovaniZaByt = getIdVyuctovaniList().get(0);
     vyuctovaniZaBytTabulkaBean.prepareData(idVyuctovaniZaByt);
     return vyuctovaniZaBytTabulkaBean.getRadkyVyuctovani();
   }

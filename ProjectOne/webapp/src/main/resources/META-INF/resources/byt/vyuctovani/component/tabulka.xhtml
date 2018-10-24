@@ -26,7 +26,7 @@
       </div>
     </div>
 
-    <p:dataTable var="polozka" widgetVar="polozka" value="#{vyuctovaniZaBytBean.getRadkyVyuctovani(cc.attrs.idVyuctovani)}" resizableColumns="true" sortBy="#{1}" editable="true">
+    <p:dataTable var="polozka" widgetVar="polozka" value="#{vyuctovaniZaBytBean.getRadkyVyuctovani()}" resizableColumns="true" sortBy="#{1}" editable="true">
       <f:facet name="header">
         <h:outputText value="#{vyuctovaniZaBytTabulkaBean.nazev}"  /> --- <h:outputText value="#{vyuctovaniZaBytTabulkaBean.zuctovaciObdobi}" />
       </f:facet>
