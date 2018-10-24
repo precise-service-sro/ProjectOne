@@ -5,8 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.precise_service.project_one.entity.byt.informace.BytEntity;
-import com.precise_service.project_one.repository.byt.informace.BytEntityRepository;
+import com.precise_service.project_one.entity.byt.informace.Byt;
+import com.precise_service.project_one.repository.byt.informace.BytRepository;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -15,29 +15,29 @@ import lombok.extern.slf4j.Slf4j;
 public class BytService implements IBytService {
 
   @Autowired
-  private BytEntityRepository bytEntityRepository;
+  private BytRepository bytRepository;
 
   @Override
-  public BytEntity postBytEntity(BytEntity bytEntity) {
-    log.trace("postBytEntity()");
-    return bytEntityRepository.save(bytEntity);
+  public Byt postByt(Byt byt) {
+    log.trace("postByt()");
+    return bytRepository.save(byt);
   }
 
   @Override
-  public BytEntity getBytEntity(String idBytEntity) {
-    log.trace("getBytEntity()");
-    return bytEntityRepository.findById(idBytEntity).get();
+  public Byt getByt(String idByt) {
+    log.trace("getByt()");
+    return bytRepository.findById(idByt).get();
   }
 
   @Override
-  public List<BytEntity> getBytEntityAll() {
-    log.trace("getBytEntityAll()");
-    return bytEntityRepository.findAll();
+  public List<Byt> getBytAll() {
+    log.trace("getBytAll()");
+    return bytRepository.findAll();
   }
 
   @Override
-  public void deleteBytEntityAll() {
-    log.trace("deleteBytEntityAll()");
-    bytEntityRepository.deleteAll();
+  public void deleteBytAll() {
+    log.trace("deleteBytAll()");
+    bytRepository.deleteAll();
   }
 }

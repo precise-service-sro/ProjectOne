@@ -7,21 +7,21 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.precise_service.project_one.entity.BaseEntity;
-import com.precise_service.project_one.entity.byt.vyuctovani_za_byt.VyuctovaniZuctovaciObdobiEntity;
+import com.precise_service.project_one.entity.byt.vyuctovani_za_byt.VyuctovaniZuctovaciObdobi;
 
 import lombok.Data;
 
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Document(collection = "vyuctovaniProNajemnika")
-public class VyuctovaniProNajemnikaEntity extends BaseEntity {
+public class VyuctovaniProNajemnika extends BaseEntity {
 
   @JsonProperty("nazev")
   private String nazev;
 
   @JsonProperty("zuctovaciObdobi")
-  private VyuctovaniZuctovaciObdobiEntity zuctovaciObdobi;
+  private VyuctovaniZuctovaciObdobi zuctovaciObdobi;
 
   @JsonProperty("seznamPolozek")
-  private List<VyuctovaniProNajemnikaPolozkaEntity> seznamPolozek;
+  private List<VyuctovaniProNajemnikaPolozka> seznamPolozek;
 }

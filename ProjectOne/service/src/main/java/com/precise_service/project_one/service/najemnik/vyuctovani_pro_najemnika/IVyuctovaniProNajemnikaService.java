@@ -2,17 +2,17 @@ package com.precise_service.project_one.service.najemnik.vyuctovani_pro_najemnik
 
 import java.util.List;
 
-import com.precise_service.project_one.entity.najemnik.vyuctovani_pro_najemnika.VyuctovaniProNajemnikaEntity;
+import com.precise_service.project_one.entity.najemnik.vyuctovani_pro_najemnika.VyuctovaniProNajemnika;
 
 public interface IVyuctovaniProNajemnikaService {
   
-  VyuctovaniProNajemnikaEntity postVyuctovaniProNajemnikaEntity(VyuctovaniProNajemnikaEntity vyuctovaniProNajemnikaEntity);
+  VyuctovaniProNajemnika postVyuctovaniProNajemnika(VyuctovaniProNajemnika vyuctovaniProNajemnika);
 
-  VyuctovaniProNajemnikaEntity putVyuctovaniProNajemnikaEntity(VyuctovaniProNajemnikaEntity vyuctovaniProNajemnikaEntity);
+  VyuctovaniProNajemnika putVyuctovaniProNajemnika(VyuctovaniProNajemnika vyuctovaniProNajemnika);
 
-  VyuctovaniProNajemnikaEntity getVyuctovaniProNajemnikaEntity(String idVyuctovaniProNajemnikaEntity);
+  VyuctovaniProNajemnika getVyuctovaniProNajemnika(String idVyuctovaniProNajemnika);
 
-  List<VyuctovaniProNajemnikaEntity> getVyuctovaniProNajemnikaEntityAll();
+  List<VyuctovaniProNajemnika> getVyuctovaniProNajemnikaAll();
 
-  void deleteVyuctovaniProNajemnikaEntityAll();
+  void deleteVyuctovaniProNajemnikaAll();
 }

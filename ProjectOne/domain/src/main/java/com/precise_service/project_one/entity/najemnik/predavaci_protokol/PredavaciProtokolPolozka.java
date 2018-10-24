@@ -7,19 +7,19 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.precise_service.project_one.entity.BaseEntity;
-import com.precise_service.project_one.entity.byt.vyuctovani_za_byt.VyuctovaniPolozkaTypEntity;
+import com.precise_service.project_one.entity.byt.vyuctovani_za_byt.VyuctovaniPolozkaTyp;
 
 import lombok.Data;
 
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Document(collection = "predavaciProtokolPolozka")
-public class PredavaciProtokolPolozkaEntity extends BaseEntity {
+public class PredavaciProtokolPolozka extends BaseEntity {
 
   @DBRef
   @JsonProperty("predavaciProtokol")
   @JsonInclude(JsonInclude.Include.NON_NULL)
-  private PredavaciProtokolEntity predavaciProtokolEntity;
+  private PredavaciProtokol predavaciProtokol;
 
   @JsonProperty("nazev")
   private String nazev;
@@ -27,7 +27,7 @@ public class PredavaciProtokolPolozkaEntity extends BaseEntity {
   @DBRef
   @JsonProperty("vyuctovaniPolozkaTyp")
   @JsonInclude(JsonInclude.Include.NON_NULL)
-  private VyuctovaniPolozkaTypEntity vyuctovaniPolozkaTypEntity;
+  private VyuctovaniPolozkaTyp vyuctovaniPolozkaTyp;
 
   @JsonProperty("cisloMeraku")
   @JsonInclude(JsonInclude.Include.NON_NULL)

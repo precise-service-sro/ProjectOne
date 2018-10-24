@@ -11,40 +11,58 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.precise_service.project_one.endpoint.rest_api.RangeRequest;
-import com.precise_service.project_one.entity.byt.vyuctovani_za_byt.VyuctovaniZaBytEntity;
+import com.precise_service.project_one.entity.byt.vyuctovani_za_byt.VyuctovaniZaByt;
 import com.precise_service.project_one.service.byt.vyuctovani_za_byt.IVyuctovaniZaBytService;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @RestController
-@RequestMapping(value = "/byt", path = "/byt")
+@RequestMapping(value = "/byt/{idByt}/vyuctovani", path = "/byt/{idByt}/vyuctovani")
 public class VyuctovaniZaBytEndpoint {
 
   @Autowired
   private IVyuctovaniZaBytService vyuctovaniZaBytService;
 
-  @RequestMapping(value = "/vyuctovani", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-  VyuctovaniZaBytEntity postVyuctovaniZaBytEntity(@RequestBody VyuctovaniZaBytEntity vyuctovaniEntity) {
-    log.trace("postVyuctovaniZaBytEntity()");
-    return vyuctovaniZaBytService.postVyuctovaniZaBytEntity(vyuctovaniEntity);
+  @RequestMapping(value = "", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+  VyuctovaniZaByt postVyuctovaniZaByt(@RequestBody VyuctovaniZaByt vyuctovani) {
+    log.trace("postVyuctovaniZaByt()");
+    return vyuctovaniZaBytService.postVyuctovaniZaByt(vyuctovani);
   }
 
-  @RequestMapping(value = "/vyuctovani/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-  VyuctovaniZaBytEntity getVyuctovaniZaBytEntity(@PathVariable String id) {
-    log.trace("getVyuctovaniZaBytEntity()" + id);
-    return vyuctovaniZaBytService.getVyuctovaniZaBytEntity(id);
+  @RequestMapping(value = "", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+  VyuctovaniZaByt putVyuctovaniZaByt(@RequestBody VyuctovaniZaByt vyuctovani) {
+    log.trace("putVyuctovaniZaByt()");
+    return vyuctovaniZaBytService.putVyuctovaniZaByt(vyuctovani);
   }
 
-  @RequestMapping(value = "/vyuctovani/!inRange", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-  List<VyuctovaniZaBytEntity> getVyuctovaniZaBytEntityInRange(@RequestBody RangeRequest request ) {
-    log.trace("getVyuctovaniZaBytEntityInRange()" + request.getFrom().toString() + " - " + request.getTo().toString());
-    return vyuctovaniZaBytService.getVyuctovaniZaBytEntityInRange(request.getFrom(), request.getTo());
+  @RequestMapping(value = "/{idVyuctovaniZaByt}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+  VyuctovaniZaByt getVyuctovaniZaByt(@PathVariable String idVyuctovaniZaByt) {
+    log.trace("getVyuctovaniZaByt()" + idVyuctovaniZaByt);
+    return vyuctovaniZaBytService.getVyuctovaniZaByt(idVyuctovaniZaByt);
   }
 
-  @RequestMapping(value = "/vyuctovani/!all", method = RequestMethod.DELETE)
-  void deleteVyuctovaniZaBytEntityAll() {
-    log.trace("deleteVyuctovaniZaBytEntityAll()");
-    vyuctovaniZaBytService.deleteVyuctovaniZaBytEntityAll();
+  @RequestMapping(value = "/!all", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+  List<VyuctovaniZaByt> getVyuctovaniZaBytAll() {
+    log.trace("getVyuctovaniZaBytAll()");
+    return vyuctovaniZaBytService.getVyuctovaniZaBytAll();
+  }
+
+  @RequestMapping(value = "/!inRange", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+  List<VyuctovaniZaByt> getVyuctovaniZaBytInRange(@RequestBody RangeRequest request) {
+    log.trace("getVyuctovaniZaBytInRange()" + request.getFrom().toString() + " - " + request.getTo().toString());
+    return vyuctovaniZaBytService.getVyuctovaniZaBytInRange(request.getFrom(), request.getTo());
+  }
+
+  @RequestMapping(value = "/{idVyuctovaniZaByt}", method = RequestMethod.DELETE)
+  void deleteVyuctovaniZaByt(@PathVariable String idVyuctovaniZaByt) {
+    log.trace("deleteVyuctovaniZaByt()" + idVyuctovaniZaByt);
+    vyuctovaniZaBytService.deleteVyuctovaniZaByt(idVyuctovaniZaByt);
+  }
+
+  @RequestMapping(value = "/!all", method = RequestMethod.DELETE)
+  void deleteVyuctovaniZaBytAll() {
+    log.trace("deleteVyuctovaniZaBytAll()");
+    vyuctovaniZaBytService.deleteVyuctovaniZaBytAll();
   }
 }

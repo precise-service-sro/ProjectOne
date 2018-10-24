@@ -2,20 +2,20 @@ package com.precise_service.project_one.service.najemnik.predavaci_protokol;
 
 import java.util.List;
 
-import com.precise_service.project_one.entity.najemnik.predavaci_protokol.PredavaciProtokolEntity;
+import com.precise_service.project_one.entity.najemnik.predavaci_protokol.PredavaciProtokol;
 
 public interface IPredavaciProtokolService {
-  PredavaciProtokolEntity postPredavaciProtokolEntity(PredavaciProtokolEntity predavaciProtokolEntity);
+  PredavaciProtokol postPredavaciProtokol(PredavaciProtokol predavaciProtokol);
 
-  PredavaciProtokolEntity putPredavaciProtokolEntity(PredavaciProtokolEntity predavaciProtokolEntity);
+  PredavaciProtokol putPredavaciProtokol(PredavaciProtokol predavaciProtokol);
 
-  List<PredavaciProtokolEntity> getPredavaciProtokolEntityList();
+  List<PredavaciProtokol> getPredavaciProtokolList();
 
-  PredavaciProtokolEntity getPredavaciProtokolEntity(String idPredavaciProtokolEntity);
+  PredavaciProtokol getPredavaciProtokol(String idPredavaciProtokol);
 
-  void deletePredavaciProtokolEntity(String idPredavaciProtokolEntity);
+  void deletePredavaciProtokol(String idPredavaciProtokol);
 
-  List<PredavaciProtokolEntity> getPredavaciProtokolEntityAll();
+  List<PredavaciProtokol> getPredavaciProtokolAll();
 
-  void deletePredavaciProtokolEntityAll();
+  void deletePredavaciProtokolAll();
 }

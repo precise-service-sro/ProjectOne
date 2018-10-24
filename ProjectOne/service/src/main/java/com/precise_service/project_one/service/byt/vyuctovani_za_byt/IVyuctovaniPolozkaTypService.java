@@ -2,19 +2,19 @@ package com.precise_service.project_one.service.byt.vyuctovani_za_byt;
 
 import java.util.List;
 
-import com.precise_service.project_one.entity.byt.vyuctovani_za_byt.VyuctovaniPolozkaTypEntity;
+import com.precise_service.project_one.entity.byt.vyuctovani_za_byt.VyuctovaniPolozkaTyp;
 
 public interface IVyuctovaniPolozkaTypService {
 
-  VyuctovaniPolozkaTypEntity postVyuctovaniPolozkaTypEntity(VyuctovaniPolozkaTypEntity vyuctovaniPolozkaTypEntity);
+  VyuctovaniPolozkaTyp postVyuctovaniPolozkaTyp(VyuctovaniPolozkaTyp vyuctovaniPolozkaTyp);
 
-  VyuctovaniPolozkaTypEntity putVyuctovaniPolozkaTypEntity(VyuctovaniPolozkaTypEntity vyuctovaniPolozkaTypEntity);
+  VyuctovaniPolozkaTyp putVyuctovaniPolozkaTyp(VyuctovaniPolozkaTyp vyuctovaniPolozkaTyp);
 
-  VyuctovaniPolozkaTypEntity getVyuctovaniPolozkaTypEntity(String idVyuctovaniPolozkaTypEntity);
+  VyuctovaniPolozkaTyp getVyuctovaniPolozkaTyp(String idVyuctovaniPolozkaTyp);
 
-  List<VyuctovaniPolozkaTypEntity> getVyuctovaniPolozkaTypEntityAll();
+  List<VyuctovaniPolozkaTyp> getVyuctovaniPolozkaTypAll();
 
-  void deleteVyuctovaniPolozkaTypEntity(String idVyuctovaniPolozkaTypEntity);
+  void deleteVyuctovaniPolozkaTyp(String idVyuctovaniPolozkaTyp);
 
-  void deleteVyuctovaniPolozkaTypEntityAll();
+  void deleteVyuctovaniPolozkaTypAll();
 }

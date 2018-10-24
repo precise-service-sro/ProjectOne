@@ -43,8 +43,6 @@
 
         <p:ajax event="rowEdit" listener="#{predavaciProtokolBean.onRowEdit}" update=":form:msgs" />
         <p:ajax event="rowEditCancel" listener="#{predavaciProtokolBean.onRowCancel}" update=":form:msgs" />
-        <p:ajax event="rowSelect" listener="#{predavaciProtokolBean.onRowSelect}" update=":form:msgs" />
-        <p:ajax event="rowUnselect" listener="#{predavaciProtokolBean.onRowUnselect}" update=":form:msgs" />
 
         <p:columnGroup type="header">
           <p:row>
@@ -66,10 +64,10 @@
 
         <p:column>
           <p:cellEditor>
-            <f:facet name="output"><h:outputText value="#{polozka.vyuctovaniPolozkaTypEntity.nazev}" title="#{polozka.vyuctovaniPolozkaTypEntity.popis}"/> </f:facet>
+            <f:facet name="output"><h:outputText value="#{polozka.vyuctovaniPolozkaTyp.nazev}" title="#{polozka.vyuctovaniPolozkaTyp.popis}"/> </f:facet>
             <f:facet name="input">
-              <h:selectOneMenu value="#{polozka.vyuctovaniPolozkaTypEntity}" style="width:100%" converter="#{vyuctovaniPolozkaTypeConverter}">
-                <f:selectItems value="#{predavaciProtokolBean.vyuctovaniPolozkaTypEntityList}" var="vyuctovaniPolozkaTypEntity" itemLabel="#{vyuctovaniPolozkaTypEntity.nazev}" itemValue="#{vyuctovaniPolozkaTypEntity}" />
+              <h:selectOneMenu value="#{polozka.vyuctovaniPolozkaTyp}" style="width:100%" converter="#{vyuctovaniPolozkaTypeConverter}">
+                <f:selectItems value="#{predavaciProtokolBean.vyuctovaniPolozkaTypList}" var="vyuctovaniPolozkaTyp" itemLabel="#{vyuctovaniPolozkaTyp.nazev}" itemValue="#{vyuctovaniPolozkaTyp}" />
               </h:selectOneMenu>
             </f:facet>
           </p:cellEditor>

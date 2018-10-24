@@ -10,10 +10,9 @@ import javax.inject.Named;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.precise_service.project_one.entity.najemnik.vyuctovani_pro_najemnika.VyuctovaniProNajemnikaEntity;
-import com.precise_service.project_one.service.byt.vyuctovani_za_byt.IVyuctovaniZaBytService;
+import com.precise_service.project_one.entity.byt.vyuctovani_za_byt.VyuctovaniZaBytPolozka;
+import com.precise_service.project_one.entity.najemnik.vyuctovani_pro_najemnika.VyuctovaniProNajemnika;
 import com.precise_service.project_one.service.najemnik.vyuctovani_pro_najemnika.IVyuctovaniProNajemnikaService;
-import com.precise_service.project_one.web.byt.vyuctovani.tabulka.VyuctovaniTabulkaRadkaDto;
 import com.precise_service.project_one.web.byt.vyuctovani.tabulka.VyuctovaniZaBytTabulkaBean;
 
 import lombok.Data;
@@ -37,14 +36,14 @@ public class VyuctovaniProNajemnikaBean implements Serializable {
 
     List<String> idVyuctovaniProNajemnikaList = new ArrayList<>();
 
-    List<VyuctovaniProNajemnikaEntity> vyuctovaniInRange = vyuctovaniProNajemnikaService.getVyuctovaniProNajemnikaEntityAll();
-    for (VyuctovaniProNajemnikaEntity vyuctovaniEntity : vyuctovaniInRange) {
-      idVyuctovaniProNajemnikaList.add(vyuctovaniEntity.getId());
+    List<VyuctovaniProNajemnika> vyuctovaniInRange = vyuctovaniProNajemnikaService.getVyuctovaniProNajemnikaAll();
+    for (VyuctovaniProNajemnika vyuctovani : vyuctovaniInRange) {
+      idVyuctovaniProNajemnikaList.add(vyuctovani.getId());
     }
     return idVyuctovaniProNajemnikaList;
   }
 
-  public List<VyuctovaniTabulkaRadkaDto> getRadkyVyuctovani() {
+  public List<VyuctovaniZaBytPolozka> getRadkyVyuctovani() {
     //vyuctovaniZaBytTabulkaBean.prepareData(idVyuctovani);
     return vyuctovaniZaBytTabulkaBean.getRadkyVyuctovani();
   }

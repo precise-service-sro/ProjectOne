@@ -16,11 +16,22 @@
 
 <composite:implementation>
 
-  <h:form>
-    <p:dataTable var="polozka" value="#{vyuctovaniZaBytBean.getRadkyVyuctovani(cc.attrs.idVyuctovani)}" resizableColumns="true" sortBy="#{1}">
+  <h:form id="formicek">
+    <p:growl id="msgs2" showDetail="true"/>
+
+    <div class="ui-g" style="text-align: right;">
+      <div class="ui-g-12">
+        <p:commandButton value="Přidat nový záznam" icon="ui-icon-circle-plus" styleClass="ui-priority-primary" process="@this"
+                         actionListener="#{vyuctovaniZaBytBean.addRow()}" oncomplete="PF('polozka').addRow();" />
+      </div>
+    </div>
+
+    <p:dataTable var="polozka" widgetVar="polozka" value="#{vyuctovaniZaBytBean.getRadkyVyuctovani(cc.attrs.idVyuctovani)}" resizableColumns="true" sortBy="#{1}" editable="true">
       <f:facet name="header">
         <h:outputText value="#{vyuctovaniZaBytTabulkaBean.nazev}"  /> --- <h:outputText value="#{vyuctovaniZaBytTabulkaBean.zuctovaciObdobi}" />
       </f:facet>
+
+
 
       <p:columnGroup type="header">
         <p:row>
@@ -32,51 +43,68 @@
           <p:column headerText="Zálohy"         style="width: 100px;"/>
           <p:column headerText="Náklady"        style="width: 100px;" />
           <p:column headerText="Rozdíl"         style="width: 100px;" />
+          <p:column                             style="width:  32px;"/>
+          <p:column                             style="width:  50px;"/>
         </p:row>
       </p:columnGroup>
 
       <p:column>
-        <h:outputText value="#{polozka.nazev}" /> [ <h:outputText value="#{polozka.spotrebaJednotka}" /> ]
+        <h:outputText value="#{polozka.nazev}" /> [ <h:outputText value="#{polozka.spotreba.jednotka}" /> ]
       </p:column>
 
       <p:column>
-        <h:outputText value="#{polozka.vyuctovatJako}" title="#{polozka.popis}"/>
+        <p:cellEditor>
+          <f:facet name="output"><h:outputText value="#{polozka.vyuctovaniPolozkaTyp.nazev}" title="#{polozka.vyuctovaniPolozkaTyp.popis}"/> </f:facet>
+          <f:facet name="input">
+            <h:selectOneMenu value="#{polozka.vyuctovaniPolozkaTyp}" style="width:100%" converter="#{vyuctovaniPolozkaTypeConverter}">
+              <f:selectItems value="#{vyuctovaniZaBytTabulkaBean.vyuctovaniPolozkaTypList}" var="vyuctovaniPolozkaTyp" itemLabel="#{vyuctovaniPolozkaTyp.nazev}" itemValue="#{vyuctovaniPolozkaTyp}" />
+            </h:selectOneMenu>
+          </f:facet>
+        </p:cellEditor>
       </p:column>
 
       <p:column style="text-align: right">
-        <h:outputText value="#{polozka.pocatecniStav}">
+        <h:outputText value="#{polozka.pocatecniStav.mnozstvi}">
           <f:convertNumber pattern="#0.00" />
         </h:outputText>
       </p:column>
 
       <p:column style="text-align: right">
-        <h:outputText value="#{polozka.koncovyStav}">
+        <h:outputText value="#{polozka.koncovyStav.mnozstvi}">
           <f:convertNumber pattern="#0.00" />
         </h:outputText>
       </p:column>
 
       <p:column style="text-align: right">
-        <h:outputText value="#{polozka.spotrebaMnozstvi}">
+        <h:outputText value="#{polozka.spotreba.mnozstvi}">
           <f:convertNumber pattern="#0.00" />
         </h:outputText>
       </p:column>
 
       <p:column style="text-align: right">
-        <h:outputText value="#{polozka.zalohy}">
+        <h:outputText value="#{polozka.zalohy.mnozstvi}">
           <f:convertNumber type="currency" pattern="#0.00 Kč" />
         </h:outputText>
       </p:column>
 
       <p:column style="text-align: right">
-        <h:outputText value="#{polozka.naklady}">
+        <h:outputText value="#{polozka.naklady.mnozstvi}">
           <f:convertNumber type="currency" pattern="#0.00 Kč" />
         </h:outputText>
       </p:column>
 
       <p:column style="text-align: right">
-        <h:outputText value="#{polozka.rozdil}" >
+        <h:outputText value="#{polozka.rozdil.mnozstvi}" >
           <f:convertNumber type="currency" pattern="#0.00 Kč" />
         </h:outputText>
+      </p:column>
+
+      <p:column>
+        <p:rowEditor />
+      </p:column>
+
+      <p:column>
+        <p:commandButton icon="ui-icon-circle-minus" actionListener="#{vyuctovaniZaBytTabulkaBean.deleteRow(polozka)}" />
       </p:column>
 
       <p:summaryRow>
@@ -98,6 +126,7 @@
             <f:convertNumber type="currency" pattern="#0.00 Kč" />
           </h:outputText>
         </p:column>
+        <p:column colspan="2" />
       </p:summaryRow>
     </p:dataTable>
 

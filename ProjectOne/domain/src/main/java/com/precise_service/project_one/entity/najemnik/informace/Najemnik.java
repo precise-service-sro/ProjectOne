@@ -7,14 +7,14 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.precise_service.project_one.entity.BaseEntity;
-import com.precise_service.project_one.entity.byt.informace.BytEntity;
+import com.precise_service.project_one.entity.byt.informace.Byt;
 
 import lombok.Data;
 
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Document(collection = "najemnik")
-public class NajemnikEntity extends BaseEntity {
+public class Najemnik extends BaseEntity {
 
   @JsonProperty("jmeno")
   private String jmeno;
@@ -25,7 +25,7 @@ public class NajemnikEntity extends BaseEntity {
   @DBRef
   @JsonProperty("byt")
   @JsonInclude(JsonInclude.Include.NON_NULL)
-  private BytEntity byt;
+  private Byt byt;
 
   @JsonProperty("najemniSmlouva")
   @JsonInclude(JsonInclude.Include.NON_NULL)

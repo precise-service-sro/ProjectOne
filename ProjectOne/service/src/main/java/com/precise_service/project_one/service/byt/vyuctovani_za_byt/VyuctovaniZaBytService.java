@@ -6,8 +6,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.precise_service.project_one.entity.byt.vyuctovani_za_byt.VyuctovaniZaBytEntity;
-import com.precise_service.project_one.repository.byt.vyuctovani_za_byt.VyuctovaniZaBytEntityRepository;
+import com.precise_service.project_one.entity.byt.vyuctovani_za_byt.VyuctovaniZaByt;
+import com.precise_service.project_one.repository.byt.vyuctovani_za_byt.VyuctovaniZaBytRepository;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -16,39 +16,47 @@ import lombok.extern.slf4j.Slf4j;
 public class VyuctovaniZaBytService implements IVyuctovaniZaBytService {
 
   @Autowired
-  private VyuctovaniZaBytEntityRepository vyuctovaniZaBytEntityRepository;
+  private VyuctovaniZaBytRepository vyuctovaniZaBytRepository;
 
   @Override
-  public VyuctovaniZaBytEntity postVyuctovaniZaBytEntity(VyuctovaniZaBytEntity vyuctovaniZaBytEntity) {
-    log.trace("postVyuctovaniZaBytEntity()");
-    return vyuctovaniZaBytEntityRepository.save(vyuctovaniZaBytEntity);
+  public VyuctovaniZaByt postVyuctovaniZaByt(VyuctovaniZaByt vyuctovaniZaByt) {
+    log.trace("postVyuctovaniZaByt()");
+    return vyuctovaniZaBytRepository.save(vyuctovaniZaByt);
   }
 
   @Override
-  public VyuctovaniZaBytEntity putVyuctovaniZaBytEntity(VyuctovaniZaBytEntity vyuctovaniZaBytEntity) {
-    log.trace("putVyuctovaniZaBytEntity()");
-    return vyuctovaniZaBytEntityRepository.save(vyuctovaniZaBytEntity);
+  public VyuctovaniZaByt putVyuctovaniZaByt(VyuctovaniZaByt vyuctovaniZaByt) {
+    log.trace("putVyuctovaniZaByt()");
+    return vyuctovaniZaBytRepository.save(vyuctovaniZaByt);
   }
 
   @Override
-  public VyuctovaniZaBytEntity getVyuctovaniZaBytEntity(String idVyuctovaniZaBytEntity) {
-    log.trace("getVyuctovaniZaBytEntity()");
-    return vyuctovaniZaBytEntityRepository.findById(idVyuctovaniZaBytEntity).get();
+  public VyuctovaniZaByt getVyuctovaniZaByt(String idVyuctovaniZaByt) {
+    log.trace("getVyuctovaniZaByt()");
+    return vyuctovaniZaBytRepository.findById(idVyuctovaniZaByt).get();
   }
 
   @Override
-  public List<VyuctovaniZaBytEntity> getVyuctovaniZaBytEntityAll() {
-    return vyuctovaniZaBytEntityRepository.findAll();
+  public List<VyuctovaniZaByt> getVyuctovaniZaBytAll() {
+    log.trace("getVyuctovaniZaBytAll()");
+    return vyuctovaniZaBytRepository.findAll();
   }
 
   @Override
-  public List<VyuctovaniZaBytEntity> getVyuctovaniZaBytEntityInRange(LocalDate from, LocalDate to) {
-    return vyuctovaniZaBytEntityRepository.getVyuctovaniZaBytEntityInRange(from, to);
+  public List<VyuctovaniZaByt> getVyuctovaniZaBytInRange(LocalDate from, LocalDate to) {
+    log.trace("getVyuctovaniZaBytInRange()");
+    return vyuctovaniZaBytRepository.getVyuctovaniZaBytInRange(from, to);
   }
 
   @Override
-  public void deleteVyuctovaniZaBytEntityAll() {
-    log.trace("deleteVyuctovaniZaBytEntityAll()");
-    vyuctovaniZaBytEntityRepository.deleteAll();
+  public void deleteVyuctovaniZaByt(String idVyuctovaniZaByt) {
+    log.trace("deleteVyuctovaniZaByt()");
+    vyuctovaniZaBytRepository.deleteById(idVyuctovaniZaByt);
+  }
+
+  @Override
+  public void deleteVyuctovaniZaBytAll() {
+    log.trace("deleteVyuctovaniZaBytAll()");
+    vyuctovaniZaBytRepository.deleteAll();
   }
 }

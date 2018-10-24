@@ -2,22 +2,22 @@ package com.precise_service.project_one.service.najemnik.predavaci_protokol;
 
 import java.util.List;
 
-import com.precise_service.project_one.entity.najemnik.predavaci_protokol.PredavaciProtokolPolozkaEntity;
+import com.precise_service.project_one.entity.najemnik.predavaci_protokol.PredavaciProtokolPolozka;
 
 public interface IPredavaciProtokolPolozkaService {
-  PredavaciProtokolPolozkaEntity postPredavaciProtokolPolozkaEntity(PredavaciProtokolPolozkaEntity predavaciProtokolPolozkaEntity);
+  PredavaciProtokolPolozka postPredavaciProtokolPolozka(PredavaciProtokolPolozka predavaciProtokolPolozka);
 
-  PredavaciProtokolPolozkaEntity putPredavaciProtokolPolozkaEntity(PredavaciProtokolPolozkaEntity predavaciProtokolPolozkaEntity);
+  PredavaciProtokolPolozka putPredavaciProtokolPolozka(PredavaciProtokolPolozka predavaciProtokolPolozka);
 
-  List<PredavaciProtokolPolozkaEntity> getPredavaciProtokolPolozkaEntityList();
+  List<PredavaciProtokolPolozka> getPredavaciProtokolPolozkaList();
 
-  PredavaciProtokolPolozkaEntity getPredavaciProtokolPolozkaEntity(String idPredavaciProtokolPolozkaEntity);
+  PredavaciProtokolPolozka getPredavaciProtokolPolozka(String idPredavaciProtokolPolozka);
 
-  void deletePredavaciProtokolPolozkaEntity(String idPredavaciProtokolPolozkaEntity);
+  void deletePredavaciProtokolPolozka(String idPredavaciProtokolPolozka);
 
-  List<PredavaciProtokolPolozkaEntity> getPredavaciProtokolPolozkaEntityAll();
+  List<PredavaciProtokolPolozka> getPredavaciProtokolPolozkaAll();
 
-  List<PredavaciProtokolPolozkaEntity> getPredavaciProtokolPolozkaEntityAll(String idPredavaciProtokolEntity);
+  List<PredavaciProtokolPolozka> getPredavaciProtokolPolozkaAll(String idPredavaciProtokol);
 
-  void deletePredavaciProtokolPolozkaEntityAll();
+  void deletePredavaciProtokolPolozkaAll();
 }

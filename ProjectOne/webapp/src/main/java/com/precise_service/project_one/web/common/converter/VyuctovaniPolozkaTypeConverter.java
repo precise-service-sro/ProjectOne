@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
-import com.precise_service.project_one.entity.byt.vyuctovani_za_byt.VyuctovaniPolozkaTypEntity;
+import com.precise_service.project_one.entity.byt.vyuctovani_za_byt.VyuctovaniPolozkaTyp;
 import com.precise_service.project_one.service.byt.vyuctovani_za_byt.VyuctovaniPolozkaTypService;
 
 @Service("vyuctovaniPolozkaTypeConverter")
@@ -24,7 +24,7 @@ public class VyuctovaniPolozkaTypeConverter implements Converter {
       return null;
     }
     try {
-      return vyuctovaniPolozkaTypService.getVyuctovaniPolozkaTypEntity(value);
+      return vyuctovaniPolozkaTypService.getVyuctovaniPolozkaTyp(value);
     } catch(NumberFormatException e) {
       throw new ConverterException(new FacesMessage(FacesMessage.SEVERITY_ERROR, "Conversion Error", "Not a valid theme."));
     }
@@ -34,6 +34,6 @@ public class VyuctovaniPolozkaTypeConverter implements Converter {
     if(object == null) {
       return null;
     }
-    return String.valueOf(((VyuctovaniPolozkaTypEntity) object).getId());
+    return String.valueOf(((VyuctovaniPolozkaTyp) object).getId());
   }
 }

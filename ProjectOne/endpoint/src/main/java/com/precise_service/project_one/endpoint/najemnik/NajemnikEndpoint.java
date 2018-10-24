@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.precise_service.project_one.entity.najemnik.informace.NajemnikEntity;
+import com.precise_service.project_one.entity.najemnik.informace.Najemnik;
 import com.precise_service.project_one.service.najemnik.informace.INajemnikService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -24,26 +24,26 @@ public class NajemnikEndpoint {
   private INajemnikService najemnikService;
 
   @RequestMapping(value = "", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-  NajemnikEntity postNajemnikEntity(@RequestBody NajemnikEntity najemnikEntity) {
-    log.trace("postNajemnikEntity()");
-    return najemnikService.postNajemnikEntity(najemnikEntity);
+  Najemnik postNajemnik(@RequestBody Najemnik najemnik) {
+    log.trace("postNajemnik()");
+    return najemnikService.postNajemnik(najemnik);
   }
 
   @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-  NajemnikEntity getNajemnikEntity(@PathVariable String idNajemnikEntity) {
-    log.trace("getNajemnikEntity()" + idNajemnikEntity);
-    return najemnikService.getNajemnikEntity(idNajemnikEntity);
+  Najemnik getNajemnik(@PathVariable String idNajemnik) {
+    log.trace("getNajemnik()" + idNajemnik);
+    return najemnikService.getNajemnik(idNajemnik);
   }
 
   @RequestMapping(value = "/!all", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-  List<NajemnikEntity> getNajemnikEntityAll() {
-    log.trace("getNajemnikEntityAll()");
-    return najemnikService.getNajemnikEntityAll();
+  List<Najemnik> getNajemnikAll() {
+    log.trace("getNajemnikAll()");
+    return najemnikService.getNajemnikAll();
   }
 
   @RequestMapping(value = "/!all", method = RequestMethod.DELETE)
-  void deleteNajemnikEntityAll() {
-    log.trace("deleteNajemnikEntityAll()");
-    najemnikService.deleteNajemnikEntityAll();
+  void deleteNajemnikAll() {
+    log.trace("deleteNajemnikAll()");
+    najemnikService.deleteNajemnikAll();
   }
 }

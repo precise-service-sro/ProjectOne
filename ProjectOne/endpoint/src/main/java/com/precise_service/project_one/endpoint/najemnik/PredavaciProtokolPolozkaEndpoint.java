@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.precise_service.project_one.entity.najemnik.predavaci_protokol.PredavaciProtokolPolozkaEntity;
+import com.precise_service.project_one.entity.najemnik.predavaci_protokol.PredavaciProtokolPolozka;
 import com.precise_service.project_one.service.najemnik.predavaci_protokol.IPredavaciProtokolPolozkaService;
 
 
@@ -18,39 +18,39 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @RestController
-@RequestMapping(value = "/najemnik/{idNajemnikEntity}/predavaciProtokol/{idPredavaciProtokol}/polozka", path = "/najemnik/{idNajemnikEntity}/predavaciProtokol/{idPredavaciProtokol}/polozka")
+@RequestMapping(value = "/najemnik/{idNajemnik}/predavaciProtokol/{idPredavaciProtokol}/polozka", path = "/najemnik/{idNajemnik}/predavaciProtokol/{idPredavaciProtokol}/polozka")
 public class PredavaciProtokolPolozkaEndpoint {
 
   @Autowired
   private IPredavaciProtokolPolozkaService predavaciProtokolPolozkaService;
 
   @RequestMapping(value = "", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-  PredavaciProtokolPolozkaEntity postPredavaciProtokolPolozkaEntity(@PathVariable String idNajemnikEntity, @PathVariable String idPredavaciProtokol, @RequestBody PredavaciProtokolPolozkaEntity predavaciProtokolPolozkaEntity) {
-    log.trace("postPredavaciProtokolPolozkaEntity()");
-    return predavaciProtokolPolozkaService.postPredavaciProtokolPolozkaEntity(predavaciProtokolPolozkaEntity);
+  PredavaciProtokolPolozka postPredavaciProtokolPolozka(@PathVariable String idNajemnik, @PathVariable String idPredavaciProtokol, @RequestBody PredavaciProtokolPolozka predavaciProtokolPolozka) {
+    log.trace("postPredavaciProtokolPolozka()");
+    return predavaciProtokolPolozkaService.postPredavaciProtokolPolozka(predavaciProtokolPolozka);
   }
 
   @RequestMapping(value = "", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-  PredavaciProtokolPolozkaEntity putPredavaciProtokolPolozkaEntity(@PathVariable String idNajemnikEntity, @PathVariable String idPredavaciProtokol, @RequestBody PredavaciProtokolPolozkaEntity predavaciProtokolPolozkaEntity) {
-    log.trace("putPredavaciProtokolPolozkaEntity()");
-    return predavaciProtokolPolozkaService.putPredavaciProtokolPolozkaEntity(predavaciProtokolPolozkaEntity);
+  PredavaciProtokolPolozka putPredavaciProtokolPolozka(@PathVariable String idNajemnik, @PathVariable String idPredavaciProtokol, @RequestBody PredavaciProtokolPolozka predavaciProtokolPolozka) {
+    log.trace("putPredavaciProtokolPolozka()");
+    return predavaciProtokolPolozkaService.putPredavaciProtokolPolozka(predavaciProtokolPolozka);
   }
 
   @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-  PredavaciProtokolPolozkaEntity getPredavaciProtokolPolozkaEntity(@PathVariable String idPredavaciProtokolPolozkaEntity) {
-    log.trace("getPredavaciProtokolPolozkaEntity()" + idPredavaciProtokolPolozkaEntity);
-    return predavaciProtokolPolozkaService.getPredavaciProtokolPolozkaEntity(idPredavaciProtokolPolozkaEntity);
+  PredavaciProtokolPolozka getPredavaciProtokolPolozka(@PathVariable String idPredavaciProtokolPolozka) {
+    log.trace("getPredavaciProtokolPolozka()" + idPredavaciProtokolPolozka);
+    return predavaciProtokolPolozkaService.getPredavaciProtokolPolozka(idPredavaciProtokolPolozka);
   }
 
   @RequestMapping(value = "/!all", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-  List<PredavaciProtokolPolozkaEntity> getPredavaciProtokolPolozkaEntityAll(@PathVariable String idNajemnikEntity, @PathVariable String idPredavaciProtokol) {
-    log.trace("getPredavaciProtokolPolozkaEntityAll()");
-    return predavaciProtokolPolozkaService.getPredavaciProtokolPolozkaEntityAll();
+  List<PredavaciProtokolPolozka> getPredavaciProtokolPolozkaAll(@PathVariable String idNajemnik, @PathVariable String idPredavaciProtokol) {
+    log.trace("getPredavaciProtokolPolozkaAll()");
+    return predavaciProtokolPolozkaService.getPredavaciProtokolPolozkaAll();
   }
 
   @RequestMapping(value = "/!all", method = RequestMethod.DELETE)
-  void deletePredavaciProtokolPolozkaEntityAll(@PathVariable String idNajemnikEntity, @PathVariable String idPredavaciProtokol) {
-    log.trace("deletePredavaciProtokolPolozkaEntityAll()");
-    predavaciProtokolPolozkaService.deletePredavaciProtokolPolozkaEntityAll();
+  void deletePredavaciProtokolPolozkaAll(@PathVariable String idNajemnik, @PathVariable String idPredavaciProtokol) {
+    log.trace("deletePredavaciProtokolPolozkaAll()");
+    predavaciProtokolPolozkaService.deletePredavaciProtokolPolozkaAll();
   }
 }

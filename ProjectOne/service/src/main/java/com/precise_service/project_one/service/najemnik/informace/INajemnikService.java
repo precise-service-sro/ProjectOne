@@ -2,15 +2,15 @@ package com.precise_service.project_one.service.najemnik.informace;
 
 import java.util.List;
 
-import com.precise_service.project_one.entity.najemnik.informace.NajemnikEntity;
+import com.precise_service.project_one.entity.najemnik.informace.Najemnik;
 
 public interface INajemnikService {
 
-  NajemnikEntity postNajemnikEntity(NajemnikEntity najemnikEntity);
+  Najemnik postNajemnik(Najemnik najemnik);
 
-  NajemnikEntity getNajemnikEntity(String idNajemnikEntity);
+  Najemnik getNajemnik(String idNajemnik);
 
-  List<NajemnikEntity> getNajemnikEntityAll();
+  List<Najemnik> getNajemnikAll();
 
-  void deleteNajemnikEntityAll();
+  void deleteNajemnikAll();
 }

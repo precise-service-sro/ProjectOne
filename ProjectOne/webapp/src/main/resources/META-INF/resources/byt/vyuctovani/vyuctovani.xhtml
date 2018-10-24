@@ -31,6 +31,12 @@
 
   <br /><br />
   Tlačítko na přidání celého nového vyúčtování / další celé tabulky
+  <div class="ui-g" style="text-align: right;">
+    <div class="ui-g-12">
+      <p:commandButton value="Přidat nové vyúčtování" icon="ui-icon-circle-plus" styleClass="ui-priority-primary" process="@this"
+                       actionListener="#{vyuctovaniZaBytBean.addRow()}" oncomplete="PF('polozka').addRow();" />
+    </div>
+  </div>
 
   <br />
   <br />
@@ -45,6 +51,15 @@
       <br/><br/>
     </p:repeat>
   </div>
+
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
 
   <component:dockMenu />
 </h:body>

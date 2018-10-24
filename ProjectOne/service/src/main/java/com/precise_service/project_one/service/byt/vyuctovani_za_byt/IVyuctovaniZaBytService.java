@@ -3,19 +3,21 @@ package com.precise_service.project_one.service.byt.vyuctovani_za_byt;
 import java.time.LocalDate;
 import java.util.List;
 
-import com.precise_service.project_one.entity.byt.vyuctovani_za_byt.VyuctovaniZaBytEntity;
+import com.precise_service.project_one.entity.byt.vyuctovani_za_byt.VyuctovaniZaByt;
 
 public interface IVyuctovaniZaBytService {
 
-  VyuctovaniZaBytEntity postVyuctovaniZaBytEntity(VyuctovaniZaBytEntity vyuctovaniZaBytEntity);
+  VyuctovaniZaByt postVyuctovaniZaByt(VyuctovaniZaByt vyuctovaniZaByt);
 
-  VyuctovaniZaBytEntity putVyuctovaniZaBytEntity(VyuctovaniZaBytEntity vyuctovaniZaBytEntity);
+  VyuctovaniZaByt putVyuctovaniZaByt(VyuctovaniZaByt vyuctovaniZaByt);
 
-  VyuctovaniZaBytEntity getVyuctovaniZaBytEntity(String idVyuctovaniZaBytEntity);
+  VyuctovaniZaByt getVyuctovaniZaByt(String idVyuctovaniZaByt);
 
-  List<VyuctovaniZaBytEntity> getVyuctovaniZaBytEntityAll();
+  List<VyuctovaniZaByt> getVyuctovaniZaBytAll();
 
-  List<VyuctovaniZaBytEntity> getVyuctovaniZaBytEntityInRange(LocalDate from, LocalDate to);
+  List<VyuctovaniZaByt> getVyuctovaniZaBytInRange(LocalDate from, LocalDate to);
 
-  void deleteVyuctovaniZaBytEntityAll();
+  void deleteVyuctovaniZaByt(String idVyuctovaniZaByt);
+
+  void deleteVyuctovaniZaBytAll();
 }

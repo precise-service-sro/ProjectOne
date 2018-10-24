@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.precise_service.project_one.entity.byt.informace.BytEntity;
+import com.precise_service.project_one.entity.byt.informace.Byt;
 import com.precise_service.project_one.service.byt.informace.IBytService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -24,26 +24,26 @@ public class BytEndpoint {
   private IBytService bytService;
 
   @RequestMapping(value = "", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-  BytEntity postBytEntity(@RequestBody BytEntity bytEntity) {
-    log.trace("postBytEntity()");
-    return bytService.postBytEntity(bytEntity);
+  Byt postByt(@RequestBody Byt byt) {
+    log.trace("postByt()");
+    return bytService.postByt(byt);
   }
 
-  @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-  BytEntity getBytEntity(@PathVariable String idBytEntity) {
-    log.trace("getBytEntity()" + idBytEntity);
-    return bytService.getBytEntity(idBytEntity);
+  @RequestMapping(value = "/{idByt}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+  Byt getByt(@PathVariable String idByt) {
+    log.trace("getByt()" + idByt);
+    return bytService.getByt(idByt);
   }
 
   @RequestMapping(value = "/!all", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-  List<BytEntity> getBytEntityAll() {
-    log.trace("getBytEntityAll()");
-    return bytService.getBytEntityAll();
+  List<Byt> getBytAll() {
+    log.trace("getBytAll()");
+    return bytService.getBytAll();
   }
 
   @RequestMapping(value = "/!all", method = RequestMethod.DELETE)
-  void deleteBytEntityAll() {
-    log.trace("deleteBytEntityAll()");
-    bytService.deleteBytEntityAll();
+  void deleteBytAll() {
+    log.trace("deleteBytAll()");
+    bytService.deleteBytAll();
   }
 }

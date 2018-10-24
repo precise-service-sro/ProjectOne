@@ -12,9 +12,9 @@ import javax.inject.Named;
 import org.primefaces.event.RowEditEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.precise_service.project_one.entity.byt.vyuctovani_za_byt.VyuctovaniPolozkaTypEntity;
-import com.precise_service.project_one.entity.najemnik.predavaci_protokol.PredavaciProtokolEntity;
-import com.precise_service.project_one.entity.najemnik.predavaci_protokol.PredavaciProtokolPolozkaEntity;
+import com.precise_service.project_one.entity.byt.vyuctovani_za_byt.VyuctovaniPolozkaTyp;
+import com.precise_service.project_one.entity.najemnik.predavaci_protokol.PredavaciProtokol;
+import com.precise_service.project_one.entity.najemnik.predavaci_protokol.PredavaciProtokolPolozka;
 import com.precise_service.project_one.service.byt.vyuctovani_za_byt.IVyuctovaniPolozkaTypService;
 import com.precise_service.project_one.service.najemnik.predavaci_protokol.IPredavaciProtokolPolozkaService;
 import com.precise_service.project_one.service.najemnik.predavaci_protokol.IPredavaciProtokolService;
@@ -38,70 +38,70 @@ public class PredavaciProtokolBean implements Serializable {
 
   private String nazev;
   private LocalDate datumPodpisu;
-  private PredavaciProtokolEntity predavaciProtokolEntity;
-  private List<PredavaciProtokolPolozkaEntity> radky;
-  private List<VyuctovaniPolozkaTypEntity> vyuctovaniPolozkaTypEntityList;
+  private PredavaciProtokol predavaciProtokol;
+  private List<PredavaciProtokolPolozka> radky;
+  private List<VyuctovaniPolozkaTyp> vyuctovaniPolozkaTypList;
 
   @PostConstruct
   public void init() {
     log.trace("init()");
-    List<PredavaciProtokolEntity> predavaciProtokolEntityList = predavaciProtokolService.getPredavaciProtokolEntityList();
-    predavaciProtokolEntity = predavaciProtokolEntityList.get(0);
+    List<PredavaciProtokol> predavaciProtokolList = predavaciProtokolService.getPredavaciProtokolList();
+    predavaciProtokol = predavaciProtokolList.get(0);
 
-    nazev = predavaciProtokolEntity.getNazev();
-    datumPodpisu = predavaciProtokolEntity.getDatumPodpisu();
+    nazev = predavaciProtokol.getNazev();
+    datumPodpisu = predavaciProtokol.getDatumPodpisu();
 
-    radky = predavaciProtokolPolozkaService.getPredavaciProtokolPolozkaEntityAll(predavaciProtokolEntity.getId());
+    radky = predavaciProtokolPolozkaService.getPredavaciProtokolPolozkaAll(predavaciProtokol.getId());
 
-    vyuctovaniPolozkaTypEntityList = vyuctovaniPolozkaTypService.getVyuctovaniPolozkaTypEntityAll();
+    vyuctovaniPolozkaTypList = vyuctovaniPolozkaTypService.getVyuctovaniPolozkaTypAll();
   }
 
   public void onRowEdit(RowEditEvent event) {
     log.trace("onRowEdit()");
-    PredavaciProtokolPolozkaEntity predavaciProtokolPolozkaEntity = (PredavaciProtokolPolozkaEntity) event.getObject();
+    PredavaciProtokolPolozka predavaciProtokolPolozka = (PredavaciProtokolPolozka) event.getObject();
 
-    predavaciProtokolPolozkaService.putPredavaciProtokolPolozkaEntity(predavaciProtokolPolozkaEntity);
+    predavaciProtokolPolozkaService.putPredavaciProtokolPolozka(predavaciProtokolPolozka);
 
-    FacesMessage msg = new FacesMessage("Uložena úprava řádky", predavaciProtokolPolozkaEntity.getNazev());
+    FacesMessage msg = new FacesMessage("Uložena úprava řádky", predavaciProtokolPolozka.getNazev());
     FacesContext.getCurrentInstance().addMessage(null, msg);
   }
 
   public void onRowCancel(RowEditEvent event) {
     log.trace("onRowCancel()");
-    FacesMessage msg = new FacesMessage("Zrušena úprava řádky", ((PredavaciProtokolPolozkaEntity) event.getObject()).getNazev());
+    FacesMessage msg = new FacesMessage("Zrušena úprava řádky", ((PredavaciProtokolPolozka) event.getObject()).getNazev());
     FacesContext.getCurrentInstance().addMessage(null, msg);
   }
 
   public void addRow() {
     log.trace("addRow()");
 
-    PredavaciProtokolPolozkaEntity predavaciProtokolPolozkaEntity = new PredavaciProtokolPolozkaEntity();
+    PredavaciProtokolPolozka predavaciProtokolPolozka = new PredavaciProtokolPolozka();
 
-    predavaciProtokolPolozkaEntity.setPredavaciProtokolEntity(predavaciProtokolEntity);
-    predavaciProtokolPolozkaEntity.setNazev("!!! Upravit název !!!");
-    predavaciProtokolPolozkaEntity.setVyuctovaniPolozkaTypEntity(null);
-    predavaciProtokolPolozkaEntity.setCisloMeraku("!!! Upravit popis !!!");
-    predavaciProtokolPolozkaEntity.setStavMeraku("!!! Upravit popis !!!");
+    predavaciProtokolPolozka.setPredavaciProtokol(predavaciProtokol);
+    predavaciProtokolPolozka.setNazev("!!! Upravit název !!!");
+    predavaciProtokolPolozka.setVyuctovaniPolozkaTyp(null);
+    predavaciProtokolPolozka.setCisloMeraku("!!! Upravit popis !!!");
+    predavaciProtokolPolozka.setStavMeraku("!!! Upravit popis !!!");
 
-    PredavaciProtokolPolozkaEntity saved = predavaciProtokolPolozkaService.postPredavaciProtokolPolozkaEntity(predavaciProtokolPolozkaEntity);
+    PredavaciProtokolPolozka saved = predavaciProtokolPolozkaService.postPredavaciProtokolPolozka(predavaciProtokolPolozka);
     init();
 
     FacesMessage msg = new FacesMessage("Přidána nová řádka", saved.getId());
     FacesContext.getCurrentInstance().addMessage(null, msg);
   }
 
-  public void deleteRow(PredavaciProtokolPolozkaEntity deletedPredavaciProtokolPolozkaEntity) {
+  public void deleteRow(PredavaciProtokolPolozka deletedPredavaciProtokolPolozka) {
     log.trace("deleteRow()");
 
-    if (deletedPredavaciProtokolPolozkaEntity == null) {
+    if (deletedPredavaciProtokolPolozka == null) {
       log.trace("deleted row is null");
       return;
     }
-    log.trace("deleting row with: " + deletedPredavaciProtokolPolozkaEntity.toString());
+    log.trace("deleting row with: " + deletedPredavaciProtokolPolozka.toString());
 
-    predavaciProtokolPolozkaService.deletePredavaciProtokolPolozkaEntity(deletedPredavaciProtokolPolozkaEntity.getId());
+    predavaciProtokolPolozkaService.deletePredavaciProtokolPolozka(deletedPredavaciProtokolPolozka.getId());
 
-    FacesMessage msg = new FacesMessage("Smazán řádek", deletedPredavaciProtokolPolozkaEntity.getNazev());
+    FacesMessage msg = new FacesMessage("Smazán řádek", deletedPredavaciProtokolPolozka.getNazev());
     FacesContext.getCurrentInstance().addMessage(null, msg);
     init();
   }

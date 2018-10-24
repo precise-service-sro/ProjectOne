@@ -5,19 +5,20 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.precise_service.project_one.entity.BaseEntity;
 
 import lombok.Data;
 
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
-@Document(collection = "cislo")
-public class VyuctovaniCisloEntity {
+@Document(collection = "vyuctovaniPolozkaTyp")
+public class VyuctovaniPolozkaTyp extends BaseEntity {
 
   @JsonInclude(JsonInclude.Include.NON_NULL)
-  @JsonProperty("mnozstvi")
-  private Double mnozstvi;
+  @JsonProperty("nazev")
+  private String nazev;
 
   @JsonInclude(JsonInclude.Include.NON_NULL)
-  @JsonProperty("jednotka")
-  private String jednotka;
+  @JsonProperty("popis")
+  private String popis;
 }

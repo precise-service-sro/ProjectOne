@@ -5,8 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.precise_service.project_one.entity.najemnik.vyuctovani_pro_najemnika.VyuctovaniProNajemnikaEntity;
-import com.precise_service.project_one.repository.najemnik.vyuctovani_pro_najemnika.VyuctovaniProNajemnikaEntityRepository;
+import com.precise_service.project_one.entity.najemnik.vyuctovani_pro_najemnika.VyuctovaniProNajemnika;
+import com.precise_service.project_one.repository.najemnik.vyuctovani_pro_najemnika.VyuctovaniProNajemnikaRepository;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -15,36 +15,36 @@ import lombok.extern.slf4j.Slf4j;
 public class VyuctovaniProNajemnikaService implements IVyuctovaniProNajemnikaService {
 
   @Autowired
-  private VyuctovaniProNajemnikaEntityRepository vyuctovaniProNajemnikaEntityRepository;
+  private VyuctovaniProNajemnikaRepository vyuctovaniProNajemnikaRepository;
 
 
   @Override
-  public VyuctovaniProNajemnikaEntity postVyuctovaniProNajemnikaEntity(VyuctovaniProNajemnikaEntity vyuctovaniProNajemnikaEntity) {
-    log.trace("postVyuctovaniProNajemnikaEntity()");
-    return vyuctovaniProNajemnikaEntityRepository.save(vyuctovaniProNajemnikaEntity);
+  public VyuctovaniProNajemnika postVyuctovaniProNajemnika(VyuctovaniProNajemnika vyuctovaniProNajemnika) {
+    log.trace("postVyuctovaniProNajemnika()");
+    return vyuctovaniProNajemnikaRepository.save(vyuctovaniProNajemnika);
   }
 
   @Override
-  public VyuctovaniProNajemnikaEntity putVyuctovaniProNajemnikaEntity(VyuctovaniProNajemnikaEntity vyuctovaniProNajemnikaEntity) {
-    log.trace("postVyuctovaniProNajemnikaEntity()");
-    return vyuctovaniProNajemnikaEntityRepository.save(vyuctovaniProNajemnikaEntity);
+  public VyuctovaniProNajemnika putVyuctovaniProNajemnika(VyuctovaniProNajemnika vyuctovaniProNajemnika) {
+    log.trace("postVyuctovaniProNajemnika()");
+    return vyuctovaniProNajemnikaRepository.save(vyuctovaniProNajemnika);
   }
 
   @Override
-  public VyuctovaniProNajemnikaEntity getVyuctovaniProNajemnikaEntity(String idVyuctovaniProNajemnikaEntity) {
-    log.trace("getVyuctovaniProNajemnikaEntity()");
-    return vyuctovaniProNajemnikaEntityRepository.findById(idVyuctovaniProNajemnikaEntity).get();
+  public VyuctovaniProNajemnika getVyuctovaniProNajemnika(String idVyuctovaniProNajemnika) {
+    log.trace("getVyuctovaniProNajemnika()");
+    return vyuctovaniProNajemnikaRepository.findById(idVyuctovaniProNajemnika).get();
   }
 
   @Override
-  public List<VyuctovaniProNajemnikaEntity> getVyuctovaniProNajemnikaEntityAll() {
-    log.trace("getVyuctovaniProNajemnikaEntity()");
-    return vyuctovaniProNajemnikaEntityRepository.findAll();
+  public List<VyuctovaniProNajemnika> getVyuctovaniProNajemnikaAll() {
+    log.trace("getVyuctovaniProNajemnika()");
+    return vyuctovaniProNajemnikaRepository.findAll();
   }
 
   @Override
-  public void deleteVyuctovaniProNajemnikaEntityAll() {
-    log.trace("deleteVyuctovaniProNajemnikaEntityAll()");
-    vyuctovaniProNajemnikaEntityRepository.deleteAll();
+  public void deleteVyuctovaniProNajemnikaAll() {
+    log.trace("deleteVyuctovaniProNajemnikaAll()");
+    vyuctovaniProNajemnikaRepository.deleteAll();
   }
 }

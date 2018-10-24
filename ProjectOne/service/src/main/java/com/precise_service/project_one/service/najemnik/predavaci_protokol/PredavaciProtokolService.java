@@ -5,8 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.precise_service.project_one.entity.najemnik.predavaci_protokol.PredavaciProtokolEntity;
-import com.precise_service.project_one.repository.najemnik.predavaci_protokol.PredavaciProtokolEntityRepository;
+import com.precise_service.project_one.entity.najemnik.predavaci_protokol.PredavaciProtokol;
+import com.precise_service.project_one.repository.najemnik.predavaci_protokol.PredavaciProtokolRepository;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -15,47 +15,47 @@ import lombok.extern.slf4j.Slf4j;
 public class PredavaciProtokolService implements IPredavaciProtokolService {
 
   @Autowired
-  private PredavaciProtokolEntityRepository predavaciProtokolEntityRepository;
+  private PredavaciProtokolRepository predavaciProtokolRepository;
 
   @Override
-  public PredavaciProtokolEntity postPredavaciProtokolEntity(PredavaciProtokolEntity predavaciProtokolEntity) {
-    log.trace("postPredavaciProtokolEntity()");
-    return predavaciProtokolEntityRepository.save(predavaciProtokolEntity);
+  public PredavaciProtokol postPredavaciProtokol(PredavaciProtokol predavaciProtokol) {
+    log.trace("postPredavaciProtokol()");
+    return predavaciProtokolRepository.save(predavaciProtokol);
   }
 
   @Override
-  public PredavaciProtokolEntity putPredavaciProtokolEntity(PredavaciProtokolEntity predavaciProtokolEntity) {
-    log.trace("putPredavaciProtokolEntity()");
-    return predavaciProtokolEntityRepository.save(predavaciProtokolEntity);
+  public PredavaciProtokol putPredavaciProtokol(PredavaciProtokol predavaciProtokol) {
+    log.trace("putPredavaciProtokol()");
+    return predavaciProtokolRepository.save(predavaciProtokol);
   }
 
   @Override
-  public List<PredavaciProtokolEntity> getPredavaciProtokolEntityList() {
-    log.trace("getPredavaciProtokolEntityList()");
-    return predavaciProtokolEntityRepository.findAll();
+  public List<PredavaciProtokol> getPredavaciProtokolList() {
+    log.trace("getPredavaciProtokolList()");
+    return predavaciProtokolRepository.findAll();
   }
 
   @Override
-  public PredavaciProtokolEntity getPredavaciProtokolEntity(String idPredavaciProtokolEntity) {
-    log.trace("getPredavaciProtokolEntity()");
-    return predavaciProtokolEntityRepository.findById(idPredavaciProtokolEntity).get();
+  public PredavaciProtokol getPredavaciProtokol(String idPredavaciProtokol) {
+    log.trace("getPredavaciProtokol()");
+    return predavaciProtokolRepository.findById(idPredavaciProtokol).get();
   }
 
   @Override
-  public List<PredavaciProtokolEntity> getPredavaciProtokolEntityAll() {
-    log.trace("getPredavaciProtokolEntityAll()");
-    return predavaciProtokolEntityRepository.findAll();
+  public List<PredavaciProtokol> getPredavaciProtokolAll() {
+    log.trace("getPredavaciProtokolAll()");
+    return predavaciProtokolRepository.findAll();
   }
 
   @Override
-  public void deletePredavaciProtokolEntity(String idPredavaciProtokolEntity) {
-    log.trace("deletePredavaciProtokolEntity()");
-    predavaciProtokolEntityRepository.deleteById(idPredavaciProtokolEntity);
+  public void deletePredavaciProtokol(String idPredavaciProtokol) {
+    log.trace("deletePredavaciProtokol()");
+    predavaciProtokolRepository.deleteById(idPredavaciProtokol);
   }
 
   @Override
-  public void deletePredavaciProtokolEntityAll() {
-    log.trace("deletePredavaciProtokolEntityAll()");
-    predavaciProtokolEntityRepository.deleteAll();
+  public void deletePredavaciProtokolAll() {
+    log.trace("deletePredavaciProtokolAll()");
+    predavaciProtokolRepository.deleteAll();
   }
 }

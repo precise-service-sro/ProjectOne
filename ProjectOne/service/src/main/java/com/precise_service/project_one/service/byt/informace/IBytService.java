@@ -2,15 +2,15 @@ package com.precise_service.project_one.service.byt.informace;
 
 import java.util.List;
 
-import com.precise_service.project_one.entity.byt.informace.BytEntity;
+import com.precise_service.project_one.entity.byt.informace.Byt;
 
 public interface IBytService {
 
-  BytEntity postBytEntity(BytEntity bytEntity);
+  Byt postByt(Byt byt);
 
-  BytEntity getBytEntity(String idBytEntity);
+  Byt getByt(String idByt);
 
-  List<BytEntity> getBytEntityAll();
+  List<Byt> getBytAll();
 
-  void deleteBytEntityAll();
+  void deleteBytAll();
 }

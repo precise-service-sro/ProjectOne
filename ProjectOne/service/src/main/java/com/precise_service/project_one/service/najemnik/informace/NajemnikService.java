@@ -5,8 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.precise_service.project_one.entity.najemnik.informace.NajemnikEntity;
-import com.precise_service.project_one.repository.najemnik.informace.NajemnikEntityRepository;
+import com.precise_service.project_one.entity.najemnik.informace.Najemnik;
+import com.precise_service.project_one.repository.najemnik.informace.NajemnikRepository;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -15,29 +15,29 @@ import lombok.extern.slf4j.Slf4j;
 public class NajemnikService implements INajemnikService {
 
   @Autowired
-  private NajemnikEntityRepository najemnikEntityRepository;
+  private NajemnikRepository najemnikRepository;
 
   @Override
-  public NajemnikEntity postNajemnikEntity(NajemnikEntity najemnikEntity) {
-    log.trace("postNajemnikEntity()");
-    return najemnikEntityRepository.save(najemnikEntity);
+  public Najemnik postNajemnik(Najemnik najemnik) {
+    log.trace("postNajemnik()");
+    return najemnikRepository.save(najemnik);
   }
 
   @Override
-  public NajemnikEntity getNajemnikEntity(String idNajemnikEntity) {
-    log.trace("getNajemnikEntity()");
-    return najemnikEntityRepository.findById(idNajemnikEntity).get();
+  public Najemnik getNajemnik(String idNajemnik) {
+    log.trace("getNajemnik()");
+    return najemnikRepository.findById(idNajemnik).get();
   }
 
   @Override
-  public List<NajemnikEntity> getNajemnikEntityAll() {
-    log.trace("getNajemnikEntityAll()");
-    return najemnikEntityRepository.findAll();
+  public List<Najemnik> getNajemnikAll() {
+    log.trace("getNajemnikAll()");
+    return najemnikRepository.findAll();
   }
 
   @Override
-  public void deleteNajemnikEntityAll() {
-    log.trace("deleteNajemnikEntityAll()");
-    najemnikEntityRepository.deleteAll();
+  public void deleteNajemnikAll() {
+    log.trace("deleteNajemnikAll()");
+    najemnikRepository.deleteAll();
   }
 }

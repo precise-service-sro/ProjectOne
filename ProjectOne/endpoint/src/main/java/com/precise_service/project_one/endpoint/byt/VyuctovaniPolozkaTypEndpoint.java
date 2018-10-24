@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.precise_service.project_one.entity.byt.vyuctovani_za_byt.VyuctovaniPolozkaTypEntity;
+import com.precise_service.project_one.entity.byt.vyuctovani_za_byt.VyuctovaniPolozkaTyp;
 import com.precise_service.project_one.service.byt.vyuctovani_za_byt.IVyuctovaniPolozkaTypService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -24,32 +24,32 @@ public class VyuctovaniPolozkaTypEndpoint {
   private IVyuctovaniPolozkaTypService vyuctovaniPolozkaTypService;
 
   @RequestMapping(value = "", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-  VyuctovaniPolozkaTypEntity postVyuctovaniPolozkaTyp(@RequestBody VyuctovaniPolozkaTypEntity vyuctovaniPolozkaTypEntity) {
+  VyuctovaniPolozkaTyp postVyuctovaniPolozkaTyp(@RequestBody VyuctovaniPolozkaTyp vyuctovaniPolozkaTyp) {
     log.trace("postVyuctovaniPolozkaTyp()");
-    return vyuctovaniPolozkaTypService.postVyuctovaniPolozkaTypEntity(vyuctovaniPolozkaTypEntity);
+    return vyuctovaniPolozkaTypService.postVyuctovaniPolozkaTyp(vyuctovaniPolozkaTyp);
   }
 
   @RequestMapping(value = "", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-  VyuctovaniPolozkaTypEntity putVyuctovaniPolozkaTyp(@RequestBody VyuctovaniPolozkaTypEntity vyuctovaniPolozkaTypEntity) {
+  VyuctovaniPolozkaTyp putVyuctovaniPolozkaTyp(@RequestBody VyuctovaniPolozkaTyp vyuctovaniPolozkaTyp) {
     log.trace("putVyuctovaniPolozkaTyp()");
-    return vyuctovaniPolozkaTypService.putVyuctovaniPolozkaTypEntity(vyuctovaniPolozkaTypEntity);
+    return vyuctovaniPolozkaTypService.putVyuctovaniPolozkaTyp(vyuctovaniPolozkaTyp);
   }
 
   @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-  VyuctovaniPolozkaTypEntity getVyuctovaniPolozkaTypEntity(@PathVariable String idVyuctovaniPolozkaTypEntity) {
-    log.trace("getVyuctovaniPolozkaTypEntity()" + idVyuctovaniPolozkaTypEntity);
-    return vyuctovaniPolozkaTypService.getVyuctovaniPolozkaTypEntity(idVyuctovaniPolozkaTypEntity);
+  VyuctovaniPolozkaTyp getVyuctovaniPolozkaTyp(@PathVariable String idVyuctovaniPolozkaTyp) {
+    log.trace("getVyuctovaniPolozkaTyp()" + idVyuctovaniPolozkaTyp);
+    return vyuctovaniPolozkaTypService.getVyuctovaniPolozkaTyp(idVyuctovaniPolozkaTyp);
   }
 
   @RequestMapping(value = "/!all", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-  List<VyuctovaniPolozkaTypEntity> getVyuctovaniPolozkaTypEntityAll() {
-    log.trace("getVyuctovaniPolozkaTypEntityAll()");
-    return vyuctovaniPolozkaTypService.getVyuctovaniPolozkaTypEntityAll();
+  List<VyuctovaniPolozkaTyp> getVyuctovaniPolozkaTypAll() {
+    log.trace("getVyuctovaniPolozkaTypAll()");
+    return vyuctovaniPolozkaTypService.getVyuctovaniPolozkaTypAll();
   }
 
   @RequestMapping(value = "/!all", method = RequestMethod.DELETE)
-  void deleteVyuctovaniPolozkaTypEntityAll() {
-    log.trace("deleteVyuctovaniPolozkaTypEntityAll()");
-    vyuctovaniPolozkaTypService.deleteVyuctovaniPolozkaTypEntityAll();
+  void deleteVyuctovaniPolozkaTypAll() {
+    log.trace("deleteVyuctovaniPolozkaTypAll()");
+    vyuctovaniPolozkaTypService.deleteVyuctovaniPolozkaTypAll();
   }
 }

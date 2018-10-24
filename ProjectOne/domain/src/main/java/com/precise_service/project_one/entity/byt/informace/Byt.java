@@ -12,7 +12,7 @@ import lombok.Data;
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Document(collection = "byt")
-public class BytEntity extends BaseEntity {
+public class Byt extends BaseEntity {
 
   @JsonProperty("nazev")
   private String nazev;
