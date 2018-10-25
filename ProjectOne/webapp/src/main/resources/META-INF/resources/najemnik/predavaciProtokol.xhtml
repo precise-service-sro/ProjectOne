@@ -49,7 +49,8 @@
             <p:column headerText="Název"/>
             <p:column headerText="Vyúčtovat jako" style="width: 150px;"/>
             <p:column headerText="Číslo měřáku"   style="width: 150px;"/>
-            <p:column headerText="Stav měřáku"    style="width: 150px;"/>
+            <p:column headerText="Stav"           style="width: 80px;"/>
+            <p:column headerText="Jednotka"       style="width: 80px;"/>
             <p:column                             style="width:  32px;"/>
             <p:column                             style="width:  50px;"/>
           </p:row>
@@ -62,7 +63,7 @@
           </p:cellEditor>
         </p:column>
 
-        <p:column>
+        <p:column style="text-align: center;">
           <p:cellEditor>
             <f:facet name="output"><h:outputText value="#{polozka.vyuctovaniPolozkaTyp.nazev}" title="#{polozka.vyuctovaniPolozkaTyp.popis}"/> </f:facet>
             <f:facet name="input">
@@ -76,14 +77,21 @@
         <p:column>
           <p:cellEditor>
             <f:facet name="output"><h:outputText value="#{polozka.cisloMeraku}" /> </f:facet>
-            <f:facet name="input"><p:inputText id="cisloMerakuInput" value="#{polozka.cisloMeraku}" style="width:100%"/></f:facet>
+            <f:facet name="input"><p:inputText id="cisloMerakuInput" value="#{polozka.cisloMeraku}" /></f:facet>
           </p:cellEditor>
         </p:column>
 
-        <p:column>
+        <p:column style="text-align: right;">
           <p:cellEditor>
-            <f:facet name="output"><h:outputText value="#{polozka.stavMeraku}" /> <h:outputText value="&nbsp;" /> <h:outputText value="#{polozka.jednotka}" /> </f:facet>
-            <f:facet name="input"><div style="text-align: left"><p:inputText id="stavMerakuInput" value="#{polozka.stavMeraku}" style="width:40%" />  <h:outputText value="&nbsp;" /> <h:outputText value="#{polozka.jednotka}" style="width:50%"/>  </div></f:facet>
+            <f:facet name="output"><h:outputText value="#{polozka.stavMeraku}" /> </f:facet>
+            <f:facet name="input"><div style="text-align: left"><p:inputText id="stavMerakuInput" value="#{polozka.stavMeraku}" /> </div></f:facet>
+          </p:cellEditor>
+        </p:column>
+
+        <p:column style="text-align: center;">
+          <p:cellEditor>
+            <f:facet name="output"><h:outputText value="#{polozka.jednotka}" /> </f:facet>
+            <f:facet name="input"><div style="text-align: left"><p:inputText id="jednotkaInput" value="#{polozka.jednotka}" /> </div></f:facet>
           </p:cellEditor>
         </p:column>
 
@@ -96,8 +104,6 @@
         </p:column>
       </p:dataTable>
     </h:form>
-<div>
-  </div>
   <component:dockMenu />
 
 </h:body>

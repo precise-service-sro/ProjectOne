@@ -87,7 +87,7 @@ public class VyuctovaniZaBytDetailBean implements Serializable {
         if (vyuctovaniZaBytPolozka.getKoncovyStav() == null) {
           VyuctovaniCislo koncovyStav = new VyuctovaniCislo();
           koncovyStav.setMnozstvi(1.0);
-          koncovyStav.setJednotka("ks");
+          koncovyStav.setJednotka(pocatecniStav.getJednotka());
           vyuctovaniZaBytPolozka.setKoncovyStav(koncovyStav);
         }
       }
@@ -95,21 +95,19 @@ public class VyuctovaniZaBytDetailBean implements Serializable {
       if (vyuctovaniZaBytPolozka.getKoncovyStav() == null) {
         VyuctovaniCislo koncovyStav = new VyuctovaniCislo();
         koncovyStav.setMnozstvi(0.0);
-        koncovyStav.setJednotka("ks");
+        koncovyStav.setJednotka(vyuctovaniZaBytPolozka.getPocatecniStav().getJednotka());
         vyuctovaniZaBytPolozka.setKoncovyStav(koncovyStav);
       }
 
-      if (vyuctovaniZaBytPolozka.getSpotreba() == null) {
-        VyuctovaniCislo spotreba = new VyuctovaniCislo();
-        spotreba.setMnozstvi(1.00);
-        spotreba.setJednotka("ks");
-        vyuctovaniZaBytPolozka.setSpotreba(spotreba);
-      }
+      VyuctovaniCislo spotreba = new VyuctovaniCislo();
+      spotreba.setMnozstvi(vyuctovaniZaBytPolozka.getKoncovyStav().getMnozstvi() - vyuctovaniZaBytPolozka.getPocatecniStav().getMnozstvi());
+      spotreba.setJednotka(vyuctovaniZaBytPolozka.getKoncovyStav().getJednotka());
+      vyuctovaniZaBytPolozka.setSpotreba(spotreba);
 
       if (vyuctovaniZaBytPolozka.getZalohy() == null) {
         VyuctovaniCislo zalohy = new VyuctovaniCislo();
         zalohy.setMnozstvi(0.0);
-        zalohy.setJednotka("ks");
+        zalohy.setJednotka("Kč");
         vyuctovaniZaBytPolozka.setZalohy(zalohy);
       }
 
@@ -140,6 +138,7 @@ public class VyuctovaniZaBytDetailBean implements Serializable {
     VyuctovaniZaBytPolozka vyuctovaniZaBytPolozka = (VyuctovaniZaBytPolozka) event.getObject();
 
     vyuctovaniZaBytPolozkaService.putVyuctovaniZaBytPolozka(vyuctovaniZaBytPolozka);
+    init();
 
     FacesMessage msg = new FacesMessage("Uložena úprava řádky", vyuctovaniZaBytPolozka.getNazev());
     FacesContext.getCurrentInstance().addMessage(null, msg);
@@ -147,7 +146,7 @@ public class VyuctovaniZaBytDetailBean implements Serializable {
 
   public void onRowCancel(RowEditEvent event) {
     log.trace("onRowCancel()");
-    FacesMessage msg = new FacesMessage("Zrušena úprava řádky", ((PredavaciProtokolPolozka) event.getObject()).getNazev());
+    FacesMessage msg = new FacesMessage("Zrušena úprava řádky", ((VyuctovaniZaBytPolozka) event.getObject()).getNazev());
     FacesContext.getCurrentInstance().addMessage(null, msg);
   }
 }
