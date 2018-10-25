@@ -46,9 +46,10 @@ public class VyuctovaniZaBytDetailBean implements Serializable {
   public static final String ZUCTOVACI_OBDOBI_DATE_FORMAT = "dd/MM/yyyy";
 
   private List<VyuctovaniPolozkaTyp> vyuctovaniPolozkaTypList;
-  private String nazev;
-  private String zuctovaciObdobi;
+  private VyuctovaniZaByt vyuctovaniZaByt;
   private List<VyuctovaniZaBytPolozka> radkyVyuctovani;
+
+  // TODO: tyhle celkovy soucty spocitat a ulozit na entitu celeho vyuctovani, at se to tu nedela pokazde znova
   private Double celkemZalohy;
   private Double celkemNaklady;
   private Double celkemRozdil;
@@ -64,20 +65,11 @@ public class VyuctovaniZaBytDetailBean implements Serializable {
     LocalDate to = LocalDate.parse("31-12-2017", dateTimeFormatter);
 
     List<VyuctovaniZaByt> vyuctovaniInRange = vyuctovaniZaBytService.getVyuctovaniZaBytInRange(from, to);
-    VyuctovaniZaByt vyuctovaniZaByt = vyuctovaniInRange.get(0);
-
-    nazev = vyuctovaniZaByt.getNazev();
-    if (vyuctovaniZaByt.getZuctovaciObdobi() != null) {
-      LocalDate zacatekZuctovacihoObdobi = vyuctovaniZaByt.getZuctovaciObdobi().getZacatek();
-      LocalDate konecZuctovacihoObdobi = vyuctovaniZaByt.getZuctovaciObdobi().getKonec();
-      zuctovaciObdobi = "(" + format(zacatekZuctovacihoObdobi, ZUCTOVACI_OBDOBI_DATE_FORMAT) + " - " + format(konecZuctovacihoObdobi, ZUCTOVACI_OBDOBI_DATE_FORMAT) + ")";
-    }
+    vyuctovaniZaByt = vyuctovaniInRange.get(0);
 
     radkyVyuctovani = vyuctovaniZaBytPolozkaService.getVyuctovaniZaBytPolozkaAll(vyuctovaniZaByt.getId());
 
-
     for (VyuctovaniZaBytPolozka vyuctovaniZaBytPolozka : radkyVyuctovani) {
-
       if (vyuctovaniZaBytPolozka.getPocatecniStav() == null) {
         VyuctovaniCislo pocatecniStav = new VyuctovaniCislo();
         pocatecniStav.setMnozstvi(0.0);
@@ -148,5 +140,49 @@ public class VyuctovaniZaBytDetailBean implements Serializable {
     log.trace("onRowCancel()");
     FacesMessage msg = new FacesMessage("Zrušena úprava řádky", ((VyuctovaniZaBytPolozka) event.getObject()).getNazev());
     FacesContext.getCurrentInstance().addMessage(null, msg);
+  }
+
+  public void addRow() {
+    log.trace("addRow()");
+
+    VyuctovaniZaBytPolozka vyuctovaniZaBytPolozka = new VyuctovaniZaBytPolozka();
+
+    vyuctovaniZaBytPolozka.setNazev("!!! Upravit název !!!");
+    vyuctovaniZaBytPolozka.setVyuctovaniZaByt(vyuctovaniZaByt);
+    vyuctovaniZaBytPolozka.setVyuctovaniPolozkaTyp(null);
+
+    VyuctovaniCislo vychoziStav = new VyuctovaniCislo();
+    vychoziStav.setMnozstvi(0.0);
+    vychoziStav.setJednotka("Ks");
+    vyuctovaniZaBytPolozka.setPocatecniStav(vychoziStav);
+    vyuctovaniZaBytPolozka.setKoncovyStav(vychoziStav);
+
+    VyuctovaniCislo vychoziZalohyNeboNaklady = new VyuctovaniCislo();
+    vychoziZalohyNeboNaklady.setMnozstvi(0.0);
+    vychoziZalohyNeboNaklady.setJednotka("Kč");
+    vyuctovaniZaBytPolozka.setZalohy(vychoziZalohyNeboNaklady);
+    vyuctovaniZaBytPolozka.setNaklady(vychoziZalohyNeboNaklady);
+
+    VyuctovaniZaBytPolozka saved = vyuctovaniZaBytPolozkaService.postVyuctovaniZaBytPolozka(vyuctovaniZaBytPolozka);
+    init();
+
+    FacesMessage msg = new FacesMessage("Přidána nová řádka", saved.getId());
+    FacesContext.getCurrentInstance().addMessage(null, msg);
+  }
+
+  public void deleteRow(VyuctovaniZaBytPolozka deletedVyuctovaniZaBytPolozka) {
+    log.trace("deleteRow()");
+
+    if (deletedVyuctovaniZaBytPolozka == null) {
+      log.trace("deleted row is null");
+      return;
+    }
+    log.trace("deleting row with: " + deletedVyuctovaniZaBytPolozka.toString());
+
+    vyuctovaniZaBytPolozkaService.deleteVyuctovaniZaBytPolozka(deletedVyuctovaniZaBytPolozka.getId());
+
+    FacesMessage msg = new FacesMessage("Smazán řádek", deletedVyuctovaniZaBytPolozka.getNazev());
+    FacesContext.getCurrentInstance().addMessage(null, msg);
+    init();
   }
 }

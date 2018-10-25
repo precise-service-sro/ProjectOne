@@ -17,16 +17,11 @@
 
   Přehledová stránka všech za rok nasbíraných vyúčtování (vyfiltrované podle datumu na období 01-12/2017)
   <br />
-  <h3>Byt: (označení bytu / link a proklid na detail na Byt Praha)</h3>
+  <h3>Byt: (označení bytu / link a proklid na detail na Byt Praha) <h:outputText value="#{vyuctovaniZaBytDetailBean.vyuctovaniZaByt.nazev}" /></h3>
   <br />
   <h3>Adresa: (Přesná adresa, možná na téhle stránka ani nedáva smysl, když bude proklik)</h3>
   <br />
-  <h3>Zúčtovací období:  (možno zadat datumy, aby se to podle toho filtrovalo)</h3>
-
-  <br />
-  <br />
-
-  Takhle stranka a jeji struktura se bude muset nejak prekopat, aby to davalo vetsi smysl a zaroven to slo i pekne editovat
+  <h3>Zúčtovací období:  (možno zadat datumy, aby se to podle toho filtrovalo) OD=<h:outputText value="#{vyuctovaniZaBytDetailBean.vyuctovaniZaByt.zuctovaciObdobi.zacatek}" /> - DO=<h:outputText value="#{vyuctovaniZaBytDetailBean.vyuctovaniZaByt.zuctovaciObdobi.konec}" /></h3>
 
   <br />
   <br />
@@ -41,7 +36,7 @@
       <div class="ui-g" style="text-align: right;">
         <div class="ui-g-12">
           <p:commandButton value="Přidat nový záznam" icon="ui-icon-circle-plus" styleClass="ui-priority-primary" process="@this"
-                           actionListener="#{vyuctovaniZaBytDetailBean.addRow()}" oncomplete="PF('vyuctovaniZaBytDetailTable').addRow();" />
+                           actionListener="#{vyuctovaniZaBytDetailBean.addRow()}" update="@form :form:msgs" />
         </div>
       </div>
 
@@ -135,7 +130,7 @@
         </p:column>
 
         <p:column>
-          <p:commandButton icon="ui-icon-circle-minus" actionListener="#{vyuctovaniZaBytTabulkaBean.deleteRow(polozka)}" />
+          <p:commandButton update="@form :form:msgs" icon="ui-icon-circle-minus" actionListener="#{vyuctovaniZaBytDetailBean.deleteRow(polozka)}" />
         </p:column>
 
         <p:summaryRow>
