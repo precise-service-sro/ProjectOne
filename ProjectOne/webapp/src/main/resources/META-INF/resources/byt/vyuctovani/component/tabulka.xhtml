@@ -56,7 +56,7 @@
         <p:cellEditor>
           <f:facet name="output"><h:outputText value="#{polozka.vyuctovaniPolozkaTyp.nazev}" title="#{polozka.vyuctovaniPolozkaTyp.popis}"/> </f:facet>
           <f:facet name="input">
-            <h:selectOneMenu value="#{polozka.vyuctovaniPolozkaTyp}" style="width:100%" converter="#{vyuctovaniPolozkaTypeConverter}">
+            <h:selectOneMenu value="#{polozka.vyuctovaniPolozkaTyp}" style="width:100%" converter="#{vyuctovaniPolozkaTypConverter}">
               <f:selectItems value="#{vyuctovaniZaBytTabulkaBean.vyuctovaniPolozkaTypList}" var="vyuctovaniPolozkaTyp" itemLabel="#{vyuctovaniPolozkaTyp.nazev}" itemValue="#{vyuctovaniPolozkaTyp}" />
             </h:selectOneMenu>
           </f:facet>

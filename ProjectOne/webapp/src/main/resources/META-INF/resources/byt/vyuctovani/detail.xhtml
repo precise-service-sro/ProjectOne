@@ -46,10 +46,6 @@
       </div>
 
       <p:dataTable id="vyuctovaniZaBytDetailTable" widgetVar="vyuctovaniZaBytDetailTable" var="polozka" value="#{vyuctovaniZaBytDetailBean.getRadkyVyuctovani()}" resizableColumns="true" sortBy="#{1}" editable="true">
-        <f:facet name="header">
-          <h:outputText value="#{vyuctovaniZaBytDetailBean.nazev}"  /> --- <h:outputText value="#{vyuctovaniZaBytDetailBean.zuctovaciObdobi}" />
-        </f:facet>
-
         <p:ajax event="rowEdit" listener="#{vyuctovaniZaBytDetailBean.onRowEdit}" update=":form:msgs :form:vyuctovaniZaBytDetailTable" />
         <p:ajax event="rowEditCancel" listener="#{vyuctovaniZaBytDetailBean.onRowCancel}" update=":form:msgs" />
 
@@ -78,8 +74,8 @@
 
         <p:column style="text-align: center;">
           <p:cellEditor>
-            <f:facet name="output"><h:outputText value="#{polozka.spotreba.jednotka}" /> </f:facet>
-            <f:facet name="input"><div style="text-align: left"><p:inputText id="jednotkaInput" value="#{polozka.spotreba.jednotka}" /> </div></f:facet>
+            <f:facet name="output"><h:outputText value="#{polozka.pocatecniStav.jednotka}" /> </f:facet>
+            <f:facet name="input"><div style="text-align: left"><p:inputText id="jednotkaInput" value="#{polozka.pocatecniStav.jednotka}" /> </div></f:facet>
           </p:cellEditor>
         </p:column>
 
@@ -87,7 +83,7 @@
           <p:cellEditor>
             <f:facet name="output"><h:outputText value="#{polozka.vyuctovaniPolozkaTyp.nazev}" title="#{polozka.vyuctovaniPolozkaTyp.popis}"/> </f:facet>
             <f:facet name="input">
-              <h:selectOneMenu value="#{polozka.vyuctovaniPolozkaTyp}" style="width:100%" converter="#{vyuctovaniPolozkaTypeConverter}">
+              <h:selectOneMenu value="#{polozka.vyuctovaniPolozkaTyp}" style="width:100%" converter="#{vyuctovaniPolozkaTypConverter}">
                 <f:selectItems value="#{vyuctovaniZaBytDetailBean.vyuctovaniPolozkaTypList}" var="vyuctovaniPolozkaTyp" itemLabel="#{vyuctovaniPolozkaTyp.nazev}" itemValue="#{vyuctovaniPolozkaTyp}" />
               </h:selectOneMenu>
             </f:facet>

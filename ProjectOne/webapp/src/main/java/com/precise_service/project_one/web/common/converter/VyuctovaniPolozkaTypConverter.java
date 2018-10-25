@@ -13,8 +13,8 @@ import org.springframework.util.StringUtils;
 import com.precise_service.project_one.entity.byt.vyuctovani_za_byt.VyuctovaniPolozkaTyp;
 import com.precise_service.project_one.service.byt.vyuctovani_za_byt.VyuctovaniPolozkaTypService;
 
-@Service("vyuctovaniPolozkaTypeConverter")
-public class VyuctovaniPolozkaTypeConverter implements Converter {
+@Service("vyuctovaniPolozkaTypConverter")
+public class VyuctovaniPolozkaTypConverter implements Converter {
 
   @Autowired
   private VyuctovaniPolozkaTypService vyuctovaniPolozkaTypService;
