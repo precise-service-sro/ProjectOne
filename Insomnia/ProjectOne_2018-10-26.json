@@ -1,0 +1,2793 @@
+{
+	"_type": "export",
+	"__export_format": 3,
+	"__export_date": "2018-10-26T10:01:02.880Z",
+	"__export_source": "insomnia.desktop.app:v6.0.2",
+	"resources": [
+		{
+			"_id": "wrk_067dca35e41544cba7a3620c413180d7",
+			"created": 1539199583487,
+			"description": "",
+			"modified": 1539199583487,
+			"name": "ProjectOne",
+			"parentId": null,
+			"_type": "workspace"
+		},
+		{
+			"_id": "env_e5a04db533534b49b1a89abe88c945e0",
+			"color": null,
+			"created": 1539199583989,
+			"data": {},
+			"isPrivate": false,
+			"metaSortKey": 1539199583990,
+			"modified": 1539241266709,
+			"name": "New Environment",
+			"parentId": "wrk_067dca35e41544cba7a3620c413180d7",
+			"_type": "environment"
+		},
+		{
+			"_id": "jar_7dd7ad0e344d43afa3290933159cb521",
+			"cookies": [],
+			"created": 1539199584013,
+			"modified": 1539199584013,
+			"name": "Default Jar",
+			"parentId": "wrk_067dca35e41544cba7a3620c413180d7",
+			"_type": "cookie_jar"
+		},
+		{
+			"_id": "fld_ff62371faff84383b70a87115521ecb8",
+			"created": 1539420737647,
+			"description": "",
+			"environment": {},
+			"metaSortKey": -1539553221039.25,
+			"modified": 1540032916147,
+			"name": "/byt",
+			"parentId": "wrk_067dca35e41544cba7a3620c413180d7",
+			"_type": "request_group"
+		},
+		{
+			"_id": "fld_1d15260d8e794d0793da663f5746037b",
+			"created": 1539597382170,
+			"description": "",
+			"environment": {},
+			"metaSortKey": -1539531140473.875,
+			"modified": 1540032920864,
+			"name": "/najemnik",
+			"parentId": "wrk_067dca35e41544cba7a3620c413180d7",
+			"_type": "request_group"
+		},
+		{
+			"_id": "fld_fd769dc34a314da2acfb83338c9ba65a",
+			"created": 1539785667864,
+			"description": "",
+			"environment": {},
+			"metaSortKey": -1540121762588,
+			"modified": 1540290665724,
+			"name": "/vyuctovaniPolozkaTyp",
+			"parentId": "wrk_067dca35e41544cba7a3620c413180d7",
+			"_type": "request_group"
+		},
+		{
+			"_id": "fld_96a5037d578342e98cf48564bc72d9e6",
+			"created": 1540036075315,
+			"description": "",
+			"environment": {},
+			"metaSortKey": -1539509059858.5,
+			"modified": 1540036082757,
+			"name": "/najemniSmlouva",
+			"parentId": "wrk_067dca35e41544cba7a3620c413180d7",
+			"_type": "request_group"
+		},
+		{
+			"_id": "env_9facd3e57c7a4c9f9929dd1bedb08151",
+			"color": null,
+			"created": 1539241269354,
+			"data": {
+				"application_context": "",
+				"host": "http://localhost:9080",
+				"idByt": "5bcef2f081c5391d529c7145",
+				"idNajemnik": "5bcf270f81c539370163c3cc",
+				"idPredavaciProtokol": "5bcf67d4f8b8e454d9d39da9",
+				"idPredavaciProtokolPolozka": "5bcf7e1cf8b8e45d289788d2",
+				"idVyctovaniPolozkaTyp": "5bcef7d681c5391f5cbd0c79",
+				"idVyuctovaniZaByt": "5bd2e45f81c5390ea8be51cd",
+				"idVyuctovaniZaBytPolozka": "5bd2b8ee81c53900db3b16d7"
+			},
+			"isPrivate": false,
+			"metaSortKey": 1539241269354,
+			"modified": 1540547689684,
+			"name": "localhost (IDEA)",
+			"parentId": "env_e5a04db533534b49b1a89abe88c945e0",
+			"_type": "environment"
+		},
+		{
+			"_id": "env_50676013ed874c7799254bdfd873c394",
+			"color": null,
+			"created": 1539241342456,
+			"data": {
+				"application_context": "/ProjectOne",
+				"host": "http://localhost:8080",
+				"vyuctovani": {
+					"idVyuctovani": "123"
+				}
+			},
+			"isPrivate": false,
+			"metaSortKey": 1539241342456,
+			"modified": 1539241929422,
+			"name": "localhost (Tomcat)",
+			"parentId": "env_e5a04db533534b49b1a89abe88c945e0",
+			"_type": "environment"
+		},
+		{
+			"_id": "fld_de97dba730744e47a4fb14e731567dd3",
+			"created": 1539420948711,
+			"description": "",
+			"environment": {},
+			"metaSortKey": -1540033014107,
+			"modified": 1540545223287,
+			"name": "(nahrátí vstupních dat)",
+			"parentId": "fld_ff62371faff84383b70a87115521ecb8",
+			"_type": "request_group"
+		},
+		{
+			"_id": "fld_1c83106654b047e4806da88aa6c02aec",
+			"created": 1540545003346,
+			"description": "",
+			"environment": {},
+			"metaSortKey": -1540033013969.5,
+			"modified": 1540545280525,
+			"name": "/byt/{idByt}/vyuctovaniZaByt",
+			"parentId": "fld_ff62371faff84383b70a87115521ecb8",
+			"_type": "request_group"
+		},
+		{
+			"_id": "req_72469e3d0d874de89bbffc54f34e22f1",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n\t\"nazev\": \"Byt Praha\",\n\t\"adresa\" : \"Nad Vodovodem 490/71, Praha 10 - Malešice, 108 00\",\n\t\"poznamky\": \"Ahojky z bytu z Prahy\"\n}"
+			},
+			"created": 1540033241359,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_9df075644b054dc1b4b9cd7e32669462",
+					"name": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1540033014057,
+			"method": "POST",
+			"modified": 1540535832488,
+			"name": "/byt (vytvoření bytu) [Byt Praha]",
+			"parameters": [],
+			"parentId": "fld_ff62371faff84383b70a87115521ecb8",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ host  }}{{ application_context  }}/byt",
+			"_type": "request"
+		},
+		{
+			"_id": "req_13cc7b54ae5d4ac7a20d03ad45850899",
+			"authentication": {},
+			"body": {},
+			"created": 1540033688273,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_9df075644b054dc1b4b9cd7e32669462",
+					"name": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1540033014007,
+			"method": "GET",
+			"modified": 1540535802861,
+			"name": "/byt/!all",
+			"parameters": [],
+			"parentId": "fld_ff62371faff84383b70a87115521ecb8",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ host  }}{{ application_context  }}/byt/!all",
+			"_type": "request"
+		},
+		{
+			"_id": "req_04d144c61000457bad9e307d4f9ed661",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n\t\"nazev\": \"Byt Plzeň\",\n\t\"adresa\" : \"Gerská 1252/44, Plzeň - Bolevec, 323 00\",\n\t\"poznamky\": \"Ahojky z bytu z Plzně\"\n}"
+			},
+			"created": 1540033716804,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_9df075644b054dc1b4b9cd7e32669462",
+					"name": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1540033014032,
+			"method": "POST",
+			"modified": 1540535830962,
+			"name": "/byt (vytvoření bytu) [Byt Plzeň]",
+			"parameters": [],
+			"parentId": "fld_ff62371faff84383b70a87115521ecb8",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ host  }}{{ application_context  }}/byt",
+			"_type": "request"
+		},
+		{
+			"_id": "req_4f398fa25a1045bd8566cc28e9e1578d",
+			"authentication": {},
+			"body": {},
+			"created": 1540033986533,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_9df075644b054dc1b4b9cd7e32669462",
+					"name": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1540033013982,
+			"method": "DELETE",
+			"modified": 1540535773831,
+			"name": "/byt/!all",
+			"parameters": [],
+			"parentId": "fld_ff62371faff84383b70a87115521ecb8",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ host  }}{{ application_context  }}/byt/!all",
+			"_type": "request"
+		},
+		{
+			"_id": "req_7b28290efd394d2fbfcecccbfc6a7fcd",
+			"authentication": {},
+			"body": {},
+			"created": 1540535775604,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_9df075644b054dc1b4b9cd7e32669462",
+					"name": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1540033013994.5,
+			"method": "DELETE",
+			"modified": 1540535800212,
+			"name": "/byt/{idByt}",
+			"parameters": [],
+			"parentId": "fld_ff62371faff84383b70a87115521ecb8",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ host  }}{{ application_context  }}/byt/{{ idByt  }}",
+			"_type": "request"
+		},
+		{
+			"_id": "req_af588bad2b2545b9bc203a80f1a1b9d2",
+			"authentication": {},
+			"body": {},
+			"created": 1540535805448,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_9df075644b054dc1b4b9cd7e32669462",
+					"name": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1540033014019.5,
+			"method": "GET",
+			"modified": 1540535828618,
+			"name": "/byt/{idByt}",
+			"parameters": [],
+			"parentId": "fld_ff62371faff84383b70a87115521ecb8",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ host  }}{{ application_context  }}/byt/{{ idByt  }}",
+			"_type": "request"
+		},
+		{
+			"_id": "req_d7cf22a02a9b44eeadfe67027016ef0f",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n\t\"id\": \"5bcef2f081c5391d529c7145\",\n\t\"nazev\": \"Byt Praha\",\n\t\"adresa\" : \"Nad Vodovodem 490/71, Praha 10 - Malešice, 108 00\",\n\t\"poznamky\": \"Ahojky z bytu z Prahy\"\n}"
+			},
+			"created": 1540535834531,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_9df075644b054dc1b4b9cd7e32669462",
+					"name": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1540033014025.75,
+			"method": "PUT",
+			"modified": 1540535879910,
+			"name": "/byt (upravení bytu) [Byt Praha]",
+			"parameters": [],
+			"parentId": "fld_ff62371faff84383b70a87115521ecb8",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ host  }}{{ application_context  }}/byt",
+			"_type": "request"
+		},
+		{
+			"_id": "fld_908e085760154d1d97c81096795246cd",
+			"created": 1539940891161,
+			"description": "",
+			"environment": {},
+			"metaSortKey": -1539940891161,
+			"modified": 1539940891161,
+			"name": "/najemnik/predavaciProtokol",
+			"parentId": "fld_1d15260d8e794d0793da663f5746037b",
+			"_type": "request_group"
+		},
+		{
+			"_id": "fld_e97a615c2e09489a8ac45d8de314d8cb",
+			"created": 1540033050718,
+			"description": "",
+			"environment": {},
+			"metaSortKey": -1539940891111,
+			"modified": 1540033094232,
+			"name": "/najemnik/vyuctovaniProNajemnika",
+			"parentId": "fld_1d15260d8e794d0793da663f5746037b",
+			"_type": "request_group"
+		},
+		{
+			"_id": "req_eeab32830c7840d5aeef1711a961843e",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n\t\"jmeno\": \"Lukáš\",\n\t\"prijmeni\": \"Pajer\",\n\t\"adresa\" : \"Sportovní 263, Horní Cerekev\",\n\t\"poznamky\": \"Ahojky tady zdraví Lukáš\"\n}"
+			},
+			"created": 1540034055383,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_9df075644b054dc1b4b9cd7e32669462",
+					"name": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1539940891173.5,
+			"method": "POST",
+			"modified": 1540382180743,
+			"name": "/najemnik (vytvoření nájemníka) [Lukáš Pajer]",
+			"parameters": [],
+			"parentId": "fld_1d15260d8e794d0793da663f5746037b",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ host  }}{{ application_context  }}/najemnik",
+			"_type": "request"
+		},
+		{
+			"_id": "req_85fc091a88364f40a140c5c6a263779b",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n\t\"jmeno\": \"Evžen\",\n\t\"prijmeni\": \"Mikovec\",\n\t\"adresa\" : \"Žižkovská 123, Praha 3 - Žižkov\",\n\t\"poznamky\": \"Ahojky tady zdraví Evžen\n\t\n\t<p>Ahojky tady zdraví Evžen</p><p><br></p><p>Najemnik:</p><ul><li>adresa</li><li>práce</li><li>prehled plateb</li><li>nájemní smlouvy</li><li>předávací protokoly</li><li>zadávání stavů a monitotování spotřeby</li></ul><p><br></p><p><br></p><p>Přidat ID bytu a ID najemnika do vyhledavani?</p>\n\t\"\n}"
+			},
+			"created": 1540034415642,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_9df075644b054dc1b4b9cd7e32669462",
+					"name": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1539940891186,
+			"method": "POST",
+			"modified": 1540545834139,
+			"name": "/najemnik (vytvoření nájemníka) [Evžen Mikovec]",
+			"parameters": [],
+			"parentId": "fld_1d15260d8e794d0793da663f5746037b",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ host  }}{{ application_context  }}/najemnik",
+			"_type": "request"
+		},
+		{
+			"_id": "req_f66db0ebd5694d20a789fc9e995cdaed",
+			"authentication": {},
+			"body": {},
+			"created": 1540034687047,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_9df075644b054dc1b4b9cd7e32669462",
+					"name": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1539940891167.25,
+			"method": "GET",
+			"modified": 1540546093688,
+			"name": "/najemnik/!all",
+			"parameters": [],
+			"parentId": "fld_1d15260d8e794d0793da663f5746037b",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ host  }}{{ application_context  }}/najemnik/!all",
+			"_type": "request"
+		},
+		{
+			"_id": "req_a5af1b87000f4f6f80ef4439017dd873",
+			"authentication": {},
+			"body": {},
+			"created": 1540034765691,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_9df075644b054dc1b4b9cd7e32669462",
+					"name": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1539940891164.125,
+			"method": "DELETE",
+			"modified": 1540382182922,
+			"name": "/najemnik/!all",
+			"parameters": [],
+			"parentId": "fld_1d15260d8e794d0793da663f5746037b",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ host  }}{{ application_context  }}/najemnik/!all",
+			"_type": "request"
+		},
+		{
+			"_id": "req_c103a240492749ffb6e3e416015738c6",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n  \"id\": \"{{ idNajemnik  }}\",\n\t\"jmeno\": \"Evžen\",\n\t\"prijmeni\": \"Mikovec\",\n\t\"adresa\" : \"Žižkovská 123, Praha 3 - Žižkov\",\n\t\"poznamky\": \"Ahojky tady zdraví Evžen\n\t\n\t<p>Ahojky tady zdraví Evžen</p><p><br></p><p>Najemnik:</p><ul><li>adresa</li><li>práce</li><li>prehled plateb</li><li>nájemní smlouvy</li><li>předávací protokoly</li><li>zadávání stavů a monitotování spotřeby</li></ul><p><br></p><p><br></p><p>Přidat ID bytu a ID najemnika do vyhledavani?</p>\n\t\"\n}"
+			},
+			"created": 1540545770177,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_9df075644b054dc1b4b9cd7e32669462",
+					"name": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1539940891170.375,
+			"method": "PUT",
+			"modified": 1540545836063,
+			"name": "/najemnik",
+			"parameters": [],
+			"parentId": "fld_1d15260d8e794d0793da663f5746037b",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ host  }}{{ application_context  }}/najemnik",
+			"_type": "request"
+		},
+		{
+			"_id": "req_3a40814e054f498c911f7886718fc966",
+			"authentication": {},
+			"body": {},
+			"created": 1540545839534,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_9df075644b054dc1b4b9cd7e32669462",
+					"name": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1539940891165.6875,
+			"method": "GET",
+			"modified": 1540546094757,
+			"name": "/najemnik/{idNajemnik}",
+			"parameters": [],
+			"parentId": "fld_1d15260d8e794d0793da663f5746037b",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ host  }}{{ application_context  }}/najemnik/{{ idNajemnik  }}",
+			"_type": "request"
+		},
+		{
+			"_id": "req_90b42b25ff5a4e67b0800d815c7166d3",
+			"authentication": {},
+			"body": {},
+			"created": 1540545890501,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_9df075644b054dc1b4b9cd7e32669462",
+					"name": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1539940891162.5625,
+			"method": "DELETE",
+			"modified": 1540545910330,
+			"name": "/najemnik/{idNajemnik}",
+			"parameters": [],
+			"parentId": "fld_1d15260d8e794d0793da663f5746037b",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ host  }}{{ application_context  }}/najemnik/{{ idNajemnik  }}",
+			"_type": "request"
+		},
+		{
+			"_id": "req_c1768c4da6d148388af04c1aacd7e6e4",
+			"authentication": {},
+			"body": {},
+			"created": 1539775020610,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_5eca6555382b4046a2b396f42962d765",
+					"name": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1539686195181,
+			"method": "GET",
+			"modified": 1540290572481,
+			"name": "/vyuctovaniPolozkaTyp/!all",
+			"parameters": [],
+			"parentId": "fld_fd769dc34a314da2acfb83338c9ba65a",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ host  }}{{ application_context  }}/vyuctovaniPolozkaTyp/!all",
+			"_type": "request"
+		},
+		{
+			"_id": "req_f219e8a7c41c4cb19ee67deae4d51339",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n\t\"nazev\": \"Elektřina\",\n\t\"popis\": \"Elektřina v bytě od PRE\"\n}"
+			},
+			"created": 1539784130552,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_5eca6555382b4046a2b396f42962d765",
+					"name": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1539775020560,
+			"method": "POST",
+			"modified": 1540381964642,
+			"name": "/vyuctovaniPolozkaTyp (Elektřina)",
+			"parameters": [],
+			"parentId": "fld_fd769dc34a314da2acfb83338c9ba65a",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ host  }}{{ application_context  }}/vyuctovaniPolozkaTyp",
+			"_type": "request"
+		},
+		{
+			"_id": "req_66743d62f63648b192f1d47430250adf",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n\t\"nazev\": \"Plyn\",\n\t\"popis\": \"Plyn v bytě od Pražské plynárenské\"\n}\n"
+			},
+			"created": 1539784237348,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_5eca6555382b4046a2b396f42962d765",
+					"name": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1539775020510,
+			"method": "POST",
+			"modified": 1540290590034,
+			"name": "/vyuctovaniPolozkaTyp (Plyn)",
+			"parameters": [],
+			"parentId": "fld_fd769dc34a314da2acfb83338c9ba65a",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ host  }}{{ application_context  }}/vyuctovaniPolozkaTyp",
+			"_type": "request"
+		},
+		{
+			"_id": "req_09012a365bca4fb5a7524e5a6d0d8583",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n\t\"nazev\": \"Tv & Net\",\n\t\"popis\": \"Kabelová televize a internet od UPC\"\n}\n"
+			},
+			"created": 1539785304328,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_5eca6555382b4046a2b396f42962d765",
+					"name": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1539775020460,
+			"method": "POST",
+			"modified": 1540290597119,
+			"name": "/vyuctovaniPolozkaTyp (Tv & Net)",
+			"parameters": [],
+			"parentId": "fld_fd769dc34a314da2acfb83338c9ba65a",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ host  }}{{ application_context  }}/vyuctovaniPolozkaTyp",
+			"_type": "request"
+		},
+		{
+			"_id": "req_9bf5bc9a4a7c4760b447382f9d1d3bef",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n\t\"nazev\": \"Studená voda\",\n\t\"popis\": \"Dodávka studené vody od BD Pragostav\"\n}\n"
+			},
+			"created": 1539785354149,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_5eca6555382b4046a2b396f42962d765",
+					"name": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1539775020410,
+			"method": "POST",
+			"modified": 1540290602886,
+			"name": "/vyuctovaniPolozkaTyp (Studená voda)",
+			"parameters": [],
+			"parentId": "fld_fd769dc34a314da2acfb83338c9ba65a",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ host  }}{{ application_context  }}/vyuctovaniPolozkaTyp",
+			"_type": "request"
+		},
+		{
+			"_id": "req_584995e307ce47189ae1d58dc598a029",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n\t\"nazev\": \"Teplá voda\",\n\t\"popis\": \"Dodávka teplé vody od BD Pragostav\"\n}\n"
+			},
+			"created": 1539785429536,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_5eca6555382b4046a2b396f42962d765",
+					"name": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1539775020360,
+			"method": "POST",
+			"modified": 1540290608402,
+			"name": "/vyuctovaniPolozkaTyp (Teplá voda)",
+			"parameters": [],
+			"parentId": "fld_fd769dc34a314da2acfb83338c9ba65a",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ host  }}{{ application_context  }}/vyuctovaniPolozkaTyp",
+			"_type": "request"
+		},
+		{
+			"_id": "req_c87c0ca8209f46338c401cf57210fb1f",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n\t\"nazev\": \"Teplo za vytápění\",\n\t\"popis\": \"Ústřední dodávky tepla od BD Pragostav\"\n}\n"
+			},
+			"created": 1539785559811,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_5eca6555382b4046a2b396f42962d765",
+					"name": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1539775020260,
+			"method": "POST",
+			"modified": 1540290617085,
+			"name": "/vyuctovaniPolozkaTyp (Teplo za vytápění)",
+			"parameters": [],
+			"parentId": "fld_fd769dc34a314da2acfb83338c9ba65a",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ host  }}{{ application_context  }}/vyuctovaniPolozkaTyp",
+			"_type": "request"
+		},
+		{
+			"_id": "req_28dac4e0d15f4a629cfc35db3ab81213",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n\t\"nazev\": \"Ostatní služby\",\n\t\"popis\": \"Ostatní služby spojené s provozem bytu od BD Pragostav (provoz domu, úklid společných prostor, svoz domovního odpadu, pojištění, údržba okolí a pozemků, odečty měřidel, ...)\"\n}\n"
+			},
+			"created": 1539785869785,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_5eca6555382b4046a2b396f42962d765",
+					"name": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1539686195231,
+			"method": "POST",
+			"modified": 1540290623639,
+			"name": "/vyuctovaniPolozkaTyp (Ostatní služby)",
+			"parameters": [],
+			"parentId": "fld_fd769dc34a314da2acfb83338c9ba65a",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ host  }}{{ application_context  }}/vyuctovaniPolozkaTyp",
+			"_type": "request"
+		},
+		{
+			"_id": "fld_007c7e33c72f4d1d8ac4baa4d797869e",
+			"created": 1539241622645,
+			"description": "",
+			"environment": {},
+			"metaSortKey": -1540537740092,
+			"modified": 1540544762196,
+			"name": "služby (01/2017 - 12/2017)",
+			"parentId": "fld_de97dba730744e47a4fb14e731567dd3",
+			"_type": "request_group"
+		},
+		{
+			"_id": "fld_e06dff3a8c9a4da88a875e9d5b3e7fd9",
+			"created": 1539426706002,
+			"description": "",
+			"environment": {},
+			"metaSortKey": -1540537740042,
+			"modified": 1540537768390,
+			"name": "elektřina (09/2016 - 09/2017)",
+			"parentId": "fld_de97dba730744e47a4fb14e731567dd3",
+			"_type": "request_group"
+		},
+		{
+			"_id": "fld_82b120efd33c42c78e4838e495184725",
+			"created": 1539426712372,
+			"description": "",
+			"environment": {},
+			"metaSortKey": -1539426719851,
+			"modified": 1540537819531,
+			"name": "plyn (09/2016 - 03/2017)",
+			"parentId": "fld_de97dba730744e47a4fb14e731567dd3",
+			"_type": "request_group"
+		},
+		{
+			"_id": "fld_cd41965e38d04e26b2c6acc4fd410f3e",
+			"created": 1539426719826,
+			"description": "",
+			"environment": {},
+			"metaSortKey": -1539426719826,
+			"modified": 1540544754878,
+			"name": "internet (01/2017 - 12/2017)",
+			"parentId": "fld_de97dba730744e47a4fb14e731567dd3",
+			"_type": "request_group"
+		},
+		{
+			"_id": "fld_1b7c3bb6d91b49aebee7a4b2c210b15a",
+			"created": 1540537739992,
+			"description": "",
+			"environment": {},
+			"metaSortKey": -1540537739992,
+			"modified": 1540537739992,
+			"name": "elektřina (09/2017 - 12/2017)",
+			"parentId": "fld_de97dba730744e47a4fb14e731567dd3",
+			"_type": "request_group"
+		},
+		{
+			"_id": "fld_b3b1f8550bb84393a931129b39f1973e",
+			"created": 1540537796885,
+			"description": "",
+			"environment": {},
+			"metaSortKey": -1539426719838.5,
+			"modified": 1540537823152,
+			"name": "plyn (04/2017 - 09/2017)",
+			"parentId": "fld_de97dba730744e47a4fb14e731567dd3",
+			"_type": "request_group"
+		},
+		{
+			"_id": "fld_5dc55363beac47f0809cea3c132d3377",
+			"created": 1540547418580,
+			"description": "",
+			"environment": {},
+			"metaSortKey": -1539426719832.25,
+			"modified": 1540547422651,
+			"name": "internet (01/2017)",
+			"parentId": "fld_de97dba730744e47a4fb14e731567dd3",
+			"_type": "request_group"
+		},
+		{
+			"_id": "fld_6878851e3d554c0ead34b0da6a56410b",
+			"created": 1540547627652,
+			"description": "",
+			"environment": {},
+			"metaSortKey": -1539426719829.125,
+			"modified": 1540547650835,
+			"name": "internet (02/2017)",
+			"parentId": "fld_de97dba730744e47a4fb14e731567dd3",
+			"_type": "request_group"
+		},
+		{
+			"_id": "fld_a439c60b437d47b3b11f879481c9c469",
+			"created": 1540033013957,
+			"description": "",
+			"environment": {},
+			"metaSortKey": -1540545035406.25,
+			"modified": 1540545553633,
+			"name": "/{idVyuctovaniZaByt}/polozka",
+			"parentId": "fld_1c83106654b047e4806da88aa6c02aec",
+			"_type": "request_group"
+		},
+		{
+			"_id": "req_ac63239d696f478792f22a72bcf409e7",
+			"authentication": {},
+			"body": {},
+			"created": 1539241157601,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_62504670fb8c44dd8b29b5880efedfcb",
+					"name": "content-type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1540545035450,
+			"method": "GET",
+			"modified": 1540545362400,
+			"name": "/vyuctovaniZaByt/{idVyuctovaniZaByt}",
+			"parameters": [],
+			"parentId": "fld_1c83106654b047e4806da88aa6c02aec",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ host  }}{{ application_context  }}/byt/{{ idByt  }}/vyuctovaniZaByt/{{ idVyuctovaniZaByt  }}",
+			"_type": "request"
+		},
+		{
+			"_id": "req_fa682b00159c45d49e6a6f7db00d79eb",
+			"authentication": {},
+			"body": {},
+			"created": 1539241163099,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_62504670fb8c44dd8b29b5880efedfcb",
+					"name": "content-type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1540545035412.5,
+			"method": "DELETE",
+			"modified": 1540545288573,
+			"name": "/vyuctovaniZaByt/!all",
+			"parameters": [],
+			"parentId": "fld_1c83106654b047e4806da88aa6c02aec",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ host  }}{{ application_context  }}/vyuctovani/!all",
+			"_type": "request"
+		},
+		{
+			"_id": "req_ab37028bf41044d287eede46fb75a84b",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n\t\"from\": \"01-01-2017\",\n\t\"to\": \"31-12-2017\"\n}"
+			},
+			"created": 1539431623120,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_62504670fb8c44dd8b29b5880efedfcb",
+					"name": "content-type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1540545035425,
+			"method": "POST",
+			"modified": 1540545413960,
+			"name": "/vyuctovaniZaByt/!inRange",
+			"parameters": [],
+			"parentId": "fld_1c83106654b047e4806da88aa6c02aec",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ host  }}{{ application_context  }}/vyuctovani/!inRange",
+			"_type": "request"
+		},
+		{
+			"_id": "req_4bcd2f72ef9d480489ca42affc42bcaa",
+			"authentication": {},
+			"body": {},
+			"created": 1540545347092,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_62504670fb8c44dd8b29b5880efedfcb",
+					"name": "content-type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1540545035437.5,
+			"method": "GET",
+			"modified": 1540545370202,
+			"name": "/vyuctovaniZaByt/!all",
+			"parameters": [],
+			"parentId": "fld_1c83106654b047e4806da88aa6c02aec",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ host  }}{{ application_context  }}/byt/{{ idByt  }}/vyuctovaniZaByt/!all",
+			"_type": "request"
+		},
+		{
+			"_id": "req_b0ce250f085a4c25a8fdb896fed67a0d",
+			"authentication": {},
+			"body": {},
+			"created": 1540545380456,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_62504670fb8c44dd8b29b5880efedfcb",
+					"name": "content-type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1540545035409.375,
+			"method": "DELETE",
+			"modified": 1540545404438,
+			"name": "/vyuctovaniZaByt/{idVyuctovaniZaByt}",
+			"parameters": [],
+			"parentId": "fld_1c83106654b047e4806da88aa6c02aec",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ host  }}{{ application_context  }}/vyuctovani/{{ idVyuctovaniZaByt  }}",
+			"_type": "request"
+		},
+		{
+			"_id": "req_b2f35305e34c45488c35e6283595a05d",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n  \"nazev\": \"Vyúčtování služeb (BD Pragostav)\",\n  \"zuctovaciObdobi\" : {\n    \"zacatek\": \"01-01-2017\",\n    \"konec\": \"31-12-2017\"\n  },\n\t\"byt\": {\n\t\t\"id\": \"{{ idByt  }}\"\n\t}\n}\n"
+			},
+			"created": 1540545446108,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_62504670fb8c44dd8b29b5880efedfcb",
+					"name": "content-type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1540545035500,
+			"method": "POST",
+			"modified": 1540545472097,
+			"name": "/vyuctovaniZaByt",
+			"parameters": [],
+			"parentId": "fld_1c83106654b047e4806da88aa6c02aec",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ host  }}{{ application_context  }}/byt/{{ idByt  }}/vyuctovaniZaByt",
+			"_type": "request"
+		},
+		{
+			"_id": "req_92368cc72162403a93462073b1d41a16",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n\t\"id\": \"{{ idVyuctovaniZaByt  }}\",\n  \"nazev\": \"Vyúčtování služeb (BD Pragostav)\",\n  \"zuctovaciObdobi\" : {\n    \"zacatek\": \"01-01-2017\",\n    \"konec\": \"31-12-2017\"\n  },\n\t\"byt\": {\n\t\t\"id\": \"{{ idByt  }}\"\n\t}\n}\n"
+			},
+			"created": 1540545469883,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_62504670fb8c44dd8b29b5880efedfcb",
+					"name": "content-type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1540545035475,
+			"method": "PUT",
+			"modified": 1540545492309,
+			"name": "/vyuctovaniZaByt",
+			"parameters": [],
+			"parentId": "fld_1c83106654b047e4806da88aa6c02aec",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ host  }}{{ application_context  }}/byt/{{ idByt  }}/vyuctovaniZaByt",
+			"_type": "request"
+		},
+		{
+			"_id": "fld_ffa484ed459d4bd5bc365aca2ca5ff00",
+			"created": 1540323445632,
+			"description": "",
+			"environment": {},
+			"metaSortKey": -1539597369952,
+			"modified": 1540546705426,
+			"name": "/predavaciProtokol/{idPredavaciProtokol}/polozka",
+			"parentId": "fld_908e085760154d1d97c81096795246cd",
+			"_type": "request_group"
+		},
+		{
+			"_id": "req_a971dccc2a804614acd7ce0081fd8bb7",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n  \"nazev\": \"Byt Praha - Předávací protokol - Evžen Mikovec\",\n  \"datumPodpisu\": \"01-03-2017\"\n}"
+			},
+			"created": 1539597370202,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_fa1fcf769b2246f9881862213e3cee15",
+					"name": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1539597370202,
+			"method": "POST",
+			"modified": 1540546639085,
+			"name": "/predavaciProtokol",
+			"parameters": [],
+			"parentId": "fld_908e085760154d1d97c81096795246cd",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ host  }}{{ application_context  }}/najemnik/{{ idNajemnik  }}/predavaciProtokol",
+			"_type": "request"
+		},
+		{
+			"_id": "req_3c99558d204b4943a5e6741bf3043855",
+			"authentication": {},
+			"body": {},
+			"created": 1539940043499,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_fa1fcf769b2246f9881862213e3cee15",
+					"name": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1539597370102,
+			"method": "GET",
+			"modified": 1540546682875,
+			"name": "/predavaciProtokol/{idPredavaciProtokol}",
+			"parameters": [],
+			"parentId": "fld_908e085760154d1d97c81096795246cd",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ host  }}{{ application_context  }}/najemnik/{{ idNajemnik  }}/predavaciProtokol/{{ idPredavaciProtokol  }}",
+			"_type": "request"
+		},
+		{
+			"_id": "req_66e3b178fb0e493f81463581c2d9fbde",
+			"authentication": {},
+			"body": {},
+			"created": 1539940177394,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_fa1fcf769b2246f9881862213e3cee15",
+					"name": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1539597370052,
+			"method": "GET",
+			"modified": 1540546636261,
+			"name": "/predavaciProtokol/!all",
+			"parameters": [],
+			"parentId": "fld_908e085760154d1d97c81096795246cd",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ host  }}{{ application_context  }}/najemnik/{{ idNajemnik  }}/predavaciProtokol/!all",
+			"_type": "request"
+		},
+		{
+			"_id": "req_a56f211508b144deb80374f1cbe19778",
+			"authentication": {},
+			"body": {},
+			"created": 1539940846532,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_fa1fcf769b2246f9881862213e3cee15",
+					"name": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1539597370002,
+			"method": "DELETE",
+			"modified": 1540546647759,
+			"name": "/predavaciProtokol/!all",
+			"parameters": [],
+			"parentId": "fld_908e085760154d1d97c81096795246cd",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ host  }}{{ application_context  }}/najemnik/{{ idNajemnik  }}/predavaciProtokol/!all",
+			"_type": "request"
+		},
+		{
+			"_id": "req_4324a3c6978941d69936913222be06e1",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n\t\"id\": \"5bcf67d4f8b8e454d9d39da9\",\n\t\"nazev\": \"Byt Praha - Předávací protokol - Evžen Mikovec\",\n\t\"datumPodpisu\": \"01-03-2017\"\n}"
+			},
+			"created": 1540546560851,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_fa1fcf769b2246f9881862213e3cee15",
+					"name": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1539597370177,
+			"method": "PUT",
+			"modified": 1540546638531,
+			"name": "/predavaciProtokol",
+			"parameters": [],
+			"parentId": "fld_908e085760154d1d97c81096795246cd",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ host  }}{{ application_context  }}/najemnik/{{ idNajemnik  }}/predavaciProtokol",
+			"_type": "request"
+		},
+		{
+			"_id": "req_c2f7595005c645198ffc6efd11af00db",
+			"authentication": {},
+			"body": {},
+			"created": 1540546629348,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_fa1fcf769b2246f9881862213e3cee15",
+					"name": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1539597369977,
+			"method": "DELETE",
+			"modified": 1540546672344,
+			"name": "/predavaciProtokol/{idPredavaciProtokol}",
+			"parameters": [],
+			"parentId": "fld_908e085760154d1d97c81096795246cd",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ host  }}{{ application_context  }}/najemnik/{{ idNajemnik  }}/predavaciProtokol/{{ idPredavaciProtokol  }}",
+			"_type": "request"
+		},
+		{
+			"_id": "req_37af2cec2d8643e2b083565040dfb77a",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n\t\"vyuctovaniZaByt\": {\n\t\t\"id\": \"{{ idVyuctovaniZaByt  }}\"\n\t},\n\t\"nazev\": \"Správa domu\",\n\t\"vyuctovaniPolozkaTyp\": {\n\t\t\"id\": \"{{ idVyctovaniPolozkaTyp  }}\"\n\t},\n\t\"zalohy\": {\n\t\t\"mnozstvi\": 2676.00,\n\t\t\"jednotka\": \"Kč\"\n\t},\n\t\"naklady\": {\n\t\t\"mnozstvi\": 2772.00,\n\t\t\"jednotka\": \"Kč\"\n\t}\n}\n"
+			},
+			"created": 1540364197821,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_62504670fb8c44dd8b29b5880efedfcb",
+					"name": "content-type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1539199602607.5,
+			"method": "POST",
+			"modified": 1540544891546,
+			"name": "/polozka (Správa domu)",
+			"parameters": [],
+			"parentId": "fld_007c7e33c72f4d1d8ac4baa4d797869e",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ host  }}{{ application_context  }}/byt/{{ idByt  }}/vyuctovaniZaByt/{{ idVyuctovaniZaByt  }}/polozka",
+			"_type": "request"
+		},
+		{
+			"_id": "req_3aed6a1d7f784b10ac346a0a2084c425",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n\t\"vyuctovaniZaByt\": {\n\t\t\"id\": \"{{ idVyuctovaniZaByt  }}\"\n\t},\n\t\"nazev\": \"Teplá voda - ohřev vody\",\n\t\"vyuctovaniPolozkaTyp\": {\n\t\t\"id\": \"{{ idVyctovaniPolozkaTyp  }}\"\n\t},\n\t\"pocatecniStav\": {\n\t\t\"mnozstvi\": 47.00,\n\t\t\"jednotka\": \"m3\"\n\t},\n\t\"koncovyStav\": {\n\t\t\"mnozstvi\": 87.00,\n\t\t\"jednotka\": \"m3\"\n\t},\n\t\"spotreba\": {\n\t\t\"mnozstvi\": 40.00,\n\t\t\"jednotka\": \"m3\"\n\t},\n\t\"zalohy\": {\n\t\t\"mnozstvi\": 6580.00,\n\t\t\"jednotka\": \"Kč\"\n\t},\n\t\"naklady\": {\n\t\t\"mnozstvi\": 9904.00,\n\t\t\"jednotka\": \"Kč\"\n\t}\n}\n"
+			},
+			"created": 1540366583445,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_62504670fb8c44dd8b29b5880efedfcb",
+					"name": "content-type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1539199602207.5,
+			"method": "POST",
+			"modified": 1540544932022,
+			"name": "/polozka (Teplá voda - ohřev vody)",
+			"parameters": [],
+			"parentId": "fld_007c7e33c72f4d1d8ac4baa4d797869e",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ host  }}{{ application_context  }}/byt/{{ idByt  }}/vyuctovaniZaByt/{{ idVyuctovaniZaByt  }}/polozka",
+			"_type": "request"
+		},
+		{
+			"_id": "req_4c80619476b24a7eb47ce216896b59d2",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n\t\"vyuctovaniZaByt\": {\n\t\t\"id\": \"{{ idVyuctovaniZaByt  }}\"\n\t},\n\t\"nazev\": \"Provozní režie\",\n\t\"vyuctovaniPolozkaTyp\": {\n\t\t\"id\": \"{{ idVyctovaniPolozkaTyp  }}\"\n\t},\n\t\"zalohy\": {\n\t\t\"mnozstvi\": 168.00,\n\t\t\"jednotka\": \"Kč\"\n\t},\n\t\"naklady\": {\n\t\t\"mnozstvi\": 97.00,\n\t\t\"jednotka\": \"Kč\"\n\t}\n}\n"
+			},
+			"created": 1540384567628,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_62504670fb8c44dd8b29b5880efedfcb",
+					"name": "content-type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1539199602557.5,
+			"method": "POST",
+			"modified": 1540544894413,
+			"name": "/polozka (Provozní režie)",
+			"parameters": [],
+			"parentId": "fld_007c7e33c72f4d1d8ac4baa4d797869e",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ host  }}{{ application_context  }}/byt/{{ idByt  }}/vyuctovaniZaByt/{{ idVyuctovaniZaByt  }}/polozka",
+			"_type": "request"
+		},
+		{
+			"_id": "req_0494f021a3dc452b9d47857fe517bfab",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n\t\"vyuctovaniZaByt\": {\n\t\t\"id\": \"{{ idVyuctovaniZaByt  }}\"\n\t},\n\t\"nazev\": \"Odměna smluvního správce\",\n\t\"vyuctovaniPolozkaTyp\": {\n\t\t\"id\": \"{{ idVyctovaniPolozkaTyp  }}\"\n\t},\n\t\"zalohy\": {\n\t\t\"mnozstvi\": 2460.00,\n\t\t\"jednotka\": \"Kč\"\n\t},\n\t\"naklady\": {\n\t\t\"mnozstvi\": 2453.00,\n\t\t\"jednotka\": \"Kč\"\n\t}\n}\n"
+			},
+			"created": 1540384569480,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_62504670fb8c44dd8b29b5880efedfcb",
+					"name": "content-type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1539199602507.5,
+			"method": "POST",
+			"modified": 1540544898516,
+			"name": "/polozka (Odměna smluvního správce)",
+			"parameters": [],
+			"parentId": "fld_007c7e33c72f4d1d8ac4baa4d797869e",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ host  }}{{ application_context  }}/byt/{{ idByt  }}/vyuctovaniZaByt/{{ idVyuctovaniZaByt  }}/polozka",
+			"_type": "request"
+		},
+		{
+			"_id": "req_7cd4dc2fedd044a4a608d05074096c8a",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n\t\"vyuctovaniZaByt\": {\n\t\t\"id\": \"{{ idVyuctovaniZaByt  }}\"\n\t},\n\t\"nazev\": \"Pojištění domu\",\n\t\"vyuctovaniPolozkaTyp\": {\n\t\t\"id\": \"{{ idVyctovaniPolozkaTyp  }}\"\n\t},\n\t\"zalohy\": {\n\t\t\"mnozstvi\": 216.00,\n\t\t\"jednotka\": \"Kč\"\n\t},\n\t\"naklady\": {\n\t\t\"mnozstvi\": 229.00,\n\t\t\"jednotka\": \"Kč\"\n\t}\n}\n"
+			},
+			"created": 1540384571828,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_62504670fb8c44dd8b29b5880efedfcb",
+					"name": "content-type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1539199602457.5,
+			"method": "POST",
+			"modified": 1540544901244,
+			"name": "/polozka (Pojištění domu)",
+			"parameters": [],
+			"parentId": "fld_007c7e33c72f4d1d8ac4baa4d797869e",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ host  }}{{ application_context  }}/byt/{{ idByt  }}/vyuctovaniZaByt/{{ idVyuctovaniZaByt  }}/polozka",
+			"_type": "request"
+		},
+		{
+			"_id": "req_c8dafa34c8244a099dd3588704f9418a",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n\t\"vyuctovaniZaByt\": {\n\t\t\"id\": \"{{ idVyuctovaniZaByt  }}\"\n\t},\n\t\"nazev\": \"Odečty měřidel\",\n\t\"vyuctovaniPolozkaTyp\": {\n\t\t\"id\": \"{{ idVyctovaniPolozkaTyp  }}\"\n\t},\n\t\"zalohy\": {\n\t\t\"mnozstvi\": 216.00,\n\t\t\"jednotka\": \"Kč\"\n\t},\n\t\"naklady\": {\n\t\t\"mnozstvi\": 207.00,\n\t\t\"jednotka\": \"Kč\"\n\t}\n}\n"
+			},
+			"created": 1540384700903,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_62504670fb8c44dd8b29b5880efedfcb",
+					"name": "content-type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1539199602407.5,
+			"method": "POST",
+			"modified": 1540544903840,
+			"name": "/polozka (Odečty měřidel)",
+			"parameters": [],
+			"parentId": "fld_007c7e33c72f4d1d8ac4baa4d797869e",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ host  }}{{ application_context  }}/byt/{{ idByt  }}/vyuctovaniZaByt/{{ idVyuctovaniZaByt  }}/polozka",
+			"_type": "request"
+		},
+		{
+			"_id": "req_64908a09ab474f85919788338a26e025",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n\t\"vyuctovaniZaByt\": {\n\t\t\"id\": \"{{ idVyuctovaniZaByt  }}\"\n\t},\n\t\"nazev\": \"Pozemek\",\n\t\"vyuctovaniPolozkaTyp\": {\n\t\t\"id\": \"{{ idVyctovaniPolozkaTyp  }}\"\n\t},\n\t\"zalohy\": {\n\t\t\"mnozstvi\": 336.00,\n\t\t\"jednotka\": \"Kč\"\n\t},\n\t\"naklady\": {\n\t\t\"mnozstvi\": 371.00,\n\t\t\"jednotka\": \"Kč\"\n\t}\n}\n"
+			},
+			"created": 1540384702388,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_62504670fb8c44dd8b29b5880efedfcb",
+					"name": "content-type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1539199602357.5,
+			"method": "POST",
+			"modified": 1540544918494,
+			"name": "/polozka (Pozemek)",
+			"parameters": [],
+			"parentId": "fld_007c7e33c72f4d1d8ac4baa4d797869e",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ host  }}{{ application_context  }}/byt/{{ idByt  }}/vyuctovaniZaByt/{{ idVyuctovaniZaByt  }}/polozka",
+			"_type": "request"
+		},
+		{
+			"_id": "req_bd2b4623b1664bd98d5822f26bf12ae9",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n\t\"vyuctovaniZaByt\": {\n\t\t\"id\": \"{{ idVyuctovaniZaByt  }}\"\n\t},\n\t\"nazev\": \"Teplo za vytápění\",\n\t\"vyuctovaniPolozkaTyp\": {\n\t\t\"id\": \"{{ idVyctovaniPolozkaTyp  }}\"\n\t},\n\t\"pocatecniStav\": {\n\t\t\"mnozstvi\": 0.00,\n\t\t\"jednotka\": \"jednotka\"\n\t},\n\t\"koncovyStav\": {\n\t\t\"mnozstvi\": 1108.02,\n\t\t\"jednotka\": \"jednotka\"\n\t},\n\t\"spotreba\": {\n\t\t\"mnozstvi\": 1108.02,\n\t\t\"jednotka\": \"jednotka\"\n\t},\n\t\"zalohy\": {\n\t\t\"mnozstvi\": 8328.00,\n\t\t\"jednotka\": \"Kč\"\n\t},\n\t\"naklady\": {\n\t\t\"mnozstvi\": 7754.00,\n\t\t\"jednotka\": \"Kč\"\n\t}\n}\n"
+			},
+			"created": 1540384703759,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_62504670fb8c44dd8b29b5880efedfcb",
+					"name": "content-type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1539199602307.5,
+			"method": "POST",
+			"modified": 1540544925725,
+			"name": "/polozka (Teplo za vytápění)",
+			"parameters": [],
+			"parentId": "fld_007c7e33c72f4d1d8ac4baa4d797869e",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ host  }}{{ application_context  }}/byt/{{ idByt  }}/vyuctovaniZaByt/{{ idVyuctovaniZaByt  }}/polozka",
+			"_type": "request"
+		},
+		{
+			"_id": "req_00acf5999bf8449998cc3540fa035d26",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n\t\"vyuctovaniZaByt\": {\n\t\t\"id\": \"{{ idVyuctovaniZaByt  }}\"\n\t},\n\t\"nazev\": \"Teplá voda - vodné, stočné\",\n\t\"vyuctovaniPolozkaTyp\": {\n\t\t\"id\": \"{{ idVyctovaniPolozkaTyp  }}\"\n\t},\n\t\"pocatecniStav\": {\n\t\t\"mnozstvi\": 47.00,\n\t\t\"jednotka\": \"m3\"\n\t},\n\t\"koncovyStav\": {\n\t\t\"mnozstvi\": 87.00,\n\t\t\"jednotka\": \"m3\"\n\t},\n\t\"spotreba\": {\n\t\t\"mnozstvi\": 40.00,\n\t\t\"jednotka\": \"m3\"\n\t},\n\t\"zalohy\": {\n\t\t\"mnozstvi\": 2382.00,\n\t\t\"jednotka\": \"Kč\"\n\t},\n\t\"naklady\": {\n\t\t\"mnozstvi\": 3369.00,\n\t\t\"jednotka\": \"Kč\"\n\t}\n}\n"
+			},
+			"created": 1540384834339,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_62504670fb8c44dd8b29b5880efedfcb",
+					"name": "content-type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1539199602257.5,
+			"method": "POST",
+			"modified": 1540544928945,
+			"name": "/polozka (Teplá voda - vodné, stočné)",
+			"parameters": [],
+			"parentId": "fld_007c7e33c72f4d1d8ac4baa4d797869e",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ host  }}{{ application_context  }}/byt/{{ idByt  }}/vyuctovaniZaByt/{{ idVyuctovaniZaByt  }}/polozka",
+			"_type": "request"
+		},
+		{
+			"_id": "req_08396af0a47d4b78a37d02875324a0d9",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n\t\"vyuctovaniZaByt\": {\n\t\t\"id\": \"{{ idVyuctovaniZaByt  }}\"\n\t},\n\t\"nazev\": \"Studená voda\",\n\t\"vyuctovaniPolozkaTyp\": {\n\t\t\"id\": \"{{ idVyctovaniPolozkaTyp  }}\"\n\t},\n\t\"pocatecniStav\": {\n\t\t\"mnozstvi\": 78.00,\n\t\t\"jednotka\": \"m3\"\n\t},\n\t\"koncovyStav\": {\n\t\t\"mnozstvi\": 125.00,\n\t\t\"jednotka\": \"m3\"\n\t},\n\t\"spotreba\": {\n\t\t\"mnozstvi\": 47.00,\n\t\t\"jednotka\": \"m3\"\n\t},\n\t\"zalohy\": {\n\t\t\"mnozstvi\": 2700.00,\n\t\t\"jednotka\": \"Kč\"\n\t},\n\t\"naklady\": {\n\t\t\"mnozstvi\": 4015.00,\n\t\t\"jednotka\": \"Kč\"\n\t}\n}\n"
+			},
+			"created": 1540384835537,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_62504670fb8c44dd8b29b5880efedfcb",
+					"name": "content-type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1539199602157.5,
+			"method": "POST",
+			"modified": 1540544937372,
+			"name": "/polozka (Studená voda)",
+			"parameters": [],
+			"parentId": "fld_007c7e33c72f4d1d8ac4baa4d797869e",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ host  }}{{ application_context  }}/byt/{{ idByt  }}/vyuctovaniZaByt/{{ idVyuctovaniZaByt  }}/polozka",
+			"_type": "request"
+		},
+		{
+			"_id": "req_3069261d77ae40019772efd1e593e7d6",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n\t\"vyuctovaniZaByt\": {\n\t\t\"id\": \"{{ idVyuctovaniZaByt  }}\"\n\t},\n\t\"nazev\": \"Elektr. energie spol. prostor\",\n\t\"vyuctovaniPolozkaTyp\": {\n\t\t\"id\": \"{{ idVyctovaniPolozkaTyp  }}\"\n\t},\n\t\"zalohy\": {\n\t\t\"mnozstvi\": 208.00,\n\t\t\"jednotka\": \"Kč\"\n\t},\n\t\"naklady\": {\n\t\t\"mnozstvi\": 217.00,\n\t\t\"jednotka\": \"Kč\"\n\t}\n}\n"
+			},
+			"created": 1540384836930,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_62504670fb8c44dd8b29b5880efedfcb",
+					"name": "content-type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1539199602107.5,
+			"method": "POST",
+			"modified": 1540544940568,
+			"name": "/polozka (Elektr. energie spol. prostor)",
+			"parameters": [],
+			"parentId": "fld_007c7e33c72f4d1d8ac4baa4d797869e",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ host  }}{{ application_context  }}/byt/{{ idByt  }}/vyuctovaniZaByt/{{ idVyuctovaniZaByt  }}/polozka",
+			"_type": "request"
+		},
+		{
+			"_id": "req_763bf68c657d4a8f9eef7bda6002e3a6",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n\t\"vyuctovaniZaByt\": {\n\t\t\"id\": \"{{ idVyuctovaniZaByt  }}\"\n\t},\n\t\"nazev\": \"Odvoz dom. odpadu\",\n\t\"vyuctovaniPolozkaTyp\": {\n\t\t\"id\": \"{{ idVyctovaniPolozkaTyp  }}\"\n\t},\n\t\"zalohy\": {\n\t\t\"mnozstvi\": 1118.00,\n\t\t\"jednotka\": \"Kč\"\n\t},\n\t\"naklady\": {\n\t\t\"mnozstvi\": 1085.00,\n\t\t\"jednotka\": \"Kč\"\n\t}\n}\n"
+			},
+			"created": 1540384961828,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_62504670fb8c44dd8b29b5880efedfcb",
+					"name": "content-type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1539199602057.5,
+			"method": "POST",
+			"modified": 1540544943456,
+			"name": "/polozka (Odvoz dom. odpadu)",
+			"parameters": [],
+			"parentId": "fld_007c7e33c72f4d1d8ac4baa4d797869e",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ host  }}{{ application_context  }}/byt/{{ idByt  }}/vyuctovaniZaByt/{{ idVyuctovaniZaByt  }}/polozka",
+			"_type": "request"
+		},
+		{
+			"_id": "req_0f5fa7a67b1444d6bc4d3d783be34a9c",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n\t\"vyuctovaniZaByt\": {\n\t\t\"id\": \"{{ idVyuctovaniZaByt  }}\"\n\t},\n\t\"nazev\": \"Úklid společných prostor\",\n\t\"vyuctovaniPolozkaTyp\": {\n\t\t\"id\": \"{{ idVyctovaniPolozkaTyp  }}\"\n\t},\n\t\"zalohy\": {\n\t\t\"mnozstvi\": 1820.00,\n\t\t\"jednotka\": \"Kč\"\n\t},\n\t\"naklady\": {\n\t\t\"mnozstvi\": 1686.00,\n\t\t\"jednotka\": \"Kč\"\n\t}\n}\n"
+			},
+			"created": 1540384968962,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_62504670fb8c44dd8b29b5880efedfcb",
+					"name": "content-type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1539199602007.5,
+			"method": "POST",
+			"modified": 1540544946396,
+			"name": "/polozka (Úklid společných prostor)",
+			"parameters": [],
+			"parentId": "fld_007c7e33c72f4d1d8ac4baa4d797869e",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ host  }}{{ application_context  }}/byt/{{ idByt  }}/vyuctovaniZaByt/{{ idVyuctovaniZaByt  }}/polozka",
+			"_type": "request"
+		},
+		{
+			"_id": "req_fc752b7641604cbfa79dc28ca2d49fb6",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n  \"nazev\": \"Vyúčtování služeb (BD Pragostav)\",\n  \"zuctovaciObdobi\" : {\n    \"zacatek\": \"01-01-2017\",\n    \"konec\": \"31-12-2017\"\n  },\n\t\"byt\": {\n\t\t\"id\": \"{{ idByt  }}\"\n\t}\n}\n"
+			},
+			"created": 1540535419888,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_62504670fb8c44dd8b29b5880efedfcb",
+					"name": "content-type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1539199602657.5,
+			"method": "POST",
+			"modified": 1540545442337,
+			"name": "/vyuctovaniZaByt",
+			"parameters": [],
+			"parentId": "fld_007c7e33c72f4d1d8ac4baa4d797869e",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ host  }}{{ application_context  }}/byt/{{ idByt  }}/vyuctovaniZaByt",
+			"_type": "request"
+		},
+		{
+			"_id": "req_f15ddeb148b1455c85788eff42a667bf",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n  \"nazev\": \"Vyúčtování dodávek elektřiny (PRE)\",\n  \"zuctovaciObdobi\": {\n    \"zacatek\": \"03-09-2016\",\n    \"konec\": \"05-09-2017\"\n  },\n\t\"byt\": {\n\t\t\"id\": \"{{ idByt  }}\"\n\t}\n}\n"
+			},
+			"created": 1540536834781,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_5456ce225fa34c7881788020fd0276f0",
+					"name": "content-type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1540537009015,
+			"method": "POST",
+			"modified": 1540537751593,
+			"name": "/vyuctovaniZaByt",
+			"parameters": [],
+			"parentId": "fld_e06dff3a8c9a4da88a875e9d5b3e7fd9",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ host  }}{{ application_context  }}/byt/{{ idByt  }}/vyuctovaniZaByt",
+			"_type": "request"
+		},
+		{
+			"_id": "req_20c35c92acf8442cba3c0ab87c58fbc1",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n\t\"vyuctovaniZaByt\": {\n\t\t\"id\": \"{{ idVyuctovaniZaByt  }}\"\n\t},\n\t\"nazev\": \"Elektřina\",\n\t\"vyuctovaniPolozkaTyp\": {\n\t\t\"id\": \"{{ idVyctovaniPolozkaTyp  }}\"\n\t},\n\t\"pocatecniStav\": {\n\t\t\"mnozstvi\": 4400.00,\n\t\t\"jednotka\": \"kWh\"\n\t},\n\t\"koncovyStav\": {\n\t\t\"mnozstvi\": 5515.00,\n\t\t\"jednotka\": \"kWh\"\n\t},\n\t\"spotreba\": {\n\t\t\"mnozstvi\": 1115.00,\n\t\t\"jednotka\": \"kWh\"\n\t},\n\t\"zalohy\": {\n\t\t\"mnozstvi\": 6000.00,\n\t\t\"jednotka\": \"Kč\"\n\t},\n\t\"naklady\": {\n\t\t\"mnozstvi\": 6296.92,\n\t\t\"jednotka\": \"Kč\"\n\t}\n}\n"
+			},
+			"created": 1540537027498,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_5456ce225fa34c7881788020fd0276f0",
+					"name": "content-type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1540537008990,
+			"method": "POST",
+			"modified": 1540537753446,
+			"name": "/polozka",
+			"parameters": [],
+			"parentId": "fld_e06dff3a8c9a4da88a875e9d5b3e7fd9",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ host  }}{{ application_context  }}/byt/{{ idByt  }}/vyuctovaniZaByt/{{ idVyuctovaniZaByt  }}/polozka",
+			"_type": "request"
+		},
+		{
+			"_id": "req_541bd0541d304464ad3bc520a73e6841",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n  \"nazev\": \"Vyúčtování dodávek plynu (Pražská plynárenská)\",\n\t\"zuctovaciObdobi\" : {\n\t\t\"zacatek\": \"21-09-2016\",\n\t\t\"konec\": \"31-03-2017\"\t\n\t},\n\t\"byt\": {\n\t\t\"id\": \"{{ idByt  }}\"\n\t}\n}\n"
+			},
+			"created": 1539425302310,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_5456ce225fa34c7881788020fd0276f0",
+					"name": "content-type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1539254968777.5,
+			"method": "POST",
+			"modified": 1540544298324,
+			"name": "/vyuctovaniZaByt",
+			"parameters": [],
+			"parentId": "fld_82b120efd33c42c78e4838e495184725",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ host  }}{{ application_context  }}/byt/{{ idByt  }}/vyuctovaniZaByt",
+			"_type": "request"
+		},
+		{
+			"_id": "req_d22efd10cbc1498ba4ed7ef2dfe19887",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n\t\"vyuctovaniZaByt\": {\n\t\t\"id\": \"{{ idVyuctovaniZaByt  }}\"\n\t},\n\t\"nazev\": \"Plyn\",\n\t\"vyuctovaniPolozkaTyp\": {\n\t\t\"id\": \"{{ idVyctovaniPolozkaTyp  }}\"\n\t},\n\t\"pocatecniStav\": {\n\t\t\"mnozstvi\": 14.00,\n\t\t\"jednotka\": \"m3\"\n\t},\n\t\"koncovyStav\": {\n\t\t\"mnozstvi\": 26.00,\n\t\t\"jednotka\": \"m3\"\n\t},\n\t\"spotreba\": {\n\t\t\"mnozstvi\": 12.00,\n\t\t\"jednotka\": \"m3\"\n\t},\n\t\"zalohy\": {\n\t\t\"mnozstvi\": 1000.00,\n\t\t\"jednotka\": \"Kč\"\n\t},\n\t\"naklady\": {\n\t\t\"mnozstvi\": 1079.90,\n\t\t\"jednotka\": \"Kč\"\n\t}\n}\n"
+			},
+			"created": 1540543948163,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_5456ce225fa34c7881788020fd0276f0",
+					"name": "content-type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1539254968752.5,
+			"method": "POST",
+			"modified": 1540544357663,
+			"name": "/polozka",
+			"parameters": [],
+			"parentId": "fld_82b120efd33c42c78e4838e495184725",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ host  }}{{ application_context  }}/byt/{{ idByt  }}/vyuctovaniZaByt/{{ idVyuctovaniZaByt  }}/polozka",
+			"_type": "request"
+		},
+		{
+			"_id": "req_65aca7e67eed478aac8ab4d7eceaa633",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n  \"nazev\": \"Byt Praha - Faktura TV & NET - UPC\",\n\t\"zuctovaciObdobi\" : {\n\t\t\"zacatek\": \"01-12-2016\",\n\t\t\"konec\": \"31-12-2016\"\n\t},\n  \"seznamPolozek\": [\n    {\n\t\t\t\"nazev\": \"TV & NET\",\n\t\t\t\"idPolozkaTyp\": \"5bc742876c6ab02f55fc5312\",\n\t\t\t\"naklady\": {\n        \"mnozstvi\": 558.99,\n        \"jednotka\": \"Kč\"\n      }\n    }\n  ]\n}\n"
+			},
+			"created": 1539443892433,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_5456ce225fa34c7881788020fd0276f0",
+					"name": "content-type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1539227285748.75,
+			"method": "POST",
+			"modified": 1540547381549,
+			"name": "/vyuctovani (internet 12/2016)",
+			"parameters": [],
+			"parentId": "fld_cd41965e38d04e26b2c6acc4fd410f3e",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "http://localhost:9080/vyuctovani",
+			"_type": "request"
+		},
+		{
+			"_id": "req_20a97e55d1f14c83a81d195556751dd5",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n  \"nazev\": \"Byt Praha - Faktura TV & NET - UPC\",\n\t\"zuctovaciObdobi\" : {\n\t\t\"zacatek\": \"01-02-2018\",\n\t\t\"konec\": \"28-02-2018\"\n\t},\n  \"seznamPolozek\": [\n    {\n\t\t\t\"nazev\": \"TV & NET\",\n\t\t\t\"idPolozkaTyp\": \"5bc742876c6ab02f55fc5312\",\n\t\t\t\"naklady\": {\n        \"mnozstvi\": 558.99,\n        \"jednotka\": \"Kč\"\n      }\n    }\n  ]\n}\n"
+			},
+			"created": 1539443964072,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_5456ce225fa34c7881788020fd0276f0",
+					"name": "content-type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1539206523427.1875,
+			"method": "POST",
+			"modified": 1539787260936,
+			"name": "/vyuctovani (internet 02/2018)",
+			"parameters": [],
+			"parentId": "fld_cd41965e38d04e26b2c6acc4fd410f3e",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "http://localhost:9080/vyuctovani",
+			"_type": "request"
+		},
+		{
+			"_id": "req_927945458dc447dbaa5d04ee4c5b84e9",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n  \"nazev\": \"Vyúčtování dodávek elektřiny (PRE)\",\n\t\"zuctovaciObdobi\" : {\n\t\t\"zacatek\": \"06-09-2017\",\n\t\t\"konec\": \"31-12-2017\"\n  },\n\t\"byt\": {\n\t\t\"id\": \"{{ idByt  }}\"\n\t}\n}\n"
+			},
+			"created": 1540537480780,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_5456ce225fa34c7881788020fd0276f0",
+					"name": "content-type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1539338017913.75,
+			"method": "POST",
+			"modified": 1540543958453,
+			"name": "/vyuctovaniZaByt",
+			"parameters": [],
+			"parentId": "fld_1b7c3bb6d91b49aebee7a4b2c210b15a",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ host  }}{{ application_context  }}/byt/{{ idByt  }}/vyuctovaniZaByt",
+			"_type": "request"
+		},
+		{
+			"_id": "req_8d9882a11a63422882534236cf03d6e0",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n\t\"vyuctovaniZaByt\": {\n\t\t\"id\": \"{{ idVyuctovaniZaByt  }}\"\n\t},\n\t\"nazev\": \"Elektřina\",\n\t\"vyuctovaniPolozkaTyp\": {\n\t\t\"id\": \"{{ idVyctovaniPolozkaTyp  }}\"\n\t},\n\t\"pocatecniStav\": {\n\t\t\"mnozstvi\": 5515.00,\n\t\t\"jednotka\": \"kWh\"\n\t},\n\t\"koncovyStav\": {\n\t\t\"mnozstvi\": 5882.00,\n\t\t\"jednotka\": \"kWh\"\n\t},\n\t\"spotreba\": {\n\t\t\"mnozstvi\": 367.00,\n\t\t\"jednotka\": \"kWh\"\n\t},\n\t\"zalohy\": {\n\t\t\"mnozstvi\": 1740.00,\n\t\t\"jednotka\": \"Kč\"\n\t},\n\t\"naklady\": {\n\t\t\"mnozstvi\": 2054.22,\n\t\t\"jednotka\": \"Kč\"\n\t}\n}"
+			},
+			"created": 1540537614457,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_5456ce225fa34c7881788020fd0276f0",
+					"name": "content-type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1539338017863.75,
+			"method": "POST",
+			"modified": 1540544218151,
+			"name": "/polozka",
+			"parameters": [],
+			"parentId": "fld_1b7c3bb6d91b49aebee7a4b2c210b15a",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ host  }}{{ application_context  }}/byt/{{ idByt  }}/vyuctovaniZaByt/{{ idVyuctovaniZaByt  }}/polozka",
+			"_type": "request"
+		},
+		{
+			"_id": "req_3712c64f5143453198e0f7b2f587fba9",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n  \"nazev\": \"Byt Praha - Vyúčtování dodávek plynu - Pražská plynárenská\",\n\t\"zuctovaciObdobi\" : {\n\t\t\"zacatek\": \"01-04-2017\",\n\t\t\"konec\": \"05-09-2017\"\n\t},\n\t\"byt\": {\n\t\t\"id\": \"{{ idByt  }}\"\n\t}\n}\n"
+			},
+			"created": 1539425526811,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_5456ce225fa34c7881788020fd0276f0",
+					"name": "content-type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1539254968727.5,
+			"method": "POST",
+			"modified": 1540547480296,
+			"name": "/vyuctovaniZaByt",
+			"parameters": [],
+			"parentId": "fld_b3b1f8550bb84393a931129b39f1973e",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ host  }}{{ application_context  }}/byt/{{ idByt  }}/vyuctovaniZaByt",
+			"_type": "request"
+		},
+		{
+			"_id": "req_e831537efe8f46dc9f6cd3d5933e8061",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n \t\"vyuctovaniZaByt\": {\n\t\t\"id\": \"{{ idVyuctovaniZaByt  }}\"\n\t},\n\t\"nazev\": \"Plyn\",\n\t\"vyuctovaniPolozkaTyp\": {\n\t\t\"id\": \"{{ idVyctovaniPolozkaTyp  }}\"\n\t},\n\t\"pocatecniStav\": {\n\t\t\"mnozstvi\": 26.00,\n\t\t\"jednotka\": \"m3\"\n\t},\n\t\"koncovyStav\": {\n\t\t\"mnozstvi\": 38.00,\n\t\t\"jednotka\": \"m3\"\n\t},\n\t\"spotreba\": {\n\t\t\"mnozstvi\": 12.00,\n\t\t\"jednotka\": \"m3\"\n\t},\n\t\"zalohy\": {\n\t\t\"mnozstvi\": 550.00,\n\t\t\"jednotka\": \"Kč\"\n\t},\n\t\"naklady\": {\n\t\t\"mnozstvi\": 627.18,\n\t\t\"jednotka\": \"Kč\" \n\t}\n}\n"
+			},
+			"created": 1540543951098,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_5456ce225fa34c7881788020fd0276f0",
+					"name": "content-type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1539241127238.125,
+			"method": "POST",
+			"modified": 1540547555966,
+			"name": "/polozka",
+			"parameters": [],
+			"parentId": "fld_b3b1f8550bb84393a931129b39f1973e",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ host  }}{{ application_context  }}/byt/{{ idByt  }}/vyuctovaniZaByt/{{ idVyuctovaniZaByt  }}/polozka",
+			"_type": "request"
+		},
+		{
+			"_id": "req_b08a45cc9a8844c59b976e8210d1037f",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n  \"nazev\": \"Byt Praha - Faktura TV & NET - UPC\",\n\t\"zuctovaciObdobi\" : {\n\t\t\"zacatek\": \"01-01-2017\",\n\t\t\"konec\": \"31-01-2017\"\n\t},\n\t\"byt\": {\n\t\t\"id\": \"{{ idByt  }}\"\n\t}\n}\n"
+			},
+			"created": 1539426955715,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_5456ce225fa34c7881788020fd0276f0",
+					"name": "content-type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1539227285698.75,
+			"method": "POST",
+			"modified": 1540547538382,
+			"name": "/vyuctovaniZaByt",
+			"parameters": [],
+			"parentId": "fld_5dc55363beac47f0809cea3c132d3377",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ host  }}{{ application_context  }}/byt/{{ idByt  }}/vyuctovaniZaByt",
+			"_type": "request"
+		},
+		{
+			"_id": "req_53af01e916e84265838ffbd9a851e551",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n \t\"vyuctovaniZaByt\": {\n\t\t\"id\": \"{{ idVyuctovaniZaByt  }}\"\n\t},\n\t\"nazev\": \"TV & NET\",\n\t\"vyuctovaniPolozkaTyp\": {\n\t\t\"id\": \"{{ idVyctovaniPolozkaTyp  }}\"\n\t},\n\t\"naklady\": {\n\t\t\"mnozstvi\": 558.99,\n\t\t\"jednotka\": \"Kč\"\n\t}\n}"
+			},
+			"created": 1540547435973,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_5456ce225fa34c7881788020fd0276f0",
+					"name": "content-type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1539220364941.5625,
+			"method": "POST",
+			"modified": 1540547605443,
+			"name": "/polozka",
+			"parameters": [],
+			"parentId": "fld_5dc55363beac47f0809cea3c132d3377",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ host  }}{{ application_context  }}/byt/{{ idByt  }}/vyuctovaniZaByt/{{ idVyuctovaniZaByt  }}/polozka",
+			"_type": "request"
+		},
+		{
+			"_id": "req_a2fa47f17b3343419dd464fa4b3f56e8",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n  \"nazev\": \"Byt Praha - Faktura TV & NET - UPC\",\n\t\"zuctovaciObdobi\" : {\n\t\t\"zacatek\": \"01-02-2017\",\n\t\t\"konec\": \"28-02-2017\"\n\t},\n\t\"byt\": {\n\t\t\"id\": \"{{ idByt  }}\"\n\t}\n}\n"
+			},
+			"created": 1540547627658,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_5456ce225fa34c7881788020fd0276f0",
+					"name": "content-type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1539227285698.75,
+			"method": "POST",
+			"modified": 1540547690015,
+			"name": "/vyuctovaniZaByt",
+			"parameters": [],
+			"parentId": "fld_6878851e3d554c0ead34b0da6a56410b",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ host  }}{{ application_context  }}/byt/{{ idByt  }}/vyuctovaniZaByt",
+			"_type": "request"
+		},
+		{
+			"_id": "req_f61bd47b7b5741b98a588d33ab1ae7e9",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n \t\"vyuctovaniZaByt\": {\n\t\t\"id\": \"{{ idVyuctovaniZaByt  }}\"\n\t},\n\t\"nazev\": \"TV & NET\",\n\t\"vyuctovaniPolozkaTyp\": {\n\t\t\"id\": \"{{ idVyctovaniPolozkaTyp  }}\"\n\t},\n\t\"naklady\": {\n\t\t\"mnozstvi\": 558.99,\n\t\t\"jednotka\": \"Kč\"\n\t}\n}"
+			},
+			"created": 1540547627661,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_5456ce225fa34c7881788020fd0276f0",
+					"name": "content-type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1539220364941.5625,
+			"method": "POST",
+			"modified": 1540547703446,
+			"name": "/polozka",
+			"parameters": [],
+			"parentId": "fld_6878851e3d554c0ead34b0da6a56410b",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ host  }}{{ application_context  }}/byt/{{ idByt  }}/vyuctovaniZaByt/{{ idVyuctovaniZaByt  }}/polozka",
+			"_type": "request"
+		},
+		{
+			"_id": "req_4e3eaf1ec1954fab90fa60bfca9ad1b6",
+			"authentication": {},
+			"body": {},
+			"created": 1540364673696,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_62504670fb8c44dd8b29b5880efedfcb",
+					"name": "content-type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1540364211331,
+			"method": "GET",
+			"modified": 1540545681020,
+			"name": "/polozka/{idVyuctovaniZaBytPolozka}",
+			"parameters": [],
+			"parentId": "fld_a439c60b437d47b3b11f879481c9c469",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ host  }}{{ application_context  }}/byt/{{ idByt  }}/vyuctovaniZaByt/{{ idVyuctovaniZaByt  }}/polozka/{{ idVyuctovaniZaBytPolozka  }}",
+			"_type": "request"
+		},
+		{
+			"_id": "req_c36b73c8594f4f03b6c8b3c0f0aeee24",
+			"authentication": {},
+			"body": {},
+			"created": 1540375553455,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_62504670fb8c44dd8b29b5880efedfcb",
+					"name": "content-type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1540364211306,
+			"method": "GET",
+			"modified": 1540545634011,
+			"name": "/polozka/!all",
+			"parameters": [],
+			"parentId": "fld_a439c60b437d47b3b11f879481c9c469",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ host  }}{{ application_context  }}/byt/{{ idByt  }}/vyuctovaniZaByt/{{ idVyuctovaniZaByt  }}/polozka/!all",
+			"_type": "request"
+		},
+		{
+			"_id": "req_c19e018130e04887ab22856796674de2",
+			"authentication": {},
+			"body": {},
+			"created": 1540385069819,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_62504670fb8c44dd8b29b5880efedfcb",
+					"name": "content-type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1540364211293.5,
+			"method": "DELETE",
+			"modified": 1540545561277,
+			"name": "/polozka/!all",
+			"parameters": [],
+			"parentId": "fld_a439c60b437d47b3b11f879481c9c469",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ host  }}{{ application_context  }}/byt/{{ idByt  }}/vyuctovaniZaByt/{{ idVyuctovaniZaByt  }}/polozka/!all",
+			"_type": "request"
+		},
+		{
+			"_id": "req_78048c99d3474426a3b24272f14ff16d",
+			"authentication": {},
+			"body": {},
+			"created": 1540545653403,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_62504670fb8c44dd8b29b5880efedfcb",
+					"name": "content-type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1540364211299.75,
+			"method": "DELETE",
+			"modified": 1540545678690,
+			"name": "/polozka/{idVyuctovaniZaBytPolozka}",
+			"parameters": [],
+			"parentId": "fld_a439c60b437d47b3b11f879481c9c469",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ host  }}{{ application_context  }}/byt/{{ idByt  }}/vyuctovaniZaByt/{{ idVyuctovaniZaByt  }}/polozka/{{ idVyuctovaniZaBytPolozka  }}",
+			"_type": "request"
+		},
+		{
+			"_id": "req_454f0d7dbb2d40b88a709644d7b82a07",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n\t\"vyuctovaniZaByt\": {\n\t\t\"id\": \"{{ idVyuctovaniZaByt  }}\"\n\t},\n\t\"nazev\": \"Pojištění domu\",\n\t\"vyuctovaniPolozkaTyp\": {\n\t\t\"id\": \"{{ idVyctovaniPolozkaTyp  }}\"\n\t},\n\t\"zalohy\": {\n\t\t\"mnozstvi\": 216.00,\n\t\t\"jednotka\": \"Kč\"\n\t},\n\t\"naklady\": {\n\t\t\"mnozstvi\": 229.00,\n\t\t\"jednotka\": \"Kč\"\n\t}\n}\n"
+			},
+			"created": 1540545690387,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_62504670fb8c44dd8b29b5880efedfcb",
+					"name": "content-type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1540364211381,
+			"method": "POST",
+			"modified": 1540545706504,
+			"name": "/polozka",
+			"parameters": [],
+			"parentId": "fld_a439c60b437d47b3b11f879481c9c469",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ host  }}{{ application_context  }}/byt/{{ idByt  }}/vyuctovaniZaByt/{{ idVyuctovaniZaByt  }}/polozka",
+			"_type": "request"
+		},
+		{
+			"_id": "req_68d8e4bb799b4e9db34654eca13b21e9",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n\t\"vyuctovaniZaByt\": {\n\t\t\"id\": \"{{ idVyuctovaniZaByt  }}\"\n\t},\n\t\"nazev\": \"Pojištění domu\",\n\t\"vyuctovaniPolozkaTyp\": {\n\t\t\"id\": \"{{ idVyctovaniPolozkaTyp  }}\"\n\t},\n\t\"zalohy\": {\n\t\t\"mnozstvi\": 216.00,\n\t\t\"jednotka\": \"Kč\"\n\t},\n\t\"naklady\": {\n\t\t\"mnozstvi\": 229.00,\n\t\t\"jednotka\": \"Kč\"\n\t}\n}\n"
+			},
+			"created": 1540545712439,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_62504670fb8c44dd8b29b5880efedfcb",
+					"name": "content-type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1540364211356,
+			"method": "PUT",
+			"modified": 1540545722344,
+			"name": "/polozka",
+			"parameters": [],
+			"parentId": "fld_a439c60b437d47b3b11f879481c9c469",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ host  }}{{ application_context  }}/byt/{{ idByt  }}/vyuctovaniZaByt/{{ idVyuctovaniZaByt  }}/polozka",
+			"_type": "request"
+		},
+		{
+			"_id": "req_3bf8fc9d720f4de48cc0afe59ac3e734",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n\t\"predavaciProtokol\": {\n\t\t\"id\": \"5bcf67d4f8b8e454d9d39da9\"\n\t},\n\t\"nazev\": \"Teplá voda\",\n\t\"vyuctovaniPolozkaTyp\": {\n\t\t\"id\": \"5bc743a06c6ab02f55fc5315\"\n\t},\n\t\"cisloMeraku\": \"12 10 01 54 69\",\n\t\"stavMeraku\": 55.00,\n\t\"jednotka\": \"m3\"\n}"
+			},
+			"created": 1540323450377,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_fa1fcf769b2246f9881862213e3cee15",
+					"name": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1539597370152,
+			"method": "POST",
+			"modified": 1540546853094,
+			"name": "/polozka (Teplá voda)",
+			"parameters": [],
+			"parentId": "fld_ffa484ed459d4bd5bc365aca2ca5ff00",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ host  }}{{ application_context  }}/najemnik/{{ idNajemnik  }}/predavaciProtokol/{{ idPredavaciProtokol  }}/polozka",
+			"_type": "request"
+		},
+		{
+			"_id": "req_c5cc98b7b65c413db6a37907c87e0627",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n\t\"predavaciProtokol\": {\n\t\t\"id\": \"5bcf67d4f8b8e454d9d39da9\"\n\t},\n\t\"nazev\": \"Studená voda\",\n\t\"vyuctovaniPolozkaTyp\": {\n\t\t\"id\": \"5bc743a36c6ab02f55fc5316\"\n\t},\n\t\"cisloMeraku\": \"14 10 04 29 05\",\n\t\"stavMeraku\": 89.00,\n\t\"jednotka\": \"m3\"\n}"
+			},
+			"created": 1540323763973,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_fa1fcf769b2246f9881862213e3cee15",
+					"name": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1539597370127,
+			"method": "POST",
+			"modified": 1540546890622,
+			"name": "/polozka (Studená voda)",
+			"parameters": [],
+			"parentId": "fld_ffa484ed459d4bd5bc365aca2ca5ff00",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ host  }}{{ application_context  }}/najemnik/{{ idNajemnik  }}/predavaciProtokol/{{ idPredavaciProtokol  }}/polozka",
+			"_type": "request"
+		},
+		{
+			"_id": "req_42673c87d21940d786ce5e282633ef2f",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n\t\"predavaciProtokol\": {\n\t\t\"id\": \"5bcf67d4f8b8e454d9d39da9\"\n\t},\n\t\"nazev\": \"Elekřina\",\n\t\"vyuctovaniPolozkaTyp\": {\n\t\t\"id\": \"5bc73de46c6ab02e1db90eb5\"\n\t},\n\t\"cisloMeraku\": \"C33 99 54\",\n\t\"stavMeraku\": 5064.30,\n\t\"jednotka\": \"kWh\"\n}"
+			},
+			"created": 1540323872882,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_fa1fcf769b2246f9881862213e3cee15",
+					"name": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1539597370114.5,
+			"method": "POST",
+			"modified": 1540546894040,
+			"name": "/polozka (Elektřina)",
+			"parameters": [],
+			"parentId": "fld_ffa484ed459d4bd5bc365aca2ca5ff00",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ host  }}{{ application_context  }}/najemnik/{{ idNajemnik  }}/predavaciProtokol/{{ idPredavaciProtokol  }}/polozka",
+			"_type": "request"
+		},
+		{
+			"_id": "req_9c7a114725004d12b12eb97d8704d761",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n\t\"predavaciProtokol\": {\n\t\t\"id\": \"5bcf67d4f8b8e454d9d39da9\"\n\t},\n\t\"nazev\": \"Plyn\",\n\t\"vyuctovaniPolozkaTyp\": {\n\t\t\"id\": \"5bc73e3e6c6ab02e1db90eb6\"\n\t},\n\t\"cisloMeraku\": \"674 79 94\",\n\t\"stavMeraku\": 31.601,\n\t\"jednotka\": \"m3\"\n}"
+			},
+			"created": 1540323875639,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_fa1fcf769b2246f9881862213e3cee15",
+					"name": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1539597370108.25,
+			"method": "POST",
+			"modified": 1540546899311,
+			"name": "/polozka (Plyn)",
+			"parameters": [],
+			"parentId": "fld_ffa484ed459d4bd5bc365aca2ca5ff00",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ host  }}{{ application_context  }}/najemnik/{{ idNajemnik  }}/predavaciProtokol/{{ idPredavaciProtokol  }}/polozka",
+			"_type": "request"
+		},
+		{
+			"_id": "req_bfd3e260b8c5451aad3ac89e71f41f58",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n\t\"predavaciProtokol\": {\n\t\t\"id\": \"5bcf67d4f8b8e454d9d39da9\"\n\t},\n\t\"nazev\": \"Teplo 1\",\n\t\"vyuctovaniPolozkaTyp\": {\n\t\t\"id\": \"5bc7439c6c6ab02f55fc5313\"\n\t},\n\t\"cisloMeraku\": \"322 025 87 / 1100\",\n\t\"stavMeraku\": 179.00,\n\t\"jednotka\": \"jednotka\"\n}"
+			},
+			"created": 1540323878169,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_fa1fcf769b2246f9881862213e3cee15",
+					"name": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1539597370105.125,
+			"method": "POST",
+			"modified": 1540546902161,
+			"name": "/polozka (Teplo 1)",
+			"parameters": [],
+			"parentId": "fld_ffa484ed459d4bd5bc365aca2ca5ff00",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ host  }}{{ application_context  }}/najemnik/{{ idNajemnik  }}/predavaciProtokol/{{ idPredavaciProtokol  }}/polozka",
+			"_type": "request"
+		},
+		{
+			"_id": "req_ee5b5a51786145cf8da472656c033878",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n\t\"predavaciProtokol\": {\n\t\t\"id\": \"5bcf67d4f8b8e454d9d39da9\"\n\t},\n\t\"nazev\": \"Teplo 2\",\n\t\"vyuctovaniPolozkaTyp\": {\n\t\t\"id\": \"5bc7439c6c6ab02f55fc5313\"\n\t},\n\t\"cisloMeraku\": \"321 356 70 / 0210\",\n\t\"stavMeraku\": 166.00,\n\t\"jednotka\": \"jednotka\"\n}"
+			},
+			"created": 1540323941661,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_fa1fcf769b2246f9881862213e3cee15",
+					"name": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1539597370103.5625,
+			"method": "POST",
+			"modified": 1540546906641,
+			"name": "/polozka (Teplo 2)",
+			"parameters": [],
+			"parentId": "fld_ffa484ed459d4bd5bc365aca2ca5ff00",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ host  }}{{ application_context  }}/najemnik/{{ idNajemnik  }}/predavaciProtokol/{{ idPredavaciProtokol  }}/polozka",
+			"_type": "request"
+		},
+		{
+			"_id": "req_d372a63d781540aca378d8f0c0fff30c",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n\t\"predavaciProtokol\": {\n\t\t\"id\": \"5bcf67d4f8b8e454d9d39da9\"\n\t},\n\t\"nazev\": \"Teplo 3\",\n\t\"vyuctovaniPolozkaTyp\": {\n\t\t\"id\": \"5bc7439c6c6ab02f55fc5313\"\n\t},\n\t\"cisloMeraku\": \"322 099 18 / 1210\",\n\t\"stavMeraku\": 0.00,\n\t\"jednotka\": \"jednotka\"\n}"
+			},
+			"created": 1540323943740,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_fa1fcf769b2246f9881862213e3cee15",
+					"name": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1539597370102.7812,
+			"method": "POST",
+			"modified": 1540547363923,
+			"name": "/polozka (Teplo 3)",
+			"parameters": [],
+			"parentId": "fld_ffa484ed459d4bd5bc365aca2ca5ff00",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ host  }}{{ application_context  }}/najemnik/{{ idNajemnik  }}/predavaciProtokol/{{ idPredavaciProtokol  }}/polozka",
+			"_type": "request"
+		},
+		{
+			"_id": "req_674d9eafcb9c4fdcb4132d86543e73e9",
+			"authentication": {},
+			"body": {},
+			"created": 1540546921715,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_fa1fcf769b2246f9881862213e3cee15",
+					"name": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1539597370102.3906,
+			"method": "GET",
+			"modified": 1540547324931,
+			"name": "/polozka/!all",
+			"parameters": [],
+			"parentId": "fld_ffa484ed459d4bd5bc365aca2ca5ff00",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ host  }}{{ application_context  }}/najemnik/{{ idNajemnik  }}/predavaciProtokol/{{ idPredavaciProtokol  }}/polozka/!all",
+			"_type": "request"
+		},
+		{
+			"_id": "req_2b7970eaf4be48e293b01ff92adcc96e",
+			"authentication": {},
+			"body": {},
+			"created": 1540546938367,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_fa1fcf769b2246f9881862213e3cee15",
+					"name": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1539597370102.586,
+			"method": "GET",
+			"modified": 1540547354315,
+			"name": "/polozka/{idPredavaciProtokolPolozka}",
+			"parameters": [],
+			"parentId": "fld_ffa484ed459d4bd5bc365aca2ca5ff00",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ host  }}{{ application_context  }}/najemnik/{{ idNajemnik  }}/predavaciProtokol/{{ idPredavaciProtokol  }}/polozka/{{ idPredavaciProtokolPolozka  }}",
+			"_type": "request"
+		},
+		{
+			"_id": "req_b9ff61977a4240418926d1cbcea6a3fd",
+			"authentication": {},
+			"body": {},
+			"created": 1540547313855,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_fa1fcf769b2246f9881862213e3cee15",
+					"name": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1539597370102.4883,
+			"method": "DELETE",
+			"modified": 1540547321642,
+			"name": "/polozka/{idPredavaciProtokolPolozka}",
+			"parameters": [],
+			"parentId": "fld_ffa484ed459d4bd5bc365aca2ca5ff00",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ host  }}{{ application_context  }}/najemnik/{{ idNajemnik  }}/predavaciProtokol/{{ idPredavaciProtokol  }}/polozka/{{ idPredavaciProtokolPolozka  }}",
+			"_type": "request"
+		},
+		{
+			"_id": "req_5bf88db96a1346b5ab0e9187f9d30b2d",
+			"authentication": {},
+			"body": {},
+			"created": 1540547326060,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_fa1fcf769b2246f9881862213e3cee15",
+					"name": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1539597370102.1953,
+			"method": "DELETE",
+			"modified": 1540547335636,
+			"name": "/polozka/!all",
+			"parameters": [],
+			"parentId": "fld_ffa484ed459d4bd5bc365aca2ca5ff00",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ host  }}{{ application_context  }}/najemnik/{{ idNajemnik  }}/predavaciProtokol/{{ idPredavaciProtokol  }}/polozka/!all",
+			"_type": "request"
+		},
+		{
+			"_id": "req_0448fe2b036744d4b1f8acdad2062fb7",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n\t\"id\": \"5bcf7e1cf8b8e45d289788d2\",\n\t\"predavaciProtokol\": {\n\t\t\"id\": \"5bcf67d4f8b8e454d9d39da9\",\n\t\t\"nazev\": \"Byt Praha - Předávací protokol - Evžen Mikovec\",\n\t\t\"datumPodpisu\": \"01-03-2017\"\n\t},\n\t\"nazev\": \"Elekřina\",\n\t\"vyuctovaniPolozkaTyp\": {\n\t\t\"id\": \"5bcef7bc81c5391f5cbd0c73\",\n\t\t\"nazev\": \"Elektřina\",\n\t\t\"popis\": \"Elektřina v bytě od PRE\"\n\t},\n\t\"cisloMeraku\": \"C33 99 54\",\n\t\"stavMeraku\": \"5064.30\",\n\t\"jednotka\": \"kWh\"\n}"
+			},
+			"created": 1540547341328,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_fa1fcf769b2246f9881862213e3cee15",
+					"name": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1539597370102.6836,
+			"method": "PUT",
+			"modified": 1540547365294,
+			"name": "/polozka",
+			"parameters": [],
+			"parentId": "fld_ffa484ed459d4bd5bc365aca2ca5ff00",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ host  }}{{ application_context  }}/najemnik/{{ idNajemnik  }}/predavaciProtokol/{{ idPredavaciProtokol  }}/polozka",
+			"_type": "request"
+		}
+	]
+}

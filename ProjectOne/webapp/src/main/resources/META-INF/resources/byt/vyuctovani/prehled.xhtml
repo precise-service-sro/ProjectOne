@@ -21,17 +21,20 @@
 
   <h:outputText value="#{vyuctovaniZaBytPrehledBean.init()}" />
 
-  <h:form id="formicek">
-    <p:growl id="msgs2" showDetail="true"/>
+  <h:form id="form">
+    <p:growl id="msgs" showDetail="true"/>
 
     <div class="ui-g" style="text-align: right;">
       <div class="ui-g-12">
-        <p:commandButton value="Přidat nové vyúčtování" icon="ui-icon-circle-plus" styleClass="ui-priority-primary" process="@this"
+        <p:commandButton value="Přidat nové vyúčtování" icon="ui-icon-circle-plus" styleClass="ui-priority-primary" process="@this" update=":form:msgs"
                          actionListener="#{vyuctovaniZaBytPrehledBean.addRow()}" oncomplete="PF('vyuctovaniZaBytPrehledBeanTable').addRow();" />
       </div>
     </div>
 
     <p:dataTable id="vyuctovaniZaBytPrehledBeanTable" var="vyuctovaniZaByt" widgetVar="vyuctovaniZaBytPrehledBeanTable" value="#{vyuctovaniZaBytPrehledBean.getVyuctovaniZaBytList()}" resizableColumns="true" sortBy="#{1}" editable="true">
+      <p:ajax event="rowEdit" listener="#{vyuctovaniZaBytPrehledBean.onRowEdit}" update=":form:msgs :form:vyuctovaniZaBytPrehledBeanTable" />
+      <p:ajax event="rowEditCancel" listener="#{vyuctovaniZaBytPrehledBean.onRowCancel}" update=":form:msgs" />
+
       <p:columnGroup type="header">
         <p:row>
           <p:column headerText="Název"            rowspan="2"                      />
@@ -49,19 +52,35 @@
       </p:columnGroup>
 
       <p:column>
-        <h:outputText value="#{vyuctovaniZaByt.nazev}" />
+        <p:cellEditor>
+          <f:facet name="output"><h:outputText value="#{vyuctovaniZaByt.nazev}" /> </f:facet>
+          <f:facet name="input"><p:inputText id="nazevInput" value="#{vyuctovaniZaByt.nazev}" style="width:100%"/></f:facet>
+        </p:cellEditor>
       </p:column>
 
       <p:column style="text-align: center;">
-        <h:outputText value="#{vyuctovaniZaByt.byt.nazev}" />
+        <p:cellEditor>
+          <f:facet name="output"><h:outputText value="#{vyuctovaniZaByt.byt.nazev}" title="#{vyuctovaniZaByt.byt.adresa}"/> </f:facet>
+          <f:facet name="input">
+            <h:selectOneMenu value="#{vyuctovaniZaByt.byt}" style="width:100%" converter="#{bytConverter}">
+              <f:selectItems value="#{vyuctovaniZaBytPrehledBean.bytList}" var="byt" itemLabel="#{byt.nazev}" itemValue="#{byt}" />
+            </h:selectOneMenu>
+          </f:facet>
+        </p:cellEditor>
       </p:column>
 
       <p:column style="text-align: center;">
-        <h:outputText value="#{vyuctovaniZaByt.zuctovaciObdobi.zacatek}" />
+        <p:cellEditor>
+          <f:facet name="output"><h:outputText value="#{vyuctovaniZaByt.zuctovaciObdobi.zacatek}" /> </f:facet>
+          <f:facet name="input"><p:inputText id="zuctovaciObdobiZacatekInput" value="#{vyuctovaniZaByt.zuctovaciObdobi.zacatek}" style="width:100%"/></f:facet>
+        </p:cellEditor>
       </p:column>
 
       <p:column style="text-align: center;">
-        <h:outputText value="#{vyuctovaniZaByt.zuctovaciObdobi.konec}" />
+        <p:cellEditor>
+          <f:facet name="output"><h:outputText value="#{vyuctovaniZaByt.zuctovaciObdobi.konec}" /> </f:facet>
+          <f:facet name="input"><p:inputText id="zuctovaciObdobiKonecInput" value="#{vyuctovaniZaByt.zuctovaciObdobi.konec}" style="width:100%"/></f:facet>
+        </p:cellEditor>
       </p:column>
 
       <p:column>
@@ -73,7 +92,7 @@
       </p:column>
 
       <p:column>
-        <p:commandButton icon="ui-icon-circle-minus" actionListener="#{vyuctovaniZaBytTabulkaBean.deleteRow(vyuctovaniZaByt)}" />
+        <p:commandButton update="@form :form:msgs" icon="ui-icon-circle-minus" actionListener="#{vyuctovaniZaBytPrehledBean.deleteRow(vyuctovaniZaByt)}" />
       </p:column>
     </p:dataTable>
   </h:form>
