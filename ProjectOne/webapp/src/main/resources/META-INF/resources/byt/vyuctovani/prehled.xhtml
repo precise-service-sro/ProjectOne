@@ -12,17 +12,28 @@
 
 <h:body>
 
-  Byt - Vyúčtování za byt - Přehled:
-
-  <h2>Přehled vyúčtování za byt:</h2>
-  <h3>Zúčtovací období:  (možno zadat datumy, aby se to podle toho filtrovalo):
-  <br />
-  OD: <p:inputText /> - DO: <p:inputText /> (budou kalendářové komponenty)</h3>
-
-  <h:outputText value="#{vyuctovaniZaBytPrehledBean.init()}" />
-
   <h:form id="form">
     <p:growl id="msgs" showDetail="true"/>
+
+    Byt - Vyúčtování za byt - Přehled:
+
+    Při kliknutí na ikonu vyúčtování by se mě to mohlo optat, zda chci vidět vyúčtování za nemovitosti anebo pro nájemníky
+
+    <h2>Přehled vyúčtování ke všem nemovitostem:</h2>
+
+    <h3>Zúčtovací období:
+    OD:
+      <p:calendar id="vyuctovaniZuctovaciObdobiFilterZacatek" value="#{vyuctovaniZaBytPrehledBean.vyuctovaniZuctovaciObdobiFilter.zacatek}" pattern="dd-MM-yyyy">
+        <p:ajax event="dateSelect" listener="#{vyuctovaniZaBytPrehledBean.vyuctovaniZuctovaciObdobiZacatekDateSelect}" update="msgs vyuctovaniZaBytPrehledBeanTable" />
+      </p:calendar>
+    - DO:
+      <p:calendar id="vyuctovaniZuctovaciObdobiFilterKonec" value="#{vyuctovaniZaBytPrehledBean.vyuctovaniZuctovaciObdobiFilter.konec}" pattern="dd-MM-yyyy">
+        <p:ajax event="dateSelect" listener="#{vyuctovaniZaBytPrehledBean.vyuctovaniZuctovaciObdobiKonecDateSelect}" update="msgs vyuctovaniZaBytPrehledBeanTable" />
+      </p:calendar>
+    </h3>
+
+
+    <h:outputText value="#{vyuctovaniZaBytPrehledBean.init()}" />
 
     <div class="ui-g" style="text-align: right;">
       <div class="ui-g-12">
@@ -40,7 +51,7 @@
           <p:column headerText="Název"            rowspan="2"                      />
           <p:column headerText="Byt"                          style="width: 200px;"/>
           <p:column headerText="Zúčtovací období" colspan="2" style="width: 400px;"/>
-          <p:column headerText="Detail"           rowspan="2" style="width: 200px;"/>
+          <p:column headerText="Detail"           rowspan="2" style="width: 160px;"/>
           <p:column                               rowspan="2" style="width:  32px;"/>
           <p:column                               rowspan="2" style="width:  50px;"/>
         </p:row>
@@ -71,15 +82,27 @@
 
       <p:column style="text-align: center;">
         <p:cellEditor>
-          <f:facet name="output"><h:outputText value="#{vyuctovaniZaByt.zuctovaciObdobi.zacatek}" /> </f:facet>
-          <f:facet name="input"><p:inputText id="zuctovaciObdobiZacatekInput" value="#{vyuctovaniZaByt.zuctovaciObdobi.zacatek}" style="width:100%"/></f:facet>
+          <f:facet name="output">
+            <h:outputText value="#{vyuctovaniZaByt.zuctovaciObdobi.zacatek}">
+              <f:convertDateTime pattern="dd-MM-yyyy" />
+            </h:outputText>
+          </f:facet>
+          <f:facet name="input">
+            <p:calendar id="zuctovaciObdobiZacatekInput" value="#{vyuctovaniZaByt.zuctovaciObdobi.zacatek}" pattern="dd-MM-yyyy" style="width:100%"/>
+          </f:facet>
         </p:cellEditor>
       </p:column>
 
       <p:column style="text-align: center;">
         <p:cellEditor>
-          <f:facet name="output"><h:outputText value="#{vyuctovaniZaByt.zuctovaciObdobi.konec}" /> </f:facet>
-          <f:facet name="input"><p:inputText id="zuctovaciObdobiKonecInput" value="#{vyuctovaniZaByt.zuctovaciObdobi.konec}" style="width:100%"/></f:facet>
+          <f:facet name="output">
+            <h:outputText value="#{vyuctovaniZaByt.zuctovaciObdobi.konec}" >
+              <f:convertDateTime pattern="dd-MM-yyyy" />
+            </h:outputText>
+          </f:facet>
+          <f:facet name="input">
+            <p:calendar id="zuctovaciObdobiKonecInput" value="#{vyuctovaniZaByt.zuctovaciObdobi.konec}" pattern="dd-MM-yyyy" style="width:100%"/>
+          </f:facet>
         </p:cellEditor>
       </p:column>
 

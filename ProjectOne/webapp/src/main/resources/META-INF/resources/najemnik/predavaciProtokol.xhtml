@@ -19,13 +19,13 @@
 
     <h2>Předávací protokol</h2>
 
-    KDO vs KOMU
+    KDO vs KOMU a CO (přidat i nějakou mojí identifikaci jako pronajimatele, to by šlo dát do nějaké samostatné stránky / tabulky v nastavení)
     <br />
-    <h3>Byt: (<h:outputText value="#{predavaciProtokolBean.nazev}"  />)</h3>
+    <h3>Byt: <h:outputText value="#{predavaciProtokolBean.predavaciProtokol.byt.nazev}" title="#{predavaciProtokolBean.predavaciProtokol.byt.adresa}" /></h3>
     <br />
-    <h3>Jméno nájemníka: (<h:outputText value="#{predavaciProtokolBean.nazev}"  />)</h3>
+  <h3>Nájemník: <h:outputText value="#{predavaciProtokolBean.predavaciProtokol.najemnik.jmeno}" />&nbsp;<h:outputText value="#{predavaciProtokolBean.predavaciProtokol.najemnik.prijmeni}" /></h3>
     <br />
-    <h3>Datum podpisu: <h:outputText value="#{predavaciProtokolBean.datumPodpisu}" /></h3>
+    <h3>Datum podpisu: <h:outputText value="#{predavaciProtokolBean.predavaciProtokol.datumPodpisu}" /></h3>
 
     <br />
 

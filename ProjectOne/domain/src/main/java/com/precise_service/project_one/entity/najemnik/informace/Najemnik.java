@@ -17,9 +17,11 @@ import lombok.Data;
 public class Najemnik extends BaseEntity {
 
   @JsonProperty("jmeno")
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private String jmeno;
 
   @JsonProperty("prijmeni")
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private String prijmeni;
 
   @DBRef

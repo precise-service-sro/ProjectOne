@@ -2,8 +2,11 @@ package com.precise_service.project_one.web.byt.vyuctovani;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -13,6 +16,7 @@ import javax.inject.Named;
 
 import org.omnifaces.util.Faces;
 import org.primefaces.event.RowEditEvent;
+import org.primefaces.event.SelectEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.precise_service.project_one.entity.byt.informace.Byt;
@@ -43,19 +47,24 @@ public class VyuctovaniZaBytPrehledBean implements Serializable {
 
   public static final String ZUCTOVACI_OBDOBI_DATE_FORMAT = "dd/MM/yyyy";
 
-  private String zuctovaciObdobiFilter;
+  private VyuctovaniZuctovaciObdobi vyuctovaniZuctovaciObdobiFilter;
   private List<VyuctovaniZaByt> vyuctovaniZaBytList;
   private List<Byt> bytList;
 
   @PostConstruct
-  public void init() {
+  public void init() throws ParseException {
+
+    if (vyuctovaniZuctovaciObdobiFilter == null) {
+      vyuctovaniZuctovaciObdobiFilter = new VyuctovaniZuctovaciObdobi();
+      SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
+      Date zacatek = simpleDateFormat.parse("01-01-2017");
+      Date konec = simpleDateFormat.parse("31-12-2017");
+      vyuctovaniZuctovaciObdobiFilter.setZacatek(zacatek);
+      vyuctovaniZuctovaciObdobiFilter.setKonec(konec);
+    }
+
     // getVyuctovaniZaBytInRange
-    /*
-    DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-    LocalDate from = LocalDate.parse("01-01-2017", dateTimeFormatter);
-    LocalDate to = LocalDate.parse("31-12-2017", dateTimeFormatter);
-    vyuctovaniZaBytList = vyuctovaniZaBytService.getVyuctovaniZaBytInRange(from, to);
-    */
+    //vyuctovaniZaBytList = vyuctovaniZaBytService.getVyuctovaniZaBytInRange(zacatek, konec);
 
     // getVyuctovaniZaBytAll
     vyuctovaniZaBytList = vyuctovaniZaBytService.getVyuctovaniZaBytAll();
@@ -85,7 +94,7 @@ public class VyuctovaniZaBytPrehledBean implements Serializable {
     Faces.redirect("/byt/vyuctovani/detail.xhtml");
   }
 
-  public void addRow() {
+  public void addRow() throws ParseException {
     log.trace("addRow()");
 
     VyuctovaniZaByt vyuctovaniZaByt = new VyuctovaniZaByt();
@@ -101,7 +110,7 @@ public class VyuctovaniZaBytPrehledBean implements Serializable {
     FacesContext.getCurrentInstance().addMessage(null, msg);
   }
 
-  public void deleteRow(VyuctovaniZaByt deletedVyuctovaniZaByt) {
+  public void deleteRow(VyuctovaniZaByt deletedVyuctovaniZaByt) throws ParseException {
     log.trace("deleteRow()");
 
     if (deletedVyuctovaniZaByt == null) {
@@ -116,4 +125,21 @@ public class VyuctovaniZaBytPrehledBean implements Serializable {
     FacesContext.getCurrentInstance().addMessage(null, msg);
     init();
   }
+
+  public void vyuctovaniZuctovaciObdobiZacatekDateSelect(SelectEvent event) throws ParseException {
+    FacesContext facesContext = FacesContext.getCurrentInstance();
+    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
+    Date zacatek = (Date) event.getObject();
+    facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Zvolen nový začátek zúčtovacího období", simpleDateFormat.format(zacatek)));
+    init();
+  }
+
+  public void vyuctovaniZuctovaciObdobiKonecDateSelect(SelectEvent event) throws ParseException {
+    FacesContext facesContext = FacesContext.getCurrentInstance();
+    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
+    Date konec = (Date) event.getObject();
+    facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Zvolen nový konec zúčtovacího období", simpleDateFormat.format(konec)));
+    init();
+  }
+
 }
