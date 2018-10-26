@@ -36,9 +36,9 @@ public class PredavaciProtokolPolozkaEndpoint {
     return predavaciProtokolPolozkaService.putPredavaciProtokolPolozka(predavaciProtokolPolozka);
   }
 
-  @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-  PredavaciProtokolPolozka getPredavaciProtokolPolozka(@PathVariable String idPredavaciProtokolPolozka) {
-    log.trace("getPredavaciProtokolPolozka()" + idPredavaciProtokolPolozka);
+  @RequestMapping(value = "/{idPredavaciProtokolPolozka}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+  PredavaciProtokolPolozka getPredavaciProtokolPolozka(@PathVariable String idNajemnik, @PathVariable String idPredavaciProtokol, @PathVariable String idPredavaciProtokolPolozka) {
+    log.trace("getPredavaciProtokolPolozka()");
     return predavaciProtokolPolozkaService.getPredavaciProtokolPolozka(idPredavaciProtokolPolozka);
   }
 
@@ -52,5 +52,11 @@ public class PredavaciProtokolPolozkaEndpoint {
   void deletePredavaciProtokolPolozkaAll(@PathVariable String idNajemnik, @PathVariable String idPredavaciProtokol) {
     log.trace("deletePredavaciProtokolPolozkaAll()");
     predavaciProtokolPolozkaService.deletePredavaciProtokolPolozkaAll();
+  }
+
+  @RequestMapping(value = "/{idPredavaciProtokolPolozka}", method = RequestMethod.DELETE)
+  void deletePredavaciProtokolPolozka(@PathVariable String idNajemnik, @PathVariable String idPredavaciProtokol, @PathVariable String idPredavaciProtokolPolozka) {
+    log.trace("deletePredavaciProtokolPolozka()");
+    predavaciProtokolPolozkaService.deletePredavaciProtokolPolozka(idPredavaciProtokolPolozka);
   }
 }

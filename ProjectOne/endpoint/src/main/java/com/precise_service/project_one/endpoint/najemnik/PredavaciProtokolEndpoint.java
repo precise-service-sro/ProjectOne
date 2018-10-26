@@ -18,39 +18,45 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @RestController
-@RequestMapping(value = "/najemnik/predavaciProtokol", path = "/najemnik/predavaciProtokol")
+@RequestMapping(value = "/najemnik/{idNajemnik}/predavaciProtokol", path = "/najemnik/{idNajemnik}/predavaciProtokol")
 public class PredavaciProtokolEndpoint {
 
   @Autowired
   private IPredavaciProtokolService predavaciProtokolService;
 
   @RequestMapping(value = "", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-  PredavaciProtokol postPredavaciProtokol(@RequestBody PredavaciProtokol predavaciProtokol) {
+  PredavaciProtokol postPredavaciProtokol(@PathVariable String idNajemnik, @RequestBody PredavaciProtokol predavaciProtokol) {
     log.trace("postPredavaciProtokol()");
     return predavaciProtokolService.postPredavaciProtokol(predavaciProtokol);
   }
 
   @RequestMapping(value = "", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-  PredavaciProtokol putPredavaciProtokol(@RequestBody PredavaciProtokol predavaciProtokol) {
+  PredavaciProtokol putPredavaciProtokol(@PathVariable String idNajemnik, @RequestBody PredavaciProtokol predavaciProtokol) {
     log.trace("putPredavaciProtokol()");
     return predavaciProtokolService.putPredavaciProtokol(predavaciProtokol);
   }
 
-  @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-  PredavaciProtokol getPredavaciProtokol(@PathVariable String id) {
-    log.trace("getPredavaciProtokol()" + id);
-    return predavaciProtokolService.getPredavaciProtokol(id);
+  @RequestMapping(value = "/{idPredavaciProtokol}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+  PredavaciProtokol getPredavaciProtokol(@PathVariable String idNajemnik, @PathVariable String idPredavaciProtokol) {
+    log.trace("getPredavaciProtokol()");
+    return predavaciProtokolService.getPredavaciProtokol(idPredavaciProtokol);
   }
 
   @RequestMapping(value = "/!all", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-  List<PredavaciProtokol> getPredavaciProtokolAll() {
+  List<PredavaciProtokol> getPredavaciProtokolAll(@PathVariable String idNajemnik) {
     log.trace("getPredavaciProtokolAll()");
     return predavaciProtokolService.getPredavaciProtokolAll();
   }
 
   @RequestMapping(value = "/!all", method = RequestMethod.DELETE)
-  void deletePredavaciProtokolAll() {
+  void deletePredavaciProtokolAll(@PathVariable String idNajemnik) {
     log.trace("deletePredavaciProtokolAll()");
+    predavaciProtokolService.deletePredavaciProtokolAll();
+  }
+
+  @RequestMapping(value = "/{idPredavaciProtokol}", method = RequestMethod.DELETE)
+  void deletePredavaciProtokol(@PathVariable String idNajemnik, @PathVariable String idPredavaciProtokol) {
+    log.trace("deletePredavaciProtokol()");
     predavaciProtokolService.deletePredavaciProtokolAll();
   }
 }

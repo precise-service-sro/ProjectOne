@@ -24,6 +24,12 @@ public class NajemnikService implements INajemnikService {
   }
 
   @Override
+  public Najemnik putNajemnik(Najemnik najemnik) {
+    log.trace("putNajemnik()");
+    return najemnikRepository.save(najemnik);
+  }
+
+  @Override
   public Najemnik getNajemnik(String idNajemnik) {
     log.trace("getNajemnik()");
     return najemnikRepository.findById(idNajemnik).get();
@@ -39,5 +45,11 @@ public class NajemnikService implements INajemnikService {
   public void deleteNajemnikAll() {
     log.trace("deleteNajemnikAll()");
     najemnikRepository.deleteAll();
+  }
+
+  @Override
+  public void deleteNajemnik(String idNajemnik) {
+    log.trace("deleteNajemnik()");
+    najemnikRepository.deleteById(idNajemnik);
   }
 }

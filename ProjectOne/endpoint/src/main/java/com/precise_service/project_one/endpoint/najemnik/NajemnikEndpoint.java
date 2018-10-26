@@ -29,7 +29,13 @@ public class NajemnikEndpoint {
     return najemnikService.postNajemnik(najemnik);
   }
 
-  @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+  @RequestMapping(value = "", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+  Najemnik putNajemnik(@RequestBody Najemnik najemnik) {
+    log.trace("putNajemnik()");
+    return najemnikService.putNajemnik(najemnik);
+  }
+
+  @RequestMapping(value = "/{idNajemnik}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
   Najemnik getNajemnik(@PathVariable String idNajemnik) {
     log.trace("getNajemnik()" + idNajemnik);
     return najemnikService.getNajemnik(idNajemnik);
@@ -39,6 +45,12 @@ public class NajemnikEndpoint {
   List<Najemnik> getNajemnikAll() {
     log.trace("getNajemnikAll()");
     return najemnikService.getNajemnikAll();
+  }
+
+  @RequestMapping(value = "/{idNajemnik}", method = RequestMethod.DELETE)
+  void deleteNajemnik(@PathVariable String idNajemnik) {
+    log.trace("deleteNajemnik()");
+    najemnikService.deleteNajemnik(idNajemnik);
   }
 
   @RequestMapping(value = "/!all", method = RequestMethod.DELETE)
