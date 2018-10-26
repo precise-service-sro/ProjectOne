@@ -14,44 +14,70 @@
 
   Byt - Vyúčtování za byt - Přehled:
 
-  <h2>Vyúčtování za byt</h2>
+  <h2>Přehled vyúčtování za byt:</h2>
+  <h3>Zúčtovací období:  (možno zadat datumy, aby se to podle toho filtrovalo):
+  <br />
+  OD: <p:inputText /> - DO: <p:inputText /> (budou kalendářové komponenty)</h3>
 
-  Přehledová stránka všech za rok nasbíraných vyúčtování (vyfiltrované podle datumu na období 01-12/2017)
-  <br />
-  <h3>Byt: (označení bytu / link a proklid na detail na Byt Praha)</h3>
-  <br />
-  <h3>Adresa: (Přesná adresa, možná na téhle stránka ani nedáva smysl, když bude proklik)</h3>
-  <br />
-  <h3>Zúčtovací období:  (možno zadat datumy, aby se to podle toho filtrovalo)</h3>
+  <h:outputText value="#{vyuctovaniZaBytPrehledBean.init()}" />
 
-  <br />
-  <br />
+  <h:form id="formicek">
+    <p:growl id="msgs2" showDetail="true"/>
 
-  Takhle stranka a jeji struktura se bude muset nejak prekopat, aby to davalo vetsi smysl a zaroven to slo i pekne editovat
-
-  <br /><br />
-  Tlačítko na přidání celého nového vyúčtování / další celé tabulky
-  <div class="ui-g" style="text-align: right;">
-    <div class="ui-g-12">
-      <p:commandButton value="Přidat nové vyúčtování" icon="ui-icon-circle-plus" styleClass="ui-priority-primary" process="@this"
-                       actionListener="#{vyuctovaniZaBytBean.addRow()}" oncomplete="PF('polozka').addRow();" />
+    <div class="ui-g" style="text-align: right;">
+      <div class="ui-g-12">
+        <p:commandButton value="Přidat nové vyúčtování" icon="ui-icon-circle-plus" styleClass="ui-priority-primary" process="@this"
+                         actionListener="#{vyuctovaniZaBytPrehledBean.addRow()}" oncomplete="PF('vyuctovaniZaBytPrehledBeanTable').addRow();" />
+      </div>
     </div>
-  </div>
 
-  <br />
-  <br />
+    <p:dataTable id="vyuctovaniZaBytPrehledBeanTable" var="vyuctovaniZaByt" widgetVar="vyuctovaniZaBytPrehledBeanTable" value="#{vyuctovaniZaBytPrehledBean.getVyuctovaniZaBytList()}" resizableColumns="true" sortBy="#{1}" editable="true">
+      <p:columnGroup type="header">
+        <p:row>
+          <p:column headerText="Název"            rowspan="2"                      />
+          <p:column headerText="Byt"                          style="width: 200px;"/>
+          <p:column headerText="Zúčtovací období" colspan="2" style="width: 400px;"/>
+          <p:column headerText="Detail"           rowspan="2" style="width: 200px;"/>
+          <p:column                               rowspan="2" style="width:  32px;"/>
+          <p:column                               rowspan="2" style="width:  50px;"/>
+        </p:row>
+        <p:row>
+          <p:column headerText=" - filter -"/>
+          <p:column headerText="Začátek"/>
+          <p:column headerText="Konec"/>
+        </p:row>
+      </p:columnGroup>
 
+      <p:column>
+        <h:outputText value="#{vyuctovaniZaByt.nazev}" />
+      </p:column>
 
+      <p:column style="text-align: center;">
+        <h:outputText value="#{vyuctovaniZaByt.byt.nazev}" />
+      </p:column>
 
-  <div style="width: 98%; margin-left: 10px;">
-    <p:repeat value="#{vyuctovaniZaBytBean.idVyuctovaniList}" var="idVyuctovani">
-      <vyuctovani:tabulka idVyuctovani="#{idVyuctovani}"/>
-      <br/><br/>
-    </p:repeat>
-  </div>
+      <p:column style="text-align: center;">
+        <h:outputText value="#{vyuctovaniZaByt.zuctovaciObdobi.zacatek}" />
+      </p:column>
 
-  <br />
-  <br />
+      <p:column style="text-align: center;">
+        <h:outputText value="#{vyuctovaniZaByt.zuctovaciObdobi.konec}" />
+      </p:column>
+
+      <p:column>
+        <p:commandButton icon="ui-icon-circle-zoomin" actionListener="#{vyuctovaniZaBytPrehledBean.showVyuctovaniZaBytDetailBean(vyuctovaniZaByt)}" value="Podrobnosti" />
+      </p:column>
+
+      <p:column>
+        <p:rowEditor />
+      </p:column>
+
+      <p:column>
+        <p:commandButton icon="ui-icon-circle-minus" actionListener="#{vyuctovaniZaBytTabulkaBean.deleteRow(vyuctovaniZaByt)}" />
+      </p:column>
+    </p:dataTable>
+  </h:form>
+
   <br />
   <br />
   <br />

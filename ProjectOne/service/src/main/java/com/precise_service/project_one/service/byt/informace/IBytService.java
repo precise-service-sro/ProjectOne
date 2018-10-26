@@ -8,9 +8,13 @@ public interface IBytService {
 
   Byt postByt(Byt byt);
 
+  Byt putByt(Byt byt);
+
   Byt getByt(String idByt);
 
   List<Byt> getBytAll();
+
+  void deleteByt(String idByt);
 
   void deleteBytAll();
 }

@@ -13,7 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.precise_service.project_one.entity.byt.vyuctovani_za_byt.VyuctovaniZaBytPolozka;
 import com.precise_service.project_one.entity.najemnik.vyuctovani_pro_najemnika.VyuctovaniProNajemnika;
 import com.precise_service.project_one.service.najemnik.vyuctovani_pro_najemnika.IVyuctovaniProNajemnikaService;
-import com.precise_service.project_one.web.byt.vyuctovani.tabulka.VyuctovaniZaBytTabulkaBean;
 
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
@@ -25,9 +24,6 @@ public class VyuctovaniProNajemnikaBean implements Serializable {
 
   @Autowired
   private IVyuctovaniProNajemnikaService vyuctovaniProNajemnikaService;
-
-  @Autowired
-  private VyuctovaniZaBytTabulkaBean vyuctovaniZaBytTabulkaBean;
 
   public List<String> getIdVyuctovaniList(){
     DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
@@ -45,6 +41,6 @@ public class VyuctovaniProNajemnikaBean implements Serializable {
 
   public List<VyuctovaniZaBytPolozka> getRadkyVyuctovani() {
     //vyuctovaniZaBytTabulkaBean.prepareData(idVyuctovani);
-    return vyuctovaniZaBytTabulkaBean.getRadkyVyuctovani();
+    return null; //vyuctovaniZaBytTabulkaBean.getRadkyVyuctovani();
   }
 }

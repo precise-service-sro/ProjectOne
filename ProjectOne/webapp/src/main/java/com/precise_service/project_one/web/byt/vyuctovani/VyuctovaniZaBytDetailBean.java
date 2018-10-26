@@ -3,7 +3,6 @@ package com.precise_service.project_one.web.byt.vyuctovani;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -18,16 +17,12 @@ import com.precise_service.project_one.entity.byt.vyuctovani_za_byt.VyuctovaniCi
 import com.precise_service.project_one.entity.byt.vyuctovani_za_byt.VyuctovaniPolozkaTyp;
 import com.precise_service.project_one.entity.byt.vyuctovani_za_byt.VyuctovaniZaByt;
 import com.precise_service.project_one.entity.byt.vyuctovani_za_byt.VyuctovaniZaBytPolozka;
-import com.precise_service.project_one.entity.najemnik.predavaci_protokol.PredavaciProtokolPolozka;
 import com.precise_service.project_one.service.byt.vyuctovani_za_byt.IVyuctovaniPolozkaTypService;
 import com.precise_service.project_one.service.byt.vyuctovani_za_byt.IVyuctovaniZaBytPolozkaService;
 import com.precise_service.project_one.service.byt.vyuctovani_za_byt.IVyuctovaniZaBytService;
-import com.precise_service.project_one.web.byt.vyuctovani.tabulka.VyuctovaniZaBytTabulkaBean;
 
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
-
-import static com.precise_service.project_one.commons.DateFormatter.format;
 
 @Slf4j
 @Data
@@ -64,8 +59,11 @@ public class VyuctovaniZaBytDetailBean implements Serializable {
     LocalDate from = LocalDate.parse("01-01-2017", dateTimeFormatter);
     LocalDate to = LocalDate.parse("31-12-2017", dateTimeFormatter);
 
-    List<VyuctovaniZaByt> vyuctovaniInRange = vyuctovaniZaBytService.getVyuctovaniZaBytInRange(from, to);
-    vyuctovaniZaByt = vyuctovaniInRange.get(0);
+    if (vyuctovaniZaByt == null) {
+      // TODO: tohle budu moct ve finale uplne smazat
+      List<VyuctovaniZaByt> vyuctovaniInRange = vyuctovaniZaBytService.getVyuctovaniZaBytInRange(from, to);
+      vyuctovaniZaByt = vyuctovaniInRange.get(0);
+    }
 
     radkyVyuctovani = vyuctovaniZaBytPolozkaService.getVyuctovaniZaBytPolozkaAll(vyuctovaniZaByt.getId());
 

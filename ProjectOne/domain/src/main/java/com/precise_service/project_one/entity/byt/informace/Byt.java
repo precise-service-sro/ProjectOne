@@ -15,6 +15,7 @@ import lombok.Data;
 public class Byt extends BaseEntity {
 
   @JsonProperty("nazev")
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private String nazev;
 
   @JsonProperty("adresa")

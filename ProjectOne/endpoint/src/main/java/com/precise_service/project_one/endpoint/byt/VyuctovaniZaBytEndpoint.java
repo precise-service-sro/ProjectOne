@@ -18,7 +18,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @RestController
-@RequestMapping(value = "/byt/{idByt}/vyuctovani", path = "/byt/{idByt}/vyuctovani")
+@RequestMapping(value = "/byt/{idByt}/vyuctovaniZaByt", path = "/byt/{idByt}/vyuctovaniZaByt")
 public class VyuctovaniZaBytEndpoint {
 
   @Autowired

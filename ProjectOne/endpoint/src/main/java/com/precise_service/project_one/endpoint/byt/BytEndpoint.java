@@ -29,6 +29,12 @@ public class BytEndpoint {
     return bytService.postByt(byt);
   }
 
+  @RequestMapping(value = "", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+  Byt putByt(@RequestBody Byt byt) {
+    log.trace("putByt()");
+    return bytService.putByt(byt);
+  }
+
   @RequestMapping(value = "/{idByt}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
   Byt getByt(@PathVariable String idByt) {
     log.trace("getByt()" + idByt);
@@ -39,6 +45,12 @@ public class BytEndpoint {
   List<Byt> getBytAll() {
     log.trace("getBytAll()");
     return bytService.getBytAll();
+  }
+
+  @RequestMapping(value = "/{idByt}", method = RequestMethod.DELETE)
+  void deleteByt(@PathVariable String idByt) {
+    log.trace("deleteByt()");
+    bytService.deleteByt(idByt);
   }
 
   @RequestMapping(value = "/!all", method = RequestMethod.DELETE)

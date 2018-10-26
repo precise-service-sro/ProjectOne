@@ -24,6 +24,12 @@ public class BytService implements IBytService {
   }
 
   @Override
+  public Byt putByt(Byt byt) {
+    log.trace("putByt()");
+    return bytRepository.save(byt);
+  }
+
+  @Override
   public Byt getByt(String idByt) {
     log.trace("getByt()");
     return bytRepository.findById(idByt).get();
@@ -33,6 +39,12 @@ public class BytService implements IBytService {
   public List<Byt> getBytAll() {
     log.trace("getBytAll()");
     return bytRepository.findAll();
+  }
+
+  @Override
+  public void deleteByt(String idByt) {
+    log.trace("deleteByt()");
+    bytRepository.deleteById(idByt);
   }
 
   @Override

@@ -15,22 +15,21 @@
 
   <h2>Vyúčtování za byt</h2>
 
-  Přehledová stránka všech za rok nasbíraných vyúčtování (vyfiltrované podle datumu na období 01-12/2017)
-  <br />
-  <h3>Byt: (označení bytu / link a proklid na detail na Byt Praha) <h:outputText value="#{vyuctovaniZaBytDetailBean.vyuctovaniZaByt.nazev}" /></h3>
-  <br />
-  <h3>Adresa: (Přesná adresa, možná na téhle stránka ani nedáva smysl, když bude proklik)</h3>
-  <br />
-  <h3>Zúčtovací období:  (možno zadat datumy, aby se to podle toho filtrovalo) OD=<h:outputText value="#{vyuctovaniZaBytDetailBean.vyuctovaniZaByt.zuctovaciObdobi.zacatek}" /> - DO=<h:outputText value="#{vyuctovaniZaBytDetailBean.vyuctovaniZaByt.zuctovaciObdobi.konec}" /></h3>
-
-  <br />
-  <br />
-
   <div style="width: 98%; margin-left: 10px;">
 
     <h:outputText value="#{vyuctovaniZaBytDetailBean.init()}" />
 
     <h:form id="form">
+
+      <h3>Byt: (označení bytu / link a proklid na detail na Byt Praha) <h:outputText value="#{vyuctovaniZaBytDetailBean.vyuctovaniZaByt.byt.nazev}" /></h3>
+      <br />
+      <h3>Adresa: <h:outputText value="#{vyuctovaniZaBytDetailBean.vyuctovaniZaByt.byt.adresa}" /></h3>
+      <br />
+      <h3>Zúčtovací období: OD=<h:outputText value="#{vyuctovaniZaBytDetailBean.vyuctovaniZaByt.zuctovaciObdobi.zacatek}" /> - DO=<h:outputText value="#{vyuctovaniZaBytDetailBean.vyuctovaniZaByt.zuctovaciObdobi.konec}" /></h3>
+
+      <br />
+      <br />
+
       <p:growl id="msgs" showDetail="true"/>
 
       <div class="ui-g" style="text-align: right;">
