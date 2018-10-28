@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:component="http://java.sun.com/jsf/composite/common/component">
+
+<h:head>
+  <title>ProjectOne - Najemník - Informace - O nájemníkovi</title>
+</h:head>
+
+<h:body>
+  <h:outputText value="#{najemnikPrehledBean.init()}" />
+
+  Najemník - Informace - O nájemníkovi:
+
+  <h3>Jméno a Přijmení:</h3>
+  - <h:outputText value="#{najemnikPrehledBean.jmeno}" />&nbsp;<h:outputText value="#{najemnikPrehledBean.prijmeni}" />
+
+  <h3>Poznámky:</h3>
+  <component:editorTextu vstupniData="#{najemnikPrehledBean}" />
+
+  <component:dockMenu />
+</h:body>
+</html>
