@@ -3,6 +3,7 @@ package com.precise_service.project_one.web.nemovitost;
 import java.io.IOException;
 import java.io.Serializable;
 import java.text.ParseException;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -17,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.precise_service.project_one.entity.Adresa;
 import com.precise_service.project_one.entity.nemovitost.Nemovitost;
 import com.precise_service.project_one.entity.nemovitost.NemovitostTyp;
+import com.precise_service.project_one.entity.vyuctovani.VyuctovaniPolozkaTyp;
 import com.precise_service.project_one.service.nemovitost.INemovitostService;
 import com.precise_service.project_one.service.vyuctovani.IVyuctovaniService;
 import com.precise_service.project_one.web.vyuctovani.VyuctovaniDetailBean;
@@ -30,19 +32,17 @@ import lombok.extern.slf4j.Slf4j;
 public class NemovitostPrehledBean implements Serializable {
 
   @Autowired
-  private IVyuctovaniService vyuctovaniService;
-
-  @Autowired
   private INemovitostService nemovitostService;
 
   @Autowired
-  private VyuctovaniDetailBean vyuctovaniDetailBean;
+  private NemovitostDetailBean nemovitostDetailBean;
 
   private List<Nemovitost> nemovitostList;
+  private List<NemovitostTyp> nemovitostTypList;
 
-  @PostConstruct
-  public void init() throws ParseException {
+  public void init() {
     nemovitostList = nemovitostService.getNemovitostAll();
+    nemovitostTypList = Arrays.asList(NemovitostTyp.values());
   }
 
   public void onRowEdit(RowEditEvent event) {
@@ -61,10 +61,10 @@ public class NemovitostPrehledBean implements Serializable {
     FacesContext.getCurrentInstance().addMessage(null, msg);
   }
 
-  public void showVyuctovaniDetailBean(Nemovitost nemovitost) throws IOException {
-    //vyuctovaniDetailBean.setVyuctovani(byt);
+  public void showNemovitostDetailBean(Nemovitost nemovitost) throws IOException {
+    nemovitostDetailBean.setNemovitost(nemovitost);
     Faces.getFlash().setRedirect(true);
-    Faces.redirect("/vyuctovani/detail.xhtml");
+    Faces.redirect("/nemovitost/detail.xhtml");
   }
 
   public void addRow() throws ParseException {
@@ -92,7 +92,7 @@ public class NemovitostPrehledBean implements Serializable {
     }
     log.trace("deleting row with: " + deletedNemovitost.toString());
 
-    vyuctovaniService.deleteVyuctovani(deletedNemovitost.getId());
+    nemovitostService.deleteNemovitost(deletedNemovitost.getId());
 
     FacesMessage msg = new FacesMessage("Smazán řádek", deletedNemovitost.getNazev());
     FacesContext.getCurrentInstance().addMessage(null, msg);

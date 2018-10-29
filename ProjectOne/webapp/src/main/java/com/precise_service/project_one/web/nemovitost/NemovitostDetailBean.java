@@ -8,7 +8,6 @@ import javax.inject.Named;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.precise_service.project_one.entity.Adresa;
 import com.precise_service.project_one.entity.nemovitost.Nemovitost;
 import com.precise_service.project_one.service.nemovitost.INemovitostService;
 import com.precise_service.project_one.web.common.component.EditorTextuBean;
@@ -28,15 +27,12 @@ public class NemovitostDetailBean implements Serializable {
   private INemovitostService nemovitostService;
 
   private Nemovitost nemovitost;
-  private String nazev;
-  private Adresa adresa;
 
   public void init() {
-    // zatim vzdy vytahuji poznamky pouze k prvnimu nemovitostu v DB
-    nemovitost = nemovitostService.getNemovitostAll().get(0);
-
-    nazev = nemovitost.getNazev();
-    adresa = nemovitost.getAdresa();
+    // pokud nemam vybranou zadnou nemovitost, tak vytahuji prvni nemovitost z DB
+    if (nemovitost == null) {
+      nemovitost = nemovitostService.getNemovitostAll().get(0);
+    }
 
     // editovatelne poznamky
     editorTextuBean.setText(nemovitost.getPoznamky());

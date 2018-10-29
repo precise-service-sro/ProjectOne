@@ -1,7 +1,6 @@
 package com.precise_service.project_one.web.predavaci_protokol;
 
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -36,8 +35,6 @@ public class PredavaciProtokolDetailBean implements Serializable {
   @Autowired
   private IVyuctovaniPolozkaTypService vyuctovaniPolozkaTypService;
 
-  private String nazev;
-  private LocalDate datumPodpisu;
   private PredavaciProtokol predavaciProtokol;
   private List<PredavaciProtokolPolozka> radky;
   private List<VyuctovaniPolozkaTyp> vyuctovaniPolozkaTypList;
@@ -47,9 +44,6 @@ public class PredavaciProtokolDetailBean implements Serializable {
     log.trace("init()");
     List<PredavaciProtokol> predavaciProtokolList = predavaciProtokolService.getPredavaciProtokolList();
     predavaciProtokol = predavaciProtokolList.get(0);
-
-    nazev = predavaciProtokol.getNazev();
-    datumPodpisu = predavaciProtokol.getDatumPodpisu();
 
     radky = predavaciProtokolPolozkaService.getPredavaciProtokolPolozkaAll(predavaciProtokol.getId());
 

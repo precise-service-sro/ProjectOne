@@ -17,9 +17,9 @@ import org.primefaces.event.RowEditEvent;
 import org.primefaces.event.SelectEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.precise_service.project_one.entity.nemovitost.Nemovitost;
 import com.precise_service.project_one.entity.vyuctovani.Vyuctovani;
 import com.precise_service.project_one.entity.vyuctovani.VyuctovaniZuctovaciObdobi;
-import com.precise_service.project_one.entity.nemovitost.Nemovitost;
 import com.precise_service.project_one.service.nemovitost.INemovitostService;
 import com.precise_service.project_one.service.vyuctovani.IVyuctovaniService;
 
@@ -46,7 +46,6 @@ public class VyuctovaniPrehledBean implements Serializable {
   private List<Vyuctovani> vyuctovaniList;
   private List<Nemovitost> nemovitostList;
 
-  @PostConstruct
   public void init() throws ParseException {
 
     if (vyuctovaniZuctovaciObdobiFilter == null) {

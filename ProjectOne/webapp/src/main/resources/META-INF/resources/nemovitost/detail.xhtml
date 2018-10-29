@@ -16,10 +16,13 @@
   Detailní informace o konkrétní nemovitosti:
 
   <h3>Název:</h3>
-  - <h:outputText value="#{nemovitostDetailBean.nazev}" />
+  - <h:outputText value="#{nemovitostDetailBean.nemovitost.nazev}" />
+
+  <h3>Typ:</h3>
+  - <h:outputText value="#{nemovitostDetailBean.nemovitost.nemovitostTyp}" />
 
   <h3>Adresa:</h3>
-  - <h:outputText value="#{nemovitostDetailBean.adresa}" />
+  - <h:outputText value="#{nemovitostDetailBean.nemovitost.adresa}" />
 
   <h3>Poznámky:</h3>
   <component:editorTextu vstupniData="#{nemovitostDetailBean}" />
