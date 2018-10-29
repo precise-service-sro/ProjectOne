@@ -25,17 +25,11 @@ public class VyuctovaniPolozkaTypBean implements Serializable {
   @Autowired
   private IVyuctovaniPolozkaTypService vyuctovaniPolozkaTypService;
 
-  private List<VyuctovaniPolozkaTyp> radky;
+  private List<VyuctovaniPolozkaTyp> vyuctovaniPolozkaTypList;
 
-  @PostConstruct
-  private void init(){
+  public void init(){
     log.trace("init()");
-    radky = vyuctovaniPolozkaTypService.getVyuctovaniPolozkaTypAll();
-  }
-
-  public List<VyuctovaniPolozkaTyp> getRadky() {
-    log.trace("getRadky()");
-    return radky;
+    vyuctovaniPolozkaTypList = vyuctovaniPolozkaTypService.getVyuctovaniPolozkaTypAll();
   }
 
   public void onRowEdit(RowEditEvent event) {

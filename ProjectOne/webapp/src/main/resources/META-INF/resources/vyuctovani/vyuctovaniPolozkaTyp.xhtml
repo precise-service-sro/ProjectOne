@@ -10,33 +10,32 @@
 </h:head>
 
 <h:body>
+
+  <h:outputText value="#{vyuctovaniPolozkaTypBean.init()}" />
+
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+
   <div style="width: 98%; margin-left: 10px;">
 
-    Nastavení - Přehled vyúčtovávaných položek:
-
-    <br />
-    <br />
-    <br />
-
-    Tahle ta konkrétní stránka / a to nastavení by mělo být specificky prolinkováno vždy s nějakým konkrétním bytem (neco jako
-    /nemovitost/vyuctovani/nastaveni)
-
-    <br />
-    <br />
-    <br />
+    <h2>Nastavení vyúčtovávaných položek:</h2>
 
     <h:form id="form">
       <p:growl id="msgs" showDetail="true"/>
 
       <div class="ui-g" style="text-align: right;">
         <div class="ui-g-12">
-          <p:commandButton value="Přidat nový záznam" icon="ui-icon-circle-plus" styleClass="ui-priority-primary" process="@this" update=":form:msgs"
-                           actionListener="#{vyuctovaniPolozkaTypBean.addRow()}" oncomplete="PF('prehledVyuctovavanychPolozek').addRow();" />
+          <p:commandButton value="Přidat nový typ položky pro vyúčtování" icon="ui-icon-circle-plus" styleClass="ui-priority-primary" process="@this" update=":form:msgs"
+                           actionListener="#{vyuctovaniPolozkaTypBean.addRow()}" oncomplete="PF('vyuctovaniPolozkaTypTable').addRow();" />
         </div>
       </div>
 
-      <p:dataTable id="prehledVyuctovavanychPolozek" widgetVar="prehledVyuctovavanychPolozek"
-                   var="polozka" value="#{vyuctovaniPolozkaTypBean.radky}"
+      <p:dataTable id="vyuctovaniPolozkaTypTable" widgetVar="vyuctovaniPolozkaTypTable"
+                   var="vyuctovaniPolozkaTyp" value="#{vyuctovaniPolozkaTypBean.vyuctovaniPolozkaTypList}"
                    editable="true" rowIndexVar="index"
       >
 
@@ -54,15 +53,15 @@
 
         <p:column>
           <p:cellEditor>
-            <f:facet name="output"><h:outputText value="#{polozka.nazev}" /> </f:facet>
-            <f:facet name="input"><p:inputText id="polozkaNazevInput" value="#{polozka.nazev}" style="width:100%"/></f:facet>
+            <f:facet name="output"><h:outputText value="#{vyuctovaniPolozkaTyp.nazev}" /> </f:facet>
+            <f:facet name="input"><p:inputText id="vyuctovaniPolozkaTypNazevInput" value="#{vyuctovaniPolozkaTyp.nazev}" style="width:100%"/></f:facet>
           </p:cellEditor>
         </p:column>
 
         <p:column>
           <p:cellEditor>
-            <f:facet name="output"><h:outputText value="#{polozka.popis}" /> </f:facet>
-            <f:facet name="input"><p:inputText id="polozkaPopisInput" value="#{polozka.popis}" style="width:100%"/></f:facet>
+            <f:facet name="output"><h:outputText value="#{vyuctovaniPolozkaTyp.popis}" /> </f:facet>
+            <f:facet name="input"><p:inputText id="vyuctovaniPolozkaTypPopisInput" value="#{vyuctovaniPolozkaTyp.popis}" style="width:100%"/></f:facet>
           </p:cellEditor>
         </p:column>
 
@@ -71,13 +70,28 @@
         </p:column>
 
         <p:column>
-          <p:commandButton update="@form :form:msgs" icon="ui-icon-circle-minus" actionListener="#{vyuctovaniPolozkaTypBean.deleteRow(polozka.id)}" />
+          <p:commandButton update="@form :form:msgs" icon="ui-icon-circle-minus" actionListener="#{vyuctovaniPolozkaTypBean.deleteRow(vyuctovaniPolozkaTyp.id)}" />
         </p:column>
       </p:dataTable>
 
     </h:form>
   </div>
-  <component:dockMenu />
 
+  <br />
+  <br />
+  <br />
+
+  <h3>Další myšlenky a nápady na zlepšení:</h3>
+
+  - Tahle ta konkrétní stránka / a to nastavení by mělo být specificky prolinkováno vždy s nějakým konkrétním bytem (neco jako
+  /nemovitost/vyuctovani/nastaveni)
+  <br />
+  - Přidat do záhlaví nějakou identifikaci nemovitosti, které se to týká
+
+  <br />
+  <br />
+  <br />
+
+  <component:dockMenu />
 </h:body>
 </html>

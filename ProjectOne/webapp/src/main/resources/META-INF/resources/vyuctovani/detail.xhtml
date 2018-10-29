@@ -11,26 +11,23 @@
 
 <h:body>
 
-  Byt - Vyúčtování za byt - Detail:
+  <h:outputText value="#{vyuctovaniDetailBean.init()}" />
 
-  <h2>Vyúčtování za byt</h2>
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
 
   <div style="width: 98%; margin-left: 10px;">
-
-    <h:outputText value="#{vyuctovaniDetailBean.init()}" />
-
     <h:form id="form">
-
-      <h3>Byt: (označení bytu / link a proklid na detail na Byt Praha) <h:outputText value="#{vyuctovaniDetailBean.vyuctovani.nemovitost.nazev}" /></h3>
-      <br />
-      <h3>Adresa: <h:outputText value="#{vyuctovaniDetailBean.vyuctovani.nemovitost.adresa}" /></h3>
-      <br />
-      <h3>Zúčtovací období: OD=<h:outputText value="#{vyuctovaniDetailBean.vyuctovani.vyuctovaniZuctovaciObdobi.zacatek}" /> - DO=<h:outputText value="#{vyuctovaniDetailBean.vyuctovani.vyuctovaniZuctovaciObdobi.konec}" /></h3>
-
-      <br />
-      <br />
-
       <p:growl id="msgs" showDetail="true"/>
+      <h2>Vyúčtování za byt</h2>
+
+      <h3>Byt: <h:outputText value="#{vyuctovaniDetailBean.vyuctovani.nemovitost.nazev}" /></h3>
+      <h3>Adresa: <h:outputText value="#{vyuctovaniDetailBean.vyuctovani.nemovitost.adresa}" /></h3>
+      <h3>Zúčtovací období: OD=<h:outputText value="#{vyuctovaniDetailBean.vyuctovani.vyuctovaniZuctovaciObdobi.zacatek}" /> - DO=<h:outputText value="#{vyuctovaniDetailBean.vyuctovani.vyuctovaniZuctovaciObdobi.konec}" /></h3>
 
       <div class="ui-g" style="text-align: right;">
         <div class="ui-g-12">
@@ -156,17 +153,22 @@
       </p:dataTable>
 
     </h:form>
-
-
-
-
   </div>
 
   <br />
   <br />
   <br />
+
+  <h3>Další myšlenky a nápady na zlepšení:</h3>
+
+  - Proklikávání z označní bytu + editace (možnost změny bytu)
   <br />
+  - Editace položek v záhlaví + zformátování datumů
   <br />
+  - Přidat tlačítko zpět, anebo nějaké lepší drobečkové menu
+  <br />
+  - Přidat příznaky za bylo zaplaceno (a případně kdy) a zda již bylo přeúčtováno nájemníkům
+
   <br />
   <br />
   <br />

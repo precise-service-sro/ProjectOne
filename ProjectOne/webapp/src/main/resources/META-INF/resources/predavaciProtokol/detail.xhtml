@@ -13,21 +13,22 @@
 <h:body>
   <h:outputText value="#{predavaciProtokolDetailBean.init()}" />
 
-  <div style="width: 98%; margin-left: 10px;"></div>
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
 
-    Nájemník - Předávací protokol:
+  <div style="width: 98%; margin-left: 10px;"></div>
 
     <h2>Předávací protokol</h2>
 
-    KDO vs KOMU a CO (přidat i nějakou mojí identifikaci jako pronajimatele, to by šlo dát do nějaké samostatné stránky / tabulky v nastavení)
-    <br />
     <h3>Byt: <h:outputText value="#{predavaciProtokolDetailBean.predavaciProtokol.nemovitost.nazev}" title="#{predavaciProtokolDetailBean.predavaciProtokol.nemovitost.adresa}" /></h3>
-    <br />
-  <h3>Nájemník: <h:outputText value="#{predavaciProtokolDetailBean.predavaciProtokol.najemnik.jmeno}" />&nbsp;<h:outputText value="#{predavaciProtokolDetailBean.predavaciProtokol.najemnik.prijmeni}" /></h3>
-    <br />
-    <h3>Datum podpisu: <h:outputText value="#{predavaciProtokolDetailBean.predavaciProtokol.datumPodpisu}" /></h3>
 
-    <br />
+    <h3>Nájemník: <h:outputText value="#{predavaciProtokolDetailBean.predavaciProtokol.najemnik.jmeno}" />&nbsp;<h:outputText value="#{predavaciProtokolDetailBean.predavaciProtokol.najemnik.prijmeni}" /></h3>
+
+    <h3>Datum podpisu: <h:outputText value="#{predavaciProtokolDetailBean.predavaciProtokol.datumPodpisu}" /></h3>
 
     <h:form id="form">
       <p:growl id="msgs" showDetail="true"/>
@@ -104,7 +105,25 @@
         </p:column>
       </p:dataTable>
     </h:form>
-  <component:dockMenu />
 
+  <br />
+  <br />
+  <br />
+
+  <h3>Další myšlenky a nápady na zlepšení:</h3>
+
+  - Prokliky a editace fieldů v záhlaví
+  <br />
+  - Rozložení jako při tisku (popřípadě vymyslet jak to udělat pro tisk). Mám záměr to tady jednou nabušit do systému včetně stavů, vytisknout, nechat podepsat nájemníkem a poté to sem do aplikace uploadnout. Kvůli snadnějšímu vyhledávání.
+  <br />
+  - Přidat stránky na Přebírací protokol při ukončení nájmu (+ tam bude nějaké extra chytré tlačítko na vygenerování konečného vyúčtování)
+  <br />
+  - Rozšířit záhlaví o tabulku KDO vs KOMU a CO (přidat i nějakou mojí identifikaci jako pronajimatele, to by šlo dát do nějaké samostatné stránky / tabulky v nastavení)
+
+  <br />
+  <br />
+  <br />
+
+  <component:dockMenu />
 </h:body>
 </html>

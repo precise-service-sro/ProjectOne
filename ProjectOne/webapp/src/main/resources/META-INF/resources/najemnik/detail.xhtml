@@ -12,13 +12,40 @@
 <h:body>
   <h:outputText value="#{najemnikDetailBean.init()}" />
 
-  Najemník - Informace - O nájemníkovi:
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+
+  <h2>Podrobné informace o nájemníkovi:</h2>
 
   <h3>Jméno a Přijmení:</h3>
   - <h:outputText value="#{najemnikDetailBean.najemnik.getCeleJmeno()}" />
 
   <h3>Poznámky:</h3>
   <component:editorTextu vstupniData="#{najemnikDetailBean}" />
+
+  <br />
+  <br />
+  <br />
+
+  <h3>Další myšlenky a nápady na zlepšení:</h3>
+
+  - Upload dokladů, fotek, kotaktů
+  <br />
+  - Upload potvrzeií o pojištění odpovědnosti a automatické hlídání jeho platnosti + upozornění
+  <br />
+  - Editace fieldů v záhlaví
+  <br />
+  - Dolpnění všech známých údajů (z nájemní smlouvy), např. trvalé bydliště, kontakty, informace o práci, poznámky, povaha, důležité datumy narozenin atd.
+
+
+
+  <br />
+  <br />
+  <br />
 
   <component:dockMenu />
 </h:body>
