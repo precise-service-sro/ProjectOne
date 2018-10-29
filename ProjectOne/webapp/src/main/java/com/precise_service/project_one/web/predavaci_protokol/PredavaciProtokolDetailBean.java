@@ -39,11 +39,13 @@ public class PredavaciProtokolDetailBean implements Serializable {
   private List<PredavaciProtokolPolozka> radky;
   private List<VyuctovaniPolozkaTyp> vyuctovaniPolozkaTypList;
 
-  @PostConstruct
   public void init() {
     log.trace("init()");
-    List<PredavaciProtokol> predavaciProtokolList = predavaciProtokolService.getPredavaciProtokolList();
-    predavaciProtokol = predavaciProtokolList.get(0);
+
+    if (predavaciProtokol == null) {
+      List<PredavaciProtokol> predavaciProtokolList = predavaciProtokolService.getPredavaciProtokolList();
+      predavaciProtokol = predavaciProtokolList.get(0);
+    }
 
     radky = predavaciProtokolPolozkaService.getPredavaciProtokolPolozkaAll(predavaciProtokol.getId());
 

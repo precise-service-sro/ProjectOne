@@ -1,22 +1,19 @@
 package com.precise_service.project_one.web.predavaci_protokol;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
 
-import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
+import org.omnifaces.util.Faces;
 import org.primefaces.event.RowEditEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.precise_service.project_one.entity.vyuctovani.VyuctovaniPolozkaTyp;
 import com.precise_service.project_one.entity.predavaci_protokol.PredavaciProtokol;
-import com.precise_service.project_one.entity.predavaci_protokol.PredavaciProtokolPolozka;
-import com.precise_service.project_one.service.vyuctovani.IVyuctovaniPolozkaTypService;
-import com.precise_service.project_one.service.predavaci_protokol.IPredavaciProtokolPolozkaService;
 import com.precise_service.project_one.service.predavaci_protokol.IPredavaciProtokolService;
 
 import lombok.Data;
@@ -31,78 +28,65 @@ public class PredavaciProtokolPrehledBean implements Serializable {
   private IPredavaciProtokolService predavaciProtokolService;
 
   @Autowired
-  private IPredavaciProtokolPolozkaService predavaciProtokolPolozkaService;
+  private PredavaciProtokolDetailBean predavaciProtokolDetailBean;
 
-  @Autowired
-  private IVyuctovaniPolozkaTypService vyuctovaniPolozkaTypService;
+  private List<PredavaciProtokol> predavaciProtokolList;
 
-  private String nazev;
-  private LocalDate datumPodpisu;
-  private PredavaciProtokol predavaciProtokol;
-  private List<PredavaciProtokolPolozka> radky;
-  private List<VyuctovaniPolozkaTyp> vyuctovaniPolozkaTypList;
-
-  @PostConstruct
   public void init() {
     log.trace("init()");
-    List<PredavaciProtokol> predavaciProtokolList = predavaciProtokolService.getPredavaciProtokolList();
-    predavaciProtokol = predavaciProtokolList.get(0);
-
-    nazev = predavaciProtokol.getNazev();
-    datumPodpisu = predavaciProtokol.getDatumPodpisu();
-
-    radky = predavaciProtokolPolozkaService.getPredavaciProtokolPolozkaAll(predavaciProtokol.getId());
-
-    vyuctovaniPolozkaTypList = vyuctovaniPolozkaTypService.getVyuctovaniPolozkaTypAll();
+    predavaciProtokolList = predavaciProtokolService.getPredavaciProtokolAll();
   }
 
   public void onRowEdit(RowEditEvent event) {
     log.trace("onRowEdit()");
-    PredavaciProtokolPolozka predavaciProtokolPolozka = (PredavaciProtokolPolozka) event.getObject();
+    PredavaciProtokol predavaciProtokol = (PredavaciProtokol) event.getObject();
 
-    predavaciProtokolPolozkaService.putPredavaciProtokolPolozka(predavaciProtokolPolozka);
+    predavaciProtokolService.putPredavaciProtokol(predavaciProtokol);
 
-    FacesMessage msg = new FacesMessage("Uložena úprava řádky", predavaciProtokolPolozka.getNazev());
+    FacesMessage msg = new FacesMessage("Uložena úprava řádky", predavaciProtokol.getNazev());
     FacesContext.getCurrentInstance().addMessage(null, msg);
   }
 
   public void onRowCancel(RowEditEvent event) {
     log.trace("onRowCancel()");
-    FacesMessage msg = new FacesMessage("Zrušena úprava řádky", ((PredavaciProtokolPolozka) event.getObject()).getNazev());
+    FacesMessage msg = new FacesMessage("Zrušena úprava řádky", ((PredavaciProtokol) event.getObject()).getNazev());
     FacesContext.getCurrentInstance().addMessage(null, msg);
   }
 
   public void addRow() {
     log.trace("addRow()");
 
-    PredavaciProtokolPolozka predavaciProtokolPolozka = new PredavaciProtokolPolozka();
+    PredavaciProtokol predavaciProtokol = new PredavaciProtokol();
 
-    predavaciProtokolPolozka.setPredavaciProtokol(predavaciProtokol);
-    predavaciProtokolPolozka.setNazev("!!! Upravit název !!!");
-    predavaciProtokolPolozka.setVyuctovaniPolozkaTyp(null);
-    predavaciProtokolPolozka.setCisloMeraku("!!! Upravit popis !!!");
-    predavaciProtokolPolozka.setStavMeraku("!!! Upravit popis !!!");
+    predavaciProtokol.setNazev("!!! Upravit název !!!");
+    predavaciProtokol.setDatumPodpisu(LocalDate.now());
 
-    PredavaciProtokolPolozka saved = predavaciProtokolPolozkaService.postPredavaciProtokolPolozka(predavaciProtokolPolozka);
+    PredavaciProtokol saved = predavaciProtokolService.postPredavaciProtokol(predavaciProtokol);
     init();
 
     FacesMessage msg = new FacesMessage("Přidána nová řádka", saved.getId());
     FacesContext.getCurrentInstance().addMessage(null, msg);
   }
 
-  public void deleteRow(PredavaciProtokolPolozka deletedPredavaciProtokolPolozka) {
+  public void deleteRow(PredavaciProtokol deletedPredavaciProtokol) {
     log.trace("deleteRow()");
 
-    if (deletedPredavaciProtokolPolozka == null) {
+    if (deletedPredavaciProtokol == null) {
       log.trace("deleted row is null");
       return;
     }
-    log.trace("deleting row with: " + deletedPredavaciProtokolPolozka.toString());
+    log.trace("deleting row with: " + deletedPredavaciProtokol.toString());
 
-    predavaciProtokolPolozkaService.deletePredavaciProtokolPolozka(deletedPredavaciProtokolPolozka.getId());
+    predavaciProtokolService.deletePredavaciProtokol(deletedPredavaciProtokol.getId());
 
-    FacesMessage msg = new FacesMessage("Smazán řádek", deletedPredavaciProtokolPolozka.getNazev());
+    FacesMessage msg = new FacesMessage("Smazán řádek", deletedPredavaciProtokol.getNazev());
     FacesContext.getCurrentInstance().addMessage(null, msg);
     init();
+  }
+
+  public void showPredavaciProtokolDetailBean(PredavaciProtokol predavaciProtokol) throws IOException {
+    predavaciProtokolDetailBean.setPredavaciProtokol(predavaciProtokol);
+    Faces.getFlash().setRedirect(true);
+    Faces.redirect("/predavaciProtokol/detail.xhtml");
   }
 }
