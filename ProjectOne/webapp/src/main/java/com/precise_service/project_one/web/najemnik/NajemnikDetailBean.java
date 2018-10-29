@@ -27,15 +27,12 @@ public class NajemnikDetailBean implements Serializable {
   private INajemnikService najemnikService;
 
   private Najemnik najemnik;
-  private String jmeno;
-  private String prijmeni;
 
   public void init() {
-    // zatim vzdy vytahuji poznamky pouze k prvnimu najemnikovi v DB
-    najemnik = najemnikService.getNajemnikAll().get(0);
-
-    jmeno = najemnik.getJmeno();
-    prijmeni = najemnik.getPrijmeni();
+    if (najemnik == null) {
+      // zatim vzdy vytahuji poznamky pouze k prvnimu najemnikovi v DB
+      najemnik = najemnikService.getNajemnikAll().get(0);
+    }
 
     // editovatelne poznamky
     editorTextuBean.setText(najemnik.getPoznamky());

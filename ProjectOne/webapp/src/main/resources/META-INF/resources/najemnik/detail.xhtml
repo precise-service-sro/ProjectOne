@@ -15,7 +15,7 @@
   Najemník - Informace - O nájemníkovi:
 
   <h3>Jméno a Přijmení:</h3>
-  - <h:outputText value="#{najemnikDetailBean.jmeno}" />&nbsp;<h:outputText value="#{najemnikDetailBean.prijmeni}" />
+  - <h:outputText value="#{najemnikDetailBean.najemnik.getCeleJmeno()}" />
 
   <h3>Poznámky:</h3>
   <component:editorTextu vstupniData="#{najemnikDetailBean}" />

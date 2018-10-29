@@ -10,15 +10,80 @@
 </h:head>
 
 <h:body>
+
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+
   <h:outputText value="#{najemnikPrehledBean.init()}" />
 
-  Najemník - Informace - O nájemníkovi:
+  <h:form id="form">
+    <p:growl id="msgs" showDetail="true"/>
 
-  <h3>Jméno a Přijmení:</h3>
-  - <h:outputText value="#{najemnikPrehledBean.jmeno}" />&nbsp;<h:outputText value="#{najemnikPrehledBean.prijmeni}" />
+    <h2>Přehled nájemníků:</h2>
 
-  <h3>Poznámky:</h3>
-  <component:editorTextu vstupniData="#{najemnikPrehledBean}" />
+    <div class="ui-g" style="text-align: right;">
+      <div class="ui-g-12">
+        <p:commandButton value="Přidat nového nájemníka" icon="ui-icon-circle-plus" styleClass="ui-priority-primary" process="@this" update=":form:msgs"
+                         actionListener="#{najemnikPrehledBean.addRow()}" oncomplete="PF('najemnikPrehledBeanTable').addRow();" />
+      </div>
+    </div>
+
+    <p:dataTable id="najemnikPrehledBeanTable" var="najemnik" widgetVar="najemnikPrehledBeanTable" value="#{najemnikPrehledBean.getNajemnikList()}" resizableColumns="true" sortBy="#{1}" editable="true">
+      <p:ajax event="rowEdit" listener="#{najemnikPrehledBean.onRowEdit}" update=":form:msgs :form:najemnikPrehledBeanTable" />
+      <p:ajax event="rowEditCancel" listener="#{najemnikPrehledBean.onRowCancel}" update=":form:msgs" />
+
+      <p:columnGroup type="header">
+        <p:row>
+          <p:column headerText="Jméno"            />
+          <p:column headerText="Příjmení"         style="width: 180px;"/>
+          <p:column headerText="Nemovitost"       style="width: 200px;"/>
+          <p:column headerText="Detail"           rowspan="2" style="width: 160px;"/>
+          <p:column                               rowspan="2" style="width:  32px;"/>
+          <p:column                               rowspan="2" style="width:  50px;"/>
+        </p:row>
+      </p:columnGroup>
+
+      <p:column>
+        <p:cellEditor>
+          <f:facet name="output"><h:outputText value="#{najemnik.jmeno}" /> </f:facet>
+          <f:facet name="input"><p:inputText id="jmenoInput" value="#{najemnik.jmeno}" style="width:100%"/></f:facet>
+        </p:cellEditor>
+      </p:column>
+
+      <p:column>
+        <p:cellEditor>
+          <f:facet name="output"><h:outputText value="#{najemnik.prijmeni}" /> </f:facet>
+          <f:facet name="input"><p:inputText id="prijmeniInput" value="#{najemnik.prijmeni}" style="width:100%"/></f:facet>
+        </p:cellEditor>
+      </p:column>
+
+      <p:column style="text-align: center;">
+        <p:cellEditor>
+          <f:facet name="output"><h:outputText value="#{najemnik.nemovitost.nazev}" title="#{najemnik.nemovitost.adresa}"/> </f:facet>
+          <f:facet name="input">
+            <h:selectOneMenu value="#{najemnik.nemovitost}" style="width:100%" converter="#{nemovitostConverter}">
+              <f:selectItems value="#{najemnikPrehledBean.nemovitostList}" var="nemovitost" itemLabel="#{nemovitost.nazev}" itemValue="#{nemovitost}" />
+            </h:selectOneMenu>
+          </f:facet>
+        </p:cellEditor>
+      </p:column>
+
+      <p:column>
+        <p:commandButton icon="ui-icon-circle-zoomin" actionListener="#{najemnikPrehledBean.showNajemnikDetailBean(najemnik)}" value="Podrobnosti" />
+      </p:column>
+
+      <p:column>
+        <p:rowEditor />
+      </p:column>
+
+      <p:column>
+        <p:commandButton update="@form :form:msgs" icon="ui-icon-circle-minus" actionListener="#{najemnikPrehledBean.deleteRow(najemnik)}" />
+      </p:column>
+    </p:dataTable>
+  </h:form>
 
   <component:dockMenu />
 </h:body>
