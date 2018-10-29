@@ -56,17 +56,25 @@
         </p:cellEditor>
       </p:column>
 
-      <p:column>
+      <p:column style="text-align: center;">
         <p:cellEditor>
-          <f:facet name="output"><h:outputText value="#{predavaciProtokol.nazev}" /> </f:facet>
-          <f:facet name="input"><p:inputText id="nemovitostInput" value="#{predavaciProtokol.nazev}" style="width:100%"/></f:facet>
+          <f:facet name="output"><h:outputText value="#{predavaciProtokol.nemovitost.nazev}" title="#{predavaciProtokol.nemovitost.adresa}"/> </f:facet>
+          <f:facet name="input">
+            <h:selectOneMenu value="#{predavaciProtokol.nemovitost}" style="width:100%" converter="#{nemovitostConverter}">
+              <f:selectItems value="#{predavaciProtokolPrehledBean.nemovitostList}" var="nemovitost" itemLabel="#{nemovitost.nazev}" itemValue="#{nemovitost}" />
+            </h:selectOneMenu>
+          </f:facet>
         </p:cellEditor>
       </p:column>
 
       <p:column>
         <p:cellEditor>
-          <f:facet name="output"><h:outputText value="#{predavaciProtokol.nazev}" /> </f:facet>
-          <f:facet name="input"><p:inputText id="najemnikInput" value="#{predavaciProtokol.nazev}" style="width:100%"/></f:facet>
+          <f:facet name="output"><h:outputText value="#{predavaciProtokol.najemnik.getCeleJmeno()}" /> </f:facet>
+          <f:facet name="input">
+            <h:selectOneMenu value="#{predavaciProtokol.najemnik}" style="width:100%" converter="#{najemnikConverter}">
+              <f:selectItems value="#{predavaciProtokolPrehledBean.najemnikList}" var="najemnik" itemLabel="#{najemnik.getCeleJmeno()}" itemValue="#{najemnik}" />
+            </h:selectOneMenu>
+          </f:facet>
         </p:cellEditor>
       </p:column>
 

@@ -10,21 +10,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
-import com.precise_service.project_one.entity.nemovitost.Nemovitost;
-import com.precise_service.project_one.service.nemovitost.INemovitostService;
+import com.precise_service.project_one.entity.Najemnik;
+import com.precise_service.project_one.service.najemnik.INajemnikService;
 
-@Service("nemovitostConverter")
-public class NemovitostConverter implements Converter {
+@Service("najemnikConverter")
+public class NajemnikConverter implements Converter {
 
   @Autowired
-  private INemovitostService nemovitostService;
+  private INajemnikService najemnikService;
 
   public Object getAsObject(FacesContext fc, UIComponent uic, String value) {
     if (StringUtils.isEmpty(value)) {
       return null;
     }
     try {
-      return nemovitostService.getNemovitost(value);
+      return najemnikService.getNajemnik(value);
     } catch(NumberFormatException e) {
       throw new ConverterException(new FacesMessage(FacesMessage.SEVERITY_ERROR, "Conversion Error", "Not a valid theme."));
     }
@@ -34,6 +34,6 @@ public class NemovitostConverter implements Converter {
     if(object == null) {
       return null;
     }
-    return String.valueOf(((Nemovitost) object).getId());
+    return String.valueOf(((Najemnik) object).getId());
   }
 }

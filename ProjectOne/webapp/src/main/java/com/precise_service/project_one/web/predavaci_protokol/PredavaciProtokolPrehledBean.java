@@ -13,7 +13,11 @@ import org.omnifaces.util.Faces;
 import org.primefaces.event.RowEditEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.precise_service.project_one.entity.Najemnik;
+import com.precise_service.project_one.entity.nemovitost.Nemovitost;
 import com.precise_service.project_one.entity.predavaci_protokol.PredavaciProtokol;
+import com.precise_service.project_one.service.najemnik.INajemnikService;
+import com.precise_service.project_one.service.nemovitost.INemovitostService;
 import com.precise_service.project_one.service.predavaci_protokol.IPredavaciProtokolService;
 
 import lombok.Data;
@@ -30,11 +34,21 @@ public class PredavaciProtokolPrehledBean implements Serializable {
   @Autowired
   private PredavaciProtokolDetailBean predavaciProtokolDetailBean;
 
+  @Autowired
+  private INemovitostService nemovitostService;
+
+  @Autowired
+  private INajemnikService najemnikService;
+
   private List<PredavaciProtokol> predavaciProtokolList;
+  private List<Nemovitost> nemovitostList;
+  private List<Najemnik> najemnikList;
 
   public void init() {
     log.trace("init()");
     predavaciProtokolList = predavaciProtokolService.getPredavaciProtokolAll();
+    nemovitostList = nemovitostService.getNemovitostAll();
+    najemnikList = najemnikService.getNajemnikAll();
   }
 
   public void onRowEdit(RowEditEvent event) {

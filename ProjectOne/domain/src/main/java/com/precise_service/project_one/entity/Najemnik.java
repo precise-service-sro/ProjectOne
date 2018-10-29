@@ -35,4 +35,8 @@ public class Najemnik extends BaseEntity {
   @JsonProperty("poznamky")
   @JsonInclude(JsonInclude.Include.NON_NULL)
   private String poznamky;
+
+  public String getCeleJmeno(){
+    return "" + jmeno + " " + prijmeni;
+  }
 }
