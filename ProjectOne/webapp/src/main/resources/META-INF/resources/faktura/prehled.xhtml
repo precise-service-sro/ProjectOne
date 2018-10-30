@@ -7,6 +7,13 @@
 
 <h:head>
   <title>ProjectOne - Přehled faktur</title>
+  <script>
+    $(document).on("keydown", ".ui-cell-editor-input input", function(event) {
+      if (event.keyCode == 13) {
+          $(this).closest("tr").find(".ui-row-editor .ui-icon-check").click();
+      }
+    });
+  </script>
 </h:head>
 
 <h:body>
@@ -38,7 +45,7 @@
 
     <div class="ui-g" style="text-align: right;">
       <div class="ui-g-12">
-        <p:commandButton value="Přidat novou fakturu" icon="ui-icon-circle-plus" styleClass="ui-priority-primary" process="@this" update=":form:msgs"
+        <p:commandButton value="Přidat fakturu" icon="ui-icon-circle-plus" styleClass="ui-priority-primary" process="@this" update=":form:msgs"
                          actionListener="#{fakturaPrehledBean.addRow()}" oncomplete="PF('fakturaPrehledBeanTable').addRow();" />
       </div>
     </div>
@@ -46,15 +53,14 @@
     <p:dataTable id="fakturaPrehledBeanTable" var="faktura" widgetVar="fakturaPrehledBeanTable" value="#{fakturaPrehledBean.getFakturaList()}" resizableColumns="true" sortBy="#{1}" editable="true">
       <p:ajax event="rowEdit" listener="#{fakturaPrehledBean.onRowEdit}" update=":form:msgs :form:fakturaPrehledBeanTable" />
       <p:ajax event="rowEditCancel" listener="#{fakturaPrehledBean.onRowCancel}" update=":form:msgs" />
+      <p:defaultCommand target="" />
 
       <p:columnGroup type="header">
         <p:row>
-          <p:column headerText="Název"            rowspan="2"                      />
-          <p:column headerText="Byt"                          style="width: 200px;"/>
-          <p:column headerText="Zúčtovací období" colspan="2" style="width: 400px;"/>
-          <p:column headerText="Detail"           rowspan="2" style="width: 160px;"/>
-          <p:column                               rowspan="2" style="width:  32px;"/>
-          <p:column                               rowspan="2" style="width:  50px;"/>
+          <p:column headerText="Název faktury"    rowspan="2"                                  />
+          <p:column headerText="Byt"                                      style="width: 200px;"/>
+          <p:column headerText="Zúčtovací období"             colspan="2" style="width: 400px;"/>
+          <p:column headerText="Ovládání"         rowspan="2" colspan="3" style="width: 160px;"/>
         </p:row>
         <p:row>
           <p:column headerText=" - filter -"/>
@@ -66,7 +72,7 @@
       <p:column>
         <p:cellEditor>
           <f:facet name="output"><h:outputText value="#{faktura.nazev}" /> </f:facet>
-          <f:facet name="input"><p:inputText id="nazevInput" value="#{faktura.nazev}" style="width:100%"/></f:facet>
+          <f:facet name="input"><p:inputText id="nazevInput" value="#{faktura.nazev}" style="width:100%" onkeydown="if (event.keyCode === 13) {return false;}"/></f:facet>
         </p:cellEditor>
       </p:column>
 
@@ -107,18 +113,19 @@
         </p:cellEditor>
       </p:column>
 
-      <p:column>
-        <p:commandButton icon="ui-icon-circle-zoomin" actionListener="#{fakturaPrehledBean.showFakturaDetailBean(faktura)}" value="Podrobnosti" />
+      <p:column  style="width: 100px;">
+        <p:commandButton icon="ui-icon-circle-zoomin" actionListener="#{fakturaPrehledBean.showFakturaDetailBean(faktura)}" title="Podrobnosti" />
       </p:column>
 
-      <p:column>
+      <p:column style="width: 32px;">
         <p:rowEditor />
       </p:column>
 
-      <p:column>
+      <p:column style="width: 50px;">
         <p:commandButton update="@form :form:msgs" icon="ui-icon-circle-minus" actionListener="#{fakturaPrehledBean.deleteRow(faktura)}" />
       </p:column>
     </p:dataTable>
+
   </h:form>
 
   <br />
@@ -127,18 +134,10 @@
 
   <h3>Další myšlenky a nápady na zlepšení:</h3>
 
-  - Při kliknutí na ikonu vyúčtování by se mě to mohlo optat, zda chci vidět vyúčtování za nemovitosti anebo pro nájemníky
-  <br />
-  - Ono by totiz obecne entita VYUCTOVANI mela nemovitost nejaka obecna (ve smyslu, KDO vyuctovava, CO, KOMU, ZA JAKY OBDOBI, jakych nemovitosti se to tyka)
-  <br />
   - Rozchodit filtrování před datumy
   <br />
   - Rozchodit filtrování před nemovitosti a další sloupečky v tabulce
   <br />
-  - Tlačítko na vygenerování vyúčtování nájemníkovi z vyfiltrovaných vyúčtování (anebo vymyslet jak jinak se to bude spouštět)
-  <br />
-  - Přidat nějakou tabulku / graf na sledování spotřeby nájemníků v jednotlivých bytech (k tomu můžou mít přístup i sami nájemníci, a zadávat si tam stavy a sami si to monitorovat)
-
 
   <br />
   <br />
