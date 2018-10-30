@@ -39,7 +39,7 @@
 
     <div class="ui-g" style="text-align: right;">
       <div class="ui-g-12">
-        <p:commandButton value="Přidat nové vyúčtování" icon="ui-icon-circle-plus" styleClass="ui-priority-primary" process="@this" update=":form:msgs"
+        <p:commandButton value="Přidat vyúčtování" icon="ui-icon-circle-plus" styleClass="ui-priority-primary" process="@this" update=":form:msgs"
                          actionListener="#{vyuctovaniPrehledBean.addRow()}" oncomplete="PF('vyuctovaniPrehledBeanTable').addRow();" />
       </div>
     </div>
@@ -50,12 +50,10 @@
 
       <p:columnGroup type="header">
         <p:row>
-          <p:column headerText="Název"            rowspan="2"                      />
-          <p:column headerText="Byt"                          style="width: 200px;"/>
-          <p:column headerText="Zúčtovací období" colspan="2" style="width: 400px;"/>
-          <p:column headerText="Detail"           rowspan="2" style="width: 160px;"/>
-          <p:column                               rowspan="2" style="width:  32px;"/>
-          <p:column                               rowspan="2" style="width:  50px;"/>
+          <p:column headerText="Název"            rowspan="2"                                  />
+          <p:column headerText="Byt"                                      style="width: 200px;"/>
+          <p:column headerText="Zúčtovací období" colspan="2"             style="width: 400px;"/>
+          <p:column headerText="Ovládání"         colspan="3" rowspan="2" style="width: 160px;"/>
         </p:row>
         <p:row>
           <p:column headerText=" - filter -"/>
@@ -109,7 +107,7 @@
       </p:column>
 
       <p:column>
-        <p:commandButton icon="ui-icon-circle-zoomin" actionListener="#{vyuctovaniPrehledBean.showVyuctovaniDetailBean(vyuctovani)}" value="Podrobnosti" />
+        <p:commandButton icon="ui-icon-circle-zoomin" actionListener="#{vyuctovaniPrehledBean.showVyuctovaniDetailBean(vyuctovani)}" title="Podrobnosti" />
       </p:column>
 
       <p:column>
@@ -117,7 +115,7 @@
       </p:column>
 
       <p:column>
-        <p:commandButton update="@form :form:msgs" icon="ui-icon-circle-minus" actionListener="#{vyuctovaniPrehledBean.deleteRow(vyuctovani)}" />
+        <p:commandButton update="@form :form:msgs" icon="ui-icon-circle-minus" actionListener="#{vyuctovaniPrehledBean.deleteRow(vyuctovani)}" title="Odebrat" />
       </p:column>
     </p:dataTable>
   </h:form>

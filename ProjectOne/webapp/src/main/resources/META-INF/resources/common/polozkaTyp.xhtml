@@ -11,7 +11,7 @@
 
 <h:body>
 
-  <h:outputText value="#{vyuctovaniPolozkaTypBean.init()}" />
+  <h:outputText value="#{polozkaTypBean.init()}" />
 
   <br />
   <br />
@@ -27,41 +27,45 @@
     <h:form id="form">
       <p:growl id="msgs" showDetail="true"/>
 
+      
+      <h3>Byt:</h3>
+      - odkaz na prolinkovanou nemovitost
+      
+      
       <div class="ui-g" style="text-align: right;">
         <div class="ui-g-12">
-          <p:commandButton value="Přidat nový typ položky pro vyúčtování" icon="ui-icon-circle-plus" styleClass="ui-priority-primary" process="@this" update=":form:msgs"
-                           actionListener="#{vyuctovaniPolozkaTypBean.addRow()}" oncomplete="PF('vyuctovaniPolozkaTypTable').addRow();" />
+          <p:commandButton value="Přidat typ položky pro vyúčtování" icon="ui-icon-circle-plus" styleClass="ui-priority-primary" process="@this" update=":form:msgs"
+                           actionListener="#{polozkaTypBean.addRow()}" oncomplete="PF('polozkaTypTable').addRow();" />
         </div>
       </div>
 
-      <p:dataTable id="vyuctovaniPolozkaTypTable" widgetVar="vyuctovaniPolozkaTypTable"
-                   var="polozkaTyp" value="#{vyuctovaniPolozkaTypBean.polozkaTypList}"
+      <p:dataTable id="polozkaTypTable" widgetVar="polozkaTypTable"
+                   var="polozkaTyp" value="#{polozkaTypBean.polozkaTypList}"
                    editable="true" rowIndexVar="index"
       >
 
-        <p:ajax event="rowEdit" listener="#{vyuctovaniPolozkaTypBean.onRowEdit}" update=":form:msgs" />
-        <p:ajax event="rowEditCancel" listener="#{vyuctovaniPolozkaTypBean.onRowCancel}" update=":form:msgs" />
+        <p:ajax event="rowEdit" listener="#{polozkaTypBean.onRowEdit}" update=":form:msgs" />
+        <p:ajax event="rowEditCancel" listener="#{polozkaTypBean.onRowCancel}" update=":form:msgs" />
 
         <p:columnGroup type="header">
           <p:row>
-            <p:column headerText="Název" style="width: 150px;"/>
-            <p:column headerText="Popis" />
-            <p:column                    style="width:  32px;"/>
-            <p:column                    style="width:  50px;"/>
+            <p:column headerText="Název"                style="width: 150px;"/>
+            <p:column headerText="Popis"                />
+            <p:column headerText="Ovládání" colspan="2" style="width: 160px;"/>
           </p:row>
         </p:columnGroup>
 
         <p:column>
           <p:cellEditor>
             <f:facet name="output"><h:outputText value="#{polozkaTyp.nazev}" /> </f:facet>
-            <f:facet name="input"><p:inputText id="vyuctovaniPolozkaTypNazevInput" value="#{polozkaTyp.nazev}" style="width:100%"/></f:facet>
+            <f:facet name="input"><p:inputText id="polozkaTypNazevInput" value="#{polozkaTyp.nazev}" style="width:100%"/></f:facet>
           </p:cellEditor>
         </p:column>
 
         <p:column>
           <p:cellEditor>
             <f:facet name="output"><h:outputText value="#{polozkaTyp.popis}" /> </f:facet>
-            <f:facet name="input"><p:inputText id="vyuctovaniPolozkaTypPopisInput" value="#{polozkaTyp.popis}" style="width:100%"/></f:facet>
+            <f:facet name="input"><p:inputText id="polozkaTypPopisInput" value="#{polozkaTyp.popis}" style="width:100%"/></f:facet>
           </p:cellEditor>
         </p:column>
 
@@ -70,7 +74,7 @@
         </p:column>
 
         <p:column>
-          <p:commandButton update="@form :form:msgs" icon="ui-icon-circle-minus" actionListener="#{vyuctovaniPolozkaTypBean.deleteRow(polozkaTyp.id)}" />
+          <p:commandButton update="@form :form:msgs" icon="ui-icon-circle-minus" actionListener="#{polozkaTypBean.deleteRow(polozkaTyp.id)}" title="Odebrat" />
         </p:column>
       </p:dataTable>
 
@@ -87,6 +91,8 @@
   /nemovitost/vyuctovani/nastaveni)
   <br />
   - Přidat do záhlaví nějakou identifikaci nemovitosti, které se to týká
+  <br />
+  - Pri vytvoreni noveho typu bude automaticky prolinkovano na nemovitost, to se nebude vybirat manualne
 
   <br />
   <br />

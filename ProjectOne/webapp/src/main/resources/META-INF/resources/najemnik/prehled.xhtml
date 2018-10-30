@@ -27,7 +27,7 @@
 
     <div class="ui-g" style="text-align: right;">
       <div class="ui-g-12">
-        <p:commandButton value="Přidat nového nájemníka" icon="ui-icon-circle-plus" styleClass="ui-priority-primary" process="@this" update=":form:msgs"
+        <p:commandButton value="Přidat nájemníka" icon="ui-icon-circle-plus" styleClass="ui-priority-primary" process="@this" update=":form:msgs"
                          actionListener="#{najemnikPrehledBean.addRow()}" oncomplete="PF('najemnikPrehledBeanTable').addRow();" />
       </div>
     </div>
@@ -38,12 +38,10 @@
 
       <p:columnGroup type="header">
         <p:row>
-          <p:column headerText="Jméno"            />
-          <p:column headerText="Příjmení"         style="width: 180px;"/>
-          <p:column headerText="Nemovitost"       style="width: 200px;"/>
-          <p:column headerText="Detail"           rowspan="2" style="width: 160px;"/>
-          <p:column                               rowspan="2" style="width:  32px;"/>
-          <p:column                               rowspan="2" style="width:  50px;"/>
+          <p:column headerText="Jméno"                              />
+          <p:column headerText="Příjmení"                           style="width: 180px;"/>
+          <p:column headerText="Nemovitost"                         style="width: 200px;"/>
+          <p:column headerText="Ovládání"   colspan="3" rowspan="2" style="width: 160px;"/>
         </p:row>
       </p:columnGroup>
 
@@ -73,7 +71,7 @@
       </p:column>
 
       <p:column>
-        <p:commandButton icon="ui-icon-circle-zoomin" actionListener="#{najemnikPrehledBean.showNajemnikDetailBean(najemnik)}" value="Podrobnosti" />
+        <p:commandButton icon="ui-icon-circle-zoomin" actionListener="#{najemnikPrehledBean.showNajemnikDetailBean(najemnik)}" title="Podrobnosti" />
       </p:column>
 
       <p:column>
@@ -81,7 +79,7 @@
       </p:column>
 
       <p:column>
-        <p:commandButton update="@form :form:msgs" icon="ui-icon-circle-minus" actionListener="#{najemnikPrehledBean.deleteRow(najemnik)}" />
+        <p:commandButton update="@form :form:msgs" icon="ui-icon-circle-minus" actionListener="#{najemnikPrehledBean.deleteRow(najemnik)}" title="Odebrat" title="Odebrat" />
       </p:column>
     </p:dataTable>
   </h:form>

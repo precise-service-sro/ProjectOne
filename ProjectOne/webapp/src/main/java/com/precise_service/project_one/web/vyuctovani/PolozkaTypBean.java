@@ -11,6 +11,7 @@ import org.primefaces.event.RowEditEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.precise_service.project_one.entity.PolozkaTyp;
+import com.precise_service.project_one.entity.nemovitost.Nemovitost;
 import com.precise_service.project_one.service.vyuctovani.IPolozkaTypService;
 
 import lombok.Data;

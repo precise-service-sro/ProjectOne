@@ -27,7 +27,7 @@
     
     <div class="ui-g" style="text-align: right;">
       <div class="ui-g-12">
-        <p:commandButton value="Přidat novou nemovitost" icon="ui-icon-circle-plus" styleClass="ui-priority-primary" process="@this" update=":form:msgs"
+        <p:commandButton value="Přidat nemovitost" icon="ui-icon-circle-plus" styleClass="ui-priority-primary" process="@this" update=":form:msgs"
                          actionListener="#{nemovitostPrehledBean.addRow()}" oncomplete="PF('nemovitostPrehledBeanTable').addRow();" />
       </div>
     </div>
@@ -38,13 +38,11 @@
 
       <p:columnGroup type="header">
         <p:row>
-          <p:column headerText="Název"            />
-          <p:column headerText="Typ"              style="width: 180px;"/>
-          <p:column headerText="Ulice"            style="width: 200px;"/>
-          <p:column headerText="Město"            style="width: 200px;"/>
-          <p:column headerText="Detail"           rowspan="2" style="width: 160px;"/>
-          <p:column                               rowspan="2" style="width:  32px;"/>
-          <p:column                               rowspan="2" style="width:  50px;"/>
+          <p:column headerText="Název"                            />
+          <p:column headerText="Typ"                              style="width: 180px;"/>
+          <p:column headerText="Ulice"                            style="width: 200px;"/>
+          <p:column headerText="Město"                            style="width: 200px;"/>
+          <p:column headerText="Ovládání" colspan="3" rowspan="2" style="width: 160px;"/>
         </p:row>
       </p:columnGroup>
 
@@ -81,7 +79,7 @@
       </p:column>
 
       <p:column>
-        <p:commandButton icon="ui-icon-circle-zoomin" actionListener="#{nemovitostPrehledBean.showNemovitostDetailBean(nemovitost)}" value="Podrobnosti" />
+        <p:commandButton icon="ui-icon-circle-zoomin" actionListener="#{nemovitostPrehledBean.showNemovitostDetailBean(nemovitost)}" title="Podrobnosti" />
       </p:column>
 
       <p:column>
@@ -89,7 +87,7 @@
       </p:column>
 
       <p:column>
-        <p:commandButton update="@form :form:msgs" icon="ui-icon-circle-minus" actionListener="#{nemovitostPrehledBean.deleteRow(nemovitost)}" />
+        <p:commandButton update="@form :form:msgs" icon="ui-icon-circle-minus" actionListener="#{nemovitostPrehledBean.deleteRow(nemovitost)}" title="Odebrat" />
       </p:column>
     </p:dataTable>
   </h:form>

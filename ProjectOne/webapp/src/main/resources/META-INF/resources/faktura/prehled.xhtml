@@ -113,16 +113,16 @@
         </p:cellEditor>
       </p:column>
 
-      <p:column  style="width: 100px;">
+      <p:column>
         <p:commandButton icon="ui-icon-circle-zoomin" actionListener="#{fakturaPrehledBean.showFakturaDetailBean(faktura)}" title="Podrobnosti" />
       </p:column>
 
-      <p:column style="width: 32px;">
+      <p:column>
         <p:rowEditor />
       </p:column>
 
-      <p:column style="width: 50px;">
-        <p:commandButton update="@form :form:msgs" icon="ui-icon-circle-minus" actionListener="#{fakturaPrehledBean.deleteRow(faktura)}" />
+      <p:column>
+        <p:commandButton update="@form :form:msgs" icon="ui-icon-circle-minus" actionListener="#{fakturaPrehledBean.deleteRow(faktura)}" title="Odebrat" />
       </p:column>
     </p:dataTable>
 
