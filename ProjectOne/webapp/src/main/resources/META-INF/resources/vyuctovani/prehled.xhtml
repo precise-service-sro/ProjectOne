@@ -5,7 +5,6 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:vyuctovani="http://java.sun.com/jsf/composite/vyuctovani/component"
       xmlns:component="http://java.sun.com/jsf/composite/common/component">
 
 <h:head>
@@ -13,6 +12,7 @@
 </h:head>
 
 <h:body>
+  <h:outputText value="#{vyuctovaniPrehledBean.init()}" />
 
   <br />
   <br />
@@ -21,20 +21,106 @@
   <br />
   <br />
 
-  <div style="width: 98%; margin-left: 10px;">
+  <h:form id="form">
+    <p:growl id="msgs" showDetail="true"/>
 
-    <h2>Vyúčtování pro nájemníka:</h2>
+    <h2>Přehled vyúčtování nájemníkům:</h2>
 
-    <vyuctovani:hlavicka />
-    <br />
-    <br />
-    <br />
-    <vyuctovani:tabulka />
-    <br />
-    <br />
-    <br />
-    <vyuctovani:paticka />
-  </div>
+    <h3>Zúčtovací období:
+      OD:
+      <p:calendar id="zuctovaciObdobiFilterZacatek" value="#{vyuctovaniPrehledBean.zuctovaciObdobi.zacatek}" pattern="dd-MM-yyyy">
+        <p:ajax event="dateSelect" listener="#{vyuctovaniPrehledBean.zuctovaciObdobiZacatekDateSelect}" update="msgs vyuctovaniPrehledBeanTable" />
+      </p:calendar>
+      - DO:
+      <p:calendar id="zuctovaciObdobiFilterKonec" value="#{vyuctovaniPrehledBean.zuctovaciObdobi.konec}" pattern="dd-MM-yyyy">
+        <p:ajax event="dateSelect" listener="#{vyuctovaniPrehledBean.zuctovaciObdobiKonecDateSelect}" update="msgs vyuctovaniPrehledBeanTable" />
+      </p:calendar>
+    </h3>
+
+    <div class="ui-g" style="text-align: right;">
+      <div class="ui-g-12">
+        <p:commandButton value="Přidat nové vyúčtování" icon="ui-icon-circle-plus" styleClass="ui-priority-primary" process="@this" update=":form:msgs"
+                         actionListener="#{vyuctovaniPrehledBean.addRow()}" oncomplete="PF('vyuctovaniPrehledBeanTable').addRow();" />
+      </div>
+    </div>
+
+    <p:dataTable id="vyuctovaniPrehledBeanTable" var="vyuctovani" widgetVar="vyuctovaniPrehledBeanTable" value="#{vyuctovaniPrehledBean.getVyuctovaniList()}" resizableColumns="true" sortBy="#{1}" editable="true">
+      <p:ajax event="rowEdit" listener="#{vyuctovaniPrehledBean.onRowEdit}" update=":form:msgs :form:vyuctovaniPrehledBeanTable" />
+      <p:ajax event="rowEditCancel" listener="#{vyuctovaniPrehledBean.onRowCancel}" update=":form:msgs" />
+
+      <p:columnGroup type="header">
+        <p:row>
+          <p:column headerText="Název"            rowspan="2"                      />
+          <p:column headerText="Byt"                          style="width: 200px;"/>
+          <p:column headerText="Zúčtovací období" colspan="2" style="width: 400px;"/>
+          <p:column headerText="Detail"           rowspan="2" style="width: 160px;"/>
+          <p:column                               rowspan="2" style="width:  32px;"/>
+          <p:column                               rowspan="2" style="width:  50px;"/>
+        </p:row>
+        <p:row>
+          <p:column headerText=" - filter -"/>
+          <p:column headerText="Začátek"/>
+          <p:column headerText="Konec"/>
+        </p:row>
+      </p:columnGroup>
+
+      <p:column>
+        <p:cellEditor>
+          <f:facet name="output"><h:outputText value="#{vyuctovani.nazev}" /> </f:facet>
+          <f:facet name="input"><p:inputText id="nazevInput" value="#{vyuctovani.nazev}" style="width:100%"/></f:facet>
+        </p:cellEditor>
+      </p:column>
+
+      <p:column style="text-align: center;">
+        <p:cellEditor>
+          <f:facet name="output"><h:outputText value="#{vyuctovani.nemovitost.nazev}" title="#{vyuctovani.nemovitost.adresa}"/> </f:facet>
+          <f:facet name="input">
+            <h:selectOneMenu value="#{vyuctovani.nemovitost}" style="width:100%" converter="#{nemovitostConverter}">
+              <f:selectItems value="#{vyuctovaniPrehledBean.nemovitostList}" var="nemovitost" itemLabel="#{nemovitost.nazev}" itemValue="#{nemovitost}" />
+            </h:selectOneMenu>
+          </f:facet>
+        </p:cellEditor>
+      </p:column>
+
+      <p:column style="text-align: center;">
+        <p:cellEditor>
+          <f:facet name="output">
+            <h:outputText value="#{vyuctovani.zuctovaciObdobi.zacatek}">
+              <f:convertDateTime pattern="dd-MM-yyyy" />
+            </h:outputText>
+          </f:facet>
+          <f:facet name="input">
+            <p:calendar id="zuctovaciObdobiZacatekInput" value="#{vyuctovani.zuctovaciObdobi.zacatek}" pattern="dd-MM-yyyy" style="width:100%"/>
+          </f:facet>
+        </p:cellEditor>
+      </p:column>
+
+      <p:column style="text-align: center;">
+        <p:cellEditor>
+          <f:facet name="output">
+            <h:outputText value="#{vyuctovani.zuctovaciObdobi.konec}" >
+              <f:convertDateTime pattern="dd-MM-yyyy" />
+            </h:outputText>
+          </f:facet>
+          <f:facet name="input">
+            <p:calendar id="zuctovaciObdobiKonecInput" value="#{vyuctovani.zuctovaciObdobi.konec}" pattern="dd-MM-yyyy" style="width:100%"/>
+          </f:facet>
+        </p:cellEditor>
+      </p:column>
+
+      <p:column>
+        <p:commandButton icon="ui-icon-circle-zoomin" actionListener="#{vyuctovaniPrehledBean.showVyuctovaniDetailBean(vyuctovani)}" value="Podrobnosti" />
+      </p:column>
+
+      <p:column>
+        <p:rowEditor />
+      </p:column>
+
+      <p:column>
+        <p:commandButton update="@form :form:msgs" icon="ui-icon-circle-minus" actionListener="#{vyuctovaniPrehledBean.deleteRow(vyuctovani)}" />
+      </p:column>
+    </p:dataTable>
+  </h:form>
 
   <br />
   <br />
@@ -42,8 +128,11 @@
 
   <h3>Další myšlenky a nápady na zlepšení:</h3>
 
-  - Tlačítko k náhledu a tlačítko k tisku
+  - Přidat nové sloupečky (nájemník, a výsledek, a status (jestli bylo zaplaceno))
   <br />
+  - Z generátoru rovnou skočit sem na přehled
+  <br />
+  - Generátor by mohl být udělán jen jako nějaký dialog
 
   <br />
   <br />

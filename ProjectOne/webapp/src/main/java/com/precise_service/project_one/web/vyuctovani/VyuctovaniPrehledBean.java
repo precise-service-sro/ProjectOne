@@ -41,19 +41,19 @@ public class VyuctovaniPrehledBean implements Serializable {
 
   public static final String ZUCTOVACI_OBDOBI_DATE_FORMAT = "dd/MM/yyyy";
 
-  private ZuctovaciObdobi zuctovaciObdobiFilter;
+  private ZuctovaciObdobi zuctovaciObdobi;
   private List<Vyuctovani> vyuctovaniList;
   private List<Nemovitost> nemovitostList;
 
   public void init() throws ParseException {
 
-    if (zuctovaciObdobiFilter == null) {
-      zuctovaciObdobiFilter = new ZuctovaciObdobi();
+    if (zuctovaciObdobi == null) {
+      zuctovaciObdobi = new ZuctovaciObdobi();
       SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
       Date zacatek = simpleDateFormat.parse("01-01-2017");
       Date konec = simpleDateFormat.parse("31-12-2017");
-      zuctovaciObdobiFilter.setZacatek(zacatek);
-      zuctovaciObdobiFilter.setKonec(konec);
+      zuctovaciObdobi.setZacatek(zacatek);
+      zuctovaciObdobi.setKonec(konec);
     }
 
     // getVyuctovaniInRange
@@ -119,7 +119,7 @@ public class VyuctovaniPrehledBean implements Serializable {
     init();
   }
 
-  public void vyuctovaniZuctovaciObdobiZacatekDateSelect(SelectEvent event) throws ParseException {
+  public void zuctovaciObdobiZacatekDateSelect(SelectEvent event) throws ParseException {
     FacesContext facesContext = FacesContext.getCurrentInstance();
     SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
     Date zacatek = (Date) event.getObject();
@@ -127,7 +127,7 @@ public class VyuctovaniPrehledBean implements Serializable {
     init();
   }
 
-  public void vyuctovaniZuctovaciObdobiKonecDateSelect(SelectEvent event) throws ParseException {
+  public void zuctovaciObdobiKonecDateSelect(SelectEvent event) throws ParseException {
     FacesContext facesContext = FacesContext.getCurrentInstance();
     SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
     Date konec = (Date) event.getObject();
