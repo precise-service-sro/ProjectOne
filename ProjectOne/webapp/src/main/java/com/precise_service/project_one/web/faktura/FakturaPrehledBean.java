@@ -1,4 +1,4 @@
-package com.precise_service.project_one.web.vyuctovani;
+package com.precise_service.project_one.web.faktura;
 
 import java.io.IOException;
 import java.io.Serializable;
@@ -18,9 +18,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.precise_service.project_one.entity.ZuctovaciObdobi;
 import com.precise_service.project_one.entity.nemovitost.Nemovitost;
-import com.precise_service.project_one.entity.vyuctovani.Vyuctovani;
+import com.precise_service.project_one.entity.faktura.Faktura;
 import com.precise_service.project_one.service.nemovitost.INemovitostService;
-import com.precise_service.project_one.service.vyuctovani.IVyuctovaniService;
+import com.precise_service.project_one.service.faktura.IFakturaService;
 
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
@@ -28,98 +28,98 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Data
 @Named
-public class VyuctovaniPrehledBean implements Serializable {
+public class FakturaPrehledBean implements Serializable {
 
   @Autowired
-  private IVyuctovaniService vyuctovaniService;
+  private IFakturaService fakturaService;
 
   @Autowired
   private INemovitostService nemovitostService;
 
   @Autowired
-  private VyuctovaniDetailBean vyuctovaniDetailBean;
+  private FakturaDetailBean fakturaDetailBean;
 
   public static final String ZUCTOVACI_OBDOBI_DATE_FORMAT = "dd/MM/yyyy";
 
-  private ZuctovaciObdobi zuctovaciObdobiFilter;
-  private List<Vyuctovani> vyuctovaniList;
+  private ZuctovaciObdobi zuctovaciObdobi;
+  private List<Faktura> fakturaList;
   private List<Nemovitost> nemovitostList;
 
   public void init() throws ParseException {
 
-    if (zuctovaciObdobiFilter == null) {
-      zuctovaciObdobiFilter = new ZuctovaciObdobi();
+    if (zuctovaciObdobi == null) {
+      zuctovaciObdobi = new ZuctovaciObdobi();
       SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
       Date zacatek = simpleDateFormat.parse("01-01-2017");
       Date konec = simpleDateFormat.parse("31-12-2017");
-      zuctovaciObdobiFilter.setZacatek(zacatek);
-      zuctovaciObdobiFilter.setKonec(konec);
+      zuctovaciObdobi.setZacatek(zacatek);
+      zuctovaciObdobi.setKonec(konec);
     }
 
-    // getVyuctovaniInRange
-    //vyuctovaniList = vyuctovaniService.getVyuctovaniInRange(zacatek, konec);
+    // getFakturaInRange
+    //fakturaList = fakturaService.getFakturaInRange(zacatek, konec);
 
-    // getVyuctovaniAll
-    vyuctovaniList = vyuctovaniService.getVyuctovaniAll();
+    // getFakturaAll
+    fakturaList = fakturaService.getFakturaAll();
 
     nemovitostList = nemovitostService.getNemovitostAll();
   }
 
   public void onRowEdit(RowEditEvent event) {
     log.trace("onRowEdit()");
-    Vyuctovani vyuctovani = (Vyuctovani) event.getObject();
+    Faktura faktura = (Faktura) event.getObject();
 
-    vyuctovaniService.putVyuctovani(vyuctovani);
+    fakturaService.putFaktura(faktura);
 
-    FacesMessage msg = new FacesMessage("Uložena úprava řádky", vyuctovani.getNazev());
+    FacesMessage msg = new FacesMessage("Uložena úprava řádky", faktura.getNazev());
     FacesContext.getCurrentInstance().addMessage(null, msg);
   }
 
   public void onRowCancel(RowEditEvent event) {
     log.trace("onRowCancel()");
-    FacesMessage msg = new FacesMessage("Zrušena úprava řádky", ((Vyuctovani) event.getObject()).getNazev());
+    FacesMessage msg = new FacesMessage("Zrušena úprava řádky", ((Faktura) event.getObject()).getNazev());
     FacesContext.getCurrentInstance().addMessage(null, msg);
   }
 
-  public void showVyuctovaniDetailBean(Vyuctovani vyuctovani) throws IOException {
-    vyuctovaniDetailBean.setVyuctovani(vyuctovani);
+  public void showFakturaDetailBean(Faktura faktura) throws IOException {
+    fakturaDetailBean.setFaktura(faktura);
     Faces.getFlash().setRedirect(true);
-    Faces.redirect("/vyuctovani/detail.xhtml");
+    Faces.redirect("/faktura/detail.xhtml");
   }
 
   public void addRow() throws ParseException {
     log.trace("addRow()");
 
-    Vyuctovani vyuctovani = new Vyuctovani();
+    Faktura faktura = new Faktura();
 
-    vyuctovani.setNazev("!!! Upravit název !!!");
-    vyuctovani.setNemovitost(null);
-    vyuctovani.setZuctovaciObdobi(new ZuctovaciObdobi());
+    faktura.setNazev("!!! Upravit název !!!");
+    faktura.setNemovitost(null);
+    faktura.setZuctovaciObdobi(new ZuctovaciObdobi());
 
-    Vyuctovani saved = vyuctovaniService.postVyuctovani(vyuctovani);
+    Faktura saved = fakturaService.postFaktura(faktura);
     init();
 
     FacesMessage msg = new FacesMessage("Přidána nová řádka", saved.getId());
     FacesContext.getCurrentInstance().addMessage(null, msg);
   }
 
-  public void deleteRow(Vyuctovani deletedVyuctovani) throws ParseException {
+  public void deleteRow(Faktura deletedFaktura) throws ParseException {
     log.trace("deleteRow()");
 
-    if (deletedVyuctovani == null) {
+    if (deletedFaktura == null) {
       log.trace("deleted row is null");
       return;
     }
-    log.trace("deleting row with: " + deletedVyuctovani.toString());
+    log.trace("deleting row with: " + deletedFaktura.toString());
 
-    vyuctovaniService.deleteVyuctovani(deletedVyuctovani.getId());
+    fakturaService.deleteFaktura(deletedFaktura.getId());
 
-    FacesMessage msg = new FacesMessage("Smazán řádek", deletedVyuctovani.getNazev());
+    FacesMessage msg = new FacesMessage("Smazán řádek", deletedFaktura.getNazev());
     FacesContext.getCurrentInstance().addMessage(null, msg);
     init();
   }
 
-  public void vyuctovaniZuctovaciObdobiZacatekDateSelect(SelectEvent event) throws ParseException {
+  public void zuctovaciObdobiZacatekDateSelect(SelectEvent event) throws ParseException {
     FacesContext facesContext = FacesContext.getCurrentInstance();
     SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
     Date zacatek = (Date) event.getObject();
@@ -127,7 +127,7 @@ public class VyuctovaniPrehledBean implements Serializable {
     init();
   }
 
-  public void vyuctovaniZuctovaciObdobiKonecDateSelect(SelectEvent event) throws ParseException {
+  public void zuctovaciObdobiKonecDateSelect(SelectEvent event) throws ParseException {
     FacesContext facesContext = FacesContext.getCurrentInstance();
     SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
     Date konec = (Date) event.getObject();

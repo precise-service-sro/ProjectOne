@@ -3,7 +3,6 @@ package com.precise_service.project_one.web.predavaci_protokol;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
@@ -11,12 +10,12 @@ import javax.inject.Named;
 import org.primefaces.event.RowEditEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.precise_service.project_one.entity.PolozkaTyp;
 import com.precise_service.project_one.entity.predavaci_protokol.PredavaciProtokol;
 import com.precise_service.project_one.entity.predavaci_protokol.PredavaciProtokolPolozka;
-import com.precise_service.project_one.entity.vyuctovani.VyuctovaniPolozkaTyp;
 import com.precise_service.project_one.service.predavaci_protokol.IPredavaciProtokolPolozkaService;
 import com.precise_service.project_one.service.predavaci_protokol.IPredavaciProtokolService;
-import com.precise_service.project_one.service.vyuctovani.IVyuctovaniPolozkaTypService;
+import com.precise_service.project_one.service.vyuctovani.IPolozkaTypService;
 
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
@@ -33,11 +32,11 @@ public class PredavaciProtokolDetailBean implements Serializable {
   private IPredavaciProtokolPolozkaService predavaciProtokolPolozkaService;
 
   @Autowired
-  private IVyuctovaniPolozkaTypService vyuctovaniPolozkaTypService;
+  private IPolozkaTypService polozkaTypService;
 
   private PredavaciProtokol predavaciProtokol;
   private List<PredavaciProtokolPolozka> radky;
-  private List<VyuctovaniPolozkaTyp> vyuctovaniPolozkaTypList;
+  private List<PolozkaTyp> polozkaTypList;
 
   public void init() {
     log.trace("init()");
@@ -49,7 +48,7 @@ public class PredavaciProtokolDetailBean implements Serializable {
 
     radky = predavaciProtokolPolozkaService.getPredavaciProtokolPolozkaAll(predavaciProtokol.getId());
 
-    vyuctovaniPolozkaTypList = vyuctovaniPolozkaTypService.getVyuctovaniPolozkaTypAll();
+    polozkaTypList = polozkaTypService.getPolozkaTypAll();
   }
 
   public void onRowEdit(RowEditEvent event) {
@@ -75,7 +74,7 @@ public class PredavaciProtokolDetailBean implements Serializable {
 
     predavaciProtokolPolozka.setPredavaciProtokol(predavaciProtokol);
     predavaciProtokolPolozka.setNazev("!!! Upravit název !!!");
-    predavaciProtokolPolozka.setVyuctovaniPolozkaTyp(null);
+    predavaciProtokolPolozka.setPolozkaTyp(null);
     predavaciProtokolPolozka.setCisloMeraku("!!! Upravit popis !!!");
     predavaciProtokolPolozka.setStavMeraku("!!! Upravit popis !!!");
 

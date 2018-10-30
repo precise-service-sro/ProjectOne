@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:component="http://java.sun.com/jsf/composite/common/component">
+
+<h:head>
+  <title>ProjectOne - Najemník - Vyúčtování</title>
+</h:head>
+
+<h:body>
+
+  <h:outputText value="#{vyuctovaniGeneratorBean.init()}" />
+
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+
+  <div style="width: 98%; margin-left: 10px;">
+
+    <h:form id="form">
+      <p:growl id="msgs" showDetail="true"/>
+
+      <h2>Generování vyúčtování pro nájemníka:</h2>
+
+      <h3>Nemovitost:</h3>
+      <h:selectOneMenu value="#{vyuctovaniGeneratorBean.nemovitost}" style="width: 200px; height: 40px;" converter="#{nemovitostConverter}">
+        <f:selectItems value="#{vyuctovaniGeneratorBean.nemovitostList}" var="nemovitost" itemLabel="#{nemovitost.nazev}" itemValue="#{nemovitost}" />
+      </h:selectOneMenu>
+
+      <br />
+      <h3>Nájemník:</h3>
+      <h:selectOneMenu value="#{vyuctovaniGeneratorBean.najemnik}" style="width: 200px; height: 40px;" converter="#{najemnikConverter}">
+        <f:selectItems value="#{vyuctovaniGeneratorBean.najemnikList}" var="najemnik" itemLabel="#{najemnik.getCeleJmeno()}" itemValue="#{najemnik}" />
+      </h:selectOneMenu>
+
+      <br />
+      <h3>Zúčtovací období:</h3>
+      Začátek:  <p:calendar id="vyuctovaniZuctovaciObdobiFilterZacatekInput" value="#{vyuctovaniGeneratorBean.zuctovaciObdobi.zacatek}" pattern="dd-MM-yyyy" >
+                  <p:ajax event="dateSelect" listener="#{vyuctovaniGeneratorBean.zuctovaciObdobiZacatekDateSelect}" update=":form:msgs" />
+                </p:calendar>
+      <br />
+      Konec:    <p:calendar id="vyuctovaniZuctovaciObdobiFilterKonecInput" value="#{vyuctovaniGeneratorBean.zuctovaciObdobi.konec}" pattern="dd-MM-yyyy" >
+                  <p:ajax event="dateSelect" listener="#{vyuctovaniGeneratorBean.zuctovaciObdobiKonecDateSelect}" update=":form:msgs" />
+                </p:calendar>
+      <br />
+      <br />
+      <br />
+
+      <p:commandButton value="Generovat vyúčtování" update=":form:msgs" icon="ui-icon-circle-triangle-e" actionListener="#{vyuctovaniGeneratorBean.generate()}" />
+    </h:form>
+  </div>
+
+  <br />
+  <br />
+  <br />
+
+  <h3>Další myšlenky a nápady na zlepšení:</h3>
+
+  - Zvolit si nemovitost
+  <br />
+  - Zvolit si nájemníka
+  <br />
+  - Zvolit si zúčtovací období
+  <br />
+  - Tlačítko na vygenerování
+  <br />
+  - Tlačítko k náhledu a tlačítko k tisku
+
+  <br />
+  <br />
+  <br />
+
+  <component:dockMenu />
+</h:body>
+</html>

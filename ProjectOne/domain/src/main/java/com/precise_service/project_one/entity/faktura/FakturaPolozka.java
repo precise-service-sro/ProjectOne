@@ -1,4 +1,4 @@
-package com.precise_service.project_one.entity.vyuctovani;
+package com.precise_service.project_one.entity.faktura;
 
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -14,17 +14,17 @@ import lombok.Data;
 
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
-@Document(collection = "vyuctovaniPolozka")
-public class VyuctovaniPolozka extends BaseEntity {
+@Document(collection = "fakturaPolozka")
+public class FakturaPolozka extends BaseEntity {
 
   @JsonProperty("nazev")
   @JsonInclude(JsonInclude.Include.NON_NULL)
   private String nazev;
 
   @DBRef
-  @JsonProperty("vyuctovani")
+  @JsonProperty("faktura")
   @JsonInclude(JsonInclude.Include.NON_NULL)
-  private Vyuctovani vyuctovani;
+  private Faktura faktura;
 
   @DBRef
   @JsonProperty("polozkaTyp")

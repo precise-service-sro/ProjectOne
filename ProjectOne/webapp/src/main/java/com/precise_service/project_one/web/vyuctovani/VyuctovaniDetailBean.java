@@ -12,11 +12,11 @@ import javax.inject.Named;
 import org.primefaces.event.RowEditEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.precise_service.project_one.entity.PolozkaTyp;
 import com.precise_service.project_one.entity.vyuctovani.Vyuctovani;
-import com.precise_service.project_one.entity.vyuctovani.VyuctovaniCislo;
-import com.precise_service.project_one.entity.vyuctovani.VyuctovaniPolozkaTyp;
+import com.precise_service.project_one.entity.Cislo;
 import com.precise_service.project_one.entity.vyuctovani.VyuctovaniPolozka;
-import com.precise_service.project_one.service.vyuctovani.IVyuctovaniPolozkaTypService;
+import com.precise_service.project_one.service.vyuctovani.IPolozkaTypService;
 import com.precise_service.project_one.service.vyuctovani.IVyuctovaniPolozkaService;
 import com.precise_service.project_one.service.vyuctovani.IVyuctovaniService;
 
@@ -35,11 +35,11 @@ public class VyuctovaniDetailBean implements Serializable {
   private IVyuctovaniPolozkaService vyuctovaniPolozkaService;
 
   @Autowired
-  private IVyuctovaniPolozkaTypService vyuctovaniPolozkaTypService;
+  private IPolozkaTypService polozkaTypService;
 
   public static final String ZUCTOVACI_OBDOBI_DATE_FORMAT = "dd/MM/yyyy";
 
-  private List<VyuctovaniPolozkaTyp> vyuctovaniPolozkaTypList;
+  private List<PolozkaTyp> polozkaTypList;
   private Vyuctovani vyuctovani;
   private List<VyuctovaniPolozka> radkyVyuctovani;
 
@@ -48,11 +48,10 @@ public class VyuctovaniDetailBean implements Serializable {
   private Double celkemNaklady;
   private Double celkemRozdil;
 
-  //@PostConstruct
   public void init() {
     log.trace("init()");
 
-    vyuctovaniPolozkaTypList = vyuctovaniPolozkaTypService.getVyuctovaniPolozkaTypAll();
+    polozkaTypList = polozkaTypService.getPolozkaTypAll();
 
     DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
     LocalDate from = LocalDate.parse("01-01-2017", dateTimeFormatter);
@@ -68,13 +67,13 @@ public class VyuctovaniDetailBean implements Serializable {
 
     for (VyuctovaniPolozka vyuctovaniPolozka : radkyVyuctovani) {
       if (vyuctovaniPolozka.getPocatecniStav() == null) {
-        VyuctovaniCislo pocatecniStav = new VyuctovaniCislo();
+        Cislo pocatecniStav = new Cislo();
         pocatecniStav.setMnozstvi(0.0);
         pocatecniStav.setJednotka("ks");
         vyuctovaniPolozka.setPocatecniStav(pocatecniStav);
 
         if (vyuctovaniPolozka.getKoncovyStav() == null) {
-          VyuctovaniCislo koncovyStav = new VyuctovaniCislo();
+          Cislo koncovyStav = new Cislo();
           koncovyStav.setMnozstvi(1.0);
           koncovyStav.setJednotka(pocatecniStav.getJednotka());
           vyuctovaniPolozka.setKoncovyStav(koncovyStav);
@@ -82,25 +81,25 @@ public class VyuctovaniDetailBean implements Serializable {
       }
 
       if (vyuctovaniPolozka.getKoncovyStav() == null) {
-        VyuctovaniCislo koncovyStav = new VyuctovaniCislo();
+        Cislo koncovyStav = new Cislo();
         koncovyStav.setMnozstvi(0.0);
         koncovyStav.setJednotka(vyuctovaniPolozka.getPocatecniStav().getJednotka());
         vyuctovaniPolozka.setKoncovyStav(koncovyStav);
       }
 
-      VyuctovaniCislo spotreba = new VyuctovaniCislo();
+      Cislo spotreba = new Cislo();
       spotreba.setMnozstvi(vyuctovaniPolozka.getKoncovyStav().getMnozstvi() - vyuctovaniPolozka.getPocatecniStav().getMnozstvi());
       spotreba.setJednotka(vyuctovaniPolozka.getKoncovyStav().getJednotka());
       vyuctovaniPolozka.setSpotreba(spotreba);
 
       if (vyuctovaniPolozka.getZalohy() == null) {
-        VyuctovaniCislo zalohy = new VyuctovaniCislo();
+        Cislo zalohy = new Cislo();
         zalohy.setMnozstvi(0.0);
         zalohy.setJednotka("Kč");
         vyuctovaniPolozka.setZalohy(zalohy);
       }
 
-      VyuctovaniCislo rozdil = new VyuctovaniCislo();
+      Cislo rozdil = new Cislo();
       rozdil.setMnozstvi(vyuctovaniPolozka.getZalohy().getMnozstvi() - vyuctovaniPolozka.getNaklady().getMnozstvi());
       rozdil.setJednotka(vyuctovaniPolozka.getNaklady().getJednotka());
       vyuctovaniPolozka.setRozdil(rozdil);
@@ -146,15 +145,15 @@ public class VyuctovaniDetailBean implements Serializable {
 
     vyuctovaniPolozka.setNazev("!!! Upravit název !!!");
     vyuctovaniPolozka.setVyuctovani(vyuctovani);
-    vyuctovaniPolozka.setVyuctovaniPolozkaTyp(null);
+    vyuctovaniPolozka.setPolozkaTyp(null);
 
-    VyuctovaniCislo vychoziStav = new VyuctovaniCislo();
+    Cislo vychoziStav = new Cislo();
     vychoziStav.setMnozstvi(0.0);
     vychoziStav.setJednotka("Ks");
     vyuctovaniPolozka.setPocatecniStav(vychoziStav);
     vyuctovaniPolozka.setKoncovyStav(vychoziStav);
 
-    VyuctovaniCislo vychoziZalohyNeboNaklady = new VyuctovaniCislo();
+    Cislo vychoziZalohyNeboNaklady = new Cislo();
     vychoziZalohyNeboNaklady.setMnozstvi(0.0);
     vychoziZalohyNeboNaklady.setJednotka("Kč");
     vyuctovaniPolozka.setZalohy(vychoziZalohyNeboNaklady);

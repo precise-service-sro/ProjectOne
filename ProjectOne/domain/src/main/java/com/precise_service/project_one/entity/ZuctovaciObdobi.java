@@ -1,4 +1,4 @@
-package com.precise_service.project_one.entity.vyuctovani;
+package com.precise_service.project_one.entity;
 
 import java.util.Date;
 
@@ -10,7 +10,7 @@ import lombok.Data;
 
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class VyuctovaniZuctovaciObdobi {
+public class ZuctovaciObdobi {
 
   @JsonProperty("zacatek")
   @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")

@@ -31,7 +31,7 @@ public class NemovitostConverter implements Converter {
   }
 
   public String getAsString(FacesContext fc, UIComponent uic, Object object) {
-    if(object == null) {
+    if(object == null || !(object instanceof Nemovitost)) {
       return null;
     }
     return String.valueOf(((Nemovitost) object).getId());

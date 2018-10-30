@@ -1,4 +1,4 @@
-package com.precise_service.project_one.entity.vyuctovani;
+package com.precise_service.project_one.entity;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -11,8 +11,8 @@ import lombok.Data;
 
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
-@Document(collection = "vyuctovaniPolozkaTyp")
-public class VyuctovaniPolozkaTyp extends BaseEntity {
+@Document(collection = "polozkaTyp")
+public class PolozkaTyp extends BaseEntity {
 
   @JsonProperty("nazev")
   @JsonInclude(JsonInclude.Include.NON_NULL)

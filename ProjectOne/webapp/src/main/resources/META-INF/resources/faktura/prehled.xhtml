@@ -1,0 +1,149 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:component="http://java.sun.com/jsf/composite/common/component">
+
+<h:head>
+  <title>ProjectOne - Přehled faktur</title>
+</h:head>
+
+<h:body>
+
+  <h:outputText value="#{fakturaPrehledBean.init()}" />
+
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+
+  <h:form id="form">
+    <p:growl id="msgs" showDetail="true"/>
+    
+    <h2>Přehled faktur:</h2>
+
+    <h3>Zúčtovací období:
+    OD:
+      <p:calendar id="zuctovaciObdobiFilterZacatek" value="#{fakturaPrehledBean.zuctovaciObdobi.zacatek}" pattern="dd-MM-yyyy">
+        <p:ajax event="dateSelect" listener="#{fakturaPrehledBean.zuctovaciObdobiZacatekDateSelect}" update="msgs fakturaPrehledBeanTable" />
+      </p:calendar>
+    - DO:
+      <p:calendar id="zuctovaciObdobiFilterKonec" value="#{fakturaPrehledBean.zuctovaciObdobi.konec}" pattern="dd-MM-yyyy">
+        <p:ajax event="dateSelect" listener="#{fakturaPrehledBean.zuctovaciObdobiKonecDateSelect}" update="msgs fakturaPrehledBeanTable" />
+      </p:calendar>
+    </h3>
+
+    <div class="ui-g" style="text-align: right;">
+      <div class="ui-g-12">
+        <p:commandButton value="Přidat novou fakturu" icon="ui-icon-circle-plus" styleClass="ui-priority-primary" process="@this" update=":form:msgs"
+                         actionListener="#{fakturaPrehledBean.addRow()}" oncomplete="PF('fakturaPrehledBeanTable').addRow();" />
+      </div>
+    </div>
+
+    <p:dataTable id="fakturaPrehledBeanTable" var="faktura" widgetVar="fakturaPrehledBeanTable" value="#{fakturaPrehledBean.getFakturaList()}" resizableColumns="true" sortBy="#{1}" editable="true">
+      <p:ajax event="rowEdit" listener="#{fakturaPrehledBean.onRowEdit}" update=":form:msgs :form:fakturaPrehledBeanTable" />
+      <p:ajax event="rowEditCancel" listener="#{fakturaPrehledBean.onRowCancel}" update=":form:msgs" />
+
+      <p:columnGroup type="header">
+        <p:row>
+          <p:column headerText="Název"            rowspan="2"                      />
+          <p:column headerText="Byt"                          style="width: 200px;"/>
+          <p:column headerText="Zúčtovací období" colspan="2" style="width: 400px;"/>
+          <p:column headerText="Detail"           rowspan="2" style="width: 160px;"/>
+          <p:column                               rowspan="2" style="width:  32px;"/>
+          <p:column                               rowspan="2" style="width:  50px;"/>
+        </p:row>
+        <p:row>
+          <p:column headerText=" - filter -"/>
+          <p:column headerText="Začátek"/>
+          <p:column headerText="Konec"/>
+        </p:row>
+      </p:columnGroup>
+
+      <p:column>
+        <p:cellEditor>
+          <f:facet name="output"><h:outputText value="#{faktura.nazev}" /> </f:facet>
+          <f:facet name="input"><p:inputText id="nazevInput" value="#{faktura.nazev}" style="width:100%"/></f:facet>
+        </p:cellEditor>
+      </p:column>
+
+      <p:column style="text-align: center;">
+        <p:cellEditor>
+          <f:facet name="output"><h:outputText value="#{faktura.nemovitost.nazev}" title="#{faktura.nemovitost.adresa}"/> </f:facet>
+          <f:facet name="input">
+            <h:selectOneMenu value="#{faktura.nemovitost}" style="width:100%" converter="#{nemovitostConverter}">
+              <f:selectItems value="#{fakturaPrehledBean.nemovitostList}" var="nemovitost" itemLabel="#{nemovitost.nazev}" itemValue="#{nemovitost}" />
+            </h:selectOneMenu>
+          </f:facet>
+        </p:cellEditor>
+      </p:column>
+
+      <p:column style="text-align: center;">
+        <p:cellEditor>
+          <f:facet name="output">
+            <h:outputText value="#{faktura.zuctovaciObdobi.zacatek}">
+              <f:convertDateTime pattern="dd-MM-yyyy" />
+            </h:outputText>
+          </f:facet>
+          <f:facet name="input">
+            <p:calendar id="zuctovaciObdobiZacatekInput" value="#{faktura.zuctovaciObdobi.zacatek}" pattern="dd-MM-yyyy" style="width:100%"/>
+          </f:facet>
+        </p:cellEditor>
+      </p:column>
+
+      <p:column style="text-align: center;">
+        <p:cellEditor>
+          <f:facet name="output">
+            <h:outputText value="#{faktura.zuctovaciObdobi.konec}" >
+              <f:convertDateTime pattern="dd-MM-yyyy" />
+            </h:outputText>
+          </f:facet>
+          <f:facet name="input">
+            <p:calendar id="zuctovaciObdobiKonecInput" value="#{faktura.zuctovaciObdobi.konec}" pattern="dd-MM-yyyy" style="width:100%"/>
+          </f:facet>
+        </p:cellEditor>
+      </p:column>
+
+      <p:column>
+        <p:commandButton icon="ui-icon-circle-zoomin" actionListener="#{fakturaPrehledBean.showFakturaDetailBean(faktura)}" value="Podrobnosti" />
+      </p:column>
+
+      <p:column>
+        <p:rowEditor />
+      </p:column>
+
+      <p:column>
+        <p:commandButton update="@form :form:msgs" icon="ui-icon-circle-minus" actionListener="#{fakturaPrehledBean.deleteRow(faktura)}" />
+      </p:column>
+    </p:dataTable>
+  </h:form>
+
+  <br />
+  <br />
+  <br />
+
+  <h3>Další myšlenky a nápady na zlepšení:</h3>
+
+  - Při kliknutí na ikonu vyúčtování by se mě to mohlo optat, zda chci vidět vyúčtování za nemovitosti anebo pro nájemníky
+  <br />
+  - Ono by totiz obecne entita VYUCTOVANI mela nemovitost nejaka obecna (ve smyslu, KDO vyuctovava, CO, KOMU, ZA JAKY OBDOBI, jakych nemovitosti se to tyka)
+  <br />
+  - Rozchodit filtrování před datumy
+  <br />
+  - Rozchodit filtrování před nemovitosti a další sloupečky v tabulce
+  <br />
+  - Tlačítko na vygenerování vyúčtování nájemníkovi z vyfiltrovaných vyúčtování (anebo vymyslet jak jinak se to bude spouštět)
+  <br />
+  - Přidat nějakou tabulku / graf na sledování spotřeby nájemníků v jednotlivých bytech (k tomu můžou mít přístup i sami nájemníci, a zadávat si tam stavy a sami si to monitorovat)
+
+
+  <br />
+  <br />
+  <br />
+
+  <component:dockMenu />
+</h:body>
+</html>

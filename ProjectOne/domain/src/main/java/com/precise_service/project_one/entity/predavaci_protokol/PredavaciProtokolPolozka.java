@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.precise_service.project_one.entity.BaseEntity;
-import com.precise_service.project_one.entity.vyuctovani.VyuctovaniPolozkaTyp;
+import com.precise_service.project_one.entity.PolozkaTyp;
 
 import lombok.Data;
 
@@ -25,9 +25,9 @@ public class PredavaciProtokolPolozka extends BaseEntity {
   private String nazev;
 
   @DBRef
-  @JsonProperty("vyuctovaniPolozkaTyp")
+  @JsonProperty("polozkaTyp")
   @JsonInclude(JsonInclude.Include.NON_NULL)
-  private VyuctovaniPolozkaTyp vyuctovaniPolozkaTyp;
+  private PolozkaTyp polozkaTyp;
 
   @JsonProperty("cisloMeraku")
   @JsonInclude(JsonInclude.Include.NON_NULL)
