@@ -12,9 +12,9 @@ import org.omnifaces.util.Faces;
 import org.primefaces.event.RowEditEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.precise_service.project_one.entity.Najemnik;
+import com.precise_service.project_one.entity.osoba.Najemnik;
 import com.precise_service.project_one.entity.nemovitost.Nemovitost;
-import com.precise_service.project_one.service.najemnik.INajemnikService;
+import com.precise_service.project_one.service.osoba.INajemnikService;
 import com.precise_service.project_one.service.nemovitost.INemovitostService;
 
 import lombok.Data;

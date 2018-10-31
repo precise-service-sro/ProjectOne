@@ -1,11 +1,11 @@
-package com.precise_service.project_one.service.najemnik;
+package com.precise_service.project_one.service.osoba;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.precise_service.project_one.entity.Najemnik;
+import com.precise_service.project_one.entity.osoba.Najemnik;
 import com.precise_service.project_one.repository.NajemnikRepository;
 
 import lombok.extern.slf4j.Slf4j;

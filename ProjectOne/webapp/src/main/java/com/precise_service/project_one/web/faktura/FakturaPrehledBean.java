@@ -16,11 +16,11 @@ import org.primefaces.event.RowEditEvent;
 import org.primefaces.event.SelectEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.precise_service.project_one.entity.ZuctovaciObdobi;
-import com.precise_service.project_one.entity.nemovitost.Nemovitost;
+import com.precise_service.project_one.entity.CasovyInterval;
 import com.precise_service.project_one.entity.faktura.Faktura;
-import com.precise_service.project_one.service.nemovitost.INemovitostService;
+import com.precise_service.project_one.entity.nemovitost.Nemovitost;
 import com.precise_service.project_one.service.faktura.IFakturaService;
+import com.precise_service.project_one.service.nemovitost.INemovitostService;
 
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
@@ -41,14 +41,14 @@ public class FakturaPrehledBean implements Serializable {
 
   public static final String ZUCTOVACI_OBDOBI_DATE_FORMAT = "dd/MM/yyyy";
 
-  private ZuctovaciObdobi zuctovaciObdobi;
+  private CasovyInterval zuctovaciObdobi;
   private List<Faktura> fakturaList;
   private List<Nemovitost> nemovitostList;
 
   public void init() throws ParseException {
 
     if (zuctovaciObdobi == null) {
-      zuctovaciObdobi = new ZuctovaciObdobi();
+      zuctovaciObdobi = new CasovyInterval();
       SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
       Date zacatek = simpleDateFormat.parse("01-01-2017");
       Date konec = simpleDateFormat.parse("31-12-2017");
@@ -94,7 +94,7 @@ public class FakturaPrehledBean implements Serializable {
 
     faktura.setNazev("!!! Upravit název !!!");
     faktura.setNemovitost(null);
-    faktura.setZuctovaciObdobi(new ZuctovaciObdobi());
+    faktura.setZuctovaciObdobi(new CasovyInterval());
 
     Faktura saved = fakturaService.postFaktura(faktura);
     init();

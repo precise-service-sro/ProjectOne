@@ -10,7 +10,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.precise_service.project_one.entity.BaseEntity;
-import com.precise_service.project_one.entity.ZuctovaciObdobi;
+import com.precise_service.project_one.entity.CasovyInterval;
 import com.precise_service.project_one.entity.nemovitost.Nemovitost;
 
 import lombok.Data;
@@ -26,7 +26,7 @@ public class Faktura extends BaseEntity {
 
   @JsonProperty("zuctovaciObdobi")
   @JsonInclude(JsonInclude.Include.NON_NULL)
-  private ZuctovaciObdobi zuctovaciObdobi;
+  private CasovyInterval zuctovaciObdobi;
 
   @JsonProperty("datumSplatnosti")
   @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")

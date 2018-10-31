@@ -3,10 +3,10 @@ package com.precise_service.project_one.service.vyuctovani;
 import java.util.Date;
 import java.util.List;
 
-import com.precise_service.project_one.entity.Najemnik;
-import com.precise_service.project_one.entity.ZuctovaciObdobi;
+import com.precise_service.project_one.entity.CasovyInterval;
 import com.precise_service.project_one.entity.faktura.Faktura;
 import com.precise_service.project_one.entity.nemovitost.Nemovitost;
+import com.precise_service.project_one.entity.osoba.Najemnik;
 import com.precise_service.project_one.entity.vyuctovani.Vyuctovani;
 
 public interface IVyuctovaniService {
@@ -25,5 +25,5 @@ public interface IVyuctovaniService {
 
   void deleteVyuctovaniAll();
 
-  Vyuctovani generovatVyuctovani(String nazev, ZuctovaciObdobi zuctovaciObdobi, Nemovitost nemovitost, Najemnik najemnik, List<Faktura> filteredFakturaList);
+  Vyuctovani generovatVyuctovani(String nazev, CasovyInterval zuctovaciObdobi, Nemovitost nemovitost, Najemnik najemnik, List<Faktura> filteredFakturaList);
 }

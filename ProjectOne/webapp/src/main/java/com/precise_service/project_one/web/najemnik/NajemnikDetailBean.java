@@ -8,8 +8,8 @@ import javax.inject.Named;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.precise_service.project_one.entity.Najemnik;
-import com.precise_service.project_one.service.najemnik.INajemnikService;
+import com.precise_service.project_one.entity.osoba.Najemnik;
+import com.precise_service.project_one.service.osoba.INajemnikService;
 import com.precise_service.project_one.web.common.component.EditorTextuBean;
 
 import lombok.Data;

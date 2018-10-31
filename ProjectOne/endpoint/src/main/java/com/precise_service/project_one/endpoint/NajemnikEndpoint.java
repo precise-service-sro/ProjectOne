@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.precise_service.project_one.entity.Najemnik;
-import com.precise_service.project_one.service.najemnik.INajemnikService;
+import com.precise_service.project_one.entity.osoba.Najemnik;
+import com.precise_service.project_one.service.osoba.INajemnikService;
 
 import lombok.extern.slf4j.Slf4j;
 

@@ -16,7 +16,7 @@ import org.primefaces.event.RowEditEvent;
 import org.primefaces.event.SelectEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.precise_service.project_one.entity.ZuctovaciObdobi;
+import com.precise_service.project_one.entity.CasovyInterval;
 import com.precise_service.project_one.entity.nemovitost.Nemovitost;
 import com.precise_service.project_one.entity.vyuctovani.Vyuctovani;
 import com.precise_service.project_one.service.nemovitost.INemovitostService;
@@ -41,14 +41,14 @@ public class VyuctovaniPrehledBean implements Serializable {
 
   public static final String ZUCTOVACI_OBDOBI_DATE_FORMAT = "dd/MM/yyyy";
 
-  private ZuctovaciObdobi zuctovaciObdobi;
+  private CasovyInterval zuctovaciObdobi;
   private List<Vyuctovani> vyuctovaniList;
   private List<Nemovitost> nemovitostList;
 
   public void init() throws ParseException {
 
     if (zuctovaciObdobi == null) {
-      zuctovaciObdobi = new ZuctovaciObdobi();
+      zuctovaciObdobi = new CasovyInterval();
       SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
       Date zacatek = simpleDateFormat.parse("01-01-2017");
       Date konec = simpleDateFormat.parse("31-12-2017");
@@ -94,7 +94,7 @@ public class VyuctovaniPrehledBean implements Serializable {
 
     vyuctovani.setNazev("!!! Upravit název !!!");
     vyuctovani.setNemovitost(null);
-    vyuctovani.setZuctovaciObdobi(new ZuctovaciObdobi());
+    vyuctovani.setZuctovaciObdobi(new CasovyInterval());
 
     Vyuctovani saved = vyuctovaniService.postVyuctovani(vyuctovani);
     init();

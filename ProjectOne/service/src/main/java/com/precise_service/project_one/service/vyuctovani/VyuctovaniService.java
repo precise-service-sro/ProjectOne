@@ -6,12 +6,12 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.precise_service.project_one.entity.Najemnik;
+import com.precise_service.project_one.entity.CasovyInterval;
 import com.precise_service.project_one.entity.PolozkaTyp;
-import com.precise_service.project_one.entity.ZuctovaciObdobi;
 import com.precise_service.project_one.entity.faktura.Faktura;
 import com.precise_service.project_one.entity.faktura.FakturaPolozka;
 import com.precise_service.project_one.entity.nemovitost.Nemovitost;
+import com.precise_service.project_one.entity.osoba.Najemnik;
 import com.precise_service.project_one.entity.vyuctovani.Vyuctovani;
 import com.precise_service.project_one.entity.vyuctovani.VyuctovaniPolozka;
 import com.precise_service.project_one.repository.VyuctovaniRepository;
@@ -78,7 +78,7 @@ public class VyuctovaniService implements IVyuctovaniService {
   }
 
   @Override
-  public Vyuctovani generovatVyuctovani(String nazev, ZuctovaciObdobi zuctovaciObdobi, Nemovitost nemovitost, Najemnik najemnik, List<Faktura> fakturaList) {
+  public Vyuctovani generovatVyuctovani(String nazev, CasovyInterval zuctovaciObdobi, Nemovitost nemovitost, Najemnik najemnik, List<Faktura> fakturaList) {
     log.trace("deleteVyuctovaniAll()");
     List<PolozkaTyp> polozkaTypList = polozkaTypService.getPolozkaTypListByIdNemovitost(nemovitost.getId());
 

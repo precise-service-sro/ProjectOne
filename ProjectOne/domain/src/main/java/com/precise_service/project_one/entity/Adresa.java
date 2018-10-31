@@ -21,4 +21,25 @@ public class Adresa {
   @JsonProperty("mesto")
   @JsonInclude(JsonInclude.Include.NON_NULL)
   private String mesto;
+
+  @JsonProperty("stat")
+  @JsonInclude(JsonInclude.Include.NON_NULL)
+  private String stat;
+
+  @JsonProperty("cisloPopisne")
+  @JsonInclude(JsonInclude.Include.NON_NULL)
+  private String cisloPopisne;
+
+  @JsonProperty("cisloOrientacni")
+  @JsonInclude(JsonInclude.Include.NON_NULL)
+  private String cisloOrientacni;
+
+  // toto by melo byt relevantni jenom pro adresu bytu
+  @JsonProperty("patro")
+  @JsonInclude(JsonInclude.Include.NON_NULL)
+  private String patro;
+
+  @JsonProperty("cisloBytu")
+  @JsonInclude(JsonInclude.Include.NON_NULL)
+  private String cisloBytu;
 }

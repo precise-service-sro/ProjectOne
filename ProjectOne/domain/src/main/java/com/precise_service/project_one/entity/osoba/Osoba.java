@@ -1,19 +1,17 @@
-package com.precise_service.project_one.entity;
+package com.precise_service.project_one.entity.osoba;
 
-import org.springframework.data.mongodb.core.mapping.DBRef;
-import org.springframework.data.mongodb.core.mapping.Document;
+import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.precise_service.project_one.entity.nemovitost.Nemovitost;
+import com.precise_service.project_one.entity.BaseEntity;
 
 import lombok.Data;
 
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
-@Document(collection = "najemnik")
-public class Najemnik extends BaseEntity {
+public abstract class Osoba extends BaseEntity {
 
   @JsonProperty("jmeno")
   @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -23,20 +21,23 @@ public class Najemnik extends BaseEntity {
   @JsonInclude(JsonInclude.Include.NON_NULL)
   private String prijmeni;
 
-  @DBRef
-  @JsonProperty("nemovitost")
-  @JsonInclude(JsonInclude.Include.NON_NULL)
-  private Nemovitost nemovitost;
+  public String getCeleJmeno(){
+    return "" + jmeno + " " + prijmeni;
+  }
 
-  @JsonProperty("najemniSmlouva")
+  @JsonProperty("datumNarozeni")
   @JsonInclude(JsonInclude.Include.NON_NULL)
-  private String najemniSmlouva;
+  private Date datumNarozeni;
 
   @JsonProperty("poznamky")
   @JsonInclude(JsonInclude.Include.NON_NULL)
   private String poznamky;
 
-  public String getCeleJmeno(){
-    return "" + jmeno + " " + prijmeni;
-  }
+  @JsonProperty("telefon")
+  @JsonInclude(JsonInclude.Include.NON_NULL)
+  private String telefon;
+
+  @JsonProperty("email")
+  @JsonInclude(JsonInclude.Include.NON_NULL)
+  private String email;
 }

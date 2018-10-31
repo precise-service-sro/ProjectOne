@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -16,14 +15,14 @@ import org.omnifaces.util.Faces;
 import org.primefaces.event.SelectEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.precise_service.project_one.entity.Najemnik;
+import com.precise_service.project_one.entity.CasovyInterval;
 import com.precise_service.project_one.entity.faktura.Faktura;
 import com.precise_service.project_one.entity.nemovitost.Nemovitost;
+import com.precise_service.project_one.entity.osoba.Najemnik;
 import com.precise_service.project_one.entity.predavaci_protokol.PredavaciProtokol;
 import com.precise_service.project_one.entity.vyuctovani.Vyuctovani;
-import com.precise_service.project_one.entity.ZuctovaciObdobi;
 import com.precise_service.project_one.service.faktura.IFakturaService;
-import com.precise_service.project_one.service.najemnik.INajemnikService;
+import com.precise_service.project_one.service.osoba.INajemnikService;
 import com.precise_service.project_one.service.nemovitost.INemovitostService;
 import com.precise_service.project_one.service.predavaci_protokol.IPredavaciProtokolService;
 import com.precise_service.project_one.service.vyuctovani.IVyuctovaniService;
@@ -63,7 +62,7 @@ public class VyuctovaniGeneratorBean implements Serializable {
   private Nemovitost nemovitost;
   private Najemnik najemnik;
   private PredavaciProtokol predavaciProtokol;
-  private ZuctovaciObdobi zuctovaciObdobi;
+  private CasovyInterval zuctovaciObdobi;
   private List<Vyuctovani> vyuctovaniList;
   private List<PredavaciProtokol> predavaciProtokolList;
 
@@ -71,7 +70,7 @@ public class VyuctovaniGeneratorBean implements Serializable {
     log.trace("init()");
 
     if (zuctovaciObdobi == null) {
-      zuctovaciObdobi = new ZuctovaciObdobi();
+      zuctovaciObdobi = new CasovyInterval();
       SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
       Date zacatek = simpleDateFormat.parse("01-01-2017");
       Date konec = simpleDateFormat.parse("31-12-2017");

@@ -1,4 +1,7 @@
-package com.precise_service.project_one.entity;
+package com.precise_service.project_one.entity.osoba;
+
+
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -8,12 +11,14 @@ import lombok.Data;
 
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Cislo {
-  @JsonProperty("mnozstvi")
-  @JsonInclude(JsonInclude.Include.NON_NULL)
-  private Double mnozstvi;
+@Document(collection = "uzivatel")
+public class Uzivatel extends Osoba {
 
-  @JsonProperty("jednotka")
+  @JsonProperty("username")
   @JsonInclude(JsonInclude.Include.NON_NULL)
-  private String jednotka;
+  private String username;
+
+  @JsonProperty("password")
+  @JsonInclude(JsonInclude.Include.NON_NULL)
+  private String password;
 }

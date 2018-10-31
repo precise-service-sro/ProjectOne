@@ -1,8 +1,8 @@
-package com.precise_service.project_one.service.najemnik;
+package com.precise_service.project_one.service.osoba;
 
 import java.util.List;
 
-import com.precise_service.project_one.entity.Najemnik;
+import com.precise_service.project_one.entity.osoba.Najemnik;
 
 public interface INajemnikService {
 
