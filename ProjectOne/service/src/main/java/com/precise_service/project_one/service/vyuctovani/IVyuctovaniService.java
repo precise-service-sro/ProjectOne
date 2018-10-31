@@ -1,8 +1,12 @@
 package com.precise_service.project_one.service.vyuctovani;
 
-import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
+import com.precise_service.project_one.entity.Najemnik;
+import com.precise_service.project_one.entity.ZuctovaciObdobi;
+import com.precise_service.project_one.entity.faktura.Faktura;
+import com.precise_service.project_one.entity.nemovitost.Nemovitost;
 import com.precise_service.project_one.entity.vyuctovani.Vyuctovani;
 
 public interface IVyuctovaniService {
@@ -15,9 +19,11 @@ public interface IVyuctovaniService {
 
   List<Vyuctovani> getVyuctovaniAll();
 
-  List<Vyuctovani> getVyuctovaniInRange(LocalDate from, LocalDate to);
+  List<Vyuctovani> getVyuctovaniInRange(Date from, Date to);
 
   void deleteVyuctovani(String idVyuctovani);
 
   void deleteVyuctovaniAll();
+
+  Vyuctovani generovatVyuctovani(String nazev, ZuctovaciObdobi zuctovaciObdobi, Nemovitost nemovitost, Najemnik najemnik, List<Faktura> filteredFakturaList);
 }

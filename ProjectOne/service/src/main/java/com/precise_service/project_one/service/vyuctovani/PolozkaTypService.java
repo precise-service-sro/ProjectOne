@@ -52,4 +52,12 @@ public class PolozkaTypService implements IPolozkaTypService {
     log.trace("deletePolozkaTypAll()");
     polozkaTypRepository.deleteAll();
   }
+
+  @Override
+  public List<PolozkaTyp> getPolozkaTypListByIdNemovitost(String idNemovitost) {
+    log.trace("getPolozkaTypListByIdNemovitost()");
+    return polozkaTypRepository.getPolozkaTypListByIdNemovitost(idNemovitost);
+  }
+
+
 }

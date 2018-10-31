@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -16,12 +17,17 @@ import org.primefaces.event.SelectEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.precise_service.project_one.entity.Najemnik;
+import com.precise_service.project_one.entity.faktura.Faktura;
 import com.precise_service.project_one.entity.nemovitost.Nemovitost;
+import com.precise_service.project_one.entity.predavaci_protokol.PredavaciProtokol;
 import com.precise_service.project_one.entity.vyuctovani.Vyuctovani;
 import com.precise_service.project_one.entity.ZuctovaciObdobi;
+import com.precise_service.project_one.service.faktura.IFakturaService;
 import com.precise_service.project_one.service.najemnik.INajemnikService;
 import com.precise_service.project_one.service.nemovitost.INemovitostService;
+import com.precise_service.project_one.service.predavaci_protokol.IPredavaciProtokolService;
 import com.precise_service.project_one.service.vyuctovani.IVyuctovaniService;
+import com.precise_service.project_one.web.common.DateFormatter;
 
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
@@ -41,6 +47,12 @@ public class VyuctovaniGeneratorBean implements Serializable {
   private IVyuctovaniService vyuctovaniService;
 
   @Autowired
+  private IFakturaService fakturaService;
+
+  @Autowired
+  private IPredavaciProtokolService predavaciProtokolService;
+
+  @Autowired
   private VyuctovaniDetailBean vyuctovaniDetailBean;
 
   public static final String ZUCTOVACI_OBDOBI_DATE_FORMAT = "dd/MM/yyyy";
@@ -50,9 +62,10 @@ public class VyuctovaniGeneratorBean implements Serializable {
 
   private Nemovitost nemovitost;
   private Najemnik najemnik;
+  private PredavaciProtokol predavaciProtokol;
   private ZuctovaciObdobi zuctovaciObdobi;
   private List<Vyuctovani> vyuctovaniList;
-
+  private List<PredavaciProtokol> predavaciProtokolList;
 
   public void init() throws ParseException {
     log.trace("init()");
@@ -68,14 +81,17 @@ public class VyuctovaniGeneratorBean implements Serializable {
 
     nemovitostList = nemovitostService.getNemovitostAll();
     najemnikList = najemnikService.getNajemnikAll();
-
+    predavaciProtokolList = predavaciProtokolService.getPredavaciProtokolAll();
   }
 
   public void generate() throws IOException {
     log.trace("generate()");
 
-    // TODO: vyfiltrovat na zahlade vstupnich dat a prihlaseneho uzivatele
-    Vyuctovani vyuctovani = vyuctovaniService.getVyuctovaniAll().get(0);
+    // TODO: vyfiltrovat na zahlade vsech vstupnich dat a prihlaseneho uzivatele
+    List<Faktura> fakturaListInRange = fakturaService.getFakturaListInRange(zuctovaciObdobi.getZacatek(), zuctovaciObdobi.getKonec());
+
+    String nazev = "Nové vyúčtování ze dne " + DateFormatter.formatDate(new Date());
+    Vyuctovani vyuctovani = vyuctovaniService.generovatVyuctovani(nazev, zuctovaciObdobi, nemovitost, najemnik, fakturaListInRange);
 
     vyuctovaniDetailBean.setVyuctovani(vyuctovani);
     Faces.getFlash().setRedirect(true);

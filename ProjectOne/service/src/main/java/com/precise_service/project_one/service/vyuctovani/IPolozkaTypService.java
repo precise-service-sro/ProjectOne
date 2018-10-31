@@ -17,4 +17,6 @@ public interface IPolozkaTypService {
   void deletePolozkaTyp(String idPolozkaTyp);
 
   void deletePolozkaTypAll();
+
+  List<PolozkaTyp> getPolozkaTypListByIdNemovitost(String idNemovitost);
 }

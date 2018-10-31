@@ -48,6 +48,11 @@
                   <p:ajax event="dateSelect" listener="#{vyuctovaniGeneratorBean.zuctovaciObdobiKonecDateSelect}" update=":form:msgs" />
                 </p:calendar>
       <br />
+      <h3>Předávací protokol: (název, nájemník, datum podpisu)</h3>
+      <h:selectOneMenu value="#{vyuctovaniGeneratorBean.predavaciProtokol}" style="width: 200px; height: 40px;" converter="#{predavaciProtokolConverter}">
+        <f:selectItems value="#{vyuctovaniGeneratorBean.predavaciProtokolList}" var="predavaciProtokol" itemLabel="#{predavaciProtokol.getPopis()}" itemValue="#{predavaciProtokol}" />
+      </h:selectOneMenu>
+
       <br />
       <br />
 

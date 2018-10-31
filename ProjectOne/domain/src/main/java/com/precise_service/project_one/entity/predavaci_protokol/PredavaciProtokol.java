@@ -38,4 +38,8 @@ public class PredavaciProtokol extends BaseEntity {
   @JsonProperty("najemnik")
   @JsonInclude(JsonInclude.Include.NON_NULL)
   private Najemnik najemnik;
+
+  public String getPopis() {
+    return "" + nazev + ", " + najemnik.getCeleJmeno() + ", " + datumPodpisu;
+  }
 }

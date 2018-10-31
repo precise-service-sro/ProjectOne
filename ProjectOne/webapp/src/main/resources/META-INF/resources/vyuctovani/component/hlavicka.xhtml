@@ -10,36 +10,43 @@
 
 <composite:interface>
 
-  <composite:attribute name="jmeno" />
-  <composite:attribute name="prijmeni" />
-  <!-- atd -->
+  <composite:attribute name="vyuctovani" />
 
 </composite:interface>
 
 <composite:implementation>
 
-  Poznámky: (tady budou věci pro hlavičku vygenerovaného vyúčtování)
-  <br />
-  <br />
-  Pronajímatel
-  <br />
+  <h3>Pronajímatel:</h3>
   - jméno
-  - přijmení
-  - telefon
-  - adresa
-
-  <br />  <br />  <br />  <br />
-
-  Nájemce
   <br />
-  - jméno
   - přijmení
+  <br />
   - telefon
+  <br />
   - adresa
+  <br />
 
-  <br />  <br />  <br />  <br />
+  <h3>Nájemce:</h3>
+  - jméno
+  <br />
+  - přijmení
+  <br />
+  - telefon
+  <br />
+  - adresa
+  <br />
 
-  - zúčtovací období
+  <h3>Zúčtovací období</h3>
+  OD: <h:outputText value="#{cc.attrs.vyuctovani.zuctovaciObdobi.zacatek}" /> <br />
+  DO: <h:outputText value="#{cc.attrs.vyuctovani.zuctovaciObdobi.konec}" /> <br />
+
+  <h3>Byt: </h3>
+  <h:outputText value="#{cc.attrs.vyuctovani.nemovitost.nazev}" />
+  <br />
+
+  <h3>Adresa:</h3>
+  <h:outputText value="#{cc.attrs.vyuctovani.nemovitost.adresa}" />
+  <br />
 
 </composite:implementation>
 

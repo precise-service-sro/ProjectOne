@@ -1,8 +1,9 @@
 package com.precise_service.project_one.web.vyuctovani;
 
 import java.io.Serializable;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.faces.application.FacesMessage;
@@ -12,13 +13,14 @@ import javax.inject.Named;
 import org.primefaces.event.RowEditEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.precise_service.project_one.entity.Cislo;
 import com.precise_service.project_one.entity.PolozkaTyp;
 import com.precise_service.project_one.entity.vyuctovani.Vyuctovani;
-import com.precise_service.project_one.entity.Cislo;
 import com.precise_service.project_one.entity.vyuctovani.VyuctovaniPolozka;
 import com.precise_service.project_one.service.vyuctovani.IPolozkaTypService;
 import com.precise_service.project_one.service.vyuctovani.IVyuctovaniPolozkaService;
 import com.precise_service.project_one.service.vyuctovani.IVyuctovaniService;
+import com.precise_service.project_one.web.common.DateFormatter;
 
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
@@ -37,8 +39,6 @@ public class VyuctovaniDetailBean implements Serializable {
   @Autowired
   private IPolozkaTypService polozkaTypService;
 
-  public static final String ZUCTOVACI_OBDOBI_DATE_FORMAT = "dd/MM/yyyy";
-
   private List<PolozkaTyp> polozkaTypList;
   private Vyuctovani vyuctovani;
   private List<VyuctovaniPolozka> radkyVyuctovani;
@@ -53,13 +53,11 @@ public class VyuctovaniDetailBean implements Serializable {
 
     polozkaTypList = polozkaTypService.getPolozkaTypAll();
 
-    DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-    LocalDate from = LocalDate.parse("01-01-2017", dateTimeFormatter);
-    LocalDate to = LocalDate.parse("31-12-2017", dateTimeFormatter);
-
     if (vyuctovani == null) {
+      Date zacatek = DateFormatter.parseDate("01-01-2017");
+      Date konec = DateFormatter.parseDate("31-12-2017");
       // TODO: tohle budu moct ve finale uplne smazat
-      List<Vyuctovani> vyuctovaniInRange = vyuctovaniService.getVyuctovaniInRange(from, to);
+      List<Vyuctovani> vyuctovaniInRange = vyuctovaniService.getVyuctovaniInRange(zacatek, konec);
       vyuctovani = vyuctovaniInRange.get(0);
     }
 

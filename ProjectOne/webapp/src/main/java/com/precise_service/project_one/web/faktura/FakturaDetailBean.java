@@ -3,6 +3,7 @@ package com.precise_service.project_one.web.faktura;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.List;
 
 import javax.faces.application.FacesMessage;
@@ -19,6 +20,7 @@ import com.precise_service.project_one.entity.faktura.FakturaPolozka;
 import com.precise_service.project_one.service.faktura.IFakturaPolozkaService;
 import com.precise_service.project_one.service.faktura.IFakturaService;
 import com.precise_service.project_one.service.vyuctovani.IPolozkaTypService;
+import com.precise_service.project_one.web.common.DateFormatter;
 
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
@@ -37,8 +39,6 @@ public class FakturaDetailBean implements Serializable {
   @Autowired
   private IPolozkaTypService polozkaTypService;
 
-  public static final String ZUCTOVACI_OBDOBI_DATE_FORMAT = "dd/MM/yyyy";
-
   private List<PolozkaTyp> polozkaTypList;
   private Faktura faktura;
   private List<FakturaPolozka> radkyFaktura;
@@ -53,13 +53,12 @@ public class FakturaDetailBean implements Serializable {
 
     polozkaTypList = polozkaTypService.getPolozkaTypAll();
 
-    DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-    LocalDate from = LocalDate.parse("01-01-2017", dateTimeFormatter);
-    LocalDate to = LocalDate.parse("31-12-2017", dateTimeFormatter);
+    Date zacatek = DateFormatter.parseDate("01-01-2017");
+    Date konec = DateFormatter.parseDate("31-12-2017");
 
     if (faktura == null) {
       // TODO: tohle budu moct ve finale uplne smazat
-      List<Faktura> fakturaInRange = fakturaService.getFakturaListInRange(from, to);
+      List<Faktura> fakturaInRange = fakturaService.getFakturaListInRange(zacatek, konec);
       faktura = fakturaInRange.get(0);
     }
 

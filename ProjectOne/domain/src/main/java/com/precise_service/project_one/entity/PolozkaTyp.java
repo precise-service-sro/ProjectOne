@@ -1,11 +1,12 @@
 package com.precise_service.project_one.entity;
 
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.precise_service.project_one.entity.BaseEntity;
+import com.precise_service.project_one.entity.nemovitost.Nemovitost;
 
 import lombok.Data;
 
@@ -21,4 +22,9 @@ public class PolozkaTyp extends BaseEntity {
   @JsonProperty("popis")
   @JsonInclude(JsonInclude.Include.NON_NULL)
   private String popis;
+
+  @DBRef
+  @JsonProperty("nemovitost")
+  @JsonInclude(JsonInclude.Include.NON_NULL)
+  private Nemovitost nemovitost;
 }

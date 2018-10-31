@@ -1,6 +1,7 @@
 package com.precise_service.project_one.service.faktura;
 
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,7 +44,7 @@ public class FakturaService implements IFakturaService {
   }
 
   @Override
-  public List<Faktura> getFakturaListInRange(LocalDate from, LocalDate to) {
+  public List<Faktura> getFakturaListInRange(Date from, Date to) {
     log.trace("getFakturaListInRange()");
     return fakturaRepository.getFakturaListInRange(from, to);
   }

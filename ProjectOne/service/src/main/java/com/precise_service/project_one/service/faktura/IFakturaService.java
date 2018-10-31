@@ -1,6 +1,6 @@
 package com.precise_service.project_one.service.faktura;
 
-import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 import com.precise_service.project_one.entity.faktura.Faktura;
@@ -15,7 +15,7 @@ public interface IFakturaService {
 
   List<Faktura> getFakturaAll();
 
-  List<Faktura> getFakturaListInRange(LocalDate from, LocalDate to);
+  List<Faktura> getFakturaListInRange(Date from, Date to);
 
   void deleteFaktura(String idFaktura);
 
