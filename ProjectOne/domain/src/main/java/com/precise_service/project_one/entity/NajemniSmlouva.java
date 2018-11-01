@@ -10,8 +10,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.precise_service.project_one.entity.nemovitost.Nemovitost;
-import com.precise_service.project_one.entity.osoba.Najemnik;
-import com.precise_service.project_one.entity.osoba.Pronajimatel;
+import com.precise_service.project_one.entity.osoba.Osoba;
 
 import lombok.Data;
 
@@ -20,20 +19,20 @@ import lombok.Data;
 @Document(collection = "najemniSmlouva")
 public class NajemniSmlouva extends BaseEntity {
 
-  @DBRef
+  @DBRef(lazy = true)
   @JsonProperty("pronajimatel")
   @JsonInclude(JsonInclude.Include.NON_NULL)
-  private Pronajimatel pronajimatel;
+  private Osoba pronajimatel;
 
-  @DBRef
+  @DBRef(lazy = true)
   @JsonProperty("nemovitost")
   @JsonInclude(JsonInclude.Include.NON_NULL)
   private Nemovitost nemovitost;
 
-  @DBRef
+  @DBRef(lazy = true)
   @JsonProperty("najemnik")
   @JsonInclude(JsonInclude.Include.NON_NULL)
-  private Najemnik najemnik;
+  private Osoba najemnik;
 
   @JsonProperty("datumPodpisu")
   @JsonInclude(JsonInclude.Include.NON_NULL)

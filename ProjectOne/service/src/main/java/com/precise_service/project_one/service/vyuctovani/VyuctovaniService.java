@@ -11,7 +11,7 @@ import com.precise_service.project_one.entity.PolozkaTyp;
 import com.precise_service.project_one.entity.faktura.Faktura;
 import com.precise_service.project_one.entity.faktura.FakturaPolozka;
 import com.precise_service.project_one.entity.nemovitost.Nemovitost;
-import com.precise_service.project_one.entity.osoba.Najemnik;
+import com.precise_service.project_one.entity.osoba.Osoba;
 import com.precise_service.project_one.entity.vyuctovani.Vyuctovani;
 import com.precise_service.project_one.entity.vyuctovani.VyuctovaniPolozka;
 import com.precise_service.project_one.repository.VyuctovaniRepository;
@@ -78,7 +78,7 @@ public class VyuctovaniService implements IVyuctovaniService {
   }
 
   @Override
-  public Vyuctovani generovatVyuctovani(String nazev, CasovyInterval zuctovaciObdobi, Nemovitost nemovitost, Najemnik najemnik, List<Faktura> fakturaList) {
+  public Vyuctovani generovatVyuctovani(String nazev, CasovyInterval zuctovaciObdobi, Nemovitost nemovitost, Osoba osoba, List<Faktura> fakturaList) {
     log.trace("deleteVyuctovaniAll()");
     List<PolozkaTyp> polozkaTypList = polozkaTypService.getPolozkaTypListByIdNemovitost(nemovitost.getId());
 
@@ -86,7 +86,7 @@ public class VyuctovaniService implements IVyuctovaniService {
     vyuctovani.setNazev(nazev);
     vyuctovani.setZuctovaciObdobi(zuctovaciObdobi);
     vyuctovani.setNemovitost(nemovitost);
-    //vyuctovani.setNajemnik(najemnik);
+    //vyuctovani.setOsoba(osoba);
     //vyuctovani.setPronajimatel(pronajimatel);
     vyuctovani = postVyuctovani(vyuctovani);
 

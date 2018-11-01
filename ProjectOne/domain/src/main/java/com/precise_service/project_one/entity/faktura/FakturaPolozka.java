@@ -21,12 +21,12 @@ public class FakturaPolozka extends BaseEntity {
   @JsonInclude(JsonInclude.Include.NON_NULL)
   private String nazev;
 
-  @DBRef
+  @DBRef(lazy = true)
   @JsonProperty("faktura")
   @JsonInclude(JsonInclude.Include.NON_NULL)
   private Faktura faktura;
 
-  @DBRef
+  @DBRef(lazy = true)
   @JsonProperty("polozkaTyp")
   @JsonInclude(JsonInclude.Include.NON_NULL)
   private PolozkaTyp polozkaTyp;

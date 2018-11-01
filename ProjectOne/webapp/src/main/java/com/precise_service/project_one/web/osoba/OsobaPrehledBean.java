@@ -1,4 +1,4 @@
-package com.precise_service.project_one.web.najemnik;
+package com.precise_service.project_one.web.osoba;
 
 import java.io.IOException;
 import java.io.Serializable;
@@ -12,10 +12,10 @@ import org.omnifaces.util.Faces;
 import org.primefaces.event.RowEditEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.precise_service.project_one.entity.osoba.Najemnik;
 import com.precise_service.project_one.entity.nemovitost.Nemovitost;
-import com.precise_service.project_one.service.osoba.INajemnikService;
+import com.precise_service.project_one.entity.osoba.Osoba;
 import com.precise_service.project_one.service.nemovitost.INemovitostService;
+import com.precise_service.project_one.service.osoba.IOsobaService;
 
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
@@ -23,74 +23,74 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Data
 @Named
-public class NajemnikPrehledBean implements Serializable {
+public class OsobaPrehledBean implements Serializable {
 
   @Autowired
-  private INajemnikService najemnikService;
+  private IOsobaService osobaService;
 
   @Autowired
   private INemovitostService nemovitostService;
 
   @Autowired
-  private NajemnikDetailBean najemnikDetailBean;
+  private OsobaDetailBean osobaDetailBean;
 
-  private List<Najemnik> najemnikList;
+  private List<Osoba> osobaList;
   private List<Nemovitost> nemovitostList;
   
   public void init() {
-    najemnikList = najemnikService.getNajemnikAll();
+    osobaList = osobaService.getOsobaAll();
     nemovitostList = nemovitostService.getNemovitostAll();
   }
 
   public void onRowEdit(RowEditEvent event) {
     log.trace("onRowEdit()");
-    Najemnik najemnik = (Najemnik) event.getObject();
+    Osoba osoba = (Osoba) event.getObject();
 
-    najemnikService.putNajemnik(najemnik);
+    osobaService.putOsoba(osoba);
 
-    FacesMessage msg = new FacesMessage("Uložena úprava řádky", najemnik.getCeleJmeno());
+    FacesMessage msg = new FacesMessage("Uložena úprava řádky", osoba.getCeleJmeno());
     FacesContext.getCurrentInstance().addMessage(null, msg);
   }
 
   public void onRowCancel(RowEditEvent event) {
     log.trace("onRowCancel()");
-    FacesMessage msg = new FacesMessage("Zrušena úprava řádky", ((Najemnik) event.getObject()).getCeleJmeno());
+    FacesMessage msg = new FacesMessage("Zrušena úprava řádky", ((Osoba) event.getObject()).getCeleJmeno());
     FacesContext.getCurrentInstance().addMessage(null, msg);
   }
 
-  public void showNajemnikDetailBean(Najemnik najemnik) throws IOException {
-    najemnikDetailBean.setNajemnik(najemnik);
+  public void showOsobaDetailBean(Osoba osoba) throws IOException {
+    osobaDetailBean.setOsoba(osoba);
     Faces.getFlash().setRedirect(true);
-    Faces.redirect("/najemnik/detail.xhtml");
+    Faces.redirect("/osoba/detail.xhtml");
   }
 
   public void addRow() {
     log.trace("addRow()");
 
-    Najemnik najemnik = new Najemnik();
+    Osoba osoba = new Osoba();
 
-    najemnik.setJmeno("!!! Upravit !!!");
-    najemnik.setPrijmeni("!!! Upravit !!!");
+    osoba.setJmeno("!!! Upravit !!!");
+    osoba.setPrijmeni("!!! Upravit !!!");
 
-    Najemnik saved = najemnikService.postNajemnik(najemnik);
+    Osoba saved = osobaService.postOsoba(osoba);
     init();
 
     FacesMessage msg = new FacesMessage("Přidána nová řádka", saved.getId());
     FacesContext.getCurrentInstance().addMessage(null, msg);
   }
 
-  public void deleteRow(Najemnik deletedNajemnik) {
+  public void deleteRow(Osoba deletedOsoba) {
     log.trace("deleteRow()");
 
-    if (deletedNajemnik == null) {
+    if (deletedOsoba == null) {
       log.trace("deleted row is null");
       return;
     }
-    log.trace("deleting row with: " + deletedNajemnik.toString());
+    log.trace("deleting row with: " + deletedOsoba.toString());
 
-    najemnikService.deleteNajemnik(deletedNajemnik.getId());
+    osobaService.deleteOsoba(deletedOsoba.getId());
 
-    FacesMessage msg = new FacesMessage("Smazán řádek", deletedNajemnik.getCeleJmeno());
+    FacesMessage msg = new FacesMessage("Smazán řádek", deletedOsoba.getCeleJmeno());
     FacesContext.getCurrentInstance().addMessage(null, msg);
     init();
   }

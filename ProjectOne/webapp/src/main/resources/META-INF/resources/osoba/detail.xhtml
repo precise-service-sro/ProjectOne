@@ -6,11 +6,11 @@
       xmlns:component="http://java.sun.com/jsf/composite/common/component">
 
 <h:head>
-  <title>ProjectOne - Najemník - Informace - O nájemníkovi</title>
+  <title>ProjectOne - Detail osoby</title>
 </h:head>
 
 <h:body>
-  <h:outputText value="#{najemnikDetailBean.init()}" />
+  <h:outputText value="#{osobaDetailBean.init()}" />
 
   <br />
   <br />
@@ -19,13 +19,33 @@
   <br />
   <br />
 
-  <h2>Podrobné informace o nájemníkovi:</h2>
+  <h2>Detail osoby:</h2>
+
+  <h3>Fotka / Avatar:</h3>
+  - <h:outputText value="#{osobaDetailBean.osoba.fotka}" />
+  <br />
 
   <h3>Jméno a Přijmení:</h3>
-  - <h:outputText value="#{najemnikDetailBean.najemnik.getCeleJmeno()}" />
+  - <h:outputText value="#{osobaDetailBean.osoba.jmeno}" />
+  <br />
+  - <h:outputText value="#{osobaDetailBean.osoba.prijmeni}" />
+  <br />
+
+  <h3>Datum narození:</h3>
+  - <h:outputText value="#{osobaDetailBean.osoba.datumNarozeni}" />
+  <br />
+
+  <h3>Telefon:</h3>
+  - <h:outputText value="#{osobaDetailBean.osoba.telefon}" />
+  <br />
+
+  <h3>Email:</h3>
+  - <h:outputText value="#{osobaDetailBean.osoba.email}" />
+  <br />
+
 
   <h3>Poznámky:</h3>
-  <component:editorTextu vstupniData="#{najemnikDetailBean}" />
+  <component:editorTextu vstupniData="#{osobaDetailBean}" />
 
   <br />
   <br />

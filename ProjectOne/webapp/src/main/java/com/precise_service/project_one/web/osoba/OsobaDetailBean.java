@@ -1,4 +1,4 @@
-package com.precise_service.project_one.web.najemnik;
+package com.precise_service.project_one.web.osoba;
 
 import java.io.Serializable;
 
@@ -8,8 +8,8 @@ import javax.inject.Named;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.precise_service.project_one.entity.osoba.Najemnik;
-import com.precise_service.project_one.service.osoba.INajemnikService;
+import com.precise_service.project_one.entity.osoba.Osoba;
+import com.precise_service.project_one.service.osoba.IOsobaService;
 import com.precise_service.project_one.web.common.component.EditorTextuBean;
 
 import lombok.Data;
@@ -18,31 +18,31 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Data
 @Named
-public class NajemnikDetailBean implements Serializable {
+public class OsobaDetailBean implements Serializable {
 
   @Autowired
   private EditorTextuBean editorTextuBean;
 
   @Autowired
-  private INajemnikService najemnikService;
+  private IOsobaService osobaService;
 
-  private Najemnik najemnik;
+  private Osoba osoba;
 
   public void init() {
-    if (najemnik == null) {
-      // zatim vzdy vytahuji poznamky pouze k prvnimu najemnikovi v DB
-      najemnik = najemnikService.getNajemnikAll().get(0);
+    if (osoba == null) {
+      // zatim vzdy vytahuji poznamky pouze k prvnimu osobaovi v DB
+      osoba = (Osoba) osobaService.getOsobaAll().get(0);
     }
 
     // editovatelne poznamky
-    editorTextuBean.setText(najemnik.getPoznamky());
+    editorTextuBean.setText(osoba.getPoznamky());
   }
 
   public void ulozit(){
     log.warn("ulozit()");
     String newText = editorTextuBean.getText();
-    najemnik.setPoznamky(newText);
-    najemnikService.postNajemnik(najemnik);
+    osoba.setPoznamky(newText);
+    osobaService.postOsoba(osoba);
 
     FacesMessage msg = new FacesMessage("Úprava uložena", newText);
     FacesContext.getCurrentInstance().addMessage(null, msg);

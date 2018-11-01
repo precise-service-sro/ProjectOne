@@ -25,7 +25,7 @@ public class Vyuctovani extends BaseEntity {
   @JsonInclude(JsonInclude.Include.NON_NULL)
   private CasovyInterval zuctovaciObdobi;
 
-  @DBRef
+  @DBRef(lazy = true)
   @JsonProperty("nemovitost")
   @JsonInclude(JsonInclude.Include.NON_NULL)
   private Nemovitost nemovitost;

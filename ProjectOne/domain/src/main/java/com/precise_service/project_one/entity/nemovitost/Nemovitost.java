@@ -1,5 +1,6 @@
 package com.precise_service.project_one.entity.nemovitost;
 
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -7,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.precise_service.project_one.entity.BaseEntity;
 import com.precise_service.project_one.entity.Adresa;
+import com.precise_service.project_one.entity.osoba.Osoba;
 
 import lombok.Data;
 
@@ -30,4 +32,9 @@ public class Nemovitost extends BaseEntity {
   @JsonProperty("nemovitostTyp")
   @JsonInclude(JsonInclude.Include.NON_NULL)
   private NemovitostTyp nemovitostTyp;
+
+  @DBRef(lazy = true)
+  @JsonProperty("vlastnik")
+  @JsonInclude(JsonInclude.Include.NON_NULL)
+  private Osoba vlastnik;
 }

@@ -18,11 +18,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.precise_service.project_one.entity.CasovyInterval;
 import com.precise_service.project_one.entity.faktura.Faktura;
 import com.precise_service.project_one.entity.nemovitost.Nemovitost;
-import com.precise_service.project_one.entity.osoba.Najemnik;
+import com.precise_service.project_one.entity.osoba.Osoba;
 import com.precise_service.project_one.entity.predavaci_protokol.PredavaciProtokol;
 import com.precise_service.project_one.entity.vyuctovani.Vyuctovani;
 import com.precise_service.project_one.service.faktura.IFakturaService;
-import com.precise_service.project_one.service.osoba.INajemnikService;
+import com.precise_service.project_one.service.osoba.IOsobaService;
 import com.precise_service.project_one.service.nemovitost.INemovitostService;
 import com.precise_service.project_one.service.predavaci_protokol.IPredavaciProtokolService;
 import com.precise_service.project_one.service.vyuctovani.IVyuctovaniService;
@@ -40,7 +40,7 @@ public class VyuctovaniGeneratorBean implements Serializable {
   private INemovitostService nemovitostService;
 
   @Autowired
-  private INajemnikService najemnikService;
+  private IOsobaService osobaService;
 
   @Autowired
   private IVyuctovaniService vyuctovaniService;
@@ -54,13 +54,11 @@ public class VyuctovaniGeneratorBean implements Serializable {
   @Autowired
   private VyuctovaniDetailBean vyuctovaniDetailBean;
 
-  public static final String ZUCTOVACI_OBDOBI_DATE_FORMAT = "dd/MM/yyyy";
-
   private List<Nemovitost> nemovitostList;
-  private List<Najemnik> najemnikList;
+  private List<Osoba> seznamNajemniku;
 
   private Nemovitost nemovitost;
-  private Najemnik najemnik;
+  private Osoba najemnik;
   private PredavaciProtokol predavaciProtokol;
   private CasovyInterval zuctovaciObdobi;
   private List<Vyuctovani> vyuctovaniList;
@@ -71,15 +69,12 @@ public class VyuctovaniGeneratorBean implements Serializable {
 
     if (zuctovaciObdobi == null) {
       zuctovaciObdobi = new CasovyInterval();
-      SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
-      Date zacatek = simpleDateFormat.parse("01-01-2017");
-      Date konec = simpleDateFormat.parse("31-12-2017");
-      zuctovaciObdobi.setZacatek(zacatek);
-      zuctovaciObdobi.setKonec(konec);
+      zuctovaciObdobi.setZacatek(DateFormatter.parseDate("01-01-2017"));
+      zuctovaciObdobi.setKonec(DateFormatter.parseDate("31-12-2017"));
     }
 
     nemovitostList = nemovitostService.getNemovitostAll();
-    najemnikList = najemnikService.getNajemnikAll();
+    seznamNajemniku = osobaService.getOsobaAll();
     predavaciProtokolList = predavaciProtokolService.getPredavaciProtokolAll();
   }
 

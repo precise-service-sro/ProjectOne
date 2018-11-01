@@ -10,8 +10,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.precise_service.project_one.entity.BaseEntity;
-import com.precise_service.project_one.entity.osoba.Najemnik;
 import com.precise_service.project_one.entity.nemovitost.Nemovitost;
+import com.precise_service.project_one.entity.osoba.Osoba;
 
 import lombok.Data;
 
@@ -29,15 +29,15 @@ public class PredavaciProtokol extends BaseEntity {
   @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
   private LocalDate datumPodpisu;
 
-  @DBRef
+  @DBRef(lazy = true)
   @JsonProperty("nemovitost")
   @JsonInclude(JsonInclude.Include.NON_NULL)
   private Nemovitost nemovitost;
 
-  @DBRef
+  @DBRef(lazy = true)
   @JsonProperty("najemnik")
   @JsonInclude(JsonInclude.Include.NON_NULL)
-  private Najemnik najemnik;
+  private Osoba najemnik;
 
   public String getPopis() {
     return "" + nazev + ", " + najemnik.getCeleJmeno() + ", " + datumPodpisu;

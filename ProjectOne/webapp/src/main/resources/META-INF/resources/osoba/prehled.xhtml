@@ -1,0 +1,132 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:component="http://java.sun.com/jsf/composite/common/component">
+
+<h:head>
+  <title>ProjectOne - Přehled osob</title>
+  <script>
+    $(document).on("keydown", ".ui-cell-editor-input input", function(event) {
+      if (event.keyCode == 13) {
+          $(this).closest("tr").find(".ui-row-editor .ui-icon-check").click();
+      }
+    });
+  </script>
+</h:head>
+
+<h:body>
+
+  <h:outputText value="#{osobaPrehledBean.init()}" />
+
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+
+  <h:form id="form">
+    <p:growl id="msgs" showDetail="true"/>
+
+    <h2>Přehled osob:</h2>
+
+    <div class="ui-g" style="text-align: right;">
+      <div class="ui-g-12">
+        <p:commandButton value="Přidat" icon="ui-icon-circle-plus" styleClass="ui-priority-primary" process="@this" update=":form:msgs"
+                         actionListener="#{osobaPrehledBean.addRow()}" oncomplete="PF('osobaPrehledBeanTable').addRow();" />
+      </div>
+    </div>
+
+    <p:dataTable id="osobaPrehledBeanTable" var="osoba" widgetVar="osobaPrehledBeanTable" value="#{osobaPrehledBean.getOsobaList()}" resizableColumns="true" sortBy="#{1}" editable="true">
+      <p:ajax event="rowEdit" listener="#{osobaPrehledBean.onRowEdit}" update=":form:msgs :form:osobaPrehledBeanTable" />
+      <p:ajax event="rowEditCancel" listener="#{osobaPrehledBean.onRowCancel}" update=":form:msgs" />
+
+      <p:columnGroup type="header">
+        <p:row>
+          <p:column headerText="Fotka / Avatar"                     />
+          <p:column headerText="Jméno"                              />
+          <p:column headerText="Příjmení"                           style="width: 180px;"/>
+          <p:column headerText="Datum narození"                     style="width: 200px;"/>
+          <p:column headerText="Telefon"                            style="width: 200px;"/>
+          <p:column headerText="Email"                              style="width: 200px;"/>
+          <p:column headerText="Ovládání"   colspan="3" rowspan="2" style="width: 160px;"/>
+        </p:row>
+      </p:columnGroup>
+
+      <p:column>
+        <h:outputText value="#{osoba.fotka}" />
+      </p:column>
+
+      <p:column style="text-align: center;">
+        <p:cellEditor>
+          <f:facet name="output"><h:outputText value="#{osoba.jmeno}" /> </f:facet>
+          <f:facet name="input"><p:inputText id="jmenoInput" value="#{osoba.jmeno}" style="width:100%" onkeydown="if (event.keyCode === 13) {return false;}" /></f:facet>
+        </p:cellEditor>
+      </p:column>
+
+      <p:column style="text-align: center;">
+        <p:cellEditor>
+          <f:facet name="output"><h:outputText value="#{osoba.prijmeni}" /> </f:facet>
+          <f:facet name="input"><p:inputText id="prijmeniInput" value="#{osoba.prijmeni}" style="width:100%" onkeydown="if (event.keyCode === 13) {return false;}"/></f:facet>
+        </p:cellEditor>
+      </p:column>
+
+      <p:column style="text-align: center;">
+        <p:cellEditor>
+          <f:facet name="output">
+            <h:outputText value="#{osoba.datumNarozeni}">
+              <f:convertDateTime pattern="dd-MM-yyyy" />
+            </h:outputText>
+          </f:facet>
+          <f:facet name="input">
+            <p:calendar id="datumNarozeniInput" value="#{osoba.datumNarozeni}" pattern="dd-MM-yyyy" style="width:100%"/>
+          </f:facet>
+        </p:cellEditor>
+      </p:column>
+
+      <p:column style="text-align: center;">
+        <p:cellEditor>
+          <f:facet name="output"><h:outputText value="#{osoba.telefon}" /> </f:facet>
+          <f:facet name="input"><p:inputText id="telefonInput" value="#{osoba.telefon}" style="width:100%"/></f:facet>
+        </p:cellEditor>
+      </p:column>
+
+      <p:column style="text-align: center;">
+        <p:cellEditor>
+          <f:facet name="output"><h:outputText value="#{osoba.email}" /> </f:facet>
+          <f:facet name="input"><p:inputText id="emailInput" value="#{osoba.email}" style="width:100%"/></f:facet>
+        </p:cellEditor>
+      </p:column>
+
+      <p:column>
+        <p:commandButton icon="ui-icon-circle-zoomin" actionListener="#{osobaPrehledBean.showOsobaDetailBean(osoba)}" title="Podrobnosti" />
+      </p:column>
+
+      <p:column>
+        <p:rowEditor />
+      </p:column>
+
+      <p:column>
+        <p:commandButton update="@form :form:msgs" icon="ui-icon-circle-minus" actionListener="#{osobaPrehledBean.deleteRow(osoba)}" title="Odebrat" />
+      </p:column>
+    </p:dataTable>
+  </h:form>
+
+  <br />
+  <br />
+  <br />
+
+  <h3>Další myšlenky a nápady na zlepšení:</h3>
+
+  <br />
+  - Filtrování na základě sloupečků
+
+  <br />
+  <br />
+  <br />
+
+  <component:dockMenu />
+</h:body>
+</html>

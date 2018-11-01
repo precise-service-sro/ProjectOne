@@ -34,14 +34,12 @@
 
       <br />
       <h3>Pronajímatel:</h3>
-      <h:selectOneMenu value="#{vyuctovaniGeneratorBean.najemnik}" style="width: 200px; height: 40px;" converter="#{najemnikConverter}">
-        <f:selectItems value="#{vyuctovaniGeneratorBean.najemnikList}" var="najemnik" itemLabel="#{najemnik.getCeleJmeno()}" itemValue="#{najemnik}" />
-      </h:selectOneMenu>
+      <h:outputText value="#{vyuctovaniGeneratorBean.nemovitost.vlastnik.getCeleJmeno()}" />
 
       <br />
       <h3>Nájemník:</h3>
-      <h:selectOneMenu value="#{vyuctovaniGeneratorBean.najemnik}" style="width: 200px; height: 40px;" converter="#{najemnikConverter}">
-        <f:selectItems value="#{vyuctovaniGeneratorBean.najemnikList}" var="najemnik" itemLabel="#{najemnik.getCeleJmeno()}" itemValue="#{najemnik}" />
+      <h:selectOneMenu value="#{vyuctovaniGeneratorBean.najemnik}" style="width: 200px; height: 40px;" converter="#{osobaConverter}">
+        <f:selectItems value="#{vyuctovaniGeneratorBean.seznamNajemniku}" var="najemnik" itemLabel="#{najemnik.getCeleJmeno()}" itemValue="#{najemnik}" />
       </h:selectOneMenu>
 
       <br />

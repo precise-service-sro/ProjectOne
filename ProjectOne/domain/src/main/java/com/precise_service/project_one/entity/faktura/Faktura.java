@@ -33,7 +33,7 @@ public class Faktura extends BaseEntity {
   @JsonInclude(JsonInclude.Include.NON_NULL)
   private Date datumSplatnosti;
 
-  @DBRef
+  @DBRef(lazy = true)
   @JsonProperty("nemovitost")
   @JsonInclude(JsonInclude.Include.NON_NULL)
   private Nemovitost nemovitost;

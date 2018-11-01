@@ -13,11 +13,11 @@ import org.omnifaces.util.Faces;
 import org.primefaces.event.RowEditEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.precise_service.project_one.entity.osoba.Najemnik;
 import com.precise_service.project_one.entity.nemovitost.Nemovitost;
+import com.precise_service.project_one.entity.osoba.Osoba;
 import com.precise_service.project_one.entity.predavaci_protokol.PredavaciProtokol;
-import com.precise_service.project_one.service.osoba.INajemnikService;
 import com.precise_service.project_one.service.nemovitost.INemovitostService;
+import com.precise_service.project_one.service.osoba.IOsobaService;
 import com.precise_service.project_one.service.predavaci_protokol.IPredavaciProtokolService;
 
 import lombok.Data;
@@ -38,17 +38,19 @@ public class PredavaciProtokolPrehledBean implements Serializable {
   private INemovitostService nemovitostService;
 
   @Autowired
-  private INajemnikService najemnikService;
+  private IOsobaService osobaService;
 
   private List<PredavaciProtokol> predavaciProtokolList;
   private List<Nemovitost> nemovitostList;
-  private List<Najemnik> najemnikList;
+  private List<Osoba> seznamNajemniku;
 
   public void init() {
     log.trace("init()");
     predavaciProtokolList = predavaciProtokolService.getPredavaciProtokolAll();
     nemovitostList = nemovitostService.getNemovitostAll();
-    najemnikList = najemnikService.getNajemnikAll();
+
+    // TODO: filtrovat tyto osoby / najemniky dle prihlasene osoby, dle existence najemni smlouvy
+    seznamNajemniku = osobaService.getOsobaAll();
   }
 
   public void onRowEdit(RowEditEvent event) {

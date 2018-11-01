@@ -21,12 +21,12 @@ public class VyuctovaniPolozka extends BaseEntity {
   @JsonInclude(JsonInclude.Include.NON_NULL)
   private String nazev;
 
-  @DBRef
+  @DBRef(lazy = true)
   @JsonProperty("vyuctovani")
   @JsonInclude(JsonInclude.Include.NON_NULL)
   private Vyuctovani vyuctovani;
 
-  @DBRef
+  @DBRef(lazy = true)
   @JsonProperty("polozkaTyp")
   @JsonInclude(JsonInclude.Include.NON_NULL)
   private PolozkaTyp polozkaTyp;
