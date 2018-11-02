@@ -4,6 +4,7 @@ import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import com.precise_service.project_one.entity.osoba.Osoba;
 
 public class Util {
 
@@ -21,16 +22,8 @@ public class Util {
         getExternalContext().getRequest();
   }
 
-  public static String getUserName() {
+  public static Osoba getPrihlasenyUzivatel() {
     HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
-    return session.getAttribute("username").toString();
-  }
-
-  public static String getUserId() {
-    HttpSession session = getSession();
-    if (session != null)
-      return (String) session.getAttribute("userid");
-    else
-      return null;
+    return (Osoba) session.getAttribute(LoginBean.SESSION_ATTRIBUTE_PRIHLASENY_UZIVATEL);
   }
 }

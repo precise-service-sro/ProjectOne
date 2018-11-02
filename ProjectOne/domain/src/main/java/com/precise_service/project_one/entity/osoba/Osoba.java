@@ -21,7 +21,7 @@ public class Osoba extends BaseEntity {
   @JsonInclude(JsonInclude.Include.NON_NULL)
   private String username;
 
-  @JsonProperty("password")
+  @JsonProperty("heslo")
   @JsonInclude(JsonInclude.Include.NON_NULL)
   private String password;
 

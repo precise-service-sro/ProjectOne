@@ -8,6 +8,7 @@ import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.lang3.StringUtils;
 import org.omnifaces.util.Faces;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -23,41 +24,36 @@ import static com.precise_service.project_one.web.URL_CONST.NEMOVITOST_PREHLED_U
 @Data
 public class LoginBean implements Serializable {
 
+  public static final String SESSION_ATTRIBUTE_PRIHLASENY_UZIVATEL = "prihlasenyUzivatel";
+
   @Autowired
   private IOsobaService osobaService;
 
+  private String prihlasovaciJmeno;
+  private String heslo;
+
   private Osoba prihlasenyUzivatel;
 
-  public boolean login(String user, String password) {
-    prihlasenyUzivatel = osobaService.getOsobaByUsernameAndPassword(user, password);
-    if (prihlasenyUzivatel == null) {
-      FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN,
-          "LoginDAO!",
-          "Wrong password message test!"));
-      return false;
+  private Osoba getOsoba(String prihlasovaciJmeno, String heslo) {
+    if (StringUtils.isBlank( prihlasovaciJmeno) || StringUtils.isBlank(heslo)) {
+      return null;
     }
-    return true;
+    return osobaService.getOsobaByUsernameAndPassword(prihlasovaciJmeno, heslo);
   }
 
-  private String password;
-  private String message;
-  private String uname;
-
-  public void loginProject() throws IOException {
+  public void login() throws IOException {
     Faces.getFlash().setRedirect(true);
 
-    if (login(uname, password)) {
-      HttpSession session = Util.getSession();
-      session.setAttribute("username", uname);
-      Faces.redirect(NEMOVITOST_PREHLED_URL);
+    prihlasenyUzivatel = getOsoba(prihlasovaciJmeno, heslo);
+    if (prihlasenyUzivatel == null) {
+      FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN,"Špatné přihlašovací údaje!","Špatné přihlašovací jméno anebo heslo!"));
+      Faces.redirect(INDEX_URL);
       return;
     }
 
-    FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN,
-          "Invalid Login!",
-          "Please Try Again!"));
-
-    Faces.redirect(INDEX_URL);
+    HttpSession session = Util.getSession();
+    session.setAttribute(SESSION_ATTRIBUTE_PRIHLASENY_UZIVATEL, prihlasovaciJmeno);
+    Faces.redirect(NEMOVITOST_PREHLED_URL);
   }
 
   public void logout() throws IOException {

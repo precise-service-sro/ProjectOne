@@ -25,10 +25,10 @@
         <h:outputText value="Please enter your credentials." />
       </f:facet>
       <f:facet name="start">
-        <h:outputText value="Please wait #{loginBean.uname}, Connecting database..." />
+        <h:outputText value="Please wait #{loginBean.prihlasovaciJmeno}, Connecting database..." />
       </f:facet>
       <f:facet name="complete">
-        <h:outputText value="Please try again #{loginBean.uname}, Database/Login error!!" />
+        <h:outputText value="Please try again #{loginBean.prihlasovaciJmeno}, Database/Login error!!" />
       </f:facet>
     </p:ajaxStatus>
   </div>
@@ -39,10 +39,10 @@
              style="width: 350px; margin: 0 auto;">
       <h:panelGrid id="loginPanel" columns="2" cellpadding="5">
         <h:outputText value="Username" />
-        <p:inputText id="username" value="#{loginBean.uname}"></p:inputText>
+        <p:inputText id="username" value="#{loginBean.prihlasovaciJmeno}"></p:inputText>
         <p:spacer /><p:spacer />
         <h:outputText value="Password" />
-        <p:password id="password" value="#{loginBean.password}"
+        <p:password id="password" value="#{loginBean.heslo}"
                     feedback="false"></p:password>
         <p:message for="password"></p:message>
       </h:panelGrid>
