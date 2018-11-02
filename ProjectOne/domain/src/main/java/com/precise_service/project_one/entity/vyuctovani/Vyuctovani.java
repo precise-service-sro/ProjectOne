@@ -1,5 +1,7 @@
 package com.precise_service.project_one.entity.vyuctovani;
 
+import java.util.List;
+
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -8,7 +10,10 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.precise_service.project_one.entity.BaseEntity;
 import com.precise_service.project_one.entity.CasovyInterval;
+import com.precise_service.project_one.entity.faktura.Faktura;
 import com.precise_service.project_one.entity.nemovitost.Nemovitost;
+import com.precise_service.project_one.entity.osoba.Osoba;
+import com.precise_service.project_one.entity.predavaci_protokol.PredavaciProtokol;
 
 import lombok.Data;
 
@@ -29,4 +34,24 @@ public class Vyuctovani extends BaseEntity {
   @JsonProperty("nemovitost")
   @JsonInclude(JsonInclude.Include.NON_NULL)
   private Nemovitost nemovitost;
+
+  @DBRef(lazy = true)
+  @JsonProperty("najemnik")
+  @JsonInclude(JsonInclude.Include.NON_NULL)
+  private Osoba najemnik;
+
+  @DBRef(lazy = true)
+  @JsonProperty("pronajimatel")
+  @JsonInclude(JsonInclude.Include.NON_NULL)
+  private Osoba pronajimatel;
+
+  @DBRef(lazy = true)
+  @JsonProperty("seznamVychozichFaktur")
+  @JsonInclude(JsonInclude.Include.NON_NULL)
+  private List<Faktura> seznamVychozichFaktur;
+
+  @DBRef(lazy = true)
+  @JsonProperty("predavaciProtokol")
+  @JsonInclude(JsonInclude.Include.NON_NULL)
+  private PredavaciProtokol predavaciProtokol;
 }

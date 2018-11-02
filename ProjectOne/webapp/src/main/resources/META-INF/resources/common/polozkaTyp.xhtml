@@ -27,10 +27,8 @@
     <h:form id="form">
       <p:growl id="msgs" showDetail="true"/>
 
-      
       <h3>Byt:</h3>
-      - odkaz na prolinkovanou nemovitost
-      
+      - <h:outputText value="#{polozkaTypBean.nemovitost.nazev}" /> (odkaz na prolinkovanou nemovitost, pujde proklidnout na detail nemovitosti) <br />
       
       <div class="ui-g" style="text-align: right;">
         <div class="ui-g-12">
@@ -50,6 +48,7 @@
         <p:columnGroup type="header">
           <p:row>
             <p:column headerText="Název"                style="width: 150px;"/>
+            <p:column headerText="Jednotka"             style="width: 150px;"/>
             <p:column headerText="Popis"                />
             <p:column headerText="Ovládání" colspan="2" style="width: 160px;"/>
           </p:row>
@@ -59,6 +58,13 @@
           <p:cellEditor>
             <f:facet name="output"><h:outputText value="#{polozkaTyp.nazev}" /> </f:facet>
             <f:facet name="input"><p:inputText id="polozkaTypNazevInput" value="#{polozkaTyp.nazev}" style="width:100%"/></f:facet>
+          </p:cellEditor>
+        </p:column>
+
+        <p:column style="text-align: center;">
+          <p:cellEditor>
+            <f:facet name="output"><h:outputText value="#{polozkaTyp.jednotka}" /> </f:facet>
+            <f:facet name="input"><p:inputText id="polozkaTypJednotkaInput" value="#{polozkaTyp.jednotka}" style="width:100%"/></f:facet>
           </p:cellEditor>
         </p:column>
 

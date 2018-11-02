@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.precise_service.project_one.entity.PolozkaTyp;
 import com.precise_service.project_one.entity.nemovitost.Nemovitost;
+import com.precise_service.project_one.service.nemovitost.INemovitostService;
 import com.precise_service.project_one.service.vyuctovani.IPolozkaTypService;
 
 import lombok.Data;
@@ -25,11 +26,18 @@ public class PolozkaTypBean implements Serializable {
   @Autowired
   private IPolozkaTypService polozkaTypService;
 
+  @Autowired
+  private INemovitostService nemovitostService;
+
   private List<PolozkaTyp> polozkaTypList;
+  private Nemovitost nemovitost;
 
   public void init(){
     log.trace("init()");
-    polozkaTypList = polozkaTypService.getPolozkaTypAll();
+
+    // TODO: filtrovat podle nemovitosti, ktera bude na vstupu volani stranky
+    nemovitost = nemovitostService.getNemovitostAll().get(0);
+    polozkaTypList = polozkaTypService.getPolozkaTypListByIdNemovitost(this.nemovitost.getId());
   }
 
   public void onRowEdit(RowEditEvent event) {

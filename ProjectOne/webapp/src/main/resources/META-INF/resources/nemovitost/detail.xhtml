@@ -29,10 +29,31 @@
   - <h:outputText value="#{nemovitostDetailBean.nemovitost.nemovitostTyp}" />
 
   <h3>Adresa:</h3>
-  - <h:outputText value="#{nemovitostDetailBean.nemovitost.adresa}" />
+  (- Adresa / mapy / google.maps) <br />
+  <h:outputText value="#{nemovitostDetailBean.nemovitost.adresa.ulice}" />&nbsp;<h:outputText value="#{nemovitostDetailBean.nemovitost.adresa.cisloPopisne}" />/<h:outputText value="#{nemovitostDetailBean.nemovitost.adresa.cisloOrientacni}" /> <br />
+  <h:outputText value="#{nemovitostDetailBean.nemovitost.adresa.mesto}" />&nbsp;<h:outputText value="#{nemovitostDetailBean.nemovitost.adresa.psc}" /> <br />
+  <h:outputText value="#{nemovitostDetailBean.nemovitost.adresa.stat}" /> <br />
+
+  <h3>Vlastnik:</h3>
+  - <h:outputText value="#{nemovitostDetailBean.nemovitost.vlastnik.getCeleJmeno()}" />
 
   <h3>Poznámky:</h3>
   <component:editorTextu vstupniData="#{nemovitostDetailBean}" />
+
+  <h3>Kontakty:</h3>
+  <h:form>
+    <p:dataTable id="nemovitostDetailBeanContactsTable" var="nemovitost" widgetVar="nemovitostDetailBeanContactsTable" value="#{nemovitostPrehledBean.getNemovitostList()}" resizableColumns="true" sortBy="#{1}" editable="true">
+      <p:columnGroup type="header">
+        <p:row>
+          <p:column headerText="Jméno"                            />
+          <p:column headerText="Telefon"                          style="width: 180px;"/>
+          <p:column headerText="Email"                            style="width: 200px;"/>
+          <p:column headerText="Poznámka"                         style="width: 200px;"/>
+          <p:column headerText="Ovládání" colspan="3" rowspan="2" style="width: 160px;"/>
+        </p:row>
+      </p:columnGroup>
+    </p:dataTable>
+  </h:form>
 
   <br />
   <br />
@@ -43,8 +64,6 @@
   - Umožnit editaci položek v záklaví
   <br />
   - Nějaká další tabulka s kontaktníma osobama a kontaktama + její editace
-  <br />
-  - Adresa / mapy / google.maps
 
   <br />
   <br />

@@ -23,6 +23,10 @@ public class PolozkaTyp extends BaseEntity {
   @JsonInclude(JsonInclude.Include.NON_NULL)
   private String popis;
 
+  @JsonProperty("jednotka")
+  @JsonInclude(JsonInclude.Include.NON_NULL)
+  private String jednotka;
+
   @DBRef
   @JsonProperty("nemovitost")
   @JsonInclude(JsonInclude.Include.NON_NULL)

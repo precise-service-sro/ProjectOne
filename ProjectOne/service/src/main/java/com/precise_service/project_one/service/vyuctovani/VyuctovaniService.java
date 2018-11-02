@@ -7,11 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.precise_service.project_one.entity.CasovyInterval;
+import com.precise_service.project_one.entity.NajemniSmlouva;
 import com.precise_service.project_one.entity.PolozkaTyp;
 import com.precise_service.project_one.entity.faktura.Faktura;
 import com.precise_service.project_one.entity.faktura.FakturaPolozka;
 import com.precise_service.project_one.entity.nemovitost.Nemovitost;
 import com.precise_service.project_one.entity.osoba.Osoba;
+import com.precise_service.project_one.entity.predavaci_protokol.PredavaciProtokol;
 import com.precise_service.project_one.entity.vyuctovani.Vyuctovani;
 import com.precise_service.project_one.entity.vyuctovani.VyuctovaniPolozka;
 import com.precise_service.project_one.repository.VyuctovaniRepository;
@@ -78,7 +80,7 @@ public class VyuctovaniService implements IVyuctovaniService {
   }
 
   @Override
-  public Vyuctovani generovatVyuctovani(String nazev, CasovyInterval zuctovaciObdobi, Nemovitost nemovitost, Osoba osoba, List<Faktura> fakturaList) {
+  public Vyuctovani generovatVyuctovani(String nazev, CasovyInterval zuctovaciObdobi, Nemovitost nemovitost, Osoba najemnik, List<Faktura> fakturaList, PredavaciProtokol predavaciProtokol, NajemniSmlouva najemniSmlouva) {
     log.trace("deleteVyuctovaniAll()");
     List<PolozkaTyp> polozkaTypList = polozkaTypService.getPolozkaTypListByIdNemovitost(nemovitost.getId());
 
@@ -86,8 +88,8 @@ public class VyuctovaniService implements IVyuctovaniService {
     vyuctovani.setNazev(nazev);
     vyuctovani.setZuctovaciObdobi(zuctovaciObdobi);
     vyuctovani.setNemovitost(nemovitost);
-    //vyuctovani.setOsoba(osoba);
-    //vyuctovani.setPronajimatel(pronajimatel);
+    vyuctovani.setNajemnik(najemnik);
+    vyuctovani.setPronajimatel(nemovitost.getVlastnik());
     vyuctovani = postVyuctovani(vyuctovani);
 
     for (PolozkaTyp polozkaTyp : polozkaTypList) {

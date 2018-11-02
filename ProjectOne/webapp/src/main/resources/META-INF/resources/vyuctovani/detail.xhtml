@@ -65,35 +65,19 @@
 
         <p:columnGroup type="header">
           <p:row>
-            <p:column headerText="Název"          />
-            <p:column headerText="Jednotka"       style="width: 80px;"/>
-            <p:column headerText="Vyúčtovat jako" style="width: 200px;"/>
-            <p:column headerText="Poč. stav"      style="width: 100px;"/>
-            <p:column headerText="Kon. stav"      style="width: 100px;"/>
-            <p:column headerText="Spotřeba"       style="width: 100px;"/>
-            <p:column headerText="Zálohy"         style="width: 100px;"/>
-            <p:column headerText="Náklady"        style="width: 100px;" />
-            <p:column headerText="Rozdíl"         style="width: 100px;" />
-            <p:column                             style="width:  32px;"/>
-            <p:column                             style="width:  50px;"/>
+            <p:column headerText="Název"                 />
+            <p:column headerText="Jednotka"              style="width: 80px;"/>
+            <p:column headerText="Poč. stav"             style="width: 100px;"/>
+            <p:column headerText="Kon. stav"             style="width: 100px;"/>
+            <p:column headerText="Spotřeba"              style="width: 100px;"/>
+            <p:column headerText="Zálohy"                style="width: 100px;"/>
+            <p:column headerText="Náklady"               style="width: 100px;" />
+            <p:column headerText="Rozdíl"                style="width: 100px;" />
+            <p:column headerText="Ovládání"  colspan="2" style="width: 82px;" />
           </p:row>
         </p:columnGroup>
 
         <p:column>
-          <p:cellEditor>
-            <f:facet name="output"><h:outputText value="#{polozka.nazev}" /> </f:facet>
-            <f:facet name="input"><div style="text-align: left"><p:inputText id="nazevInput" value="#{polozka.nazev}" style="width:100%" /> </div></f:facet>
-          </p:cellEditor>
-        </p:column>
-
-        <p:column style="text-align: center;">
-          <p:cellEditor>
-            <f:facet name="output"><h:outputText value="#{polozka.pocatecniStav.jednotka}" /> </f:facet>
-            <f:facet name="input"><div style="text-align: left"><p:inputText id="jednotkaInput" value="#{polozka.pocatecniStav.jednotka}" /> </div></f:facet>
-          </p:cellEditor>
-        </p:column>
-
-        <p:column style="text-align: center;">
           <p:cellEditor>
             <f:facet name="output"><h:outputText value="#{polozka.polozkaTyp.nazev}" title="#{polozka.polozkaTyp.popis}"/> </f:facet>
             <f:facet name="input">
@@ -101,6 +85,13 @@
                 <f:selectItems value="#{vyuctovaniDetailBean.polozkaTypList}" var="polozkaTyp" itemLabel="#{polozkaTyp.nazev}" itemValue="#{polozkaTyp}" />
               </h:selectOneMenu>
             </f:facet>
+          </p:cellEditor>
+        </p:column>
+
+        <p:column style="text-align: center;">
+          <p:cellEditor>
+            <f:facet name="output"><h:outputText value="#{polozka.polozkaTyp.jednotka}" /> </f:facet>
+            <f:facet name="input"><div style="text-align: left"><p:inputText id="jednotkaInput" value="#{polozka.polozkaTyp.jednotka}" /> </div></f:facet>
           </p:cellEditor>
         </p:column>
 
@@ -153,7 +144,7 @@
         </p:column>
 
         <p:summaryRow>
-          <p:column colspan="6" style="text-align:left">
+          <p:column colspan="5" style="text-align:left">
             <h:outputText value="Celkem:" />
           </p:column>
           <p:column style="text-align: right">

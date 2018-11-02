@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -64,7 +66,7 @@ public class VyuctovaniGeneratorBean implements Serializable {
   private List<Vyuctovani> vyuctovaniList;
   private List<PredavaciProtokol> predavaciProtokolList;
 
-  public void init() throws ParseException {
+  public void init() {
     log.trace("init()");
 
     if (zuctovaciObdobi == null) {
@@ -84,27 +86,23 @@ public class VyuctovaniGeneratorBean implements Serializable {
     // TODO: vyfiltrovat na zahlade vsech vstupnich dat a prihlaseneho uzivatele
     List<Faktura> fakturaListInRange = fakturaService.getFakturaListInRange(zuctovaciObdobi.getZacatek(), zuctovaciObdobi.getKonec());
 
-    String nazev = "Nové vyúčtování ze dne " + DateFormatter.formatDate(new Date());
-    Vyuctovani vyuctovani = vyuctovaniService.generovatVyuctovani(nazev, zuctovaciObdobi, nemovitost, najemnik, fakturaListInRange);
+    String nazev = "Nové vyúčtování ze dne " + LocalDateTime.now().toString();
+    Vyuctovani vyuctovani = vyuctovaniService.generovatVyuctovani(nazev, zuctovaciObdobi, nemovitost, najemnik, fakturaListInRange, predavaciProtokol, null);
 
     vyuctovaniDetailBean.setVyuctovani(vyuctovani);
     Faces.getFlash().setRedirect(true);
     Faces.redirect("/vyuctovani/detail.xhtml");
   }
 
-  public void zuctovaciObdobiZacatekDateSelect(SelectEvent event) throws ParseException {
-    FacesContext facesContext = FacesContext.getCurrentInstance();
-    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
+  public void zuctovaciObdobiZacatekDateSelect(SelectEvent event) {
     Date zacatek = (Date) event.getObject();
-    facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Zvolen nový začátek zúčtovacího období", simpleDateFormat.format(zacatek)));
+    FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Zvolen nový začátek zúčtovacího období", DateFormatter.formatDate(zacatek)));
     init();
   }
 
-  public void zuctovaciObdobiKonecDateSelect(SelectEvent event) throws ParseException {
-    FacesContext facesContext = FacesContext.getCurrentInstance();
-    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
+  public void zuctovaciObdobiKonecDateSelect(SelectEvent event) {
     Date konec = (Date) event.getObject();
-    facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Zvolen nový konec zúčtovacího období", simpleDateFormat.format(konec)));
+    FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Zvolen nový konec zúčtovacího období", DateFormatter.formatDate(konec)));
     init();
   }
 }

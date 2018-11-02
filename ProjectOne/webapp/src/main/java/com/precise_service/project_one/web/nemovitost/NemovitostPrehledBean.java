@@ -18,6 +18,7 @@ import com.precise_service.project_one.entity.Adresa;
 import com.precise_service.project_one.entity.nemovitost.Nemovitost;
 import com.precise_service.project_one.entity.nemovitost.NemovitostTyp;
 import com.precise_service.project_one.service.nemovitost.INemovitostService;
+import com.precise_service.project_one.service.osoba.IOsobaService;
 
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
@@ -32,6 +33,9 @@ public class NemovitostPrehledBean implements Serializable {
 
   @Autowired
   private NemovitostDetailBean nemovitostDetailBean;
+
+  @Autowired
+  private IOsobaService osobaService;
 
   private List<Nemovitost> nemovitostList;
   private List<NemovitostTyp> nemovitostTypList;
