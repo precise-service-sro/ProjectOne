@@ -22,7 +22,6 @@ import lombok.extern.slf4j.Slf4j;
 @Component
 @Order(1)
 @Slf4j
-//@Named
 public class AuthFilter implements Filter {
 
   @Override
@@ -40,15 +39,17 @@ public class AuthFilter implements Filter {
 
       //  allow user to proceed if url is login.xhtml or user logged in or user is accessing any page in //public folder
       String reqURI = req.getRequestURI();
-      if ( reqURI.indexOf("/login.xhtml") >= 0
+      if ( reqURI.indexOf("/index.xhtml") >= 0
           || (ses != null && ses.getAttribute("username") != null)
           || reqURI.indexOf("/public/") >= 0
+          || reqURI.indexOf("/css/") >= 0
+          || reqURI.indexOf("/icons/") >= 0
           || reqURI.contains("javax.faces.resource")
           ) {
         chain.doFilter(request, response);
       }
       else {  // user didn't log in but asking for a page that is not allowed so take user to login page
-        res.sendRedirect(req.getContextPath() + "/public/login.xhtml");  // Anonymous user. Redirect to login page
+        res.sendRedirect(req.getContextPath() + "/public/index.xhtml");  // Anonymous user. Redirect to login page
       }
     }
     catch(Throwable t) {

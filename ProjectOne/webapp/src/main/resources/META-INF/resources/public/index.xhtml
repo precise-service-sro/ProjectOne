@@ -1,50 +1,20 @@
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:component="http://java.sun.com/jsf/composite/common/component">
-
-<h:head>
-  <title>Project One</title>
-
-  <h:head>
-    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-    <title>Login Page</title>
-    <link type="text/css"
-          href="${facesContext.externalContext.requestContextPath}/resources/css/style.css"
-          rel="stylesheet" />
-    <link type="image/x-icon"
-          href="${facesContext.externalContext.requestContextPath}/resources/images/favicon.ico"
-          rel="shortcut icon" />
-  </h:head>
-</h:head>
+      xmlns:component="http://java.sun.com/jsf/composite/private/common/component"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+>
 
 <h:body>
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
+  <ui:composition template="/template/commonLayout.xhtml">
+    <ui:define name="title">ProjectOne - Vítejte</ui:define>
+    <ui:define name="content">Nepřihlášený uživatel</ui:define>
+    <ui:define name="footer">
+      Bez docku
+    </ui:define>
 
-  <h2>ProjectOne - Vítejte</h2>
-
-
-  <br />
-  <br />
-  <br />
-
-  <h3>Další myšlenky a nápady na zlepšení:</h3>
-
-  - Tady lze udělat nějakou základní přihlašovací a registační stránku (aby se nějak oddělili data různých uživatelů)
-  <br />
-
-  <br />
-  <br />
-  <br />
-
-  <component:dockMenu />
+  </ui:composition>
 </h:body>
 </html>

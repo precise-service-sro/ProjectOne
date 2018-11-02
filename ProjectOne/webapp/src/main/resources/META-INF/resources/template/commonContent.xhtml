@@ -3,11 +3,28 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
 >
 <body>
 <ui:composition>
 
   <h1>This is default content</h1>
+
+  <div id="message">
+    <p:ajaxStatus style="display:block;  margin-top:.5em;">
+      <f:facet name="default">
+        <h:outputText value="Please enter your credentials." />
+      </f:facet>
+      <f:facet name="start">
+        <h:outputText value="Please wait #{loginBean.uname}, Connecting database..." />
+      </f:facet>
+      <f:facet name="complete">
+        <h:outputText value="Please try again #{loginBean.uname}, Database/Login error!!" />
+      </f:facet>
+    </p:ajaxStatus>
+  </div>
 
 </ui:composition>
 </body>

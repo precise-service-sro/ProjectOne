@@ -1,6 +1,8 @@
 package com.precise_service.project_one.web;
 
 public class URL_CONST {
+  public static final String INDEX_URL = "/public/index.xhtml";
+
   public static final String FAKTURA_DETAIL_URL = "/private/faktura/detail.xhtml";
   public static final String FAKTURA_PREHLED_URL = "/private/faktura/prehled.xhtml";
 
