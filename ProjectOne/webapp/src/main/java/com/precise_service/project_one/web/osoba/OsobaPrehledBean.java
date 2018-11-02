@@ -16,9 +16,12 @@ import com.precise_service.project_one.entity.nemovitost.Nemovitost;
 import com.precise_service.project_one.entity.osoba.Osoba;
 import com.precise_service.project_one.service.nemovitost.INemovitostService;
 import com.precise_service.project_one.service.osoba.IOsobaService;
+import com.precise_service.project_one.web.URL_CONST;
 
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
+
+import static com.precise_service.project_one.web.URL_CONST.OSOBA_DETAIL_URL;
 
 @Slf4j
 @Data
@@ -61,7 +64,7 @@ public class OsobaPrehledBean implements Serializable {
   public void showOsobaDetailBean(Osoba osoba) throws IOException {
     osobaDetailBean.setOsoba(osoba);
     Faces.getFlash().setRedirect(true);
-    Faces.redirect("/osoba/detail.xhtml");
+    Faces.redirect(OSOBA_DETAIL_URL);
   }
 
   public void addRow() {

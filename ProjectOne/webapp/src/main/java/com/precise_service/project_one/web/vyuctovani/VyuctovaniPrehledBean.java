@@ -21,9 +21,12 @@ import com.precise_service.project_one.entity.nemovitost.Nemovitost;
 import com.precise_service.project_one.entity.vyuctovani.Vyuctovani;
 import com.precise_service.project_one.service.nemovitost.INemovitostService;
 import com.precise_service.project_one.service.vyuctovani.IVyuctovaniService;
+import com.precise_service.project_one.web.common.DateFormatter;
 
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
+
+import static com.precise_service.project_one.web.URL_CONST.VYUCTOVANI_DETAIL_URL;
 
 @Slf4j
 @Data
@@ -45,15 +48,12 @@ public class VyuctovaniPrehledBean implements Serializable {
   private List<Vyuctovani> vyuctovaniList;
   private List<Nemovitost> nemovitostList;
 
-  public void init() throws ParseException {
+  public void init() {
 
     if (zuctovaciObdobi == null) {
       zuctovaciObdobi = new CasovyInterval();
-      SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
-      Date zacatek = simpleDateFormat.parse("01-01-2017");
-      Date konec = simpleDateFormat.parse("31-12-2017");
-      zuctovaciObdobi.setZacatek(zacatek);
-      zuctovaciObdobi.setKonec(konec);
+      zuctovaciObdobi.setZacatek(DateFormatter.parseDate("01-01-2017"));
+      zuctovaciObdobi.setKonec(DateFormatter.parseDate("31-12-2017"));
     }
 
     // getVyuctovaniInRange
@@ -84,10 +84,10 @@ public class VyuctovaniPrehledBean implements Serializable {
   public void showVyuctovaniDetailBean(Vyuctovani vyuctovani) throws IOException {
     vyuctovaniDetailBean.setVyuctovani(vyuctovani);
     Faces.getFlash().setRedirect(true);
-    Faces.redirect("/vyuctovani/detail.xhtml");
+    Faces.redirect(VYUCTOVANI_DETAIL_URL);
   }
 
-  public void addRow() throws ParseException {
+  public void addRow() {
     log.trace("addRow()");
 
     Vyuctovani vyuctovani = new Vyuctovani();
@@ -103,7 +103,7 @@ public class VyuctovaniPrehledBean implements Serializable {
     FacesContext.getCurrentInstance().addMessage(null, msg);
   }
 
-  public void deleteRow(Vyuctovani deletedVyuctovani) throws ParseException {
+  public void deleteRow(Vyuctovani deletedVyuctovani) {
     log.trace("deleteRow()");
 
     if (deletedVyuctovani == null) {
@@ -119,19 +119,13 @@ public class VyuctovaniPrehledBean implements Serializable {
     init();
   }
 
-  public void zuctovaciObdobiZacatekDateSelect(SelectEvent event) throws ParseException {
-    FacesContext facesContext = FacesContext.getCurrentInstance();
-    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
-    Date zacatek = (Date) event.getObject();
-    facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Zvolen nový začátek zúčtovacího období", simpleDateFormat.format(zacatek)));
+  public void zuctovaciObdobiZacatekDateSelect(SelectEvent event) {
+    FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Zvolen nový začátek zúčtovacího období", DateFormatter.formatDate((Date) event.getObject())));
     init();
   }
 
-  public void zuctovaciObdobiKonecDateSelect(SelectEvent event) throws ParseException {
-    FacesContext facesContext = FacesContext.getCurrentInstance();
-    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
-    Date konec = (Date) event.getObject();
-    facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Zvolen nový konec zúčtovacího období", simpleDateFormat.format(konec)));
+  public void zuctovaciObdobiKonecDateSelect(SelectEvent event) {
+    FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Zvolen nový konec zúčtovacího období", DateFormatter.formatDate((Date) event.getObject())));
     init();
   }
 

@@ -1,20 +1,17 @@
-
-
-        <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:vyuctovani="http://java.sun.com/jsf/composite/vyuctovani/component"
-      xmlns:component="http://java.sun.com/jsf/composite/common/component">
+      xmlns:component="http://java.sun.com/jsf/composite/private/common/component">
 
 <h:head>
-  <title>ProjectOne - Najemník - Vyúčtování</title>
+  <title>ProjectOne - Byt - Faktura</title>
 </h:head>
 
 <h:body>
 
-  <h:outputText value="#{vyuctovaniDetailBean.init()}" />
+  <h:outputText value="#{fakturaDetailBean.init()}" />
 
   <br />
   <br />
@@ -24,74 +21,63 @@
   <br />
 
   <div style="width: 98%; margin-left: 10px;">
-
-    <h2>Vyúčtování pro nájemníka: (seznam vstupních dokumentů)</h2>
-
-    - Tady si vylistuju alespon nazvy vsech vstupních dokumentů s odkazy (poklik pres jmeno) a v další verzi si ten proklik udelam pres ty dilci tabulky
-    <br />
-
-
-
-    <h2>Vyúčtování pro nájemníka: (výpočty)</h2>
-
-    - Tady si budu dělat dílčí výpočtové tabulky pro jednotlivé PolozkaTyp vyúčtovávané položky
-    <br />
-
-
-
-    <h2>Vyúčtování pro nájemníka:</h2>
-
-    <h3>Název:</h3>
-    <h:outputText value="#{vyuctovaniDetailBean.vyuctovani.nazev}" />
-    <br />
-
-    <vyuctovani:hlavicka vyuctovani="#{vyuctovaniDetailBean.vyuctovani}" />
-    <br />
-    <br />
-    <br />
     <h:form id="form">
       <p:growl id="msgs" showDetail="true"/>
+      <h2>Faktura: </h2>
+
+      <h3>Byt: <h:outputText value="#{fakturaDetailBean.faktura.nemovitost.nazev}" /></h3>
+      <h3>Adresa: <h:outputText value="#{fakturaDetailBean.faktura.nemovitost.adresa}" /></h3>
+      <h3>Zúčtovací období: OD=<h:outputText value="#{fakturaDetailBean.faktura.zuctovaciObdobi.zacatek}" /> - DO=<h:outputText value="#{fakturaDetailBean.faktura.zuctovaciObdobi.konec}" /></h3>
 
       <div class="ui-g" style="text-align: right;">
         <div class="ui-g-12">
           <p:commandButton value="Přidat nový záznam" icon="ui-icon-circle-plus" styleClass="ui-priority-primary" process="@this"
-                           actionListener="#{vyuctovaniDetailBean.addRow()}" update="@form :form:msgs" />
+                           actionListener="#{fakturaDetailBean.addRow()}" update="@form :form:msgs" />
         </div>
       </div>
 
-      <p:dataTable id="vyuctovaniDetailTable" widgetVar="vyuctovaniDetailTable" var="polozka" value="#{vyuctovaniDetailBean.getRadkyVyuctovani()}" resizableColumns="true" sortBy="#{1}" editable="true">
-        <p:ajax event="rowEdit" listener="#{vyuctovaniDetailBean.onRowEdit}" update=":form:msgs :form:vyuctovaniDetailTable" />
-        <p:ajax event="rowEditCancel" listener="#{vyuctovaniDetailBean.onRowCancel}" update=":form:msgs" />
+      <p:dataTable id="fakturaDetailTable" widgetVar="fakturaDetailTable" var="polozka" value="#{fakturaDetailBean.getRadkyFaktura()}" resizableColumns="true" sortBy="#{1}" editable="true">
+        <p:ajax event="rowEdit" listener="#{fakturaDetailBean.onRowEdit}" update=":form:msgs :form:fakturaDetailTable" />
+        <p:ajax event="rowEditCancel" listener="#{fakturaDetailBean.onRowCancel}" update=":form:msgs" />
 
         <p:columnGroup type="header">
           <p:row>
-            <p:column headerText="Název"                 />
-            <p:column headerText="Jednotka"              style="width: 80px;"/>
-            <p:column headerText="Poč. stav"             style="width: 100px;"/>
-            <p:column headerText="Kon. stav"             style="width: 100px;"/>
-            <p:column headerText="Spotřeba"              style="width: 100px;"/>
-            <p:column headerText="Zálohy"                style="width: 100px;"/>
-            <p:column headerText="Náklady"               style="width: 100px;" />
-            <p:column headerText="Rozdíl"                style="width: 100px;" />
-            <p:column headerText="Ovládání"  colspan="2" style="width: 82px;" />
+            <p:column headerText="Název"          />
+            <p:column headerText="Jednotka"       style="width: 80px;"/>
+            <p:column headerText="Vyúčtovat jako" style="width: 200px;"/>
+            <p:column headerText="Poč. stav"      style="width: 100px;"/>
+            <p:column headerText="Kon. stav"      style="width: 100px;"/>
+            <p:column headerText="Spotřeba"       style="width: 100px;"/>
+            <p:column headerText="Zálohy"         style="width: 100px;"/>
+            <p:column headerText="Náklady"        style="width: 100px;" />
+            <p:column headerText="Rozdíl"         style="width: 100px;" />
+            <p:column                             style="width:  32px;"/>
+            <p:column                             style="width:  50px;"/>
           </p:row>
         </p:columnGroup>
 
         <p:column>
           <p:cellEditor>
-            <f:facet name="output"><h:outputText value="#{polozka.polozkaTyp.nazev}" title="#{polozka.polozkaTyp.popis}"/> </f:facet>
-            <f:facet name="input">
-              <h:selectOneMenu value="#{polozka.polozkaTyp}" style="width:100%" converter="#{polozkaTypConverter}">
-                <f:selectItems value="#{vyuctovaniDetailBean.polozkaTypList}" var="polozkaTyp" itemLabel="#{polozkaTyp.nazev}" itemValue="#{polozkaTyp}" />
-              </h:selectOneMenu>
-            </f:facet>
+            <f:facet name="output"><h:outputText value="#{polozka.nazev}" /> </f:facet>
+            <f:facet name="input"><div style="text-align: left"><p:inputText id="nazevInput" value="#{polozka.nazev}" style="width:100%" /> </div></f:facet>
           </p:cellEditor>
         </p:column>
 
         <p:column style="text-align: center;">
           <p:cellEditor>
-            <f:facet name="output"><h:outputText value="#{polozka.polozkaTyp.jednotka}" /> </f:facet>
-            <f:facet name="input"><div style="text-align: left"><p:inputText id="jednotkaInput" value="#{polozka.polozkaTyp.jednotka}" /> </div></f:facet>
+            <f:facet name="output"><h:outputText value="#{polozka.pocatecniStav.jednotka}" /> </f:facet>
+            <f:facet name="input"><div style="text-align: left"><p:inputText id="jednotkaInput" value="#{polozka.pocatecniStav.jednotka}" /> </div></f:facet>
+          </p:cellEditor>
+        </p:column>
+
+        <p:column style="text-align: center;">
+          <p:cellEditor>
+            <f:facet name="output"><h:outputText value="#{polozka.polozkaTyp.nazev}" title="#{polozka.polozkaTyp.popis}"/> </f:facet>
+            <f:facet name="input">
+              <h:selectOneMenu value="#{polozka.polozkaTyp}" style="width:100%" converter="#{polozkaTypConverter}">
+                <f:selectItems value="#{fakturaDetailBean.polozkaTypList}" var="polozkaTyp" itemLabel="#{polozkaTyp.nazev}" itemValue="#{polozkaTyp}" />
+              </h:selectOneMenu>
+            </f:facet>
           </p:cellEditor>
         </p:column>
 
@@ -140,25 +126,25 @@
         </p:column>
 
         <p:column>
-          <p:commandButton update="@form :form:msgs" icon="ui-icon-circle-minus" actionListener="#{vyuctovaniDetailBean.deleteRow(polozka)}" />
+          <p:commandButton update="@form :form:msgs" icon="ui-icon-circle-minus" actionListener="#{fakturaDetailBean.deleteRow(polozka)}" />
         </p:column>
 
         <p:summaryRow>
-          <p:column colspan="5" style="text-align:left">
+          <p:column colspan="6" style="text-align:left">
             <h:outputText value="Celkem:" />
           </p:column>
           <p:column style="text-align: right">
-            <h:outputText value="#{vyuctovaniDetailBean.celkemZalohy}">
+            <h:outputText value="#{fakturaDetailBean.celkemZalohy}">
               <f:convertNumber type="currency" pattern="#0.00 Kč" />
             </h:outputText>
           </p:column>
           <p:column style="text-align: right">
-            <h:outputText value="#{vyuctovaniDetailBean.celkemNaklady}">
+            <h:outputText value="#{fakturaDetailBean.celkemNaklady}">
               <f:convertNumber type="currency" pattern="#0.00 Kč" />
             </h:outputText>
           </p:column>
           <p:column style="text-align: right">
-            <h:outputText value="#{vyuctovaniDetailBean.celkemRozdil}">
+            <h:outputText value="#{fakturaDetailBean.celkemRozdil}">
               <f:convertNumber type="currency" pattern="#0.00 Kč" />
             </h:outputText>
           </p:column>
@@ -167,10 +153,6 @@
       </p:dataTable>
 
     </h:form>
-    <br />
-    <br />
-    <br />
-    <vyuctovani:paticka />
   </div>
 
   <br />
@@ -179,8 +161,13 @@
 
   <h3>Další myšlenky a nápady na zlepšení:</h3>
 
-  - Tlačítko k náhledu a tlačítko k tisku
+  - Proklikávání z označní bytu + editace (možnost změny bytu)
   <br />
+  - Editace položek v záhlaví + zformátování datumů
+  <br />
+  - Přidat tlačítko zpět, anebo nějaké lepší drobečkové menu
+  <br />
+  - Přidat příznaky za bylo zaplaceno (a případně kdy) a zda již bylo přeúčtováno nájemníkům
 
   <br />
   <br />

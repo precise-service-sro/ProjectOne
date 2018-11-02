@@ -2,8 +2,6 @@ package com.precise_service.project_one.web.faktura;
 
 import java.io.IOException;
 import java.io.Serializable;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -21,9 +19,12 @@ import com.precise_service.project_one.entity.faktura.Faktura;
 import com.precise_service.project_one.entity.nemovitost.Nemovitost;
 import com.precise_service.project_one.service.faktura.IFakturaService;
 import com.precise_service.project_one.service.nemovitost.INemovitostService;
+import com.precise_service.project_one.web.common.DateFormatter;
 
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
+
+import static com.precise_service.project_one.web.URL_CONST.FAKTURA_DETAIL_URL;
 
 @Slf4j
 @Data
@@ -39,21 +40,16 @@ public class FakturaPrehledBean implements Serializable {
   @Autowired
   private FakturaDetailBean fakturaDetailBean;
 
-  public static final String ZUCTOVACI_OBDOBI_DATE_FORMAT = "dd/MM/yyyy";
-
   private CasovyInterval zuctovaciObdobi;
   private List<Faktura> fakturaList;
   private List<Nemovitost> nemovitostList;
 
-  public void init() throws ParseException {
+  public void init() {
 
     if (zuctovaciObdobi == null) {
       zuctovaciObdobi = new CasovyInterval();
-      SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
-      Date zacatek = simpleDateFormat.parse("01-01-2017");
-      Date konec = simpleDateFormat.parse("31-12-2017");
-      zuctovaciObdobi.setZacatek(zacatek);
-      zuctovaciObdobi.setKonec(konec);
+      zuctovaciObdobi.setZacatek(DateFormatter.parseDate("01-01-2017"));
+      zuctovaciObdobi.setKonec(DateFormatter.parseDate("31-12-2017"));
     }
 
     // getFakturaInRange
@@ -84,10 +80,10 @@ public class FakturaPrehledBean implements Serializable {
   public void showFakturaDetailBean(Faktura faktura) throws IOException {
     fakturaDetailBean.setFaktura(faktura);
     Faces.getFlash().setRedirect(true);
-    Faces.redirect("/faktura/detail.xhtml");
+    Faces.redirect(FAKTURA_DETAIL_URL);
   }
 
-  public void addRow() throws ParseException {
+  public void addRow() {
     log.trace("addRow()");
 
     Faktura faktura = new Faktura();
@@ -103,7 +99,7 @@ public class FakturaPrehledBean implements Serializable {
     FacesContext.getCurrentInstance().addMessage(null, msg);
   }
 
-  public void deleteRow(Faktura deletedFaktura) throws ParseException {
+  public void deleteRow(Faktura deletedFaktura) {
     log.trace("deleteRow()");
 
     if (deletedFaktura == null) {
@@ -119,19 +115,13 @@ public class FakturaPrehledBean implements Serializable {
     init();
   }
 
-  public void zuctovaciObdobiZacatekDateSelect(SelectEvent event) throws ParseException {
-    FacesContext facesContext = FacesContext.getCurrentInstance();
-    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
-    Date zacatek = (Date) event.getObject();
-    facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Zvolen nový začátek zúčtovacího období", simpleDateFormat.format(zacatek)));
+  public void zuctovaciObdobiZacatekDateSelect(SelectEvent event) {
+    FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Zvolen nový začátek zúčtovacího období", DateFormatter.formatDate((Date) event.getObject())));
     init();
   }
 
-  public void zuctovaciObdobiKonecDateSelect(SelectEvent event) throws ParseException {
-    FacesContext facesContext = FacesContext.getCurrentInstance();
-    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
-    Date konec = (Date) event.getObject();
-    facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Zvolen nový konec zúčtovacího období", simpleDateFormat.format(konec)));
+  public void zuctovaciObdobiKonecDateSelect(SelectEvent event) {
+    FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Zvolen nový konec zúčtovacího období", DateFormatter.formatDate((Date) event.getObject())));
     init();
   }
 

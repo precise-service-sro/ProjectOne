@@ -12,6 +12,8 @@ public interface IOsobaService {
 
   Osoba getOsoba(String idOsoba);
 
+  Osoba getOsobaByUsernameAndPassword(String username, String password);
+
   List<Osoba> getOsobaAll();
 
   void deleteOsobaAll();

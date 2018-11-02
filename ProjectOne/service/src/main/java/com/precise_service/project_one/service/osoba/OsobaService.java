@@ -32,7 +32,13 @@ public class OsobaService implements IOsobaService {
   @Override
   public Osoba getOsoba(String idOsoba) {
     log.trace("getOsoba()");
-    return (Osoba) osobaRepository.findById(idOsoba).get();
+    return osobaRepository.findById(idOsoba).get();
+  }
+
+  @Override
+  public Osoba getOsobaByUsernameAndPassword(String username, String password) {
+    log.trace("getOsobaByUsernameAndPassword()");
+    return osobaRepository.getOsobaByUsernameAndPassword(username, password);
   }
 
   @Override

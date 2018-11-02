@@ -28,10 +28,13 @@ import com.precise_service.project_one.service.osoba.IOsobaService;
 import com.precise_service.project_one.service.nemovitost.INemovitostService;
 import com.precise_service.project_one.service.predavaci_protokol.IPredavaciProtokolService;
 import com.precise_service.project_one.service.vyuctovani.IVyuctovaniService;
+import com.precise_service.project_one.web.URL_CONST;
 import com.precise_service.project_one.web.common.DateFormatter;
 
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
+
+import static com.precise_service.project_one.web.URL_CONST.VYUCTOVANI_DETAIL_URL;
 
 @Slf4j
 @Data
@@ -91,7 +94,7 @@ public class VyuctovaniGeneratorBean implements Serializable {
 
     vyuctovaniDetailBean.setVyuctovani(vyuctovani);
     Faces.getFlash().setRedirect(true);
-    Faces.redirect("/vyuctovani/detail.xhtml");
+    Faces.redirect(VYUCTOVANI_DETAIL_URL);
   }
 
   public void zuctovaciObdobiZacatekDateSelect(SelectEvent event) {

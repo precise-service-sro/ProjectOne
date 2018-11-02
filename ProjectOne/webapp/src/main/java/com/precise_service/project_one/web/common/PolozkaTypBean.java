@@ -1,4 +1,4 @@
-package com.precise_service.project_one.web.vyuctovani;
+package com.precise_service.project_one.web.common;
 
 import java.io.Serializable;
 import java.util.List;

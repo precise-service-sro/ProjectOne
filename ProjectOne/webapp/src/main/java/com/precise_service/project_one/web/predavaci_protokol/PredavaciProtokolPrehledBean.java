@@ -19,9 +19,12 @@ import com.precise_service.project_one.entity.predavaci_protokol.PredavaciProtok
 import com.precise_service.project_one.service.nemovitost.INemovitostService;
 import com.precise_service.project_one.service.osoba.IOsobaService;
 import com.precise_service.project_one.service.predavaci_protokol.IPredavaciProtokolService;
+import com.precise_service.project_one.web.URL_CONST;
 
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
+
+import static com.precise_service.project_one.web.URL_CONST.PREDAVACI_PROTOKOL_DETAIL_URL;
 
 @Slf4j
 @Data
@@ -103,6 +106,6 @@ public class PredavaciProtokolPrehledBean implements Serializable {
   public void showPredavaciProtokolDetailBean(PredavaciProtokol predavaciProtokol) throws IOException {
     predavaciProtokolDetailBean.setPredavaciProtokol(predavaciProtokol);
     Faces.getFlash().setRedirect(true);
-    Faces.redirect("/predavaciProtokol/detail.xhtml");
+    Faces.redirect(PREDAVACI_PROTOKOL_DETAIL_URL);
   }
 }

@@ -19,9 +19,12 @@ import com.precise_service.project_one.entity.nemovitost.Nemovitost;
 import com.precise_service.project_one.entity.nemovitost.NemovitostTyp;
 import com.precise_service.project_one.service.nemovitost.INemovitostService;
 import com.precise_service.project_one.service.osoba.IOsobaService;
+import com.precise_service.project_one.web.URL_CONST;
 
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
+
+import static com.precise_service.project_one.web.URL_CONST.NEMOVITOST_DETAIL_URL;
 
 @Slf4j
 @Data
@@ -64,7 +67,7 @@ public class NemovitostPrehledBean implements Serializable {
   public void showNemovitostDetailBean(Nemovitost nemovitost) throws IOException {
     nemovitostDetailBean.setNemovitost(nemovitost);
     Faces.getFlash().setRedirect(true);
-    Faces.redirect("/nemovitost/detail.xhtml");
+    Faces.redirect(NEMOVITOST_DETAIL_URL);
   }
 
   public void addRow() throws ParseException {
