@@ -44,10 +44,6 @@
   float: right;
 }
 
-#logoutForm:loginPanel > td {
-  width: 300px;
-}
-
 #content{
   padding: 2%;
   width: 96%;
@@ -70,9 +66,7 @@
 }
 
 .pageContentTitle {
-  float: left;
-  width: 300px;
-  font-size: 15px;
+  width: 80%;
 }
 
 .pageContentTitle p {
@@ -80,6 +74,17 @@
   font-style: oblique;
   font-weight: bold;
   margin-top: auto;
+}
+
+.pageTopicTitle {
+  float: left;
+}
+
+.pageTopicTitle p {
+  font-size: 15px;
+}
+
+.pageTopicContent {
 }
 
 .addButtonDiv {

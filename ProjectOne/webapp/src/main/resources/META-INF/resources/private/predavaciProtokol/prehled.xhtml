@@ -3,107 +3,122 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:component="http://java.sun.com/jsf/composite/private/common/component">
-
-<h:head>
-  <title>ProjectOne - Nájemník - Předávací protokol</title>
-</h:head>
+      xmlns:component="http://java.sun.com/jsf/composite/private/common/component"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+>
 
 <h:body>
+  <ui:composition template="/template/commonLayout.xhtml">
+    <ui:define name="title">ProjectOne - Přehled předávacích protokolů</ui:define>
 
-  <h:outputText value="#{predavaciProtokolPrehledBean.init()}" />
+    <ui:define name="content">
 
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
+      <h:outputText value="#{predavaciProtokolPrehledBean.init()}"/>
 
-  <div style="width: 98%; margin-left: 10px;"></div>
+      <h:form id="form">
+        <p:growl id="msgs" showDetail="true"/>
 
-  <h:form id="form">
-    <p:growl id="msgs" showDetail="true"/>
+        <div class="pageContentTitle">
+          <p>Přehled předávacích protokolů:</p>
+        </div>
 
-    <h2>Přehled předávacích protokolů:</h2>
+        <div class="pageTopic">
+          <div class="pageTopicTitle">
+            <p>Předávací protokoly:</p>
+          </div>
+          <div class="pageTopicContent">
+            <div class="addButtonDiv">
+              <p:commandButton value="Přidat" icon="ui-icon-circle-plus" process="@this" update=":form:msgs"
+                               actionListener="#{predavaciProtokolPrehledBean.addRow()}" oncomplete="PF('predavaciProtokolPrehledBeanTable').addRow();"/>
+            </div>
 
-    <div class="ui-g" style="text-align: right;">
-      <div class="ui-g-12">
-        <p:commandButton value="Přidat předávací protokol" icon="ui-icon-circle-plus" styleClass="ui-priority-primary" process="@this" update=":form:msgs"
-                         actionListener="#{predavaciProtokolPrehledBean.addRow()}" oncomplete="PF('predavaciProtokolPrehledBeanTable').addRow();" />
-      </div>
-    </div>
+            <p:dataTable id="predavaciProtokolPrehledBeanTable" var="predavaciProtokol" widgetVar="predavaciProtokolPrehledBeanTable"
+                         value="#{predavaciProtokolPrehledBean.getPredavaciProtokolList()}" resizableColumns="true" sortBy="#{1}" editable="true">
+              <p:ajax event="rowEdit" listener="#{predavaciProtokolPrehledBean.onRowEdit}" update=":form:msgs :form:predavaciProtokolPrehledBeanTable"/>
+              <p:ajax event="rowEditCancel" listener="#{predavaciProtokolPrehledBean.onRowCancel}" update=":form:msgs"/>
 
-    <p:dataTable id="predavaciProtokolPrehledBeanTable" var="predavaciProtokol" widgetVar="predavaciProtokolPrehledBeanTable" value="#{predavaciProtokolPrehledBean.getPredavaciProtokolList()}" resizableColumns="true" sortBy="#{1}" editable="true">
-      <p:ajax event="rowEdit" listener="#{predavaciProtokolPrehledBean.onRowEdit}" update=":form:msgs :form:predavaciProtokolPrehledBeanTable" />
-      <p:ajax event="rowEditCancel" listener="#{predavaciProtokolPrehledBean.onRowCancel}" update=":form:msgs" />
+              <p:columnGroup type="header">
+                <p:row>
+                  <p:column headerText="Název"/>
+                  <p:column headerText="Nemovitost" style="width: 180px;"/>
+                  <p:column headerText="Nájemník" style="width: 200px;"/>
+                  <p:column headerText="Ovládání" colspan="3" rowspan="2" style="width: 160px;"/>
+                </p:row>
+              </p:columnGroup>
 
-      <p:columnGroup type="header">
-        <p:row>
-          <p:column headerText="Název"                              />
-          <p:column headerText="Nemovitost"                         style="width: 180px;"/>
-          <p:column headerText="Nájemník"                           style="width: 200px;"/>
-          <p:column headerText="Ovládání"   colspan="3" rowspan="2" style="width: 160px;"/>
-        </p:row>
-      </p:columnGroup>
+              <p:column>
+                <p:cellEditor>
+                  <f:facet name="output">
+                    <h:outputText value="#{predavaciProtokol.nazev}"/>
+                  </f:facet>
+                  <f:facet name="input">
+                    <p:inputText id="nazevInput" value="#{predavaciProtokol.nazev}" style="width:100%"/>
+                  </f:facet>
+                </p:cellEditor>
+              </p:column>
 
-      <p:column>
-        <p:cellEditor>
-          <f:facet name="output"><h:outputText value="#{predavaciProtokol.nazev}" /> </f:facet>
-          <f:facet name="input"><p:inputText id="nazevInput" value="#{predavaciProtokol.nazev}" style="width:100%"/></f:facet>
-        </p:cellEditor>
-      </p:column>
+              <p:column style="text-align: center;">
+                <p:cellEditor>
+                  <f:facet name="output">
+                    <h:outputText value="#{predavaciProtokol.nemovitost.nazev}" title="#{predavaciProtokol.nemovitost.adresa}"/>
+                  </f:facet>
+                  <f:facet name="input">
+                    <h:selectOneMenu value="#{predavaciProtokol.nemovitost}" style="width:100%" converter="#{nemovitostConverter}">
+                      <f:selectItems value="#{predavaciProtokolPrehledBean.nemovitostList}" var="nemovitost" itemLabel="#{nemovitost.nazev}"
+                                     itemValue="#{nemovitost}"/>
+                    </h:selectOneMenu>
+                  </f:facet>
+                </p:cellEditor>
+              </p:column>
 
-      <p:column style="text-align: center;">
-        <p:cellEditor>
-          <f:facet name="output"><h:outputText value="#{predavaciProtokol.nemovitost.nazev}" title="#{predavaciProtokol.nemovitost.adresa}"/> </f:facet>
-          <f:facet name="input">
-            <h:selectOneMenu value="#{predavaciProtokol.nemovitost}" style="width:100%" converter="#{nemovitostConverter}">
-              <f:selectItems value="#{predavaciProtokolPrehledBean.nemovitostList}" var="nemovitost" itemLabel="#{nemovitost.nazev}" itemValue="#{nemovitost}" />
-            </h:selectOneMenu>
-          </f:facet>
-        </p:cellEditor>
-      </p:column>
+              <p:column style="text-align: center;">
+                <p:cellEditor>
+                  <f:facet name="output">
+                    <h:outputText value="#{predavaciProtokol.najemnik.getCeleJmeno()}"/>
+                  </f:facet>
+                  <f:facet name="input">
+                    <h:selectOneMenu value="#{predavaciProtokol.najemnik}" style="width:100%" converter="#{osobaConverter}">
+                      <f:selectItems value="#{predavaciProtokolPrehledBean.seznamNajemniku}" var="najemnik" itemLabel="#{najemnik.getCeleJmeno()}"
+                                     itemValue="#{najemnik}"/>
+                    </h:selectOneMenu>
+                  </f:facet>
+                </p:cellEditor>
+              </p:column>
 
-      <p:column style="text-align: center;">
-        <p:cellEditor>
-          <f:facet name="output"><h:outputText value="#{predavaciProtokol.najemnik.getCeleJmeno()}" /> </f:facet>
-          <f:facet name="input">
-            <h:selectOneMenu value="#{predavaciProtokol.najemnik}" style="width:100%" converter="#{osobaConverter}">
-              <f:selectItems value="#{predavaciProtokolPrehledBean.seznamNajemniku}" var="najemnik" itemLabel="#{najemnik.getCeleJmeno()}" itemValue="#{najemnik}" />
-            </h:selectOneMenu>
-          </f:facet>
-        </p:cellEditor>
-      </p:column>
+              <p:column>
+                <p:commandButton icon="ui-icon-circle-zoomin"
+                                 actionListener="#{predavaciProtokolPrehledBean.showPredavaciProtokolDetailBean(predavaciProtokol)}"
+                                 title="Podrobnosti"/>
+              </p:column>
 
-      <p:column>
-        <p:commandButton icon="ui-icon-circle-zoomin" actionListener="#{predavaciProtokolPrehledBean.showPredavaciProtokolDetailBean(predavaciProtokol)}" title="Podrobnosti" />
-      </p:column>
+              <p:column>
+                <p:rowEditor/>
+              </p:column>
 
-      <p:column>
-        <p:rowEditor />
-      </p:column>
+              <p:column>
+                <p:commandButton update="@form :form:msgs" icon="ui-icon-circle-minus"
+                                 actionListener="#{predavaciProtokolPrehledBean.deleteRow(predavaciProtokol)}"
+                                 title="Odebrat"/>
+              </p:column>
+            </p:dataTable>
+          </div>
+        </div>
+      </h:form>
 
-      <p:column>
-        <p:commandButton update="@form :form:msgs" icon="ui-icon-circle-minus" actionListener="#{predavaciProtokolPrehledBean.deleteRow(predavaciProtokol)}" title="Odebrat" />
-      </p:column>
-    </p:dataTable>
-  </h:form>
+    </ui:define>
 
-  <br />
-  <br />
-  <br />
+    <ui:define name="footer">
 
-  <h3>Další myšlenky a nápady na zlepšení:</h3>
+      <h3>Další myšlenky a nápady na zlepšení:</h3>
 
-  - Přidat status / ikonu aktuálnosti či platnosti
-  <br />
+      <br/>
+      - Filtrování na základě sloupečků
+      <br/>
+      - Přidat status / ikonu aktuálnosti či platnosti
 
-  <br />
-  <br />
-  <br />
-  
-  <component:dockMenu />
+      <component:dockMenu/>
+    </ui:define>
 
+  </ui:composition>
 </h:body>
 </html>

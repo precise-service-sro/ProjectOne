@@ -3,84 +3,108 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:component="http://java.sun.com/jsf/composite/private/common/component">
-
-<h:head>
-  <title>ProjectOne - Najemník - Vyúčtování</title>
-</h:head>
+      xmlns:component="http://java.sun.com/jsf/composite/private/common/component"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+>
 
 <h:body>
+  <ui:composition template="/template/commonLayout.xhtml">
+    <ui:define name="title">ProjectOne - Generování vyúčtování pro nájemníka</ui:define>
 
-  <h:outputText value="#{vyuctovaniGeneratorBean.init()}" />
+    <ui:define name="content">
 
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
+      <h:outputText value="#{vyuctovaniGeneratorBean.init()}"/>
 
-  <div style="width: 98%; margin-left: 10px;">
+      <h:form id="form">
+        <p:growl id="msgs" showDetail="true"/>
 
-    <h:form id="form">
-      <p:growl id="msgs" showDetail="true"/>
+        <div class="pageContentTitle">
+          <p>Generování vyúčtování pro nájemníka:</p>
+        </div>
 
-      <h2>Generování vyúčtování pro nájemníka:</h2>
+        <div class="pageTopic">
+          <div class="pageTopicTitle">
+            <p>Nemovitost:</p>
+          </div>
+          <div class="pageTopicContent">
+            <h:selectOneMenu value="#{vyuctovaniGeneratorBean.nemovitost}" style="width: 200px; height: 40px;" converter="#{nemovitostConverter}">
+              <f:selectItems value="#{vyuctovaniGeneratorBean.nemovitostList}" var="nemovitost" itemLabel="#{nemovitost.nazev}" itemValue="#{nemovitost}"/>
+            </h:selectOneMenu>
+          </div>
+        </div>
 
-      <h3>Nemovitost:</h3>
-      <h:selectOneMenu value="#{vyuctovaniGeneratorBean.nemovitost}" style="width: 200px; height: 40px;" converter="#{nemovitostConverter}">
-        <f:selectItems value="#{vyuctovaniGeneratorBean.nemovitostList}" var="nemovitost" itemLabel="#{nemovitost.nazev}" itemValue="#{nemovitost}" />
-      </h:selectOneMenu>
+        <div class="pageTopic">
+          <div class="pageTopicTitle">
+            <p>Pronajímatel:</p>
+          </div>
+          <div class="pageTopicContent">
+            <h:outputText value="#{vyuctovaniGeneratorBean.nemovitost.vlastnik.getCeleJmeno()}"/>
+          </div>
+        </div>
 
-      <br />
-      <h3>Pronajímatel:</h3>
-      <h:outputText value="#{vyuctovaniGeneratorBean.nemovitost.vlastnik.getCeleJmeno()}" />
+        <div class="pageTopic">
+          <div class="pageTopicTitle">
+            <p>Nájemník:</p>
+          </div>
+          <div class="pageTopicContent">
+            <h:selectOneMenu value="#{vyuctovaniGeneratorBean.najemnik}" style="width: 200px; height: 40px;" converter="#{osobaConverter}">
+              <f:selectItems value="#{vyuctovaniGeneratorBean.seznamNajemniku}" var="najemnik" itemLabel="#{najemnik.getCeleJmeno()}" itemValue="#{najemnik}"/>
+            </h:selectOneMenu>
+          </div>
+        </div>
 
-      <br />
-      <h3>Nájemník:</h3>
-      <h:selectOneMenu value="#{vyuctovaniGeneratorBean.najemnik}" style="width: 200px; height: 40px;" converter="#{osobaConverter}">
-        <f:selectItems value="#{vyuctovaniGeneratorBean.seznamNajemniku}" var="najemnik" itemLabel="#{najemnik.getCeleJmeno()}" itemValue="#{najemnik}" />
-      </h:selectOneMenu>
+        <div class="pageTopic">
+          <div class="pageTopicTitle">
+            <p>Zúčtovací období:</p>
+          </div>
+          <div class="pageTopicContent">
+            Začátek:
+            <p:calendar id="vyuctovaniZuctovaciObdobiFilterZacatekInput" value="#{vyuctovaniGeneratorBean.zuctovaciObdobi.zacatek}" pattern="dd-MM-yyyy">
+              <p:ajax event="dateSelect" listener="#{vyuctovaniGeneratorBean.zuctovaciObdobiZacatekDateSelect}" update=":form:msgs"/>
+            </p:calendar>
+            <br/>
+            Konec:
+            <p:calendar id="vyuctovaniZuctovaciObdobiFilterKonecInput" value="#{vyuctovaniGeneratorBean.zuctovaciObdobi.konec}" pattern="dd-MM-yyyy">
+              <p:ajax event="dateSelect" listener="#{vyuctovaniGeneratorBean.zuctovaciObdobiKonecDateSelect}" update=":form:msgs"/>
+            </p:calendar>
+          </div>
+        </div>
 
-      <br />
-      <h3>Zúčtovací období:</h3>
-      Začátek:  <p:calendar id="vyuctovaniZuctovaciObdobiFilterZacatekInput" value="#{vyuctovaniGeneratorBean.zuctovaciObdobi.zacatek}" pattern="dd-MM-yyyy" >
-                  <p:ajax event="dateSelect" listener="#{vyuctovaniGeneratorBean.zuctovaciObdobiZacatekDateSelect}" update=":form:msgs" />
-                </p:calendar>
-      <br />
-      Konec:    <p:calendar id="vyuctovaniZuctovaciObdobiFilterKonecInput" value="#{vyuctovaniGeneratorBean.zuctovaciObdobi.konec}" pattern="dd-MM-yyyy" >
-                  <p:ajax event="dateSelect" listener="#{vyuctovaniGeneratorBean.zuctovaciObdobiKonecDateSelect}" update=":form:msgs" />
-                </p:calendar>
-      <br />
-      <h3>Předávací protokol: (název, nájemník, datum podpisu)</h3>
-      <h:selectOneMenu value="#{vyuctovaniGeneratorBean.predavaciProtokol}" style="width: 200px; height: 40px;" converter="#{predavaciProtokolConverter}">
-        <f:selectItems value="#{vyuctovaniGeneratorBean.predavaciProtokolList}" var="predavaciProtokol" itemLabel="#{predavaciProtokol.getPopis()}" itemValue="#{predavaciProtokol}" />
-      </h:selectOneMenu>
+        <div class="pageTopic">
+          <div class="pageTopicTitle">
+            <p>Předávací protokol: (název, nájemník, datum podpisu)</p>
+          </div>
+          <div class="pageTopicContent">
+            <h:selectOneMenu value="#{vyuctovaniGeneratorBean.predavaciProtokol}" style="width: 200px; height: 40px;" converter="#{predavaciProtokolConverter}">
+              <f:selectItems value="#{vyuctovaniGeneratorBean.predavaciProtokolList}" var="predavaciProtokol" itemLabel="#{predavaciProtokol.getPopis()}"
+                             itemValue="#{predavaciProtokol}"/>
+            </h:selectOneMenu>
+          </div>
+        </div>
 
-      <br />
-      <br />
+        <br/>
+        <br/>
 
-      <p:commandButton value="Generovat vyúčtování" update=":form:msgs" icon="ui-icon-circle-triangle-e" actionListener="#{vyuctovaniGeneratorBean.generate()}" />
-    </h:form>
-  </div>
+        <p:commandButton value="Generovat vyúčtování" update=":form:msgs" icon="ui-icon-circle-triangle-e"
+                         actionListener="#{vyuctovaniGeneratorBean.generate()}"/>
+      </h:form>
 
-  <br />
-  <br />
-  <br />
+    </ui:define>
 
-  <h3>Další myšlenky a nápady na zlepšení:</h3>
+    <ui:define name="footer">
 
-  - Tlačítko k náhledu a tlačítko k tisku
-  <br />
-  - Tlačítko na vygenerování vyúčtování nájemníkovi z vyfiltrovaných vyúčtování (anebo vymyslet jak jinak se to bude spouštět)
-  <br />
-  - Přidat nějakou tabulku / graf na sledování spotřeby nájemníků v jednotlivých bytech (k tomu můžou mít přístup i sami nájemníci, a zadávat si tam stavy a sami si to monitorovat)
+      <h3>Další myšlenky a nápady na zlepšení:</h3>
 
+      - Tlačítko k náhledu a tlačítko k tisku
+      <br/>
+      - Tlačítko na vygenerování vyúčtování nájemníkovi z vyfiltrovaných vyúčtování (anebo vymyslet jak jinak se to bude spouštět)
+      <br/>
+      - Přidat nějakou tabulku / graf na sledování spotřeby nájemníků v jednotlivých bytech (k tomu můžou mít přístup i sami nájemníci, a zadávat si tam stavy a
+      sami si to monitorovat)
 
-  <br />
-  <br />
-  <br />
+      <component:dockMenu/>
+    </ui:define>
 
-  <component:dockMenu />
+  </ui:composition>
 </h:body>
 </html>
