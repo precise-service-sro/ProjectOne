@@ -17,7 +17,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @RestController
-@RequestMapping(value = "/osoba", path = "/osoba")
+@RequestMapping(value = "/api/osoba", path = "/api/osoba")
 public class OsobaEndpoint {
 
   @Autowired

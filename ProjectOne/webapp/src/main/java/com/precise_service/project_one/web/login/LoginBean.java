@@ -16,12 +16,14 @@ import com.precise_service.project_one.entity.osoba.Osoba;
 import com.precise_service.project_one.service.osoba.IOsobaService;
 
 import lombok.Data;
+import lombok.extern.slf4j.Slf4j;
 
 import static com.precise_service.project_one.web.URL_CONST.INDEX_URL;
 import static com.precise_service.project_one.web.URL_CONST.NEMOVITOST_PREHLED_URL;
 
 @Named
 @Data
+@Slf4j
 public class LoginBean implements Serializable {
 
   public static final String SESSION_ATTRIBUTE_PRIHLASENY_UZIVATEL = "prihlasenyUzivatel";
@@ -38,7 +40,7 @@ public class LoginBean implements Serializable {
     if (StringUtils.isBlank( prihlasovaciJmeno) || StringUtils.isBlank(heslo)) {
       return null;
     }
-    return osobaService.getOsobaByUsernameAndPassword(prihlasovaciJmeno, heslo);
+    return osobaService.getOsobaByPrihlasovaciJmenoAndHeslo(prihlasovaciJmeno, heslo);
   }
 
   public void login() throws IOException {

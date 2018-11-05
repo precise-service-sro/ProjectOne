@@ -12,7 +12,7 @@ public interface IOsobaService {
 
   Osoba getOsoba(String idOsoba);
 
-  Osoba getOsobaByUsernameAndPassword(String username, String password);
+  Osoba getOsobaByPrihlasovaciJmenoAndHeslo(String prihlasovaciJmeno, String heslo);
 
   List<Osoba> getOsobaAll();
 

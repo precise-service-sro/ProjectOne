@@ -17,13 +17,13 @@ import lombok.Data;
 @Document(collection = "osoba")
 public class Osoba extends BaseEntity {
 
-  @JsonProperty("username")
+  @JsonProperty("prihlasovaciJmeno")
   @JsonInclude(JsonInclude.Include.NON_NULL)
-  private String username;
+  private String prihlasovaciJmeno;
 
   @JsonProperty("heslo")
   @JsonInclude(JsonInclude.Include.NON_NULL)
-  private String password;
+  private String heslo;
 
   @JsonProperty("fotka")
   @JsonInclude(JsonInclude.Include.NON_NULL)

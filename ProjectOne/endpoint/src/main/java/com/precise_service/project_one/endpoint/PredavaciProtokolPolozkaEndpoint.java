@@ -18,7 +18,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @RestController
-@RequestMapping(value = "/predavaciProtokol/{idPredavaciProtokol}/polozka", path = "/predavaciProtokol/{idPredavaciProtokol}/polozka")
+@RequestMapping(value = "/api/predavaciProtokol/{idPredavaciProtokol}/polozka", path = "/api/predavaciProtokol/{idPredavaciProtokol}/polozka")
 public class PredavaciProtokolPolozkaEndpoint {
 
   @Autowired

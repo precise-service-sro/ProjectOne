@@ -36,9 +36,9 @@ public class OsobaService implements IOsobaService {
   }
 
   @Override
-  public Osoba getOsobaByUsernameAndPassword(String username, String password) {
-    log.trace("getOsobaByUsernameAndPassword()");
-    return osobaRepository.getOsobaByUsernameAndPassword(username, password);
+  public Osoba getOsobaByPrihlasovaciJmenoAndHeslo(String prihlasovaciJmeno, String heslo) {
+    log.trace("getOsobaByPrihlasovaciJmenoAndHeslo()");
+    return osobaRepository.getOsobaByPrihlasovaciJmenoAndHeslo(prihlasovaciJmeno, heslo);
   }
 
   @Override

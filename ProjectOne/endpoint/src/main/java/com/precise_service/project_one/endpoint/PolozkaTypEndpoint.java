@@ -17,7 +17,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @RestController
-@RequestMapping(value = "/polozkaTyp", path = "/polozkaTyp")
+@RequestMapping(value = "/api/polozkaTyp", path = "/api/polozkaTyp")
 public class PolozkaTypEndpoint {
 
   @Autowired

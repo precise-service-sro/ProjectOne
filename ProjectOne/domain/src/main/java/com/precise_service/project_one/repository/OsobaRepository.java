@@ -7,6 +7,6 @@ import com.precise_service.project_one.entity.osoba.Osoba;
 
 public interface OsobaRepository extends MongoRepository<Osoba, String> {
 
-  @Query("{ 'username' : ?0, 'password' : ?1 }")
-  Osoba getOsobaByUsernameAndPassword(String username, String password);
+  @Query("{ 'prihlasovaciJmeno' : ?0, 'heslo' : ?1 }")
+  Osoba getOsobaByPrihlasovaciJmenoAndHeslo(String username, String password);
 }

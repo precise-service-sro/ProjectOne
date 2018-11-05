@@ -17,7 +17,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @RestController
-@RequestMapping(value = "/nemovitost", path = "/nemovitost")
+@RequestMapping(value = "/api/nemovitost", path = "/api/nemovitost")
 public class NemovitostEndpoint {
 
   @Autowired

@@ -9,8 +9,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
+
+import com.precise_service.project_one.entity.osoba.Osoba;
+import com.precise_service.project_one.service.osoba.IOsobaService;
 
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -23,6 +28,9 @@ import static com.precise_service.project_one.web.login.LoginBean.SESSION_ATTRIB
 @Order(1)
 @Slf4j
 public class AuthFilter implements Filter {
+
+  @Autowired
+  private IOsobaService osobaService;
 
   @Override
   public void init(FilterConfig filterConfig) {
@@ -47,15 +55,41 @@ public class AuthFilter implements Filter {
           || requestURI.indexOf("/images/") >= 0
           || requestURI.contains("javax.faces.resource")
           ) {
+
+        log.trace("--- public web request ---");
         chain.doFilter(request, response);
+        return;
       }
-      else {
-        httpServletResponse.sendRedirect(httpServletRequest.getContextPath() + INDEX_URL);
+
+      if ( requestURI.indexOf("/api/") >= 0) {
+        if (isAuthorizedApiRequest(httpServletRequest)) {
+          log.trace("--- authorized api request ---");
+          chain.doFilter(request, response);
+          return;
+        }
+        log.trace("--- unauthorized api request ---");
+        httpServletResponse.sendError(HttpServletResponse.SC_UNAUTHORIZED, "--- unauthorized api request ---");
+        return;
       }
+
+      log.trace("--- unauthorized request ---");
+      httpServletResponse.sendRedirect(httpServletRequest.getContextPath() + INDEX_URL);
     }
     catch(Throwable t) {
       System.out.println( t.getMessage());
     }
+  }
+
+  private boolean isAuthorizedApiRequest(HttpServletRequest httpServletRequest) {
+    String prihlasovaciJmeno = httpServletRequest.getHeader("prihlasovaciJmeno");
+    String heslo = httpServletRequest.getHeader("heslo");
+
+    if (StringUtils.isBlank(prihlasovaciJmeno) || StringUtils.isBlank(heslo)) {
+      return false;
+    }
+
+    Osoba osoba = osobaService.getOsobaByPrihlasovaciJmenoAndHeslo(prihlasovaciJmeno, heslo);
+    return (osoba != null);
   }
 
   @Override
