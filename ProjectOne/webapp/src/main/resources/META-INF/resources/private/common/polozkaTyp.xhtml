@@ -3,107 +3,124 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:component="http://java.sun.com/jsf/composite/private/common/component">
-
-<h:head>
-  <title>ProjectOne - Nájemník - Předávací protokol</title>
-</h:head>
+      xmlns:component="http://java.sun.com/jsf/composite/private/common/component"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+>
 
 <h:body>
+  <ui:composition template="/template/commonLayout.xhtml">
+    <ui:define name="title">ProjectOne - Nastavení vyúčtovávaných položek</ui:define>
 
-  <h:outputText value="#{polozkaTypBean.init()}" />
+    <ui:define name="content">
+      <h:outputText value="#{polozkaTypBean.init()}"/>
 
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
+      <h:form id="form">
+        <p:growl id="msgs" showDetail="true"/>
 
-  <div style="width: 98%; margin-left: 10px;">
-
-    <h2>Nastavení vyúčtovávaných položek:</h2>
-
-    <h:form id="form">
-      <p:growl id="msgs" showDetail="true"/>
-
-      <h3>Byt:</h3>
-      - <h:outputText value="#{polozkaTypBean.nemovitost.nazev}" /> (odkaz na prolinkovanou nemovitost, pujde proklidnout na detail nemovitosti) <br />
-      
-      <div class="ui-g" style="text-align: right;">
-        <div class="ui-g-12">
-          <p:commandButton value="Přidat typ položky pro vyúčtování" icon="ui-icon-circle-plus" styleClass="ui-priority-primary" process="@this" update=":form:msgs"
-                           actionListener="#{polozkaTypBean.addRow()}" oncomplete="PF('polozkaTypTable').addRow();" />
+        <div class="pageContentTitle">
+          <p>Nastavení vyúčtovávaných položek:</p>
         </div>
-      </div>
 
-      <p:dataTable id="polozkaTypTable" widgetVar="polozkaTypTable"
-                   var="polozkaTyp" value="#{polozkaTypBean.polozkaTypList}"
-                   editable="true" rowIndexVar="index"
-      >
+        <div class="pageTopic">
+          <div class="pageTopicTitle">
+            <p>Nemovitost:</p>
+          </div>
+          <div class="pageTopicContent">
+            <h:outputText value="#{polozkaTypBean.nemovitost.nazev}"/>
+            (odkaz na prolinkovanou nemovitost, pujde proklidnout na detail nemovitosti) <br/>
+          </div>
+        </div>
 
-        <p:ajax event="rowEdit" listener="#{polozkaTypBean.onRowEdit}" update=":form:msgs" />
-        <p:ajax event="rowEditCancel" listener="#{polozkaTypBean.onRowCancel}" update=":form:msgs" />
+        <div class="pageTopic">
+          <div class="pageTopicTitle">
+            <p>Položky:</p>
+          </div>
+          <div class="pageTopicContent">
+            <div class="addButtonDiv">
+              <p:commandButton value="Přidat" icon="ui-icon-circle-plus" process="@this" update=":form:msgs"
+                               actionListener="#{polozkaTypBean.addRow()}" oncomplete="PF('polozkaTypTable').addRow();"/>
+            </div>
 
-        <p:columnGroup type="header">
-          <p:row>
-            <p:column headerText="Název"                style="width: 150px;"/>
-            <p:column headerText="Jednotka"             style="width: 150px;"/>
-            <p:column headerText="Popis"                />
-            <p:column headerText="Ovládání" colspan="2" style="width: 160px;"/>
-          </p:row>
-        </p:columnGroup>
 
-        <p:column>
-          <p:cellEditor>
-            <f:facet name="output"><h:outputText value="#{polozkaTyp.nazev}" /> </f:facet>
-            <f:facet name="input"><p:inputText id="polozkaTypNazevInput" value="#{polozkaTyp.nazev}" style="width:100%"/></f:facet>
-          </p:cellEditor>
-        </p:column>
+            <p:dataTable id="polozkaTypTable" widgetVar="polozkaTypTable"
+                         var="polozkaTyp" value="#{polozkaTypBean.polozkaTypList}"
+                         editable="true" rowIndexVar="index"
+            >
 
-        <p:column style="text-align: center;">
-          <p:cellEditor>
-            <f:facet name="output"><h:outputText value="#{polozkaTyp.jednotka}" /> </f:facet>
-            <f:facet name="input"><p:inputText id="polozkaTypJednotkaInput" value="#{polozkaTyp.jednotka}" style="width:100%"/></f:facet>
-          </p:cellEditor>
-        </p:column>
+              <p:ajax event="rowEdit" listener="#{polozkaTypBean.onRowEdit}" update=":form:msgs"/>
+              <p:ajax event="rowEditCancel" listener="#{polozkaTypBean.onRowCancel}" update=":form:msgs"/>
 
-        <p:column>
-          <p:cellEditor>
-            <f:facet name="output"><h:outputText value="#{polozkaTyp.popis}" /> </f:facet>
-            <f:facet name="input"><p:inputText id="polozkaTypPopisInput" value="#{polozkaTyp.popis}" style="width:100%"/></f:facet>
-          </p:cellEditor>
-        </p:column>
+              <p:columnGroup type="header">
+                <p:row>
+                  <p:column headerText="Název" style="width: 150px;"/>
+                  <p:column headerText="Jednotka" style="width: 150px;"/>
+                  <p:column headerText="Popis"/>
+                  <p:column headerText="Ovládání" colspan="2" style="width: 160px;"/>
+                </p:row>
+              </p:columnGroup>
 
-        <p:column>
-          <p:rowEditor />
-        </p:column>
+              <p:column>
+                <p:cellEditor>
+                  <f:facet name="output">
+                    <h:outputText value="#{polozkaTyp.nazev}"/>
+                  </f:facet>
+                  <f:facet name="input">
+                    <p:inputText id="polozkaTypNazevInput" value="#{polozkaTyp.nazev}" style="width:100%"/>
+                  </f:facet>
+                </p:cellEditor>
+              </p:column>
 
-        <p:column>
-          <p:commandButton update="@form :form:msgs" icon="ui-icon-circle-minus" actionListener="#{polozkaTypBean.deleteRow(polozkaTyp.id)}" title="Odebrat" />
-        </p:column>
-      </p:dataTable>
+              <p:column style="text-align: center;">
+                <p:cellEditor>
+                  <f:facet name="output">
+                    <h:outputText value="#{polozkaTyp.jednotka}"/>
+                  </f:facet>
+                  <f:facet name="input">
+                    <p:inputText id="polozkaTypJednotkaInput" value="#{polozkaTyp.jednotka}" style="width:100%"/>
+                  </f:facet>
+                </p:cellEditor>
+              </p:column>
 
-    </h:form>
-  </div>
+              <p:column>
+                <p:cellEditor>
+                  <f:facet name="output">
+                    <h:outputText value="#{polozkaTyp.popis}"/>
+                  </f:facet>
+                  <f:facet name="input">
+                    <p:inputText id="polozkaTypPopisInput" value="#{polozkaTyp.popis}" style="width:100%"/>
+                  </f:facet>
+                </p:cellEditor>
+              </p:column>
 
-  <br />
-  <br />
-  <br />
+              <p:column>
+                <p:rowEditor/>
+              </p:column>
 
-  <h3>Další myšlenky a nápady na zlepšení:</h3>
+              <p:column>
+                <p:commandButton update="@form :form:msgs" icon="ui-icon-circle-minus" actionListener="#{polozkaTypBean.deleteRow(polozkaTyp.id)}"
+                                 title="Odebrat"/>
+              </p:column>
+            </p:dataTable>
+          </div>
+        </div>
+      </h:form>
 
-  - Tahle ta konkrétní stránka / a to nastavení by mělo být specificky prolinkováno vždy s nějakým konkrétním bytem (neco jako
-  /nemovitost/vyuctovani/nastaveni)
-  <br />
-  - Přidat do záhlaví nějakou identifikaci nemovitosti, které se to týká
-  <br />
-  - Pri vytvoreni noveho typu bude automaticky prolinkovano na nemovitost, to se nebude vybirat manualne
+    </ui:define>
 
-  <br />
-  <br />
-  <br />
+    <ui:define name="footer">
 
-  <component:dockMenu />
+      <h3>Další myšlenky a nápady na zlepšení:</h3>
+
+      - Tahle ta konkrétní stránka / a to nastavení by mělo být specificky prolinkováno vždy s nějakým konkrétním bytem (neco jako
+      /nemovitost/vyuctovani/nastaveni)
+      <br/>
+      - Přidat do záhlaví nějakou identifikaci nemovitosti, které se to týká
+      <br/>
+      - Pri vytvoreni noveho typu bude automaticky prolinkovano na nemovitost, to se nebude vybirat manualne
+
+      <component:dockMenu/>
+    </ui:define>
+
+  </ui:composition>
 </h:body>
 </html>

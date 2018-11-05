@@ -14,6 +14,8 @@ public interface INemovitostService {
 
   List<Nemovitost> getNemovitostAll();
 
+  List<Nemovitost> getNemovitostAll(String idPrihlasenyUzivatel);
+
   void deleteNemovitost(String idNemovitost);
 
   void deleteNemovitostAll();

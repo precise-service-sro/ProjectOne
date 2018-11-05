@@ -1,6 +1,7 @@
 package com.precise_service.project_one.web.predavaci_protokol;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.application.FacesMessage;
@@ -11,11 +12,13 @@ import org.primefaces.event.RowEditEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.precise_service.project_one.entity.PolozkaTyp;
+import com.precise_service.project_one.entity.nemovitost.Nemovitost;
 import com.precise_service.project_one.entity.predavaci_protokol.PredavaciProtokol;
 import com.precise_service.project_one.entity.predavaci_protokol.PredavaciProtokolPolozka;
 import com.precise_service.project_one.service.predavaci_protokol.IPredavaciProtokolPolozkaService;
 import com.precise_service.project_one.service.predavaci_protokol.IPredavaciProtokolService;
 import com.precise_service.project_one.service.vyuctovani.IPolozkaTypService;
+import com.precise_service.project_one.web.login.Util;
 
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
@@ -42,13 +45,14 @@ public class PredavaciProtokolDetailBean implements Serializable {
     log.trace("init()");
 
     if (predavaciProtokol == null) {
-      List<PredavaciProtokol> predavaciProtokolList = predavaciProtokolService.getPredavaciProtokolList();
-      predavaciProtokol = predavaciProtokolList.get(0);
+      log.error("Není vybrán žádný předávácí protokol k zobrazení detailů");
+      return;
     }
 
     radky = predavaciProtokolPolozkaService.getPredavaciProtokolPolozkaAll(predavaciProtokol.getId());
 
-    polozkaTypList = polozkaTypService.getPolozkaTypAll();
+    Nemovitost nemovitost = predavaciProtokol.getNemovitost();
+    polozkaTypList = (nemovitost != null) ? polozkaTypService.getPolozkaTypListByIdNemovitost(nemovitost.getId()) : new ArrayList<>(0);
   }
 
   public void onRowEdit(RowEditEvent event) {
@@ -77,6 +81,7 @@ public class PredavaciProtokolDetailBean implements Serializable {
     predavaciProtokolPolozka.setPolozkaTyp(null);
     predavaciProtokolPolozka.setCisloMeraku("!!! Upravit popis !!!");
     predavaciProtokolPolozka.setStavMeraku("!!! Upravit popis !!!");
+    predavaciProtokolPolozka.setUzivatel(Util.getPrihlasenyUzivatel());
 
     PredavaciProtokolPolozka saved = predavaciProtokolPolozkaService.postPredavaciProtokolPolozka(predavaciProtokolPolozka);
     init();

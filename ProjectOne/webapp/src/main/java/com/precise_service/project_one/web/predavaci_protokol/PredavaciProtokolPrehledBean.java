@@ -20,6 +20,7 @@ import com.precise_service.project_one.service.nemovitost.INemovitostService;
 import com.precise_service.project_one.service.osoba.IOsobaService;
 import com.precise_service.project_one.service.predavaci_protokol.IPredavaciProtokolService;
 import com.precise_service.project_one.web.URL_CONST;
+import com.precise_service.project_one.web.login.Util;
 
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
@@ -49,11 +50,13 @@ public class PredavaciProtokolPrehledBean implements Serializable {
 
   public void init() {
     log.trace("init()");
-    predavaciProtokolList = predavaciProtokolService.getPredavaciProtokolAll();
-    nemovitostList = nemovitostService.getNemovitostAll();
 
-    // TODO: filtrovat tyto osoby / najemniky dle prihlasene osoby, dle existence najemni smlouvy
-    seznamNajemniku = osobaService.getOsobaAll();
+    Osoba prihlasenyUzivatel = Util.getPrihlasenyUzivatel();
+    predavaciProtokolList = predavaciProtokolService.getPredavaciProtokolAll(prihlasenyUzivatel.getId());
+    nemovitostList = nemovitostService.getNemovitostAll(prihlasenyUzivatel.getId());
+
+    // TODO: filtrovat tyto osoby / najemniky dle existence a platnosti najemni smlouvy
+    seznamNajemniku = osobaService.getOsobaAll(prihlasenyUzivatel.getId());
   }
 
   public void onRowEdit(RowEditEvent event) {
@@ -79,6 +82,7 @@ public class PredavaciProtokolPrehledBean implements Serializable {
 
     predavaciProtokol.setNazev("!!! Upravit název !!!");
     predavaciProtokol.setDatumPodpisu(LocalDate.now());
+    predavaciProtokol.setUzivatel(Util.getPrihlasenyUzivatel());
 
     PredavaciProtokol saved = predavaciProtokolService.postPredavaciProtokol(predavaciProtokol);
     init();

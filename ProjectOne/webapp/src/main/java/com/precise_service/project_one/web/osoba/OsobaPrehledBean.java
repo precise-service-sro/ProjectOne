@@ -17,6 +17,7 @@ import com.precise_service.project_one.entity.osoba.Osoba;
 import com.precise_service.project_one.service.nemovitost.INemovitostService;
 import com.precise_service.project_one.service.osoba.IOsobaService;
 import com.precise_service.project_one.web.URL_CONST;
+import com.precise_service.project_one.web.login.Util;
 
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
@@ -38,11 +39,10 @@ public class OsobaPrehledBean implements Serializable {
   private OsobaDetailBean osobaDetailBean;
 
   private List<Osoba> osobaList;
-  private List<Nemovitost> nemovitostList;
   
   public void init() {
-    osobaList = osobaService.getOsobaAll();
-    nemovitostList = nemovitostService.getNemovitostAll();
+    Osoba prihlasenyUzivatel = Util.getPrihlasenyUzivatel();
+    osobaList = osobaService.getOsobaAll(prihlasenyUzivatel.getId());
   }
 
   public void onRowEdit(RowEditEvent event) {
@@ -74,6 +74,7 @@ public class OsobaPrehledBean implements Serializable {
 
     osoba.setJmeno("!!! Upravit !!!");
     osoba.setPrijmeni("!!! Upravit !!!");
+    osoba.setUzivatel(Util.getPrihlasenyUzivatel());
 
     Osoba saved = osobaService.postOsoba(osoba);
     init();

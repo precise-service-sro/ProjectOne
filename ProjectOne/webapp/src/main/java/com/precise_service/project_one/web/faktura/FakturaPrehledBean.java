@@ -17,9 +17,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.precise_service.project_one.entity.CasovyInterval;
 import com.precise_service.project_one.entity.faktura.Faktura;
 import com.precise_service.project_one.entity.nemovitost.Nemovitost;
+import com.precise_service.project_one.entity.osoba.Osoba;
 import com.precise_service.project_one.service.faktura.IFakturaService;
 import com.precise_service.project_one.service.nemovitost.INemovitostService;
 import com.precise_service.project_one.web.common.DateFormatter;
+import com.precise_service.project_one.web.login.Util;
 
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
@@ -52,11 +54,8 @@ public class FakturaPrehledBean implements Serializable {
       zuctovaciObdobi.setKonec(DateFormatter.parseDate("31-12-2017"));
     }
 
-    // getFakturaInRange
-    //fakturaList = fakturaService.getFakturaInRange(zacatek, konec);
-
-    // getFakturaAll
-    fakturaList = fakturaService.getFakturaAll();
+    Osoba prihlasenyUzivatel = Util.getPrihlasenyUzivatel();
+    fakturaList = fakturaService.getSeznamFakturVeZuctovacimObdobi(prihlasenyUzivatel, zuctovaciObdobi);
 
     nemovitostList = nemovitostService.getNemovitostAll();
   }
@@ -90,7 +89,8 @@ public class FakturaPrehledBean implements Serializable {
 
     faktura.setNazev("!!! Upravit název !!!");
     faktura.setNemovitost(null);
-    faktura.setZuctovaciObdobi(new CasovyInterval());
+    faktura.setZuctovaciObdobi(zuctovaciObdobi);
+    faktura.setUzivatel(Util.getPrihlasenyUzivatel());
 
     Faktura saved = fakturaService.postFaktura(faktura);
     init();

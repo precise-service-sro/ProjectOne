@@ -48,11 +48,13 @@ public class FakturaEndpoint {
     return fakturaService.getFakturaAll();
   }
 
+  /*
   @RequestMapping(value = "/!inRange", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
   List<Faktura> getFakturaListInRange(@RequestBody RangeRequest request) {
-    log.trace("getFakturaListInRange()" + request.getFrom().toString() + " - " + request.getTo().toString());
-    return fakturaService.getFakturaListInRange(request.getFrom(), request.getTo());
+    log.trace("getFakturaListInRange()");
+    return fakturaService.getSeznamFakturVeZuctovacimObdobi(request.getFrom(), request.getTo());
   }
+  */
 
   @RequestMapping(value = "/{idFaktura}", method = RequestMethod.DELETE)
   void deleteFaktura(@PathVariable String idFaktura) {

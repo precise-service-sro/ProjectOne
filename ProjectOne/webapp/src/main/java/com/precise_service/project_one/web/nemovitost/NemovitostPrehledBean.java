@@ -17,9 +17,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.precise_service.project_one.entity.Adresa;
 import com.precise_service.project_one.entity.nemovitost.Nemovitost;
 import com.precise_service.project_one.entity.nemovitost.NemovitostTyp;
+import com.precise_service.project_one.entity.osoba.Osoba;
 import com.precise_service.project_one.service.nemovitost.INemovitostService;
 import com.precise_service.project_one.service.osoba.IOsobaService;
 import com.precise_service.project_one.web.URL_CONST;
+import com.precise_service.project_one.web.login.Util;
 
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
@@ -44,7 +46,8 @@ public class NemovitostPrehledBean implements Serializable {
   private List<NemovitostTyp> nemovitostTypList;
 
   public void init() {
-    nemovitostList = nemovitostService.getNemovitostAll();
+    Osoba prihlasenyUzivatel = Util.getPrihlasenyUzivatel();
+    nemovitostList = nemovitostService.getNemovitostAll(prihlasenyUzivatel.getId());
     nemovitostTypList = Arrays.asList(NemovitostTyp.values());
   }
 
@@ -70,7 +73,7 @@ public class NemovitostPrehledBean implements Serializable {
     Faces.redirect(NEMOVITOST_DETAIL_URL);
   }
 
-  public void addRow() throws ParseException {
+  public void addRow() {
     log.trace("addRow()");
 
     Nemovitost nemovitost = new Nemovitost();
@@ -78,6 +81,7 @@ public class NemovitostPrehledBean implements Serializable {
     nemovitost.setNazev("!!! Upravit název !!!");
     nemovitost.setAdresa(new Adresa());
     nemovitost.setNemovitostTyp(NemovitostTyp.BYT);
+    nemovitost.setUzivatel(Util.getPrihlasenyUzivatel());
 
     Nemovitost saved = nemovitostService.postNemovitost(nemovitost);
     init();
@@ -86,7 +90,7 @@ public class NemovitostPrehledBean implements Serializable {
     FacesContext.getCurrentInstance().addMessage(null, msg);
   }
 
-  public void deleteRow(Nemovitost deletedNemovitost) throws ParseException {
+  public void deleteRow(Nemovitost deletedNemovitost) {
     log.trace("deleteRow()");
 
     if (deletedNemovitost == null) {

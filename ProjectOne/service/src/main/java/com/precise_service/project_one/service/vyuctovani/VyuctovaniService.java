@@ -68,6 +68,12 @@ public class VyuctovaniService implements IVyuctovaniService {
   }
 
   @Override
+  public List<Vyuctovani> getVyuctovaniListInRange(Osoba prihlasenyUzivatel, CasovyInterval zuctovaciInterval) {
+    log.trace("getVyuctovaniListInRange()");
+    return vyuctovaniRepository.getVyuctovaniListInRange(zuctovaciInterval.getZacatek(), zuctovaciInterval.getKonec(), prihlasenyUzivatel.getId());
+  }
+
+  @Override
   public void deleteVyuctovani(String idVyuctovani) {
     log.trace("deleteVyuctovani()");
     vyuctovaniRepository.deleteById(idVyuctovani);
@@ -80,7 +86,7 @@ public class VyuctovaniService implements IVyuctovaniService {
   }
 
   @Override
-  public Vyuctovani generovatVyuctovani(String nazev, CasovyInterval zuctovaciObdobi, Nemovitost nemovitost, Osoba najemnik, List<Faktura> fakturaList, PredavaciProtokol predavaciProtokol, NajemniSmlouva najemniSmlouva) {
+  public Vyuctovani generovatVyuctovani(String nazev, CasovyInterval zuctovaciObdobi, Nemovitost nemovitost, Osoba najemnik, List<Faktura> fakturaList, PredavaciProtokol predavaciProtokol, NajemniSmlouva najemniSmlouva, Osoba prihlasenyUzivatel) {
     log.trace("deleteVyuctovaniAll()");
     List<PolozkaTyp> polozkaTypList = polozkaTypService.getPolozkaTypListByIdNemovitost(nemovitost.getId());
 
@@ -90,12 +96,14 @@ public class VyuctovaniService implements IVyuctovaniService {
     vyuctovani.setNemovitost(nemovitost);
     vyuctovani.setNajemnik(najemnik);
     vyuctovani.setPronajimatel(nemovitost.getVlastnik());
+    vyuctovani.setUzivatel(prihlasenyUzivatel);
     vyuctovani = postVyuctovani(vyuctovani);
 
     for (PolozkaTyp polozkaTyp : polozkaTypList) {
       VyuctovaniPolozka vyuctovaniPolozka = new VyuctovaniPolozka();
       vyuctovaniPolozka.setVyuctovani(vyuctovani);
       vyuctovaniPolozka.setPolozkaTyp(polozkaTyp);
+      vyuctovaniPolozka.setUzivatel(prihlasenyUzivatel);
 
       vypocetVyuctovaniPolozka(vyuctovaniPolozka, fakturaList);
       vyuctovaniPolozkaService.postVyuctovaniPolozka(vyuctovaniPolozka);

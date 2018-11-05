@@ -42,6 +42,12 @@ public class OsobaService implements IOsobaService {
   }
 
   @Override
+  public List<Osoba> getOsobaAll(String idPrihlasenyUzivatel) {
+    log.trace("getOsobaAll()");
+    return osobaRepository.getOsobaAll(idPrihlasenyUzivatel);
+  }
+
+  @Override
   public List<Osoba> getOsobaAll() {
     log.trace("getOsobaAll()");
     return osobaRepository.findAll();

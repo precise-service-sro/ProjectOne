@@ -54,7 +54,7 @@ public class LoginBean implements Serializable {
     }
 
     HttpSession session = Util.getSession();
-    session.setAttribute(SESSION_ATTRIBUTE_PRIHLASENY_UZIVATEL, prihlasovaciJmeno);
+    session.setAttribute(SESSION_ATTRIBUTE_PRIHLASENY_UZIVATEL, prihlasenyUzivatel);
     Faces.redirect(NEMOVITOST_PREHLED_URL);
   }
 

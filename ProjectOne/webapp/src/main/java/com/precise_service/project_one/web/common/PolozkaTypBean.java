@@ -14,6 +14,7 @@ import com.precise_service.project_one.entity.PolozkaTyp;
 import com.precise_service.project_one.entity.nemovitost.Nemovitost;
 import com.precise_service.project_one.service.nemovitost.INemovitostService;
 import com.precise_service.project_one.service.vyuctovani.IPolozkaTypService;
+import com.precise_service.project_one.web.login.Util;
 
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
@@ -36,8 +37,8 @@ public class PolozkaTypBean implements Serializable {
     log.trace("init()");
 
     // TODO: filtrovat podle nemovitosti, ktera bude na vstupu volani stranky
-    nemovitost = nemovitostService.getNemovitostAll().get(0);
-    polozkaTypList = polozkaTypService.getPolozkaTypListByIdNemovitost(this.nemovitost.getId());
+    nemovitost = nemovitostService.getNemovitostAll(Util.getPrihlasenyUzivatel().getId()).get(0);
+    polozkaTypList = polozkaTypService.getPolozkaTypListByIdNemovitost(nemovitost.getId());
   }
 
   public void onRowEdit(RowEditEvent event) {
@@ -62,6 +63,8 @@ public class PolozkaTypBean implements Serializable {
     PolozkaTyp polozkaTyp = new PolozkaTyp();
     polozkaTyp.setNazev("!!! Upravit název !!!");
     polozkaTyp.setPopis("!!! Upravit popis !!!");
+    polozkaTyp.setUzivatel(Util.getPrihlasenyUzivatel());
+    polozkaTyp.setNemovitost(nemovitost);
 
     PolozkaTyp saved = polozkaTypService.postPolozkaTyp(polozkaTyp);
     init();

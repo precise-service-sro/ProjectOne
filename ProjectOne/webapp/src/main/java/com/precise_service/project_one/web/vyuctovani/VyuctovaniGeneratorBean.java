@@ -30,6 +30,7 @@ import com.precise_service.project_one.service.predavaci_protokol.IPredavaciProt
 import com.precise_service.project_one.service.vyuctovani.IVyuctovaniService;
 import com.precise_service.project_one.web.URL_CONST;
 import com.precise_service.project_one.web.common.DateFormatter;
+import com.precise_service.project_one.web.login.Util;
 
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
@@ -86,11 +87,11 @@ public class VyuctovaniGeneratorBean implements Serializable {
   public void generate() throws IOException {
     log.trace("generate()");
 
-    // TODO: vyfiltrovat na zahlade vsech vstupnich dat a prihlaseneho uzivatele
-    List<Faktura> fakturaListInRange = fakturaService.getFakturaListInRange(zuctovaciObdobi.getZacatek(), zuctovaciObdobi.getKonec());
+    Osoba prihlasenyUzivatel = Util.getPrihlasenyUzivatel();
+    List<Faktura> fakturaList = fakturaService.getSeznamFakturVeZuctovacimObdobi(prihlasenyUzivatel, zuctovaciObdobi);
 
     String nazev = "Nové vyúčtování ze dne " + LocalDateTime.now().toString();
-    Vyuctovani vyuctovani = vyuctovaniService.generovatVyuctovani(nazev, zuctovaciObdobi, nemovitost, najemnik, fakturaListInRange, predavaciProtokol, null);
+    Vyuctovani vyuctovani = vyuctovaniService.generovatVyuctovani(nazev, zuctovaciObdobi, nemovitost, najemnik, fakturaList, predavaciProtokol, null, Util.getPrihlasenyUzivatel());
 
     vyuctovaniDetailBean.setVyuctovani(vyuctovani);
     Faces.getFlash().setRedirect(true);

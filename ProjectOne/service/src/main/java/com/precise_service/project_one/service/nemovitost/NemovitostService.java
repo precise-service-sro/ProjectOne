@@ -42,6 +42,11 @@ public class NemovitostService implements INemovitostService {
   }
 
   @Override
+  public List<Nemovitost> getNemovitostAll(String idPrihlasenyUzivatel) {
+    return nemovitostRepository.getNemovitostAll(idPrihlasenyUzivatel);
+  }
+
+  @Override
   public void deleteNemovitost(String idNemovitost) {
     log.trace("deleteNemovitost()");
     nemovitostRepository.deleteById(idNemovitost);

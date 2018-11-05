@@ -7,7 +7,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.precise_service.project_one.entity.CasovyInterval;
 import com.precise_service.project_one.entity.faktura.Faktura;
+import com.precise_service.project_one.entity.osoba.Osoba;
 import com.precise_service.project_one.repository.FakturaRepository;
 
 import lombok.extern.slf4j.Slf4j;
@@ -44,9 +46,9 @@ public class FakturaService implements IFakturaService {
   }
 
   @Override
-  public List<Faktura> getFakturaListInRange(Date from, Date to) {
-    log.trace("getFakturaListInRange()");
-    return fakturaRepository.getFakturaListInRange(from, to);
+  public List<Faktura> getSeznamFakturVeZuctovacimObdobi(Osoba prihlasenyUzivatel, CasovyInterval zuctovaciObdobi) {
+    log.trace("getSeznamFakturVeZuctovacimObdobi()");
+    return fakturaRepository.getSeznamFakturVeZuctovacimObdobi(zuctovaciObdobi.getZacatek(), zuctovaciObdobi.getKonec(), prihlasenyUzivatel.getId());
   }
 
   @Override

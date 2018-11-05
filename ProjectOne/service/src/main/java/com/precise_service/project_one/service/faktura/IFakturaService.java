@@ -1,9 +1,10 @@
 package com.precise_service.project_one.service.faktura;
 
-import java.util.Date;
 import java.util.List;
 
+import com.precise_service.project_one.entity.CasovyInterval;
 import com.precise_service.project_one.entity.faktura.Faktura;
+import com.precise_service.project_one.entity.osoba.Osoba;
 
 public interface IFakturaService {
 
@@ -15,7 +16,7 @@ public interface IFakturaService {
 
   List<Faktura> getFakturaAll();
 
-  List<Faktura> getFakturaListInRange(Date from, Date to);
+  List<Faktura> getSeznamFakturVeZuctovacimObdobi(Osoba prihlasenyUzivatel, CasovyInterval zuctovaciObdobi);
 
   void deleteFaktura(String idFaktura);
 

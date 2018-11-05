@@ -23,9 +23,11 @@ public interface IVyuctovaniService {
 
   List<Vyuctovani> getVyuctovaniInRange(Date from, Date to);
 
+  List<Vyuctovani> getVyuctovaniListInRange(Osoba prihlasenyUzivatel, CasovyInterval zuctovaciObdobi);
+
   void deleteVyuctovani(String idVyuctovani);
 
   void deleteVyuctovaniAll();
 
-  Vyuctovani generovatVyuctovani(String nazev, CasovyInterval zuctovaciObdobi, Nemovitost nemovitost, Osoba najemnik, List<Faktura> fakturaList, PredavaciProtokol predavaciProtokol, NajemniSmlouva najemniSmlouva);
+  Vyuctovani generovatVyuctovani(String nazev, CasovyInterval zuctovaciObdobi, Nemovitost nemovitost, Osoba najemnik, List<Faktura> fakturaList, PredavaciProtokol predavaciProtokol, NajemniSmlouva najemniSmlouva, Osoba prihlasenyUzivatel);
 }

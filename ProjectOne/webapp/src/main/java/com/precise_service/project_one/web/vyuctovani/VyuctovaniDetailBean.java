@@ -21,6 +21,7 @@ import com.precise_service.project_one.service.vyuctovani.IPolozkaTypService;
 import com.precise_service.project_one.service.vyuctovani.IVyuctovaniPolozkaService;
 import com.precise_service.project_one.service.vyuctovani.IVyuctovaniService;
 import com.precise_service.project_one.web.common.DateFormatter;
+import com.precise_service.project_one.web.login.Util;
 
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
@@ -54,11 +55,8 @@ public class VyuctovaniDetailBean implements Serializable {
     polozkaTypList = polozkaTypService.getPolozkaTypAll();
 
     if (vyuctovani == null) {
-      Date zacatek = DateFormatter.parseDate("01-01-2017");
-      Date konec = DateFormatter.parseDate("31-12-2017");
-      // TODO: tohle budu moct ve finale uplne smazat
-      List<Vyuctovani> vyuctovaniInRange = vyuctovaniService.getVyuctovaniInRange(zacatek, konec);
-      vyuctovani = vyuctovaniInRange.get(0);
+      log.error("Není vybráno žádné vyúčtování pro zobrazení detailů");
+      return;
     }
 
     radkyVyuctovani = vyuctovaniPolozkaService.getVyuctovaniPolozkaAll(vyuctovani.getId());
@@ -144,6 +142,7 @@ public class VyuctovaniDetailBean implements Serializable {
     vyuctovaniPolozka.setNazev("!!! Upravit název !!!");
     vyuctovaniPolozka.setVyuctovani(vyuctovani);
     vyuctovaniPolozka.setPolozkaTyp(null);
+    vyuctovaniPolozka.setUzivatel(Util.getPrihlasenyUzivatel());
 
     Cislo vychoziStav = new Cislo();
     vychoziStav.setMnozstvi(0.0);

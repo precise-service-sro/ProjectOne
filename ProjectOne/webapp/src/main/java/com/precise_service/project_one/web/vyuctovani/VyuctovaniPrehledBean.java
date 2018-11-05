@@ -18,10 +18,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.precise_service.project_one.entity.CasovyInterval;
 import com.precise_service.project_one.entity.nemovitost.Nemovitost;
+import com.precise_service.project_one.entity.osoba.Osoba;
 import com.precise_service.project_one.entity.vyuctovani.Vyuctovani;
 import com.precise_service.project_one.service.nemovitost.INemovitostService;
 import com.precise_service.project_one.service.vyuctovani.IVyuctovaniService;
 import com.precise_service.project_one.web.common.DateFormatter;
+import com.precise_service.project_one.web.login.Util;
 
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
@@ -42,8 +44,6 @@ public class VyuctovaniPrehledBean implements Serializable {
   @Autowired
   private VyuctovaniDetailBean vyuctovaniDetailBean;
 
-  public static final String ZUCTOVACI_OBDOBI_DATE_FORMAT = "dd/MM/yyyy";
-
   private CasovyInterval zuctovaciObdobi;
   private List<Vyuctovani> vyuctovaniList;
   private List<Nemovitost> nemovitostList;
@@ -57,12 +57,10 @@ public class VyuctovaniPrehledBean implements Serializable {
     }
 
     // getVyuctovaniInRange
-    //vyuctovaniList = vyuctovaniService.getVyuctovaniInRange(zacatek, konec);
+    Osoba prihlasenyUzivatel = Util.getPrihlasenyUzivatel();
+    vyuctovaniList = vyuctovaniService.getVyuctovaniListInRange(prihlasenyUzivatel, zuctovaciObdobi);
 
-    // getVyuctovaniAll
-    vyuctovaniList = vyuctovaniService.getVyuctovaniAll();
-
-    nemovitostList = nemovitostService.getNemovitostAll();
+    nemovitostList = nemovitostService.getNemovitostAll(prihlasenyUzivatel.getId());
   }
 
   public void onRowEdit(RowEditEvent event) {
@@ -94,7 +92,8 @@ public class VyuctovaniPrehledBean implements Serializable {
 
     vyuctovani.setNazev("!!! Upravit název !!!");
     vyuctovani.setNemovitost(null);
-    vyuctovani.setZuctovaciObdobi(new CasovyInterval());
+    vyuctovani.setZuctovaciObdobi(zuctovaciObdobi);
+    vyuctovani.setUzivatel(Util.getPrihlasenyUzivatel());
 
     Vyuctovani saved = vyuctovaniService.postVyuctovani(vyuctovani);
     init();

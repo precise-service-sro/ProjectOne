@@ -17,5 +17,7 @@ public interface IPredavaciProtokolService {
 
   List<PredavaciProtokol> getPredavaciProtokolAll();
 
+  List<PredavaciProtokol> getPredavaciProtokolAll(String idPrihlasenyUzivatel);
+
   void deletePredavaciProtokolAll();
 }

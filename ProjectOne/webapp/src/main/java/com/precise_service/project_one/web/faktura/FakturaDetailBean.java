@@ -19,6 +19,7 @@ import com.precise_service.project_one.service.faktura.IFakturaPolozkaService;
 import com.precise_service.project_one.service.faktura.IFakturaService;
 import com.precise_service.project_one.service.vyuctovani.IPolozkaTypService;
 import com.precise_service.project_one.web.common.DateFormatter;
+import com.precise_service.project_one.web.login.Util;
 
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
@@ -51,13 +52,9 @@ public class FakturaDetailBean implements Serializable {
 
     polozkaTypList = polozkaTypService.getPolozkaTypAll();
 
-    Date zacatek = DateFormatter.parseDate("01-01-2017");
-    Date konec = DateFormatter.parseDate("31-12-2017");
-
     if (faktura == null) {
-      // TODO: tohle budu moct ve finale uplne smazat
-      List<Faktura> fakturaInRange = fakturaService.getFakturaListInRange(zacatek, konec);
-      faktura = fakturaInRange.get(0);
+      log.error("Není vybraná žádná faktura k zobrazení detailu");
+      return;
     }
 
     radkyFaktura = fakturaPolozkaService.getFakturaPolozkaAll(faktura.getId());
@@ -143,6 +140,7 @@ public class FakturaDetailBean implements Serializable {
     fakturaPolozka.setNazev("!!! Upravit název !!!");
     fakturaPolozka.setFaktura(faktura);
     fakturaPolozka.setPolozkaTyp(null);
+    fakturaPolozka.setUzivatel(Util.getPrihlasenyUzivatel());
 
     Cislo vychoziStav = new Cislo();
     vychoziStav.setMnozstvi(0.0);

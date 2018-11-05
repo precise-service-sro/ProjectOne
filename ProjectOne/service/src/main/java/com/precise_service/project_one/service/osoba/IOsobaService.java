@@ -14,6 +14,8 @@ public interface IOsobaService {
 
   Osoba getOsobaByPrihlasovaciJmenoAndHeslo(String prihlasovaciJmeno, String heslo);
 
+  List<Osoba> getOsobaAll(String idPrihlasenyUzivatel);
+
   List<Osoba> getOsobaAll();
 
   void deleteOsobaAll();

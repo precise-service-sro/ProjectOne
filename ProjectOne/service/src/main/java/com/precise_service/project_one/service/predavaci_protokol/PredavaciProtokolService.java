@@ -48,6 +48,12 @@ public class PredavaciProtokolService implements IPredavaciProtokolService {
   }
 
   @Override
+  public List<PredavaciProtokol> getPredavaciProtokolAll(String idPrihlasenyUzivatel) {
+    log.trace("getPredavaciProtokolAll()");
+    return predavaciProtokolRepository.getPredavaciProtokolAll(idPrihlasenyUzivatel);
+  }
+
+  @Override
   public void deletePredavaciProtokol(String idPredavaciProtokol) {
     log.trace("deletePredavaciProtokol()");
     predavaciProtokolRepository.deleteById(idPredavaciProtokol);
