@@ -3,72 +3,113 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:component="http://java.sun.com/jsf/composite/private/common/component">
-
-<h:head>
-  <title>ProjectOne - Byt - Informace - O nemovitosti</title>
-</h:head>
+      xmlns:component="http://java.sun.com/jsf/composite/private/common/component"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+>
 
 <h:body>
+  <ui:composition template="/template/commonLayout.xhtml">
+    <ui:define name="title">ProjectOne - Detail nemovitosti</ui:define>
 
-  <h:outputText value="#{nemovitostDetailBean.init()}" />
+    <ui:define name="content">
 
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
+      <h:outputText value="#{nemovitostDetailBean.init()}"/>
 
-  <h2>Detailní informace o konkrétní nemovitosti:</h2>
+      <h:form id="form">
+        <p:growl id="msgs" showDetail="true"/>
 
-  <h3>Název:</h3>
-  - <h:outputText value="#{nemovitostDetailBean.nemovitost.nazev}" />
+        <div class="pageContentTitle">
+          <p>Detailní informace o konkrétní nemovitosti:</p>
+        </div>
 
-  <h3>Typ:</h3>
-  - <h:outputText value="#{nemovitostDetailBean.nemovitost.nemovitostTyp}" />
+        <div class="pageTopic">
+          <div class="pageTopicTitle">
+            <p>Název:</p>
+          </div>
+          <div class="pageTopicContent">
+            <h:outputText value="#{nemovitostDetailBean.nemovitost.nazev}"/>
+          </div>
+        </div>
 
-  <h3>Adresa:</h3>
-  (- Adresa / mapy / google.maps) <br />
-  <h:outputText value="#{nemovitostDetailBean.nemovitost.adresa.ulice}" />&nbsp;<h:outputText value="#{nemovitostDetailBean.nemovitost.adresa.cisloPopisne}" />/<h:outputText value="#{nemovitostDetailBean.nemovitost.adresa.cisloOrientacni}" /> <br />
-  <h:outputText value="#{nemovitostDetailBean.nemovitost.adresa.mesto}" />&nbsp;<h:outputText value="#{nemovitostDetailBean.nemovitost.adresa.psc}" /> <br />
-  <h:outputText value="#{nemovitostDetailBean.nemovitost.adresa.stat}" /> <br />
+        <div class="pageTopic">
+          <div class="pageTopicTitle">
+            <p>Typ:</p>
+          </div>
+          <div class="pageTopicContent">
+            <h:outputText value="#{nemovitostDetailBean.nemovitost.nemovitostTyp}"/>
+          </div>
+        </div>
 
-  <h3>Vlastnik:</h3>
-  - <h:outputText value="#{nemovitostDetailBean.nemovitost.vlastnik.getCeleJmeno()}" />
+        <div class="pageTopic">
+          <div class="pageTopicTitle">
+            <p>Adresa: (- Adresa / mapy / google.maps)</p>
+          </div>
+          <div class="pageTopicContent">
+            <h:outputText value="#{nemovitostDetailBean.nemovitost.adresa.ulice}"/>&nbsp;<h:outputText value="#{nemovitostDetailBean.nemovitost.adresa.cisloPopisne}"/>/<h:outputText value="#{nemovitostDetailBean.nemovitost.adresa.cisloOrientacni}"/>
+            <br/>
+            <h:outputText value="#{nemovitostDetailBean.nemovitost.adresa.mesto}"/>&nbsp;<h:outputText value="#{nemovitostDetailBean.nemovitost.adresa.psc}"/>
+            <br/>
+            <h:outputText value="#{nemovitostDetailBean.nemovitost.adresa.stat}"/>
+          </div>
+        </div>
 
-  <h3>Poznámky:</h3>
-  <component:editorTextu vstupniData="#{nemovitostDetailBean}" />
+        <div class="pageTopic">
+          <div class="pageTopicTitle">
+            <p>Vlastnik:</p>
+          </div>
+          <div class="pageTopicContent">
+            <h:outputText value="#{nemovitostDetailBean.nemovitost.vlastnik.getCeleJmeno()}"/>
+          </div>
+        </div>
 
-  <h3>Kontakty:</h3>
-  <h:form>
-    <p:dataTable id="nemovitostDetailBeanContactsTable" var="nemovitost" widgetVar="nemovitostDetailBeanContactsTable" value="#{nemovitostPrehledBean.getNemovitostList()}" resizableColumns="true" sortBy="#{1}" editable="true">
-      <p:columnGroup type="header">
-        <p:row>
-          <p:column headerText="Jméno"                            />
-          <p:column headerText="Telefon"                          style="width: 180px;"/>
-          <p:column headerText="Email"                            style="width: 200px;"/>
-          <p:column headerText="Poznámka"                         style="width: 200px;"/>
-          <p:column headerText="Ovládání" colspan="3" rowspan="2" style="width: 160px;"/>
-        </p:row>
-      </p:columnGroup>
-    </p:dataTable>
-  </h:form>
+        <div class="pageTopic">
+          <div class="pageTopicTitle">
+            <p>Poznámky:</p>
+          </div>
+          <div class="pageTopicContent">
+            <component:editorTextu vstupniData="#{nemovitostDetailBean}"/>
+          </div>
+        </div>
 
-  <br />
-  <br />
-  <br />
+        <div class="pageTopic">
+          <div class="pageTopicTitle">
+            <p>Kontakty:</p>
+          </div>
+          <div class="pageTopicContent">
+            <div class="addButtonDiv">
+              <p:commandButton value="Přidat" icon="ui-icon-circle-plus" process="@this" update=":form:msgs"
+                               actionListener="#{nemovitostDetailBean.addRow()}" oncomplete="PF('nemovitostDetailBeanContactsTable').addRow();"/>
+            </div>
+            <p:dataTable id="nemovitostDetailBeanContactsTable" var="nemovitost" widgetVar="nemovitostDetailBeanContactsTable"
+                         value="#{nemovitostPrehledBean.getNemovitostList()}" resizableColumns="true" sortBy="#{1}" editable="true">
+              <p:columnGroup type="header">
+                <p:row>
+                  <p:column headerText="Jméno"/>
+                  <p:column headerText="Telefon" style="width: 180px;"/>
+                  <p:column headerText="Email" style="width: 200px;"/>
+                  <p:column headerText="Poznámka" style="width: 200px;"/>
+                  <p:column headerText="Ovládání" colspan="3" rowspan="2" style="width: 160px;"/>
+                </p:row>
+              </p:columnGroup>
+            </p:dataTable>
+          </div>
+        </div>
+      </h:form>
 
-  <h3>Další myšlenky a nápady na zlepšení:</h3>
+    </ui:define>
 
-  - Umožnit editaci položek v záklaví
-  <br />
-  - Nějaká další tabulka s kontaktníma osobama a kontaktama + její editace
+    <ui:define name="footer">
 
-  <br />
-  <br />
-  <br />
+      <h3>Další myšlenky a nápady na zlepšení:</h3>
 
-  <component:dockMenu />
+      - Umožnit editaci položek v záklaví
+      <br/>
+      - Nějaká další tabulka s kontaktníma osobama a kontaktama + její editace
+
+
+      <component:dockMenu/>
+    </ui:define>
+
+  </ui:composition>
 </h:body>
 </html>

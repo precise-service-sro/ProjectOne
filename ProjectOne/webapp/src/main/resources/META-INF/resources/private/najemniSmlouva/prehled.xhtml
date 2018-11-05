@@ -1,28 +1,49 @@
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:component="http://java.sun.com/jsf/composite/private/common/component">
-
-<h:head>
-  <title>Project One</title>
-</h:head>
+      xmlns:component="http://java.sun.com/jsf/composite/private/common/component"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+>
 
 <h:body>
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
-  Alespoň empty page na poznámky o budoucích možnostech dalšího rozvoje
+  <ui:composition template="/template/commonLayout.xhtml">
+    <ui:define name="title">ProjectOne - Přehled nájemních smluv</ui:define>
 
-  <component:dockMenu />
+    <ui:define name="content">
+
+      <h:outputText value="#{fakturaPrehledBean.init()}"/>
+
+      <h:form id="form">
+        <p:growl id="msgs" showDetail="true"/>
+
+        <div class="pageContentTitle">
+          <p>Přehled faktur:</p>
+        </div>
+
+        <div class="pageTopic">
+          <div class="pageTopicTitle">
+            <p>Zúčtovací období:</p>
+          </div>
+          <div class="pageTopicContent">
+            OD:- DO:
+          </div>
+        </div>
+      </h:form>
+
+    </ui:define>
+
+    <ui:define name="footer">
+
+      <h3>Další myšlenky a nápady na zlepšení:</h3>
+
+      - Alespoň empty page na poznámky o budoucích možnostech dalšího rozvoje
+      <br/>
+
+      <component:dockMenu/>
+    </ui:define>
+
+  </ui:composition>
 </h:body>
 </html>

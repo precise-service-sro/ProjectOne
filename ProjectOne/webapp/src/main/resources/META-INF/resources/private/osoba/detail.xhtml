@@ -3,70 +3,100 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:component="http://java.sun.com/jsf/composite/private/common/component">
-
-<h:head>
-  <title>ProjectOne - Detail osoby</title>
-</h:head>
+      xmlns:component="http://java.sun.com/jsf/composite/private/common/component"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+>
 
 <h:body>
-  <h:outputText value="#{osobaDetailBean.init()}" />
+  <ui:composition template="/template/commonLayout.xhtml">
+    <ui:define name="title">ProjectOne - Detail nemovitosti</ui:define>
 
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
+    <ui:define name="content">
 
-  <h2>Detail osoby:</h2>
+      <h:outputText value="#{osobaDetailBean.init()}"/>
 
-  <h3>Fotka / Avatar:</h3>
-  - <h:outputText value="#{osobaDetailBean.osoba.fotka}" />
-  <br />
+      <h:form id="form">
+        <p:growl id="msgs" showDetail="true"/>
 
-  <h3>Jméno a Přijmení:</h3>
-  - <h:outputText value="#{osobaDetailBean.osoba.jmeno}" />
-  <br />
-  - <h:outputText value="#{osobaDetailBean.osoba.prijmeni}" />
-  <br />
+        <div class="pageContentTitle">
+          <p>Detailní informace o konkrétní osobě:</p>
+        </div>
 
-  <h3>Datum narození:</h3>
-  - <h:outputText value="#{osobaDetailBean.osoba.datumNarozeni}" />
-  <br />
+        <div class="pageTopic">
+          <div class="pageTopicTitle">
+            <p>Fotka / Avatar:</p>
+          </div>
+          <div class="pageTopicContent">
+            <h:outputText value="#{osobaDetailBean.osoba.fotka}"/>
+          </div>
+        </div>
 
-  <h3>Telefon:</h3>
-  - <h:outputText value="#{osobaDetailBean.osoba.telefon}" />
-  <br />
+        <div class="pageTopic">
+          <div class="pageTopicTitle">
+            <p>Jméno a Přijmení:</p>
+          </div>
+          <div class="pageTopicContent">
+            <h:outputText value="#{osobaDetailBean.osoba.jmeno}"/>
+            <br/>
+            -
+            <h:outputText value="#{osobaDetailBean.osoba.prijmeni}"/>
+          </div>
+        </div>
 
-  <h3>Email:</h3>
-  - <h:outputText value="#{osobaDetailBean.osoba.email}" />
-  <br />
+        <div class="pageTopic">
+          <div class="pageTopicTitle">
+            <p>Datum narození:</p>
+          </div>
+          <div class="pageTopicContent">
+            <h:outputText value="#{osobaDetailBean.osoba.datumNarozeni}"/>
+          </div>
+        </div>
 
+        <div class="pageTopic">
+          <div class="pageTopicTitle">
+            <p>Telefon:</p>
+          </div>
+          <div class="pageTopicContent">
+            <h:outputText value="#{osobaDetailBean.osoba.telefon}"/>
+          </div>
+        </div>
 
-  <h3>Poznámky:</h3>
-  <component:editorTextu vstupniData="#{osobaDetailBean}" />
+        <div class="pageTopic">
+          <div class="pageTopicTitle">
+            <p>Email:</p>
+          </div>
+          <div class="pageTopicContent">
+            <h:outputText value="#{osobaDetailBean.osoba.email}"/>
+          </div>
+        </div>
 
-  <br />
-  <br />
-  <br />
+        <div class="pageTopic">
+          <div class="pageTopicTitle">
+            <p>Poznámky:</p>
+          </div>
+          <div class="pageTopicContent">
+            <component:editorTextu vstupniData="#{osobaDetailBean}"/>
+          </div>
+        </div>
+      </h:form>
 
-  <h3>Další myšlenky a nápady na zlepšení:</h3>
+    </ui:define>
 
-  - Upload dokladů, fotek, kotaktů
-  <br />
-  - Upload potvrzeií o pojištění odpovědnosti a automatické hlídání jeho platnosti + upozornění
-  <br />
-  - Editace fieldů v záhlaví
-  <br />
-  - Dolpnění všech známých údajů (z nájemní smlouvy), např. trvalé bydliště, kontakty, informace o práci, poznámky, povaha, důležité datumy narozenin atd.
+    <ui:define name="footer">
 
+      <h3>Další myšlenky a nápady na zlepšení:</h3>
 
+      - Upload dokladů, fotek, kotaktů
+      <br/>
+      - Upload potvrzeií o pojištění odpovědnosti a automatické hlídání jeho platnosti + upozornění
+      <br/>
+      - Editace fieldů v záhlaví
+      <br/>
+      - Dolpnění všech známých údajů (z nájemní smlouvy), např. trvalé bydliště, kontakty, informace o práci, poznámky, povaha, důležité datumy narozenin atd.
 
-  <br />
-  <br />
-  <br />
+      <component:dockMenu/>
+    </ui:define>
 
-  <component:dockMenu />
+  </ui:composition>
 </h:body>
 </html>
