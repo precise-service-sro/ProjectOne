@@ -15,23 +15,16 @@
 
       <h:outputText value="#{nemovitostPrehledBean.init()}" />
 
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-
       <h:form id="form">
         <p:growl id="msgs" showDetail="true"/>
 
-        <h2>Přehled nemovitostí:</h2>
+        <div class="pageContentTitle">
+          <p>Přehled nemovitostí:</p>
+        </div>
 
-        <div class="ui-g" style="text-align: right;">
-          <div class="ui-g-12">
-            <p:commandButton value="Přidat nemovitost" icon="ui-icon-circle-plus" styleClass="ui-priority-primary" process="@this" update=":form:msgs"
-                             actionListener="#{nemovitostPrehledBean.addRow()}" oncomplete="PF('nemovitostPrehledBeanTable').addRow();" />
-          </div>
+        <div class="addButtonDiv">
+          <p:commandButton value="Přidat" icon="ui-icon-circle-plus" process="@this" update=":form:msgs"
+                         actionListener="#{nemovitostPrehledBean.addRow()}" oncomplete="PF('nemovitostPrehledBeanTable').addRow();" />
         </div>
 
         <p:dataTable id="nemovitostPrehledBeanTable" var="nemovitost" widgetVar="nemovitostPrehledBeanTable" value="#{nemovitostPrehledBean.getNemovitostList()}" resizableColumns="true" sortBy="#{1}" editable="true">

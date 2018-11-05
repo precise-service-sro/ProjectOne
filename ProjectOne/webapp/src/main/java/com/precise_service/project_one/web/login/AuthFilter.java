@@ -44,6 +44,7 @@ public class AuthFilter implements Filter {
           || requestURI.indexOf("/public/") >= 0
           || requestURI.indexOf("/css/") >= 0
           || requestURI.indexOf("/icons/") >= 0
+          || requestURI.indexOf("/images/") >= 0
           || requestURI.contains("javax.faces.resource")
           ) {
         chain.doFilter(request, response);
