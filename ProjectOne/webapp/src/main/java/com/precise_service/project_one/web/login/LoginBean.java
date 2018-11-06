@@ -65,4 +65,8 @@ public class LoginBean implements Serializable {
     Faces.getFlash().setRedirect(true);
     Faces.redirect(INDEX_URL);
   }
+
+  public Osoba getPrihlasenaOsoba() {
+    return Util.getPrihlasenyUzivatel();
+  }
 }

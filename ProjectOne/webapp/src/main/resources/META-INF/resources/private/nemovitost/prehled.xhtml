@@ -22,11 +22,11 @@
           <p>Přehled nemovitostí:</p>
         </div>
 
-        <div class="pageTopic">
-          <div class="pageTopicTitle">
+        <div class="divTableRow">
+          <div class="divTableCell divTableHeading">
             <p>Nemovitosti:</p>
           </div>
-          <div class="pageTopicContent">
+          <div class="divTableCell">
             <div class="addButtonDiv">
               <p:commandButton value="Přidat" icon="ui-icon-circle-plus" process="@this" update=":form:msgs"
                              actionListener="#{nemovitostPrehledBean.addRow()}" oncomplete="PF('nemovitostPrehledBeanTable').addRow();" />

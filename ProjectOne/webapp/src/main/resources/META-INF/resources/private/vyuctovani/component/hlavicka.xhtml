@@ -16,41 +16,75 @@
 
 <composite:implementation>
 
-  <h3>Pronajímatel:</h3>
-  - jméno: <h:outputText value="#{cc.attrs.vyuctovani.nemovitost.vlastnik.jmeno}" />
-  <br />
-  - přijmení: <h:outputText value="#{cc.attrs.vyuctovani.nemovitost.vlastnik.prijmeni}" />
-  <br />
-  - telefon: <h:outputText value="#{cc.attrs.vyuctovani.nemovitost.vlastnik.telefon}" />
-  <br />
-  - email: <h:outputText value="#{cc.attrs.vyuctovani.nemovitost.vlastnik.email}" />
-  <br />
-  - adresa: <h:outputText value="#{cc.attrs.vyuctovani.nemovitost.vlastnik.jmeno}" />
-  <br />
+  <div class="divTableRow">
+    <div class="divTableCell divTableHeading">Pronajímatel</div>
+    <div class="divTableCell">
+      - jméno: <h:outputText value="#{cc.attrs.vyuctovani.nemovitost.vlastnik.jmeno}" />
+      <br />
+      - přijmení: <h:outputText value="#{cc.attrs.vyuctovani.nemovitost.vlastnik.prijmeni}" />
+      <br />
+      - telefon: <h:outputText value="#{cc.attrs.vyuctovani.nemovitost.vlastnik.telefon}" />
+      <br />
+      - email: <h:outputText value="#{cc.attrs.vyuctovani.nemovitost.vlastnik.email}" />
+      <br />
+      - adresa: <h:outputText value="#{cc.attrs.vyuctovani.nemovitost.vlastnik.jmeno}" />
+      <br />
+    </div>
+  </div>
 
-  <h3>Nájemce:</h3>
-  - jméno: <h:outputText value="#{cc.attrs.vyuctovani.najemnik.jmeno}" />
-  <br />
-  - přijmení: <h:outputText value="#{cc.attrs.vyuctovani.najemnik.prijmeni}" />
-  <br />
-  - telefon: <h:outputText value="#{cc.attrs.vyuctovani.najemnik.telefon}" />
-  <br />
-  - email: <h:outputText value="#{cc.attrs.vyuctovani.najemnik.email}" />
-  <br />
-  - adresa: <h:outputText value="#{cc.attrs.vyuctovani.najemnik.jmeno}" />
-  <br />
+  <div class="divTableRow">
+    <div class="divTableCell divTableHeading">&nbsp;</div>
+    <div class="divTableCell">&nbsp;</div>
+  </div>
 
-  <h3>Zúčtovací období</h3>
-  OD: <h:outputText value="#{cc.attrs.vyuctovani.zuctovaciObdobi.zacatek}" /> <br />
-  DO: <h:outputText value="#{cc.attrs.vyuctovani.zuctovaciObdobi.konec}" /> <br />
+  <div class="divTableRow">
+    <div class="divTableCell divTableHeading">Nájemce:</div>
+    <div class="divTableCell">
+      - jméno: <h:outputText value="#{cc.attrs.vyuctovani.najemnik.jmeno}" />
+      <br />
+      - přijmení: <h:outputText value="#{cc.attrs.vyuctovani.najemnik.prijmeni}" />
+      <br />
+      - telefon: <h:outputText value="#{cc.attrs.vyuctovani.najemnik.telefon}" />
+      <br />
+      - email: <h:outputText value="#{cc.attrs.vyuctovani.najemnik.email}" />
+      <br />
+      - adresa: <h:outputText value="#{cc.attrs.vyuctovani.najemnik.jmeno}" />
+      <br />
+    </div>
+  </div>
 
-  <h3>Byt: </h3>
-  <h:outputText value="#{cc.attrs.vyuctovani.nemovitost.nazev}" />
-  <br />
+  <div class="divTableRow">
+    <div class="divTableCell divTableHeading">&nbsp;</div>
+    <div class="divTableCell">&nbsp;</div>
+  </div>
 
-  <h3>Adresa:</h3>
-  <h:outputText value="#{cc.attrs.vyuctovani.nemovitost.adresa}" />
-  <br />
+  <div class="divTableRow">
+    <div class="divTableCell divTableHeading">Zúčtovací období:</div>
+    <div class="divTableCell">
+      OD: <h:outputText value="#{cc.attrs.vyuctovani.zuctovaciObdobi.zacatek}" /> <br />
+      DO: <h:outputText value="#{cc.attrs.vyuctovani.zuctovaciObdobi.konec}" /> <br />
+    </div>
+  </div>
+
+  <div class="divTableRow">
+    <div class="divTableCell divTableHeading">&nbsp;</div>
+    <div class="divTableCell">&nbsp;</div>
+  </div>
+
+  <div class="divTableRow">
+    <div class="divTableCell divTableHeading">Byt:</div>
+    <div class="divTableCell"><h:outputText value="#{cc.attrs.vyuctovani.nemovitost.nazev}" /></div>
+  </div>
+
+  <div class="divTableRow">
+    <div class="divTableCell divTableHeading">&nbsp;</div>
+    <div class="divTableCell">&nbsp;</div>
+  </div>
+
+  <div class="divTableRow">
+    <div class="divTableCell divTableHeading">Adresa:</div>
+    <div class="divTableCell"><h:outputText value="#{cc.attrs.vyuctovani.nemovitost.adresa}" /></div>
+  </div>
 
 </composite:implementation>
 

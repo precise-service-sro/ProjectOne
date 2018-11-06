@@ -22,42 +22,57 @@
           <p>Generování vyúčtování pro nájemníka:</p>
         </div>
 
-        <div class="pageTopic">
-          <div class="pageTopicTitle">
+        <div class="divTableRow">
+          <div class="divTableCell divTableHeading">
             <p>Nemovitost:</p>
           </div>
-          <div class="pageTopicContent">
+          <div class="divTableCell">
             <h:selectOneMenu value="#{vyuctovaniGeneratorBean.nemovitost}" style="width: 200px; height: 40px;" converter="#{nemovitostConverter}">
               <f:selectItems value="#{vyuctovaniGeneratorBean.nemovitostList}" var="nemovitost" itemLabel="#{nemovitost.nazev}" itemValue="#{nemovitost}"/>
             </h:selectOneMenu>
           </div>
         </div>
 
-        <div class="pageTopic">
-          <div class="pageTopicTitle">
+        <div class="divTableRow">
+          <div class="divTableCell divTableHeading">&nbsp;</div>
+          <div class="divTableCell">&nbsp;</div>
+        </div>
+        
+        <div class="divTableRow">
+          <div class="divTableCell divTableHeading">
             <p>Pronajímatel:</p>
           </div>
-          <div class="pageTopicContent">
+          <div class="divTableCell">
             <h:outputText value="#{vyuctovaniGeneratorBean.nemovitost.vlastnik.getCeleJmeno()}"/>
           </div>
         </div>
 
-        <div class="pageTopic">
-          <div class="pageTopicTitle">
+        <div class="divTableRow">
+          <div class="divTableCell divTableHeading">&nbsp;</div>
+          <div class="divTableCell">&nbsp;</div>
+        </div>
+
+        <div class="divTableRow">
+          <div class="divTableCell divTableHeading">
             <p>Nájemník:</p>
           </div>
-          <div class="pageTopicContent">
+          <div class="divTableCell">
             <h:selectOneMenu value="#{vyuctovaniGeneratorBean.najemnik}" style="width: 200px; height: 40px;" converter="#{osobaConverter}">
               <f:selectItems value="#{vyuctovaniGeneratorBean.seznamNajemniku}" var="najemnik" itemLabel="#{najemnik.getCeleJmeno()}" itemValue="#{najemnik}"/>
             </h:selectOneMenu>
           </div>
         </div>
 
-        <div class="pageTopic">
-          <div class="pageTopicTitle">
+        <div class="divTableRow">
+          <div class="divTableCell divTableHeading">&nbsp;</div>
+          <div class="divTableCell">&nbsp;</div>
+        </div>
+
+        <div class="divTableRow">
+          <div class="divTableCell divTableHeading">
             <p>Zúčtovací období:</p>
           </div>
-          <div class="pageTopicContent">
+          <div class="divTableCell">
             Začátek:
             <p:calendar id="vyuctovaniZuctovaciObdobiFilterZacatekInput" value="#{vyuctovaniGeneratorBean.zuctovaciObdobi.zacatek}" pattern="dd-MM-yyyy">
               <p:ajax event="dateSelect" listener="#{vyuctovaniGeneratorBean.zuctovaciObdobiZacatekDateSelect}" update=":form:msgs"/>
@@ -70,11 +85,16 @@
           </div>
         </div>
 
-        <div class="pageTopic">
-          <div class="pageTopicTitle">
+        <div class="divTableRow">
+          <div class="divTableCell divTableHeading">&nbsp;</div>
+          <div class="divTableCell">&nbsp;</div>
+        </div>
+
+        <div class="divTableRow">
+          <div class="divTableCell divTableHeading">
             <p>Předávací protokol: (název, nájemník, datum podpisu)</p>
           </div>
-          <div class="pageTopicContent">
+          <div class="divTableCell">
             <h:selectOneMenu value="#{vyuctovaniGeneratorBean.predavaciProtokol}" style="width: 200px; height: 40px;" converter="#{predavaciProtokolConverter}">
               <f:selectItems value="#{vyuctovaniGeneratorBean.predavaciProtokolList}" var="predavaciProtokol" itemLabel="#{predavaciProtokol.getPopis()}"
                              itemValue="#{predavaciProtokol}"/>

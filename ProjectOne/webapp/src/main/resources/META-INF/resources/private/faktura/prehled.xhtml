@@ -22,11 +22,11 @@
           <p>Přehled faktur:</p>
         </div>
 
-        <div class="pageTopic">
-          <div class="pageTopicTitle">
+        <div class="divTableRow">
+          <div class="divTableCell divTableHeading">
             <p>Zúčtovací období:</p>
           </div>
-          <div class="pageTopicContent">
+          <div class="divTableCell">
             OD:
             <p:calendar id="zuctovaciObdobiFilterZacatek" value="#{fakturaPrehledBean.zuctovaciObdobi.zacatek}" pattern="dd-MM-yyyy">
               <p:ajax event="dateSelect" listener="#{fakturaPrehledBean.zuctovaciObdobiZacatekDateSelect}" update="msgs fakturaPrehledBeanTable"/>
@@ -38,11 +38,16 @@
           </div>
         </div>
 
-        <div class="pageTopic">
-          <div class="pageTopicTitle">
+        <div class="divTableRow">
+          <div class="divTableCell divTableHeading">&nbsp;</div>
+          <div class="divTableCell">&nbsp;</div>
+        </div>
+
+        <div class="divTableRow">
+          <div class="divTableCell divTableHeading">
             <p>Faktury:</p>
           </div>
-          <div class="pageTopicContent">
+          <div class="divTableCell">
             <div class="addButtonDiv">
               <p:commandButton value="Přidat" icon="ui-icon-circle-plus" process="@this" update=":form:msgs"
                                actionListener="#{fakturaPrehledBean.addRow()}" oncomplete="PF('fakturaPrehledBeanTable').addRow();"/>

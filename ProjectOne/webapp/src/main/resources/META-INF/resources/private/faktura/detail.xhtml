@@ -21,29 +21,39 @@
           <p>Faktura:</p>
         </div>
 
-        <div class="pageTopic">
-          <div class="pageTopicTitle">
+        <div class="divTableRow">
+          <div class="divTableCell divTableHeading">
             <p>Byt:</p>
           </div>
-          <div class="pageTopicContent">
+          <div class="divTableCell">
             <h:outputText value="#{fakturaDetailBean.faktura.nemovitost.nazev}"/>
           </div>
         </div>
 
-        <div class="pageTopic">
-          <div class="pageTopicTitle">
+        <div class="divTableRow">
+          <div class="divTableCell divTableHeading">&nbsp;</div>
+          <div class="divTableCell">&nbsp;</div>
+        </div>
+
+        <div class="divTableRow">
+          <div class="divTableCell divTableHeading">
             <p>Adresa:</p>
           </div>
-          <div class="pageTopicContent">
+          <div class="divTableCell">
             <h:outputText value="#{fakturaDetailBean.faktura.nemovitost.adresa}"/>
           </div>
         </div>
 
-        <div class="pageTopic">
-          <div class="pageTopicTitle">
+        <div class="divTableRow">
+          <div class="divTableCell divTableHeading">&nbsp;</div>
+          <div class="divTableCell">&nbsp;</div>
+        </div>
+
+        <div class="divTableRow">
+          <div class="divTableCell divTableHeading">
             <p>Zúčtovací období:</p>
           </div>
-          <div class="pageTopicContent">
+          <div class="divTableCell">
             OD=
             <h:outputText value="#{fakturaDetailBean.faktura.zuctovaciObdobi.zacatek}"/>
             - DO=
@@ -51,11 +61,16 @@
           </div>
         </div>
 
-        <div class="pageTopic">
-          <div class="pageTopicTitle">
+        <div class="divTableRow">
+          <div class="divTableCell divTableHeading">&nbsp;</div>
+          <div class="divTableCell">&nbsp;</div>
+        </div>
+
+        <div class="divTableRow">
+          <div class="divTableCell divTableHeading">
             <p>Položky:</p>
           </div>
-          <div class="pageTopicContent">
+          <div class="divTableCell">
             <div class="addButtonDiv">
               <p:commandButton value="Přidat" icon="ui-icon-circle-plus" process="@this"
                                actionListener="#{fakturaDetailBean.addRow()}" update="@form :form:msgs"/>

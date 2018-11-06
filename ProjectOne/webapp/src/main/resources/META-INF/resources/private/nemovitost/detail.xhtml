@@ -22,78 +22,98 @@
           <p>Detailní informace o konkrétní nemovitosti:</p>
         </div>
 
-        <div class="pageTopic">
-          <div class="pageTopicTitle">
-            <p>Název:</p>
-          </div>
-          <div class="pageTopicContent">
-            <h:outputText value="#{nemovitostDetailBean.nemovitost.nazev}"/>
-          </div>
-        </div>
+        <div class="divTable">
+          <div class="divTableBody">
 
-        <div class="pageTopic">
-          <div class="pageTopicTitle">
-            <p>Typ:</p>
-          </div>
-          <div class="pageTopicContent">
-            <h:outputText value="#{nemovitostDetailBean.nemovitost.nemovitostTyp}"/>
-          </div>
-        </div>
-
-        <div class="pageTopic">
-          <div class="pageTopicTitle">
-            <p>Adresa: (- Adresa / mapy / google.maps)</p>
-          </div>
-          <div class="pageTopicContent">
-            <h:outputText value="#{nemovitostDetailBean.nemovitost.adresa.ulice}"/>&nbsp;<h:outputText value="#{nemovitostDetailBean.nemovitost.adresa.cisloPopisne}"/>/<h:outputText value="#{nemovitostDetailBean.nemovitost.adresa.cisloOrientacni}"/>
-            <br/>
-            <h:outputText value="#{nemovitostDetailBean.nemovitost.adresa.mesto}"/>&nbsp;<h:outputText value="#{nemovitostDetailBean.nemovitost.adresa.psc}"/>
-            <br/>
-            <h:outputText value="#{nemovitostDetailBean.nemovitost.adresa.stat}"/>
-          </div>
-        </div>
-
-        <div class="pageTopic">
-          <div class="pageTopicTitle">
-            <p>Vlastnik:</p>
-          </div>
-          <div class="pageTopicContent">
-            <h:outputText value="#{nemovitostDetailBean.nemovitost.vlastnik.getCeleJmeno()}"/>
-          </div>
-        </div>
-
-        <div class="pageTopic">
-          <div class="pageTopicTitle">
-            <p>Poznámky:</p>
-          </div>
-          <div class="pageTopicContent">
-            <component:editorTextu vstupniData="#{nemovitostDetailBean}"/>
-          </div>
-        </div>
-
-        <div class="pageTopic">
-          <div class="pageTopicTitle">
-            <p>Kontakty:</p>
-          </div>
-          <div class="pageTopicContent">
-            <div class="addButtonDiv">
-              <p:commandButton value="Přidat" icon="ui-icon-circle-plus" process="@this" update=":form:msgs"
-                               actionListener="#{nemovitostDetailBean.addRow()}" oncomplete="PF('nemovitostDetailBeanContactsTable').addRow();"/>
+            <div class="divTableRow">
+              <div class="divTableCell divTableHeading">Název:</div>
+              <div class="divTableCell"><h:outputText value="#{nemovitostDetailBean.nemovitost.nazev}"/></div>
             </div>
-            <p:dataTable id="nemovitostDetailBeanContactsTable" var="nemovitost" widgetVar="nemovitostDetailBeanContactsTable"
-                         value="#{nemovitostPrehledBean.getNemovitostList()}" resizableColumns="true" sortBy="#{1}" editable="true">
-              <p:columnGroup type="header">
-                <p:row>
-                  <p:column headerText="Jméno"/>
-                  <p:column headerText="Telefon" style="width: 180px;"/>
-                  <p:column headerText="Email" style="width: 200px;"/>
-                  <p:column headerText="Poznámka" style="width: 200px;"/>
-                  <p:column headerText="Ovládání" colspan="3" rowspan="2" style="width: 160px;"/>
-                </p:row>
-              </p:columnGroup>
-            </p:dataTable>
+
+            <div class="divTableRow">
+              <div class="divTableCell divTableHeading">&nbsp;</div>
+              <div class="divTableCell">&nbsp;</div>
+            </div>
+
+            <div class="divTableRow">
+              <div class="divTableCell divTableHeading">Typ:</div>
+              <div class="divTableCell"><h:outputText value="#{nemovitostDetailBean.nemovitost.nemovitostTyp}"/></div>
+            </div>
+
+            <div class="divTableRow">
+              <div class="divTableCell divTableHeading">&nbsp;</div>
+              <div class="divTableCell">&nbsp;</div>
+            </div>
+
+            <div class="divTableRow">
+              <div class="divTableCell divTableHeading">Adresa:</div>
+              <div class="divTableCell">
+                - <h:outputText value="#{nemovitostDetailBean.nemovitost.adresa.ulice}"/>&nbsp;<h:outputText value="#{nemovitostDetailBean.nemovitost.adresa.cisloPopisne}"/>/<h:outputText value="#{nemovitostDetailBean.nemovitost.adresa.cisloOrientacni}"/>
+                <br/>
+                - <h:outputText value="#{nemovitostDetailBean.nemovitost.adresa.mesto}"/>&nbsp;<h:outputText value="#{nemovitostDetailBean.nemovitost.adresa.psc}"/>
+                <br/>
+                - <h:outputText value="#{nemovitostDetailBean.nemovitost.adresa.stat}"/>
+                (- Adresa / mapy / google.maps)
+              </div>
+            </div>
+
+            <div class="divTableRow">
+              <div class="divTableCell divTableHeading">&nbsp;</div>
+              <div class="divTableCell">&nbsp;</div>
+            </div>
+
+            <div class="divTableRow">
+              <div class="divTableCell divTableHeading">Vlastnik:</div>
+              <div class="divTableCell"><h:outputText value="#{nemovitostDetailBean.nemovitost.vlastnik.getCeleJmeno()}"/></div>
+            </div>
+
+            <div class="divTableRow">
+              <div class="divTableCell divTableHeading">&nbsp;</div>
+              <div class="divTableCell">&nbsp;</div>
+            </div>
+
+            <div class="divTableRow">
+              <div class="divTableCell divTableHeading">
+                <p>Poznámky:</p>
+              </div>
+              <div class="divTableCell">
+                <component:editorTextu vstupniData="#{nemovitostDetailBean}"/>
+              </div>
+            </div>
+
+            <div class="divTableRow">
+              <div class="divTableCell divTableHeading">&nbsp;</div>
+              <div class="divTableCell">&nbsp;</div>
+            </div>
+
+            <div class="divTableRow">
+              <div class="divTableCell divTableHeading">
+                <p>Kontakty:</p>
+              </div>
+              <div class="divTableCell">
+                <div class="addButtonDiv">
+                  <p:commandButton value="Přidat" icon="ui-icon-circle-plus" process="@this" update=":form:msgs"
+                                   actionListener="#{nemovitostDetailBean.addRow()}" oncomplete="PF('nemovitostDetailBeanContactsTable').addRow();"/>
+                </div>
+                <p:dataTable id="nemovitostDetailBeanContactsTable" var="nemovitost" widgetVar="nemovitostDetailBeanContactsTable"
+                             value="#{nemovitostPrehledBean.getNemovitostList()}" resizableColumns="true" sortBy="#{1}" editable="true">
+                  <p:columnGroup type="header">
+                    <p:row>
+                      <p:column headerText="Jméno"/>
+                      <p:column headerText="Telefon" style="width: 180px;"/>
+                      <p:column headerText="Email" style="width: 200px;"/>
+                      <p:column headerText="Poznámka" style="width: 200px;"/>
+                      <p:column headerText="Ovládání" colspan="3" rowspan="2" style="width: 160px;"/>
+                    </p:row>
+                  </p:columnGroup>
+                </p:dataTable>
+              </div>
+            </div>
+
           </div>
         </div>
+
+
       </h:form>
 
     </ui:define>

@@ -10,9 +10,30 @@
 <h:body>
   <ui:composition template="/template/commonLayout.xhtml">
     <ui:define name="title">ProjectOne - Vítejte</ui:define>
-    <ui:define name="content">Nepřihlášený uživatel</ui:define>
+
+    <ui:define name="content">
+      <h:outputText value="Nepřihlášený uživatel" rendered="#{loginBean.getPrihlasenyUzivatel() == null}" />
+      <h:outputText value="Přihlášený uživatel" rendered="#{loginBean.getPrihlasenyUzivatel() != null}" />
+    </ui:define>
+
     <ui:define name="footer">
-      Bez docku
+
+      <h3>Další myšlenky a nápady na zlepšení:</h3>
+
+      - Popis co je to za aplikaci, komu je určená
+      <br />
+      - Nějaké obrázky a screenshoty (grafy, tabulky, vygenerované vyúčtování)
+      <br />
+      -
+      <br />
+      - Do patičky stránky si dát nějaké kontaktní informace a copyright
+      <br />
+
+      <br />
+      <br />
+      <br />
+
+      <component:dockMenu rendered="#{loginBean.getPrihlasenyUzivatel() != null}"/>
     </ui:define>
 
   </ui:composition>

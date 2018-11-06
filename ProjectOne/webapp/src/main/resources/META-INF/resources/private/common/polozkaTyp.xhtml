@@ -21,21 +21,26 @@
           <p>Nastavení vyúčtovávaných položek:</p>
         </div>
 
-        <div class="pageTopic">
-          <div class="pageTopicTitle">
+        <div class="divTableRow">
+          <div class="divTableCell divTableHeading">
             <p>Nemovitost:</p>
           </div>
-          <div class="pageTopicContent">
+          <div class="divTableCell">
             <h:outputText value="#{polozkaTypBean.nemovitost.nazev}"/>
             (odkaz na prolinkovanou nemovitost, pujde proklidnout na detail nemovitosti) <br/>
           </div>
         </div>
 
-        <div class="pageTopic">
-          <div class="pageTopicTitle">
+        <div class="divTableRow">
+          <div class="divTableCell divTableHeading">&nbsp;</div>
+          <div class="divTableCell">&nbsp;</div>
+        </div>
+
+        <div class="divTableRow">
+          <div class="divTableCell divTableHeading">
             <p>Položky:</p>
           </div>
-          <div class="pageTopicContent">
+          <div class="divTableCell">
             <div class="addButtonDiv">
               <p:commandButton value="Přidat" icon="ui-icon-circle-plus" process="@this" update=":form:msgs"
                                actionListener="#{polozkaTypBean.addRow()}" oncomplete="PF('polozkaTypTable').addRow();"/>

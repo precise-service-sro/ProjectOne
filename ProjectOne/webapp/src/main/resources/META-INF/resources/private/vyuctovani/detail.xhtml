@@ -41,25 +41,28 @@
           <p>Vyúčtování pro nájemníka:</p>
         </div>
 
-        <div class="pageTopic">
-          <div class="pageTopicTitle">
+        <div class="divTableRow">
+          <div class="divTableCell divTableHeading">
             <p>Název:</p>
           </div>
-          <div class="pageTopicContent">
+          <div class="divTableCell">
             <h:outputText value="#{vyuctovaniDetailBean.vyuctovani.nazev}"/>
           </div>
         </div>
 
+        <div class="divTableRow">
+          <div class="divTableCell divTableHeading">&nbsp;</div>
+          <div class="divTableCell">&nbsp;</div>
+        </div>
+
         <vyuctovani:hlavicka vyuctovani="#{vyuctovaniDetailBean.vyuctovani}"/>
         <br/>
-        <br/>
-        <br/>
 
-        <div class="pageTopic">
-          <div class="pageTopicTitle">
+        <div class="divTableRow">
+          <div class="divTableCell divTableHeading">
             <p>Položky:</p>
           </div>
-          <div class="pageTopicContent">
+          <div class="divTableCell">
             <div class="addButtonDiv">
               <p:commandButton value="Přidat" icon="ui-icon-circle-plus" process="@this"
                                actionListener="#{vyuctovaniDetailBean.addRow()}" update="@form :form:msgs"/>

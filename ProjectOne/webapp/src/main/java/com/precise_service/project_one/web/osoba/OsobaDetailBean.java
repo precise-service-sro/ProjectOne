@@ -2,6 +2,7 @@ package com.precise_service.project_one.web.osoba;
 
 import java.io.Serializable;
 
+import javax.faces.annotation.ManagedProperty;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
@@ -11,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.precise_service.project_one.entity.osoba.Osoba;
 import com.precise_service.project_one.service.osoba.IOsobaService;
 import com.precise_service.project_one.web.common.component.EditorTextuBean;
+import com.precise_service.project_one.web.login.Util;
 
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
@@ -30,8 +32,8 @@ public class OsobaDetailBean implements Serializable {
 
   public void init() {
     if (osoba == null) {
-      // zatim vzdy vytahuji poznamky pouze k prvnimu osobaovi v DB
-      osoba = (Osoba) osobaService.getOsobaAll().get(0);
+      osoba = osobaService.getOsoba(Util.getPrihlasenyUzivatel().getId());
+      log.trace("Není vybraná žádná osoba ke zobrazení detailů. (zobrazuji aktuálního přihlášeného uživatele)");
     }
 
     // editovatelne poznamky
@@ -39,7 +41,7 @@ public class OsobaDetailBean implements Serializable {
   }
 
   public void ulozit(){
-    log.warn("ulozit()");
+    log.trace("ulozit()");
     String newText = editorTextuBean.getText();
     osoba.setPoznamky(newText);
     osobaService.postOsoba(osoba);

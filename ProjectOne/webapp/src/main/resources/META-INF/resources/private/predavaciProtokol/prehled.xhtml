@@ -22,11 +22,11 @@
           <p>Přehled předávacích protokolů:</p>
         </div>
 
-        <div class="pageTopic">
-          <div class="pageTopicTitle">
+        <div class="divTableRow">
+          <div class="divTableCell divTableHeading">
             <p>Předávací protokoly:</p>
           </div>
-          <div class="pageTopicContent">
+          <div class="divTableCell">
             <div class="addButtonDiv">
               <p:commandButton value="Přidat" icon="ui-icon-circle-plus" process="@this" update=":form:msgs"
                                actionListener="#{predavaciProtokolPrehledBean.addRow()}" oncomplete="PF('predavaciProtokolPrehledBeanTable').addRow();"/>

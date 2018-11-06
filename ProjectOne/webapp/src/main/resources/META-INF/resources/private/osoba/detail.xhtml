@@ -9,7 +9,7 @@
 
 <h:body>
   <ui:composition template="/template/commonLayout.xhtml">
-    <ui:define name="title">ProjectOne - Detail nemovitosti</ui:define>
+    <ui:define name="title">ProjectOne - Detail osoby</ui:define>
 
     <ui:define name="content">
 
@@ -22,20 +22,25 @@
           <p>Detailní informace o konkrétní osobě:</p>
         </div>
 
-        <div class="pageTopic">
-          <div class="pageTopicTitle">
+        <div class="divTableRow">
+          <div class="divTableCell divTableHeading">
             <p>Fotka / Avatar:</p>
           </div>
-          <div class="pageTopicContent">
+          <div class="divTableCell">
             <h:outputText value="#{osobaDetailBean.osoba.fotka}"/>
           </div>
         </div>
 
-        <div class="pageTopic">
-          <div class="pageTopicTitle">
+        <div class="divTableRow">
+          <div class="divTableCell divTableHeading">&nbsp;</div>
+          <div class="divTableCell">&nbsp;</div>
+        </div>
+
+        <div class="divTableRow">
+          <div class="divTableCell divTableHeading">
             <p>Jméno a Přijmení:</p>
           </div>
-          <div class="pageTopicContent">
+          <div class="divTableCell">
             <h:outputText value="#{osobaDetailBean.osoba.jmeno}"/>
             <br/>
             -
@@ -43,38 +48,58 @@
           </div>
         </div>
 
-        <div class="pageTopic">
-          <div class="pageTopicTitle">
+        <div class="divTableRow">
+          <div class="divTableCell divTableHeading">&nbsp;</div>
+          <div class="divTableCell">&nbsp;</div>
+        </div>
+
+        <div class="divTableRow">
+          <div class="divTableCell divTableHeading">
             <p>Datum narození:</p>
           </div>
-          <div class="pageTopicContent">
+          <div class="divTableCell">
             <h:outputText value="#{osobaDetailBean.osoba.datumNarozeni}"/>
           </div>
         </div>
 
-        <div class="pageTopic">
-          <div class="pageTopicTitle">
+        <div class="divTableRow">
+          <div class="divTableCell divTableHeading">&nbsp;</div>
+          <div class="divTableCell">&nbsp;</div>
+        </div>
+
+        <div class="divTableRow">
+          <div class="divTableCell divTableHeading">
             <p>Telefon:</p>
           </div>
-          <div class="pageTopicContent">
+          <div class="divTableCell">
             <h:outputText value="#{osobaDetailBean.osoba.telefon}"/>
           </div>
         </div>
 
-        <div class="pageTopic">
-          <div class="pageTopicTitle">
+        <div class="divTableRow">
+          <div class="divTableCell divTableHeading">&nbsp;</div>
+          <div class="divTableCell">&nbsp;</div>
+        </div>
+
+        <div class="divTableRow">
+          <div class="divTableCell divTableHeading">
             <p>Email:</p>
           </div>
-          <div class="pageTopicContent">
+          <div class="divTableCell">
             <h:outputText value="#{osobaDetailBean.osoba.email}"/>
           </div>
         </div>
 
-        <div class="pageTopic">
-          <div class="pageTopicTitle">
+        <div class="divTableRow">
+          <div class="divTableCell divTableHeading">&nbsp;</div>
+          <div class="divTableCell">&nbsp;</div>
+        </div>
+
+        <div class="divTableRow">
+          <div class="divTableCell divTableHeading">
             <p>Poznámky:</p>
           </div>
-          <div class="pageTopicContent">
+          <div class="divTableCell">
             <component:editorTextu vstupniData="#{osobaDetailBean}"/>
           </div>
         </div>
