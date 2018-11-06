@@ -26,7 +26,9 @@
             <p>Nemovitost:</p>
           </div>
           <div class="divTableCell">
-            <h:outputText value="#{polozkaTypBean.nemovitost.nazev}"/>
+            <p:commandLink actionListener="#{routerBean.goToNemovitostDetailBean(polozkaTypBean.nemovitost)}" ajax="false">
+              <h:outputText value="#{polozkaTypBean.nemovitost.nazev}" />
+            </p:commandLink>
             (odkaz na prolinkovanou nemovitost, pujde proklidnout na detail nemovitosti) <br/>
           </div>
         </div>

@@ -70,15 +70,25 @@
 
         <div class="divTableRow">
           <div class="divTableCell divTableHeading">
-            <p>Zúčtovací období:</p>
+            <p>Začátek zúčtovacího období:</p>
           </div>
           <div class="divTableCell">
-            Začátek:
             <p:calendar id="vyuctovaniZuctovaciObdobiFilterZacatekInput" value="#{vyuctovaniGeneratorBean.zuctovaciObdobi.zacatek}" pattern="dd-MM-yyyy">
               <p:ajax event="dateSelect" listener="#{vyuctovaniGeneratorBean.zuctovaciObdobiZacatekDateSelect}" update=":form:msgs"/>
             </p:calendar>
-            <br/>
-            Konec:
+          </div>
+        </div>
+
+        <div class="divTableRow">
+          <div class="divTableCell divTableHeading">&nbsp;</div>
+          <div class="divTableCell">&nbsp;</div>
+        </div>
+
+        <div class="divTableRow">
+          <div class="divTableCell divTableHeading">
+            <p>Konec zúčtovací období:</p>
+          </div>
+          <div class="divTableCell">
             <p:calendar id="vyuctovaniZuctovaciObdobiFilterKonecInput" value="#{vyuctovaniGeneratorBean.zuctovaciObdobi.konec}" pattern="dd-MM-yyyy">
               <p:ajax event="dateSelect" listener="#{vyuctovaniGeneratorBean.zuctovaciObdobiKonecDateSelect}" update=":form:msgs"/>
             </p:calendar>
@@ -92,7 +102,7 @@
 
         <div class="divTableRow">
           <div class="divTableCell divTableHeading">
-            <p>Předávací protokol: (název, nájemník, datum podpisu)</p>
+            <p>Předávací protokol:</p>
           </div>
           <div class="divTableCell">
             <h:selectOneMenu value="#{vyuctovaniGeneratorBean.predavaciProtokol}" style="width: 200px; height: 40px;" converter="#{predavaciProtokolConverter}">
