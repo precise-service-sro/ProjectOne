@@ -31,6 +31,11 @@ public class OsobaDetailBean implements Serializable {
   private Osoba osoba;
 
   public void init() {
+    if (osoba != null) {
+      // jenom reload dat z databaze
+      osoba = osobaService.getOsoba(osoba.getId());
+    }
+
     if (osoba == null) {
       osoba = osobaService.getOsoba(Util.getPrihlasenyUzivatel().getId());
       log.trace("Není vybraná žádná osoba ke zobrazení detailů. (zobrazuji aktuálního přihlášeného uživatele)");
@@ -48,5 +53,10 @@ public class OsobaDetailBean implements Serializable {
 
     FacesMessage msg = new FacesMessage("Úprava uložena", newText);
     FacesContext.getCurrentInstance().addMessage(null, msg);
+  }
+
+  public void ulozitZmenuOsoby() {
+    log.trace("ulozitZmenuOsoby()");
+    osoba = osobaService.putOsoba(osoba);
   }
 }

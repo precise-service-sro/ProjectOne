@@ -13,8 +13,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.precise_service.project_one.entity.PolozkaTyp;
 import com.precise_service.project_one.entity.nemovitost.Nemovitost;
+import com.precise_service.project_one.entity.osoba.Osoba;
 import com.precise_service.project_one.entity.predavaci_protokol.PredavaciProtokol;
 import com.precise_service.project_one.entity.predavaci_protokol.PredavaciProtokolPolozka;
+import com.precise_service.project_one.service.nemovitost.INemovitostService;
+import com.precise_service.project_one.service.osoba.IOsobaService;
 import com.precise_service.project_one.service.predavaci_protokol.IPredavaciProtokolPolozkaService;
 import com.precise_service.project_one.service.predavaci_protokol.IPredavaciProtokolService;
 import com.precise_service.project_one.service.vyuctovani.IPolozkaTypService;
@@ -37,9 +40,17 @@ public class PredavaciProtokolDetailBean implements Serializable {
   @Autowired
   private IPolozkaTypService polozkaTypService;
 
+  @Autowired
+  private INemovitostService nemovitostService;
+
+  @Autowired
+  private IOsobaService osobaService;
+
   private PredavaciProtokol predavaciProtokol;
   private List<PredavaciProtokolPolozka> radky;
   private List<PolozkaTyp> polozkaTypList;
+  private List<Nemovitost> nemovitostList;
+  private List<Osoba> osobaList;
 
   public void init() {
     log.trace("init()");
@@ -53,6 +64,10 @@ public class PredavaciProtokolDetailBean implements Serializable {
 
     Nemovitost nemovitost = predavaciProtokol.getNemovitost();
     polozkaTypList = (nemovitost != null) ? polozkaTypService.getPolozkaTypListByIdNemovitost(nemovitost.getId()) : new ArrayList<>(0);
+
+    Osoba prihlasenyUzivatel = Util.getPrihlasenyUzivatel();
+    nemovitostList = nemovitostService.getNemovitostAll(prihlasenyUzivatel.getId());
+    osobaList = osobaService.getOsobaAll(prihlasenyUzivatel.getId());
   }
 
   public void onRowEdit(RowEditEvent event) {
@@ -104,5 +119,10 @@ public class PredavaciProtokolDetailBean implements Serializable {
     FacesMessage msg = new FacesMessage("Smazán řádek", deletedPredavaciProtokolPolozka.getNazev());
     FacesContext.getCurrentInstance().addMessage(null, msg);
     init();
+  }
+
+  public void ulozitZmenuPredavacihoProtokolu() {
+    log.trace("ulozitZmenuPredavacihoProtokolu()");
+    predavaciProtokol = predavaciProtokolService.putPredavaciProtokol(predavaciProtokol);
   }
 }

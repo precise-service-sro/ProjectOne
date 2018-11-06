@@ -61,4 +61,8 @@ public class Osoba extends BaseEntity {
   @JsonProperty("muzeSePrihlasit")
   @JsonInclude(JsonInclude.Include.NON_NULL)
   private Boolean muzeSePrihlasit;
+
+  public void setEmail(String email) {
+    this.email = email;
+  }
 }

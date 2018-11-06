@@ -27,33 +27,11 @@
 
             <div class="divTableRow">
               <div class="divTableCell divTableHeading">Název:</div>
-              <div class="divTableCell"><h:outputText value="#{nemovitostDetailBean.nemovitost.nazev}"/></div>
-            </div>
-
-            <div class="divTableRow">
-              <div class="divTableCell divTableHeading">&nbsp;</div>
-              <div class="divTableCell">&nbsp;</div>
-            </div>
-
-            <div class="divTableRow">
-              <div class="divTableCell divTableHeading">Typ:</div>
-              <div class="divTableCell"><h:outputText value="#{nemovitostDetailBean.nemovitost.nemovitostTyp}"/></div>
-            </div>
-
-            <div class="divTableRow">
-              <div class="divTableCell divTableHeading">&nbsp;</div>
-              <div class="divTableCell">&nbsp;</div>
-            </div>
-
-            <div class="divTableRow">
-              <div class="divTableCell divTableHeading">Adresa:</div>
               <div class="divTableCell">
-                - <h:outputText value="#{nemovitostDetailBean.nemovitost.adresa.ulice}"/>&nbsp;<h:outputText value="#{nemovitostDetailBean.nemovitost.adresa.cisloPopisne}"/>/<h:outputText value="#{nemovitostDetailBean.nemovitost.adresa.cisloOrientacni}"/>
-                <br/>
-                - <h:outputText value="#{nemovitostDetailBean.nemovitost.adresa.mesto}"/>&nbsp;<h:outputText value="#{nemovitostDetailBean.nemovitost.adresa.psc}"/>
-                <br/>
-                - <h:outputText value="#{nemovitostDetailBean.nemovitost.adresa.stat}"/>
-                (- Adresa / mapy / google.maps)
+                <p:inplace editor="true" emptyLabel="!!! Prosím vyplnit !!!">
+                  <p:ajax event="save" listener="#{nemovitostDetailBean.ulozitZmenuNemovitosti()}" />
+                  <p:inputText value="#{nemovitostDetailBean.nemovitost.nazev}" required="true" />
+                </p:inplace>
               </div>
             </div>
 
@@ -63,8 +41,131 @@
             </div>
 
             <div class="divTableRow">
-              <div class="divTableCell divTableHeading">Vlastnik:</div>
-              <div class="divTableCell"><h:outputText value="#{nemovitostDetailBean.nemovitost.vlastnik.getCeleJmeno()}"/></div>
+              <div class="divTableCell divTableHeading">Typ:</div>
+              <div class="divTableCell">
+                <p:inplace editor="true" emptyLabel="!!! Prosím vyplnit !!!">
+                  <p:ajax event="save" listener="#{nemovitostDetailBean.ulozitZmenuNemovitosti()}" />
+                  <h:selectOneMenu value="#{nemovitostDetailBean.nemovitost.nemovitostTyp}" style="width:100%" converter="#{nemovitostTypConverter}">
+                    <f:selectItems value="#{nemovitostPrehledBean.nemovitostTypList}" var="nemovitostTyp" itemLabel="#{nemovitostTyp}" itemValue="#{nemovitostTyp}" />
+                  </h:selectOneMenu>
+                </p:inplace>
+              </div>
+            </div>
+
+            <div class="divTableRow">
+              <div class="divTableCell divTableHeading">&nbsp;</div>
+              <div class="divTableCell">&nbsp;</div>
+            </div>
+
+            <div class="divTableRow">
+              <div class="divTableCell divTableHeading">
+                <p>Ulice:</p>
+              </div>
+              <div class="divTableCell">
+                <p:inplace editor="true" emptyLabel="!!! Prosím vyplnit !!!">
+                  <p:ajax event="save" listener="#{nemovitostDetailBean.ulozitZmenuNemovitosti()}" />
+                  <p:inputText value="#{nemovitostDetailBean.nemovitost.adresa.ulice}" />
+                </p:inplace>
+              </div>
+            </div>
+
+            <div class="divTableRow">
+              <div class="divTableCell divTableHeading">&nbsp;</div>
+              <div class="divTableCell">&nbsp;</div>
+            </div>
+
+            <div class="divTableRow">
+              <div class="divTableCell divTableHeading">Číslo popisné:</div>
+              <div class="divTableCell">
+                <p:inplace editor="true" emptyLabel="!!! Prosím vyplnit !!!">
+                  <p:ajax event="save" listener="#{nemovitostDetailBean.ulozitZmenuNemovitosti()}" />
+                  <p:inputText value="#{nemovitostDetailBean.nemovitost.adresa.cisloPopisne}" />
+                </p:inplace>
+              </div>
+            </div>
+
+            <div class="divTableRow">
+              <div class="divTableCell divTableHeading">&nbsp;</div>
+              <div class="divTableCell">&nbsp;</div>
+            </div>
+
+            <div class="divTableRow">
+              <div class="divTableCell divTableHeading">Číslo orientační:</div>
+              <div class="divTableCell">
+                <p:inplace editor="true" emptyLabel="!!! Prosím vyplnit !!!">
+                  <p:ajax event="save" listener="#{nemovitostDetailBean.ulozitZmenuNemovitosti()}" />
+                  <p:inputText value="#{nemovitostDetailBean.nemovitost.adresa.cisloOrientacni}" />
+                </p:inplace>
+              </div>
+            </div>
+
+            <div class="divTableRow">
+              <div class="divTableCell divTableHeading">&nbsp;</div>
+              <div class="divTableCell">&nbsp;</div>
+            </div>
+
+            <div class="divTableRow">
+              <div class="divTableCell divTableHeading">
+                <p>Město:</p>
+              </div>
+              <div class="divTableCell">
+                <p:inplace editor="true" emptyLabel="!!! Prosím vyplnit !!!">
+                  <p:ajax event="save" listener="#{nemovitostDetailBean.ulozitZmenuNemovitosti()}" />
+                  <p:inputText value="#{nemovitostDetailBean.nemovitost.adresa.mesto}" />
+                </p:inplace>
+              </div>
+            </div>
+
+            <div class="divTableRow">
+              <div class="divTableCell divTableHeading">&nbsp;</div>
+              <div class="divTableCell">&nbsp;</div>
+            </div>
+
+            <div class="divTableRow">
+              <div class="divTableCell divTableHeading">PSČ:</div>
+              <div class="divTableCell">
+                <p:inplace editor="true" emptyLabel="!!! Prosím vyplnit !!!">
+                  <p:ajax event="save" listener="#{nemovitostDetailBean.ulozitZmenuNemovitosti()}" />
+                  <p:inputText value="#{nemovitostDetailBean.nemovitost.adresa.psc}" />
+                </p:inplace>
+              </div>
+            </div>
+
+            <div class="divTableRow">
+              <div class="divTableCell divTableHeading">&nbsp;</div>
+              <div class="divTableCell">&nbsp;</div>
+            </div>
+
+            <div class="divTableRow">
+              <div class="divTableCell divTableHeading">Stát:</div>
+              <div class="divTableCell">
+                <p:inplace editor="true" emptyLabel="!!! Prosím vyplnit !!!">
+                  <p:ajax event="save" listener="#{nemovitostDetailBean.ulozitZmenuNemovitosti()}" />
+                  <p:inputText value="#{nemovitostDetailBean.nemovitost.adresa.stat}" />
+                </p:inplace>
+              </div>
+            </div>
+
+            <div class="divTableRow">
+              <div class="divTableCell divTableHeading">&nbsp;</div>
+              <div class="divTableCell">&nbsp;</div>
+            </div>
+
+            <div class="divTableRow">
+              <div class="divTableCell divTableHeading">Vlastník:</div>
+              <div class="divTableCell">
+                <p:inplace editor="true" emptyLabel="!!! Prosím vyplnit !!!">
+                  <p:ajax event="save" listener="#{nemovitostDetailBean.ulozitZmenuNemovitosti()}" />
+                  <f:facet name="output">
+                    <h:outputText value="#{nemovitostDetailBean.nemovitost.vlastnik.getCeleJmeno()}"/>
+                  </f:facet>
+                  <f:facet name="input">
+                    <h:selectOneMenu value="#{nemovitostDetailBean.nemovitost.vlastnik}" style="width:100%" converter="#{osobaConverter}">
+                      <f:selectItems value="#{nemovitostDetailBean.osobaList}" var="osoba" itemLabel="#{osoba.getCeleJmeno()}" itemValue="#{osoba}" />
+                    </h:selectOneMenu>
+                  </f:facet>
+                </p:inplace>
+              </div>
             </div>
 
             <div class="divTableRow">

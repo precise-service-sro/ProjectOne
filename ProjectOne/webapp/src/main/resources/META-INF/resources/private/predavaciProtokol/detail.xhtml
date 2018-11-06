@@ -27,8 +27,17 @@
             <p>Nemovitost:</p>
           </div>
           <div class="divTableCell">
-            <h:outputText value="#{predavaciProtokolDetailBean.predavaciProtokol.nemovitost.nazev}"
-                          title="#{predavaciProtokolDetailBean.predavaciProtokol.nemovitost.adresa}"/>
+            <p:inplace editor="true" emptyLabel="!!! Prosím vyplnit !!!">
+              <p:ajax event="save" listener="#{predavaciProtokolDetailBean.ulozitZmenuPredavacihoProtokolu()}" />
+              <f:facet name="output">
+                <h:outputText value="#{predavaciProtokolDetailBean.predavaciProtokol.nemovitost.nazev}"/>
+              </f:facet>
+              <f:facet name="input">
+                <h:selectOneMenu value="#{predavaciProtokolDetailBean.predavaciProtokol.nemovitost}" style="width:100%" converter="#{nemovitostConverter}">
+                  <f:selectItems value="#{predavaciProtokolDetailBean.nemovitostList}" var="nemovitost" itemLabel="#{nemovitost.nazev}" itemValue="#{nemovitost}" />
+                </h:selectOneMenu>
+              </f:facet>
+            </p:inplace>
           </div>
         </div>
 
@@ -42,8 +51,17 @@
             <p>Nájemník:</p>
           </div>
           <div class="divTableCell">
-            <h:outputText value="#{predavaciProtokolDetailBean.predavaciProtokol.najemnik.jmeno}"/>&nbsp;<h:outputText
-                  value="#{predavaciProtokolDetailBean.predavaciProtokol.najemnik.prijmeni}"/>
+            <p:inplace editor="true" emptyLabel="!!! Prosím vyplnit !!!">
+              <p:ajax event="save" listener="#{predavaciProtokolDetailBean.ulozitZmenuPredavacihoProtokolu()}" />
+              <f:facet name="output">
+                <h:outputText value="#{predavaciProtokolDetailBean.predavaciProtokol.najemnik.getCeleJmeno()}"/>
+              </f:facet>
+              <f:facet name="input">
+                <h:selectOneMenu value="#{predavaciProtokolDetailBean.predavaciProtokol.najemnik}" style="width:100%" converter="#{osobaConverter}">
+                  <f:selectItems value="#{predavaciProtokolDetailBean.osobaList}" var="osoba" itemLabel="#{osoba.getCeleJmeno()}" itemValue="#{osoba}" />
+                </h:selectOneMenu>
+              </f:facet>
+            </p:inplace>
           </div>
         </div>
 
@@ -57,7 +75,10 @@
             <p>Datum podpisu:</p>
           </div>
           <div class="divTableCell">
-            <h:outputText value="#{predavaciProtokolDetailBean.predavaciProtokol.datumPodpisu}"/>
+            <p:inplace editor="true" emptyLabel="!!! Prosím vyplnit !!!">
+              <p:ajax event="save" listener="#{predavaciProtokolDetailBean.ulozitZmenuPredavacihoProtokolu()}" />
+              <p:calendar id="datumPodpisu" value="#{predavaciProtokolDetailBean.predavaciProtokol.datumPodpisu}" pattern="dd-MM-yyyy" />
+            </p:inplace>
           </div>
         </div>
 
