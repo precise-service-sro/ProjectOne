@@ -29,7 +29,6 @@
             <p:commandLink actionListener="#{routerBean.goToNemovitostDetailBean(polozkaTypBean.nemovitost)}" ajax="false">
               <h:outputText value="#{polozkaTypBean.nemovitost.nazev}" />
             </p:commandLink>
-            (odkaz na prolinkovanou nemovitost, pujde proklidnout na detail nemovitosti) <br/>
           </div>
         </div>
 
@@ -44,14 +43,15 @@
           </div>
           <div class="divTableCell">
             <div class="addButtonDiv">
-              <p:commandButton value="Přidat" icon="ui-icon-circle-plus" process="@this" update=":form:msgs"
-                               actionListener="#{polozkaTypBean.addRow()}" oncomplete="PF('polozkaTypTable').addRow();"/>
+              <p:commandButton value="Přidat" icon="ui-icon-circle-plus" process="@this" update="form :form:msgs"
+                               actionListener="#{polozkaTypBean.addRow()}" />
             </div>
 
 
             <p:dataTable id="polozkaTypTable" widgetVar="polozkaTypTable"
                          var="polozkaTyp" value="#{polozkaTypBean.polozkaTypList}"
                          editable="true" rowIndexVar="index"
+                         rendered="#{not empty polozkaTypBean.polozkaTypList}"
             >
 
               <p:ajax event="rowEdit" listener="#{polozkaTypBean.onRowEdit}" update=":form:msgs"/>
