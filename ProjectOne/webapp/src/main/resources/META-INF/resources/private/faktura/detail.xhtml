@@ -26,7 +26,18 @@
             <p>Byt:</p>
           </div>
           <div class="divTableCell">
-            <h:outputText value="#{fakturaDetailBean.faktura.nemovitost.nazev}"/>
+            <p:inplace editor="true" emptyLabel="!!! Prosím vyplnit !!!">
+              <p:ajax event="save" listener="#{fakturaDetailBean.ulozitZmenuFaktury()}" />
+              <f:facet name="output">
+                <h:outputText value="#{fakturaDetailBean.faktura.nemovitost.nazev}" rendered="#{fakturaDetailBean.faktura.nemovitost != null}" />
+                <h:outputText value="!!! Prosím vyplnit !!!" rendered="#{fakturaDetailBean.faktura.nemovitost == null}" />
+              </f:facet>
+              <f:facet name="input">
+                <h:selectOneMenu value="#{fakturaDetailBean.faktura.nemovitost}" style="width:100%" converter="#{nemovitostConverter}">
+                  <f:selectItems value="#{fakturaDetailBean.nemovitostList}" var="nemovitost" itemLabel="#{nemovitost.nazev}" itemValue="#{nemovitost}" />
+                </h:selectOneMenu>
+              </f:facet>
+            </p:inplace>
           </div>
         </div>
 
@@ -37,10 +48,13 @@
 
         <div class="divTableRow">
           <div class="divTableCell divTableHeading">
-            <p>Adresa:</p>
+            <p>Začátek zúčtovacího období:</p>
           </div>
           <div class="divTableCell">
-            <h:outputText value="#{fakturaDetailBean.faktura.nemovitost.adresa}"/>
+            <p:inplace editor="true" emptyLabel="!!! Prosím vyplnit !!!">
+              <p:ajax event="save" listener="#{fakturaDetailBean.ulozitZmenuFaktury()}" />
+              <p:calendar id="fakturaZuctovaciObdobiZacatek" value="#{fakturaDetailBean.faktura.zuctovaciObdobi.zacatek}" pattern="dd-MM-yyyy" />
+            </p:inplace>
           </div>
         </div>
 
@@ -51,13 +65,13 @@
 
         <div class="divTableRow">
           <div class="divTableCell divTableHeading">
-            <p>Zúčtovací období:</p>
+            <p>Konec zúčtovacího období:</p>
           </div>
           <div class="divTableCell">
-            OD=
-            <h:outputText value="#{fakturaDetailBean.faktura.zuctovaciObdobi.zacatek}"/>
-            - DO=
-            <h:outputText value="#{fakturaDetailBean.faktura.zuctovaciObdobi.konec}"/>
+            <p:inplace editor="true" emptyLabel="!!! Prosím vyplnit !!!">
+              <p:ajax event="save" listener="#{fakturaDetailBean.ulozitZmenuFaktury()}" />
+              <p:calendar id="fakturaZuctovaciObdobiKonec" value="#{fakturaDetailBean.faktura.zuctovaciObdobi.konec}" pattern="dd-MM-yyyy" />
+            </p:inplace>
           </div>
         </div>
 

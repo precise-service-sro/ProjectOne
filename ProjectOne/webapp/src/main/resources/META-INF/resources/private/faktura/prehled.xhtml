@@ -24,17 +24,30 @@
 
         <div class="divTableRow">
           <div class="divTableCell divTableHeading">
-            <p>Zúčtovací období:</p>
+            <p>Začátek zúčtovacího období:</p>
           </div>
           <div class="divTableCell">
-            OD:
-            <p:calendar id="zuctovaciObdobiFilterZacatek" value="#{fakturaPrehledBean.zuctovaciObdobi.zacatek}" pattern="dd-MM-yyyy">
-              <p:ajax event="dateSelect" listener="#{fakturaPrehledBean.zuctovaciObdobiZacatekDateSelect}" update="msgs fakturaPrehledBeanTable"/>
-            </p:calendar>
-            - DO:
-            <p:calendar id="zuctovaciObdobiFilterKonec" value="#{fakturaPrehledBean.zuctovaciObdobi.konec}" pattern="dd-MM-yyyy">
-              <p:ajax event="dateSelect" listener="#{fakturaPrehledBean.zuctovaciObdobiKonecDateSelect}" update="msgs fakturaPrehledBeanTable"/>
-            </p:calendar>
+            <p:inplace editor="true" emptyLabel="!!! Prosím vyplnit !!!">
+              <p:ajax event="save" listener="#{fakturaPrehledBean.zuctovaciObdobiZacatekDateSelect()}" update="msgs fakturaPrehledBeanTable" />
+              <p:calendar id="zuctovaciObdobiFilterZacatek" value="#{fakturaPrehledBean.zuctovaciObdobi.zacatek}" pattern="dd-MM-yyyy" />
+            </p:inplace>
+          </div>
+        </div>
+
+        <div class="divTableRow">
+          <div class="divTableCell divTableHeading">&nbsp;</div>
+          <div class="divTableCell">&nbsp;</div>
+        </div>
+
+        <div class="divTableRow">
+          <div class="divTableCell divTableHeading">
+            <p>Konec zúčtovacího období:</p>
+          </div>
+          <div class="divTableCell">
+            <p:inplace editor="true" emptyLabel="!!! Prosím vyplnit !!!">
+              <p:ajax event="save" listener="#{fakturaPrehledBean.zuctovaciObdobiKonecDateSelect()}" update="msgs fakturaPrehledBeanTable" />
+              <p:calendar id="zuctovaciObdobiFilterKonec" value="#{fakturaPrehledBean.zuctovaciObdobi.konec}" pattern="dd-MM-yyyy" />
+            </p:inplace>
           </div>
         </div>
 

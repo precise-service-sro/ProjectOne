@@ -15,8 +15,10 @@ import com.precise_service.project_one.entity.Cislo;
 import com.precise_service.project_one.entity.PolozkaTyp;
 import com.precise_service.project_one.entity.faktura.Faktura;
 import com.precise_service.project_one.entity.faktura.FakturaPolozka;
+import com.precise_service.project_one.entity.nemovitost.Nemovitost;
 import com.precise_service.project_one.service.faktura.IFakturaPolozkaService;
 import com.precise_service.project_one.service.faktura.IFakturaService;
+import com.precise_service.project_one.service.nemovitost.INemovitostService;
 import com.precise_service.project_one.service.vyuctovani.IPolozkaTypService;
 import com.precise_service.project_one.web.common.DateFormatter;
 import com.precise_service.project_one.web.login.Util;
@@ -38,9 +40,13 @@ public class FakturaDetailBean implements Serializable {
   @Autowired
   private IPolozkaTypService polozkaTypService;
 
+  @Autowired
+  private INemovitostService nemovitostService;
+
   private List<PolozkaTyp> polozkaTypList;
   private Faktura faktura;
   private List<FakturaPolozka> radkyFaktura;
+  private List<Nemovitost> nemovitostList;
 
   // TODO: tyhle celkovy soucty spocitat a ulozit na entitu celeho faktura, at se to tu nedela pokazde znova
   private Double celkemZalohy;
@@ -51,6 +57,7 @@ public class FakturaDetailBean implements Serializable {
     log.trace("init()");
 
     polozkaTypList = polozkaTypService.getPolozkaTypAll();
+    nemovitostList = nemovitostService.getNemovitostAll(Util.getPrihlasenyUzivatel().getId());
 
     if (faktura == null) {
       log.error("Není vybraná žádná faktura k zobrazení detailu");
@@ -175,5 +182,10 @@ public class FakturaDetailBean implements Serializable {
     FacesMessage msg = new FacesMessage("Smazán řádek", deletedFakturaPolozka.getNazev());
     FacesContext.getCurrentInstance().addMessage(null, msg);
     init();
+  }
+
+  public void ulozitZmenuFaktury() {
+    log.trace("ulozitZmenuFaktury()");
+    faktura = fakturaService.putFaktura(faktura);
   }
 }

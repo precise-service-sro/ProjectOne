@@ -115,14 +115,15 @@ public class FakturaPrehledBean implements Serializable {
     init();
   }
 
-  public void zuctovaciObdobiZacatekDateSelect(SelectEvent event) {
-    FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Zvolen nový začátek zúčtovacího období", DateFormatter.formatDate((Date) event.getObject())));
+  public void zuctovaciObdobiZacatekDateSelect() {
+    log.trace("zuctovaciObdobiZacatekDateSelect()");
+    FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Zvolen nový začátek zúčtovacího období", DateFormatter.formatDate(zuctovaciObdobi.getZacatek())));
     init();
   }
 
-  public void zuctovaciObdobiKonecDateSelect(SelectEvent event) {
-    FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Zvolen nový konec zúčtovacího období", DateFormatter.formatDate((Date) event.getObject())));
-    init();
+  public void zuctovaciObdobiKonecDateSelect() {
+    log.trace("zuctovaciObdobiKonecDateSelect()");
+    FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Zvolen nový konec zúčtovacího období", DateFormatter.formatDate(zuctovaciObdobi.getKonec())));
+   init();
   }
-
 }
