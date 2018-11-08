@@ -44,6 +44,7 @@ public class FakturaPrehledBean implements Serializable {
 
   private CasovyInterval zuctovaciObdobi;
   private List<Faktura> fakturaList;
+  private List<Faktura> filtrovanyFakturaList;
   private List<Nemovitost> nemovitostList;
 
   public void init() {

@@ -43,6 +43,7 @@ public class NemovitostPrehledBean implements Serializable {
   private IOsobaService osobaService;
 
   private List<Nemovitost> nemovitostList;
+  private List<Nemovitost> filtrovanyNemovitostList;
   private List<NemovitostTyp> nemovitostTypList;
 
   public void init() {

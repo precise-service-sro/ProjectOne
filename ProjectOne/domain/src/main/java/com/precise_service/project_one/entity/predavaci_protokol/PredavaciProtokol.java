@@ -1,6 +1,6 @@
 package com.precise_service.project_one.entity.predavaci_protokol;
 
-import java.time.LocalDate;
+import java.util.Date;
 
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -27,7 +27,7 @@ public class PredavaciProtokol extends BaseEntity {
   @JsonProperty("datumPodpisu")
   @JsonInclude(JsonInclude.Include.NON_NULL)
   @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
-  private LocalDate datumPodpisu;
+  private Date datumPodpisu;
 
   @DBRef(lazy = true)
   @JsonProperty("nemovitost")

@@ -28,21 +28,24 @@
           </div>
           <div class="divTableCell">
             <div class="addButtonDiv">
-              <p:commandButton value="Přidat" icon="ui-icon-circle-plus" process="@this" update=":form:msgs"
-                               actionListener="#{predavaciProtokolPrehledBean.addRow()}" oncomplete="PF('predavaciProtokolPrehledBeanTable').addRow();"/>
+              <p:commandButton value="Přidat" icon="ui-icon-circle-plus" process="@this" update="form :form:msgs"
+                               actionListener="#{predavaciProtokolPrehledBean.addRow()}" />
             </div>
 
             <p:dataTable id="predavaciProtokolPrehledBeanTable" var="predavaciProtokol" widgetVar="predavaciProtokolPrehledBeanTable"
-                         value="#{predavaciProtokolPrehledBean.getPredavaciProtokolList()}" resizableColumns="true" sortBy="#{1}" editable="true">
+                         value="#{predavaciProtokolPrehledBean.predavaciProtokolList}" resizableColumns="true" sortBy="#{1}" editable="true"
+                         rendered="#{not empty predavaciProtokolPrehledBean.predavaciProtokolList}"
+                         emptyMessage="Nebyly nalezeny žádné předávací protokoly" filteredValue="#{predavaciProtokolPrehledBean.filtrovanyPredavaciProtokolList}">
+
               <p:ajax event="rowEdit" listener="#{predavaciProtokolPrehledBean.onRowEdit}" update=":form:msgs :form:predavaciProtokolPrehledBeanTable"/>
               <p:ajax event="rowEditCancel" listener="#{predavaciProtokolPrehledBean.onRowCancel}" update=":form:msgs"/>
 
               <p:columnGroup type="header">
                 <p:row>
-                  <p:column headerText="Název"/>
-                  <p:column headerText="Nemovitost" style="width: 180px;"/>
-                  <p:column headerText="Nájemník" style="width: 200px;"/>
-                  <p:column headerText="Ovládání" colspan="3" rowspan="2" style="width: 160px;"/>
+                  <p:column headerText="Název"      filterBy="#{predavaciProtokol.nazev}"                   filterMatchMode="contains"                                              />
+                  <p:column headerText="Nemovitost" filterBy="#{predavaciProtokol.nemovitost.nazev}"        filterMatchMode="contains"                         style="width: 180px;"/>
+                  <p:column headerText="Nájemník"   filterBy="#{predavaciProtokol.najemnik.getCeleJmeno()}" filterMatchMode="contains"                         style="width: 200px;"/>
+                  <p:column headerText="Ovládání"                                                                                      colspan="3" rowspan="2" style="width: 160px;"/>
                 </p:row>
               </p:columnGroup>
 

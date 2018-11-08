@@ -87,26 +87,27 @@
           <div class="divTableCell">
             <div class="addButtonDiv">
               <p:commandButton value="Přidat" icon="ui-icon-circle-plus" process="@this"
-                               actionListener="#{fakturaDetailBean.addRow()}" update="@form :form:msgs"/>
+                               actionListener="#{fakturaDetailBean.addRow()}" update="form :form:msgs"/>
             </div>
 
-            <p:dataTable id="fakturaDetailTable" widgetVar="fakturaDetailTable" var="polozka" value="#{fakturaDetailBean.getRadkyFaktura()}"
-                         resizableColumns="true"
-                         sortBy="#{1}" editable="true">
+            <p:dataTable id="fakturaDetailTable" widgetVar="fakturaDetailTable" var="polozka" value="#{fakturaDetailBean.fakturaPolozkaList}"
+                         resizableColumns="true" sortBy="#{1}" editable="true" rendered="#{not empty fakturaDetailBean.fakturaPolozkaList}"
+                         emptyMessage="Nebyly nalezeny žádné položky faktury" filteredValue="#{fakturaDetailBean.filtrovanyFakturaPolozkaList}">
+              
               <p:ajax event="rowEdit" listener="#{fakturaDetailBean.onRowEdit}" update=":form:msgs :form:fakturaDetailTable"/>
               <p:ajax event="rowEditCancel" listener="#{fakturaDetailBean.onRowCancel}" update=":form:msgs"/>
 
               <p:columnGroup type="header">
                 <p:row>
-                  <p:column headerText="Název"/>
-                  <p:column headerText="Jednotka" style="width: 80px;"/>
-                  <p:column headerText="Vyúčtovat jako" style="width: 200px;"/>
-                  <p:column headerText="Poč. stav" style="width: 100px;"/>
-                  <p:column headerText="Kon. stav" style="width: 100px;"/>
-                  <p:column headerText="Spotřeba" style="width: 100px;"/>
-                  <p:column headerText="Zálohy" style="width: 100px;"/>
-                  <p:column headerText="Náklady" style="width: 100px;"/>
-                  <p:column headerText="Rozdíl" style="width: 100px;"/>
+                  <p:column headerText="Název"          filterBy="#{polozka.nazev}"                    filterMatchMode="contains"                      />
+                  <p:column headerText="Jednotka"       filterBy="#{polozka.pocatecniStav.jednotka}"   filterMatchMode="contains" style="width: 80px;" />
+                  <p:column headerText="Vyúčtovat jako" filterBy="#{polozka.polozkaTyp.nazev}"         filterMatchMode="contains" style="width: 200px;"/>
+                  <p:column headerText="Poč. stav"      filterBy="#{polozka.pocatecniStav.mnozstvi}"   filterMatchMode="contains" style="width: 100px;"/>
+                  <p:column headerText="Kon. stav"      filterBy="#{polozka.koncovyStav.mnozstvi}"     filterMatchMode="contains" style="width: 100px;"/>
+                  <p:column headerText="Spotřeba"       filterBy="#{polozka.spotreba.mnozstvi}"        filterMatchMode="contains" style="width: 100px;"/>
+                  <p:column headerText="Zálohy"         filterBy="#{polozka.zalohy.mnozstvi}"          filterMatchMode="contains" style="width: 100px;"/>
+                  <p:column headerText="Náklady"        filterBy="#{polozka.naklady.mnozstvi}"         filterMatchMode="contains" style="width: 100px;"/>
+                  <p:column headerText="Rozdíl"         filterBy="#{polozka.rozdil.mnozstvi}"          filterMatchMode="contains" style="width: 100px;"/>
                   <p:column style="width:  32px;"/>
                   <p:column style="width:  50px;"/>
                 </p:row>

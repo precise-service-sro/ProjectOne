@@ -3,6 +3,7 @@ package com.precise_service.project_one.web.predavaci_protokol;
 import java.io.IOException;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 import javax.faces.application.FacesMessage;
@@ -45,6 +46,7 @@ public class PredavaciProtokolPrehledBean implements Serializable {
   private IOsobaService osobaService;
 
   private List<PredavaciProtokol> predavaciProtokolList;
+  private List<PredavaciProtokol> filtrovanyPredavaciProtokolList;
   private List<Nemovitost> nemovitostList;
   private List<Osoba> seznamNajemniku;
 
@@ -81,7 +83,7 @@ public class PredavaciProtokolPrehledBean implements Serializable {
     PredavaciProtokol predavaciProtokol = new PredavaciProtokol();
 
     predavaciProtokol.setNazev("!!! Upravit název !!!");
-    predavaciProtokol.setDatumPodpisu(LocalDate.now());
+    predavaciProtokol.setDatumPodpisu(new Date());
     predavaciProtokol.setUzivatel(Util.getPrihlasenyUzivatel());
 
     PredavaciProtokol saved = predavaciProtokolService.postPredavaciProtokol(predavaciProtokol);

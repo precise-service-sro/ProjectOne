@@ -28,13 +28,13 @@
           </div>
           <div class="divTableCell">
             <div class="addButtonDiv">
-              <p:commandButton value="Přidat" icon="ui-icon-circle-plus" process="@this" update=":form:msgs"
-                               actionListener="#{osobaPrehledBean.addRow()}" oncomplete="PF('osobaPrehledBeanTable').addRow();"/>
+              <p:commandButton value="Přidat" icon="ui-icon-circle-plus" process="@this" update="form :form:msgs"
+                               actionListener="#{osobaPrehledBean.addRow()}" />
             </div>
 
-            <p:dataTable id="osobaPrehledBeanTable" var="osoba" widgetVar="osobaPrehledBeanTable" value="#{osobaPrehledBean.getOsobaList()}"
-                         resizableColumns="true"
-                         sortBy="#{1}" editable="true">
+            <p:dataTable id="osobaPrehledBeanTable" var="osoba" widgetVar="osobaPrehledBeanTable" value="#{osobaPrehledBean.osobaList}"
+                         resizableColumns="true" sortBy="#{1}" editable="true" rendered="#{not empty osobaPrehledBean.osobaList}">
+
               <p:ajax event="rowEdit" listener="#{osobaPrehledBean.onRowEdit}" update=":form:msgs :form:osobaPrehledBeanTable"/>
               <p:ajax event="rowEditCancel" listener="#{osobaPrehledBean.onRowCancel}" update=":form:msgs"/>
 

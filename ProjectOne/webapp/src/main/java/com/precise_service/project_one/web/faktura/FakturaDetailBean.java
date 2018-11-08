@@ -1,7 +1,6 @@
 package com.precise_service.project_one.web.faktura;
 
 import java.io.Serializable;
-import java.util.Date;
 import java.util.List;
 
 import javax.faces.application.FacesMessage;
@@ -20,7 +19,6 @@ import com.precise_service.project_one.service.faktura.IFakturaPolozkaService;
 import com.precise_service.project_one.service.faktura.IFakturaService;
 import com.precise_service.project_one.service.nemovitost.INemovitostService;
 import com.precise_service.project_one.service.vyuctovani.IPolozkaTypService;
-import com.precise_service.project_one.web.common.DateFormatter;
 import com.precise_service.project_one.web.login.Util;
 
 import lombok.Data;
@@ -43,10 +41,11 @@ public class FakturaDetailBean implements Serializable {
   @Autowired
   private INemovitostService nemovitostService;
 
-  private List<PolozkaTyp> polozkaTypList;
-  private Faktura faktura;
-  private List<FakturaPolozka> radkyFaktura;
   private List<Nemovitost> nemovitostList;
+  private Faktura faktura;
+  private List<PolozkaTyp> polozkaTypList;
+  private List<FakturaPolozka> fakturaPolozkaList;
+  private List<FakturaPolozka> filtrovanyFakturaPolozkaList;
 
   // TODO: tyhle celkovy soucty spocitat a ulozit na entitu celeho faktura, at se to tu nedela pokazde znova
   private Double celkemZalohy;
@@ -64,9 +63,9 @@ public class FakturaDetailBean implements Serializable {
       return;
     }
 
-    radkyFaktura = fakturaPolozkaService.getFakturaPolozkaAll(faktura.getId());
+    fakturaPolozkaList = fakturaPolozkaService.getFakturaPolozkaAll(faktura.getId());
 
-    for (FakturaPolozka fakturaPolozka : radkyFaktura) {
+    for (FakturaPolozka fakturaPolozka : fakturaPolozkaList) {
       if (fakturaPolozka.getPocatecniStav() == null) {
         Cislo pocatecniStav = new Cislo();
         pocatecniStav.setMnozstvi(0.0);
@@ -115,7 +114,7 @@ public class FakturaDetailBean implements Serializable {
     celkemZalohy = 0.0;
     celkemNaklady = 0.0;
     celkemRozdil = 0.0;
-    for (FakturaPolozka polozka : radkyFaktura){
+    for (FakturaPolozka polozka : fakturaPolozkaList){
       celkemZalohy += polozka.getZalohy().getMnozstvi();
       celkemNaklady += polozka.getNaklady().getMnozstvi();
       celkemRozdil += polozka.getRozdil().getMnozstvi();

@@ -93,25 +93,26 @@
           </div>
           <div class="divTableCell">
             <div class="addButtonDiv">
-              <p:commandButton value="Přidat" icon="ui-icon-circle-plus" process="@this" update=":form:msgs"
-                               actionListener="#{predavaciProtokolDetailBean.addRow()}" oncomplete="PF('predavaciProtokol').addRow();"/>
+              <p:commandButton value="Přidat" icon="ui-icon-circle-plus" process="@this" update="form :form:msgs"
+                               actionListener="#{predavaciProtokolDetailBean.addRow()}" />
             </div>
 
-            <p:dataTable id="predavaciProtokol" widgetVar="predavaciProtokol" var="polozka" value="#{predavaciProtokolDetailBean.getRadky()}"
-                         resizableColumns="true" sortBy="#{1}" editable="true" rowIndexVar="index">
+            <p:dataTable id="predavaciProtokol" widgetVar="predavaciProtokol" var="polozka" value="#{predavaciProtokolDetailBean.predavaciProtokolPolozkaList}"
+                         resizableColumns="true" sortBy="#{1}" editable="true" rowIndexVar="index" rendered="#{not empty predavaciProtokolDetailBean.predavaciProtokolPolozkaList}"
+                         emptyMessage="Nebyly nalezeny žádné položky předávacího protokolu" filteredValue="#{predavaciProtokolDetailBean.filtrovanyPredavaciProtokolPolozkaList}">
 
               <p:ajax event="rowEdit" listener="#{predavaciProtokolDetailBean.onRowEdit}" update=":form:msgs"/>
               <p:ajax event="rowEditCancel" listener="#{predavaciProtokolDetailBean.onRowCancel}" update=":form:msgs"/>
 
               <p:columnGroup type="header">
                 <p:row>
-                  <p:column headerText="Název"/>
-                  <p:column headerText="Vyúčtovat jako" style="width: 150px;"/>
-                  <p:column headerText="Číslo měřáku" style="width: 150px;"/>
-                  <p:column headerText="Stav" style="width: 80px;"/>
-                  <p:column headerText="Jednotka" style="width: 80px;"/>
-                  <p:column style="width:  32px;"/>
-                  <p:column style="width:  50px;"/>
+                  <p:column headerText="Název"          filterBy="#{polozka.nazev}"            filterMatchMode="contains"                      />
+                  <p:column headerText="Vyúčtovat jako" filterBy="#{polozka.polozkaTyp.nazev}" filterMatchMode="contains" style="width: 150px;"/>
+                  <p:column headerText="Číslo měřáku"   filterBy="#{polozka.cisloMeraku}"      filterMatchMode="contains" style="width: 150px;"/>
+                  <p:column headerText="Stav"           filterBy="#{polozka.stavMeraku}"       filterMatchMode="contains" style="width: 80px;" />
+                  <p:column headerText="Jednotka"       filterBy="#{polozka.jednotka}"         filterMatchMode="contains" style="width: 80px;" />
+                  <p:column                                                                                               style="width: 32px;" />
+                  <p:column                                                                                               style="width: 50px;" />
                 </p:row>
               </p:columnGroup>
 

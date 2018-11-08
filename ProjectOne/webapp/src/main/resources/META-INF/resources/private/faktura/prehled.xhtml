@@ -62,25 +62,26 @@
           </div>
           <div class="divTableCell">
             <div class="addButtonDiv">
-              <p:commandButton value="Přidat" icon="ui-icon-circle-plus" process="@this" update=":form:msgs"
-                               actionListener="#{fakturaPrehledBean.addRow()}" oncomplete="PF('fakturaPrehledBeanTable').addRow();"/>
+              <p:commandButton value="Přidat" icon="ui-icon-circle-plus" process="@this" update="form :form:msgs"
+                               actionListener="#{fakturaPrehledBean.addRow()}" />
             </div>
 
-            <p:dataTable id="fakturaPrehledBeanTable" var="faktura" widgetVar="fakturaPrehledBeanTable" value="#{fakturaPrehledBean.getFakturaList()}"
-                         resizableColumns="true" sortBy="#{1}" editable="true">
+            <p:dataTable id="fakturaPrehledBeanTable" var="faktura" widgetVar="fakturaPrehledBeanTable" value="#{fakturaPrehledBean.fakturaList}"
+                         resizableColumns="true" sortBy="#{1}" editable="true" rendered="#{not empty fakturaPrehledBean.fakturaList}"
+                         emptyMessage="Nebyly nalezeny žádné faktury" filteredValue="#{fakturaPrehledBean.filtrovanyFakturaList}">
+
               <p:ajax event="rowEdit" listener="#{fakturaPrehledBean.onRowEdit}" update=":form:msgs :form:fakturaPrehledBeanTable"/>
               <p:ajax event="rowEditCancel" listener="#{fakturaPrehledBean.onRowCancel}" update=":form:msgs"/>
               <p:defaultCommand target=""/>
 
               <p:columnGroup type="header">
                 <p:row>
-                  <p:column headerText="Název faktury" rowspan="2"/>
-                  <p:column headerText="Nemovitost" style="width: 200px;"/>
-                  <p:column headerText="Zúčtovací období" colspan="2" style="width: 400px;"/>
-                  <p:column headerText="Ovládání" rowspan="2" colspan="3" style="width: 160px;"/>
+                  <p:column headerText="Název faktury"    rowspan="2"                                   filterBy="#{faktura.nazev}"            filterMatchMode="contains" />
+                  <p:column headerText="Nemovitost"       rowspan="2"             style="width: 200px;" filterBy="#{faktura.nemovitost.nazev}" filterMatchMode="contains" />
+                  <p:column headerText="Zúčtovací období"             colspan="2" style="width: 400px;" />
+                  <p:column headerText="Ovládání"         rowspan="2" colspan="3" style="width: 160px;" />
                 </p:row>
                 <p:row>
-                  <p:column headerText=" - filter -"/>
                   <p:column headerText="Začátek"/>
                   <p:column headerText="Konec"/>
                 </p:row>

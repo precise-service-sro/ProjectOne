@@ -47,7 +47,8 @@ public class PredavaciProtokolDetailBean implements Serializable {
   private IOsobaService osobaService;
 
   private PredavaciProtokol predavaciProtokol;
-  private List<PredavaciProtokolPolozka> radky;
+  private List<PredavaciProtokolPolozka> predavaciProtokolPolozkaList;
+  private List<PredavaciProtokolPolozka> filtrovanyPredavaciProtokolPolozkaList;
   private List<PolozkaTyp> polozkaTypList;
   private List<Nemovitost> nemovitostList;
   private List<Osoba> osobaList;
@@ -60,7 +61,7 @@ public class PredavaciProtokolDetailBean implements Serializable {
       return;
     }
 
-    radky = predavaciProtokolPolozkaService.getPredavaciProtokolPolozkaAll(predavaciProtokol.getId());
+    predavaciProtokolPolozkaList = predavaciProtokolPolozkaService.getPredavaciProtokolPolozkaAll(predavaciProtokol.getId());
 
     Nemovitost nemovitost = predavaciProtokol.getNemovitost();
     polozkaTypList = (nemovitost != null) ? polozkaTypService.getPolozkaTypListByIdNemovitost(nemovitost.getId()) : new ArrayList<>(0);
