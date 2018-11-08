@@ -29,8 +29,8 @@
               <div class="divTableCell divTableHeading">Název:</div>
               <div class="divTableCell">
                 <p:inplace editor="true" emptyLabel="!!! Prosím vyplnit !!!">
-                  <p:ajax event="save" listener="#{nemovitostDetailBean.ulozitZmenuNemovitosti()}" />
-                  <p:inputText value="#{nemovitostDetailBean.nemovitost.nazev}" required="true" />
+                  <p:ajax event="save" listener="#{nemovitostDetailBean.ulozitZmenuNemovitosti()}"/>
+                  <p:inputText value="#{nemovitostDetailBean.nemovitost.nazev}" required="true"/>
                 </p:inplace>
               </div>
             </div>
@@ -44,9 +44,10 @@
               <div class="divTableCell divTableHeading">Typ:</div>
               <div class="divTableCell">
                 <p:inplace editor="true" emptyLabel="!!! Prosím vyplnit !!!">
-                  <p:ajax event="save" listener="#{nemovitostDetailBean.ulozitZmenuNemovitosti()}" />
+                  <p:ajax event="save" listener="#{nemovitostDetailBean.ulozitZmenuNemovitosti()}"/>
                   <h:selectOneMenu value="#{nemovitostDetailBean.nemovitost.nemovitostTyp}" style="width:100%" converter="#{nemovitostTypConverter}">
-                    <f:selectItems value="#{nemovitostPrehledBean.nemovitostTypList}" var="nemovitostTyp" itemLabel="#{nemovitostTyp}" itemValue="#{nemovitostTyp}" />
+                    <f:selectItems value="#{nemovitostPrehledBean.nemovitostTypList}" var="nemovitostTyp" itemLabel="#{nemovitostTyp}"
+                                   itemValue="#{nemovitostTyp}"/>
                   </h:selectOneMenu>
                 </p:inplace>
               </div>
@@ -63,8 +64,8 @@
               </div>
               <div class="divTableCell">
                 <p:inplace editor="true" emptyLabel="!!! Prosím vyplnit !!!">
-                  <p:ajax event="save" listener="#{nemovitostDetailBean.ulozitZmenuNemovitosti()}" />
-                  <p:inputText value="#{nemovitostDetailBean.nemovitost.adresa.ulice}" />
+                  <p:ajax event="save" listener="#{nemovitostDetailBean.ulozitZmenuNemovitosti()}"/>
+                  <p:inputText value="#{nemovitostDetailBean.nemovitost.adresa.ulice}"/>
                 </p:inplace>
               </div>
             </div>
@@ -78,8 +79,8 @@
               <div class="divTableCell divTableHeading">Číslo popisné:</div>
               <div class="divTableCell">
                 <p:inplace editor="true" emptyLabel="!!! Prosím vyplnit !!!">
-                  <p:ajax event="save" listener="#{nemovitostDetailBean.ulozitZmenuNemovitosti()}" />
-                  <p:inputText value="#{nemovitostDetailBean.nemovitost.adresa.cisloPopisne}" />
+                  <p:ajax event="save" listener="#{nemovitostDetailBean.ulozitZmenuNemovitosti()}"/>
+                  <p:inputText value="#{nemovitostDetailBean.nemovitost.adresa.cisloPopisne}"/>
                 </p:inplace>
               </div>
             </div>
@@ -93,8 +94,8 @@
               <div class="divTableCell divTableHeading">Číslo orientační:</div>
               <div class="divTableCell">
                 <p:inplace editor="true" emptyLabel="!!! Prosím vyplnit !!!">
-                  <p:ajax event="save" listener="#{nemovitostDetailBean.ulozitZmenuNemovitosti()}" />
-                  <p:inputText value="#{nemovitostDetailBean.nemovitost.adresa.cisloOrientacni}" />
+                  <p:ajax event="save" listener="#{nemovitostDetailBean.ulozitZmenuNemovitosti()}"/>
+                  <p:inputText value="#{nemovitostDetailBean.nemovitost.adresa.cisloOrientacni}"/>
                 </p:inplace>
               </div>
             </div>
@@ -110,8 +111,8 @@
               </div>
               <div class="divTableCell">
                 <p:inplace editor="true" emptyLabel="!!! Prosím vyplnit !!!">
-                  <p:ajax event="save" listener="#{nemovitostDetailBean.ulozitZmenuNemovitosti()}" />
-                  <p:inputText value="#{nemovitostDetailBean.nemovitost.adresa.mesto}" />
+                  <p:ajax event="save" listener="#{nemovitostDetailBean.ulozitZmenuNemovitosti()}"/>
+                  <p:inputText value="#{nemovitostDetailBean.nemovitost.adresa.mesto}"/>
                 </p:inplace>
               </div>
             </div>
@@ -125,8 +126,8 @@
               <div class="divTableCell divTableHeading">PSČ:</div>
               <div class="divTableCell">
                 <p:inplace editor="true" emptyLabel="!!! Prosím vyplnit !!!">
-                  <p:ajax event="save" listener="#{nemovitostDetailBean.ulozitZmenuNemovitosti()}" />
-                  <p:inputText value="#{nemovitostDetailBean.nemovitost.adresa.psc}" />
+                  <p:ajax event="save" listener="#{nemovitostDetailBean.ulozitZmenuNemovitosti()}"/>
+                  <p:inputText value="#{nemovitostDetailBean.nemovitost.adresa.psc}"/>
                 </p:inplace>
               </div>
             </div>
@@ -140,8 +141,8 @@
               <div class="divTableCell divTableHeading">Stát:</div>
               <div class="divTableCell">
                 <p:inplace editor="true" emptyLabel="!!! Prosím vyplnit !!!">
-                  <p:ajax event="save" listener="#{nemovitostDetailBean.ulozitZmenuNemovitosti()}" />
-                  <p:inputText value="#{nemovitostDetailBean.nemovitost.adresa.stat}" />
+                  <p:ajax event="save" listener="#{nemovitostDetailBean.ulozitZmenuNemovitosti()}"/>
+                  <p:inputText value="#{nemovitostDetailBean.nemovitost.adresa.stat}"/>
                 </p:inplace>
               </div>
             </div>
@@ -155,13 +156,13 @@
               <div class="divTableCell divTableHeading">Vlastník:</div>
               <div class="divTableCell">
                 <p:inplace editor="true" emptyLabel="!!! Prosím vyplnit !!!">
-                  <p:ajax event="save" listener="#{nemovitostDetailBean.ulozitZmenuNemovitosti()}" />
+                  <p:ajax event="save" listener="#{nemovitostDetailBean.ulozitZmenuNemovitosti()}"/>
                   <f:facet name="output">
                     <h:outputText value="#{nemovitostDetailBean.nemovitost.vlastnik.getCeleJmeno()}"/>
                   </f:facet>
                   <f:facet name="input">
                     <h:selectOneMenu value="#{nemovitostDetailBean.nemovitost.vlastnik}" style="width:100%" converter="#{osobaConverter}">
-                      <f:selectItems value="#{nemovitostDetailBean.osobaList}" var="osoba" itemLabel="#{osoba.getCeleJmeno()}" itemValue="#{osoba}" />
+                      <f:selectItems value="#{nemovitostDetailBean.osobaList}" var="osoba" itemLabel="#{osoba.getCeleJmeno()}" itemValue="#{osoba}"/>
                     </h:selectOneMenu>
                   </f:facet>
                 </p:inplace>
@@ -186,35 +187,183 @@
               <div class="divTableCell divTableHeading">&nbsp;</div>
               <div class="divTableCell">&nbsp;</div>
             </div>
+          </div>
+        </div>
+      </h:form>
+      <h:form id="form2">
+        <p:growl id="msgs2" showDetail="true"/>
 
+        <div class="divTable">
+          <div class="divTableBody">
             <div class="divTableRow">
               <div class="divTableCell divTableHeading">
                 <p>Kontakty:</p>
               </div>
               <div class="divTableCell">
                 <div class="addButtonDiv">
-                  <p:commandButton value="Přidat" icon="ui-icon-circle-plus" process="@this" update=":form:msgs"
-                                   actionListener="#{nemovitostDetailBean.addRow()}" oncomplete="PF('nemovitostDetailBeanContactsTable').addRow();"/>
+                  <p:commandButton value="Přidat" icon="ui-icon-circle-plus" process="@this" update="form2 :form2:msgs2" editable="true"
+                                   actionListener="#{nemovitostDetailBean.pridatNovyKontakt()}" />
                 </div>
-                <p:dataTable id="nemovitostDetailBeanContactsTable" var="nemovitost" widgetVar="nemovitostDetailBeanContactsTable"
-                             value="#{nemovitostPrehledBean.getNemovitostList()}" resizableColumns="true" sortBy="#{1}" editable="true">
+                <p:dataTable id="nemovitostDetailBeanContactsTable" var="kontakt" widgetVar="nemovitostDetailBeanContactsTable"
+                             value="#{nemovitostDetailBean.nemovitostNemovitostKontaktList}" resizableColumns="true" sortBy="#{1}" editable="true"
+                             rendered="#{not empty nemovitostDetailBean.nemovitostNemovitostKontaktList}">
+
                   <p:columnGroup type="header">
                     <p:row>
-                      <p:column headerText="Jméno"/>
+                      <p:column headerText="Jméno" style="width: 180px;"/>
                       <p:column headerText="Telefon" style="width: 180px;"/>
                       <p:column headerText="Email" style="width: 200px;"/>
                       <p:column headerText="Poznámka" style="width: 200px;"/>
-                      <p:column headerText="Ovládání" colspan="3" rowspan="2" style="width: 160px;"/>
+                      <p:column headerText="Ovládání" colspan="2" rowspan="2" style="width: 160px;"/>
                     </p:row>
                   </p:columnGroup>
+
+                  <p:column>
+                    <p:cellEditor>
+                      <f:facet name="output">
+                        <h:outputText value="#{kontakt.jmeno}"/>
+                      </f:facet>
+                      <f:facet name="input">
+                        <p:inputText id="kontaktJmenoInput" value="#{kontakt.jmeno}" style="width:100%"/>
+                      </f:facet>
+                    </p:cellEditor>
+                  </p:column>
+
+                  <p:column>
+                    <p:cellEditor>
+                      <f:facet name="output">
+                        <h:outputText value="#{kontakt.prijmeni}"/>
+                      </f:facet>
+                      <f:facet name="input">
+                        <p:inputText id="kontaktPrijmeniInput" value="#{kontakt.prijmeni}" style="width:100%"/>
+                      </f:facet>
+                    </p:cellEditor>
+                  </p:column>
+
+                  <p:column>
+                    <p:cellEditor>
+                      <f:facet name="output">
+                        <h:outputText value="#{kontakt.email}"/>
+                      </f:facet>
+                      <f:facet name="input">
+                        <p:inputText id="kontaktEmailInput" value="#{kontakt.email}" style="width:100%"/>
+                      </f:facet>
+                    </p:cellEditor>
+                  </p:column>
+
+                  <p:column>
+                    <p:cellEditor>
+                      <f:facet name="output">
+                        <h:outputText value="#{kontakt.telefon}"/>
+                      </f:facet>
+                      <f:facet name="input">
+                        <p:inputText id="kontaktTelefonInput" value="#{kontakt.telefon}" style="width:100%"/>
+                      </f:facet>
+                    </p:cellEditor>
+                  </p:column>
+
+                  <p:column>
+                    <p:rowEditor/>
+                  </p:column>
+
+                  <p:column>
+                    <p:commandButton update="@form :form:msgs" icon="ui-icon-circle-minus" actionListener="#{polozkaTypBean.deleteRow(polozkaTyp.id)}"
+                                     title="Odebrat"/>
+                  </p:column>
+
+                </p:dataTable>
+              </div>
+            </div>
+          </div>
+        </div>
+      </h:form>
+      <h:form id="form3">
+        <p:growl id="msgs3" showDetail="true"/>
+
+        <div class="divTable">
+          <div class="divTableBody">
+
+            <div class="divTableRow">
+              <div class="divTableCell divTableHeading">&nbsp;</div>
+              <div class="divTableCell">&nbsp;</div>
+            </div>
+
+            <div class="divTableRow">
+              <div class="divTableCell divTableHeading">
+                <p>Vyúčtovávané položky:</p>
+              </div>
+              <div class="divTableCell">
+                <div class="addButtonDiv">
+                  <p:commandButton value="Přidat" icon="ui-icon-circle-plus" process="@this" update="form3 :form3:msgs3"
+                                   actionListener="#{polozkaTypBean.addRow()}"/>
+                </div>
+
+                <h:outputText value="#{polozkaTypBean.init()}"/>
+
+                <p:dataTable id="polozkaTypTable" widgetVar="polozkaTypTable"
+                             var="polozkaTyp" value="#{polozkaTypBean.polozkaTypList}"
+                             editable="true" rowIndexVar="index"
+                             rendered="#{not empty polozkaTypBean.polozkaTypList}">
+
+                  <p:ajax event="rowEdit" listener="#{polozkaTypBean.onRowEdit}" update=":form:msgs"/>
+                  <p:ajax event="rowEditCancel" listener="#{polozkaTypBean.onRowCancel}" update=":form:msgs"/>
+
+                  <p:columnGroup type="header">
+                    <p:row>
+                      <p:column headerText="Název" style="width: 150px;"/>
+                      <p:column headerText="Jednotka" style="width: 150px;"/>
+                      <p:column headerText="Popis"/>
+                      <p:column headerText="Ovládání" colspan="2" style="width: 160px;"/>
+                    </p:row>
+                  </p:columnGroup>
+
+                  <p:column>
+                    <p:cellEditor>
+                      <f:facet name="output">
+                        <h:outputText value="#{polozkaTyp.nazev}"/>
+                      </f:facet>
+                      <f:facet name="input">
+                        <p:inputText id="polozkaTypNazevInput" value="#{polozkaTyp.nazev}" style="width:100%"/>
+                      </f:facet>
+                    </p:cellEditor>
+                  </p:column>
+
+                  <p:column style="text-align: center;">
+                    <p:cellEditor>
+                      <f:facet name="output">
+                        <h:outputText value="#{polozkaTyp.jednotka}"/>
+                      </f:facet>
+                      <f:facet name="input">
+                        <p:inputText id="polozkaTypJednotkaInput" value="#{polozkaTyp.jednotka}" style="width:100%"/>
+                      </f:facet>
+                    </p:cellEditor>
+                  </p:column>
+
+                  <p:column>
+                    <p:cellEditor>
+                      <f:facet name="output">
+                        <h:outputText value="#{polozkaTyp.popis}"/>
+                      </f:facet>
+                      <f:facet name="input">
+                        <p:inputText id="polozkaTypPopisInput" value="#{polozkaTyp.popis}" style="width:100%"/>
+                      </f:facet>
+                    </p:cellEditor>
+                  </p:column>
+
+                  <p:column>
+                    <p:rowEditor/>
+                  </p:column>
+
+                  <p:column>
+                    <p:commandButton update="@form :form:msgs" icon="ui-icon-circle-minus" actionListener="#{polozkaTypBean.deleteRow(polozkaTyp.id)}"
+                                     title="Odebrat"/>
+                  </p:column>
                 </p:dataTable>
               </div>
             </div>
 
           </div>
         </div>
-
-
       </h:form>
 
     </ui:define>

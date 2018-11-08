@@ -45,8 +45,8 @@ public class OsobaDetailBean implements Serializable {
     editorTextuBean.setText(osoba.getPoznamky());
   }
 
-  public void ulozit(){
-    log.trace("ulozit()");
+  public void ulozitPoznamky(){
+    log.trace("ulozitPoznamky()");
     String newText = editorTextuBean.getText();
     osoba.setPoznamky(newText);
     osobaService.postOsoba(osoba);

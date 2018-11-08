@@ -1,33 +1,20 @@
-package com.precise_service.project_one.entity.osoba;
+package com.precise_service.project_one.entity.nemovitost;
 
-import java.util.Date;
-
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.precise_service.project_one.entity.BaseEntity;
+import com.precise_service.project_one.entity.osoba.Osoba;
 
 import lombok.Data;
 
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
-@Document(collection = "osoba")
-public class Osoba extends BaseEntity {
-
-  @JsonProperty("prihlasovaciJmeno")
-  @JsonInclude(JsonInclude.Include.NON_NULL)
-  private String prihlasovaciJmeno;
-
-  @JsonProperty("heslo")
-  @JsonInclude(JsonInclude.Include.NON_NULL)
-  private String heslo;
-
-  @JsonProperty("fotka")
-  @JsonInclude(JsonInclude.Include.NON_NULL)
-  private String fotka;
+@Document(collection = "nemovitostKontakt")
+public class NemovitostKontakt extends BaseEntity {
 
   @JsonProperty("jmeno")
   @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -41,15 +28,6 @@ public class Osoba extends BaseEntity {
     return "" + jmeno + " " + prijmeni;
   }
 
-  @JsonProperty("datumNarozeni")
-  @JsonInclude(JsonInclude.Include.NON_NULL)
-  @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
-  private Date datumNarozeni;
-
-  @JsonProperty("poznamky")
-  @JsonInclude(JsonInclude.Include.NON_NULL)
-  private String poznamky;
-
   @JsonProperty("telefon")
   @JsonInclude(JsonInclude.Include.NON_NULL)
   private String telefon;
@@ -58,7 +36,12 @@ public class Osoba extends BaseEntity {
   @JsonInclude(JsonInclude.Include.NON_NULL)
   private String email;
 
-  @JsonProperty("muzeSePrihlasit")
+  @JsonProperty("poznamky")
   @JsonInclude(JsonInclude.Include.NON_NULL)
-  private Boolean muzeSePrihlasit;
+  private String poznamky;
+
+  @DBRef(lazy = true)
+  @JsonProperty("nemovitost")
+  @JsonInclude(JsonInclude.Include.NON_NULL)
+  private Nemovitost nemovitost;
 }
