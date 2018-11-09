@@ -6,18 +6,14 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.ConverterException;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import com.precise_service.project_one.entity.nemovitost.Nemovitost;
-import com.precise_service.project_one.service.nemovitost.INemovitostService;
+import com.precise_service.project_one.web.AbstractBean;
 
 @Service("nemovitostConverter")
-public class NemovitostConverter implements Converter {
-
-  @Autowired
-  private INemovitostService nemovitostService;
+public class NemovitostConverter extends AbstractBean implements Converter {
 
   public Object getAsObject(FacesContext fc, UIComponent uic, String value) {
     if (StringUtils.isEmpty(value)) {

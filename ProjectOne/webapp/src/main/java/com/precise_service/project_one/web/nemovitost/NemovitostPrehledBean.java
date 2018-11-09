@@ -20,6 +20,7 @@ import com.precise_service.project_one.entity.nemovitost.NemovitostTyp;
 import com.precise_service.project_one.entity.osoba.Osoba;
 import com.precise_service.project_one.service.nemovitost.INemovitostService;
 import com.precise_service.project_one.service.osoba.IOsobaService;
+import com.precise_service.project_one.web.AbstractBean;
 import com.precise_service.project_one.web.URL_CONST;
 import com.precise_service.project_one.web.login.Util;
 
@@ -31,16 +32,7 @@ import static com.precise_service.project_one.web.URL_CONST.NEMOVITOST_DETAIL_UR
 @Slf4j
 @Data
 @Named
-public class NemovitostPrehledBean implements Serializable {
-
-  @Autowired
-  private INemovitostService nemovitostService;
-
-  @Autowired
-  private NemovitostDetailBean nemovitostDetailBean;
-
-  @Autowired
-  private IOsobaService osobaService;
+public class NemovitostPrehledBean extends AbstractBean {
 
   private List<Nemovitost> nemovitostList;
   private List<Nemovitost> filtrovanyNemovitostList;

@@ -10,8 +10,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.precise_service.project_one.entity.nemovitost.Nemovitost;
 import com.precise_service.project_one.entity.nemovitost.NemovitostKontakt;
 import com.precise_service.project_one.service.nemovitost.INemovitostKontaktService;
+import com.precise_service.project_one.service.nemovitost.INemovitostService;
+import com.precise_service.project_one.service.nemovitost.NemovitostService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -23,16 +26,21 @@ public class NemovitostKontaktEndpoint {
   @Autowired
   private INemovitostKontaktService nemovitostKontaktService;
 
+  @Autowired
+  private INemovitostService nemovitostService;
+
   @RequestMapping(value = "", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
   NemovitostKontakt postNemovitostKontakt(@PathVariable String idNemovitost, @RequestBody NemovitostKontakt nemovitostKontakt) {
     log.trace("postNemovitostKontakt()");
-    return nemovitostKontaktService.postNemovitostKontakt(idNemovitost, nemovitostKontakt);
+    nemovitostKontakt.setNemovitost(nemovitostService.getNemovitost(idNemovitost));
+    return nemovitostKontaktService.postNemovitostKontakt(nemovitostKontakt);
   }
 
   @RequestMapping(value = "", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
   NemovitostKontakt putNemovitostKontakt(@PathVariable String idNemovitost, @RequestBody NemovitostKontakt nemovitostKontakt) {
     log.trace("putNemovitostKontakt()");
-    return nemovitostKontaktService.putNemovitostKontakt(idNemovitost, nemovitostKontakt);
+    nemovitostKontakt.setNemovitost(nemovitostService.getNemovitost(idNemovitost));
+    return nemovitostKontaktService.putNemovitostKontakt(nemovitostKontakt);
   }
 
   @RequestMapping(value = "/{idNemovitostKontakt}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -56,6 +64,6 @@ public class NemovitostKontaktEndpoint {
   @RequestMapping(value = "/{idNemovitostKontakt}", method = RequestMethod.DELETE)
   void deleteNemovitostKontakt(@PathVariable String idNemovitost, @PathVariable String idNemovitostKontakt) {
     log.trace("deleteNemovitostKontakt()");
-    nemovitostKontaktService.deleteNemovitostKontakt(idNemovitost, idNemovitostKontakt);
+    nemovitostKontaktService.deleteNemovitostKontakt(idNemovitostKontakt);
   }
 }

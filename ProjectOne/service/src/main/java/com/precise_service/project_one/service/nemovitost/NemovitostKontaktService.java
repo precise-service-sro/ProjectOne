@@ -22,18 +22,14 @@ public class NemovitostKontaktService implements INemovitostKontaktService {
   private NemovitostKontaktRepository nemovitostKontaktRepository;
 
   @Override
-  public NemovitostKontakt postNemovitostKontakt(String idNemovitost, NemovitostKontakt nemovitostKontakt) {
+  public NemovitostKontakt postNemovitostKontakt(NemovitostKontakt nemovitostKontakt) {
     log.trace("postNemovitostKontakt()");
-    Nemovitost nemovitost = nemovitostService.getNemovitost(idNemovitost);
-    nemovitostKontakt.setNemovitost(nemovitost);
     return nemovitostKontaktRepository.save(nemovitostKontakt);
   }
 
   @Override
-  public NemovitostKontakt putNemovitostKontakt(String idNemovitost, NemovitostKontakt nemovitostKontakt) {
+  public NemovitostKontakt putNemovitostKontakt(NemovitostKontakt nemovitostKontakt) {
     log.trace("putNemovitostKontakt()");
-    Nemovitost nemovitost = nemovitostService.getNemovitost(idNemovitost);
-    nemovitostKontakt.setNemovitost(nemovitost);
     return nemovitostKontaktRepository.save(nemovitostKontakt);
   }
 
@@ -50,7 +46,7 @@ public class NemovitostKontaktService implements INemovitostKontaktService {
   }
 
   @Override
-  public void deleteNemovitostKontakt(String idNemovitost, String idNemovitostKontakt) {
+  public void deleteNemovitostKontakt(String idNemovitostKontakt) {
     log.trace("deleteNemovitostKontakt()");
     nemovitostKontaktRepository.deleteById(idNemovitostKontakt);
   }

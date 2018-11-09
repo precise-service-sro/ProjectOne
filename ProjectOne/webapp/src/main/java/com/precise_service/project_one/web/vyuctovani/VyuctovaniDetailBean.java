@@ -1,9 +1,5 @@
 package com.precise_service.project_one.web.vyuctovani;
 
-import java.io.Serializable;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 import javax.faces.application.FacesMessage;
@@ -11,16 +7,12 @@ import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
 import org.primefaces.event.RowEditEvent;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import com.precise_service.project_one.entity.Cislo;
 import com.precise_service.project_one.entity.PolozkaTyp;
 import com.precise_service.project_one.entity.vyuctovani.Vyuctovani;
 import com.precise_service.project_one.entity.vyuctovani.VyuctovaniPolozka;
-import com.precise_service.project_one.service.vyuctovani.IPolozkaTypService;
-import com.precise_service.project_one.service.vyuctovani.IVyuctovaniPolozkaService;
-import com.precise_service.project_one.service.vyuctovani.IVyuctovaniService;
-import com.precise_service.project_one.web.common.DateFormatter;
+import com.precise_service.project_one.web.AbstractBean;
 import com.precise_service.project_one.web.login.Util;
 
 import lombok.Data;
@@ -29,16 +21,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Data
 @Named
-public class VyuctovaniDetailBean implements Serializable {
-
-  @Autowired
-  private IVyuctovaniService vyuctovaniService;
-
-  @Autowired
-  private IVyuctovaniPolozkaService vyuctovaniPolozkaService;
-
-  @Autowired
-  private IPolozkaTypService polozkaTypService;
+public class VyuctovaniDetailBean extends AbstractBean {
 
   private List<PolozkaTyp> polozkaTypList;
   private Vyuctovani vyuctovani;

@@ -16,6 +16,7 @@ import com.precise_service.project_one.entity.nemovitost.Nemovitost;
 import com.precise_service.project_one.entity.osoba.Osoba;
 import com.precise_service.project_one.service.nemovitost.INemovitostService;
 import com.precise_service.project_one.service.osoba.IOsobaService;
+import com.precise_service.project_one.web.AbstractBean;
 import com.precise_service.project_one.web.URL_CONST;
 import com.precise_service.project_one.web.login.Util;
 
@@ -27,16 +28,7 @@ import static com.precise_service.project_one.web.URL_CONST.OSOBA_DETAIL_URL;
 @Slf4j
 @Data
 @Named
-public class OsobaPrehledBean implements Serializable {
-
-  @Autowired
-  private IOsobaService osobaService;
-
-  @Autowired
-  private INemovitostService nemovitostService;
-
-  @Autowired
-  private OsobaDetailBean osobaDetailBean;
+public class OsobaPrehledBean extends AbstractBean {
 
   private List<Osoba> osobaList;
   
@@ -61,11 +53,7 @@ public class OsobaPrehledBean implements Serializable {
     FacesContext.getCurrentInstance().addMessage(null, msg);
   }
 
-  public void showOsobaDetailBean(Osoba osoba) throws IOException {
-    osobaDetailBean.setOsoba(osoba);
-    Faces.getFlash().setRedirect(true);
-    Faces.redirect(OSOBA_DETAIL_URL);
-  }
+
 
   public void addRow() {
     log.trace("addRow()");

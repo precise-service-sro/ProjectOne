@@ -190,6 +190,7 @@
           </div>
         </div>
       </h:form>
+
       <h:form id="form2">
         <p:growl id="msgs2" showDetail="true"/>
 
@@ -202,26 +203,35 @@
               <div class="divTableCell">
                 <div class="addButtonDiv">
                   <p:commandButton value="Přidat" icon="ui-icon-circle-plus" process="@this" update="form2 :form2:msgs2" editable="true"
-                                   actionListener="#{nemovitostDetailBean.pridatNovyKontakt()}" />
+                                   actionListener="#{nemovitostKontaktBean.pridatNemovitostKontakt()}" />
                 </div>
-                <p:dataTable id="nemovitostDetailBeanContactsTable" var="kontakt" widgetVar="nemovitostDetailBeanContactsTable"
-                             value="#{nemovitostDetailBean.nemovitostNemovitostKontaktList}" resizableColumns="true" sortBy="#{1}" editable="true"
-                             rendered="#{not empty nemovitostDetailBean.nemovitostNemovitostKontaktList}">
+
+                <h:outputText value="#{nemovitostKontaktBean.init(nemovitostDetailBean.nemovitost.id)}" />
+
+                <p:dataTable id="nemovitostKontaktBeanTable" var="kontakt" widgetVar="nemovitostKontaktBeanTable"
+                             value="#{nemovitostKontaktBean.nemovitostKontaktList}" resizableColumns="true" sortBy="#{1}" editable="true"
+                             rendered="#{not empty nemovitostKontaktBean.nemovitostKontaktList}"
+                             emptyMessage="Nebyly nalezeny žádné kontakty" filteredValue="#{nemovitostKontaktBean.filtrovanyNemovitostKontaktList}">
+
+
+                  <p:ajax event="rowEdit" listener="#{nemovitostKontaktBean.ulozitUpravuNemovitostKontakt}" update=":form2:msgs2"/>
+                  <p:ajax event="rowEditCancel" listener="#{nemovitostKontaktBean.zrusitUpravuNemovitostKontakt}" update=":form2:msgs2"/>
 
                   <p:columnGroup type="header">
                     <p:row>
-                      <p:column headerText="Jméno" style="width: 180px;"/>
-                      <p:column headerText="Telefon" style="width: 180px;"/>
-                      <p:column headerText="Email" style="width: 200px;"/>
-                      <p:column headerText="Poznámka" style="width: 200px;"/>
-                      <p:column headerText="Ovládání" colspan="2" rowspan="2" style="width: 160px;"/>
+                      <p:column headerText="Jméno"    filterBy="#{kontakt.jmeno}"    filterMatchMode="contains"                         style="width: 180px;"/>
+                      <p:column headerText="Příjmení" filterBy="#{kontakt.prijmeni}" filterMatchMode="contains"                         style="width: 180px;"/>
+                      <p:column headerText="Telefon"  filterBy="#{kontakt.telefon}"  filterMatchMode="contains"                         style="width: 180px;"/>
+                      <p:column headerText="Email"    filterBy="#{kontakt.email}"    filterMatchMode="contains"                         style="width: 200px;"/>
+                      <p:column headerText="Poznámka" filterBy="#{kontakt.poznamky}" filterMatchMode="contains"                         style="width: 200px;"/>
+                      <p:column headerText="Ovládání"                                                           colspan="2" rowspan="2" style="width: 160px;"/>
                     </p:row>
                   </p:columnGroup>
 
                   <p:column>
                     <p:cellEditor>
                       <f:facet name="output">
-                        <h:outputText value="#{kontakt.jmeno}"/>
+                        <h:outputText value="#{kontakt.jmeno}" title="#{kontakt.jmeno}"/>
                       </f:facet>
                       <f:facet name="input">
                         <p:inputText id="kontaktJmenoInput" value="#{kontakt.jmeno}" style="width:100%"/>
@@ -232,7 +242,7 @@
                   <p:column>
                     <p:cellEditor>
                       <f:facet name="output">
-                        <h:outputText value="#{kontakt.prijmeni}"/>
+                        <h:outputText value="#{kontakt.prijmeni}" title="#{kontakt.prijmeni}"/>
                       </f:facet>
                       <f:facet name="input">
                         <p:inputText id="kontaktPrijmeniInput" value="#{kontakt.prijmeni}" style="width:100%"/>
@@ -243,7 +253,18 @@
                   <p:column>
                     <p:cellEditor>
                       <f:facet name="output">
-                        <h:outputText value="#{kontakt.email}"/>
+                        <h:outputText value="#{kontakt.telefon}" title="#{kontakt.telefon}"/>
+                      </f:facet>
+                      <f:facet name="input">
+                        <p:inputText id="kontaktTelefonInput" value="#{kontakt.telefon}" style="width:100%"/>
+                      </f:facet>
+                    </p:cellEditor>
+                  </p:column>
+
+                  <p:column>
+                    <p:cellEditor>
+                      <f:facet name="output">
+                        <h:outputText value="#{kontakt.email}" title="#{kontakt.email}"/>
                       </f:facet>
                       <f:facet name="input">
                         <p:inputText id="kontaktEmailInput" value="#{kontakt.email}" style="width:100%"/>
@@ -254,10 +275,10 @@
                   <p:column>
                     <p:cellEditor>
                       <f:facet name="output">
-                        <h:outputText value="#{kontakt.telefon}"/>
+                        <h:outputText value="#{kontakt.poznamky}" title="#{kontakt.poznamky}"/>
                       </f:facet>
                       <f:facet name="input">
-                        <p:inputText id="kontaktTelefonInput" value="#{kontakt.telefon}" style="width:100%"/>
+                        <p:inputText id="kontaktPoznamkyInput" value="#{kontakt.poznamky}" style="width:100%" />
                       </f:facet>
                     </p:cellEditor>
                   </p:column>
@@ -267,7 +288,7 @@
                   </p:column>
 
                   <p:column>
-                    <p:commandButton update="@form :form:msgs" icon="ui-icon-circle-minus" actionListener="#{polozkaTypBean.deleteRow(polozkaTyp.id)}"
+                    <p:commandButton update="form2 :form2:msgs2" icon="ui-icon-circle-minus" actionListener="#{nemovitostKontaktBean.smazatNemovitostKontakt(kontakt)}"
                                      title="Odebrat"/>
                   </p:column>
 
@@ -277,6 +298,7 @@
           </div>
         </div>
       </h:form>
+
       <h:form id="form3">
         <p:growl id="msgs3" showDetail="true"/>
 
@@ -295,25 +317,26 @@
               <div class="divTableCell">
                 <div class="addButtonDiv">
                   <p:commandButton value="Přidat" icon="ui-icon-circle-plus" process="@this" update="form3 :form3:msgs3"
-                                   actionListener="#{polozkaTypBean.addRow()}"/>
+                                   actionListener="#{polozkaTypBean.pridatPolozkaTyp()}"/>
                 </div>
 
-                <h:outputText value="#{polozkaTypBean.init()}"/>
+                <h:outputText value="#{polozkaTypBean.init(nemovitostDetailBean.nemovitost.id)}"/>
 
                 <p:dataTable id="polozkaTypTable" widgetVar="polozkaTypTable"
                              var="polozkaTyp" value="#{polozkaTypBean.polozkaTypList}"
                              editable="true" rowIndexVar="index"
-                             rendered="#{not empty polozkaTypBean.polozkaTypList}">
+                             rendered="#{not empty polozkaTypBean.polozkaTypList}"
+                             emptyMessage="Nebyly nalezeny žádné vyúčtovávané položky" filteredValue="#{polozkaTypBean.filtrovanyPolozkaTypList}">
 
-                  <p:ajax event="rowEdit" listener="#{polozkaTypBean.onRowEdit}" update=":form:msgs"/>
-                  <p:ajax event="rowEditCancel" listener="#{polozkaTypBean.onRowCancel}" update=":form:msgs"/>
+                  <p:ajax event="rowEdit" listener="#{polozkaTypBean.ulozitUpravuPolozkaTyp}" update=":form3:msgs3"/>
+                  <p:ajax event="rowEditCancel" listener="#{polozkaTypBean.zrusitUpravuPolozkaTyp}" update=":form3:msgs3"/>
 
                   <p:columnGroup type="header">
                     <p:row>
-                      <p:column headerText="Název" style="width: 150px;"/>
-                      <p:column headerText="Jednotka" style="width: 150px;"/>
-                      <p:column headerText="Popis"/>
-                      <p:column headerText="Ovládání" colspan="2" style="width: 160px;"/>
+                      <p:column headerText="Název"    filterBy="#{polozkaTyp.nazev}"    filterMatchMode="contains"             style="width: 150px;"/>
+                      <p:column headerText="Jednotka" filterBy="#{polozkaTyp.jednotka}" filterMatchMode="contains"             style="width: 150px;"/>
+                      <p:column headerText="Popis"    filterBy="#{polozkaTyp.popis}"    filterMatchMode="contains"                                  />
+                      <p:column headerText="Ovládání"                                                              colspan="2" style="width: 160px;"/>
                     </p:row>
                   </p:columnGroup>
 
@@ -355,7 +378,7 @@
                   </p:column>
 
                   <p:column>
-                    <p:commandButton update="@form :form:msgs" icon="ui-icon-circle-minus" actionListener="#{polozkaTypBean.deleteRow(polozkaTyp.id)}"
+                    <p:commandButton update="form3 :form3:msgs3" icon="ui-icon-circle-minus" actionListener="#{polozkaTypBean.smazatPolozkaTyp(polozkaTyp)}"
                                      title="Odebrat"/>
                   </p:column>
                 </p:dataTable>

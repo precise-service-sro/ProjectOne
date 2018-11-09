@@ -1,6 +1,5 @@
 package com.precise_service.project_one.web.predavaci_protokol;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,18 +8,13 @@ import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
 import org.primefaces.event.RowEditEvent;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import com.precise_service.project_one.entity.PolozkaTyp;
 import com.precise_service.project_one.entity.nemovitost.Nemovitost;
 import com.precise_service.project_one.entity.osoba.Osoba;
 import com.precise_service.project_one.entity.predavaci_protokol.PredavaciProtokol;
 import com.precise_service.project_one.entity.predavaci_protokol.PredavaciProtokolPolozka;
-import com.precise_service.project_one.service.nemovitost.INemovitostService;
-import com.precise_service.project_one.service.osoba.IOsobaService;
-import com.precise_service.project_one.service.predavaci_protokol.IPredavaciProtokolPolozkaService;
-import com.precise_service.project_one.service.predavaci_protokol.IPredavaciProtokolService;
-import com.precise_service.project_one.service.vyuctovani.IPolozkaTypService;
+import com.precise_service.project_one.web.AbstractBean;
 import com.precise_service.project_one.web.login.Util;
 
 import lombok.Data;
@@ -29,22 +23,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Data
 @Named
-public class PredavaciProtokolDetailBean implements Serializable {
-
-  @Autowired
-  private IPredavaciProtokolService predavaciProtokolService;
-
-  @Autowired
-  private IPredavaciProtokolPolozkaService predavaciProtokolPolozkaService;
-
-  @Autowired
-  private IPolozkaTypService polozkaTypService;
-
-  @Autowired
-  private INemovitostService nemovitostService;
-
-  @Autowired
-  private IOsobaService osobaService;
+public class PredavaciProtokolDetailBean extends AbstractBean {
 
   private PredavaciProtokol predavaciProtokol;
   private List<PredavaciProtokolPolozka> predavaciProtokolPolozkaList;

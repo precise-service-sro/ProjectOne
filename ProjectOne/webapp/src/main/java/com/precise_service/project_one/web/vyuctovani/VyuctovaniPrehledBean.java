@@ -1,9 +1,6 @@
 package com.precise_service.project_one.web.vyuctovani;
 
 import java.io.IOException;
-import java.io.Serializable;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -14,14 +11,12 @@ import javax.inject.Named;
 import org.omnifaces.util.Faces;
 import org.primefaces.event.RowEditEvent;
 import org.primefaces.event.SelectEvent;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import com.precise_service.project_one.entity.CasovyInterval;
 import com.precise_service.project_one.entity.nemovitost.Nemovitost;
 import com.precise_service.project_one.entity.osoba.Osoba;
 import com.precise_service.project_one.entity.vyuctovani.Vyuctovani;
-import com.precise_service.project_one.service.nemovitost.INemovitostService;
-import com.precise_service.project_one.service.vyuctovani.IVyuctovaniService;
+import com.precise_service.project_one.web.AbstractBean;
 import com.precise_service.project_one.web.common.DateFormatter;
 import com.precise_service.project_one.web.login.Util;
 
@@ -33,16 +28,7 @@ import static com.precise_service.project_one.web.URL_CONST.VYUCTOVANI_DETAIL_UR
 @Slf4j
 @Data
 @Named
-public class VyuctovaniPrehledBean implements Serializable {
-
-  @Autowired
-  private IVyuctovaniService vyuctovaniService;
-
-  @Autowired
-  private INemovitostService nemovitostService;
-
-  @Autowired
-  private VyuctovaniDetailBean vyuctovaniDetailBean;
+public class VyuctovaniPrehledBean extends AbstractBean {
 
   private CasovyInterval zuctovaciObdobi;
   private List<Vyuctovani> vyuctovaniList;

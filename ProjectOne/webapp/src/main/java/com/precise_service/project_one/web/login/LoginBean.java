@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.precise_service.project_one.entity.osoba.Osoba;
 import com.precise_service.project_one.service.osoba.IOsobaService;
+import com.precise_service.project_one.web.AbstractBean;
 
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
@@ -24,12 +25,9 @@ import static com.precise_service.project_one.web.URL_CONST.NEMOVITOST_PREHLED_U
 @Named
 @Data
 @Slf4j
-public class LoginBean implements Serializable {
+public class LoginBean extends AbstractBean {
 
   public static final String SESSION_ATTRIBUTE_PRIHLASENY_UZIVATEL = "prihlasenyUzivatel";
-
-  @Autowired
-  private IOsobaService osobaService;
 
   private String prihlasovaciJmeno;
   private String heslo;

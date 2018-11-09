@@ -19,14 +19,13 @@
   <h:form>
     <p:dock position="bottom">
       <p:menuitem value="Přihlášení"                           icon="/icons/prihlaseni.png"             url="#{request.contextPath}/public/index.xhtml"/>
-      <p:menuitem value="Můj profil"                           icon="/icons/mujProfil.png"              url="#{request.contextPath}/private/osoba/detail.xhtml"/>
+      <p:menuitem value="Můj profil"                           icon="/icons/mujProfil.png"              actionListener="#{routerBean.goToOsobaDetailBean(loginBean.prihlasenyUzivatel)}" />
       <p:menuitem value="Nemovitosti"                          icon="/icons/nemovitost.png"             url="#{request.contextPath}/private/nemovitost/prehled.xhtml"/>
       <p:menuitem value="Faktury od dodavatelů"                icon="/icons/faktury.png"                url="#{request.contextPath}/private/faktura/prehled.xhtml"/>
       <p:menuitem value="Osoby"                                icon="/icons/osoba.png"                  url="#{request.contextPath}/private/osoba/prehled.xhtml"/>
       <p:menuitem value="Předávací protokoly"                  icon="/icons/predavaciProtokol.png"      url="#{request.contextPath}/private/predavaciProtokol/prehled.xhtml"/>
       <p:menuitem value="Generování vyúčtování pro nájemníky"  icon="/icons/generator.png"              url="#{request.contextPath}/private/vyuctovani/generator.xhtml"/>
       <p:menuitem value="Vyúčtování pro nájemníky"             icon="/icons/vyuctovani.png"             url="#{request.contextPath}/private/vyuctovani/prehled.xhtml"/>
-      <p:menuitem value="Vyúčtovávané položky"                 icon="/icons/vyuctovavanePolozky.png"    url="#{request.contextPath}/private/common/polozkaTyp.xhtml"/>
       <p:menuitem value="Nájemní smlouvy"                      icon="/icons/najemniSmlouva.png"         url="#{request.contextPath}/private/najemniSmlouva/prehled.xhtml"/>
       <p:menuitem value="Finance"                              icon="/icons/finance.png"                url="#{request.contextPath}/private/najemniSmlouva/prehled.xhtml"/>
       <p:menuitem value="Vývoj spotřeby"                       icon="/icons/vyvojSpotreby.png"          url="#{request.contextPath}/private/najemniSmlouva/prehled.xhtml"/>

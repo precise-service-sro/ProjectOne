@@ -20,6 +20,7 @@ import com.precise_service.project_one.entity.nemovitost.Nemovitost;
 import com.precise_service.project_one.entity.osoba.Osoba;
 import com.precise_service.project_one.service.faktura.IFakturaService;
 import com.precise_service.project_one.service.nemovitost.INemovitostService;
+import com.precise_service.project_one.web.AbstractBean;
 import com.precise_service.project_one.web.common.DateFormatter;
 import com.precise_service.project_one.web.login.Util;
 
@@ -31,16 +32,7 @@ import static com.precise_service.project_one.web.URL_CONST.FAKTURA_DETAIL_URL;
 @Slf4j
 @Data
 @Named
-public class FakturaPrehledBean implements Serializable {
-
-  @Autowired
-  private IFakturaService fakturaService;
-
-  @Autowired
-  private INemovitostService nemovitostService;
-
-  @Autowired
-  private FakturaDetailBean fakturaDetailBean;
+public class FakturaPrehledBean extends AbstractBean {
 
   private CasovyInterval zuctovaciObdobi;
   private List<Faktura> fakturaList;

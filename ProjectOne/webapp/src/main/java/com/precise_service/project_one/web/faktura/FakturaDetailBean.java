@@ -1,6 +1,5 @@
 package com.precise_service.project_one.web.faktura;
 
-import java.io.Serializable;
 import java.util.List;
 
 import javax.faces.application.FacesMessage;
@@ -8,17 +7,13 @@ import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
 import org.primefaces.event.RowEditEvent;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import com.precise_service.project_one.entity.Cislo;
 import com.precise_service.project_one.entity.PolozkaTyp;
 import com.precise_service.project_one.entity.faktura.Faktura;
 import com.precise_service.project_one.entity.faktura.FakturaPolozka;
 import com.precise_service.project_one.entity.nemovitost.Nemovitost;
-import com.precise_service.project_one.service.faktura.IFakturaPolozkaService;
-import com.precise_service.project_one.service.faktura.IFakturaService;
-import com.precise_service.project_one.service.nemovitost.INemovitostService;
-import com.precise_service.project_one.service.vyuctovani.IPolozkaTypService;
+import com.precise_service.project_one.web.AbstractBean;
 import com.precise_service.project_one.web.login.Util;
 
 import lombok.Data;
@@ -27,19 +22,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Data
 @Named
-public class FakturaDetailBean implements Serializable {
-
-  @Autowired
-  private IFakturaService fakturaService;
-
-  @Autowired
-  private IFakturaPolozkaService fakturaPolozkaService;
-
-  @Autowired
-  private IPolozkaTypService polozkaTypService;
-
-  @Autowired
-  private INemovitostService nemovitostService;
+public class FakturaDetailBean extends AbstractBean {
 
   private List<Nemovitost> nemovitostList;
   private Faktura faktura;

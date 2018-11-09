@@ -6,18 +6,14 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.ConverterException;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import com.precise_service.project_one.entity.osoba.Osoba;
-import com.precise_service.project_one.service.osoba.IOsobaService;
+import com.precise_service.project_one.web.AbstractBean;
 
 @Service("osobaConverter")
-public class OsobaConverter implements Converter {
-
-  @Autowired
-  private IOsobaService osobaService;
+public class OsobaConverter extends AbstractBean implements Converter {
 
   public Object getAsObject(FacesContext fc, UIComponent uic, String value) {
     if (StringUtils.isEmpty(value)) {

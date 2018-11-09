@@ -10,12 +10,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import com.precise_service.project_one.entity.osoba.Osoba;
-import com.precise_service.project_one.service.osoba.IOsobaService;
+import com.precise_service.project_one.web.AbstractBean;
 
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -27,10 +26,7 @@ import static com.precise_service.project_one.web.login.LoginBean.SESSION_ATTRIB
 @Component
 @Order(1)
 @Slf4j
-public class AuthFilter implements Filter {
-
-  @Autowired
-  private IOsobaService osobaService;
+public class AuthFilter extends AbstractBean implements Filter {
 
   @Override
   public void init(FilterConfig filterConfig) {

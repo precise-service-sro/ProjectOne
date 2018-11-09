@@ -12,12 +12,10 @@ import org.springframework.util.StringUtils;
 
 import com.precise_service.project_one.entity.predavaci_protokol.PredavaciProtokol;
 import com.precise_service.project_one.service.predavaci_protokol.IPredavaciProtokolService;
+import com.precise_service.project_one.web.AbstractBean;
 
 @Service("predavaciProtokolConverter")
-public class PredavaciProtokolConverter implements Converter {
-
-  @Autowired
-  private IPredavaciProtokolService predavaciProtokolService;
+public class PredavaciProtokolConverter extends AbstractBean implements Converter {
 
   public Object getAsObject(FacesContext fc, UIComponent uic, String value) {
     if (StringUtils.isEmpty(value)) {

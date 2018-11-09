@@ -112,7 +112,7 @@
               </p:column>
 
               <p:column>
-                <p:commandButton icon="ui-icon-circle-zoomin" actionListener="#{osobaPrehledBean.showOsobaDetailBean(osoba)}" title="Podrobnosti"/>
+                <p:commandButton icon="ui-icon-circle-zoomin" actionListener="#{routerBean.goToOsobaDetailBean(osoba)}" title="Podrobnosti"/>
               </p:column>
 
               <p:column>
@@ -120,7 +120,7 @@
               </p:column>
 
               <p:column>
-                <p:commandButton update="@form :form:msgs" icon="ui-icon-circle-minus" actionListener="#{osobaPrehledBean.deleteRow(osoba)}" title="Odebrat"/>
+                <p:commandButton update="form :form:msgs" icon="ui-icon-circle-minus" actionListener="#{osobaPrehledBean.deleteRow(osoba)}" title="Odebrat"/>
               </p:column>
             </p:dataTable>
           </div>

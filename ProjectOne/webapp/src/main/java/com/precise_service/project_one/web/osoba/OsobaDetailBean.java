@@ -1,17 +1,11 @@
 package com.precise_service.project_one.web.osoba;
 
-import java.io.Serializable;
-
-import javax.faces.annotation.ManagedProperty;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
 import com.precise_service.project_one.entity.osoba.Osoba;
-import com.precise_service.project_one.service.osoba.IOsobaService;
-import com.precise_service.project_one.web.common.component.EditorTextuBean;
+import com.precise_service.project_one.web.AbstractBean;
 import com.precise_service.project_one.web.login.Util;
 
 import lombok.Data;
@@ -20,22 +14,11 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Data
 @Named
-public class OsobaDetailBean implements Serializable {
-
-  @Autowired
-  private EditorTextuBean editorTextuBean;
-
-  @Autowired
-  private IOsobaService osobaService;
+public class OsobaDetailBean extends AbstractBean {
 
   private Osoba osoba;
 
   public void init() {
-    if (osoba != null) {
-      // jenom reload dat z databaze
-      osoba = osobaService.getOsoba(osoba.getId());
-    }
-
     if (osoba == null) {
       osoba = osobaService.getOsoba(Util.getPrihlasenyUzivatel().getId());
       log.trace("Není vybraná žádná osoba ke zobrazení detailů. (zobrazuji aktuálního přihlášeného uživatele)");
@@ -51,7 +34,7 @@ public class OsobaDetailBean implements Serializable {
     osoba.setPoznamky(newText);
     osobaService.postOsoba(osoba);
 
-    FacesMessage msg = new FacesMessage("Úprava uložena", newText);
+    FacesMessage msg = new FacesMessage("Úprava poznámky uložena", newText);
     FacesContext.getCurrentInstance().addMessage(null, msg);
   }
 

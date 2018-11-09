@@ -20,6 +20,7 @@ import com.precise_service.project_one.entity.predavaci_protokol.PredavaciProtok
 import com.precise_service.project_one.service.nemovitost.INemovitostService;
 import com.precise_service.project_one.service.osoba.IOsobaService;
 import com.precise_service.project_one.service.predavaci_protokol.IPredavaciProtokolService;
+import com.precise_service.project_one.web.AbstractBean;
 import com.precise_service.project_one.web.URL_CONST;
 import com.precise_service.project_one.web.login.Util;
 
@@ -31,19 +32,7 @@ import static com.precise_service.project_one.web.URL_CONST.PREDAVACI_PROTOKOL_D
 @Slf4j
 @Data
 @Named
-public class PredavaciProtokolPrehledBean implements Serializable {
-
-  @Autowired
-  private IPredavaciProtokolService predavaciProtokolService;
-
-  @Autowired
-  private PredavaciProtokolDetailBean predavaciProtokolDetailBean;
-
-  @Autowired
-  private INemovitostService nemovitostService;
-
-  @Autowired
-  private IOsobaService osobaService;
+public class PredavaciProtokolPrehledBean extends AbstractBean {
 
   private List<PredavaciProtokol> predavaciProtokolList;
   private List<PredavaciProtokol> filtrovanyPredavaciProtokolList;
