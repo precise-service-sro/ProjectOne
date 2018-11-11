@@ -184,11 +184,29 @@ table td select {
     margin-right: 250px;
 }
 
-.ui-tabs-left>.ui-tabs-nav {
-    width: 15%;
+
+.pageTitle {
+    width: 100%;
 }
 
-.ui-tabs-left>.ui-tabs-panels {
-    float: right;
-    width: 75%;
+.pageTitle p {
+    font-size: 25px;
+    font-weight: bold;
+    display: inline;
+}
+
+.pageTitleLeft {
+    float: left;
+}
+
+.pageTitleLeft select {
+    width: 200px;
+    margin-left: 20px;
+    font-size: x-large;
+}
+
+.pageTitleRight {
+    text-align: right;
+    margin-bottom: 20px;
+    width: 100%;
 }

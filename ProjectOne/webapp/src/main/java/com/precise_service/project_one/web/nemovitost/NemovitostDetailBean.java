@@ -28,6 +28,7 @@ public class NemovitostDetailBean extends AbstractBean {
   private Nemovitost nemovitost;
   private List<Osoba> osobaList;
 
+  private List<Nemovitost> nemovitostList;
   private List<NemovitostTyp> nemovitostTypList;
   private List<NemovitostDruhVlastnictvi> nemovitostDruhVlastnictviList;
   private List<NemovitostDispozice> nemovitostDispoziceList;
@@ -42,6 +43,7 @@ public class NemovitostDetailBean extends AbstractBean {
 
     Osoba prihlasenyUzivatel = Util.getPrihlasenyUzivatel();
     osobaList = osobaService.getOsobaAll(prihlasenyUzivatel.getId());
+    nemovitostList = nemovitostService.getNemovitostAll(prihlasenyUzivatel.getId());
 
     nemovitostTypList = Arrays.asList(NemovitostTyp.values());
     statList = Arrays.asList(Stat.values());

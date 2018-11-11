@@ -15,15 +15,22 @@
 
       <h:outputText value="#{nemovitostDetailBean.init()}"/>
 
-      <div class="pageContentTitle">
-        <p>Detailní informace o konkrétní nemovitosti:</p>
-        <h:selectOneMenu value="#{nemovitostDetailBean.nemovitost.vlastnik}" converter="#{osobaConverter}">
-          <f:selectItems value="#{nemovitostDetailBean.osobaList}" var="osoba" itemLabel="#{osoba.getCeleJmeno()}" itemValue="#{osoba}"/>
-        </h:selectOneMenu>
-      </div>
-
       <h:form id="form">
         <p:growl id="msgs" showDetail="true"/>
+
+        <div class="pageTitle">
+          <div class="pageTitleLeft">
+            <p>Nemovitost:</p>
+            <h:selectOneMenu value="#{nemovitostDetailBean.nemovitost}" converter="#{nemovitostConverter}">
+              <f:selectItems value="#{nemovitostDetailBean.nemovitostList}" var="nemovitost" itemLabel="#{nemovitost.nazev}" itemValue="#{nemovitost}"/>
+            </h:selectOneMenu>
+          </div>
+          <div class="pageTitleRight">
+            <p:commandButton value="Uložit" actionListener="#{nemovitostDetailBean.ulozitZmenuNemovitosti()}" update="form :form:msgs"/>
+            <p:commandButton value="Zrušit" actionListener="#{nemovitostDetailBean.zrusitZmenuNemovitosti()}" update="form :form:msgs"/>
+          </div>
+        </div>
+
         <p:tabView id="tabViewNemovitostDetail" orientation="left">
 
           <p:tab title="Základní informace">
@@ -385,17 +392,6 @@
             </p:outputPanel>
           </p:tab>
         </p:tabView>
-
-        <div class="buttons">
-          <div class="process">
-            <p:commandButton value="Uložit" actionListener="#{nemovitostDetailBean.ulozitZmenuNemovitosti()}" update="form :form:msgs"/>
-          </div>
-          <div class="cancel">
-            <p:commandButton value="Zrušit" actionListener="#{nemovitostDetailBean.zrusitZmenuNemovitosti()}" update="form :form:msgs"/>
-          </div>
-        </div>
-
-
       </h:form>
 
     </ui:define>
