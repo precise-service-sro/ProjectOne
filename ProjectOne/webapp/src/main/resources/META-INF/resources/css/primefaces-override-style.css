@@ -1,0 +1,14 @@
+.ui-tabs-left>.ui-tabs-nav {
+    width: 15%;
+}
+
+.ui-tabs-left>.ui-tabs-panels {
+    float: right;
+    width: 85%;
+}
+
+.ui-tabs .ui-tabs-panel {
+    border-width: 0px;
+    padding: 0em 0em;
+    background: 0;
+}

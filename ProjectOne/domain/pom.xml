@@ -34,6 +34,11 @@
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>
     </dependency>
+    <!-- https://mvnrepository.com/artifact/org.mongojack/mongojack -->
+    <dependency>
+      <groupId>org.mongojack</groupId>
+      <artifactId>mongojack</artifactId>
+    </dependency>
   </dependencies>
 
   <build>

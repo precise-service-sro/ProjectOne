@@ -17,15 +17,19 @@
 
       <div class="pageContentTitle">
         <p>Detailní informace o konkrétní nemovitosti:</p>
+        <h:selectOneMenu value="#{nemovitostDetailBean.nemovitost.vlastnik}" converter="#{osobaConverter}">
+          <f:selectItems value="#{nemovitostDetailBean.osobaList}" var="osoba" itemLabel="#{osoba.getCeleJmeno()}" itemValue="#{osoba}"/>
+        </h:selectOneMenu>
       </div>
 
       <h:form id="form">
         <p:growl id="msgs" showDetail="true"/>
-        <p:tabView id="tabViewNemovitostDetail">
-          <p:tab title="Informace o nemovitosti">
+        <p:tabView id="tabViewNemovitostDetail" orientation="left">
 
+          <p:tab title="Základní informace">
             <div class="divTable">
-              <table class="table_with_2_columns">
+              <p class="tableCaption">Základní informace:</p>
+              <table class="table_with_3_columns">
                 <tr>
                   <th class="prvniSloupec">
                     <div><p>Název:</p></div>
@@ -35,24 +39,7 @@
                       <p:inputText value="#{nemovitostDetailBean.nemovitost.nazev}"/>
                     </div>
                   </td>
-
-                  <th>
-                    <div><p>Vlastník:</p></div>
-                  </th>
-                  <td>
-                    <div>
-                      <h:selectOneMenu value="#{nemovitostDetailBean.nemovitost.vlastnik}" converter="#{osobaConverter}">
-                        <f:selectItems value="#{nemovitostDetailBean.osobaList}" var="osoba" itemLabel="#{osoba.getCeleJmeno()}" itemValue="#{osoba}"/>
-                      </h:selectOneMenu>
-                    </div>
-                  </td>
                 </tr>
-              </table>
-            </div>
-
-            <div class="divTable">
-              <p class="tableCaption">O nemovitosti:</p>
-              <table class="table_with_3_columns">
                 <tr>
                   <th class="prvniSloupec">
                     <div><p>Typ:</p></div>
@@ -75,6 +62,17 @@
                         <f:selectItems value="#{nemovitostDetailBean.nemovitostDruhVlastnictviList}" var="nemovitostDruhVlastnictvi"
                                        itemLabel="#{nemovitostDruhVlastnictvi.hodnota}"
                                        itemValue="#{nemovitostDruhVlastnictvi}"/>
+                      </h:selectOneMenu>
+                    </div>
+                  </td>
+
+                  <th>
+                    <div><p>Vlastník:</p></div>
+                  </th>
+                  <td>
+                    <div>
+                      <h:selectOneMenu value="#{nemovitostDetailBean.nemovitost.vlastnik}" converter="#{osobaConverter}">
+                        <f:selectItems value="#{nemovitostDetailBean.osobaList}" var="osoba" itemLabel="#{osoba.getCeleJmeno()}" itemValue="#{osoba}"/>
                       </h:selectOneMenu>
                     </div>
                   </td>
@@ -114,7 +112,9 @@
                 </tr>
               </table>
             </div>
+          </p:tab>
 
+          <p:tab title="Adresa">
             <div class="divTable">
               <p class="tableCaption">Adresa:</p>
               <table class="table_with_3_columns">
@@ -192,12 +192,12 @@
             </div>
           </p:tab>
 
-          <p:tab id="tabKontaktniOsoby" title="Kontaktní osoby k nemovitosti">
+          <p:tab id="tabKontaktniOsoby" title="Kontaktní osoby">
             <p:outputPanel id="outputPanelKontaktniOsoby" autoUpdate="true">
               <table>
                 <tr>
                   <th>
-                    <div><p>Kontakty:</p></div>
+                    <div><p>Kontaktní osoby:</p></div>
                   </th>
                   <td>
                     <div>
@@ -301,7 +301,7 @@
             </p:outputPanel>
           </p:tab>
 
-          <p:tab id="tabVyucotavanePolozky" title="Vyúčtovávané položky u nemovitosti">
+          <p:tab id="tabVyucotavanePolozky" title="Vyúčtovávané položky">
             <p:outputPanel id="outputPanelVyucotavanePolozky" autoUpdate="true">
               <table>
                 <tr>

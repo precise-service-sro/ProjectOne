@@ -117,10 +117,12 @@
 }
 
 .divTable {
-    width: 1000px;
-    margin-bottom: 20px;
-    border: 5px solid #00F;
-    border-radius: 20px;
+    border: 5px solid #DFDFDF;
+    border-radius: 10px;
+    background-color: #DFDFDF;
+    margin-left: 2px;
+    margin-top: 1px;
+    min-height: 290px;
 }
 
 table {
@@ -180,4 +182,13 @@ table td select {
 .buttons .process {
     float: left;
     margin-right: 250px;
+}
+
+.ui-tabs-left>.ui-tabs-nav {
+    width: 15%;
+}
+
+.ui-tabs-left>.ui-tabs-panels {
+    float: right;
+    width: 75%;
 }
