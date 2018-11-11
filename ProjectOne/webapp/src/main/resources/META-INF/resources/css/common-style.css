@@ -120,7 +120,7 @@
 	display: table-header-group;
 }
 .divTableCell, .divTableHead {
-	border: 1px solid #999999;
+	border: 0px solid #999999;
 	display: table-cell;
 	padding: 3px 10px;
 }
@@ -136,4 +136,13 @@
 }
 .divTableBody {
 	display: table-row-group;
+}
+
+.editorTextu {
+    width: 500px;
+}
+
+.colspan2 {
+  /* What to do here? */
+  display: table-caption;
 }

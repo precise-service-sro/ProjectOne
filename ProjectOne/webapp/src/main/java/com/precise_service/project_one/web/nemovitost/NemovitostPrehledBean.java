@@ -36,12 +36,10 @@ public class NemovitostPrehledBean extends AbstractBean {
 
   private List<Nemovitost> nemovitostList;
   private List<Nemovitost> filtrovanyNemovitostList;
-  private List<NemovitostTyp> nemovitostTypList;
 
   public void init() {
     Osoba prihlasenyUzivatel = Util.getPrihlasenyUzivatel();
     nemovitostList = nemovitostService.getNemovitostAll(prihlasenyUzivatel.getId());
-    nemovitostTypList = Arrays.asList(NemovitostTyp.values());
   }
 
   public void onRowEdit(RowEditEvent event) {
@@ -58,12 +56,6 @@ public class NemovitostPrehledBean extends AbstractBean {
     log.trace("onRowCancel()");
     FacesMessage msg = new FacesMessage("Zrušena úprava řádky", ((Nemovitost) event.getObject()).getNazev());
     FacesContext.getCurrentInstance().addMessage(null, msg);
-  }
-
-  public void showNemovitostDetailBean(Nemovitost nemovitost) throws IOException {
-    nemovitostDetailBean.setNemovitost(nemovitost);
-    Faces.getFlash().setRedirect(true);
-    Faces.redirect(NEMOVITOST_DETAIL_URL);
   }
 
   public void addRow() {

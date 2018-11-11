@@ -2,6 +2,9 @@ package com.precise_service.project_one.web;
 
 import java.io.Serializable;
 
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.precise_service.project_one.service.faktura.IFakturaPolozkaService;
@@ -14,6 +17,7 @@ import com.precise_service.project_one.service.predavaci_protokol.IPredavaciProt
 import com.precise_service.project_one.service.vyuctovani.IPolozkaTypService;
 import com.precise_service.project_one.service.vyuctovani.IVyuctovaniPolozkaService;
 import com.precise_service.project_one.service.vyuctovani.IVyuctovaniService;
+import com.precise_service.project_one.web.common.RouterBean;
 import com.precise_service.project_one.web.common.component.EditorTextuBean;
 import com.precise_service.project_one.web.faktura.FakturaDetailBean;
 import com.precise_service.project_one.web.nemovitost.NemovitostDetailBean;
@@ -47,7 +51,13 @@ public abstract class AbstractBean implements Serializable {
   @Autowired protected EditorTextuBean editorTextuBean;
   @Autowired protected FakturaDetailBean fakturaDetailBean;
   @Autowired protected NemovitostDetailBean nemovitostDetailBean;
-  @Autowired protected PredavaciProtokolDetailBean predavaciProtokolDetailBean;
   @Autowired protected OsobaDetailBean osobaDetailBean;
+  @Autowired protected PredavaciProtokolDetailBean predavaciProtokolDetailBean;
+  @Autowired protected RouterBean routerBean;
   @Autowired protected VyuctovaniDetailBean vyuctovaniDetailBean;
+
+  protected void showMessage(FacesMessage.Severity severity, String messageSummary, String messageText) {
+    FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, messageSummary, messageText);
+    FacesContext.getCurrentInstance().addMessage(null, msg);
+  }
 }

@@ -6,13 +6,14 @@ import lombok.RequiredArgsConstructor;
 @Getter
 @RequiredArgsConstructor
 public enum NemovitostTyp {
-  BYT ("Byt v panelovém anebo cihlovém domě"),
-  DŮM ("Rodinný dům"),
-  POZEMEK ("Pozemek"),
-  GARÁŽ ("Plnohodnotná uzamykatelná garáž"),
-  PARKOVACÍ_STÁNÍ ("Vyhrazené parkovací místo"),
+  BYT             ("Byt",             "Byt v panelovém anebo cihlovém domě"),
+  DŮM             ("Dům",             "Rodinný dům"),
+  POZEMEK         ("Pozemek",         "Pozemek"),
+  GARÁŽ           ("Garáž",           "Plnohodnotná uzamykatelná garáž"),
+  PARKOVACÍ_STÁNÍ ("Parkovací stání", "Vyhrazené parkovací místo"),
   ;
 
+  private final String hodnota;
   private final String popis;
 
 }

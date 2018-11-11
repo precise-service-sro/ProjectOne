@@ -33,7 +33,7 @@
             </div>
 
             <p:dataTable id="nemovitostPrehledBeanTable" var="nemovitost" widgetVar="nemovitostPrehledBeanTable" value="#{nemovitostPrehledBean.nemovitostList}"
-                         resizableColumns="true" sortBy="#{1}" editable="true" rendered="#{not empty nemovitostPrehledBean.nemovitostList}"
+                         resizableColumns="true" sortBy="#{1}" rendered="#{not empty nemovitostPrehledBean.nemovitostList}"
                          emptyMessage="Nebyly nalezeny žádné nemovitosti" filteredValue="#{nemovitostPrehledBean.filtrovanyNemovitostList}">
 
               <p:ajax event="rowEdit" listener="#{nemovitostPrehledBean.onRowEdit}" update=":form:msgs :form:nemovitostPrehledBeanTable" />
@@ -45,7 +45,7 @@
                   <p:column headerText="Typ"                              filterBy="#{nemovitost.nemovitostTyp}" filterMatchMode="contains" style="width: 180px;"/>
                   <p:column headerText="Ulice"                            filterBy="#{nemovitost.adresa.ulice}"  filterMatchMode="contains" style="width: 200px;"/>
                   <p:column headerText="Město"                            filterBy="#{nemovitost.adresa.mesto}"  filterMatchMode="contains" style="width: 200px;"/>
-                  <p:column headerText="Ovládání" colspan="3" rowspan="2"                                                                   style="width: 160px;"/>
+                  <p:column headerText="Ovládání" colspan="2" rowspan="2"                                                                   style="width: 160px;"/>
                 </p:row>
               </p:columnGroup>
 
@@ -57,14 +57,7 @@
               </p:column>
 
               <p:column style="text-align: center;">
-                <p:cellEditor>
-                  <f:facet name="output"><h:outputText value="#{nemovitost.nemovitostTyp}" /> </f:facet>
-                  <f:facet name="input">
-                    <h:selectOneMenu value="#{nemovitost.nemovitostTyp}" style="width:100%" converter="#{nemovitostTypConverter}">
-                      <f:selectItems value="#{nemovitostPrehledBean.nemovitostTypList}" var="nemovitostTyp" itemLabel="#{nemovitostTyp}" itemValue="#{nemovitostTyp}" />
-                    </h:selectOneMenu>
-                  </f:facet>
-                </p:cellEditor>
+                <h:outputText value="#{nemovitost.nemovitostTyp.hodnota}" />
               </p:column>
 
               <p:column style="text-align: center;">
@@ -82,15 +75,11 @@
               </p:column>
 
               <p:column>
-                <p:commandButton icon="ui-icon-circle-zoomin" actionListener="#{nemovitostPrehledBean.showNemovitostDetailBean(nemovitost)}" title="Podrobnosti" />
+                <p:commandButton icon="ui-icon-circle-zoomin" actionListener="#{routerBean.goToNemovitostDetailBean(nemovitost)}" title="Upravit / Podrobnosti" />
               </p:column>
 
               <p:column>
-                <p:rowEditor />
-              </p:column>
-
-              <p:column>
-                <p:commandButton update="@form :form:msgs" icon="ui-icon-circle-minus" actionListener="#{nemovitostPrehledBean.deleteRow(nemovitost)}" title="Odebrat" />
+                <p:commandButton update="form :form:msgs" icon="ui-icon-circle-minus" actionListener="#{nemovitostPrehledBean.deleteRow(nemovitost)}" title="Odebrat" />
               </p:column>
             </p:dataTable>
           </div>

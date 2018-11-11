@@ -37,4 +37,20 @@ public class Nemovitost extends BaseEntity {
   @JsonProperty("vlastnik")
   @JsonInclude(JsonInclude.Include.NON_NULL)
   private Osoba vlastnik;
+
+  @JsonProperty("rozloha")
+  @JsonInclude(JsonInclude.Include.NON_NULL)
+  private String rozloha;
+
+  @JsonProperty("cisloBytu")
+  @JsonInclude(JsonInclude.Include.NON_NULL)
+  private String cisloBytu;
+
+  @JsonProperty("nemovitostDispozice")
+  @JsonInclude(JsonInclude.Include.NON_NULL)
+  private NemovitostDispozice nemovitostDispozice;
+
+  @JsonProperty("nemovitostDruhVlastnictvi")
+  @JsonInclude(JsonInclude.Include.NON_NULL)
+  private NemovitostDruhVlastnictvi nemovitostDruhVlastnictvi;
 }
