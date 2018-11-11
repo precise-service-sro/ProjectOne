@@ -6,8 +6,8 @@ import lombok.RequiredArgsConstructor;
 @Getter
 @RequiredArgsConstructor
 public enum NemovitostDruhVlastnictvi {
-  OV ("Osobní Vlastnisctví", "Osobní vlastnictví na základě zápisu zápisu na katastru"),
-  DV ("Družstevní Vlastnictví", "Družstevní vlastniství na základě družstevního dekrektu / členství ve družstvu"),
+  OV ("Osobní Vlastnictví", "Osobní vlastnictví na základě zápisu zápisu na katastru"),
+  DV ("Družstevní Vlastnictví", "Družstevní vlastnictví na základě družstevního dekrektu / členství ve družstvu"),
   ;
 
   private final String hodnota;

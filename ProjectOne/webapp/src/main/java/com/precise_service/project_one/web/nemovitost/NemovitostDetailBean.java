@@ -8,6 +8,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
+import com.precise_service.project_one.entity.adresa.Stat;
 import com.precise_service.project_one.entity.nemovitost.Nemovitost;
 import com.precise_service.project_one.entity.nemovitost.NemovitostDispozice;
 import com.precise_service.project_one.entity.nemovitost.NemovitostDruhVlastnictvi;
@@ -30,6 +31,7 @@ public class NemovitostDetailBean extends AbstractBean {
   private List<NemovitostTyp> nemovitostTypList;
   private List<NemovitostDruhVlastnictvi> nemovitostDruhVlastnictviList;
   private List<NemovitostDispozice> nemovitostDispoziceList;
+  private List<Stat> statList;
 
   public void init() {
     // pokud nemam vybranou zadnou nemovitost, tak vytahuji prvni nemovitost z DB
@@ -42,7 +44,9 @@ public class NemovitostDetailBean extends AbstractBean {
     osobaList = osobaService.getOsobaAll(prihlasenyUzivatel.getId());
 
     nemovitostTypList = Arrays.asList(NemovitostTyp.values());
+    statList = Arrays.asList(Stat.values());
     nemovitostDruhVlastnictviList = Arrays.asList(NemovitostDruhVlastnictvi.values());
+    nemovitostDispoziceList = Arrays.asList(NemovitostDispozice.values());
     nemovitostDispoziceList = Arrays.asList(NemovitostDispozice.values());
   }
 

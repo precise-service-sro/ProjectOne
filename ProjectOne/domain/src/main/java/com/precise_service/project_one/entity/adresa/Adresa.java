@@ -1,4 +1,4 @@
-package com.precise_service.project_one.entity;
+package com.precise_service.project_one.entity.adresa;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -24,7 +24,7 @@ public class Adresa {
 
   @JsonProperty("stat")
   @JsonInclude(JsonInclude.Include.NON_NULL)
-  private String stat;
+  private Stat stat;
 
   @JsonProperty("cisloPopisne")
   @JsonInclude(JsonInclude.Include.NON_NULL)

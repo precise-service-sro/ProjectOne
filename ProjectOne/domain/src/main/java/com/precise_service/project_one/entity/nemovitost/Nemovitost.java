@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.precise_service.project_one.entity.BaseEntity;
-import com.precise_service.project_one.entity.Adresa;
+import com.precise_service.project_one.entity.adresa.Adresa;
 import com.precise_service.project_one.entity.osoba.Osoba;
 
 import lombok.Data;

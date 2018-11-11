@@ -108,41 +108,76 @@
   //visibility: hidden;
 }
 
-.divTable{
-	display: table;
-	width: 50%;
-}
-.divTableRow {
-	display: table-row;
-}
-.divTableHeading {
-	background-color: #EEE;
-	display: table-header-group;
-}
-.divTableCell, .divTableHead {
-	border: 0px solid #999999;
-	display: table-cell;
-	padding: 3px 10px;
-}
-.divTableHeading {
-	background-color: #EEE;
-	display: table-header-group;
-	font-weight: bold;
-}
-.divTableFoot {
-	background-color: #EEE;
-	display: table-footer-group;
-	font-weight: bold;
-}
-.divTableBody {
-	display: table-row-group;
-}
 
 .editorTextu {
-    width: 500px;
+    height: 200px;
+    padding-bottom: 95px;
+    margin-right: 20px;
+    margin-top: 10px;
 }
 
-.colspan2 {
-  /* What to do here? */
-  display: table-caption;
+.divTable {
+    width: 1000px;
+    margin-bottom: 20px;
+    border: 5px solid #00F;
+    border-radius: 20px;
+}
+
+table {
+    table-layout: fixed;
+}
+
+.table_with_1_columns {
+    table-layout: fixed;
+}
+
+.table_with_2_columns {
+    table-layout: fixed;
+}
+
+.table_with_3_columns {
+    //width: 1200px;
+    table-layout: fixed;
+}
+
+table th {
+    width: 100px;
+    text-align: left;
+}
+
+.prvniSloupec {
+    padding-left: 20px;
+}
+
+table td {
+    width: 220px;
+}
+
+table td input {
+    width: 190px;
+}
+
+table td select {
+    width: 200px;
+}
+
+.tableCaption {
+    display: inline-block;
+    font-weight: bold;
+    text-decoration: underline;
+    font-size: 125%;
+    margin-top: 20px;
+    margin-left: 20px;
+    margin-bottom: 0px;
+}
+
+.buttons {
+    width: 1000px;
+    margin: auto;
+    padding-top: 20px;
+}
+
+.buttons .process {
+    float: left;
+    margin-right: 250px;
 }
