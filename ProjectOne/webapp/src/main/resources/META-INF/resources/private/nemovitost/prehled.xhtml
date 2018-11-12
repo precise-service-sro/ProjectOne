@@ -28,13 +28,16 @@
                              actionListener="#{nemovitostPrehledBean.addRow()}"/>
           </div>
 
-          <p:dataTable id="nemovitostPrehledBeanTable" var="nemovitost" widgetVar="nemovitostPrehledBeanTable"
-                       value="#{nemovitostPrehledBean.nemovitostList}"
-                       sortBy="#{1}" rendered="#{not empty nemovitostPrehledBean.nemovitostList}"
-                       emptyMessage="Nebyly nalezeny žádné nemovitosti" filteredValue="#{nemovitostPrehledBean.filtrovanyNemovitostList}">
-
-            <p:ajax event="rowEdit" listener="#{nemovitostPrehledBean.onRowEdit}" update=":form:msgs :form:nemovitostPrehledBeanTable"/>
-            <p:ajax event="rowEditCancel" listener="#{nemovitostPrehledBean.onRowCancel}" update=":form:msgs"/>
+          <p:dataTable
+                  id="nemovitostPrehledBeanTable"
+                  var="nemovitost"
+                  widgetVar="nemovitostPrehledBeanTable"
+                  value="#{nemovitostPrehledBean.nemovitostList}"
+                  sortBy="#{1}"
+                  rendered="#{not empty nemovitostPrehledBean.nemovitostList}"
+                  emptyMessage="Nebyly nalezeny žádné nemovitosti"
+                  filteredValue="#{nemovitostPrehledBean.filtrovanyNemovitostList}"
+          >
 
             <f:facet name="header">
               <p:outputPanel style="text-align: right;">

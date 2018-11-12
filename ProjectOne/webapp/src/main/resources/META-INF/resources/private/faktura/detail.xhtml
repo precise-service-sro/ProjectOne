@@ -21,240 +21,198 @@
           <p>Faktura:</p>
         </div>
 
-        <div class="divTableRow">
-          <div class="divTableCell divTableHeading">
-            <p>Byt:</p>
-          </div>
-          <div class="divTableCell">
-            <p:inplace editor="true" emptyLabel="!!! Prosím vyplnit !!!">
-              <p:ajax event="save" listener="#{fakturaDetailBean.ulozitZmenuFaktury()}" />
-              <f:facet name="output">
-                <h:outputText value="#{fakturaDetailBean.faktura.nemovitost.nazev}" rendered="#{fakturaDetailBean.faktura.nemovitost != null}" />
-                <h:outputText value="!!! Prosím vyplnit !!!" rendered="#{fakturaDetailBean.faktura.nemovitost == null}" />
-              </f:facet>
-              <f:facet name="input">
-                <h:selectOneMenu value="#{fakturaDetailBean.faktura.nemovitost}" style="width:100%" converter="#{nemovitostConverter}">
-                  <f:selectItems value="#{fakturaDetailBean.nemovitostList}" var="nemovitost" itemLabel="#{nemovitost.nazev}" itemValue="#{nemovitost}" />
-                </h:selectOneMenu>
-              </f:facet>
-            </p:inplace>
-          </div>
+        <div class="divTableCell divTableHeading">
+          <p>Název faktury:</p>
+          <p:inputText placeholder="- zadejte -" />
         </div>
 
         <div class="divTableRow">
-          <div class="divTableCell divTableHeading">&nbsp;</div>
-          <div class="divTableCell">&nbsp;</div>
+          <p>Byt:</p>
+          <h:selectOneMenu value="#{fakturaDetailBean.faktura.nemovitost}" style="width:100%" converter="#{nemovitostConverter}">
+            <f:selectItems value="#{fakturaDetailBean.nemovitostList}" var="nemovitost" itemLabel="#{nemovitost.nazev}" itemValue="#{nemovitost}"/>
+          </h:selectOneMenu>
+        </div>
+
+        <div class="divTableCell divTableHeading">
+          <p>Začátek zúčtovacího období:</p>
+          <p:calendar id="fakturaZuctovaciObdobiZacatek" value="#{fakturaDetailBean.faktura.zuctovaciObdobi.zacatek}" pattern="dd-MM-yyyy"/>
         </div>
 
         <div class="divTableRow">
-          <div class="divTableCell divTableHeading">
-            <p>Začátek zúčtovacího období:</p>
-          </div>
-          <div class="divTableCell">
-            <p:inplace editor="true" emptyLabel="!!! Prosím vyplnit !!!">
-              <p:ajax event="save" listener="#{fakturaDetailBean.ulozitZmenuFaktury()}" />
-              <p:calendar id="fakturaZuctovaciObdobiZacatek" value="#{fakturaDetailBean.faktura.zuctovaciObdobi.zacatek}" pattern="dd-MM-yyyy" />
-            </p:inplace>
-          </div>
+          <p>Konec zúčtovacího období:</p>
+          <p:calendar id="fakturaZuctovaciObdobiKonec" value="#{fakturaDetailBean.faktura.zuctovaciObdobi.konec}" pattern="dd-MM-yyyy"/>
         </div>
 
         <div class="divTableRow">
-          <div class="divTableCell divTableHeading">&nbsp;</div>
-          <div class="divTableCell">&nbsp;</div>
-        </div>
-
-        <div class="divTableRow">
-          <div class="divTableCell divTableHeading">
-            <p>Konec zúčtovacího období:</p>
+          <div class="addButtonDiv">
+            <p:commandButton value="Přidat" icon="ui-icon-circle-plus" process="@this"
+                             actionListener="#{fakturaDetailBean.addRow()}" update="form :form:msgs"/>
           </div>
-          <div class="divTableCell">
-            <p:inplace editor="true" emptyLabel="!!! Prosím vyplnit !!!">
-              <p:ajax event="save" listener="#{fakturaDetailBean.ulozitZmenuFaktury()}" />
-              <p:calendar id="fakturaZuctovaciObdobiKonec" value="#{fakturaDetailBean.faktura.zuctovaciObdobi.konec}" pattern="dd-MM-yyyy" />
-            </p:inplace>
-          </div>
-        </div>
 
-        <div class="divTableRow">
-          <div class="divTableCell divTableHeading">&nbsp;</div>
-          <div class="divTableCell">&nbsp;</div>
-        </div>
+          <p:dataTable id="fakturaDetailTable" widgetVar="fakturaDetailTable" var="polozka" value="#{fakturaDetailBean.fakturaPolozkaList}"
+                       resizableColumns="true" sortBy="#{1}" editable="true" rendered="#{not empty fakturaDetailBean.fakturaPolozkaList}"
+                       emptyMessage="Nebyly nalezeny žádné položky faktury" filteredValue="#{fakturaDetailBean.filtrovanyFakturaPolozkaList}">
 
-        <div class="divTableRow">
-          <div class="divTableCell divTableHeading">
-            <p>Položky:</p>
-          </div>
-          <div class="divTableCell">
-            <div class="addButtonDiv">
-              <p:commandButton value="Přidat" icon="ui-icon-circle-plus" process="@this"
-                               actionListener="#{fakturaDetailBean.addRow()}" update="form :form:msgs"/>
-            </div>
+            <p:ajax event="rowEdit" listener="#{fakturaDetailBean.onRowEdit}" update=":form:msgs :form:fakturaDetailTable"/>
+            <p:ajax event="rowEditCancel" listener="#{fakturaDetailBean.onRowCancel}" update=":form:msgs"/>
 
-            <p:dataTable id="fakturaDetailTable" widgetVar="fakturaDetailTable" var="polozka" value="#{fakturaDetailBean.fakturaPolozkaList}"
-                         resizableColumns="true" sortBy="#{1}" editable="true" rendered="#{not empty fakturaDetailBean.fakturaPolozkaList}"
-                         emptyMessage="Nebyly nalezeny žádné položky faktury" filteredValue="#{fakturaDetailBean.filtrovanyFakturaPolozkaList}">
-              
-              <p:ajax event="rowEdit" listener="#{fakturaDetailBean.onRowEdit}" update=":form:msgs :form:fakturaDetailTable"/>
-              <p:ajax event="rowEditCancel" listener="#{fakturaDetailBean.onRowCancel}" update=":form:msgs"/>
+            <p:columnGroup type="header">
+              <p:row>
+                <p:column headerText="Název" filterBy="#{polozka.nazev}" filterMatchMode="contains"/>
+                <p:column headerText="Jednotka" filterBy="#{polozka.pocatecniStav.jednotka}" filterMatchMode="contains" style="width: 80px;"/>
+                <p:column headerText="Vyúčtovat jako" filterBy="#{polozka.polozkaTyp.nazev}" filterMatchMode="contains" style="width: 200px;"/>
+                <p:column headerText="Poč. stav" filterBy="#{polozka.pocatecniStav.mnozstvi}" filterMatchMode="contains" style="width: 100px;"/>
+                <p:column headerText="Kon. stav" filterBy="#{polozka.koncovyStav.mnozstvi}" filterMatchMode="contains" style="width: 100px;"/>
+                <p:column headerText="Spotřeba" filterBy="#{polozka.spotreba.mnozstvi}" filterMatchMode="contains" style="width: 100px;"/>
+                <p:column headerText="Zálohy" filterBy="#{polozka.zalohy.mnozstvi}" filterMatchMode="contains" style="width: 100px;"/>
+                <p:column headerText="Náklady" filterBy="#{polozka.naklady.mnozstvi}" filterMatchMode="contains" style="width: 100px;"/>
+                <p:column headerText="Rozdíl" filterBy="#{polozka.rozdil.mnozstvi}" filterMatchMode="contains" style="width: 100px;"/>
+                <p:column style="width:  32px;"/>
+                <p:column style="width:  50px;"/>
+              </p:row>
+            </p:columnGroup>
 
-              <p:columnGroup type="header">
-                <p:row>
-                  <p:column headerText="Název"          filterBy="#{polozka.nazev}"                    filterMatchMode="contains"                      />
-                  <p:column headerText="Jednotka"       filterBy="#{polozka.pocatecniStav.jednotka}"   filterMatchMode="contains" style="width: 80px;" />
-                  <p:column headerText="Vyúčtovat jako" filterBy="#{polozka.polozkaTyp.nazev}"         filterMatchMode="contains" style="width: 200px;"/>
-                  <p:column headerText="Poč. stav"      filterBy="#{polozka.pocatecniStav.mnozstvi}"   filterMatchMode="contains" style="width: 100px;"/>
-                  <p:column headerText="Kon. stav"      filterBy="#{polozka.koncovyStav.mnozstvi}"     filterMatchMode="contains" style="width: 100px;"/>
-                  <p:column headerText="Spotřeba"       filterBy="#{polozka.spotreba.mnozstvi}"        filterMatchMode="contains" style="width: 100px;"/>
-                  <p:column headerText="Zálohy"         filterBy="#{polozka.zalohy.mnozstvi}"          filterMatchMode="contains" style="width: 100px;"/>
-                  <p:column headerText="Náklady"        filterBy="#{polozka.naklady.mnozstvi}"         filterMatchMode="contains" style="width: 100px;"/>
-                  <p:column headerText="Rozdíl"         filterBy="#{polozka.rozdil.mnozstvi}"          filterMatchMode="contains" style="width: 100px;"/>
-                  <p:column style="width:  32px;"/>
-                  <p:column style="width:  50px;"/>
-                </p:row>
-              </p:columnGroup>
+            <p:column>
+              <p:cellEditor>
+                <f:facet name="output">
+                  <h:outputText value="#{polozka.nazev}"/>
+                </f:facet>
+                <f:facet name="input">
+                  <div style="text-align: left">
+                    <p:inputText id="nazevInput" value="#{polozka.nazev}" style="width:100%"/>
+                  </div>
+                </f:facet>
+              </p:cellEditor>
+            </p:column>
 
-              <p:column>
-                <p:cellEditor>
-                  <f:facet name="output">
-                    <h:outputText value="#{polozka.nazev}"/>
-                  </f:facet>
-                  <f:facet name="input">
-                    <div style="text-align: left">
-                      <p:inputText id="nazevInput" value="#{polozka.nazev}" style="width:100%"/>
-                    </div>
-                  </f:facet>
-                </p:cellEditor>
+            <p:column style="text-align: center;">
+              <p:cellEditor>
+                <f:facet name="output">
+                  <h:outputText value="#{polozka.pocatecniStav.jednotka}"/>
+                </f:facet>
+                <f:facet name="input">
+                  <div style="text-align: left">
+                    <p:inputText id="jednotkaInput" value="#{polozka.pocatecniStav.jednotka}"/>
+                  </div>
+                </f:facet>
+              </p:cellEditor>
+            </p:column>
+
+            <p:column style="text-align: center;">
+              <p:cellEditor>
+                <f:facet name="output">
+                  <h:outputText value="#{polozka.polozkaTyp.nazev}" title="#{polozka.polozkaTyp.popis}"/>
+                </f:facet>
+                <f:facet name="input">
+                  <h:selectOneMenu value="#{polozka.polozkaTyp}" style="width:100%" converter="#{polozkaTypConverter}">
+                    <f:selectItems value="#{fakturaDetailBean.polozkaTypList}" var="polozkaTyp" itemLabel="#{polozkaTyp.nazev}" itemValue="#{polozkaTyp}"/>
+                  </h:selectOneMenu>
+                </f:facet>
+              </p:cellEditor>
+            </p:column>
+
+            <p:column style="text-align: right;">
+              <p:cellEditor>
+                <f:facet name="output">
+                  <h:outputText value="#{polozka.pocatecniStav.mnozstvi}">
+                    <f:convertNumber pattern="#0.00"/>
+                  </h:outputText>
+                </f:facet>
+                <f:facet name="input">
+                  <div style="text-align: left">
+                    <p:inputText id="pocatecniStavInput" value="#{polozka.pocatecniStav.mnozstvi}"/>
+                  </div>
+                </f:facet>
+              </p:cellEditor>
+            </p:column>
+
+            <p:column style="text-align: right">
+              <p:cellEditor>
+                <f:facet name="output">
+                  <h:outputText value="#{polozka.koncovyStav.mnozstvi}">
+                    <f:convertNumber pattern="#0.00"/>
+                  </h:outputText>
+                </f:facet>
+                <f:facet name="input">
+                  <div style="text-align: left">
+                    <p:inputText id="koncovyStavInput" value="#{polozka.koncovyStav.mnozstvi}"/>
+                  </div>
+                </f:facet>
+              </p:cellEditor>
+            </p:column>
+
+            <p:column style="text-align: right">
+              <h:outputText value="#{polozka.spotreba.mnozstvi}">
+                <f:convertNumber pattern="#0.00"/>
+              </h:outputText>
+            </p:column>
+
+            <p:column style="text-align: right">
+              <p:cellEditor>
+                <f:facet name="output">
+                  <h:outputText value="#{polozka.zalohy.mnozstvi}">
+                    <f:convertNumber pattern="#0.00 Kč"/>
+                  </h:outputText>
+                </f:facet>
+                <f:facet name="input">
+                  <div style="text-align: left;">
+                    <p:inputText id="zalohyInput" value="#{polozka.zalohy.mnozstvi}"/>
+                  </div>
+                </f:facet>
+              </p:cellEditor>
+            </p:column>
+
+            <p:column style="text-align: right">
+              <p:cellEditor>
+                <f:facet name="output">
+                  <h:outputText value="#{polozka.naklady.mnozstvi}">
+                    <f:convertNumber pattern="#0.00 Kč"/>
+                  </h:outputText>
+                </f:facet>
+                <f:facet name="input">
+                  <div style="text-align: left">
+                    <p:inputText id="nakladyInput" value="#{polozka.naklady.mnozstvi}"/>
+                  </div>
+                </f:facet>
+              </p:cellEditor>
+            </p:column>
+
+            <p:column style="text-align: right">
+              <h:outputText value="#{polozka.rozdil.mnozstvi}">
+                <f:convertNumber type="currency" pattern="#0.00 Kč"/>
+              </h:outputText>
+            </p:column>
+
+            <p:column>
+              <p:rowEditor/>
+            </p:column>
+
+            <p:column>
+              <p:commandButton update="@form :form:msgs" icon="ui-icon-circle-minus" actionListener="#{fakturaDetailBean.deleteRow(polozka)}"/>
+            </p:column>
+
+            <p:summaryRow>
+              <p:column colspan="6" style="text-align:left">
+                <h:outputText value="Celkem:"/>
               </p:column>
-
-              <p:column style="text-align: center;">
-                <p:cellEditor>
-                  <f:facet name="output">
-                    <h:outputText value="#{polozka.pocatecniStav.jednotka}"/>
-                  </f:facet>
-                  <f:facet name="input">
-                    <div style="text-align: left">
-                      <p:inputText id="jednotkaInput" value="#{polozka.pocatecniStav.jednotka}"/>
-                    </div>
-                  </f:facet>
-                </p:cellEditor>
-              </p:column>
-
-              <p:column style="text-align: center;">
-                <p:cellEditor>
-                  <f:facet name="output">
-                    <h:outputText value="#{polozka.polozkaTyp.nazev}" title="#{polozka.polozkaTyp.popis}"/>
-                  </f:facet>
-                  <f:facet name="input">
-                    <h:selectOneMenu value="#{polozka.polozkaTyp}" style="width:100%" converter="#{polozkaTypConverter}">
-                      <f:selectItems value="#{fakturaDetailBean.polozkaTypList}" var="polozkaTyp" itemLabel="#{polozkaTyp.nazev}" itemValue="#{polozkaTyp}"/>
-                    </h:selectOneMenu>
-                  </f:facet>
-                </p:cellEditor>
-              </p:column>
-
-              <p:column style="text-align: right;">
-                <p:cellEditor>
-                  <f:facet name="output">
-                    <h:outputText value="#{polozka.pocatecniStav.mnozstvi}">
-                      <f:convertNumber pattern="#0.00"/>
-                    </h:outputText>
-                  </f:facet>
-                  <f:facet name="input">
-                    <div style="text-align: left">
-                      <p:inputText id="pocatecniStavInput" value="#{polozka.pocatecniStav.mnozstvi}"/>
-                    </div>
-                  </f:facet>
-                </p:cellEditor>
-              </p:column>
-
               <p:column style="text-align: right">
-                <p:cellEditor>
-                  <f:facet name="output">
-                    <h:outputText value="#{polozka.koncovyStav.mnozstvi}">
-                      <f:convertNumber pattern="#0.00"/>
-                    </h:outputText>
-                  </f:facet>
-                  <f:facet name="input">
-                    <div style="text-align: left">
-                      <p:inputText id="koncovyStavInput" value="#{polozka.koncovyStav.mnozstvi}"/>
-                    </div>
-                  </f:facet>
-                </p:cellEditor>
-              </p:column>
-
-              <p:column style="text-align: right">
-                <h:outputText value="#{polozka.spotreba.mnozstvi}">
-                  <f:convertNumber pattern="#0.00"/>
-                </h:outputText>
-              </p:column>
-
-              <p:column style="text-align: right">
-                <p:cellEditor>
-                  <f:facet name="output">
-                    <h:outputText value="#{polozka.zalohy.mnozstvi}">
-                      <f:convertNumber pattern="#0.00 Kč"/>
-                    </h:outputText>
-                  </f:facet>
-                  <f:facet name="input">
-                    <div style="text-align: left;">
-                      <p:inputText id="zalohyInput" value="#{polozka.zalohy.mnozstvi}"/>
-                    </div>
-                  </f:facet>
-                </p:cellEditor>
-              </p:column>
-
-              <p:column style="text-align: right">
-                <p:cellEditor>
-                  <f:facet name="output">
-                    <h:outputText value="#{polozka.naklady.mnozstvi}">
-                      <f:convertNumber pattern="#0.00 Kč"/>
-                    </h:outputText>
-                  </f:facet>
-                  <f:facet name="input">
-                    <div style="text-align: left">
-                      <p:inputText id="nakladyInput" value="#{polozka.naklady.mnozstvi}"/>
-                    </div>
-                  </f:facet>
-                </p:cellEditor>
-              </p:column>
-
-              <p:column style="text-align: right">
-                <h:outputText value="#{polozka.rozdil.mnozstvi}">
+                <h:outputText value="#{fakturaDetailBean.celkemZalohy}">
                   <f:convertNumber type="currency" pattern="#0.00 Kč"/>
                 </h:outputText>
               </p:column>
-
-              <p:column>
-                <p:rowEditor/>
+              <p:column style="text-align: right">
+                <h:outputText value="#{fakturaDetailBean.celkemNaklady}">
+                  <f:convertNumber type="currency" pattern="#0.00 Kč"/>
+                </h:outputText>
               </p:column>
-
-              <p:column>
-                <p:commandButton update="@form :form:msgs" icon="ui-icon-circle-minus" actionListener="#{fakturaDetailBean.deleteRow(polozka)}"/>
+              <p:column style="text-align: right">
+                <h:outputText value="#{fakturaDetailBean.celkemRozdil}">
+                  <f:convertNumber type="currency" pattern="#0.00 Kč"/>
+                </h:outputText>
               </p:column>
-
-              <p:summaryRow>
-                <p:column colspan="6" style="text-align:left">
-                  <h:outputText value="Celkem:"/>
-                </p:column>
-                <p:column style="text-align: right">
-                  <h:outputText value="#{fakturaDetailBean.celkemZalohy}">
-                    <f:convertNumber type="currency" pattern="#0.00 Kč"/>
-                  </h:outputText>
-                </p:column>
-                <p:column style="text-align: right">
-                  <h:outputText value="#{fakturaDetailBean.celkemNaklady}">
-                    <f:convertNumber type="currency" pattern="#0.00 Kč"/>
-                  </h:outputText>
-                </p:column>
-                <p:column style="text-align: right">
-                  <h:outputText value="#{fakturaDetailBean.celkemRozdil}">
-                    <f:convertNumber type="currency" pattern="#0.00 Kč"/>
-                  </h:outputText>
-                </p:column>
-                <p:column colspan="2"/>
-              </p:summaryRow>
-            </p:dataTable>
-          </div>
+              <p:column colspan="2"/>
+            </p:summaryRow>
+          </p:dataTable>
         </div>
       </h:form>
     </ui:define>

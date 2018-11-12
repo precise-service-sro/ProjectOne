@@ -23,134 +23,83 @@
         </div>
 
         <div class="divTableRow">
-          <div class="divTableCell divTableHeading">
-            <p>Začátek zúčtovacího období:</p>
-          </div>
-          <div class="divTableCell">
-            <p:inplace editor="true" emptyLabel="!!! Prosím vyplnit !!!">
-              <p:ajax event="save" listener="#{fakturaPrehledBean.zuctovaciObdobiZacatekDateSelect()}" update="msgs fakturaPrehledBeanTable" />
-              <p:calendar id="zuctovaciObdobiFilterZacatek" value="#{fakturaPrehledBean.zuctovaciObdobi.zacatek}" pattern="dd-MM-yyyy" />
-            </p:inplace>
-          </div>
+          <p>Začátek zúčtovacího období:</p>
+          <p:calendar id="zuctovaciObdobiFilterZacatek" value="#{fakturaPrehledBean.zuctovaciObdobi.zacatek}" pattern="dd-MM-yyyy"/>
         </div>
 
         <div class="divTableRow">
-          <div class="divTableCell divTableHeading">&nbsp;</div>
-          <div class="divTableCell">&nbsp;</div>
+          <p>Konec zúčtovacího období:</p>
+          <p:calendar id="zuctovaciObdobiFilterKonec" value="#{fakturaPrehledBean.zuctovaciObdobi.konec}" pattern="dd-MM-yyyy"/>
         </div>
 
-        <div class="divTableRow">
-          <div class="divTableCell divTableHeading">
-            <p>Konec zúčtovacího období:</p>
+        <div>
+          <div class="addButtonDiv">
+            <p:commandButton value="Přidat" icon="ui-icon-circle-plus" process="@this" update="form :form:msgs"
+                             actionListener="#{fakturaPrehledBean.addRow()}"/>
           </div>
-          <div class="divTableCell">
-            <p:inplace editor="true" emptyLabel="!!! Prosím vyplnit !!!">
-              <p:ajax event="save" listener="#{fakturaPrehledBean.zuctovaciObdobiKonecDateSelect()}" update="msgs fakturaPrehledBeanTable" />
-              <p:calendar id="zuctovaciObdobiFilterKonec" value="#{fakturaPrehledBean.zuctovaciObdobi.konec}" pattern="dd-MM-yyyy" />
-            </p:inplace>
-          </div>
-        </div>
 
-        <div class="divTableRow">
-          <div class="divTableCell divTableHeading">&nbsp;</div>
-          <div class="divTableCell">&nbsp;</div>
-        </div>
+          <p:dataTable
+                  id="fakturaPrehledBeanTable"
+                  var="faktura"
+                  widgetVar="fakturaPrehledBeanTable"
+                  value="#{fakturaPrehledBean.fakturaList}"
+                  sortBy="#{1}"
+                  rendered="#{not empty fakturaPrehledBean.fakturaList}"
+                  emptyMessage="Nebyly nalezeny žádné faktury"
+                  filteredValue="#{fakturaPrehledBean.filtrovanyFakturaList}"
+          >
 
-        <div class="divTableRow">
-          <div class="divTableCell divTableHeading">
-            <p>Faktury:</p>
-          </div>
-          <div class="divTableCell">
-            <div class="addButtonDiv">
-              <p:commandButton value="Přidat" icon="ui-icon-circle-plus" process="@this" update="form :form:msgs"
-                               actionListener="#{fakturaPrehledBean.addRow()}" />
-            </div>
+            <f:facet name="header">
+              <p:outputPanel style="text-align: right;">
+                <p:inputText id="globalFilter" onkeyup="PF('fakturaPrehledBeanTable').filter()" style="width:235px"
+                             placeholder="- zadejte text pro vyhledání -"/>
+              </p:outputPanel>
+            </f:facet>
 
-            <p:dataTable id="fakturaPrehledBeanTable" var="faktura" widgetVar="fakturaPrehledBeanTable" value="#{fakturaPrehledBean.fakturaList}"
-                         resizableColumns="true" sortBy="#{1}" editable="true" rendered="#{not empty fakturaPrehledBean.fakturaList}"
-                         emptyMessage="Nebyly nalezeny žádné faktury" filteredValue="#{fakturaPrehledBean.filtrovanyFakturaList}">
+            <p:columnGroup type="header">
+              <p:row>
+                <p:column headerText="Název faktury"   rowspan="2" sortBy="#{faktura.nazev}" filterBy="#{faktura.nazev}" filterMatchMode="contains" filterStyle="display:none" style="width: 100%;"/>
+                <p:column headerText="Nemovitost"                   rowspan="2" sortBy="#{faktura.nemovitost.getIdentifikaceNemovitosti()}" filterBy="#{faktura.nemovitost.getIdentifikaceNemovitosti()}" filterMatchMode="contains" filterStyle="display:none" style="width: 400px;" />
+                <p:column headerText="Zúčtovací období"             colspan="2" style="width: 400px;"/>
+                <p:column headerText="Ovládání" rowspan="2" colspan="2" style="width: 90px;"/>
+              </p:row>
+              <p:row>
+                <p:column headerText="Začátek" sortBy="#{faktura.zuctovaciObdobi.zacatek}" filterBy="#{faktura.zuctovaciObdobi.zacatek}" filterMatchMode="contains" filterStyle="display:none"/>
+                <p:column headerText="Konec" sortBy="#{faktura.zuctovaciObdobi.konec}" filterBy="#{faktura.zuctovaciObdobi.konec}" filterMatchMode="contains" filterStyle="display:none"/>
+              </p:row>
+            </p:columnGroup>
 
-              <p:ajax event="rowEdit" listener="#{fakturaPrehledBean.onRowEdit}" update=":form:msgs :form:fakturaPrehledBeanTable"/>
-              <p:ajax event="rowEditCancel" listener="#{fakturaPrehledBean.onRowCancel}" update=":form:msgs"/>
-              <p:defaultCommand target=""/>
+            <p:column>
+              <h:outputText value="#{faktura.nazev}"/>
+            </p:column>
 
-              <p:columnGroup type="header">
-                <p:row>
-                  <p:column headerText="Název faktury"    rowspan="2"                                   filterBy="#{faktura.nazev}"            filterMatchMode="contains" />
-                  <p:column headerText="Nemovitost"       rowspan="2"             style="width: 200px;" filterBy="#{faktura.nemovitost.nazev}" filterMatchMode="contains" />
-                  <p:column headerText="Zúčtovací období"             colspan="2" style="width: 400px;" />
-                  <p:column headerText="Ovládání"         rowspan="2" colspan="3" style="width: 160px;" />
-                </p:row>
-                <p:row>
-                  <p:column headerText="Začátek"/>
-                  <p:column headerText="Konec"/>
-                </p:row>
-              </p:columnGroup>
+            <p:column>
+              <h:outputText value="#{faktura.nemovitost.getIdentifikaceNemovitosti()}" title="#{faktura.nemovitost.getIdentifikaceNemovitosti()}"/>
+            </p:column>
 
-              <p:column>
-                <p:cellEditor>
-                  <f:facet name="output">
-                    <h:outputText value="#{faktura.nazev}"/>
-                  </f:facet>
-                  <f:facet name="input">
-                    <p:inputText id="nazevInput" value="#{faktura.nazev}" style="width:100%" onkeydown="if (event.keyCode === 13) {return false;}"/>
-                  </f:facet>
-                </p:cellEditor>
-              </p:column>
+            <p:column>
+              <h:outputText value="#{faktura.zuctovaciObdobi.zacatek}">
+                <f:convertDateTime pattern="dd-MM-yyyy"/>
+              </h:outputText>
+            </p:column>
 
-              <p:column style="text-align: center;">
-                <p:cellEditor>
-                  <f:facet name="output">
-                    <h:outputText value="#{faktura.nemovitost.nazev}" title="#{faktura.nemovitost.adresa}"/>
-                  </f:facet>
-                  <f:facet name="input">
-                    <h:selectOneMenu value="#{faktura.nemovitost}" style="width:100%" converter="#{nemovitostConverter}">
-                      <f:selectItems value="#{fakturaPrehledBean.nemovitostList}" var="nemovitost" itemLabel="#{nemovitost.nazev}" itemValue="#{nemovitost}"/>
-                    </h:selectOneMenu>
-                  </f:facet>
-                </p:cellEditor>
-              </p:column>
+            <p:column>
+              <h:outputText value="#{faktura.zuctovaciObdobi.konec}">
+                <f:convertDateTime pattern="dd-MM-yyyy"/>
+              </h:outputText>
+            </p:column>
 
-              <p:column style="text-align: center;">
-                <p:cellEditor>
-                  <f:facet name="output">
-                    <h:outputText value="#{faktura.zuctovaciObdobi.zacatek}">
-                      <f:convertDateTime pattern="dd-MM-yyyy"/>
-                    </h:outputText>
-                  </f:facet>
-                  <f:facet name="input">
-                    <p:calendar id="zuctovaciObdobiZacatekInput" value="#{faktura.zuctovaciObdobi.zacatek}" pattern="dd-MM-yyyy" style="width:100%"/>
-                  </f:facet>
-                </p:cellEditor>
-              </p:column>
+            <p:column>
+              <p:commandButton icon="ui-icon-circle-zoomin" actionListener="#{fakturaPrehledBean.showFakturaDetailBean(faktura)}" title="Podrobnosti"/>
+            </p:column>
 
-              <p:column style="text-align: center;">
-                <p:cellEditor>
-                  <f:facet name="output">
-                    <h:outputText value="#{faktura.zuctovaciObdobi.konec}">
-                      <f:convertDateTime pattern="dd-MM-yyyy"/>
-                    </h:outputText>
-                  </f:facet>
-                  <f:facet name="input">
-                    <p:calendar id="zuctovaciObdobiKonecInput" value="#{faktura.zuctovaciObdobi.konec}" pattern="dd-MM-yyyy" style="width:100%"/>
-                  </f:facet>
-                </p:cellEditor>
-              </p:column>
+            <p:column>
+              <p:commandButton update="@form :form:msgs" icon="ui-icon-circle-minus" actionListener="#{fakturaPrehledBean.deleteRow(faktura)}"
+                               title="Odebrat"/>
+            </p:column>
 
-              <p:column>
-                <p:commandButton icon="ui-icon-circle-zoomin" actionListener="#{fakturaPrehledBean.showFakturaDetailBean(faktura)}" title="Podrobnosti"/>
-              </p:column>
-
-              <p:column>
-                <p:rowEditor/>
-              </p:column>
-
-              <p:column>
-                <p:commandButton update="@form :form:msgs" icon="ui-icon-circle-minus" actionListener="#{fakturaPrehledBean.deleteRow(faktura)}"
-                                 title="Odebrat"/>
-              </p:column>
-            </p:dataTable>
-          </div>
+            -->
+          </p:dataTable>
         </div>
       </h:form>
 

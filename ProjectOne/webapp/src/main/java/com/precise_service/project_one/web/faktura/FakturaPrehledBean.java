@@ -36,8 +36,8 @@ public class FakturaPrehledBean extends AbstractBean {
 
   private CasovyInterval zuctovaciObdobi;
   private List<Faktura> fakturaList;
-  private List<Faktura> filtrovanyFakturaList;
   private List<Nemovitost> nemovitostList;
+  private List<Faktura> filtrovanyFakturaList;
 
   public void init() {
 
@@ -51,6 +51,15 @@ public class FakturaPrehledBean extends AbstractBean {
     fakturaList = fakturaService.getSeznamFakturVeZuctovacimObdobi(prihlasenyUzivatel, zuctovaciObdobi);
 
     nemovitostList = nemovitostService.getNemovitostAll();
+    filtrovanyFakturaList = null;
+  }
+
+  public List<Faktura> getFakturaList() {
+    return fakturaList;
+  }
+
+  public List<Faktura> getFiltrovanyFakturaList() {
+    return filtrovanyFakturaList;
   }
 
   public void onRowEdit(RowEditEvent event) {
@@ -80,7 +89,7 @@ public class FakturaPrehledBean extends AbstractBean {
 
     Faktura faktura = new Faktura();
 
-    faktura.setNazev("!!! Upravit název !!!");
+    faktura.setNazev("- zadejte -");
     faktura.setNemovitost(null);
     faktura.setZuctovaciObdobi(zuctovaciObdobi);
     faktura.setUzivatel(Util.getPrihlasenyUzivatel());

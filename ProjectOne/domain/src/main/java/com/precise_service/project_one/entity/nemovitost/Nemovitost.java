@@ -49,4 +49,8 @@ public class Nemovitost extends BaseEntity {
   @JsonProperty("nemovitostDruhVlastnictvi")
   @JsonInclude(JsonInclude.Include.NON_NULL)
   private NemovitostDruhVlastnictvi nemovitostDruhVlastnictvi;
+
+  public String getIdentifikaceNemovitosti() {
+    return "" + nemovitostTyp.getHodnota() + ", " + adresa.getCelaAdresa();
+  }
 }
