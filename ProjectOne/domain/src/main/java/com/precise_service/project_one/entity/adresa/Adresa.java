@@ -6,6 +6,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.Data;
 
+import static org.apache.commons.lang3.StringUtils.*;
+
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Adresa {
@@ -42,4 +44,8 @@ public class Adresa {
   @JsonProperty("cisloBytu")
   @JsonInclude(JsonInclude.Include.NON_NULL)
   private String cisloBytu;
+
+  public String getCelaAdresa() {
+    return "" + ulice + " " + cisloPopisne + (isNotBlank(cisloOrientacni) ? "/" + cisloOrientacni : "") + (isNotBlank(cisloBytu ) ? ", (byt č." + cisloBytu + ")" : "");
+  }
 }

@@ -42,10 +42,6 @@ public class Nemovitost extends BaseEntity {
   @JsonInclude(JsonInclude.Include.NON_NULL)
   private String rozloha;
 
-  @JsonProperty("cisloBytu")
-  @JsonInclude(JsonInclude.Include.NON_NULL)
-  private String cisloBytu;
-
   @JsonProperty("nemovitostDispozice")
   @JsonInclude(JsonInclude.Include.NON_NULL)
   private NemovitostDispozice nemovitostDispozice;

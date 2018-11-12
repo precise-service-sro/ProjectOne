@@ -1,0 +1,99 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:component="http://java.sun.com/jsf/composite/private/common/component"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+>
+
+<h:body>
+  <ui:composition>
+    <div class="divTable">
+      <p class="tableCaption">Základní informace:</p>
+      <table class="table_with_3_columns">
+        <tr>
+          <th class="prvniSloupec">
+            <div><p>Název:</p></div>
+          </th>
+          <td>
+            <div>
+              <p:inputText value="#{nemovitostDetailBean.nemovitost.nazev}"/>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <th class="prvniSloupec">
+            <div><p>Typ:</p></div>
+          </th>
+          <td>
+            <div>
+              <h:selectOneMenu value="#{nemovitostDetailBean.nemovitost.nemovitostTyp}" converter="#{nemovitostTypConverter}">
+                <f:selectItems value="#{nemovitostDetailBean.nemovitostTypList}" var="nemovitostTyp" itemLabel="#{nemovitostTyp.hodnota}"
+                               itemValue="#{nemovitostTyp}"/>
+              </h:selectOneMenu>
+            </div>
+          </td>
+          <th>
+            <div><p>Druh vlastnictví:</p></div>
+          </th>
+          <td>
+            <div>
+              <h:selectOneMenu value="#{nemovitostDetailBean.nemovitost.nemovitostDruhVlastnictvi}"
+                               converter="#{nemovitostDruhVlastnictviConverter}">
+                <f:selectItems value="#{nemovitostDetailBean.nemovitostDruhVlastnictviList}" var="nemovitostDruhVlastnictvi"
+                               itemLabel="#{nemovitostDruhVlastnictvi.hodnota}"
+                               itemValue="#{nemovitostDruhVlastnictvi}"/>
+              </h:selectOneMenu>
+            </div>
+          </td>
+
+          <th>
+            <div><p>Vlastník:</p></div>
+          </th>
+          <td>
+            <div>
+              <h:selectOneMenu value="#{nemovitostDetailBean.nemovitost.vlastnik}" converter="#{osobaConverter}">
+                <f:selectItems value="#{nemovitostDetailBean.osobaList}" var="osoba" itemLabel="#{osoba.getCeleJmeno()}" itemValue="#{osoba}"/>
+              </h:selectOneMenu>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <th class="prvniSloupec">
+            <div><p>Dispozice:</p></div>
+          </th>
+          <td>
+            <div>
+              <h:selectOneMenu value="#{nemovitostDetailBean.nemovitost.nemovitostDispozice}"
+                               converter="#{nemovitostDispoziceConverter}">
+                <f:selectItems value="#{nemovitostDetailBean.nemovitostDispoziceList}" var="nemovitostDispozice"
+                               itemLabel="#{nemovitostDispozice.hodnota}"
+                               itemValue="#{nemovitostDispozice}"/>
+              </h:selectOneMenu>
+            </div>
+          </td>
+
+          <th>
+            <div><p>Rozloha: (m2)</p></div>
+          </th>
+          <td>
+            <div>
+              <p:inputText value="#{nemovitostDetailBean.nemovitost.rozloha}"/>
+            </div>
+          </td>
+
+          <th>
+            <div><p>Číslo bytu:</p></div>
+          </th>
+          <td>
+            <div>
+              <p:inputText value="#{nemovitostDetailBean.nemovitost.adresa.cisloBytu}"/>
+            </div>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </ui:composition>
+</h:body>
+</html>

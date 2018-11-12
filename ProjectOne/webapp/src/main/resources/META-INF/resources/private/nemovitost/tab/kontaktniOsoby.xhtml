@@ -1,0 +1,118 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:component="http://java.sun.com/jsf/composite/private/common/component"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+>
+
+<h:body>
+  <ui:composition>
+    <div class="divTable">
+      <div class="tabTitle">
+        <div class="tabTitleLeft">
+          <p class="tableCaption">Kontaktní osoby:</p>
+        </div>
+        <div class="tabTitleRight">
+          <div class="addButtonDiv">
+            <p:commandButton value="Přidat" icon="ui-icon-circle-plus" process="@this" update="form :form:msgs" editable="true"
+                             actionListener="#{nemovitostKontaktBean.pridatNemovitostKontakt()}"/>
+          </div>
+        </div>
+      </div>
+      <div class="divDataTable">
+        <h:outputText value="#{nemovitostKontaktBean.init(nemovitostDetailBean.nemovitost.id)}"/>
+
+        <p:dataTable id="nemovitostKontaktBeanTable" var="kontakt" widgetVar="nemovitostKontaktBeanTable"
+                     value="#{nemovitostKontaktBean.nemovitostKontaktList}" resizableColumns="true" sortBy="#{1}" editable="true"
+                     rendered="#{not empty nemovitostKontaktBean.nemovitostKontaktList}"
+                     emptyMessage="Nebyly nalezeny žádné kontakty" filteredValue="#{nemovitostKontaktBean.filtrovanyNemovitostKontaktList}">
+
+
+          <p:ajax event="rowEdit" listener="#{nemovitostKontaktBean.ulozitUpravuNemovitostKontakt}" update=":form:msgs"/>
+          <p:ajax event="rowEditCancel" listener="#{nemovitostKontaktBean.zrusitUpravuNemovitostKontakt}" update=":form:msgs"/>
+          <p:ajax event="page" update=":form:tabViewNemovitostDetail:nemovitostKontaktBeanTable"/>
+
+          <p:columnGroup type="header">
+            <p:row>
+              <p:column headerText="Jméno" style="width: 120px;"/>
+              <p:column headerText="Příjmení" style="width: 120px;"/>
+              <p:column headerText="Telefon" style="width: 150px;"/>
+              <p:column headerText="Email" style="width: 250px;"/>
+              <p:column headerText="Poznámka" style="width: 100%;"/>
+              <p:column headerText="Ovládání" colspan="2" rowspan="2" style="width: 90px;"/>
+            </p:row>
+          </p:columnGroup>
+
+          <p:column>
+            <p:cellEditor>
+              <f:facet name="output">
+                <h:outputText value="#{kontakt.jmeno}" title="#{kontakt.jmeno}"/>
+              </f:facet>
+              <f:facet name="input">
+                <p:inputText id="kontaktJmenoInput" value="#{kontakt.jmeno}" style="width:100%"/>
+              </f:facet>
+            </p:cellEditor>
+          </p:column>
+
+          <p:column>
+            <p:cellEditor>
+              <f:facet name="output">
+                <h:outputText value="#{kontakt.prijmeni}" title="#{kontakt.prijmeni}"/>
+              </f:facet>
+              <f:facet name="input">
+                <p:inputText id="kontaktPrijmeniInput" value="#{kontakt.prijmeni}" style="width:100%"/>
+              </f:facet>
+            </p:cellEditor>
+          </p:column>
+
+          <p:column>
+            <p:cellEditor>
+              <f:facet name="output">
+                <h:outputText value="#{kontakt.telefon}" title="#{kontakt.telefon}"/>
+              </f:facet>
+              <f:facet name="input">
+                <p:inputText id="kontaktTelefonInput" value="#{kontakt.telefon}" style="width:100%"/>
+              </f:facet>
+            </p:cellEditor>
+          </p:column>
+
+          <p:column>
+            <p:cellEditor>
+              <f:facet name="output">
+                <h:outputText value="#{kontakt.email}" title="#{kontakt.email}"/>
+              </f:facet>
+              <f:facet name="input">
+                <p:inputText id="kontaktEmailInput" value="#{kontakt.email}" style="width:100%"/>
+              </f:facet>
+            </p:cellEditor>
+          </p:column>
+
+          <p:column>
+            <p:cellEditor>
+              <f:facet name="output">
+                <h:outputText value="#{kontakt.poznamky}" title="#{kontakt.poznamky}"/>
+              </f:facet>
+              <f:facet name="input">
+                <p:inputText id="kontaktPoznamkyInput" value="#{kontakt.poznamky}" style="width:100%"/>
+              </f:facet>
+            </p:cellEditor>
+          </p:column>
+
+          <p:column>
+            <p:rowEditor/>
+          </p:column>
+
+          <p:column>
+            <p:commandButton update=":form:tabViewNemovitostDetail:nemovitostKontaktBeanTable :form:msgs" icon="ui-icon-circle-minus"
+                             actionListener="#{nemovitostKontaktBean.smazatNemovitostKontakt(kontakt)}"
+                             title="Odebrat kontaktní osobu"/>
+          </p:column>
+
+        </p:dataTable>
+      </div>
+    </div>
+  </ui:composition>
+</h:body>
+</html>

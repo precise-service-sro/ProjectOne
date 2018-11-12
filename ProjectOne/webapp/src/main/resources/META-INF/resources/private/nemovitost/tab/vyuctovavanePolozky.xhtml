@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:component="http://java.sun.com/jsf/composite/private/common/component"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+>
+
+<h:body>
+  <ui:composition>
+    <div class="divTable">
+      <div class="tabTitle">
+        <div class="tabTitleLeft">
+          <p class="tableCaption">Vyúčtovávané položky:</p>
+        </div>
+        <div class="tabTitleRight">
+          <div class="addButtonDiv">
+            <p:commandButton value="Přidat" icon="ui-icon-circle-plus" process="@this" update="form :form:msgs"
+                             actionListener="#{polozkaTypBean.pridatPolozkaTyp()}"/>
+          </div>
+        </div>
+      </div>
+      <div class="divDataTable">
+        <h:outputText value="#{polozkaTypBean.init(nemovitostDetailBean.nemovitost.id)}"/>
+
+        <p:dataTable id="polozkaTypTable" widgetVar="polozkaTypTable"
+                     var="polozkaTyp" value="#{polozkaTypBean.polozkaTypList}"
+                     editable="true" rowIndexVar="index"
+                     rendered="#{not empty polozkaTypBean.polozkaTypList}"
+                     emptyMessage="Nebyly nalezeny žádné vyúčtovávané položky" filteredValue="#{polozkaTypBean.filtrovanyPolozkaTypList}">
+
+          <p:ajax event="rowEdit" listener="#{polozkaTypBean.ulozitUpravuPolozkaTyp}" update=":form:msgs"/>
+          <p:ajax event="rowEditCancel" listener="#{polozkaTypBean.zrusitUpravuPolozkaTyp}" update=":form:msgs"/>
+          <p:ajax event="page" update=":form:tabViewNemovitostDetail:polozkaTypTable"/>
+
+          <p:columnGroup type="header">
+            <p:row>
+              <p:column headerText="Název" style="width: 150px;"/>
+              <p:column headerText="Jednotka" style="width: 100px;"/>
+              <p:column headerText="Popis" style="width: 100%;"/>
+              <p:column headerText="Ovládání" colspan="2" style="width: 90px;"/>
+            </p:row>
+          </p:columnGroup>
+
+          <p:column>
+            <p:cellEditor>
+              <f:facet name="output">
+                <h:outputText value="#{polozkaTyp.nazev}"/>
+              </f:facet>
+              <f:facet name="input">
+                <p:inputText id="polozkaTypNazevInput" value="#{polozkaTyp.nazev}" style="width:100%"/>
+              </f:facet>
+            </p:cellEditor>
+          </p:column>
+
+          <p:column style="text-align: center;">
+            <p:cellEditor>
+              <f:facet name="output">
+                <h:outputText value="#{polozkaTyp.jednotka}"/>
+              </f:facet>
+              <f:facet name="input">
+                <p:inputText id="polozkaTypJednotkaInput" value="#{polozkaTyp.jednotka}" style="width:100%"/>
+              </f:facet>
+            </p:cellEditor>
+          </p:column>
+
+          <p:column>
+            <p:cellEditor>
+              <f:facet name="output">
+                <h:outputText value="#{polozkaTyp.popis}"/>
+              </f:facet>
+              <f:facet name="input">
+                <p:inputText id="polozkaTypPopisInput" value="#{polozkaTyp.popis}" style="width:100%"/>
+              </f:facet>
+            </p:cellEditor>
+          </p:column>
+
+          <p:column>
+            <p:rowEditor/>
+          </p:column>
+
+          <p:column>
+            <p:commandButton update=":form:tabViewNemovitostDetail:polozkaTypTable :form:msgs" icon="ui-icon-circle-minus"
+                             actionListener="#{polozkaTypBean.smazatPolozkaTyp(polozkaTyp)}"
+                             title="Odebrat vyúčtovávanou položku"/>
+          </p:column>
+        </p:dataTable>
+      </div>
+    </div>
+  </ui:composition>
+</h:body>
+</html>

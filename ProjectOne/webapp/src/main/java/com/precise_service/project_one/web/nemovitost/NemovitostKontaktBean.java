@@ -31,16 +31,25 @@ public class NemovitostKontaktBean extends AbstractBean {
   public void init(String idNemovitost) {
     nemovitost = nemovitostService.getNemovitost(idNemovitost);
     nemovitostKontaktList = nemovitostKontaktService.getNemovitostKontaktAll(idNemovitost, Util.getPrihlasenyUzivatel().getId());
+    filtrovanyNemovitostKontaktList = null;
+  }
+
+  public List<NemovitostKontakt> getNemovitostKontaktList() {
+    return nemovitostKontaktList;
+  }
+
+  public List<NemovitostKontakt> getFiltrovanyNemovitostKontaktList() {
+    return filtrovanyNemovitostKontaktList;
   }
 
   public void pridatNemovitostKontakt() {
     log.trace("pridatNemovitostKontakt()");
 
     NemovitostKontakt nemovitostKontakt = new NemovitostKontakt();
-    nemovitostKontakt.setJmeno("!!! Upravit jméno !!!");
-    nemovitostKontakt.setPrijmeni("!!! Upravit příjmení !!!");
-    nemovitostKontakt.setTelefon("!!! Upravit telefon !!!");
-    nemovitostKontakt.setEmail("!!! Upravit email !!!");
+    nemovitostKontakt.setJmeno("- zadejte -");
+    nemovitostKontakt.setPrijmeni("- zadejte -");
+    nemovitostKontakt.setTelefon("- zadejte -");
+    nemovitostKontakt.setEmail("- zadejte -");
     nemovitostKontakt.setUzivatel(Util.getPrihlasenyUzivatel());
     nemovitostKontakt.setNemovitost(nemovitost);
 
@@ -55,7 +64,7 @@ public class NemovitostKontaktBean extends AbstractBean {
   public void smazatNemovitostKontakt(NemovitostKontakt deletedNemovitostKontakt) {
     log.trace("smazatNemovitostKontakt()");
 
-    if (deletedNemovitostKontakt == null) {
+      if (deletedNemovitostKontakt == null) {
       log.trace("deleted row is null");
       return;
     }

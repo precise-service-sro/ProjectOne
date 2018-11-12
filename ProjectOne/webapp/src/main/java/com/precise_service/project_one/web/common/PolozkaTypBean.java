@@ -29,6 +29,7 @@ public class PolozkaTypBean extends AbstractBean {
     log.trace("init()");
     nemovitost = nemovitostService.getNemovitost(idNemovitost);
     polozkaTypList = polozkaTypService.getPolozkaTypListByIdNemovitost(nemovitost.getId());
+    filtrovanyPolozkaTypList = null;
   }
 
   public void ulozitUpravuPolozkaTyp(RowEditEvent event) {
@@ -51,9 +52,9 @@ public class PolozkaTypBean extends AbstractBean {
     log.trace("pridatPolozkaTyp()");
 
     PolozkaTyp polozkaTyp = new PolozkaTyp();
-    polozkaTyp.setNazev("!!! Upravit název !!!");
-    polozkaTyp.setJednotka("!!! Upravit jednotku !!!");
-    polozkaTyp.setPopis("!!! Upravit popis !!!");
+    polozkaTyp.setNazev("- zadejte -");
+    polozkaTyp.setJednotka("- zadejte -");
+    polozkaTyp.setPopis("- zadejte -");
     polozkaTyp.setUzivatel(Util.getPrihlasenyUzivatel());
     polozkaTyp.setNemovitost(nemovitost);
 

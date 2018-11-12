@@ -31,6 +31,14 @@ public class NemovitostPrehledBean extends AbstractBean {
     nemovitostList = nemovitostService.getNemovitostAll(prihlasenyUzivatel.getId());
   }
 
+  public List<Nemovitost> getNemovitostList() {
+    return nemovitostList;
+  }
+
+  public List<Nemovitost> getFiltrovanyNemovitostList() {
+    return filtrovanyNemovitostList;
+  }
+
   public void onRowEdit(RowEditEvent event) {
     log.trace("onRowEdit()");
     Nemovitost nemovitost = (Nemovitost) event.getObject();
