@@ -1,6 +1,7 @@
 package com.precise_service.project_one.web.nemovitost;
 
 import java.util.List;
+import java.util.Locale;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
@@ -29,14 +30,7 @@ public class NemovitostPrehledBean extends AbstractBean {
   public void init() {
     Osoba prihlasenyUzivatel = Util.getPrihlasenyUzivatel();
     nemovitostList = nemovitostService.getNemovitostAll(prihlasenyUzivatel.getId());
-  }
-
-  public List<Nemovitost> getNemovitostList() {
-    return nemovitostList;
-  }
-
-  public List<Nemovitost> getFiltrovanyNemovitostList() {
-    return filtrovanyNemovitostList;
+    filtrovanyNemovitostList = null;
   }
 
   public void onRowEdit(RowEditEvent event) {
@@ -60,7 +54,7 @@ public class NemovitostPrehledBean extends AbstractBean {
 
     Nemovitost nemovitost = new Nemovitost();
 
-    nemovitost.setNazev("!!! Upravit název !!!");
+    nemovitost.setNazev("- zadejte -");
     nemovitost.setAdresa(new Adresa());
     nemovitost.setNemovitostTyp(NemovitostTyp.BYT);
     nemovitost.setUzivatel(Util.getPrihlasenyUzivatel());
@@ -68,7 +62,7 @@ public class NemovitostPrehledBean extends AbstractBean {
     Nemovitost saved = nemovitostService.postNemovitost(nemovitost);
     init();
 
-    FacesMessage msg = new FacesMessage("Přidána nová řádka", saved.getId());
+    FacesMessage msg = new FacesMessage("Přidána nová nemovitost", saved.getId());
     FacesContext.getCurrentInstance().addMessage(null, msg);
   }
 
