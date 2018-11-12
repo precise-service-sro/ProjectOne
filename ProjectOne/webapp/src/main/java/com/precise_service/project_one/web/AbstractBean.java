@@ -18,7 +18,6 @@ import com.precise_service.project_one.service.vyuctovani.IPolozkaTypService;
 import com.precise_service.project_one.service.vyuctovani.IVyuctovaniPolozkaService;
 import com.precise_service.project_one.service.vyuctovani.IVyuctovaniService;
 import com.precise_service.project_one.web.common.RouterBean;
-import com.precise_service.project_one.web.common.component.EditorTextuBean;
 import com.precise_service.project_one.web.faktura.FakturaDetailBean;
 import com.precise_service.project_one.web.nemovitost.NemovitostDetailBean;
 import com.precise_service.project_one.web.osoba.OsobaDetailBean;
@@ -48,7 +47,6 @@ public abstract class AbstractBean implements Serializable {
   @Autowired protected IVyuctovaniService vyuctovaniService;
   @Autowired protected IVyuctovaniPolozkaService vyuctovaniPolozkaService;
 
-  @Autowired protected EditorTextuBean editorTextuBean;
   @Autowired protected FakturaDetailBean fakturaDetailBean;
   @Autowired protected NemovitostDetailBean nemovitostDetailBean;
   @Autowired protected OsobaDetailBean osobaDetailBean;

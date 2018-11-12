@@ -135,24 +135,11 @@
     margin-right: 10px;
 }
 
-table {
+.divTable table {
     table-layout: fixed;
 }
 
-.table_with_1_columns {
-    table-layout: fixed;
-}
-
-.table_with_2_columns {
-    table-layout: fixed;
-}
-
-.table_with_3_columns {
-    //width: 1200px;
-    table-layout: fixed;
-}
-
-table th {
+.divTable th {
     width: 100px;
     text-align: left;
 }
@@ -239,4 +226,28 @@ table td select {
 
 .tabicko {
     height: 430px;
+}
+
+.divFakturaDetailTable {
+    width: 800px;
+}
+
+.divFakturaDetailTable table {
+    width: 100%;
+}
+
+.divFakturaDetailTable th {
+    text-align: left;
+}
+
+.divFakturaDetailTable select {
+    font-size: large;
+}
+
+.divOsobaDetailTable th {
+    text-align: left;
+}
+
+.divOsobaDetailTable select {
+    font-size: large;
 }

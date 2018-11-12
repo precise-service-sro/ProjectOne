@@ -52,16 +52,6 @@ public class NemovitostDetailBean extends AbstractBean {
     nemovitostDispoziceList = Arrays.asList(NemovitostDispozice.values());
   }
 
-  public void ulozitPoznamky(){
-    log.warn("ulozitPoznamky()");
-    String newText = editorTextuBean.getText();
-    nemovitost.setPoznamky(newText);
-    nemovitostService.postNemovitost(nemovitost);
-
-    FacesMessage msg = new FacesMessage("Úprava uložena", newText);
-    FacesContext.getCurrentInstance().addMessage(null, msg);
-  }
-
   public void pridatNemovitost() throws IOException {
     log.trace("pridatNemovitost()");
     showMessage(FacesMessage.SEVERITY_INFO,"Přidáno", "Nová nemovitost " + nemovitost.getNazev() + " byla přidáná");

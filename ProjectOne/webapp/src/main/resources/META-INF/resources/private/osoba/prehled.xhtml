@@ -22,108 +22,68 @@
           <p>Přehled osob:</p>
         </div>
 
-        <div class="divTableRow">
-          <div class="divTableCell divTableHeading">
-            <p>Osoby:</p>
+        <div>
+          <div class="addButtonDiv">
+            <p:commandButton value="Přidat" icon="ui-icon-circle-plus" process="@this" update="form :form:msgs"
+                             actionListener="#{osobaPrehledBean.addRow()}"/>
           </div>
-          <div class="divTableCell">
-            <div class="addButtonDiv">
-              <p:commandButton value="Přidat" icon="ui-icon-circle-plus" process="@this" update="form :form:msgs"
-                               actionListener="#{osobaPrehledBean.addRow()}" />
-            </div>
 
-            <p:dataTable id="osobaPrehledBeanTable" var="osoba" widgetVar="osobaPrehledBeanTable" value="#{osobaPrehledBean.osobaList}"
-                         resizableColumns="true" sortBy="#{1}" editable="true" rendered="#{not empty osobaPrehledBean.osobaList}">
+          <p:dataTable id="osobaPrehledBeanTable"
+                       var="osoba"
+                       widgetVar="osobaPrehledBeanTable"
+                       value="#{osobaPrehledBean.osobaList}"
+                       sortBy="#{1}"
+                       rendered="#{not empty osobaPrehledBean.osobaList}"
+                       emptyMessage="Nebyly nalezeny žádné osoby"
+                       filteredValue="#{osobaPrehledBean.filtrovanyOsobaList}"
+          >
 
-              <p:ajax event="rowEdit" listener="#{osobaPrehledBean.onRowEdit}" update=":form:msgs :form:osobaPrehledBeanTable"/>
-              <p:ajax event="rowEditCancel" listener="#{osobaPrehledBean.onRowCancel}" update=":form:msgs"/>
+            <f:facet name="header">
+              <p:outputPanel style="text-align: right;">
+                <p:inputText id="globalFilter" onkeyup="PF('osobaPrehledBeanTable').filter()" style="width:235px"
+                             placeholder="- zadejte text pro vyhledání -"/>
+              </p:outputPanel>
+            </f:facet>
 
-              <p:columnGroup type="header">
-                <p:row>
-                  <p:column headerText="Fotka / Avatar"/>
-                  <p:column headerText="Jméno"/>
-                  <p:column headerText="Příjmení" style="width: 180px;"/>
-                  <p:column headerText="Datum narození" style="width: 200px;"/>
-                  <p:column headerText="Telefon" style="width: 200px;"/>
-                  <p:column headerText="Email" style="width: 200px;"/>
-                  <p:column headerText="Ovládání" colspan="3" rowspan="2" style="width: 160px;"/>
-                </p:row>
-              </p:columnGroup>
+            <p:columnGroup type="header">
+              <p:row>
+                <p:column headerText="Fotka / Avatar" style="width: 150px;"/>
+                <p:column headerText="Jméno a Přijmení / Název" style="width: 250px;" filterBy="#{osoba.getCeleJmeno()}" filterMatchMode="contains" filterStyle="display:none" sortBy="#{osoba.getCeleJmeno()}"/>
+                <p:column headerText="Datum narození" style="width: 200px;" filterBy="#{osoba.datumNarozeni}" filterMatchMode="contains" filterStyle="display:none" sortBy="#{osoba.datumNarozeni}"/>
+                <p:column headerText="Telefon" style="width: 200px;" filterBy="#{osoba.telefon}" filterMatchMode="contains" filterStyle="display:none" sortBy="#{osoba.telefon}"/>
+                <p:column headerText="Email" style="width: 100%;" filterBy="#{osoba.email}" filterMatchMode="contains" filterStyle="display:none" sortBy="#{osoba.email}"/>
+                <p:column headerText="Ovládání" colspan="1" rowspan="2" style="width: 90px;"/>
+              </p:row>
+            </p:columnGroup>
 
-              <p:column>
-                <h:outputText value="#{osoba.fotka}"/>
-              </p:column>
+            <p:column style="text-align: center;">
+              <img src="avatar/kiyosaki.png" alt="dfaf" style="width: 60px;" />
+            </p:column>
 
-              <p:column style="text-align: center;">
-                <p:cellEditor>
-                  <f:facet name="output">
-                    <h:outputText value="#{osoba.jmeno}"/>
-                  </f:facet>
-                  <f:facet name="input">
-                    <p:inputText id="jmenoInput" value="#{osoba.jmeno}" style="width:100%" onkeydown="if (event.keyCode === 13) {return false;}"/>
-                  </f:facet>
-                </p:cellEditor>
-              </p:column>
+            <p:column>
+              <h:outputText value="#{osoba.getCeleJmeno()}"/>
+            </p:column>
 
-              <p:column style="text-align: center;">
-                <p:cellEditor>
-                  <f:facet name="output">
-                    <h:outputText value="#{osoba.prijmeni}"/>
-                  </f:facet>
-                  <f:facet name="input">
-                    <p:inputText id="prijmeniInput" value="#{osoba.prijmeni}" style="width:100%" onkeydown="if (event.keyCode === 13) {return false;}"/>
-                  </f:facet>
-                </p:cellEditor>
-              </p:column>
+            <p:column style="text-align: center;">
+              <h:outputText value="#{osoba.datumNarozeni}">
+                <f:convertDateTime pattern="dd-MM-yyyy"/>
+              </h:outputText>
+            </p:column>
 
-              <p:column style="text-align: center;">
-                <p:cellEditor>
-                  <f:facet name="output">
-                    <h:outputText value="#{osoba.datumNarozeni}">
-                      <f:convertDateTime pattern="dd-MM-yyyy"/>
-                    </h:outputText>
-                  </f:facet>
-                  <f:facet name="input">
-                    <p:calendar id="datumNarozeniInput" value="#{osoba.datumNarozeni}" pattern="dd-MM-yyyy" style="width:100%"/>
-                  </f:facet>
-                </p:cellEditor>
-              </p:column>
+            <p:column style="text-align: center;">
+              <h:outputText value="#{osoba.telefon}"/>
+            </p:column>
 
-              <p:column style="text-align: center;">
-                <p:cellEditor>
-                  <f:facet name="output">
-                    <h:outputText value="#{osoba.telefon}"/>
-                  </f:facet>
-                  <f:facet name="input">
-                    <p:inputText id="telefonInput" value="#{osoba.telefon}" style="width:100%"/>
-                  </f:facet>
-                </p:cellEditor>
-              </p:column>
+            <p:column>
+              <h:outputText value="#{osoba.email}"/>
+            </p:column>
 
-              <p:column style="text-align: center;">
-                <p:cellEditor>
-                  <f:facet name="output">
-                    <h:outputText value="#{osoba.email}"/>
-                  </f:facet>
-                  <f:facet name="input">
-                    <p:inputText id="emailInput" value="#{osoba.email}" style="width:100%"/>
-                  </f:facet>
-                </p:cellEditor>
-              </p:column>
+            <p:column>
+              <p:commandButton icon="ui-icon-circle-zoomin" actionListener="#{routerBean.goToOsobaDetailBean(osoba)}" title="Podrobnosti"/>
+              <p:commandButton update="form :form:msgs" icon="ui-icon-circle-minus" actionListener="#{osobaPrehledBean.deleteRow(osoba)}" title="Odebrat"/>
+            </p:column>
 
-              <p:column>
-                <p:commandButton icon="ui-icon-circle-zoomin" actionListener="#{routerBean.goToOsobaDetailBean(osoba)}" title="Podrobnosti"/>
-              </p:column>
-
-              <p:column>
-                <p:rowEditor/>
-              </p:column>
-
-              <p:column>
-                <p:commandButton update="form :form:msgs" icon="ui-icon-circle-minus" actionListener="#{osobaPrehledBean.deleteRow(osoba)}" title="Odebrat"/>
-              </p:column>
-            </p:dataTable>
-          </div>
+          </p:dataTable>
         </div>
       </h:form>
 

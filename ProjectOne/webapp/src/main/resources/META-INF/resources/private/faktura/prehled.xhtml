@@ -22,22 +22,22 @@
           <p>Přehled faktur:</p>
         </div>
 
-        <div class="divTableRow">
-          <p>Začátek zúčtovacího období:</p>
+        <div class="divTableRow" style="float: left;">
+          <p style="display: inline; margin-right: 20px; font-size: 20px;">Začátek zúčtovacího období:</p>
           <p:calendar id="zuctovaciObdobiFilterZacatek" value="#{fakturaPrehledBean.zuctovaciObdobi.zacatek}" pattern="dd-MM-yyyy"/>
         </div>
 
-        <div class="divTableRow">
-          <p>Konec zúčtovacího období:</p>
-          <p:calendar id="zuctovaciObdobiFilterKonec" value="#{fakturaPrehledBean.zuctovaciObdobi.konec}" pattern="dd-MM-yyyy"/>
+        <div class="divTableRow" style="float: left;">
+          <p style="display: inline; margin-left: 20px; margin-right: 20px; font-size: 20px;">Konec zúčtovacího období:</p>
+          <p:calendar id="zuctovaciObdobiFilterKonec" value="#{fakturaPrehledBean.zuctovaciObdobi.konec}" pattern="dd-MM-yyyy" />
         </div>
 
-        <div>
-          <div class="addButtonDiv">
-            <p:commandButton value="Přidat" icon="ui-icon-circle-plus" process="@this" update="form :form:msgs"
-                             actionListener="#{fakturaPrehledBean.addRow()}"/>
-          </div>
+        <div class="addButtonDiv">
+          <p:commandButton value="Přidat" icon="ui-icon-circle-plus" process="@this" update="form :form:msgs"
+                           actionListener="#{fakturaPrehledBean.addRow()}"/>
+        </div>
 
+        <div >
           <p:dataTable
                   id="fakturaPrehledBeanTable"
                   var="faktura"

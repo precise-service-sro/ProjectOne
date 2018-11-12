@@ -16,6 +16,7 @@ import lombok.extern.slf4j.Slf4j;
 import static com.precise_service.project_one.web.URL_CONST.NEMOVITOST_DETAIL_URL;
 import static com.precise_service.project_one.web.URL_CONST.NEMOVITOST_PREHLED_URL;
 import static com.precise_service.project_one.web.URL_CONST.OSOBA_DETAIL_URL;
+import static com.precise_service.project_one.web.URL_CONST.OSOBA_PREHLED_URL;
 
 @Slf4j
 @Data
@@ -33,6 +34,12 @@ public class RouterBean extends AbstractBean {
     nemovitostDetailBean.setNemovitost(nemovitost);
     Faces.getFlash().setRedirect(true);
     Faces.redirect(NEMOVITOST_DETAIL_URL);
+  }
+
+  public void goToOsobaPrehledBean() throws IOException {
+    log.trace("goToOsobaPrehledBean()");
+    Faces.getFlash().setRedirect(true);
+    Faces.redirect(OSOBA_PREHLED_URL);
   }
 
   public void goToOsobaDetailBean(Osoba osoba) throws IOException {

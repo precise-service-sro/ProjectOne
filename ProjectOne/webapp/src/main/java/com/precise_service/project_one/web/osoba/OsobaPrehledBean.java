@@ -1,29 +1,20 @@
 package com.precise_service.project_one.web.osoba;
 
-import java.io.IOException;
-import java.io.Serializable;
 import java.util.List;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
-import org.omnifaces.util.Faces;
 import org.primefaces.event.RowEditEvent;
-import org.springframework.beans.factory.annotation.Autowired;
 
-import com.precise_service.project_one.entity.nemovitost.Nemovitost;
+import com.precise_service.project_one.entity.adresa.Adresa;
 import com.precise_service.project_one.entity.osoba.Osoba;
-import com.precise_service.project_one.service.nemovitost.INemovitostService;
-import com.precise_service.project_one.service.osoba.IOsobaService;
 import com.precise_service.project_one.web.AbstractBean;
-import com.precise_service.project_one.web.URL_CONST;
 import com.precise_service.project_one.web.login.Util;
 
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
-
-import static com.precise_service.project_one.web.URL_CONST.OSOBA_DETAIL_URL;
 
 @Slf4j
 @Data
@@ -31,10 +22,12 @@ import static com.precise_service.project_one.web.URL_CONST.OSOBA_DETAIL_URL;
 public class OsobaPrehledBean extends AbstractBean {
 
   private List<Osoba> osobaList;
-  
+  private List<Osoba> filtrovanyOsobaList;
+
   public void init() {
     Osoba prihlasenyUzivatel = Util.getPrihlasenyUzivatel();
     osobaList = osobaService.getOsobaAll(prihlasenyUzivatel.getId());
+    filtrovanyOsobaList = null;
   }
 
   public void onRowEdit(RowEditEvent event) {
@@ -59,10 +52,8 @@ public class OsobaPrehledBean extends AbstractBean {
     log.trace("addRow()");
 
     Osoba osoba = new Osoba();
-
-    osoba.setJmeno("!!! Upravit !!!");
-    osoba.setPrijmeni("!!! Upravit !!!");
     osoba.setUzivatel(Util.getPrihlasenyUzivatel());
+    osoba.setTrvaleBydliste(new Adresa());
 
     Osoba saved = osobaService.postOsoba(osoba);
     init();

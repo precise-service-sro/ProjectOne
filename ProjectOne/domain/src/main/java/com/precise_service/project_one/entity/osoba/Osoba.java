@@ -2,6 +2,7 @@ package com.precise_service.project_one.entity.osoba;
 
 import java.util.Date;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -9,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.precise_service.project_one.entity.BaseEntity;
+import com.precise_service.project_one.entity.adresa.Adresa;
 
 import lombok.Data;
 
@@ -38,13 +40,36 @@ public class Osoba extends BaseEntity {
   private String prijmeni;
 
   public String getCeleJmeno(){
-    return "" + jmeno + " " + prijmeni;
+    return "" + (StringUtils.isNotBlank(jmeno) ? jmeno : "") + (StringUtils.isNotBlank(prijmeni) ? " " + prijmeni : "");
   }
 
   @JsonProperty("datumNarozeni")
   @JsonInclude(JsonInclude.Include.NON_NULL)
   @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
   private Date datumNarozeni;
+
+  @JsonProperty("rodneCislo")
+  @JsonInclude(JsonInclude.Include.NON_NULL)
+  private String rodneCislo;
+
+  @JsonProperty("trvaleBydliste")
+  @JsonInclude(JsonInclude.Include.NON_NULL)
+  private Adresa trvaleBydliste;
+
+  public Adresa getTrvaleBydliste() {
+    if (trvaleBydliste == null) {
+      trvaleBydliste = new Adresa();
+    }
+    return trvaleBydliste;
+  }
+
+  @JsonProperty("zamestnani")
+  @JsonInclude(JsonInclude.Include.NON_NULL)
+  private String zamestnani;
+
+  @JsonProperty("cisloOP")
+  @JsonInclude(JsonInclude.Include.NON_NULL)
+  private String cisloOP;
 
   @JsonProperty("poznamky")
   @JsonInclude(JsonInclude.Include.NON_NULL)
