@@ -8,63 +8,68 @@
 >
 
 <h:body>
-  <ui:composition template="/template/commonLayout.xhtml">
-    <ui:define name="title">ProjectOne - Detail faktury</ui:define>
+  <ui:composition template="/template/detailPageLayout.xhtml">
+    <ui:define name="title">
+      ProjectOne - Detail faktury
+    </ui:define>
 
-    <ui:define name="content">
+    <ui:define name="pageContentTitle">
       <h:outputText value="#{fakturaDetailBean.init()}"/>
+      <p>Faktura:</p>
+    </ui:define>
 
-      <h:form id="form">
-        <p:growl id="msgs" showDetail="true"/>
+    <ui:define name="detailPageData">
+      <div class="divFakturaDetailTable">
+        <table>
+          <tr>
+            <th>
+              <p>Název:</p>
+            </th>
+            <td>
+              <p:inputText value="#{fakturaDetailBean.faktura.nazev}" placeholder="- zadejte -"/>
+            </td>
+            <th>
+              <p>Nemovitost:</p>
+            </th>
+            <td>
+              <h:selectOneMenu value="#{fakturaDetailBean.faktura.nemovitost}" converter="#{nemovitostConverter}">
+                <f:selectItems value="#{fakturaDetailBean.nemovitostList}" var="nemovitost" itemLabel="#{nemovitost.nazev}" itemValue="#{nemovitost}"/>
+              </h:selectOneMenu>
+            </td>
+          </tr>
+          <tr>
+            <th>
+              <p>Začátek zúčtovacího období:</p>
+            </th>
+            <td>
+              <p:calendar id="fakturaZuctovaciObdobiZacatek" value="#{fakturaDetailBean.faktura.zuctovaciObdobi.zacatek}" pattern="dd-MM-yyyy"/>
+            </td>
+            <th>
+              <p>Konec zúčtovacího období:</p>
+            </th>
+            <td>
+              <p:calendar id="fakturaZuctovaciObdobiKonec" value="#{fakturaDetailBean.faktura.zuctovaciObdobi.konec}" pattern="dd-MM-yyyy"/>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </ui:define>
 
-        <div class="pageContentTitle">
-          <p>Faktura:</p>
-        </div>
+        <ui:define name="detailPagePridavaciTlacitko">
+          <p:commandButton value="Přidat položku na fakturu" icon="ui-icon-circle-plus" process="@this" actionListener="#{fakturaDetailBean.addRow()}" update="form :form:msgs"/>
+        </ui:define>
 
-        <div class="divFakturaDetailTable">
-          <table>
-            <tr>
-              <th>
-                <p>Název:</p>
-              </th>
-              <td>
-                <p:inputText placeholder="- zadejte -"/>
-              </td>
-              <th>
-                <p>Nemovitost:</p>
-              </th>
-              <td>
-                <h:selectOneMenu value="#{fakturaDetailBean.faktura.nemovitost}" converter="#{nemovitostConverter}">
-                  <f:selectItems value="#{fakturaDetailBean.nemovitostList}" var="nemovitost" itemLabel="#{nemovitost.nazev}" itemValue="#{nemovitost}"/>
-                </h:selectOneMenu>
-              </td>
-            </tr>
-            <tr>
-              <th>
-                <p>Začátek zúčtovacího období:</p>
-              </th>
-              <td>
-                <p:calendar id="fakturaZuctovaciObdobiZacatek" value="#{fakturaDetailBean.faktura.zuctovaciObdobi.zacatek}" pattern="dd-MM-yyyy"/>
-              </td>
-              <th>
-                <p>Konec zúčtovacího období:</p>
-              </th>
-              <td>
-                <p:calendar id="fakturaZuctovaciObdobiKonec" value="#{fakturaDetailBean.faktura.zuctovaciObdobi.konec}" pattern="dd-MM-yyyy"/>
-              </td>
-            </tr>
-          </table>
-        </div>
+        <ui:define name="detailPageDataTable">
 
-        <div class="addButtonDiv">
-          <p:commandButton value="Přidat" icon="ui-icon-circle-plus" process="@this"
-                           actionListener="#{fakturaDetailBean.addRow()}" update="form :form:msgs"/>
-        </div>
-
-        <div class="divTableRow">
-          <p:dataTable id="fakturaDetailTable" widgetVar="fakturaDetailTable" var="polozka" value="#{fakturaDetailBean.fakturaPolozkaList}"
-                       resizableColumns="true" sortBy="#{1}" editable="true" rendered="#{not empty fakturaDetailBean.fakturaPolozkaList}"
-                       emptyMessage="Nebyly nalezeny žádné položky faktury" filteredValue="#{fakturaDetailBean.filtrovanyFakturaPolozkaList}">
+          <p:dataTable id="fakturaDetailTable"
+                       widgetVar="fakturaDetailTable"
+                       var="polozka" value="#{fakturaDetailBean.fakturaPolozkaList}"
+                       sortBy="#{1}"
+                       editable="true"
+                       rendered="#{not empty fakturaDetailBean.fakturaPolozkaList}"
+                       emptyMessage="Nebyly nalezeny žádné položky faktury"
+                       filteredValue="#{fakturaDetailBean.filtrovanyFakturaPolozkaList}"
+          >
 
             <p:ajax event="rowEdit" listener="#{fakturaDetailBean.onRowEdit}" update=":form:msgs :form:fakturaDetailTable"/>
             <p:ajax event="rowEditCancel" listener="#{fakturaDetailBean.onRowCancel}" update=":form:msgs"/>
@@ -72,11 +77,16 @@
             <p:columnGroup type="header">
               <p:row>
                 <p:column headerText="Název" filterBy="#{polozka.nazev}" filterMatchMode="contains" filterStyle="display:none" style="width: 100%;"/>
-                <p:column headerText="Jednotka" filterBy="#{polozka.pocatecniStav.jednotka}" filterMatchMode="contains" filterStyle="display:none" style="width: 80px;"/>
-                <p:column headerText="Vyúčtovat jako" filterBy="#{polozka.polozkaTyp.nazev}" filterMatchMode="contains" filterStyle="display:none" style="width: 200px;"/>
-                <p:column headerText="Poč. stav" filterBy="#{polozka.pocatecniStav.mnozstvi}" filterMatchMode="contains" filterStyle="display:none" style="width: 100px;"/>
-                <p:column headerText="Kon. stav" filterBy="#{polozka.koncovyStav.mnozstvi}" filterMatchMode="contains" filterStyle="display:none" style="width: 100px;"/>
-                <p:column headerText="Spotřeba" filterBy="#{polozka.spotreba.mnozstvi}" filterMatchMode="contains" filterStyle="display:none" style="width: 100px;"/>
+                <p:column headerText="Jednotka" filterBy="#{polozka.pocatecniStav.jednotka}" filterMatchMode="contains" filterStyle="display:none"
+                          style="width: 80px;"/>
+                <p:column headerText="Vyúčtovat jako" filterBy="#{polozka.polozkaTyp.nazev}" filterMatchMode="contains" filterStyle="display:none"
+                          style="width: 200px;"/>
+                <p:column headerText="Poč. stav" filterBy="#{polozka.pocatecniStav.mnozstvi}" filterMatchMode="contains" filterStyle="display:none"
+                          style="width: 100px;"/>
+                <p:column headerText="Kon. stav" filterBy="#{polozka.koncovyStav.mnozstvi}" filterMatchMode="contains" filterStyle="display:none"
+                          style="width: 100px;"/>
+                <p:column headerText="Spotřeba" filterBy="#{polozka.spotreba.mnozstvi}" filterMatchMode="contains" filterStyle="display:none"
+                          style="width: 100px;"/>
                 <p:column headerText="Zálohy" filterBy="#{polozka.zalohy.mnozstvi}" filterMatchMode="contains" filterStyle="display:none" style="width: 100px;"/>
                 <p:column headerText="Náklady" filterBy="#{polozka.naklady.mnozstvi}" filterMatchMode="contains" filterStyle="display:none" style="width: 100px;"/>
                 <p:column headerText="Rozdíl" filterBy="#{polozka.rozdil.mnozstvi}" filterMatchMode="contains" filterStyle="display:none" style="width: 100px;"/>
@@ -225,26 +235,34 @@
               <p:column colspan="2"/>
             </p:summaryRow>
           </p:dataTable>
-        </div>
-      </h:form>
-    </ui:define>
+        </ui:define>
 
-    <ui:define name="footer">
-
-      <h3>Další myšlenky a nápady na zlepšení:</h3>
-
-      - Proklikávání z označní bytu + editace (možnost změny bytu)
-      <br/>
-      - Editace položek v záhlaví + zformátování datumů
-      <br/>
-      - Přidat tlačítko zpět, anebo nějaké lepší drobečkové menu
-      <br/>
-      - Přidat příznaky za bylo zaplaceno (a případně kdy) a zda již bylo přeúčtováno nájemníkům
+        <ui:define name="detailPageUkladaciTlacitka">
+          <p:commandButton value="Uložit změny a vrátit se zpět" icon="ui-icon-disk" process="@form" actionListener="#{fakturaDetailBean.ulozitZmenuFaktury(true)}"
+                           update="form :form:msgs"/>
+          <p:commandButton value="Uložit změny a zůstat" icon="ui-icon-disk" process="@form" actionListener="#{fakturaDetailBean.ulozitZmenuFaktury(false)}"
+                           update="form :form:msgs"/>
+          <p:commandButton value="Zrušit změny" icon="ui-icon-cancel" process="@this" actionListener="#{fakturaDetailBean.zrusitZmenuFaktury()}"
+                           update="form :form:msgs"/>
+        </ui:define>
 
 
-      <component:dockMenu/>
-    </ui:define>
+        <ui:define name="footer">
 
-  </ui:composition>
-</h:body>
-</html>
+          <h3>Další myšlenky a nápady na zlepšení:</h3>
+
+          - Proklikávání z označní bytu + editace (možnost změny bytu)
+          <br/>
+          - Editace položek v záhlaví + zformátování datumů
+          <br/>
+          - Přidat tlačítko zpět, anebo nějaké lepší drobečkové menu
+          <br/>
+          - Přidat příznaky za bylo zaplaceno (a případně kdy) a zda již bylo přeúčtováno nájemníkům
+
+
+          <component:dockMenu/>
+        </ui:define>
+
+      </ui:composition>
+    </h:body>
+    </html>

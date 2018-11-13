@@ -15,4 +15,7 @@ public interface FakturaRepository extends MongoRepository<Faktura, String> {
 
   @Query("{ $and: [ { 'uzivatel.id' : ?2 }, { $or: [ { 'zuctovaciObdobi.zacatek' : { $gte: ?0, $lte: ?1 } }, { 'zuctovaciObdobi.konec' : { $gte: ?0, $lte: ?1} } ] } ] }")
   List<Faktura> getSeznamFakturVeZuctovacimObdobi(Date zacatekZuctovacihoObdobi, Date konecZuctovacihoObdobi, String idPrihlasenyUzivatel);
+
+  @Query("{ 'uzivatel.id' : ?0 }")
+  List<Faktura> getSeznamFaktur(String idPrihlasenyUzivatel);
 }

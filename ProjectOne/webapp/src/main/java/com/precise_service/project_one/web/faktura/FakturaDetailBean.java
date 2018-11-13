@@ -1,5 +1,6 @@
 package com.precise_service.project_one.web.faktura;
 
+import java.io.IOException;
 import java.util.List;
 
 import javax.faces.application.FacesMessage;
@@ -42,6 +43,7 @@ public class FakturaDetailBean extends AbstractBean {
     nemovitostList = nemovitostService.getNemovitostAll(Util.getPrihlasenyUzivatel().getId());
 
     if (faktura == null) {
+      faktura = fakturaService.getFaktura(Util.getPrihlasenyUzivatel().getId());
       log.error("Není vybraná žádná faktura k zobrazení detailu");
       return;
     }
@@ -166,8 +168,18 @@ public class FakturaDetailBean extends AbstractBean {
     init();
   }
 
-  public void ulozitZmenuFaktury() {
+  public void ulozitZmenuFaktury(boolean presmerovatZpetNaPrehledFaktur) throws IOException {
     log.trace("ulozitZmenuFaktury()");
     faktura = fakturaService.putFaktura(faktura);
+    showMessage(FacesMessage.SEVERITY_INFO,"Uloženo", "Úprava faktury " + faktura.getNazev() + " byla uložena");
+    if (presmerovatZpetNaPrehledFaktur) {
+      routerBean.goToFakturaPrehledBean();
+    }
+  }
+
+  public void zrusitZmenuFaktury() throws IOException {
+    log.trace("zrusitZmenuFaktury()");
+    showMessage(FacesMessage.SEVERITY_INFO,"Zrušeno", "Úprava faktury " + faktura.getNazev() + " byla zrušena");
+    routerBean.goToFakturaPrehledBean();
   }
 }

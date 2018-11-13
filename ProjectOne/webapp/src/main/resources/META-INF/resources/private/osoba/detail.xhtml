@@ -8,196 +8,199 @@
 >
 
 <h:body>
-  <ui:composition template="/template/commonLayout.xhtml">
-    <ui:define name="title">ProjectOne - Detail osoby</ui:define>
+  <ui:composition template="/template/detailPageLayout.xhtml">
 
-    <ui:define name="content">
+    <ui:define name="title">
+      ProjectOne - Detail osoby
+    </ui:define>
 
+    <ui:define name="pageContentTitle">
       <h:outputText value="#{osobaDetailBean.init()}"/>
+      <p>Detailní informace o konkrétní osobě:</p>
+    </ui:define>
 
-      <h:form id="form">
-        <p:growl id="msgs" showDetail="true"/>
+    <ui:define name="detailPageData">
+      <div class="divOsobaDetailTable">
+        <table>
+          <tr>
+            <th>
+              <p>Osobní údaje:</p>
+            </th>
+            <td></td>
+            <th>
+              <p>Fotka / Avatar:</p>
+            </th>
+            <td rowspan="3" style="text-align: center;">
+              <img src="avatar/kiyosaki.png" alt="- nahrát fotku - " style="width: 150px;"/>
+            </td>
+          </tr>
+          <tr>
+            <th>
+              <p>Jméno:</p>
+            </th>
+            <td>
+              <p:inputText value="#{osobaDetailBean.osoba.jmeno}" placeholder="- zadejte -"/>
+            </td>
+          </tr>
 
-        <div class="pageContentTitle">
-          <p>Detailní informace o konkrétní osobě:</p>
-        </div>
+          <tr>
+            <th>
+              <p>Přijmení:</p>
+            </th>
+            <td>
+              <p:inputText value="#{osobaDetailBean.osoba.prijmeni}" placeholder="- zadejte -"/>
+            </td>
+          </tr>
+          <tr>
+            <th>
+              <p>Datum narození:</p>
+            </th>
+            <td>
+              <p:calendar id="datumNarozeni" value="#{osobaDetailBean.osoba.datumNarozeni}" pattern="dd-MM-yyyy" placeholder="- zadejte -"/>
+            </td>
+            <th>
+              <p>Rodné číslo:</p>
+            </th>
+            <td>
+              <p:inputText value="#{osobaDetailBean.osoba.rodneCislo}" placeholder="- zadejte -"/>
+            </td>
+          </tr>
+          <tr>
+            <th>
+              <p>Číslo OP:</p>
+            </th>
+            <td>
+              <p:inputText value="#{osobaDetailBean.osoba.cisloOP}" placeholder="- zadejte -"/>
+            </td>
+            <th>
+              <p>Zaměstnání:</p>
+            </th>
+            <td>
+              <p:inputText value="#{osobaDetailBean.osoba.zamestnani}" placeholder="- zadejte -"/>
+            </td>
+          </tr>
 
-        <div class="divOsobaDetailTable">
-          <table>
-            <tr>
-              <th>
-                <p>Osobní údaje:</p>
-              </th>
-              <td></td>
-              <th>
-                <p>Fotka / Avatar:</p>
-              </th>
-              <td rowspan="3" style="text-align: center;">
-                <img src="avatar/kiyosaki.png" alt="- nahrát fotku - " style="width: 150px;"/>
-              </td>
-            </tr>
-            <tr>
-              <th>
-                <p>Jméno:</p>
-              </th>
-              <td>
-                <p:inputText value="#{osobaDetailBean.osoba.jmeno}" placeholder="- zadejte -"/>
-              </td>
-            </tr>
+          <tr>
+            <th>&nbsp;</th>
+          </tr>
+          <tr>
+            <th>
+              <p>Adresa trvalého bydliště:</p>
+            </th>
+          </tr>
+          <tr>
+            <th>
+              <p>Ulice:</p>
+            </th>
+            <td>
+              <p:inputText value="#{osobaDetailBean.osoba.trvaleBydliste.ulice}" placeholder="- zadejte -"/>
+            </td>
+            <th>
+              <p>Číslo popisné:</p>
+            </th>
+            <td>
+              <p:inputText value="#{osobaDetailBean.osoba.trvaleBydliste.cisloPopisne}" placeholder="- zadejte -"/>
+            </td>
+            <th>
+              <p>Číslo orientační:</p>
+            </th>
+            <td>
+              <p:inputText value="#{osobaDetailBean.osoba.trvaleBydliste.cisloOrientacni}" placeholder="- zadejte -"/>
+            </td>
+          </tr>
+          <tr>
+            <th>
+              <p>Město:</p>
+            </th>
+            <td>
+              <p:inputText value="#{osobaDetailBean.osoba.trvaleBydliste.mesto}" placeholder="- zadejte -"/>
+            </td>
+            <th>
+              <p>PSČ:</p>
+            </th>
+            <td>
+              <p:inputText value="#{osobaDetailBean.osoba.trvaleBydliste.psc}" placeholder="- zadejte -"/>
+            </td>
+            <th>
+              <p>Stát:</p>
+            </th>
+            <td>
+              <h:selectOneMenu value="#{osobaDetailBean.osoba.trvaleBydliste.stat}" converter="#{statConverter}">
+                <f:selectItems value="#{osobaDetailBean.statList}" var="stat"
+                               itemLabel="#{stat.hodnota}"
+                               itemValue="#{stat}"/>
+              </h:selectOneMenu>
+            </td>
+          </tr>
 
-            <tr>
-              <th>
-                <p>Přijmení:</p>
-              </th>
-              <td>
-                <p:inputText value="#{osobaDetailBean.osoba.prijmeni}" placeholder="- zadejte -"/>
-              </td>
-            </tr>
-            <tr>
-              <th>
-                <p>Datum narození:</p>
-              </th>
-              <td>
-                <p:calendar id="datumNarozeni" value="#{osobaDetailBean.osoba.datumNarozeni}" pattern="dd-MM-yyyy" placeholder="- zadejte -"/>
-              </td>
-              <th>
-                <p>Rodné číslo:</p>
-              </th>
-              <td>
-                <p:inputText value="#{osobaDetailBean.osoba.rodneCislo}" placeholder="- zadejte -"/>
-              </td>
-            </tr>
-            <tr>
-              <th>
-                <p>Číslo OP:</p>
-              </th>
-              <td>
-                <p:inputText value="#{osobaDetailBean.osoba.cisloOP}" placeholder="- zadejte -"/>
-              </td>
-              <th>
-                <p>Zaměstnání:</p>
-              </th>
-              <td>
-                <p:inputText value="#{osobaDetailBean.osoba.zamestnani}" placeholder="- zadejte -"/>
-              </td>
-            </tr>
+          <tr>
+            <th>&nbsp;</th>
+          </tr>
+          <tr>
+            <th>
+              <p>Kontakty:</p>
+            </th>
+          </tr>
+          <tr>
+            <th>
+              <p>Telefon:</p>
+            </th>
+            <td class="divTableCell">
+              <p:inputText value="#{osobaDetailBean.osoba.telefon}" placeholder="- zadejte -"/>
+            </td>
+            <th>
+              <p>Email:</p>
+            </th>
+            <td>
+              <p:inputText value="#{osobaDetailBean.osoba.email}" placeholder="- zadejte -"/>
+            </td>
+          </tr>
 
-            <tr>
-              <th>&nbsp;</th>
-            </tr>
-            <tr>
-              <th>
-                <p>Adresa trvalého bydliště:</p>
-              </th>
-            </tr>
-            <tr>
-              <th>
-                <p>Ulice:</p>
-              </th>
-              <td>
-                <p:inputText value="#{osobaDetailBean.osoba.trvaleBydliste.ulice}" placeholder="- zadejte -"/>
-              </td>
-              <th>
-                <p>Číslo popisné:</p>
-              </th>
-              <td>
-                <p:inputText value="#{osobaDetailBean.osoba.trvaleBydliste.cisloPopisne}" placeholder="- zadejte -"/>
-              </td>
-              <th>
-                <p>Číslo orientační:</p>
-              </th>
-              <td>
-                <p:inputText value="#{osobaDetailBean.osoba.trvaleBydliste.cisloOrientacni}" placeholder="- zadejte -"/>
-              </td>
-            </tr>
-            <tr>
-              <th>
-                <p>Město:</p>
-              </th>
-              <td>
-                <p:inputText value="#{osobaDetailBean.osoba.trvaleBydliste.mesto}" placeholder="- zadejte -"/>
-              </td>
-              <th>
-                <p>PSČ:</p>
-              </th>
-              <td>
-                <p:inputText value="#{osobaDetailBean.osoba.trvaleBydliste.psc}" placeholder="- zadejte -"/>
-              </td>
-              <th>
-                <p>Stát:</p>
-              </th>
-              <td>
-                <h:selectOneMenu value="#{osobaDetailBean.osoba.trvaleBydliste.stat}" converter="#{statConverter}">
-                  <f:selectItems value="#{osobaDetailBean.statList}" var="stat"
-                                 itemLabel="#{stat.hodnota}"
-                                 itemValue="#{stat}"/>
-                </h:selectOneMenu>
-              </td>
-            </tr>
+          <tr>
+            <th>&nbsp;</th>
+          </tr>
+          <tr>
+            <th>
+              <p>Přihlašovací údaje:</p>
+            </th>
+            <td>
+              (Může se přihlášovat:
+              <p:selectBooleanCheckbox value="#{osobaDetailBean.osoba.muzeSePrihlasit}"/>
+              )
+            </td>
+          </tr>
+          <tr>
+            <th>
+              <p>Přihlašovací jméno:</p>
+            </th>
+            <td>
+              <p:inputText value="#{osobaDetailBean.osoba.prihlasovaciJmeno}" placeholder="- zadejte -"/>
+            </td>
+            <th>
+              <p>Heslo:</p>
+            </th>
+            <td>
+              <p:inputText value="#{osobaDetailBean.osoba.heslo}" placeholder="- zadejte -"/>
+            </td>
+          </tr>
+          <tr>
+            <th>
+              <p>Poznámky:</p>
+            </th>
+          </tr>
+        </table>
+      </div>
+      <div>
+        <p:textEditor widgetVar="editorTextuVar" value="#{osobaDetailBean.osoba.poznamky}" height="300" style="margin-bottom:30px"/>
+      </div>
+    </ui:define>
 
-            <tr>
-              <th>&nbsp;</th>
-            </tr>
-            <tr>
-              <th>
-                <p>Kontakty:</p>
-              </th>
-            </tr>
-            <tr>
-              <th>
-                <p>Telefon:</p>
-              </th>
-              <td class="divTableCell">
-                <p:inputText value="#{osobaDetailBean.osoba.telefon}" placeholder="- zadejte -"/>
-              </td>
-              <th>
-                <p>Email:</p>
-              </th>
-              <td>
-                <p:inputText value="#{osobaDetailBean.osoba.email}" placeholder="- zadejte -"/>
-              </td>
-            </tr>
+    <ui:define name="detailPagePridavaciTlacitko">
+      <p:commandButton value="Uložit" actionListener="#{osobaDetailBean.ulozitZmenuOsoby()}" update="form :form:msgs"/>
+      <p:commandButton value="Zrušit" actionListener="#{osobaDetailBean.zrusitZmenuOsoby()}" update="form :form:msgs"/>
+    </ui:define>
 
-            <tr>
-              <th>&nbsp;</th>
-            </tr>
-            <tr>
-              <th>
-                <p>Přihlašovací údaje:</p>
-              </th>
-              <td>
-                (Může se přihlášovat: <p:selectBooleanCheckbox value="#{osobaDetailBean.osoba.muzeSePrihlasit}"/>)
-              </td>
-            </tr>
-            <tr>
-              <th>
-                <p>Přihlašovací jméno:</p>
-              </th>
-              <td>
-                <p:inputText value="#{osobaDetailBean.osoba.prihlasovaciJmeno}" placeholder="- zadejte -"/>
-              </td>
-              <th>
-                <p>Heslo:</p>
-              </th>
-              <td>
-                <p:inputText value="#{osobaDetailBean.osoba.heslo}" placeholder="- zadejte -"/>
-              </td>
-            </tr>
-            <tr>
-              <th>
-                <p>Poznámky:</p>
-              </th>
-            </tr>
-          </table>
-        </div>
-
-        <div>
-          <p:textEditor widgetVar="editorTextuVar" value="#{osobaDetailBean.osoba.poznamky}" height="300" style="margin-bottom:30px"/>
-          <p:commandButton value="Uložit" actionListener="#{osobaDetailBean.ulozitZmenuOsoby()}" update="form :form:msgs"/>
-          <p:commandButton value="Zrušit" actionListener="#{osobaDetailBean.zrusitZmenuOsoby()}" update="form :form:msgs"/>
-        </div>
-      </h:form>
-
+    <ui:define name="detailPageDataTable">
     </ui:define>
 
     <ui:define name="footer">

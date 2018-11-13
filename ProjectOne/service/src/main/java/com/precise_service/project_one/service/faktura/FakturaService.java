@@ -52,6 +52,12 @@ public class FakturaService implements IFakturaService {
   }
 
   @Override
+  public List<Faktura> getSeznamFaktur(Osoba prihlasenyUzivatel) {
+    log.trace("getSeznamFaktur()");
+    return fakturaRepository.getSeznamFaktur(prihlasenyUzivatel.getId());
+  }
+
+  @Override
   public void deleteFaktura(String idFaktura) {
     log.trace("deleteFaktura()");
     fakturaRepository.deleteById(idFaktura);

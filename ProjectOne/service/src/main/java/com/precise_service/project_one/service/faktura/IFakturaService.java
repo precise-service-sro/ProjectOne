@@ -18,6 +18,8 @@ public interface IFakturaService {
 
   List<Faktura> getSeznamFakturVeZuctovacimObdobi(Osoba prihlasenyUzivatel, CasovyInterval zuctovaciObdobi);
 
+  List<Faktura> getSeznamFaktur(Osoba prihlasenyUzivatel);
+
   void deleteFaktura(String idFaktura);
 
   void deleteFakturaAll();

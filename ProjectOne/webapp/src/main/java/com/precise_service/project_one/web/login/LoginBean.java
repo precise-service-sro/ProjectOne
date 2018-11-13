@@ -22,6 +22,7 @@ import lombok.extern.slf4j.Slf4j;
 import static com.precise_service.project_one.web.URL_CONST.FAKTURA_PREHLED_URL;
 import static com.precise_service.project_one.web.URL_CONST.INDEX_URL;
 import static com.precise_service.project_one.web.URL_CONST.NEMOVITOST_PREHLED_URL;
+import static com.precise_service.project_one.web.URL_CONST.PREDAVACI_PROTOKOL_PREHLED_URL;
 
 @Named
 @Data
@@ -55,7 +56,7 @@ public class LoginBean extends AbstractBean {
     HttpSession session = Util.getSession();
     session.setAttribute(SESSION_ATTRIBUTE_PRIHLASENY_UZIVATEL, prihlasenyUzivatel);
     // po prihlaseni me to meruje na stranku se kterou pracuji / upravuji
-    Faces.redirect(FAKTURA_PREHLED_URL);
+    Faces.redirect(PREDAVACI_PROTOKOL_PREHLED_URL);
     // TODO: vratit zpet na prehled nemovitosti
     //Faces.redirect(NEMOVITOST_PREHLED_URL);
   }

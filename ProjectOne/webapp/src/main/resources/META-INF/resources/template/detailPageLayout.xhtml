@@ -16,14 +16,14 @@
   </ui:define>
 
   <ui:define name="content">
+    <div class="pageContentTitle">
+      <ui:insert name="pageContentTitle">
+        detailPageLayout.xhtml => pageContentTitle
+      </ui:insert>
+    </div>
+
     <h:form id="form">
       <p:growl id="msgs" showDetail="true"/>
-
-      <div class="pageContentTitle">
-        <ui:insert name="pageContentTitle">
-          detailPageLayout.xhtml => pageContentTitle
-        </ui:insert>
-      </div>
 
       <div id="detailPageDataDiv" class="detailPageDataDiv">
         <ui:insert name="detailPageData">
@@ -44,7 +44,17 @@
           detailPageLayout.xhtml => detailPageDataTable
         </ui:insert>
       </div>
+
+      <div id="detailPageUkladaciTlacitkaDiv" class="detailPageUkladaciTlacitkaDiv">
+        <br/>
+        <div class="addButtonDiv">
+          <ui:insert name="detailPageUkladaciTlacitka">
+            detailPageLayout.xhtml => detailPageUkladaciTlacitka
+          </ui:insert>
+        </div>
+      </div>
     </h:form>
+
   </ui:define>
 
   <ui:define name="footer">

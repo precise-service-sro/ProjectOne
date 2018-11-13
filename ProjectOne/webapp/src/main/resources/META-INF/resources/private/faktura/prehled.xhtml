@@ -18,7 +18,7 @@
       <p>Přehled faktur:</p>
     </ui:define>
 
-    <ui:define name="prehledovaPageData">
+    <ui:define name="prehledPageData">
       <div style="float: left;">
         <p style="display: inline; margin-right: 20px; font-size: 20px;">Začátek zúčtovacího období:</p>
         <p:calendar id="zuctovaciObdobiFilterZacatek" value="#{fakturaPrehledBean.zuctovaciObdobi.zacatek}" pattern="dd-MM-yyyy"/>
@@ -29,11 +29,11 @@
       </div>
     </ui:define>
 
-    <ui:define name="prehledovaPagePridavaciTlacitko">
+    <ui:define name="prehledPagePridavaciTlacitko">
       <p:commandButton value="Přidat" icon="ui-icon-circle-plus" process="@this" update="form :form:msgs" actionListener="#{fakturaPrehledBean.addRow()}"/>
     </ui:define>
 
-    <ui:define name="prehledovaPageDataTable">
+    <ui:define name="prehledPageDataTable">
       <p:dataTable
               id="fakturaPrehledBeanTable"
               var="faktura"
@@ -60,14 +60,16 @@
                       filterBy="#{faktura.nemovitost.getIdentifikaceNemovitosti()}" filterMatchMode="contains" filterStyle="display:none"
                       style="width: 400px;"/>
             <p:column headerText="Zúčtovací období" colspan="2" style="width: 400px;"/>
-            <p:column headerText="Ovládání" rowspan="2" colspan="2" style="width: 90px;"/>
+            <p:column headerText="Ovládání" rowspan="2" colspan="1" style="width: 90px;"/>
           </p:row>
+
           <p:row>
             <p:column headerText="Začátek" sortBy="#{faktura.zuctovaciObdobi.zacatek}" filterBy="#{faktura.zuctovaciObdobi.zacatek}" filterMatchMode="contains"
                       filterStyle="display:none"/>
             <p:column headerText="Konec" sortBy="#{faktura.zuctovaciObdobi.konec}" filterBy="#{faktura.zuctovaciObdobi.konec}" filterMatchMode="contains"
                       filterStyle="display:none"/>
           </p:row>
+
         </p:columnGroup>
 
         <p:column>
@@ -91,12 +93,8 @@
         </p:column>
 
         <p:column>
-          <p:commandButton icon="ui-icon-circle-zoomin" actionListener="#{fakturaPrehledBean.showFakturaDetailBean(faktura)}" title="Podrobnosti"/>
-        </p:column>
-
-        <p:column>
-          <p:commandButton update="@form :form:msgs" icon="ui-icon-circle-minus" actionListener="#{fakturaPrehledBean.deleteRow(faktura)}"
-                           title="Odebrat"/>
+          <p:commandButton icon="ui-icon-circle-zoomin" actionListener="#{fakturaPrehledBean.showFakturaDetailBean(faktura)}" title="Upravit / Podrobnosti"/>
+          <p:commandButton update="form :form:msgs" icon="ui-icon-circle-minus" actionListener="#{fakturaPrehledBean.deleteRow(faktura)}" title="Odebrat"/>
         </p:column>
 
       </p:dataTable>
