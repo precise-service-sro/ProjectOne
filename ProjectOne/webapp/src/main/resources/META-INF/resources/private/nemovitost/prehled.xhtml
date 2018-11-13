@@ -8,93 +8,95 @@
 >
 
 <h:body>
-  <ui:composition template="/template/commonLayout.xhtml">
-    <ui:define name="title">ProjectOne - Přehled nemovitostí</ui:define>
+  <ui:composition template="/template/prehledovaPageLayout.xhtml">
+    <ui:define name="title">
+      ProjectOne - Přehled nemovitostí
+    </ui:define>
 
-    <ui:define name="content">
-
+    <ui:define name="pageContentTitle">
       <h:outputText value="#{nemovitostPrehledBean.init()}"/>
+      <p>Přehled nemovitostí:</p>
+    </ui:define>
 
-      <h:form id="form">
-        <p:growl id="msgs" showDetail="true"/>
+    <ui:define name="prehledovaPageData">
+      <div style="float: left;">
+        <p style="display: inline; margin-right: 20px; font-size: 20px;">Začátek zúčtovacího období:</p>
+        <p:calendar id="zuctovaciObdobiFilterZacatek" value="#{fakturaPrehledBean.zuctovaciObdobi.zacatek}" pattern="dd-MM-yyyy"/>
+      </div>
+      <div style="float: left;">
+        <p style="display: inline; margin-left: 20px; margin-right: 20px; font-size: 20px;">Konec zúčtovacího období:</p>
+        <p:calendar id="zuctovaciObdobiFilterKonec" value="#{fakturaPrehledBean.zuctovaciObdobi.konec}" pattern="dd-MM-yyyy"/>
+      </div>
+    </ui:define>
 
-        <div class="pageContentTitle">
-          <p>Přehled nemovitostí:</p>
-        </div>
+    <ui:define name="prehledovaPagePridavaciTlacitko">
+      <p:commandButton value="Přidat" icon="ui-icon-circle-plus" process="@this" update="form :form:msgs" actionListener="#{nemovitostPrehledBean.addRow()}"/>
+    </ui:define>
 
-        <div>
-          <div class="addButtonDiv">
-            <p:commandButton value="Přidat" icon="ui-icon-circle-plus" process="@this" update="form :form:msgs"
-                             actionListener="#{nemovitostPrehledBean.addRow()}"/>
-          </div>
+    <ui:define name="prehledovaPageDataTable">
+      <p:dataTable
+              id="nemovitostPrehledBeanTable"
+              var="nemovitost"
+              widgetVar="nemovitostPrehledBeanTable"
+              value="#{nemovitostPrehledBean.nemovitostList}"
+              sortBy="#{1}"
+              rendered="#{not empty nemovitostPrehledBean.nemovitostList}"
+              emptyMessage="Nebyly nalezeny žádné nemovitosti"
+              filteredValue="#{nemovitostPrehledBean.filtrovanyNemovitostList}"
+      >
 
-          <p:dataTable
-                  id="nemovitostPrehledBeanTable"
-                  var="nemovitost"
-                  widgetVar="nemovitostPrehledBeanTable"
-                  value="#{nemovitostPrehledBean.nemovitostList}"
-                  sortBy="#{1}"
-                  rendered="#{not empty nemovitostPrehledBean.nemovitostList}"
-                  emptyMessage="Nebyly nalezeny žádné nemovitosti"
-                  filteredValue="#{nemovitostPrehledBean.filtrovanyNemovitostList}"
-          >
+        <f:facet name="header">
+          <p:outputPanel style="text-align: right;">
+            <p:inputText id="globalFilter" onkeyup="PF('nemovitostPrehledBeanTable').filter()" style="width:235px"
+                         placeholder="- zadejte text pro vyhledání -"/>
+          </p:outputPanel>
+        </f:facet>
 
-            <f:facet name="header">
-              <p:outputPanel style="text-align: right;">
-                <p:inputText id="globalFilter" onkeyup="PF('nemovitostPrehledBeanTable').filter()" style="width:235px"
-                             placeholder="- zadejte text pro vyhledání -"/>
-              </p:outputPanel>
-            </f:facet>
+        <p:columnGroup type="header">
+          <p:row>
+            <!-- <p:column headerText="Název"    filterBy="#{nemovitost.nazev}"                   filterMatchMode="contains" filterStyle="display:none" style="width: 100px;" sortBy="#{nemovitost.nazev}"                 /> -->
+            <p:column headerText="Typ" filterBy="#{nemovitost.nemovitostTyp}" filterMatchMode="contains" filterStyle="display:none" style="width: 80px;"
+                      sortBy="#{nemovitost.nemovitostTyp}"/>
+            <p:column headerText="Adresa" filterBy="#{nemovitost.adresa.getCelaAdresa()}" filterMatchMode="contains" filterStyle="display:none"
+                      style="width: 100%;" sortBy="#{nemovitost.adresa.getCelaAdresa()}"/>
+            <p:column headerText="Město" filterBy="#{nemovitost.adresa.mesto}" filterMatchMode="contains" filterStyle="display:none" style="width: 200px;"
+                      sortBy="#{nemovitost.adresa.mesto}"/>
+            <p:column headerText="Vlastník" filterBy="#{nemovitost.vlastnik.getCeleJmeno()}" filterMatchMode="contains" filterStyle="display:none"
+                      style="width: 200px;" sortBy="#{nemovitost.vlastnik.getCeleJmeno()}"/>
+            <p:column headerText="Ovládání" colspan="1" rowspan="2" style="width: 90px;"/>
+          </p:row>
+        </p:columnGroup>
 
-            <p:columnGroup type="header">
-              <p:row>
-                <!-- <p:column headerText="Název"    filterBy="#{nemovitost.nazev}"                   filterMatchMode="contains" filterStyle="display:none" style="width: 100px;" sortBy="#{nemovitost.nazev}"                 /> -->
-                <p:column headerText="Typ" filterBy="#{nemovitost.nemovitostTyp}" filterMatchMode="contains" filterStyle="display:none" style="width: 80px;"
-                          sortBy="#{nemovitost.nemovitostTyp}"/>
-                <p:column headerText="Adresa" filterBy="#{nemovitost.adresa.getCelaAdresa()}" filterMatchMode="contains" filterStyle="display:none"
-                          style="width: 100%;" sortBy="#{nemovitost.adresa.getCelaAdresa()}"/>
-                <p:column headerText="Město" filterBy="#{nemovitost.adresa.mesto}" filterMatchMode="contains" filterStyle="display:none" style="width: 200px;"
-                          sortBy="#{nemovitost.adresa.mesto}"/>
-                <p:column headerText="Vlastník" filterBy="#{nemovitost.vlastnik.getCeleJmeno()}" filterMatchMode="contains" filterStyle="display:none"
-                          style="width: 200px;" sortBy="#{nemovitost.vlastnik.getCeleJmeno()}"/>
-                <p:column headerText="Ovládání" colspan="1" rowspan="2" style="width: 90px;"/>
-              </p:row>
-            </p:columnGroup>
+        <!--
+        <p:column>
+          <h:outputText value="#{nemovitost.nazev}"/>
+        </p:column>
+        -->
 
-            <!--
-            <p:column>
-              <h:outputText value="#{nemovitost.nazev}"/>
-            </p:column>
-            -->
+        <p:column>
+          <h:outputText value="#{nemovitost.nemovitostTyp.hodnota}"/>
+        </p:column>
 
-            <p:column>
-              <h:outputText value="#{nemovitost.nemovitostTyp.hodnota}"/>
-            </p:column>
+        <p:column>
+          <h:outputText value="#{nemovitost.adresa.getCelaAdresa()}"/>
+        </p:column>
 
-            <p:column>
-              <h:outputText value="#{nemovitost.adresa.getCelaAdresa()}"/>
-            </p:column>
+        <p:column>
+          <h:outputText value="#{nemovitost.adresa.mesto}"/>
+        </p:column>
 
-            <p:column>
-              <h:outputText value="#{nemovitost.adresa.mesto}"/>
-            </p:column>
+        <p:column>
+          <h:outputText value="#{nemovitost.vlastnik.getCeleJmeno()}"/>
+        </p:column>
 
-            <p:column>
-              <h:outputText value="#{nemovitost.vlastnik.getCeleJmeno()}"/>
-            </p:column>
+        <p:column>
+          <p:commandButton icon="ui-icon-circle-zoomin" actionListener="#{routerBean.goToNemovitostDetailBean(nemovitost)}"
+                           title="Upravit / Podrobnosti"/>
+          <p:commandButton update="form :form:msgs" icon="ui-icon-circle-minus" actionListener="#{nemovitostPrehledBean.deleteRow(nemovitost)}"
+                           title="Odebrat"/>
+        </p:column>
 
-            <p:column>
-              <p:commandButton icon="ui-icon-circle-zoomin" actionListener="#{routerBean.goToNemovitostDetailBean(nemovitost)}"
-                               title="Upravit / Podrobnosti"/>
-              <p:commandButton update="form :form:msgs" icon="ui-icon-circle-minus" actionListener="#{nemovitostPrehledBean.deleteRow(nemovitost)}"
-                               title="Odebrat"/>
-            </p:column>
-
-          </p:dataTable>
-        </div>
-
-      </h:form>
-
+      </p:dataTable>
     </ui:define>
 
     <ui:define name="footer">

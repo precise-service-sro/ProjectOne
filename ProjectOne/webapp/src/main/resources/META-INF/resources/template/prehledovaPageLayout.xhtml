@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+>
+<body>
+<ui:composition template="/template/commonLayout.xhtml">
+  <ui:define name="title">
+    <ui:insert name="title">
+      prehledovaPageLayout.xhtml => title
+    </ui:insert>
+  </ui:define>
+
+  <ui:define name="content">
+    <h:form id="form">
+      <p:growl id="msgs" showDetail="true"/>
+
+      <div class="pageContentTitle">
+        <ui:insert name="pageContentTitle">
+          prehledovaPageLayout.xhtml => pageContentTitle
+        </ui:insert>
+      </div>
+
+      <div id="prehledovaPageDataDiv" class="prehledovaPageDataDiv">
+        <ui:insert name="prehledovaPageData">
+          prehledovaPageLayout.xhtml => prehledovaPageData
+        </ui:insert>
+      </div>
+
+      <div id="prehledovaPagePridavaciTlacitkoDiv" class="prehledovaPagePridavaciTlacitkoDiv">
+        <div class="addButtonDiv">
+          <ui:insert name="prehledovaPagePridavaciTlacitko">
+            prehledovaPageLayout.xhtml => prehledovaPagePridavaciTlacitko
+          </ui:insert>
+        </div>
+      </div>
+
+      <div id="prehledovaPageDataTableDiv" class="prehledovaPageDataTableDiv">
+        <ui:insert name="prehledovaPageDataTable">
+          prehledovaPageLayout.xhtml => prehledovaPageDataTable
+        </ui:insert>
+      </div>
+    </h:form>
+  </ui:define>
+
+  <ui:define name="footer">
+    <ui:insert name="footer">
+      prehledovaPageLayout.xhtml => footer
+    </ui:insert>
+  </ui:define>
+</ui:composition>
+</body>
+</html>
