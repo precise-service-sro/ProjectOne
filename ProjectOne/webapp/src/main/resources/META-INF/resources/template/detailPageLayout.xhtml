@@ -11,7 +11,7 @@
 <ui:composition template="/template/commonLayout.xhtml">
   <ui:define name="title">
     <ui:insert name="title">
-      prehledovaPageLayout.xhtml => title
+      detailPageLayout.xhtml => title
     </ui:insert>
   </ui:define>
 
@@ -21,27 +21,27 @@
 
       <div class="pageContentTitle">
         <ui:insert name="pageContentTitle">
-          prehledovaPageLayout.xhtml => pageContentTitle
+          detailPageLayout.xhtml => pageContentTitle
         </ui:insert>
       </div>
 
-      <div id="prehledovaPageDataDiv" class="prehledovaPageDataDiv">
-        <ui:insert name="prehledovaPageData">
-          prehledovaPageLayout.xhtml => prehledovaPageData
+      <div id="detailPageDataDiv" class="detailPageDataDiv">
+        <ui:insert name="detailPageData">
+          detailPageLayout.xhtml => detailPageData
         </ui:insert>
       </div>
 
-      <div id="prehledovaPagePridavaciTlacitkoDiv" class="prehledovaPagePridavaciTlacitkoDiv">
+      <div id="detailPagePridavaciTlacitkoDiv" class="detailPagePridavaciTlacitkoDiv">
         <div class="addButtonDiv">
-          <ui:insert name="prehledovaPagePridavaciTlacitko">
-            prehledovaPageLayout.xhtml => prehledovaPagePridavaciTlacitko
+          <ui:insert name="detailPagePridavaciTlacitko">
+            detailPageLayout.xhtml => detailPagePridavaciTlacitko
           </ui:insert>
         </div>
       </div>
 
-      <div id="prehledovaPageDataTableDiv" class="prehledovaPageDataTableDiv">
-        <ui:insert name="prehledovaPageDataTable">
-          prehledovaPageLayout.xhtml => prehledovaPageDataTable
+      <div id="detailPageDataTableDiv" class="detailPageDataTableDiv">
+        <ui:insert name="detailPageDataTable">
+          detailPageLayout.xhtml => detailPageDataTable
         </ui:insert>
       </div>
     </h:form>
@@ -49,7 +49,7 @@
 
   <ui:define name="footer">
     <ui:insert name="footer">
-      prehledovaPageLayout.xhtml => footer
+      detailPageLayout.xhtml => footer
     </ui:insert>
   </ui:define>
 </ui:composition>

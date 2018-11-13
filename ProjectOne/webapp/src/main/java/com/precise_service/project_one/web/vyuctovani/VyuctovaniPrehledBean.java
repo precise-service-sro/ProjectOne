@@ -76,7 +76,7 @@ public class VyuctovaniPrehledBean extends AbstractBean {
 
     Vyuctovani vyuctovani = new Vyuctovani();
 
-    vyuctovani.setNazev("!!! Upravit název !!!");
+    vyuctovani.setNazev("- zadejta -");
     vyuctovani.setNemovitost(null);
     vyuctovani.setZuctovaciObdobi(zuctovaciObdobi);
     vyuctovani.setUzivatel(Util.getPrihlasenyUzivatel());
@@ -84,7 +84,7 @@ public class VyuctovaniPrehledBean extends AbstractBean {
     Vyuctovani saved = vyuctovaniService.postVyuctovani(vyuctovani);
     init();
 
-    FacesMessage msg = new FacesMessage("Přidána nová řádka", saved.getId());
+    FacesMessage msg = new FacesMessage("Přidána nové vyúčtování", saved.getId());
     FacesContext.getCurrentInstance().addMessage(null, msg);
   }
 
