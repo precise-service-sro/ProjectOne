@@ -251,3 +251,12 @@ table td select {
 .divOsobaDetailTable select {
     font-size: large;
 }
+
+
+.detailPageDataDiv th {
+    text-align: left;
+}
+
+.detailPageDataDiv select {
+    font-size: large;
+}

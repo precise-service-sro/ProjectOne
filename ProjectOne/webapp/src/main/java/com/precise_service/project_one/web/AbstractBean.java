@@ -18,6 +18,7 @@ import com.precise_service.project_one.service.vyuctovani.IPolozkaTypService;
 import com.precise_service.project_one.service.vyuctovani.IVyuctovaniPolozkaService;
 import com.precise_service.project_one.service.vyuctovani.IVyuctovaniService;
 import com.precise_service.project_one.web.common.RouterBean;
+import com.precise_service.project_one.web.common.formatter.DateFormatterBean;
 import com.precise_service.project_one.web.faktura.FakturaDetailBean;
 import com.precise_service.project_one.web.nemovitost.NemovitostDetailBean;
 import com.precise_service.project_one.web.osoba.OsobaDetailBean;
@@ -54,8 +55,14 @@ public abstract class AbstractBean implements Serializable {
   @Autowired protected RouterBean routerBean;
   @Autowired protected VyuctovaniDetailBean vyuctovaniDetailBean;
 
-  protected void showMessage(FacesMessage.Severity severity, String messageSummary, String messageText) {
-    FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, messageSummary, messageText);
+  @Autowired protected DateFormatterBean dateFormatterBean;
+
+  protected void showInfoMessage(String messageSummary, String messageText) {
+    showInfo(FacesMessage.SEVERITY_INFO, messageSummary, messageText);
+  }
+
+  protected void showInfo(FacesMessage.Severity severity, String messageSummary, String messageText) {
+    FacesMessage msg = new FacesMessage(severity, messageSummary, messageText);
     FacesContext.getCurrentInstance().addMessage(null, msg);
   }
 }

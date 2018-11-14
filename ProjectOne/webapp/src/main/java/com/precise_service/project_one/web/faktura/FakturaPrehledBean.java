@@ -1,8 +1,6 @@
 package com.precise_service.project_one.web.faktura;
 
 import java.io.IOException;
-import java.io.Serializable;
-import java.util.Date;
 import java.util.List;
 
 import javax.faces.application.FacesMessage;
@@ -11,17 +9,12 @@ import javax.inject.Named;
 
 import org.omnifaces.util.Faces;
 import org.primefaces.event.RowEditEvent;
-import org.primefaces.event.SelectEvent;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import com.precise_service.project_one.entity.CasovyInterval;
 import com.precise_service.project_one.entity.faktura.Faktura;
 import com.precise_service.project_one.entity.nemovitost.Nemovitost;
 import com.precise_service.project_one.entity.osoba.Osoba;
-import com.precise_service.project_one.service.faktura.IFakturaService;
-import com.precise_service.project_one.service.nemovitost.INemovitostService;
 import com.precise_service.project_one.web.AbstractBean;
-import com.precise_service.project_one.web.common.DateFormatter;
 import com.precise_service.project_one.web.login.Util;
 
 import lombok.Data;
@@ -47,8 +40,8 @@ public class FakturaPrehledBean extends AbstractBean {
       // nemuzu filrovat a musim zobrazit vsechny faktury
       /*
       zuctovaciObdobi = new CasovyInterval();
-      zuctovaciObdobi.setZacatek(DateFormatter.parseDate("01-01-2017"));
-      zuctovaciObdobi.setKonec(DateFormatter.parseDate("31-12-2017"));
+      zuctovaciObdobi.setZacatek(DateFormatterBean.parseDate("01-01-2017"));
+      zuctovaciObdobi.setKonec(DateFormatterBean.parseDate("31-12-2017"));
       */
       fakturaList = fakturaService.getSeznamFaktur(prihlasenyUzivatel);
 
@@ -58,14 +51,6 @@ public class FakturaPrehledBean extends AbstractBean {
 
     nemovitostList = nemovitostService.getNemovitostAll(prihlasenyUzivatel.getId());
     filtrovanyFakturaList = null;
-  }
-
-  public List<Faktura> getFakturaList() {
-    return fakturaList;
-  }
-
-  public List<Faktura> getFiltrovanyFakturaList() {
-    return filtrovanyFakturaList;
   }
 
   public void onRowEdit(RowEditEvent event) {
@@ -101,10 +86,9 @@ public class FakturaPrehledBean extends AbstractBean {
     faktura.setUzivatel(Util.getPrihlasenyUzivatel());
 
     Faktura saved = fakturaService.postFaktura(faktura);
-    init();
+    showInfoMessage("Přidána nová faktura", saved.getId());
 
-    FacesMessage msg = new FacesMessage("Přidána nová faktura", saved.getId());
-    FacesContext.getCurrentInstance().addMessage(null, msg);
+    init();
   }
 
   public void deleteRow(Faktura deletedFaktura) {
@@ -118,20 +102,19 @@ public class FakturaPrehledBean extends AbstractBean {
 
     fakturaService.deleteFaktura(deletedFaktura.getId());
 
-    FacesMessage msg = new FacesMessage("Faktura smazána", deletedFaktura.getNazev());
-    FacesContext.getCurrentInstance().addMessage(null, msg);
+    showInfoMessage("Faktura smazána", deletedFaktura.getNazev());
     init();
   }
 
   public void zuctovaciObdobiZacatekDateSelect() {
     log.trace("zuctovaciObdobiZacatekDateSelect()");
-    FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Zvolen nový začátek zúčtovacího období", DateFormatter.formatDate(zuctovaciObdobi.getZacatek())));
+    showInfoMessage("Zvolen nový začátek zúčtovacího období", dateFormatterBean.formatDate(zuctovaciObdobi.getZacatek()));
     init();
   }
 
   public void zuctovaciObdobiKonecDateSelect() {
     log.trace("zuctovaciObdobiKonecDateSelect()");
-    FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Zvolen nový konec zúčtovacího období", DateFormatter.formatDate(zuctovaciObdobi.getKonec())));
+    showInfoMessage("Zvolen nový konec zúčtovacího období", dateFormatterBean.formatDate(zuctovaciObdobi.getKonec()));
     init();
   }
 }

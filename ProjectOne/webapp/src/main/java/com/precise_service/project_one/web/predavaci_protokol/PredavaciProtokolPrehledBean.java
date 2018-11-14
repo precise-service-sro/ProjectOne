@@ -1,27 +1,18 @@
 package com.precise_service.project_one.web.predavaci_protokol;
 
 import java.io.IOException;
-import java.io.Serializable;
-import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
 import org.omnifaces.util.Faces;
 import org.primefaces.event.RowEditEvent;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import com.precise_service.project_one.entity.nemovitost.Nemovitost;
 import com.precise_service.project_one.entity.osoba.Osoba;
 import com.precise_service.project_one.entity.predavaci_protokol.PredavaciProtokol;
-import com.precise_service.project_one.service.nemovitost.INemovitostService;
-import com.precise_service.project_one.service.osoba.IOsobaService;
-import com.precise_service.project_one.service.predavaci_protokol.IPredavaciProtokolService;
 import com.precise_service.project_one.web.AbstractBean;
-import com.precise_service.project_one.web.URL_CONST;
 import com.precise_service.project_one.web.login.Util;
 
 import lombok.Data;
@@ -56,14 +47,12 @@ public class PredavaciProtokolPrehledBean extends AbstractBean {
 
     predavaciProtokolService.putPredavaciProtokol(predavaciProtokol);
 
-    FacesMessage msg = new FacesMessage("Uložena úprava řádky", predavaciProtokol.getNazev());
-    FacesContext.getCurrentInstance().addMessage(null, msg);
+    showInfoMessage("Uložena úprava řádky", predavaciProtokol.getNazev());
   }
 
   public void onRowCancel(RowEditEvent event) {
     log.trace("onRowCancel()");
-    FacesMessage msg = new FacesMessage("Zrušena úprava řádky", ((PredavaciProtokol) event.getObject()).getNazev());
-    FacesContext.getCurrentInstance().addMessage(null, msg);
+    showInfoMessage("Zrušena úprava řádky", ((PredavaciProtokol) event.getObject()).getNazev());
   }
 
   public void addRow() {
@@ -71,15 +60,14 @@ public class PredavaciProtokolPrehledBean extends AbstractBean {
 
     PredavaciProtokol predavaciProtokol = new PredavaciProtokol();
 
-    predavaciProtokol.setNazev("!!! Upravit název !!!");
+    predavaciProtokol.setNazev("- zadejte - ");
     predavaciProtokol.setDatumPodpisu(new Date());
     predavaciProtokol.setUzivatel(Util.getPrihlasenyUzivatel());
 
     PredavaciProtokol saved = predavaciProtokolService.postPredavaciProtokol(predavaciProtokol);
     init();
 
-    FacesMessage msg = new FacesMessage("Přidána nová řádka", saved.getId());
-    FacesContext.getCurrentInstance().addMessage(null, msg);
+    showInfoMessage("Přidána nová řádka", saved.getId());
   }
 
   public void deleteRow(PredavaciProtokol deletedPredavaciProtokol) {
@@ -93,8 +81,7 @@ public class PredavaciProtokolPrehledBean extends AbstractBean {
 
     predavaciProtokolService.deletePredavaciProtokol(deletedPredavaciProtokol.getId());
 
-    FacesMessage msg = new FacesMessage("Smazán řádek", deletedPredavaciProtokol.getNazev());
-    FacesContext.getCurrentInstance().addMessage(null, msg);
+    showInfoMessage("Smazán řádek", deletedPredavaciProtokol.getNazev());
     init();
   }
 

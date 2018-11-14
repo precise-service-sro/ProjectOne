@@ -5,7 +5,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
 import com.precise_service.project_one.entity.adresa.Stat;
@@ -54,7 +53,7 @@ public class NemovitostDetailBean extends AbstractBean {
 
   public void pridatNemovitost() throws IOException {
     log.trace("pridatNemovitost()");
-    showMessage(FacesMessage.SEVERITY_INFO,"Přidáno", "Nová nemovitost " + nemovitost.getNazev() + " byla přidáná");
+    showInfo(FacesMessage.SEVERITY_INFO,"Přidáno", "Nová nemovitost " + nemovitost.getNazev() + " byla přidáná");
     // TODO: ulozit novou nemovitost do DB
     routerBean.goToNemovitostPrehledBean();
   }
@@ -62,13 +61,13 @@ public class NemovitostDetailBean extends AbstractBean {
   public void ulozitZmenuNemovitosti() throws IOException {
     log.trace("ulozitZmenuNemovitosti()");
     nemovitost = nemovitostService.putNemovitost(nemovitost);
-    showMessage(FacesMessage.SEVERITY_INFO,"Uloženo", "Úprava nemovitosti " + nemovitost.getNazev() + " byla uložena");
+    showInfo(FacesMessage.SEVERITY_INFO,"Uloženo", "Úprava nemovitosti " + nemovitost.getNazev() + " byla uložena");
     routerBean.goToNemovitostPrehledBean();
   }
 
   public void zrusitZmenuNemovitosti() throws IOException {
     log.trace("zrusitZmenuNemovitosti()");
-    showMessage(FacesMessage.SEVERITY_INFO,"Zrušeno", "Přidání/úprava nemovitosti byla zrušena");
+    showInfo(FacesMessage.SEVERITY_INFO,"Zrušeno", "Přidání/úprava nemovitosti byla zrušena");
     routerBean.goToNemovitostPrehledBean();
   }
 }

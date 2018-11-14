@@ -38,14 +38,12 @@ public class PolozkaTypBean extends AbstractBean {
 
     polozkaTypService.putPolozkaTyp(polozkaTyp);
 
-    FacesMessage msg = new FacesMessage("Uložena úprava řádky", polozkaTyp.getNazev());
-    FacesContext.getCurrentInstance().addMessage(null, msg);
+    showInfoMessage("Uložena úprava řádky", polozkaTyp.getNazev());
   }
 
   public void zrusitUpravuPolozkaTyp(RowEditEvent event) {
     log.trace("zrusitUpravuPolozkaTyp()");
-    FacesMessage msg = new FacesMessage("Zrušena úprava řádky", ((PolozkaTyp) event.getObject()).getNazev());
-    FacesContext.getCurrentInstance().addMessage(null, msg);
+    showInfoMessage("Zrušena úprava řádky", ((PolozkaTyp) event.getObject()).getNazev());
   }
 
   public void pridatPolozkaTyp() {
@@ -59,10 +57,8 @@ public class PolozkaTypBean extends AbstractBean {
     polozkaTyp.setNemovitost(nemovitost);
 
     PolozkaTyp saved = polozkaTypService.postPolozkaTyp(polozkaTyp);
+    showInfoMessage("Přidána nový typ vyúčtovávané položky", saved.getId());
     init(nemovitost.getId());
-
-    FacesMessage msg = new FacesMessage("Přidána nový typ vyúčtovávané položky", saved.getId());
-    FacesContext.getCurrentInstance().addMessage(null, msg);
   }
 
   public void smazatPolozkaTyp(PolozkaTyp deletedPolozkaTyp) {
@@ -72,12 +68,10 @@ public class PolozkaTypBean extends AbstractBean {
       log.warn("deleted row is null");
       return;
     }
-
     log.trace("deleting row with: " + deletedPolozkaTyp.toString());
-    polozkaTypService.deletePolozkaTyp(deletedPolozkaTyp.getId());
 
-    FacesMessage msg = new FacesMessage("Smazán typ vyúčtovávané položky", deletedPolozkaTyp.getNazev());
-    FacesContext.getCurrentInstance().addMessage(null, msg);
+    polozkaTypService.deletePolozkaTyp(deletedPolozkaTyp.getId());
+    showInfoMessage("Smazán typ vyúčtovávané položky", deletedPolozkaTyp.getNazev());
     init(nemovitost.getId());
   }
 }

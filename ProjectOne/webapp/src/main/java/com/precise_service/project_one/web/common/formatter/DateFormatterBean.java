@@ -1,22 +1,26 @@
-package com.precise_service.project_one.web.common;
+package com.precise_service.project_one.web.common.formatter;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import javax.inject.Named;
+
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.stereotype.Service;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class DateFormatter {
+@Named
+public class DateFormatterBean {
 
-  private static final String DATE_FORMAT = "dd-MM-yyyy";
-  private static final SimpleDateFormat simpleDateFormat = new SimpleDateFormat(DATE_FORMAT);
+  private final String DATE_FORMAT = "dd-MM-yyyy";
+  private final SimpleDateFormat simpleDateFormat = new SimpleDateFormat(DATE_FORMAT);
 
-  public static Date parseDate(String dateInString) {
+  public Date parseDate(String dateInString) {
     if (StringUtils.isBlank(dateInString)) {
-      log.error("Cannot parse: " + dateInString + " value into valid date");
+      log.warn("Cannot parse: " + dateInString + " value into valid date");
       return null;
     }
 
@@ -29,9 +33,9 @@ public class DateFormatter {
     }
   }
 
-  public static String formatDate(Date date) {
+  public String formatDate(Date date) {
     if (date == null) {
-      log.error("Cannot format: " + date + " value into valid date");
+      log.warn("Cannot format: " + date + " value into valid date");
       return null;
     }
     return simpleDateFormat.format(date);

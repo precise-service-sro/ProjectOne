@@ -5,7 +5,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
 import com.precise_service.project_one.entity.adresa.Stat;
@@ -35,13 +34,13 @@ public class OsobaDetailBean extends AbstractBean {
   public void ulozitZmenuOsoby() throws IOException {
     log.trace("ulozitZmenuOsoby()");
     osoba = osobaService.putOsoba(osoba);
-    showMessage(FacesMessage.SEVERITY_INFO,"Uloženo", "Úprava osoby " + osoba.getCeleJmeno() + " byla uložena");
+    showInfo(FacesMessage.SEVERITY_INFO,"Uloženo", "Úprava osoby " + osoba.getCeleJmeno() + " byla uložena");
     routerBean.goToOsobaPrehledBean();
   }
 
   public void zrusitZmenuOsoby() throws IOException {
     log.trace("zrusitZmenuOsoby()");
-    showMessage(FacesMessage.SEVERITY_INFO,"Zrušeno", "Úprava osoby " + osoba.getCeleJmeno() + " byla zrušena");
+    showInfo(FacesMessage.SEVERITY_INFO,"Zrušeno", "Úprava osoby " + osoba.getCeleJmeno() + " byla zrušena");
     routerBean.goToOsobaPrehledBean();
   }
 }

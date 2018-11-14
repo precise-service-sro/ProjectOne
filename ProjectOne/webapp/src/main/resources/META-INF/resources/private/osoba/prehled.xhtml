@@ -49,9 +49,9 @@
             <p:column headerText="Fotka / Avatar" style="width: 150px;"/>
             <p:column headerText="Jméno a Přijmení / Název" style="width: 250px;" filterBy="#{osoba.getCeleJmeno()}" filterMatchMode="contains"
                       filterStyle="display:none" sortBy="#{osoba.getCeleJmeno()}"/>
-            <p:column headerText="Datum narození" style="width: 200px;" filterBy="#{osoba.datumNarozeni}" filterMatchMode="contains" filterStyle="display:none"
-                      sortBy="#{osoba.datumNarozeni}"/>
-            <p:column headerText="Telefon" style="width: 200px;" filterBy="#{osoba.telefon}" filterMatchMode="contains" filterStyle="display:none"
+            <p:column headerText="Datum narození" style="width: 150px;" filterBy="#{dateFormatterBean.formatDate(osoba.datumNarozeni)}" filterMatchMode="contains" filterStyle="display:none"
+                      sortBy="#{dateFormatterBean.formatDate(osoba.datumNarozeni)}"/>
+            <p:column headerText="Telefon" style="width: 180px;" filterBy="#{osoba.telefon}" filterMatchMode="contains" filterStyle="display:none"
                       sortBy="#{osoba.telefon}"/>
             <p:column headerText="Email" style="width: 100%;" filterBy="#{osoba.email}" filterMatchMode="contains" filterStyle="display:none"
                       sortBy="#{osoba.email}"/>
@@ -68,9 +68,7 @@
         </p:column>
 
         <p:column style="text-align: center;">
-          <h:outputText value="#{osoba.datumNarozeni}">
-            <f:convertDateTime pattern="dd-MM-yyyy"/>
-          </h:outputText>
+          <h:outputText value="#{dateFormatterBean.formatDate(osoba.datumNarozeni)}" />
         </p:column>
 
         <p:column style="text-align: center;">

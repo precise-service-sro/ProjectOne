@@ -2,8 +2,6 @@ package com.precise_service.project_one.web.nemovitost;
 
 import java.util.List;
 
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
 import org.primefaces.event.RowEditEvent;
@@ -34,14 +32,6 @@ public class NemovitostKontaktBean extends AbstractBean {
     filtrovanyNemovitostKontaktList = null;
   }
 
-  public List<NemovitostKontakt> getNemovitostKontaktList() {
-    return nemovitostKontaktList;
-  }
-
-  public List<NemovitostKontakt> getFiltrovanyNemovitostKontaktList() {
-    return filtrovanyNemovitostKontaktList;
-  }
-
   public void pridatNemovitostKontakt() {
     log.trace("pridatNemovitostKontakt()");
 
@@ -55,10 +45,9 @@ public class NemovitostKontaktBean extends AbstractBean {
 
     NemovitostKontakt saved = nemovitostKontaktService.postNemovitostKontakt(nemovitostKontakt);
 
-    init(nemovitost.getId());
+    showInfoMessage("Přidán nový kontakt", saved.getId());
 
-    FacesMessage msg = new FacesMessage("Přidána nová řádka", saved.getId());
-    FacesContext.getCurrentInstance().addMessage(null, msg);
+    init(nemovitost.getId());
   }
 
   public void smazatNemovitostKontakt(NemovitostKontakt deletedNemovitostKontakt) {
@@ -72,8 +61,7 @@ public class NemovitostKontaktBean extends AbstractBean {
 
     nemovitostKontaktService.deleteNemovitostKontakt(deletedNemovitostKontakt.getId());
 
-    FacesMessage msg = new FacesMessage("Smazán kontakt", deletedNemovitostKontakt.getCeleJmeno());
-    FacesContext.getCurrentInstance().addMessage(null, msg);
+    showInfoMessage("Smazán kontakt", deletedNemovitostKontakt.getCeleJmeno());
     init(nemovitost.getId());
   }
 
@@ -83,13 +71,11 @@ public class NemovitostKontaktBean extends AbstractBean {
 
     nemovitostKontaktService.putNemovitostKontakt(nemovitostKontakt);
 
-    FacesMessage msg = new FacesMessage("Uložena úprava kontaktu", nemovitostKontakt.getCeleJmeno());
-    FacesContext.getCurrentInstance().addMessage(null, msg);
+    showInfoMessage("Uložena úprava kontaktu", nemovitostKontakt.getCeleJmeno());
   }
 
   public void zrusitUpravuNemovitostKontakt(RowEditEvent event) {
     log.trace("zrusitUpravuNemovitostKontakt()");
-    FacesMessage msg = new FacesMessage("Zrušena úprava kontaktu", ((NemovitostKontakt) event.getObject()).getCeleJmeno());
-    FacesContext.getCurrentInstance().addMessage(null, msg);
+    showInfoMessage("Zrušena úprava kontaktu", ((NemovitostKontakt) event.getObject()).getCeleJmeno());
   }
 }

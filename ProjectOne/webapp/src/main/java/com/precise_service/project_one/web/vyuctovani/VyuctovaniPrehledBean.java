@@ -4,8 +4,6 @@ import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
 import org.omnifaces.util.Faces;
@@ -17,7 +15,6 @@ import com.precise_service.project_one.entity.nemovitost.Nemovitost;
 import com.precise_service.project_one.entity.osoba.Osoba;
 import com.precise_service.project_one.entity.vyuctovani.Vyuctovani;
 import com.precise_service.project_one.web.AbstractBean;
-import com.precise_service.project_one.web.common.DateFormatter;
 import com.precise_service.project_one.web.login.Util;
 
 import lombok.Data;
@@ -38,8 +35,8 @@ public class VyuctovaniPrehledBean extends AbstractBean {
 
     if (zuctovaciObdobi == null) {
       zuctovaciObdobi = new CasovyInterval();
-      zuctovaciObdobi.setZacatek(DateFormatter.parseDate("01-01-2017"));
-      zuctovaciObdobi.setKonec(DateFormatter.parseDate("31-12-2017"));
+      zuctovaciObdobi.setZacatek(dateFormatterBean.parseDate("01-01-2017"));
+      zuctovaciObdobi.setKonec(dateFormatterBean.parseDate("31-12-2017"));
     }
 
     // getVyuctovaniInRange
@@ -55,14 +52,12 @@ public class VyuctovaniPrehledBean extends AbstractBean {
 
     vyuctovaniService.putVyuctovani(vyuctovani);
 
-    FacesMessage msg = new FacesMessage("Uložena úprava řádky", vyuctovani.getNazev());
-    FacesContext.getCurrentInstance().addMessage(null, msg);
+    showInfoMessage("Uložena úprava řádky", vyuctovani.getNazev());
   }
 
   public void onRowCancel(RowEditEvent event) {
     log.trace("onRowCancel()");
-    FacesMessage msg = new FacesMessage("Zrušena úprava řádky", ((Vyuctovani) event.getObject()).getNazev());
-    FacesContext.getCurrentInstance().addMessage(null, msg);
+    showInfoMessage("Zrušena úprava řádky", ((Vyuctovani) event.getObject()).getNazev());
   }
 
   public void showVyuctovaniDetailBean(Vyuctovani vyuctovani) throws IOException {
@@ -76,7 +71,7 @@ public class VyuctovaniPrehledBean extends AbstractBean {
 
     Vyuctovani vyuctovani = new Vyuctovani();
 
-    vyuctovani.setNazev("- zadejta -");
+    vyuctovani.setNazev("- zadejte -");
     vyuctovani.setNemovitost(null);
     vyuctovani.setZuctovaciObdobi(zuctovaciObdobi);
     vyuctovani.setUzivatel(Util.getPrihlasenyUzivatel());
@@ -84,8 +79,7 @@ public class VyuctovaniPrehledBean extends AbstractBean {
     Vyuctovani saved = vyuctovaniService.postVyuctovani(vyuctovani);
     init();
 
-    FacesMessage msg = new FacesMessage("Přidána nové vyúčtování", saved.getId());
-    FacesContext.getCurrentInstance().addMessage(null, msg);
+    showInfoMessage("Přidána nové vyúčtování", saved.getId());
   }
 
   public void deleteRow(Vyuctovani deletedVyuctovani) {
@@ -99,19 +93,17 @@ public class VyuctovaniPrehledBean extends AbstractBean {
 
     vyuctovaniService.deleteVyuctovani(deletedVyuctovani.getId());
 
-    FacesMessage msg = new FacesMessage("Smazán řádek", deletedVyuctovani.getNazev());
-    FacesContext.getCurrentInstance().addMessage(null, msg);
+    showInfoMessage("Smazán řádek", deletedVyuctovani.getNazev());
     init();
   }
 
   public void zuctovaciObdobiZacatekDateSelect(SelectEvent event) {
-    FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Zvolen nový začátek zúčtovacího období", DateFormatter.formatDate((Date) event.getObject())));
+    showInfoMessage("Zvolen nový začátek zúčtovacího období", dateFormatterBean.formatDate((Date) event.getObject()));
     init();
   }
 
   public void zuctovaciObdobiKonecDateSelect(SelectEvent event) {
-    FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Zvolen nový konec zúčtovacího období", DateFormatter.formatDate((Date) event.getObject())));
+    showInfoMessage("Zvolen nový konec zúčtovacího období", dateFormatterBean.formatDate((Date) event.getObject()));
     init();
   }
-
 }

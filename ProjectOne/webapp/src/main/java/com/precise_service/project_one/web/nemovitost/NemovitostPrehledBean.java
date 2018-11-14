@@ -1,13 +1,8 @@
 package com.precise_service.project_one.web.nemovitost;
 
 import java.util.List;
-import java.util.Locale;
 
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
 import javax.inject.Named;
-
-import org.primefaces.event.RowEditEvent;
 
 import com.precise_service.project_one.entity.adresa.Adresa;
 import com.precise_service.project_one.entity.nemovitost.Nemovitost;
@@ -33,22 +28,6 @@ public class NemovitostPrehledBean extends AbstractBean {
     filtrovanyNemovitostList = null;
   }
 
-  public void onRowEdit(RowEditEvent event) {
-    log.trace("onRowEdit()");
-    Nemovitost nemovitost = (Nemovitost) event.getObject();
-
-    nemovitostService.putNemovitost(nemovitost);
-
-    FacesMessage msg = new FacesMessage("Uložena úprava řádky", nemovitost.getNazev());
-    FacesContext.getCurrentInstance().addMessage(null, msg);
-  }
-
-  public void onRowCancel(RowEditEvent event) {
-    log.trace("onRowCancel()");
-    FacesMessage msg = new FacesMessage("Zrušena úprava řádky", ((Nemovitost) event.getObject()).getNazev());
-    FacesContext.getCurrentInstance().addMessage(null, msg);
-  }
-
   public void addRow() {
     log.trace("addRow()");
 
@@ -60,10 +39,9 @@ public class NemovitostPrehledBean extends AbstractBean {
     nemovitost.setUzivatel(Util.getPrihlasenyUzivatel());
 
     Nemovitost saved = nemovitostService.postNemovitost(nemovitost);
-    init();
 
-    FacesMessage msg = new FacesMessage("Přidána nová nemovitost", saved.getId());
-    FacesContext.getCurrentInstance().addMessage(null, msg);
+    showInfoMessage("Přidána nová nemovitost", saved.getId());
+    init();
   }
 
   public void deleteRow(Nemovitost deletedNemovitost) {
@@ -77,8 +55,7 @@ public class NemovitostPrehledBean extends AbstractBean {
 
     nemovitostService.deleteNemovitost(deletedNemovitost.getId());
 
-    FacesMessage msg = new FacesMessage("Smazán řádek", deletedNemovitost.getNazev());
-    FacesContext.getCurrentInstance().addMessage(null, msg);
+    showInfoMessage("Smazán řádek", deletedNemovitost.getNazev());
     init();
   }
 }

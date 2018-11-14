@@ -145,8 +145,9 @@
             <th>
               <p>Telefon:</p>
             </th>
-            <td class="divTableCell">
-              <p:inputText value="#{osobaDetailBean.osoba.telefon}" placeholder="- zadejte -"/>
+            <td>
+
+              <p:inputMask id="phoneWithExt" value="#{osobaDetailBean.osoba.telefon}" mask="(+999) 999 999 999" placeholder="- zadejte -"/>
             </td>
             <th>
               <p>Email:</p>

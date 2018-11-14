@@ -2,8 +2,6 @@ package com.precise_service.project_one.web.vyuctovani;
 
 import java.util.List;
 
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
 import org.primefaces.event.RowEditEvent;
@@ -107,14 +105,12 @@ public class VyuctovaniDetailBean extends AbstractBean {
     vyuctovaniPolozkaService.putVyuctovaniPolozka(vyuctovaniPolozka);
     init();
 
-    FacesMessage msg = new FacesMessage("Uložena úprava řádky", vyuctovaniPolozka.getNazev());
-    FacesContext.getCurrentInstance().addMessage(null, msg);
+    showInfoMessage("Uložena úprava řádky", vyuctovaniPolozka.getNazev());
   }
 
   public void onRowCancel(RowEditEvent event) {
     log.trace("onRowCancel()");
-    FacesMessage msg = new FacesMessage("Zrušena úprava řádky", ((VyuctovaniPolozka) event.getObject()).getNazev());
-    FacesContext.getCurrentInstance().addMessage(null, msg);
+    showInfoMessage("Zrušena úprava řádky", ((VyuctovaniPolozka) event.getObject()).getNazev());
   }
 
   public void addRow() {
@@ -142,8 +138,7 @@ public class VyuctovaniDetailBean extends AbstractBean {
     VyuctovaniPolozka saved = vyuctovaniPolozkaService.postVyuctovaniPolozka(vyuctovaniPolozka);
     init();
 
-    FacesMessage msg = new FacesMessage("Přidána nová řádka", saved.getId());
-    FacesContext.getCurrentInstance().addMessage(null, msg);
+    showInfoMessage("Přidána nová řádka", saved.getId());
   }
 
   public void deleteRow(VyuctovaniPolozka deletedVyuctovaniPolozka) {
@@ -157,8 +152,7 @@ public class VyuctovaniDetailBean extends AbstractBean {
 
     vyuctovaniPolozkaService.deleteVyuctovaniPolozka(deletedVyuctovaniPolozka.getId());
 
-    FacesMessage msg = new FacesMessage("Smazán řádek", deletedVyuctovaniPolozka.getNazev());
-    FacesContext.getCurrentInstance().addMessage(null, msg);
+    showInfoMessage("Smazán řádek", deletedVyuctovaniPolozka.getNazev());
     init();
   }
 }

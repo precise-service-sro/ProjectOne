@@ -2,11 +2,7 @@ package com.precise_service.project_one.web.osoba;
 
 import java.util.List;
 
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
 import javax.inject.Named;
-
-import org.primefaces.event.RowEditEvent;
 
 import com.precise_service.project_one.entity.adresa.Adresa;
 import com.precise_service.project_one.entity.osoba.Osoba;
@@ -30,24 +26,6 @@ public class OsobaPrehledBean extends AbstractBean {
     filtrovanyOsobaList = null;
   }
 
-  public void onRowEdit(RowEditEvent event) {
-    log.trace("onRowEdit()");
-    Osoba osoba = (Osoba) event.getObject();
-
-    osobaService.putOsoba(osoba);
-
-    FacesMessage msg = new FacesMessage("Uložena úprava řádky", osoba.getCeleJmeno());
-    FacesContext.getCurrentInstance().addMessage(null, msg);
-  }
-
-  public void onRowCancel(RowEditEvent event) {
-    log.trace("onRowCancel()");
-    FacesMessage msg = new FacesMessage("Zrušena úprava řádky", ((Osoba) event.getObject()).getCeleJmeno());
-    FacesContext.getCurrentInstance().addMessage(null, msg);
-  }
-
-
-
   public void addRow() {
     log.trace("addRow()");
 
@@ -58,8 +36,7 @@ public class OsobaPrehledBean extends AbstractBean {
     Osoba saved = osobaService.postOsoba(osoba);
     init();
 
-    FacesMessage msg = new FacesMessage("Přidána nová řádka", saved.getId());
-    FacesContext.getCurrentInstance().addMessage(null, msg);
+    showInfoMessage("Přidána nová osoba", saved.getId());
   }
 
   public void deleteRow(Osoba deletedOsoba) {
@@ -73,8 +50,7 @@ public class OsobaPrehledBean extends AbstractBean {
 
     osobaService.deleteOsoba(deletedOsoba.getId());
 
-    FacesMessage msg = new FacesMessage("Smazán řádek", deletedOsoba.getCeleJmeno());
-    FacesContext.getCurrentInstance().addMessage(null, msg);
+    showInfoMessage("Smazán osoba", deletedOsoba.getCeleJmeno());
     init();
   }
 }

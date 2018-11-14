@@ -2,6 +2,7 @@ package com.precise_service.project_one.entity.predavaci_protokol;
 
 import java.util.Date;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -40,6 +41,6 @@ public class PredavaciProtokol extends BaseEntity {
   private Osoba najemnik;
 
   public String getPopis() {
-    return "" + nazev + ", " + najemnik.getCeleJmeno() + ", " + datumPodpisu;
+    return "" + nazev + ((najemnik != null) ? ", " + najemnik.getCeleJmeno() : "") + ", " + datumPodpisu;
   }
 }

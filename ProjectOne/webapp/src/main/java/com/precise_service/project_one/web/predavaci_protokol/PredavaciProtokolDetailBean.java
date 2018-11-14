@@ -3,8 +3,6 @@ package com.precise_service.project_one.web.predavaci_protokol;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
 import org.primefaces.event.RowEditEvent;
@@ -56,14 +54,12 @@ public class PredavaciProtokolDetailBean extends AbstractBean {
 
     predavaciProtokolPolozkaService.putPredavaciProtokolPolozka(predavaciProtokolPolozka);
 
-    FacesMessage msg = new FacesMessage("Uložena úprava řádky", predavaciProtokolPolozka.getNazev());
-    FacesContext.getCurrentInstance().addMessage(null, msg);
+    showInfoMessage("Uložena úprava řádky", predavaciProtokolPolozka.getNazev());
   }
 
   public void onRowCancel(RowEditEvent event) {
     log.trace("onRowCancel()");
-    FacesMessage msg = new FacesMessage("Zrušena úprava řádky", ((PredavaciProtokolPolozka) event.getObject()).getNazev());
-    FacesContext.getCurrentInstance().addMessage(null, msg);
+    showInfoMessage("Zrušena úprava řádky", ((PredavaciProtokolPolozka) event.getObject()).getNazev());
   }
 
   public void addRow() {
@@ -81,8 +77,7 @@ public class PredavaciProtokolDetailBean extends AbstractBean {
     PredavaciProtokolPolozka saved = predavaciProtokolPolozkaService.postPredavaciProtokolPolozka(predavaciProtokolPolozka);
     init();
 
-    FacesMessage msg = new FacesMessage("Přidána nová řádka", saved.getId());
-    FacesContext.getCurrentInstance().addMessage(null, msg);
+    showInfoMessage("Přidána nová řádka", saved.getId());
   }
 
   public void deleteRow(PredavaciProtokolPolozka deletedPredavaciProtokolPolozka) {
@@ -96,8 +91,7 @@ public class PredavaciProtokolDetailBean extends AbstractBean {
 
     predavaciProtokolPolozkaService.deletePredavaciProtokolPolozka(deletedPredavaciProtokolPolozka.getId());
 
-    FacesMessage msg = new FacesMessage("Smazán řádek", deletedPredavaciProtokolPolozka.getNazev());
-    FacesContext.getCurrentInstance().addMessage(null, msg);
+    showInfoMessage("Smazán řádek", deletedPredavaciProtokolPolozka.getNazev());
     init();
   }
 

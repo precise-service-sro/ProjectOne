@@ -32,11 +32,11 @@
           </td>
         </tr>
 
-        <tr class="divTableRow">
-          <th class="divTableCell divTableHeading">
+        <tr>
+          <th>
             <p>Nájemník:</p>
           </th>
-          <td class="divTableCell">
+          <td>
             <h:selectOneMenu value="#{predavaciProtokolDetailBean.predavaciProtokol.najemnik}" style="width:100%" converter="#{osobaConverter}">
               <f:selectItems value="#{predavaciProtokolDetailBean.osobaList}" var="osoba" itemLabel="#{osoba.getCeleJmeno()}" itemValue="#{osoba}"/>
             </h:selectOneMenu>
@@ -50,11 +50,6 @@
           <td>
             <p:calendar id="datumPodpisu" value="#{predavaciProtokolDetailBean.predavaciProtokol.datumPodpisu}" pattern="dd-MM-yyyy"/>
           </td>
-        </tr>
-        <tr>
-          <th>
-            <p>Položky:</p>
-          </th>
         </tr>
       </table>
     </ui:define>
