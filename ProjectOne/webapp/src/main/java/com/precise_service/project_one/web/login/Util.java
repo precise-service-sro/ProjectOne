@@ -6,6 +6,9 @@ import javax.servlet.http.HttpSession;
 
 import com.precise_service.project_one.entity.osoba.Osoba;
 
+import lombok.experimental.UtilityClass;
+
+@UtilityClass
 public class Util {
 
   public static HttpSession getSession() {
