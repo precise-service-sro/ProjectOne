@@ -38,10 +38,34 @@
 .loginDiv {
   width: 360px;
   height: 165px;
-  border: 0px solid #000;
-  float: left;
-  border-style: dashed;
+  border: 1px solid #000;
   float: right;
+}
+
+.loginFormLoginPanel {
+    border: 0px solid #000;
+}
+
+.loginFormLogoutPanel {
+    border: 0px solid #000;
+}
+
+.loginDiv table {
+    height: 140px;
+    text-align: left;
+}
+
+.loginDiv th {
+    width: 150px;
+}
+
+.loginDiv td {
+    width: 180px;
+    text-align: right;
+}
+
+.loginDiv input {
+    width: 94%;
 }
 
 #content{
@@ -260,3 +284,5 @@ table td select {
 .detailPageDataDiv select {
     font-size: large;
 }
+
+

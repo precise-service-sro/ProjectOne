@@ -7,54 +7,72 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://java.sun.com/jsf/core"
 >
-  <body>
-    <ui:composition>
-      <div class="kiysaki">
-        <image src="/images/kiyosaki.png" alt="Robert T. Kiyosaki" />
-      </div>
+<body>
+<ui:composition>
+  <div class="kiysaki">
+    <image src="/images/kiyosaki.png" alt="Robert T. Kiyosaki"/>
+  </div>
 
-      <div class="nadpis">
-        <p>Project One</p>
-      </div>
+  <div class="nadpis">
+    <p>Project One</p>
+  </div>
 
-      <div class="loginDiv">
-          <h:form id="loginForm" rendered="#{loginBean.prihlasenyUzivatel == null}">
-            <p:growl id="msg" showDetail="true" life="4000" />
-            <p:panel id="loginPnl2">
-              <h:panelGrid id="loginPanel" columns="2" cellpadding="4">
+  <div id="loginDiv" class="loginDiv">
+    <h:form id="loginForm" class="loginForm">
+      <p:growl id="msg" showDetail="true" life="4000"/>
 
-                <h:outputText value="Přihlašovací jméno:" />
-                <p:inputText id="prihlasovaciJmeno" value="#{loginBean.prihlasovaciJmeno}"/>
+      <p:panel id="loginFormLoginPanel" class="loginFormLoginPanel" rendered="#{loginBean.prihlasenyUzivatel == null}">
+        <table>
+          <tr>
+            <th>
+              <h:outputText value="Přihlašovací jméno:"/>
+            </th>
+            <td>
+              <p:inputText id="prihlasovaciJmeno" value="#{loginBean.prihlasovaciJmeno}"/>
+            </td>
+          </tr>
+          <tr>
+            <th>
+              <h:outputText value="Heslo:"/>
+            </th>
+            <td>
+              <p:password id="heslo" value="#{loginBean.heslo}" feedback="false"/>
+              <p:message for="heslo"/>
+            </td>
+          </tr>
+          <tr>
+            <th></th>
+            <td>
+              <p:commandButton id="loginButton" action="#{loginBean.login()}" value="Přihlásit" update="loginForm" ajax="true" style="float: right;"/>
+            </td>
+          </tr>
+        </table>
+      </p:panel>
 
-                <h:outputText value="Heslo:" />
-                <p:password id="heslo" value="#{loginBean.heslo}" feedback="false" />
-                <p:message for="heslo"/>
-              </h:panelGrid>
-              <h:panelGrid columns="1" cellpadding="4" width="100%">
-                <p:commandButton id="loginButton" action="#{loginBean.login()}" value="Přihlásit" update="loginForm" ajax="true" style="float: right;" />
-              </h:panelGrid>
-            </p:panel>
-          </h:form>
-
-          <h:form id="logoutForm" rendered="#{loginBean.prihlasenyUzivatel != null}">
-            <p:growl id="msg" showDetail="true" life="4000" />
-            <p:panel id="loginPnl2">
-              <h:panelGrid id="loginPanel" columns="2" cellpadding="4">
-
-                <h:outputText value="Přihlašený uživatel:" />
-                <h:outputText value="#{loginBean.prihlasovaciJmeno}" class="login" style="width: 200px;" />
-
-                <h:outputText value="Heslo:" />
-                <h:outputText id="heslo2" value="#{loginBean.prihlasovaciJmeno}" />
-                <p:message for="heslo2"/>
-
-              </h:panelGrid>
-              <h:panelGrid columns="1" cellpadding="4" width="100%">
-                <p:commandButton id="logoutButton" action="#{loginBean.logout()}" value="Odhlásit" update="logoutForm" ajax="true" style="float: right;" />
-              </h:panelGrid>
-            </p:panel>
-          </h:form>
-        </div>
-    </ui:composition>
-  </body>
+      <p:panel id="loginFormLogoutPanel" class="loginFormLogoutPanel" rendered="#{loginBean.prihlasenyUzivatel != null}">
+        <table>
+          <tr>
+            <th>
+              <h:outputText value="Přihlašený uživatel:"/>
+            </th>
+            <td>
+              <h:outputText value="#{loginBean.prihlasovaciJmeno}" class="login" style="width: 200px;"/>
+            </td>
+          </tr>
+          <tr>
+            <th>&nbsp;</th>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <th>&nbsp;</th>
+            <td>
+              <p:commandButton id="logoutButton" action="#{loginBean.logout()}" value="Odhlásit" update="loginForm" ajax="true" style="float: right;"/>
+            </td>
+          </tr>
+        </table>
+      </p:panel>
+    </h:form>
+  </div>
+</ui:composition>
+</body>
 </html>
