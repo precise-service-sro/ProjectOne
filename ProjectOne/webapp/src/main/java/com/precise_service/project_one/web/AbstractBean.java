@@ -72,7 +72,7 @@ public abstract class AbstractBean implements Serializable {
     showInfo(FacesMessage.SEVERITY_ERROR, messageSummary, messageText);
   }
 
-  protected void showInfo(FacesMessage.Severity severity, String messageSummary, String messageText) {
+  private void showInfo(FacesMessage.Severity severity, String messageSummary, String messageText) {
     FacesMessage msg = new FacesMessage(severity, messageSummary, messageText);
     FacesContext.getCurrentInstance().addMessage(null, msg);
   }

@@ -165,25 +165,47 @@
               <p>Přihlašovací údaje:</p>
             </th>
             <td>
-              (Může se přihlášovat:
-              <p:selectBooleanCheckbox value="#{osobaDetailBean.osoba.muzeSePrihlasit}"/>
-              )
             </td>
           </tr>
+
           <tr>
             <th>
-              <p>Přihlašovací jméno:</p>
+              <p>Může se přihlášovat:</p>
             </th>
             <td>
-              <p:inputText value="#{osobaDetailBean.osoba.prihlasovaciJmeno}" placeholder="- zadejte -"/>
-            </td>
-            <th>
-              <p>Heslo:</p>
-            </th>
-            <td>
-              <p:inputText value="#{osobaDetailBean.osoba.heslo}" placeholder="- zadejte -"/>
+              <p:selectBooleanButton id="value2" value="#{osobaDetailBean.osoba.muzeSePrihlasit}" onLabel="Ano" offLabel="Ne" onIcon="pi pi-check"
+                                     offIcon="pi pi-times" style="width:80px">
+                <p:ajax update="form"/>
+              </p:selectBooleanButton>
             </td>
           </tr>
+
+          <p:outputPanel id="prihlasovaciUdaje" widgetVar="prihlasovaciUdaje" rendered="#{osobaDetailBean.osoba.muzeSePrihlasit}" autoUpdate="true">
+            <tr>
+              <th>
+                <p>Přihlašovací jméno:</p>
+              </th>
+              <td>
+                <p:inputText value="#{osobaDetailBean.osoba.prihlasovaciJmeno}" placeholder="- zadejte -"/>
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <p>Heslo:</p>
+              </th>
+              <td>
+                <p:inputText value="#{osobaDetailBean.osoba.heslo}" placeholder="- zadejte -"/>
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <p>Heslo pro ověření:</p>
+              </th>
+              <td>
+                <p:inputText value="#{osobaDetailBean.osoba.heslo}" placeholder="- zadejte -"/>
+              </td>
+            </tr>
+          </p:outputPanel>
           <tr>
             <th>
               <p>Poznámky:</p>

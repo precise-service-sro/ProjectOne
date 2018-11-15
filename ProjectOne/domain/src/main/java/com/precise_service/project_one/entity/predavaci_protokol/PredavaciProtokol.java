@@ -43,4 +43,8 @@ public class PredavaciProtokol extends BaseEntity {
   public String getPopis() {
     return "" + nazev + ((najemnik != null) ? ", " + najemnik.getCeleJmeno() : "") + ", " + datumPodpisu;
   }
+
+  public boolean jeAktualni() {
+    return true;
+  }
 }

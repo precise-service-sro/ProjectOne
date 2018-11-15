@@ -171,7 +171,7 @@ public class FakturaDetailBean extends AbstractBean {
   public void ulozitZmenuFaktury(boolean presmerovatZpetNaPrehledFaktur) throws IOException {
     log.trace("ulozitZmenuFaktury()");
     faktura = fakturaService.putFaktura(faktura);
-    showInfo(FacesMessage.SEVERITY_INFO,"Uloženo", "Úprava faktury " + faktura.getNazev() + " byla uložena");
+    showInfoMessage("Uloženo", "Úprava faktury " + faktura.getNazev() + " byla uložena");
     if (presmerovatZpetNaPrehledFaktur) {
       routerBean.goToFakturaPrehledBean();
     }
@@ -179,7 +179,7 @@ public class FakturaDetailBean extends AbstractBean {
 
   public void zrusitZmenuFaktury() throws IOException {
     log.trace("zrusitZmenuFaktury()");
-    showInfo(FacesMessage.SEVERITY_INFO,"Zrušeno", "Úprava faktury " + faktura.getNazev() + " byla zrušena");
+    showInfoMessage("Zrušeno", "Úprava faktury " + faktura.getNazev() + " byla zrušena");
     routerBean.goToFakturaPrehledBean();
   }
 }

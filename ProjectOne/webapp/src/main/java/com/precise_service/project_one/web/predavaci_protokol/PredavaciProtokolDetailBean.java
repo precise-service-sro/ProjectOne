@@ -1,5 +1,6 @@
 package com.precise_service.project_one.web.predavaci_protokol;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -68,16 +69,15 @@ public class PredavaciProtokolDetailBean extends AbstractBean {
     PredavaciProtokolPolozka predavaciProtokolPolozka = new PredavaciProtokolPolozka();
 
     predavaciProtokolPolozka.setPredavaciProtokol(predavaciProtokol);
-    predavaciProtokolPolozka.setNazev("!!! Upravit název !!!");
+    predavaciProtokolPolozka.setNazev("- zadejte -");
     predavaciProtokolPolozka.setPolozkaTyp(null);
-    predavaciProtokolPolozka.setCisloMeraku("!!! Upravit popis !!!");
-    predavaciProtokolPolozka.setStavMeraku("!!! Upravit popis !!!");
+    predavaciProtokolPolozka.setCisloMeraku("- zadejte -");
+    predavaciProtokolPolozka.setStavMeraku("- zadejte -");
     predavaciProtokolPolozka.setUzivatel(Util.getPrihlasenyUzivatel());
 
     PredavaciProtokolPolozka saved = predavaciProtokolPolozkaService.postPredavaciProtokolPolozka(predavaciProtokolPolozka);
+    showInfoMessage("Přidáno", "Nová položka předávacího protokolu byla přidána (" + saved.id + ")");
     init();
-
-    showInfoMessage("Přidána nová řádka", saved.getId());
   }
 
   public void deleteRow(PredavaciProtokolPolozka deletedPredavaciProtokolPolozka) {
@@ -90,13 +90,20 @@ public class PredavaciProtokolDetailBean extends AbstractBean {
     log.trace("deleting row with: " + deletedPredavaciProtokolPolozka.toString());
 
     predavaciProtokolPolozkaService.deletePredavaciProtokolPolozka(deletedPredavaciProtokolPolozka.getId());
-
-    showInfoMessage("Smazán řádek", deletedPredavaciProtokolPolozka.getNazev());
+    showInfoMessage("Smazáno", "Položka předávacího protokolu : " + deletedPredavaciProtokolPolozka.getNazev() + " byla smazána");
     init();
   }
 
-  public void ulozitZmenuPredavacihoProtokolu() {
+  public void ulozitZmenuPredavacihoProtokolu() throws IOException {
     log.trace("ulozitZmenuPredavacihoProtokolu()");
     predavaciProtokol = predavaciProtokolService.putPredavaciProtokol(predavaciProtokol);
+    showInfoMessage("Uloženo", "Úprava předávacího protokolu " + predavaciProtokol.getNazev() + " byla uložena");
+    routerBean.goToPredavaciProtokolPrehledBean();
+  }
+
+  public void zrusitZmenuPredavacihoProtokolu() throws IOException {
+    log.trace("zrusitZmenuPredavacihoProtokolu()");
+    showInfoMessage("Zrušeno", "Úprava předávacího protokolu " + predavaciProtokol.getNazev() + " byla zrušena");
+    routerBean.goToPredavaciProtokolPrehledBean();
   }
 }

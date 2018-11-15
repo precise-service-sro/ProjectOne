@@ -34,13 +34,19 @@ public class OsobaDetailBean extends AbstractBean {
   public void ulozitZmenuOsoby() throws IOException {
     log.trace("ulozitZmenuOsoby()");
     osoba = osobaService.putOsoba(osoba);
-    showInfo(FacesMessage.SEVERITY_INFO,"Uloženo", "Úprava osoby " + osoba.getCeleJmeno() + " byla uložena");
+
+    if (loginBean.getPrihlasenyUzivatel().getId().equals(osoba.getId())) {
+      // aktualizovani udaju prihlaseneho uzivatele
+      loginBean.setPrihlasenyUzivatel(osoba);
+    }
+
+    showInfoMessage("Uloženo", "Úprava osoby " + osoba.getCeleJmeno() + " byla uložena");
     routerBean.goToOsobaPrehledBean();
   }
 
   public void zrusitZmenuOsoby() throws IOException {
     log.trace("zrusitZmenuOsoby()");
-    showInfo(FacesMessage.SEVERITY_INFO,"Zrušeno", "Úprava osoby " + osoba.getCeleJmeno() + " byla zrušena");
+    showInfoMessage("Zrušeno", "Úprava osoby " + osoba.getCeleJmeno() + " byla zrušena");
     routerBean.goToOsobaPrehledBean();
   }
 }

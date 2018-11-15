@@ -1,6 +1,7 @@
 package com.precise_service.project_one.web.vyuctovani;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -71,7 +72,7 @@ public class VyuctovaniPrehledBean extends AbstractBean {
 
     Vyuctovani vyuctovani = new Vyuctovani();
 
-    vyuctovani.setNazev("Manuáně vytvořené vyúčtování ze dne: " + dateFormatterBean.formatDate(new Date()));
+    vyuctovani.setNazev("Manuáně vytvořené vyúčtování ze dne: " + LocalDateTime.now().toString());
     vyuctovani.setNemovitost(null);
     vyuctovani.setZuctovaciObdobi(zuctovaciObdobi);
     vyuctovani.setUzivatel(Util.getPrihlasenyUzivatel());

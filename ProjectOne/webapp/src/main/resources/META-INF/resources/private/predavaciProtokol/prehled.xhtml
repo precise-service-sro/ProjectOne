@@ -40,9 +40,10 @@
 
         <p:columnGroup type="header">
           <p:row>
-            <p:column headerText="Název" filterBy="#{predavaciProtokol.nazev}" filterMatchMode="contains" filterStyle="display:none" sortBy="#{predavaciProtokol.nazev}" style="width: 100%;"/>
             <p:column headerText="Nemovitost" filterBy="#{predavaciProtokol.nemovitost.getIdentifikaceNemovitosti()}" filterMatchMode="contains" style="width: 400px;" filterStyle="display:none" sortBy="#{predavaciProtokol.nemovitost.getIdentifikaceNemovitosti()}"/>
             <p:column headerText="Nájemník" filterBy="#{predavaciProtokol.najemnik.getCeleJmeno()}" filterMatchMode="contains" style="width: 200px;" filterStyle="display:none" sortBy="#{predavaciProtokol.najemnik.getCeleJmeno()}"/>
+            <p:column headerText="Datum podpisu" filterBy="#{dateFormatterBean.formatDate(predavaciProtokol.datumPodpisu)}" filterMatchMode="contains" style="width: 200px;" filterStyle="display:none" sortBy="#{dateFormatterBean.formatDate(predavaciProtokol.datumPodpisu)}"/>
+            <p:column headerText="Status (je platný)" filterBy="#{predavaciProtokol.najemnik.getCeleJmeno()}" filterMatchMode="contains" style="width: 100%;" filterStyle="display:none" sortBy="#{predavaciProtokol.najemnik.getCeleJmeno()}"/>
             <p:column headerText="Ovládání" colspan="1" rowspan="2" style="width: 90px;"/>
           </p:row>
         </p:columnGroup>
@@ -56,15 +57,19 @@
         </f:facet>
 
         <p:column>
-          <h:outputText value="#{predavaciProtokol.nazev}"/>
-        </p:column>
-
-        <p:column>
           <h:outputText value="#{predavaciProtokol.nemovitost.getIdentifikaceNemovitosti()}" title="#{predavaciProtokol.nemovitost.getIdentifikaceNemovitosti()}"/>
         </p:column>
 
         <p:column>
           <h:outputText value="#{predavaciProtokol.najemnik.getCeleJmeno()}"/>
+        </p:column>
+
+        <p:column style="text-align: center;">
+          <h:outputText value="#{dateFormatterBean.formatDate(predavaciProtokol.datumPodpisu)}"/>
+        </p:column>
+
+        <p:column>
+          <h:outputText value="#{predavaciProtokol.jeAktualni()}"/>
         </p:column>
 
         <p:column>

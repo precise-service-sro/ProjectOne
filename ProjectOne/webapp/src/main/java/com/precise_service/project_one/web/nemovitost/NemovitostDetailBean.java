@@ -53,7 +53,7 @@ public class NemovitostDetailBean extends AbstractBean {
 
   public void pridatNemovitost() throws IOException {
     log.trace("pridatNemovitost()");
-    showInfo(FacesMessage.SEVERITY_INFO,"Přidáno", "Nová nemovitost " + nemovitost.getNazev() + " byla přidáná");
+    showInfoMessage("Přidáno", "Nová nemovitost " + nemovitost.getNazev() + " byla přidáná");
     // TODO: ulozit novou nemovitost do DB
     routerBean.goToNemovitostPrehledBean();
   }
@@ -61,13 +61,13 @@ public class NemovitostDetailBean extends AbstractBean {
   public void ulozitZmenuNemovitosti() throws IOException {
     log.trace("ulozitZmenuNemovitosti()");
     nemovitost = nemovitostService.putNemovitost(nemovitost);
-    showInfo(FacesMessage.SEVERITY_INFO,"Uloženo", "Úprava nemovitosti " + nemovitost.getNazev() + " byla uložena");
+    showInfoMessage("Uloženo", "Úprava nemovitosti " + nemovitost.getNazev() + " byla uložena");
     routerBean.goToNemovitostPrehledBean();
   }
 
   public void zrusitZmenuNemovitosti() throws IOException {
     log.trace("zrusitZmenuNemovitosti()");
-    showInfo(FacesMessage.SEVERITY_INFO,"Zrušeno", "Přidání/úprava nemovitosti byla zrušena");
+    showInfoMessage("Zrušeno", "Přidání/úprava nemovitosti byla zrušena");
     routerBean.goToNemovitostPrehledBean();
   }
 }
