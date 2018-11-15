@@ -47,6 +47,14 @@
           </p:row>
         </p:columnGroup>
 
+        <f:facet name="header">
+          <p:outputPanel style="float: left; margin-top: 5px;">Předávací protokoly:</p:outputPanel>
+          <p:outputPanel style="text-align: right;">
+            <p:inputText id="globalFilter" onkeyup="PF('predavaciProtokolPrehledBeanTable').filter()" style="width:235px"
+                         placeholder="- zadejte text pro vyhledání -"/>
+          </p:outputPanel>
+        </f:facet>
+
         <p:column>
           <h:outputText value="#{predavaciProtokol.nazev}"/>
         </p:column>

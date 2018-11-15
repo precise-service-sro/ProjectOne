@@ -48,8 +48,7 @@ public class LoginBean extends AbstractBean {
 
     prihlasenyUzivatel = getOsoba(prihlasovaciJmeno, heslo);
     if (prihlasenyUzivatel == null) {
-      FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN,"Špatné přihlašovací údaje!","Špatné přihlašovací jméno anebo heslo!"));
-      Faces.redirect(INDEX_URL);
+      showErrorMessage("Špatné přihlašovací údaje!","Špatné přihlašovací jméno anebo heslo!");
       return;
     }
 

@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 
-import com.precise_service.project_one.web.login.AuthFilter;
+import com.precise_service.project_one.web.login.AuthorizationFilterBean;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -26,11 +26,11 @@ public class ProjectOne implements CommandLineRunner {
   }
 
   @Bean
-  public FilterRegistrationBean<AuthFilter> loggingFilter(){
-    FilterRegistrationBean<AuthFilter> registrationBean
+  public FilterRegistrationBean<AuthorizationFilterBean> loggingFilter(){
+    FilterRegistrationBean<AuthorizationFilterBean> registrationBean
         = new FilterRegistrationBean<>();
 
-    registrationBean.setFilter(new AuthFilter());
+    registrationBean.setFilter(new AuthorizationFilterBean());
     registrationBean.addUrlPatterns("/nemovitost/*");
 
     return registrationBean;

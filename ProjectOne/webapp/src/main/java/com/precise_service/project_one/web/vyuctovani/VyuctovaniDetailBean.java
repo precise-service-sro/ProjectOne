@@ -1,5 +1,6 @@
 package com.precise_service.project_one.web.vyuctovani;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.inject.Named;
@@ -76,6 +77,13 @@ public class VyuctovaniDetailBean extends AbstractBean {
         vyuctovaniPolozka.setZalohy(zalohy);
       }
 
+      if (vyuctovaniPolozka.getNaklady() == null) {
+        Cislo zalohy = new Cislo();
+        zalohy.setMnozstvi(0.0);
+        zalohy.setJednotka("Kč");
+        vyuctovaniPolozka.setNaklady(zalohy);
+      }
+
       Cislo rozdil = new Cislo();
       rozdil.setMnozstvi(vyuctovaniPolozka.getZalohy().getMnozstvi() - vyuctovaniPolozka.getNaklady().getMnozstvi());
       rozdil.setJednotka(vyuctovaniPolozka.getNaklady().getJednotka());
@@ -118,7 +126,7 @@ public class VyuctovaniDetailBean extends AbstractBean {
 
     VyuctovaniPolozka vyuctovaniPolozka = new VyuctovaniPolozka();
 
-    vyuctovaniPolozka.setNazev("!!! Upravit název !!!");
+    vyuctovaniPolozka.setNazev("- zadejte -");
     vyuctovaniPolozka.setVyuctovani(vyuctovani);
     vyuctovaniPolozka.setPolozkaTyp(null);
     vyuctovaniPolozka.setUzivatel(Util.getPrihlasenyUzivatel());

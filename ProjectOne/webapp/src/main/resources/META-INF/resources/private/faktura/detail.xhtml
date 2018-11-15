@@ -87,14 +87,15 @@
                           style="width: 100px;"/>
                 <p:column headerText="Spotřeba" filterBy="#{polozka.spotreba.mnozstvi}" filterMatchMode="contains" filterStyle="display:none" sortBy="#{polozka.spotreba.mnozstvi}"
                           style="width: 100px;"/>
-                <p:column headerText="Zálohy" filterBy="#{polozka.zalohy.mnozstvi}" filterMatchMode="contains" filterStyle="display:none" sortBy="#{polozka.zalohy.mnozstvi}" style="width: 100px;"/>
-                <p:column headerText="Náklady" filterBy="#{polozka.naklady.mnozstvi}" filterMatchMode="contains" filterStyle="display:none" sortBy="#{polozka.naklady.mnozstvi}" style="width: 100px;"/>
-                <p:column headerText="Rozdíl" filterBy="#{polozka.rozdil.mnozstvi}" filterMatchMode="contains" filterStyle="display:none" sortBy="#{polozka.rozdil.mnozstvi}" style="width: 100px;"/>
+                <p:column headerText="Zálohy" filterBy="#{polozka.zalohy.mnozstvi}" filterMatchMode="contains" filterStyle="display:none" sortBy="#{polozka.zalohy.mnozstvi}" style="width: 130px;"/>
+                <p:column headerText="Náklady" filterBy="#{polozka.naklady.mnozstvi}" filterMatchMode="contains" filterStyle="display:none" sortBy="#{polozka.naklady.mnozstvi}" style="width: 130px;"/>
+                <p:column headerText="Rozdíl" filterBy="#{polozka.rozdil.mnozstvi}" filterMatchMode="contains" filterStyle="display:none" sortBy="#{polozka.rozdil.mnozstvi}" style="width: 130px;"/>
                 <p:column headerText="Ovládání" colspan="2" style="width: 90px;"/>
               </p:row>
             </p:columnGroup>
 
             <f:facet name="header">
+              <p:outputPanel style="float: left; margin-top: 5px;">Položky faktury:</p:outputPanel>
               <p:outputPanel style="text-align: right;">
                 <p:inputText id="globalFilter" onkeyup="PF('fakturaPolozkaDataTable').filter()" style="width:235px"
                              placeholder="- zadejte text pro vyhledání -"/>

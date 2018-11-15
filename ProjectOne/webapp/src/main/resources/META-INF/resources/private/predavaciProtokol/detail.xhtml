@@ -86,12 +86,13 @@
             <p:column headerText="Stav" filterBy="#{polozka.stavMeraku}" filterMatchMode="contains" filterStyle="display:none" sortBy="#{polozka.stavMeraku}"
                       style="width: 80px;"/>
             <p:column headerText="Jednotka" filterBy="#{polozka.jednotka}" filterMatchMode="contains" filterStyle="display:none" sortBy="#{polozka.jednotka}"
-                      style="width: 80px;"/>
+                      style="width: 100px;"/>
             <p:column headerText="Ovládání" colspan="2" style="width: 90px;"/>
           </p:row>
         </p:columnGroup>
 
         <f:facet name="header">
+          <p:outputPanel style="float: left; margin-top: 5px;">Položky předávacího protokolu:</p:outputPanel>
           <p:outputPanel style="text-align: right;">
             <p:inputText id="globalFilter" onkeyup="PF('predavaciProtokolPolozkaDataTable').filter()" style="width:235px"
                          placeholder="- zadejte text pro vyhledání -"/>

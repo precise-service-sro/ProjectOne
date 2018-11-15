@@ -20,6 +20,8 @@ import com.precise_service.project_one.service.vyuctovani.IVyuctovaniService;
 import com.precise_service.project_one.web.common.RouterBean;
 import com.precise_service.project_one.web.common.formatter.DateFormatterBean;
 import com.precise_service.project_one.web.faktura.FakturaDetailBean;
+import com.precise_service.project_one.web.login.AuthorizationFilterBean;
+import com.precise_service.project_one.web.login.LoginBean;
 import com.precise_service.project_one.web.nemovitost.NemovitostDetailBean;
 import com.precise_service.project_one.web.osoba.OsobaDetailBean;
 import com.precise_service.project_one.web.predavaci_protokol.PredavaciProtokolDetailBean;
@@ -49,6 +51,7 @@ public abstract class AbstractBean implements Serializable {
   @Autowired protected IVyuctovaniPolozkaService vyuctovaniPolozkaService;
 
   @Autowired protected FakturaDetailBean fakturaDetailBean;
+  @Autowired protected LoginBean loginBean;
   @Autowired protected NemovitostDetailBean nemovitostDetailBean;
   @Autowired protected OsobaDetailBean osobaDetailBean;
   @Autowired protected PredavaciProtokolDetailBean predavaciProtokolDetailBean;
@@ -59,6 +62,14 @@ public abstract class AbstractBean implements Serializable {
 
   protected void showInfoMessage(String messageSummary, String messageText) {
     showInfo(FacesMessage.SEVERITY_INFO, messageSummary, messageText);
+  }
+
+  protected void showWarningMessage(String messageSummary, String messageText) {
+    showInfo(FacesMessage.SEVERITY_WARN, messageSummary, messageText);
+  }
+
+  protected void showErrorMessage(String messageSummary, String messageText) {
+    showInfo(FacesMessage.SEVERITY_ERROR, messageSummary, messageText);
   }
 
   protected void showInfo(FacesMessage.Severity severity, String messageSummary, String messageText) {

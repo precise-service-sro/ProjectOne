@@ -59,7 +59,7 @@ public class VyuctovaniGeneratorBean extends AbstractBean {
     Osoba prihlasenyUzivatel = Util.getPrihlasenyUzivatel();
     List<Faktura> fakturaList = fakturaService.getSeznamFakturVeZuctovacimObdobi(prihlasenyUzivatel, zuctovaciObdobi);
 
-    String nazev = "Nové vyúčtování ze dne " + LocalDateTime.now().toString();
+    String nazev = "Vygenerované vyúčtování ze dne: " + LocalDateTime.now().toString();
     Vyuctovani vyuctovani = vyuctovaniService.generovatVyuctovani(nazev, zuctovaciObdobi, nemovitost, najemnik, fakturaList, predavaciProtokol, null, Util.getPrihlasenyUzivatel());
 
     vyuctovaniDetailBean.setVyuctovani(vyuctovani);

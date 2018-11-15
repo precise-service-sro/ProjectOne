@@ -71,7 +71,7 @@ public class VyuctovaniPrehledBean extends AbstractBean {
 
     Vyuctovani vyuctovani = new Vyuctovani();
 
-    vyuctovani.setNazev("- zadejte -");
+    vyuctovani.setNazev("Manuáně vytvořené vyúčtování ze dne: " + dateFormatterBean.formatDate(new Date()));
     vyuctovani.setNemovitost(null);
     vyuctovani.setZuctovaciObdobi(zuctovaciObdobi);
     vyuctovani.setUzivatel(Util.getPrihlasenyUzivatel());
@@ -79,7 +79,7 @@ public class VyuctovaniPrehledBean extends AbstractBean {
     Vyuctovani saved = vyuctovaniService.postVyuctovani(vyuctovani);
     init();
 
-    showInfoMessage("Přidána nové vyúčtování", saved.getId());
+    showInfoMessage("Přidáno nové vyúčtování", saved.getId());
   }
 
   public void deleteRow(Vyuctovani deletedVyuctovani) {

@@ -26,7 +26,7 @@ import static com.precise_service.project_one.web.login.LoginBean.SESSION_ATTRIB
 @Component
 @Order(1)
 @Slf4j
-public class AuthFilter extends AbstractBean implements Filter {
+public class AuthorizationFilterBean extends AbstractBean implements Filter {
 
   @Override
   public void init(FilterConfig filterConfig) {
@@ -69,6 +69,7 @@ public class AuthFilter extends AbstractBean implements Filter {
       }
 
       log.trace("--- unauthorized request ---");
+      loginBean.setPrihlasenyUzivatel(null);
       httpServletResponse.sendRedirect(httpServletRequest.getContextPath() + INDEX_URL);
     }
     catch(Throwable t) {
