@@ -42,7 +42,7 @@ public class VyuctovaniPrehledBean extends AbstractBean {
 
     // getVyuctovaniInRange
     Osoba prihlasenyUzivatel = Util.getPrihlasenyUzivatel();
-    vyuctovaniList = vyuctovaniService.getVyuctovaniListInRange(prihlasenyUzivatel, zuctovaciObdobi);
+    vyuctovaniList = vyuctovaniService.getVyuctovaniListInRange(prihlasenyUzivatel);
 
     nemovitostList = nemovitostService.getNemovitostAll(prihlasenyUzivatel.getId());
   }
@@ -74,13 +74,13 @@ public class VyuctovaniPrehledBean extends AbstractBean {
 
     vyuctovani.setNazev("Manuáně vytvořené vyúčtování ze dne: " + LocalDateTime.now().toString());
     vyuctovani.setNemovitost(null);
-    vyuctovani.setZuctovaciObdobi(zuctovaciObdobi);
+    vyuctovani.setZuctovaciObdobi(new CasovyInterval());
+    vyuctovani.setDatumVystaveni(new Date());
     vyuctovani.setUzivatel(Util.getPrihlasenyUzivatel());
 
     Vyuctovani saved = vyuctovaniService.postVyuctovani(vyuctovani);
+    showInfoMessage("Přidáno", "Přidáno nové vyúčtování (" + saved.getId() + ")");
     init();
-
-    showInfoMessage("Přidáno nové vyúčtování", saved.getId());
   }
 
   public void deleteRow(Vyuctovani deletedVyuctovani) {
@@ -93,8 +93,7 @@ public class VyuctovaniPrehledBean extends AbstractBean {
     log.trace("deleting row with: " + deletedVyuctovani.toString());
 
     vyuctovaniService.deleteVyuctovani(deletedVyuctovani.getId());
-
-    showInfoMessage("Smazán řádek", deletedVyuctovani.getNazev());
+    showInfoMessage("Smazáno", "Vyúčtování " + deletedVyuctovani.getNazev() + " bylo smazáno");
     init();
   }
 

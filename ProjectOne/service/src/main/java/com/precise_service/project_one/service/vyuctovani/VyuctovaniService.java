@@ -74,6 +74,12 @@ public class VyuctovaniService implements IVyuctovaniService {
   }
 
   @Override
+  public List<Vyuctovani> getVyuctovaniListInRange(Osoba prihlasenyUzivatel) {
+    log.trace("getVyuctovaniListInRange()");
+    return vyuctovaniRepository.getVyuctovaniListInRange(prihlasenyUzivatel.getId());
+  }
+
+  @Override
   public void deleteVyuctovani(String idVyuctovani) {
     log.trace("deleteVyuctovani()");
     vyuctovaniRepository.deleteById(idVyuctovani);
@@ -97,6 +103,7 @@ public class VyuctovaniService implements IVyuctovaniService {
     vyuctovani.setNajemnik(najemnik);
     vyuctovani.setPronajimatel(nemovitost.getVlastnik());
     vyuctovani.setUzivatel(prihlasenyUzivatel);
+    vyuctovani.setDatumVystaveni(new Date());
     vyuctovani = postVyuctovani(vyuctovani);
 
     for (PolozkaTyp polozkaTyp : polozkaTypList) {

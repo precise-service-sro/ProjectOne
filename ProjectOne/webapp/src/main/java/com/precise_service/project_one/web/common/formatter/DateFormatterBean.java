@@ -36,7 +36,7 @@ public class DateFormatterBean {
   public String formatDate(Date date) {
     if (date == null) {
       log.warn("Cannot format: " + date + " value into valid date");
-      return null;
+      return "";
     }
     return simpleDateFormat.format(date);
   }

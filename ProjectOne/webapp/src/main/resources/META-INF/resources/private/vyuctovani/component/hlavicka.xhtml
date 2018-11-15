@@ -15,77 +15,99 @@
 </composite:interface>
 
 <composite:implementation>
+  <table>
+    <tr>
+      <th>Pronajímatel:</th>
+      <td></td>
+      <td></td>
+      <th>Nájemník:</th>
+      <td></td>
+    </tr>
 
-  <div class="divTableRow">
-    <div class="divTableCell divTableHeading">Pronajímatel</div>
-    <div class="divTableCell">
-      - jméno: <h:outputText value="#{cc.attrs.vyuctovani.nemovitost.vlastnik.jmeno}" />
-      <br />
-      - přijmení: <h:outputText value="#{cc.attrs.vyuctovani.nemovitost.vlastnik.prijmeni}" />
-      <br />
-      - telefon: <h:outputText value="#{cc.attrs.vyuctovani.nemovitost.vlastnik.telefon}" />
-      <br />
-      - email: <h:outputText value="#{cc.attrs.vyuctovani.nemovitost.vlastnik.email}" />
-      <br />
-      - adresa: <h:outputText value="#{cc.attrs.vyuctovani.nemovitost.vlastnik.jmeno}" />
-      <br />
-    </div>
-  </div>
+    <tr>
+      <th>Jméno a Příjmení / Název: </th>
+      <td>
+        <p:commandLink action="#{routerBean.goToOsobaDetailBean(cc.attrs.vyuctovani.nemovitost.vlastnik)}">
+          <h:outputText value="#{cc.attrs.vyuctovani.nemovitost.vlastnik.getCeleJmeno()}" />
+        </p:commandLink>
+      </td>
+      <td></td>
+      <th>Jméno a Příjmení / Název: </th>
+      <td>
+        <p:commandLink action="#{routerBean.goToOsobaDetailBean(cc.attrs.vyuctovani.najemnik)}">
+          <h:outputText value="#{cc.attrs.vyuctovani.najemnik.getCeleJmeno()}" />
+        </p:commandLink>
+      </td>
+    </tr>
 
-  <div class="divTableRow">
-    <div class="divTableCell divTableHeading">&nbsp;</div>
-    <div class="divTableCell">&nbsp;</div>
-  </div>
+    <tr>
+      <th>Telefon:</th>
+      <td><h:outputText value="#{cc.attrs.vyuctovani.nemovitost.vlastnik.telefon}" /></td>
+      <td></td>
+      <th>Telefon:</th>
+      <td><h:outputText value="#{cc.attrs.vyuctovani.najemnik.telefon}" /></td>
+    </tr>
 
-  <div class="divTableRow">
-    <div class="divTableCell divTableHeading">Nájemce:</div>
-    <div class="divTableCell">
-      - jméno: <h:outputText value="#{cc.attrs.vyuctovani.najemnik.jmeno}" />
-      <br />
-      - přijmení: <h:outputText value="#{cc.attrs.vyuctovani.najemnik.prijmeni}" />
-      <br />
-      - telefon: <h:outputText value="#{cc.attrs.vyuctovani.najemnik.telefon}" />
-      <br />
-      - email: <h:outputText value="#{cc.attrs.vyuctovani.najemnik.email}" />
-      <br />
-      - adresa: <h:outputText value="#{cc.attrs.vyuctovani.najemnik.jmeno}" />
-      <br />
-    </div>
-  </div>
+    <tr>
+      <th>Email:</th>
+      <td><h:outputText value="#{cc.attrs.vyuctovani.nemovitost.vlastnik.email}" /></td>
+      <td></td>
+      <th>Email:</th>
+      <td><h:outputText value="#{cc.attrs.vyuctovani.najemnik.email}" /></td>
+    </tr>
 
-  <div class="divTableRow">
-    <div class="divTableCell divTableHeading">&nbsp;</div>
-    <div class="divTableCell">&nbsp;</div>
-  </div>
+    <tr>
+      <th>Adresa:</th>
+      <td><h:outputText value="#{cc.attrs.vyuctovani.nemovitost.vlastnik.trvaleBydliste.getCelaAdresa()}" /></td>
+      <td></td>
+      <th>Adresa:</th>
+      <td><h:outputText value="#{cc.attrs.vyuctovani.najemnik.trvaleBydliste.getCelaAdresa()}" /></td>
+    </tr>
 
-  <div class="divTableRow">
-    <div class="divTableCell divTableHeading">Zúčtovací období:</div>
-    <div class="divTableCell">
-      OD: <h:outputText value="#{cc.attrs.vyuctovani.zuctovaciObdobi.zacatek}" /> <br />
-      DO: <h:outputText value="#{cc.attrs.vyuctovani.zuctovaciObdobi.konec}" /> <br />
-    </div>
-  </div>
+    <tr>
+      <th>&nbsp;</th>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <th>&nbsp;</th>
+      <td>&nbsp;</td>
+    </tr>
 
-  <div class="divTableRow">
-    <div class="divTableCell divTableHeading">&nbsp;</div>
-    <div class="divTableCell">&nbsp;</div>
-  </div>
+    <tr>
+      <th>Nemovitost:</th>
+      <td colspan="4">
+        <p:commandLink action="#{routerBean.goToNemovitostDetailBean(cc.attrs.vyuctovani.nemovitost)}">
+          <h:outputText value="#{cc.attrs.vyuctovani.nemovitost.getIdentifikaceNemovitosti()}" />
+        </p:commandLink>
+      </td>
+    </tr>
 
-  <div class="divTableRow">
-    <div class="divTableCell divTableHeading">Byt:</div>
-    <div class="divTableCell"><h:outputText value="#{cc.attrs.vyuctovani.nemovitost.nazev}" /></div>
-  </div>
+    <tr>
+      <th>&nbsp;</th>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <th>&nbsp;</th>
+      <td>&nbsp;</td>
+    </tr>
 
-  <div class="divTableRow">
-    <div class="divTableCell divTableHeading">&nbsp;</div>
-    <div class="divTableCell">&nbsp;</div>
-  </div>
+    <tr>
+      <th>Adresa:</th>
+      <td colspan="4"><h:outputText value="#{cc.attrs.vyuctovani.nemovitost.adresa.getCelaAdresa()}" /></td>
+    </tr>
 
-  <div class="divTableRow">
-    <div class="divTableCell divTableHeading">Adresa:</div>
-    <div class="divTableCell"><h:outputText value="#{cc.attrs.vyuctovani.nemovitost.adresa}" /></div>
-  </div>
+    <tr>
+      <th>&nbsp;</th>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <th>&nbsp;</th>
+      <td>&nbsp;</td>
+    </tr>
+
+    <tr>
+      <th>Zúčtovací období:</th>
+      <td colspan="4">Od: <h:outputText value="#{dateFormatterBean.formatDate(cc.attrs.vyuctovani.zuctovaciObdobi.zacatek)}" />  Do: <h:outputText value="#{dateFormatterBean.formatDate(cc.attrs.vyuctovani.zuctovaciObdobi.konec)}" /></td>
+    </tr>
+  </table>
+
 
 </composite:implementation>
-
 </html>

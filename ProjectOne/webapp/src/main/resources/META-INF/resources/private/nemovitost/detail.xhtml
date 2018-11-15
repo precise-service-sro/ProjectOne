@@ -9,17 +9,17 @@
 
 <h:body>
   <ui:composition template="/template/commonLayout.xhtml">
-    <ui:define name="title">ProjectOne - Detail nemovitosti</ui:define>
+    <ui:define name="title">
+      ProjectOne - Detail nemovitosti
+    </ui:define>
 
     <ui:define name="content">
-
-      <h:outputText value="#{nemovitostDetailBean.init()}"/>
-
       <h:form id="form">
         <p:growl id="msgs" showDetail="true"/>
 
         <div class="pageTitle">
           <div class="pageTitleLeft">
+            <h:outputText value="#{nemovitostDetailBean.init()}"/>
             <p>Nemovitost:</p>
             <h:selectOneMenu value="#{nemovitostDetailBean.nemovitost}" converter="#{nemovitostConverter}">
               <f:selectItems value="#{nemovitostDetailBean.nemovitostList}" var="nemovitost" itemLabel="#{nemovitost.nazev}" itemValue="#{nemovitost}"/>
@@ -35,31 +35,31 @@
 
           <p:tab id="tabZakladniInformace" title="Základní informace">
             <ui:insert name="zakladniInformace" >
-              <ui:include src="tab/zakladniInformace.xhtml" />
+              <ui:include src="tab/zakladniInformaceTab.xhtml" />
             </ui:insert>
           </p:tab>
 
           <p:tab id="tabAdresa" title="Adresa">
             <ui:insert name="adresa" >
-              <ui:include src="tab/adresa.xhtml" />
+              <ui:include src="tab/adresaTab.xhtml" />
             </ui:insert>
           </p:tab>
 
           <p:tab id="tabKontaktniOsoby" title="Kontaktní osoby">
             <ui:insert name="kontaktniOsoby" >
-              <ui:include src="tab/kontaktniOsoby.xhtml" />
+              <ui:include src="tab/kontaktniOsobyTab.xhtml" />
             </ui:insert>
           </p:tab>
 
           <p:tab id="tabVyucotavanePolozky" title="Vyúčtovávané položky">
             <ui:insert name="vyuctovavanePolozky" >
-              <ui:include src="tab/vyuctovavanePolozky.xhtml" />
+              <ui:include src="tab/vyuctovavanePolozkyTab.xhtml" />
             </ui:insert>
           </p:tab>
 
           <p:tab id="tabPoznamky" title="Poznámky">
             <ui:insert name="poznamky" >
-              <ui:include src="tab/poznamky.xhtml" />
+              <ui:include src="tab/poznamkyTab.xhtml" />
             </ui:insert>
           </p:tab>
 

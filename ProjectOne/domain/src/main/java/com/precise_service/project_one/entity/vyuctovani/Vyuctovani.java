@@ -1,10 +1,12 @@
 package com.precise_service.project_one.entity.vyuctovani;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -54,4 +56,9 @@ public class Vyuctovani extends BaseEntity {
   @JsonProperty("predavaciProtokol")
   @JsonInclude(JsonInclude.Include.NON_NULL)
   private PredavaciProtokol predavaciProtokol;
+
+  @JsonProperty("datumVystaveni")
+  @JsonInclude(JsonInclude.Include.NON_NULL)
+  @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
+  private Date datumVystaveni;
 }

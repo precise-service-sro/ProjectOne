@@ -1,0 +1,34 @@
+.vyuctovaniTab {
+  margin: 35px;
+}
+
+.vyuctovaniPodpisy {
+  margin-top: 50px;
+  border: 0px solid #DFDFDF;
+  margin-left: 50px;
+  margin-right: 50px;
+}
+
+.vyuctovaniPodpisPronajimatel {
+  border: 0px solid #DFDFDF;
+  width: 500px;
+}
+
+.vyuctovaniPodpisNajemnik {
+  border: 0px solid #DFDFDF;
+  width: 500px;
+  float: right;
+}
+
+.poleProPodpis {
+  padding-top: 50px;
+  text-align: center;
+}
+
+.polePodCarou {
+  text-align: center;
+}
+
+.vyuctovaniPaticka {
+  text-align: center;
+}

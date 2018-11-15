@@ -10,40 +10,70 @@
 
 <composite:interface>
 
-  <composite:attribute name="vyuctovani" />
+  <composite:attribute name="vyuctovani"/>
 
 </composite:interface>
 
 <composite:implementation>
 
-  Rozdíl (- minus = znamena nedoplatek / + plus = preplatek). Jak nájemce tak pronajímatel svým podpisem níže tímto potvrzují, že rozdílová částka bude vyrovnána nejpozději do 5-ti dnů na bankovní účet protistrany.
+  <div class="vyuctovaniPatickaText">
+    <ul>
+      <li>Rozdíl (- mínus = znamená nedoplatek / + plus = přeplatek).</li>
+      <li>Jak nájemce tak pronajímatel svým podpisem níže tímto potvrzují, že rozdílová částka bude vyrovnána nejpozději do 5-ti dnů na bankovní účet
+        protistrany.
+      </li>
+    </ul>
+  </div>
 
-  <br />
-  <br />
-  <br />
-  <br />
-  V Praze dne ............
-  <br />
-  Pronajímatel
-  <br />
-  ------------------------
 
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
+  <div class="vyuctovaniPodpisy">
 
-  V Praze dne ............
-  <br />
-  Nájemce
-  <br />
-  ------------------------
+    <div class="vyuctovaniPodpisNajemnik">
+      <div class="poleProDatum">
+        Ve městě
+        <h:outputText value="#{cc.attrs.vyuctovani.nemovitost.adresa.mesto}"/>
+        dne
+        <h:outputText value="#{dateFormatterBean.formatDate(cc.attrs.vyuctovani.datumVystaveni)}"/>
+      </div>
+      <div class="poleProNadpis">
+        Podpis nájemník:
+      </div>
+      <div class="poleProPodpis">
+        --------------------------------------------------------
+      </div>
+      <div class="polePodCarou">
+        (
+        <h:outputText value="#{cc.attrs.vyuctovani.najemnik.getCeleJmeno()}"/>
+        )
+      </div>
+    </div>
 
-  <br />  <br />  <br />  <br />
+    <div class="vyuctovaniPodpisPronajimatel">
+      <div class="poleProDatum">
+        Ve městě
+        <h:outputText value="#{cc.attrs.vyuctovani.nemovitost.adresa.mesto}"/>
+        dne
+        <h:outputText value="#{dateFormatterBean.formatDate(cc.attrs.vyuctovani.datumVystaveni)}"/>
+      </div>
+      <div class="poleProNadpis">
+        Podpis pronajímatel:
+      </div>
+      <div class="poleProPodpis">
+        --------------------------------------------------------
+      </div>
+      <div class="polePodCarou">
+        (
+        <h:outputText value="#{cc.attrs.vyuctovani.nemovitost.vlastnik.getCeleJmeno()}"/>
+        )
+      </div>
+    </div>
+  </div>
 
-  Automaticky vygenerováno z aplikace ProjectOne
 
+  <div class="vyuctovaniPaticka">
+    <br/> <br/> <br/> <br/>
+
+    Automaticky vygenerováno z aplikace ProjectOne
+  </div>
 </composite:implementation>
-
 </html>

@@ -19,18 +19,11 @@
     </ui:define>
 
     <ui:define name="prehledPageData">
-      <div style="float: left;">
-        <p style="display: inline; margin-right: 20px; font-size: 20px;">Začátek zúčtovacího období:</p>
-        <p:calendar id="zuctovaciObdobiFilterZacatek" value="#{vyuctovaniPrehledBean.zuctovaciObdobi.zacatek}" pattern="dd-MM-yyyy"/>
-      </div>
-      <div class="divTableRow" style="float: left;">
-        <p style="display: inline; margin-left: 20px; margin-right: 20px; font-size: 20px;">Konec zúčtovacího období:</p>
-        <p:calendar id="zuctovaciObdobiFilterKonec" value="#{vyuctovaniPrehledBean.zuctovaciObdobi.konec}" pattern="dd-MM-yyyy"/>
-      </div>
     </ui:define>
 
     <ui:define name="prehledPagePridavaciTlacitko">
-      <p:commandButton value="Přidat" icon="ui-icon-circle-plus" process="@this" update="form :form:msgs" actionListener="#{vyuctovaniPrehledBean.addRow()}"/>
+      <p:commandButton value="Přidat prázdné vyúčtovaní" icon="ui-icon-circle-plus" process="@this" update="form :form:msgs" actionListener="#{vyuctovaniPrehledBean.addRow()}"/>
+      <p:commandButton value="Vygenerovat nové vyúčtovaní" icon="ui-icon-circle-plus" process="@this" update="form :form:msgs" actionListener="#{routerBean.goToVyuctovaniGeneratorBean()}"/>
     </ui:define>
 
     <ui:define name="prehledPageDataTable">
@@ -53,8 +46,10 @@
 
         <p:columnGroup type="header">
           <p:row>
-            <p:column headerText="Název" rowspan="2" style="width: 100%;" filterBy="#{vyuctovani.nazev}" filterMatchMode="contains" filterStyle="display:none" sortBy="#{vyuctovani.nazev}"/>
-            <p:column headerText="Nemovitost" rowspan="2" style="width: 400px;" filterBy="#{vyuctovani.nemovitost.getIdentifikaceNemovitosti()}" filterMatchMode="contains" filterStyle="display:none" sortBy="#{vyuctovani.nemovitost.getIdentifikaceNemovitosti()}"/>
+            <p:column headerText="Nemovitost" rowspan="2" style="width: 100%;" filterBy="#{vyuctovani.nemovitost.getIdentifikaceNemovitosti()}" filterMatchMode="contains" filterStyle="display:none" sortBy="#{vyuctovani.nemovitost.getIdentifikaceNemovitosti()}"/>
+            <p:column headerText="Pronajímatel" rowspan="2" style="width: 170px;" filterBy="#{vyuctovani.nemovitost.vlastnik.getCeleJmeno()}" filterMatchMode="contains" filterStyle="display:none" sortBy="#{vyuctovani.nemovitost.vlastnik.getCeleJmeno()}"/>
+            <p:column headerText="Nájemník" rowspan="2" style="width: 170px;" filterBy="#{vyuctovani.najemnik.getCeleJmeno()}" filterMatchMode="contains" filterStyle="display:none" sortBy="#{vyuctovani.najemnik.getCeleJmeno()}"/>
+            <p:column headerText="Datum vystavení" rowspan="2" style="width: 170px;" filterBy="#{dateFormatterBean.formatDate(vyuctovani.datumVystaveni)}" filterMatchMode="contains" filterStyle="display:none" sortBy="#{dateFormatterBean.formatDate(vyuctovani.datumVystaveni)}"/>
             <p:column headerText="Zúčtovací období" colspan="2" style="width: 400px;"/>
             <p:column headerText="Ovládání" colspan="1" rowspan="2" style="width: 90px;"/>
           </p:row>
@@ -64,19 +59,21 @@
           </p:row>
         </p:columnGroup>
 
+
         <p:column>
-          <p:cellEditor>
-            <f:facet name="output">
-              <h:outputText value="#{vyuctovani.nazev}"/>
-            </f:facet>
-            <f:facet name="input">
-              <p:inputText id="nazevInput" value="#{vyuctovani.nazev}" style="width:100%"/>
-            </f:facet>
-          </p:cellEditor>
+          <h:outputText value="#{vyuctovani.nemovitost.getIdentifikaceNemovitosti()}" title="#{vyuctovani.nemovitost.getIdentifikaceNemovitosti()}"/>
+        </p:column>
+
+        <p:column>
+          <h:outputText value="#{vyuctovani.nemovitost.vlastnik.getCeleJmeno()}" title="#{vyuctovani.nemovitost.vlastnik.getCeleJmeno()}"/>
+        </p:column>
+
+        <p:column>
+          <h:outputText value="#{vyuctovani.najemnik.getCeleJmeno()}" title="#{vyuctovani.najemnik.getCeleJmeno()}"/>
         </p:column>
 
         <p:column style="text-align: center;">
-          <h:outputText value="#{vyuctovani.nemovitost.getIdentifikaceNemovitosti()}" title="#{vyuctovani.nemovitost.getIdentifikaceNemovitosti()}"/>
+          <h:outputText value="#{dateFormatterBean.formatDate(vyuctovani.datumVystaveni)}"/>
         </p:column>
 
         <p:column style="text-align: center;">

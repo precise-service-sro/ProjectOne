@@ -25,6 +25,8 @@ public interface IVyuctovaniService {
 
   List<Vyuctovani> getVyuctovaniListInRange(Osoba prihlasenyUzivatel, CasovyInterval zuctovaciObdobi);
 
+  List<Vyuctovani> getVyuctovaniListInRange(Osoba prihlasenyUzivatel);
+
   void deleteVyuctovani(String idVyuctovani);
 
   void deleteVyuctovaniAll();
