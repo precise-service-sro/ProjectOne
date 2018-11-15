@@ -22,8 +22,10 @@
     </ui:define>
 
     <ui:define name="prehledPagePridavaciTlacitko">
-      <p:commandButton value="Přidat prázdné vyúčtovaní" icon="ui-icon-circle-plus" process="@this" update="form :form:msgs" actionListener="#{vyuctovaniPrehledBean.addRow()}"/>
-      <p:commandButton value="Vygenerovat nové vyúčtovaní" icon="ui-icon-circle-plus" process="@this" update="form :form:msgs" actionListener="#{routerBean.goToVyuctovaniGeneratorBean()}"/>
+      <p:commandButton value="Přidat prázdné vyúčtovaní" icon="ui-icon-circle-plus" process="@this" update="form :form:msgs"
+                       actionListener="#{vyuctovaniPrehledBean.addRow()}"/>
+      <p:commandButton value="Vygenerovat nové vyúčtovaní" icon="ui-icon-circle-plus" process="@this" update="form :form:msgs"
+                       actionListener="#{routerBean.goToVyuctovaniGeneratorBean()}"/>
     </ui:define>
 
     <ui:define name="prehledPageDataTable">
@@ -46,16 +48,22 @@
 
         <p:columnGroup type="header">
           <p:row>
-            <p:column headerText="Nemovitost" rowspan="2" style="width: 100%;" filterBy="#{vyuctovani.nemovitost.getIdentifikaceNemovitosti()}" filterMatchMode="contains" filterStyle="display:none" sortBy="#{vyuctovani.nemovitost.getIdentifikaceNemovitosti()}"/>
-            <p:column headerText="Pronajímatel" rowspan="2" style="width: 170px;" filterBy="#{vyuctovani.nemovitost.vlastnik.getCeleJmeno()}" filterMatchMode="contains" filterStyle="display:none" sortBy="#{vyuctovani.nemovitost.vlastnik.getCeleJmeno()}"/>
-            <p:column headerText="Nájemník" rowspan="2" style="width: 170px;" filterBy="#{vyuctovani.najemnik.getCeleJmeno()}" filterMatchMode="contains" filterStyle="display:none" sortBy="#{vyuctovani.najemnik.getCeleJmeno()}"/>
-            <p:column headerText="Datum vystavení" rowspan="2" style="width: 170px;" filterBy="#{dateFormatterBean.formatDate(vyuctovani.datumVystaveni)}" filterMatchMode="contains" filterStyle="display:none" sortBy="#{dateFormatterBean.formatDate(vyuctovani.datumVystaveni)}"/>
+            <p:column headerText="Nemovitost" rowspan="2" style="width: 100%;" filterBy="#{vyuctovani.nemovitost.getIdentifikaceNemovitosti()}"
+                      filterMatchMode="contains" filterStyle="display:none" sortBy="#{vyuctovani.nemovitost.getIdentifikaceNemovitosti()}"/>
+            <p:column headerText="Pronajímatel" rowspan="2" style="width: 170px;" filterBy="#{vyuctovani.nemovitost.vlastnik.getCeleJmeno()}"
+                      filterMatchMode="contains" filterStyle="display:none" sortBy="#{vyuctovani.nemovitost.vlastnik.getCeleJmeno()}"/>
+            <p:column headerText="Nájemník" rowspan="2" style="width: 170px;" filterBy="#{vyuctovani.najemnik.getCeleJmeno()}" filterMatchMode="contains"
+                      filterStyle="display:none" sortBy="#{vyuctovani.najemnik.getCeleJmeno()}"/>
+            <p:column headerText="Datum vystavení" rowspan="2" style="width: 170px;" filterBy="#{dateFormatterBean.formatDate(vyuctovani.datumVystaveni)}"
+                      filterMatchMode="contains" filterStyle="display:none" sortBy="#{dateFormatterBean.formatDate(vyuctovani.datumVystaveni)}"/>
             <p:column headerText="Zúčtovací období" colspan="2" style="width: 400px;"/>
             <p:column headerText="Ovládání" colspan="1" rowspan="2" style="width: 90px;"/>
           </p:row>
           <p:row>
-            <p:column headerText="Začátek" filterBy="#{vyuctovani.zuctovaciObdobi.zacatek}" filterMatchMode="contains" filterStyle="display:none" sortBy="#{vyuctovani.zuctovaciObdobi.zacatek}"/>
-            <p:column headerText="Konec" filterBy="#{vyuctovani.zuctovaciObdobi.konec}" filterMatchMode="contains" filterStyle="display:none" sortBy="#{vyuctovani.zuctovaciObdobi.konec}"/>
+            <p:column headerText="Začátek" filterBy="#{vyuctovani.zuctovaciObdobi.zacatek}" filterMatchMode="contains" filterStyle="display:none"
+                      sortBy="#{vyuctovani.zuctovaciObdobi.zacatek}"/>
+            <p:column headerText="Konec" filterBy="#{vyuctovani.zuctovaciObdobi.konec}" filterMatchMode="contains" filterStyle="display:none"
+                      sortBy="#{vyuctovani.zuctovaciObdobi.konec}"/>
           </p:row>
         </p:columnGroup>
 
@@ -103,26 +111,13 @@
         </p:column>
 
         <p:column>
-          <p:commandButton icon="ui-icon-circle-zoomin" actionListener="#{vyuctovaniPrehledBean.showVyuctovaniDetailBean(vyuctovani)}" title="Upravit / Podrobnosti"/>
-          <p:commandButton update="@form :form:msgs" icon="ui-icon-circle-minus" actionListener="#{vyuctovaniPrehledBean.deleteRow(vyuctovani)}" title="Odebrat"/>
+          <p:commandButton icon="ui-icon-circle-zoomin" actionListener="#{vyuctovaniPrehledBean.showVyuctovaniDetailBean(vyuctovani)}"
+                           title="Upravit / Podrobnosti"/>
+          <p:commandButton update="@form :form:msgs" icon="ui-icon-circle-minus" actionListener="#{vyuctovaniPrehledBean.deleteRow(vyuctovani)}"
+                           title="Odebrat"/>
         </p:column>
 
       </p:dataTable>
-    </ui:define>
-
-    <ui:define name="footer">
-
-      <h3>Další myšlenky a nápady na zlepšení:</h3>
-
-      - Filtrování na základě sloupečků
-      <br/>
-      - Přidat nové sloupečky (nájemník, a výsledek, a status (jestli bylo zaplaceno))
-      <br/>
-      - Z generátoru rovnou skočit sem na přehled
-      <br/>
-      - Generátor by mohl být udělán jen jako nějaký dialog
-
-      <component:dockMenu/>
     </ui:define>
 
   </ui:composition>

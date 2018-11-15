@@ -40,10 +40,14 @@
 
         <p:columnGroup type="header">
           <p:row>
-            <p:column headerText="Nemovitost" filterBy="#{predavaciProtokol.nemovitost.getIdentifikaceNemovitosti()}" filterMatchMode="contains" style="width: 400px;" filterStyle="display:none" sortBy="#{predavaciProtokol.nemovitost.getIdentifikaceNemovitosti()}"/>
-            <p:column headerText="Nájemník" filterBy="#{predavaciProtokol.najemnik.getCeleJmeno()}" filterMatchMode="contains" style="width: 200px;" filterStyle="display:none" sortBy="#{predavaciProtokol.najemnik.getCeleJmeno()}"/>
-            <p:column headerText="Datum podpisu" filterBy="#{dateFormatterBean.formatDate(predavaciProtokol.datumPodpisu)}" filterMatchMode="contains" style="width: 200px;" filterStyle="display:none" sortBy="#{dateFormatterBean.formatDate(predavaciProtokol.datumPodpisu)}"/>
-            <p:column headerText="Status (je platný)" filterBy="#{predavaciProtokol.najemnik.getCeleJmeno()}" filterMatchMode="contains" style="width: 100%;" filterStyle="display:none" sortBy="#{predavaciProtokol.najemnik.getCeleJmeno()}"/>
+            <p:column headerText="Nemovitost" filterBy="#{predavaciProtokol.nemovitost.getIdentifikaceNemovitosti()}" filterMatchMode="contains"
+                      style="width: 400px;" filterStyle="display:none" sortBy="#{predavaciProtokol.nemovitost.getIdentifikaceNemovitosti()}"/>
+            <p:column headerText="Nájemník" filterBy="#{predavaciProtokol.najemnik.getCeleJmeno()}" filterMatchMode="contains" style="width: 200px;"
+                      filterStyle="display:none" sortBy="#{predavaciProtokol.najemnik.getCeleJmeno()}"/>
+            <p:column headerText="Datum podpisu" filterBy="#{dateFormatterBean.formatDate(predavaciProtokol.datumPodpisu)}" filterMatchMode="contains"
+                      style="width: 200px;" filterStyle="display:none" sortBy="#{dateFormatterBean.formatDate(predavaciProtokol.datumPodpisu)}"/>
+            <p:column headerText="Status (je platný)" filterBy="#{predavaciProtokol.najemnik.getCeleJmeno()}" filterMatchMode="contains" style="width: 100%;"
+                      filterStyle="display:none" sortBy="#{predavaciProtokol.najemnik.getCeleJmeno()}"/>
             <p:column headerText="Ovládání" colspan="1" rowspan="2" style="width: 90px;"/>
           </p:row>
         </p:columnGroup>
@@ -57,7 +61,8 @@
         </f:facet>
 
         <p:column>
-          <h:outputText value="#{predavaciProtokol.nemovitost.getIdentifikaceNemovitosti()}" title="#{predavaciProtokol.nemovitost.getIdentifikaceNemovitosti()}"/>
+          <h:outputText value="#{predavaciProtokol.nemovitost.getIdentifikaceNemovitosti()}"
+                        title="#{predavaciProtokol.nemovitost.getIdentifikaceNemovitosti()}"/>
         </p:column>
 
         <p:column>
@@ -82,16 +87,6 @@
         </p:column>
 
       </p:dataTable>
-    </ui:define>
-
-    <ui:define name="footer">
-
-      <h3>Další myšlenky a nápady na zlepšení:</h3>
-
-      <br/>
-      - Přidat status / ikonu aktuálnosti či platnosti
-
-      <component:dockMenu/>
     </ui:define>
 
   </ui:composition>
