@@ -35,36 +35,37 @@
               rendered="#{not empty nemovitostPrehledBean.nemovitostList}"
               emptyMessage="Nebyly nalezeny žádné nemovitosti"
               filteredValue="#{nemovitostPrehledBean.filtrovanyNemovitostList}"
+              rowIndexVar="cisloRadky"
       >
 
         <f:facet name="header">
-          <p:outputPanel style="float: left; margin-top: 5px;">Nemovitosti:</p:outputPanel>
+          <p:outputPanel id="globalFilterHeader" style="float: left; margin-top: 5px;">Nemovitosti: (nalezených: <h:outputText value="#{nemovitostPrehledBean.filtrovanyNemovitostListSize}"/> z celkem <h:outputText value="#{nemovitostPrehledBean.nemovitostListSize}"/>  nemovitostí)</p:outputPanel>
           <p:outputPanel style="text-align: right;">
             <p:inputText id="globalFilter" onkeyup="PF('nemovitostPrehledBeanTable').filter()" style="width:235px"
-                         placeholder="- zadejte text pro vyhledání -"/>
+                         placeholder="- zadejte text pro vyhledání -">
+              <p:ajax event="keyup" update="globalFilterHeader" />
+            </p:inputText>
           </p:outputPanel>
         </f:facet>
 
         <p:columnGroup type="header">
           <p:row>
-            <!-- <p:column headerText="Název"    filterBy="#{nemovitost.nazev}"                   filterMatchMode="contains" filterStyle="display:none" style="width: 100px;" sortBy="#{nemovitost.nazev}"                 /> -->
-            <p:column headerText="Typ" filterBy="#{nemovitost.nemovitostTyp}" filterMatchMode="contains" filterStyle="display:none" style="width: 140px;"
+
+            <p:column headerText="Id:" style="width: 230px;" />
+            <p:column headerText="Typ" filterBy="#{nemovitost.nemovitostTyp}" filterMatchMode="contains" filterStyle="display:none" style="width: 100px;"
                       sortBy="#{nemovitost.nemovitostTyp}"/>
             <p:column headerText="Adresa" filterBy="#{nemovitost.adresa.getCelaAdresa()}" filterMatchMode="contains" filterStyle="display:none"
                       style="width: 100%;" sortBy="#{nemovitost.adresa.getCelaAdresa()}"/>
-            <p:column headerText="Město" filterBy="#{nemovitost.adresa.mesto}" filterMatchMode="contains" filterStyle="display:none" style="width: 200px;"
-                      sortBy="#{nemovitost.adresa.mesto}"/>
             <p:column headerText="Vlastník" filterBy="#{nemovitost.vlastnik.getCeleJmeno()}" filterMatchMode="contains" filterStyle="display:none"
                       style="width: 200px;" sortBy="#{nemovitost.vlastnik.getCeleJmeno()}"/>
             <p:column headerText="Ovládání" colspan="1" rowspan="2" style="width: 90px;"/>
           </p:row>
         </p:columnGroup>
 
-        <!--
         <p:column>
-          <h:outputText value="#{nemovitost.nazev}"/>
+          <!--<h:outputText value="#{cisloRadky+1}"/> -->
+          <h:outputText value="#{nemovitost.id}"/>
         </p:column>
-        -->
 
         <p:column>
           <h:outputText value="#{nemovitost.nemovitostTyp.hodnota}"/>
@@ -72,10 +73,6 @@
 
         <p:column>
           <h:outputText value="#{nemovitost.adresa.getCelaAdresa()}"/>
-        </p:column>
-
-        <p:column>
-          <h:outputText value="#{nemovitost.adresa.mesto}"/>
         </p:column>
 
         <p:column>

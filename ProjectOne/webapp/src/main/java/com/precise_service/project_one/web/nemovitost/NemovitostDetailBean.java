@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
-import javax.faces.application.FacesMessage;
 import javax.inject.Named;
 
 import com.precise_service.project_one.entity.adresa.Stat;
@@ -14,7 +13,6 @@ import com.precise_service.project_one.entity.nemovitost.NemovitostDruhVlastnict
 import com.precise_service.project_one.entity.nemovitost.NemovitostTyp;
 import com.precise_service.project_one.entity.osoba.Osoba;
 import com.precise_service.project_one.web.AbstractBean;
-import com.precise_service.project_one.web.login.Util;
 
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
@@ -40,7 +38,7 @@ public class NemovitostDetailBean extends AbstractBean {
       return;
     }
 
-    Osoba prihlasenyUzivatel = Util.getPrihlasenyUzivatel();
+    Osoba prihlasenyUzivatel = loginBean.getPrihlasenyUzivatel();
     osobaList = osobaService.getOsobaAll(prihlasenyUzivatel.getId());
     nemovitostList = nemovitostService.getNemovitostAll(prihlasenyUzivatel.getId());
 

@@ -9,7 +9,6 @@ import com.precise_service.project_one.entity.nemovitost.Nemovitost;
 import com.precise_service.project_one.entity.nemovitost.NemovitostTyp;
 import com.precise_service.project_one.entity.osoba.Osoba;
 import com.precise_service.project_one.web.AbstractBean;
-import com.precise_service.project_one.web.login.Util;
 
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
@@ -21,9 +20,11 @@ public class NemovitostPrehledBean extends AbstractBean {
 
   private List<Nemovitost> nemovitostList;
   private List<Nemovitost> filtrovanyNemovitostList;
+  private int nemovitostListSize;
+  private int filtrovanyNemovitostListSize;
 
   public void init() {
-    Osoba prihlasenyUzivatel = Util.getPrihlasenyUzivatel();
+    Osoba prihlasenyUzivatel = loginBean.getPrihlasenyUzivatel();
     nemovitostList = nemovitostService.getNemovitostAll(prihlasenyUzivatel.getId());
     filtrovanyNemovitostList = null;
   }
@@ -36,7 +37,7 @@ public class NemovitostPrehledBean extends AbstractBean {
     nemovitost.setNazev("- zadejte -");
     nemovitost.setAdresa(new Adresa());
     nemovitost.setNemovitostTyp(NemovitostTyp.BYT);
-    nemovitost.setUzivatel(Util.getPrihlasenyUzivatel());
+    nemovitost.setUzivatel(loginBean.getPrihlasenyUzivatel());
 
     Nemovitost saved = nemovitostService.postNemovitost(nemovitost);
 
@@ -57,5 +58,19 @@ public class NemovitostPrehledBean extends AbstractBean {
 
     showInfoMessage("Smazán řádek", deletedNemovitost.getNazev());
     init();
+  }
+
+  public int getNemovitostListSize() {
+    if (nemovitostList == null) {
+      return 0;
+    }
+    return nemovitostList.size();
+  }
+
+  public int getFiltrovanyNemovitostListSize() {
+    if (filtrovanyNemovitostList == null) {
+      return nemovitostList.size();
+    }
+    return filtrovanyNemovitostList.size();
   }
 }

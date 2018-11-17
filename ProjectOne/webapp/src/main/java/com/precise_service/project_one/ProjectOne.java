@@ -5,14 +5,18 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
+import org.springframework.data.mongodb.config.AbstractMongoConfiguration;
+import org.springframework.data.mongodb.gridfs.GridFsTemplate;
 
+import com.mongodb.Mongo;
+import com.mongodb.MongoClient;
 import com.precise_service.project_one.web.login.AuthorizationFilterBean;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @SpringBootApplication
-public class ProjectOne implements CommandLineRunner {
+public class ProjectOne extends AbstractMongoConfiguration implements CommandLineRunner {
 
   public static void main(String[] args) {
     log.info("!!! PROJECT ONE ... STARTUJEME !!!");
@@ -34,5 +38,21 @@ public class ProjectOne implements CommandLineRunner {
     registrationBean.addUrlPatterns("/nemovitost/*");
 
     return registrationBean;
+  }
+
+  @Bean
+  public GridFsTemplate gridFsTemplate() throws Exception {
+    return new GridFsTemplate(mongoDbFactory(), mappingMongoConverter());
+  }
+
+  @Override
+  protected String getDatabaseName() {
+    return "ProjectOne";
+  }
+
+  @Override
+  @Bean
+  public MongoClient mongoClient() {
+    return new MongoClient("127.0.0.1");
   }
 }

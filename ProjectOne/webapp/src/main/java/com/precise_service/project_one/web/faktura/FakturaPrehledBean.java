@@ -15,7 +15,6 @@ import com.precise_service.project_one.entity.faktura.Faktura;
 import com.precise_service.project_one.entity.nemovitost.Nemovitost;
 import com.precise_service.project_one.entity.osoba.Osoba;
 import com.precise_service.project_one.web.AbstractBean;
-import com.precise_service.project_one.web.login.Util;
 
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
@@ -33,7 +32,7 @@ public class FakturaPrehledBean extends AbstractBean {
   private List<Faktura> filtrovanyFakturaList;
 
   public void init() {
-    Osoba prihlasenyUzivatel = Util.getPrihlasenyUzivatel();
+    Osoba prihlasenyUzivatel = loginBean.getPrihlasenyUzivatel();
     zuctovaciObdobi = new CasovyInterval();
 
     if (zuctovaciObdobi == null || zuctovaciObdobi.getZacatek() == null || zuctovaciObdobi.getKonec() == null) {
@@ -83,7 +82,7 @@ public class FakturaPrehledBean extends AbstractBean {
     faktura.setNazev(null);
     faktura.setNemovitost(null);
     faktura.setZuctovaciObdobi(new CasovyInterval());
-    faktura.setUzivatel(Util.getPrihlasenyUzivatel());
+    faktura.setUzivatel(loginBean.getPrihlasenyUzivatel());
 
     Faktura saved = fakturaService.postFaktura(faktura);
     showInfoMessage("Přidána nová faktura", saved.getId());

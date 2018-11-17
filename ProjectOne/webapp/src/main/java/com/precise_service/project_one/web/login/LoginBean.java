@@ -35,8 +35,6 @@ public class LoginBean extends AbstractBean {
   private String prihlasovaciJmeno;
   private String heslo;
 
-  private Osoba prihlasenyUzivatel;
-
   private Osoba getOsoba(String prihlasovaciJmeno, String heslo) {
     if (StringUtils.isBlank( prihlasovaciJmeno) || StringUtils.isBlank(heslo)) {
       return null;
@@ -47,14 +45,14 @@ public class LoginBean extends AbstractBean {
   public void login() throws IOException {
     Faces.getFlash().setRedirect(true);
 
-    prihlasenyUzivatel = getOsoba(prihlasovaciJmeno, heslo);
+    Osoba prihlasenyUzivatel = getOsoba(prihlasovaciJmeno, heslo);
     if (prihlasenyUzivatel == null) {
       showErrorMessage("Špatné přihlašovací údaje!","Špatné přihlašovací jméno anebo heslo!");
       return;
     }
 
-    HttpSession session = Util.getSession();
-    session.setAttribute(SESSION_ATTRIBUTE_PRIHLASENY_UZIVATEL, prihlasenyUzivatel);
+    HttpSession httpSession = getHttpSession();
+    httpSession.setAttribute(SESSION_ATTRIBUTE_PRIHLASENY_UZIVATEL, prihlasenyUzivatel);
     // po prihlaseni me to meruje na stranku se kterou pracuji / upravuji
     Faces.redirect(VYUCTOVANI_PREHLED_URL);
     // TODO: vratit zpet na prehled nemovitosti
@@ -62,14 +60,23 @@ public class LoginBean extends AbstractBean {
   }
 
   public void logout() throws IOException {
-    HttpSession session = Util.getSession();
-    session.invalidate();
-    prihlasenyUzivatel = null;
+    HttpSession httpSession = getHttpSession();
+    httpSession.invalidate();
     Faces.getFlash().setRedirect(true);
     Faces.redirect(INDEX_URL);
   }
 
-  public Osoba getPrihlasenaOsoba() {
-    return Util.getPrihlasenyUzivatel();
+  public Osoba getPrihlasenyUzivatel() {
+    HttpSession session = getHttpSession();
+    return (Osoba) session.getAttribute(LoginBean.SESSION_ATTRIBUTE_PRIHLASENY_UZIVATEL);
+  }
+
+  public void setPrihlasenyUzivatel(Osoba prihlasenyUzivatel) {
+    HttpSession session = getHttpSession();
+    session.setAttribute(LoginBean.SESSION_ATTRIBUTE_PRIHLASENY_UZIVATEL, prihlasenyUzivatel);
+  }
+
+  private HttpSession getHttpSession() {
+    return (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
   }
 }

@@ -3,6 +3,8 @@ package com.precise_service.project_one.entity.osoba;
 import java.util.Date;
 
 import org.apache.commons.lang3.StringUtils;
+import org.bson.codecs.pojo.annotations.BsonId;
+import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -18,6 +20,10 @@ import lombok.Data;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Document(collection = "osoba")
 public class Osoba extends BaseEntity {
+
+  @JsonProperty("avatarFotoObjectId")
+  @JsonInclude(JsonInclude.Include.NON_NULL)
+  private ObjectId avatarFotoObjectId;
 
   @JsonProperty("prihlasovaciJmeno")
   @JsonInclude(JsonInclude.Include.NON_NULL)

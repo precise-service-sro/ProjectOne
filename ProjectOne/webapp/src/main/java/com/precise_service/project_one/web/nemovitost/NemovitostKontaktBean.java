@@ -10,7 +10,6 @@ import com.precise_service.project_one.entity.nemovitost.Nemovitost;
 import com.precise_service.project_one.entity.nemovitost.NemovitostKontakt;
 import com.precise_service.project_one.entity.osoba.Osoba;
 import com.precise_service.project_one.web.AbstractBean;
-import com.precise_service.project_one.web.login.Util;
 
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
@@ -28,7 +27,7 @@ public class NemovitostKontaktBean extends AbstractBean {
 
   public void init(String idNemovitost) {
     nemovitost = nemovitostService.getNemovitost(idNemovitost);
-    nemovitostKontaktList = nemovitostKontaktService.getNemovitostKontaktAll(idNemovitost, Util.getPrihlasenyUzivatel().getId());
+    nemovitostKontaktList = nemovitostKontaktService.getNemovitostKontaktAll(idNemovitost, loginBean.getPrihlasenyUzivatel().getId());
     filtrovanyNemovitostKontaktList = null;
   }
 
@@ -40,7 +39,7 @@ public class NemovitostKontaktBean extends AbstractBean {
     nemovitostKontakt.setPrijmeni("- zadejte -");
     nemovitostKontakt.setTelefon("- zadejte -");
     nemovitostKontakt.setEmail("- zadejte -");
-    nemovitostKontakt.setUzivatel(Util.getPrihlasenyUzivatel());
+    nemovitostKontakt.setUzivatel(loginBean.getPrihlasenyUzivatel());
     nemovitostKontakt.setNemovitost(nemovitost);
 
     NemovitostKontakt saved = nemovitostKontaktService.postNemovitostKontakt(nemovitostKontakt);

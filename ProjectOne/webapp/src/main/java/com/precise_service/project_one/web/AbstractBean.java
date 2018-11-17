@@ -6,6 +6,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.gridfs.GridFsTemplate;
 
 import com.precise_service.project_one.service.faktura.IFakturaPolozkaService;
 import com.precise_service.project_one.service.faktura.IFakturaService;
@@ -57,6 +58,8 @@ public abstract class AbstractBean implements Serializable {
   @Autowired protected PredavaciProtokolDetailBean predavaciProtokolDetailBean;
   @Autowired protected RouterBean routerBean;
   @Autowired protected VyuctovaniDetailBean vyuctovaniDetailBean;
+
+  @Autowired protected GridFsTemplate gridFsTemplate;
 
   @Autowired protected DateFormatterBean dateFormatterBean;
 

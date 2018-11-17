@@ -15,7 +15,6 @@ import com.precise_service.project_one.entity.faktura.Faktura;
 import com.precise_service.project_one.entity.faktura.FakturaPolozka;
 import com.precise_service.project_one.entity.nemovitost.Nemovitost;
 import com.precise_service.project_one.web.AbstractBean;
-import com.precise_service.project_one.web.login.Util;
 
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
@@ -40,10 +39,10 @@ public class FakturaDetailBean extends AbstractBean {
     log.trace("init()");
 
     polozkaTypList = polozkaTypService.getPolozkaTypAll();
-    nemovitostList = nemovitostService.getNemovitostAll(Util.getPrihlasenyUzivatel().getId());
+    nemovitostList = nemovitostService.getNemovitostAll(loginBean.getPrihlasenyUzivatel().getId());
 
     if (faktura == null) {
-      faktura = fakturaService.getFaktura(Util.getPrihlasenyUzivatel().getId());
+      faktura = fakturaService.getFaktura(loginBean.getPrihlasenyUzivatel().getId());
       log.error("Není vybraná žádná faktura k zobrazení detailu");
       return;
     }
@@ -131,7 +130,7 @@ public class FakturaDetailBean extends AbstractBean {
     fakturaPolozka.setNazev("!!! Upravit název !!!");
     fakturaPolozka.setFaktura(faktura);
     fakturaPolozka.setPolozkaTyp(null);
-    fakturaPolozka.setUzivatel(Util.getPrihlasenyUzivatel());
+    fakturaPolozka.setUzivatel(loginBean.getPrihlasenyUzivatel());
 
     Cislo vychoziStav = new Cislo();
     vychoziStav.setMnozstvi(0.0);

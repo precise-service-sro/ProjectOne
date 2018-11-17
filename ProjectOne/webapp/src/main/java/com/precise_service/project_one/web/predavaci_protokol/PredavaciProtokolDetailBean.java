@@ -14,7 +14,6 @@ import com.precise_service.project_one.entity.osoba.Osoba;
 import com.precise_service.project_one.entity.predavaci_protokol.PredavaciProtokol;
 import com.precise_service.project_one.entity.predavaci_protokol.PredavaciProtokolPolozka;
 import com.precise_service.project_one.web.AbstractBean;
-import com.precise_service.project_one.web.login.Util;
 
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
@@ -44,7 +43,7 @@ public class PredavaciProtokolDetailBean extends AbstractBean {
     Nemovitost nemovitost = predavaciProtokol.getNemovitost();
     polozkaTypList = (nemovitost != null) ? polozkaTypService.getPolozkaTypListByIdNemovitost(nemovitost.getId()) : new ArrayList<>(0);
 
-    Osoba prihlasenyUzivatel = Util.getPrihlasenyUzivatel();
+    Osoba prihlasenyUzivatel = loginBean.getPrihlasenyUzivatel();
     nemovitostList = nemovitostService.getNemovitostAll(prihlasenyUzivatel.getId());
     osobaList = osobaService.getOsobaAll(prihlasenyUzivatel.getId());
   }
@@ -73,7 +72,7 @@ public class PredavaciProtokolDetailBean extends AbstractBean {
     predavaciProtokolPolozka.setPolozkaTyp(null);
     predavaciProtokolPolozka.setCisloMeraku("- zadejte -");
     predavaciProtokolPolozka.setStavMeraku("- zadejte -");
-    predavaciProtokolPolozka.setUzivatel(Util.getPrihlasenyUzivatel());
+    predavaciProtokolPolozka.setUzivatel(loginBean.getPrihlasenyUzivatel());
 
     PredavaciProtokolPolozka saved = predavaciProtokolPolozkaService.postPredavaciProtokolPolozka(predavaciProtokolPolozka);
     showInfoMessage("Přidáno", "Nová položka předávacího protokolu byla přidána (" + saved.id + ")");

@@ -30,8 +30,18 @@
             <th>
               <p>Fotka / Avatar:</p>
             </th>
-            <td rowspan="3" style="text-align: center;">
-              <img src="avatar/kiyosaki.png" alt="- nahrát fotku - " style="width: 150px;"/>
+            <td rowspan="3">
+              <div class="osobaDetailAvatarFotoDiv">
+                <p:panel rendered="#{osobaDetailBean.osoba.avatarFotoObjectId != null}">
+                  <p:graphicImage value="#{osobaDetailBean.avatarFotoStreamedContent}" style="width: 100px;" cache="FALSE"/>
+                  <p:commandButton value="Smazat obrázek" process="@form" update="form" action="#{osobaDetailBean.smazatAvatarFoto()}"/>
+                </p:panel>
+
+                <p:panel rendered="#{osobaDetailBean.osoba.avatarFotoObjectId == null}">
+                  <p:fileUpload fileUploadListener="#{osobaDetailBean.nastavitAvatarFoto}" label="Nahrát obrázek" mode="advanced" update="form msgs" auto="true"
+                                allowTypes="/(\.|\/)(gif|jpe?g|png)$/"/>
+                </p:panel>
+              </div>
             </td>
           </tr>
           <tr>
@@ -51,6 +61,7 @@
               <p:inputText value="#{osobaDetailBean.osoba.prijmeni}" placeholder="- zadejte -"/>
             </td>
           </tr>
+
           <tr>
             <th>
               <p>Datum narození:</p>
@@ -213,9 +224,11 @@
           </tr>
         </table>
       </div>
+
       <div>
         <p:textEditor widgetVar="editorTextuVar" value="#{osobaDetailBean.osoba.poznamky}" height="300" style="margin-bottom:30px"/>
       </div>
+
     </ui:define>
 
     <ui:define name="detailPagePridavaciTlacitko">

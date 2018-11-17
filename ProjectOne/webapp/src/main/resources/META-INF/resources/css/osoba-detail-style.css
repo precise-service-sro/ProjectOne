@@ -1,0 +1,14 @@
+.osobaDetailAvatarFotoDiv {
+  text-align: center;
+  /*width: 500px;*/
+}
+
+.osobaDetailAvatarFotoDiv div,
+.osobaDetailAvatarFotoDiv div > *,
+.osobaDetailAvatarFotoDiv div > * > *,
+.osobaDetailAvatarFotoDiv div > * > * > *,
+.osobaDetailAvatarFotoDiv div > * > * > * > * {
+    border: 0px solid #a8a8a8;
+    padding; 0px;
+    margin; 0px!important;
+}

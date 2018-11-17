@@ -1,0 +1,57 @@
+.kiysaki img{
+  width: 150px;
+  float: left;
+  margin: 10px;
+}
+
+.nadpis{
+  width: 800px;
+  height: 125px;
+  border: 0px solid #000;
+  float: left;
+  padding: 20px;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 9em;
+  margin-top: -175px;
+}
+
+.headerCenter {
+  width: 100%;
+  height: 165px;
+  border: 1px solid #000;
+  float: left;
+}
+
+.loginDiv {
+  width: 400px;
+  height: 165px;
+  border: 1px solid #000;
+  float: right;
+}
+
+.loginFormLoginPanel {
+    border: 0px solid #000;
+}
+
+.loginFormLogoutPanel {
+    border: 0px solid #000;
+}
+
+.loginDiv table {
+    height: 140px;
+    text-align: left;
+}
+
+.loginDiv th {
+    width: 150px;
+}
+
+.loginDiv td {
+    width: 180px;
+    text-align: right;
+}
+
+.loginDiv input {
+    width: 94%;
+}

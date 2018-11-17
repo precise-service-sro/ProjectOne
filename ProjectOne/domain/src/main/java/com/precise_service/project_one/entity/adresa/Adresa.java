@@ -46,6 +46,8 @@ public class Adresa {
   private String cisloBytu;
 
   public String getCelaAdresa() {
-    return "" + ulice + " " + cisloPopisne + (isNotBlank(cisloOrientacni) ? "/" + cisloOrientacni : "") + (isNotBlank(cisloBytu ) ? ", (byt č." + cisloBytu + ")" : "");
+    return "" + ulice + " " + cisloPopisne + (isNotBlank(cisloOrientacni) ? "/" + cisloOrientacni : "")
+        + (isNotBlank(mesto) ? ", " + mesto : "") + (isNotBlank(psc) ? ", " + psc : "")
+        + (isNotBlank(cisloBytu ) ? ", (byt č." + cisloBytu + ")" : "");
   }
 }

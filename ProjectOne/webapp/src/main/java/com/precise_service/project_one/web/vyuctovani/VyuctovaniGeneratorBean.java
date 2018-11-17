@@ -17,7 +17,6 @@ import com.precise_service.project_one.entity.osoba.Osoba;
 import com.precise_service.project_one.entity.predavaci_protokol.PredavaciProtokol;
 import com.precise_service.project_one.entity.vyuctovani.Vyuctovani;
 import com.precise_service.project_one.web.AbstractBean;
-import com.precise_service.project_one.web.login.Util;
 
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
@@ -56,11 +55,11 @@ public class VyuctovaniGeneratorBean extends AbstractBean {
   public void generate() throws IOException {
     log.trace("generate()");
 
-    Osoba prihlasenyUzivatel = Util.getPrihlasenyUzivatel();
+    Osoba prihlasenyUzivatel = loginBean.getPrihlasenyUzivatel();
     List<Faktura> fakturaList = fakturaService.getSeznamFakturVeZuctovacimObdobi(prihlasenyUzivatel, zuctovaciObdobi);
 
     String nazev = "Vygenerované vyúčtování ze dne: " + LocalDateTime.now().toString();
-    Vyuctovani vyuctovani = vyuctovaniService.generovatVyuctovani(nazev, zuctovaciObdobi, nemovitost, najemnik, fakturaList, predavaciProtokol, null, Util.getPrihlasenyUzivatel());
+    Vyuctovani vyuctovani = vyuctovaniService.generovatVyuctovani(nazev, zuctovaciObdobi, nemovitost, najemnik, fakturaList, predavaciProtokol, null, loginBean.getPrihlasenyUzivatel());
 
     vyuctovaniDetailBean.setVyuctovani(vyuctovani);
     Faces.getFlash().setRedirect(true);

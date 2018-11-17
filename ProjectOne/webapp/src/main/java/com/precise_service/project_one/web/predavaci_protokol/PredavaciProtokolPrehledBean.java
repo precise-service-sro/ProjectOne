@@ -13,7 +13,6 @@ import com.precise_service.project_one.entity.nemovitost.Nemovitost;
 import com.precise_service.project_one.entity.osoba.Osoba;
 import com.precise_service.project_one.entity.predavaci_protokol.PredavaciProtokol;
 import com.precise_service.project_one.web.AbstractBean;
-import com.precise_service.project_one.web.login.Util;
 
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
@@ -33,7 +32,7 @@ public class PredavaciProtokolPrehledBean extends AbstractBean {
   public void init() {
     log.trace("init()");
 
-    Osoba prihlasenyUzivatel = Util.getPrihlasenyUzivatel();
+    Osoba prihlasenyUzivatel = loginBean.getPrihlasenyUzivatel();
     predavaciProtokolList = predavaciProtokolService.getPredavaciProtokolAll(prihlasenyUzivatel.getId());
     nemovitostList = nemovitostService.getNemovitostAll(prihlasenyUzivatel.getId());
 
@@ -62,7 +61,7 @@ public class PredavaciProtokolPrehledBean extends AbstractBean {
 
     predavaciProtokol.setNazev("- zadejte - ");
     predavaciProtokol.setDatumPodpisu(new Date());
-    predavaciProtokol.setUzivatel(Util.getPrihlasenyUzivatel());
+    predavaciProtokol.setUzivatel(loginBean.getPrihlasenyUzivatel());
 
     PredavaciProtokol saved = predavaciProtokolService.postPredavaciProtokol(predavaciProtokol);
     init();

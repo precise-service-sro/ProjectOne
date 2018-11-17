@@ -1,6 +1,5 @@
 package com.precise_service.project_one.web.vyuctovani;
 
-import java.util.Date;
 import java.util.List;
 
 import javax.inject.Named;
@@ -12,7 +11,6 @@ import com.precise_service.project_one.entity.PolozkaTyp;
 import com.precise_service.project_one.entity.vyuctovani.Vyuctovani;
 import com.precise_service.project_one.entity.vyuctovani.VyuctovaniPolozka;
 import com.precise_service.project_one.web.AbstractBean;
-import com.precise_service.project_one.web.login.Util;
 
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
@@ -129,7 +127,7 @@ public class VyuctovaniDetailBean extends AbstractBean {
     vyuctovaniPolozka.setNazev("- zadejte -");
     vyuctovaniPolozka.setVyuctovani(vyuctovani);
     vyuctovaniPolozka.setPolozkaTyp(null);
-    vyuctovaniPolozka.setUzivatel(Util.getPrihlasenyUzivatel());
+    vyuctovaniPolozka.setUzivatel(loginBean.getPrihlasenyUzivatel());
 
     Cislo vychoziStav = new Cislo();
     vychoziStav.setMnozstvi(0.0);

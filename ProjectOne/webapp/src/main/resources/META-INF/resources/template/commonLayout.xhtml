@@ -7,6 +7,7 @@
 >
 
 <h:head>
+  <h:outputStylesheet name="common-header-style.css" library="css" />
   <h:outputStylesheet name="common-style.css" library="css" />
   <h:outputStylesheet name="vyuctovani-style.css" library="css" />
   <!-- formatovani tabulek, hlavne sirce sloupcu -->
@@ -15,9 +16,20 @@
   <title>
     <ui:insert name="title">ProjectOne</ui:insert>
   </title>
+
+  <script type="text/javascript">
+      function start() {
+          PF('statusDialog').show();
+      }
+
+      function stop() {
+          PF('statusDialog').hide();
+      }
+      </script>
 </h:head>
 
 <h:body>
+  <h:outputStylesheet name="osoba-detail-style.css" library="css" />
   <h:outputStylesheet name="primefaces-override-style.css" library="css" />
   <div id="page">
 

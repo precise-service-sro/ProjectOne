@@ -2,8 +2,6 @@ package com.precise_service.project_one.web.common;
 
 import java.util.List;
 
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
 import org.primefaces.event.RowEditEvent;
@@ -11,7 +9,6 @@ import org.primefaces.event.RowEditEvent;
 import com.precise_service.project_one.entity.PolozkaTyp;
 import com.precise_service.project_one.entity.nemovitost.Nemovitost;
 import com.precise_service.project_one.web.AbstractBean;
-import com.precise_service.project_one.web.login.Util;
 
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
@@ -53,7 +50,7 @@ public class PolozkaTypBean extends AbstractBean {
     polozkaTyp.setNazev("- zadejte -");
     polozkaTyp.setJednotka("- zadejte -");
     polozkaTyp.setPopis("- zadejte -");
-    polozkaTyp.setUzivatel(Util.getPrihlasenyUzivatel());
+    polozkaTyp.setUzivatel(loginBean.getPrihlasenyUzivatel());
     polozkaTyp.setNemovitost(nemovitost);
 
     PolozkaTyp saved = polozkaTypService.postPolozkaTyp(polozkaTyp);

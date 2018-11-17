@@ -55,7 +55,7 @@
 
         <p:columnGroup type="header">
           <p:row>
-            <p:column headerText="Název faktury" rowspan="2" sortBy="#{faktura.nazev}" filterBy="#{faktura.nazev}" filterMatchMode="contains"
+            <p:column headerText="Dodavatel" rowspan="2" sortBy="#{faktura.nazev}" filterBy="#{faktura.nazev}" filterMatchMode="contains"
                       filterStyle="display:none" style="width: 100%;"/>
             <p:column headerText="Nemovitost" rowspan="2" sortBy="#{faktura.nemovitost.getIdentifikaceNemovitosti()}"
                       filterBy="#{faktura.nemovitost.getIdentifikaceNemovitosti()}" filterMatchMode="contains" filterStyle="display:none"
@@ -65,9 +65,9 @@
           </p:row>
 
           <p:row>
-            <p:column headerText="Začátek" sortBy="#{faktura.zuctovaciObdobi.zacatek}" filterBy="#{faktura.zuctovaciObdobi.zacatek}" filterMatchMode="contains"
+            <p:column headerText="Začátek" sortBy="#{dateFormatterBean.formatDate(faktura.zuctovaciObdobi.zacatek)}" filterBy="#{dateFormatterBean.formatDate(faktura.zuctovaciObdobi.zacatek)}" filterMatchMode="contains"
                       filterStyle="display:none"/>
-            <p:column headerText="Konec" sortBy="#{faktura.zuctovaciObdobi.konec}" filterBy="#{faktura.zuctovaciObdobi.konec}" filterMatchMode="contains"
+            <p:column headerText="Konec" sortBy="#{dateFormatterBean.formatDate(faktura.zuctovaciObdobi.konec)}" filterBy="#{dateFormatterBean.formatDate(faktura.zuctovaciObdobi.konec)}" filterMatchMode="contains"
                       filterStyle="display:none"/>
           </p:row>
 
@@ -82,15 +82,11 @@
         </p:column>
 
         <p:column>
-          <h:outputText value="#{faktura.zuctovaciObdobi.zacatek}">
-            <f:convertDateTime pattern="dd-MM-yyyy"/>
-          </h:outputText>
+          <h:outputText value="#{dateFormatterBean.formatDate(faktura.zuctovaciObdobi.zacatek)}" />
         </p:column>
 
         <p:column>
-          <h:outputText value="#{faktura.zuctovaciObdobi.konec}">
-            <f:convertDateTime pattern="dd-MM-yyyy"/>
-          </h:outputText>
+          <h:outputText value="#{dateFormatterBean.formatDate(faktura.zuctovaciObdobi.konec)}" />
         </p:column>
 
         <p:column>

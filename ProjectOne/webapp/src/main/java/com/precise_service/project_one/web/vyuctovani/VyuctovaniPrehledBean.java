@@ -16,7 +16,6 @@ import com.precise_service.project_one.entity.nemovitost.Nemovitost;
 import com.precise_service.project_one.entity.osoba.Osoba;
 import com.precise_service.project_one.entity.vyuctovani.Vyuctovani;
 import com.precise_service.project_one.web.AbstractBean;
-import com.precise_service.project_one.web.login.Util;
 
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
@@ -41,7 +40,7 @@ public class VyuctovaniPrehledBean extends AbstractBean {
     }
 
     // getVyuctovaniInRange
-    Osoba prihlasenyUzivatel = Util.getPrihlasenyUzivatel();
+    Osoba prihlasenyUzivatel = loginBean.getPrihlasenyUzivatel();
     vyuctovaniList = vyuctovaniService.getVyuctovaniListInRange(prihlasenyUzivatel);
 
     nemovitostList = nemovitostService.getNemovitostAll(prihlasenyUzivatel.getId());
@@ -76,7 +75,7 @@ public class VyuctovaniPrehledBean extends AbstractBean {
     vyuctovani.setNemovitost(null);
     vyuctovani.setZuctovaciObdobi(new CasovyInterval());
     vyuctovani.setDatumVystaveni(new Date());
-    vyuctovani.setUzivatel(Util.getPrihlasenyUzivatel());
+    vyuctovani.setUzivatel(loginBean.getPrihlasenyUzivatel());
 
     Vyuctovani saved = vyuctovaniService.postVyuctovani(vyuctovani);
     showInfoMessage("Přidáno", "Přidáno nové vyúčtování (" + saved.getId() + ")");
