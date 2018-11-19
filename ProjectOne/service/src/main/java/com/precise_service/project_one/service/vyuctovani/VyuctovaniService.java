@@ -1,12 +1,16 @@
 package com.precise_service.project_one.service.vyuctovani;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.precise_service.project_one.entity.CasovyInterval;
+import com.precise_service.project_one.entity.Cislo;
 import com.precise_service.project_one.entity.NajemniSmlouva;
 import com.precise_service.project_one.entity.PolozkaTyp;
 import com.precise_service.project_one.entity.faktura.Faktura;
@@ -14,10 +18,12 @@ import com.precise_service.project_one.entity.faktura.FakturaPolozka;
 import com.precise_service.project_one.entity.nemovitost.Nemovitost;
 import com.precise_service.project_one.entity.osoba.Osoba;
 import com.precise_service.project_one.entity.predavaci_protokol.PredavaciProtokol;
+import com.precise_service.project_one.entity.predavaci_protokol.PredavaciProtokolPolozka;
 import com.precise_service.project_one.entity.vyuctovani.Vyuctovani;
 import com.precise_service.project_one.entity.vyuctovani.VyuctovaniPolozka;
 import com.precise_service.project_one.repository.VyuctovaniRepository;
 import com.precise_service.project_one.service.faktura.IFakturaPolozkaService;
+import com.precise_service.project_one.service.predavaci_protokol.IPredavaciProtokolPolozkaService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -36,6 +42,9 @@ public class VyuctovaniService implements IVyuctovaniService {
 
   @Autowired
   private IVyuctovaniPolozkaService vyuctovaniPolozkaService;
+
+  @Autowired
+  private IPredavaciProtokolPolozkaService predavaciProtokolPolozkaService;
 
   @Override
   public Vyuctovani postVyuctovani(Vyuctovani vyuctovani) {
@@ -101,39 +110,62 @@ public class VyuctovaniService implements IVyuctovaniService {
     vyuctovani.setZuctovaciObdobi(zuctovaciObdobi);
     vyuctovani.setNemovitost(nemovitost);
     vyuctovani.setNajemnik(najemnik);
-    vyuctovani.setPronajimatel(nemovitost.getVlastnik());
     vyuctovani.setUzivatel(prihlasenyUzivatel);
     vyuctovani.setDatumVystaveni(new Date());
+    vyuctovani.setPredavaciProtokol(predavaciProtokol);
+    vyuctovani.setSeznamVychozichFaktur(fakturaList);
     vyuctovani = postVyuctovani(vyuctovani);
 
     for (PolozkaTyp polozkaTyp : polozkaTypList) {
-      VyuctovaniPolozka vyuctovaniPolozka = new VyuctovaniPolozka();
-      vyuctovaniPolozka.setVyuctovani(vyuctovani);
-      vyuctovaniPolozka.setPolozkaTyp(polozkaTyp);
-      vyuctovaniPolozka.setUzivatel(prihlasenyUzivatel);
-
-      vypocetVyuctovaniPolozka(vyuctovaniPolozka, fakturaList);
-      vyuctovaniPolozkaService.postVyuctovaniPolozka(vyuctovaniPolozka);
+      vypocetVyuctovaniPolozka(polozkaTyp, vyuctovani, prihlasenyUzivatel);
     }
 
     return vyuctovani;
   }
 
-  private void vypocetVyuctovaniPolozka(VyuctovaniPolozka vyuctovaniPolozka, List<Faktura> fakturaList) {
-    log.trace("deleteVyuctovaniAll()");
+  private void vypocetVyuctovaniPolozka(PolozkaTyp polozkaTyp, Vyuctovani vyuctovani, Osoba prihlasenyUzivatel) {
+    log.trace("vypocetVyuctovaniPolozka()");
 
-    PolozkaTyp polozkaTyp = vyuctovaniPolozka.getPolozkaTyp();
-
-    for (Faktura faktura : fakturaList) {
-      log.debug("Zpracovávám fakturu: " + faktura.getDodavatel());
+    for (Faktura faktura : vyuctovani.getSeznamVychozichFaktur()) {
       List<FakturaPolozka> fakturaPolozkaAll = fakturaPolozkaService.getFakturaPolozkaAll(faktura.getId());
       for (FakturaPolozka fakturaPolozka : fakturaPolozkaAll) {
         if (fakturaPolozka.getPolozkaTyp().getId().equals(polozkaTyp.getId())) {
-          log.debug("Zpracovávám polozku : " + fakturaPolozka.getNazev());
-          log.debug("Spotreba: " + fakturaPolozka.getSpotreba().getMnozstvi() + fakturaPolozka.getSpotreba().getJednotka());
+
+          VyuctovaniPolozka vyuctovaniPolozka = new VyuctovaniPolozka();
+          vyuctovaniPolozka.setPolozkaTyp(polozkaTyp);
+          vyuctovaniPolozka.setVyuctovani(vyuctovani);
+          vyuctovaniPolozka.setUzivatel(prihlasenyUzivatel);
+
+          vyuctovaniPolozka.setPocatecniStav(fakturaPolozka.getPocatecniStav());
+          vyuctovaniPolozka.setKoncovyStav(fakturaPolozka.getKoncovyStav());
           vyuctovaniPolozka.setSpotreba(fakturaPolozka.getSpotreba());
           vyuctovaniPolozka.setNaklady(fakturaPolozka.getNaklady());
+
+          vyuctovaniPolozkaService.postVyuctovaniPolozka(vyuctovaniPolozka);
         }
+      }
+    }
+
+    List<PredavaciProtokolPolozka> predavaciProtokolPolozkaAll = predavaciProtokolPolozkaService.getPredavaciProtokolPolozkaAll(vyuctovani.getPredavaciProtokol().getId());
+    for (PredavaciProtokolPolozka predavaciProtokolPolozka : predavaciProtokolPolozkaAll) {
+
+      if (predavaciProtokolPolozka.getPolozkaTyp().getId().equals(polozkaTyp.getId())) {
+        VyuctovaniPolozka vyuctovaniPolozka = new VyuctovaniPolozka();
+        vyuctovaniPolozka.setPolozkaTyp(polozkaTyp);
+        vyuctovaniPolozka.setVyuctovani(vyuctovani);
+        vyuctovaniPolozka.setUzivatel(prihlasenyUzivatel);
+
+        Cislo pocatecniStav = new Cislo();
+        pocatecniStav.setMnozstvi(Double.valueOf(predavaciProtokolPolozka.getStavMeraku()));
+        pocatecniStav.setJednotka(predavaciProtokolPolozka.getJednotka());
+        vyuctovaniPolozka.setPocatecniStav(pocatecniStav);
+        // TODO: zvolit, dle vyšší faktury
+        //vyuctovaniPolozka.setKoncovyStav(fakturaPolozka.getKoncovyStav());
+        // TODO: dopočítat
+        //vyuctovaniPolozka.setSpotreba(fakturaPolozka.getSpotreba());
+        //vyuctovaniPolozka.setNaklady(fakturaPolozka.getNaklady());
+
+        vyuctovaniPolozkaService.postVyuctovaniPolozka(vyuctovaniPolozka);
       }
     }
   }

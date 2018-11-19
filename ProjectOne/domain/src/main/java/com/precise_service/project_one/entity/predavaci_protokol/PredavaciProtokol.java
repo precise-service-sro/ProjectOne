@@ -41,7 +41,10 @@ public class PredavaciProtokol extends BaseEntity {
   private Osoba najemnik;
 
   public String getPopis() {
-    return "" + nazev + ((najemnik != null) ? ", " + najemnik.getCeleJmeno() : "") + ", " + datumPodpisu;
+    return ""
+        + ((najemnik != null) ? najemnik.getCeleJmeno() : "")
+        + ((nemovitost != null) ? ", " + nemovitost.getIdentifikaceNemovitosti() : "")
+        + ", " + datumPodpisu;
   }
 
   public boolean jeAktualni() {

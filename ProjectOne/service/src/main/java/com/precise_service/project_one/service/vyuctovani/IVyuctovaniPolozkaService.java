@@ -12,6 +12,8 @@ public interface IVyuctovaniPolozkaService {
 
   VyuctovaniPolozka getVyuctovaniPolozka(String idVyuctovaniPolozka);
 
+  List<VyuctovaniPolozka> getVyuctovaniPolozkaList(String idPolozkaTyp, String idVyuctovani);
+
   List<VyuctovaniPolozka> getVyuctovaniPolozkaAll();
 
   List<VyuctovaniPolozka> getVyuctovaniPolozkaAll(String idVyuctovani);

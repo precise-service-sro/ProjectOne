@@ -81,7 +81,7 @@
 
         <p:column>
           <p:commandButton icon="ui-icon-circle-zoomin"
-                           actionListener="#{predavaciProtokolPrehledBean.showPredavaciProtokolDetailBean(predavaciProtokol)}"
+                           actionListener="#{routerBean.goToPredavaciProtokolDetailBean(predavaciProtokol)}"
                            title="Upravit / Podrobnosti"/>
           <p:commandButton update="@form :form:msgs" icon="ui-icon-circle-minus"
                            actionListener="#{predavaciProtokolPrehledBean.deleteRow(predavaciProtokol)}"

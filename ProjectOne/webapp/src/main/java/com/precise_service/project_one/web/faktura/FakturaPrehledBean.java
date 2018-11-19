@@ -60,20 +60,13 @@ public class FakturaPrehledBean extends AbstractBean {
 
     fakturaService.putFaktura(faktura);
 
-    FacesMessage msg = new FacesMessage("Uložena úprava řádky", faktura.getDodavatel());
-    FacesContext.getCurrentInstance().addMessage(null, msg);
+    showInfoMessage("Uložena úprava řádky", faktura.getDodavatel());
+    init();
   }
 
   public void onRowCancel(RowEditEvent event) {
     log.trace("onRowCancel()");
-    FacesMessage msg = new FacesMessage("Zrušena úprava řádky", ((Faktura) event.getObject()).getDodavatel());
-    FacesContext.getCurrentInstance().addMessage(null, msg);
-  }
-
-  public void showFakturaDetailBean(Faktura faktura) throws IOException {
-    fakturaDetailBean.setFaktura(faktura);
-    Faces.getFlash().setRedirect(true);
-    Faces.redirect(FAKTURA_DETAIL_URL);
+    showInfoMessage("Zrušena úprava řádky", ((Faktura) event.getObject()).getDodavatel());
   }
 
   public void addRow() {

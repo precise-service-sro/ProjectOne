@@ -1,5 +1,8 @@
 package com.precise_service.project_one.web.vyuctovani;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 import javax.inject.Named;
@@ -7,7 +10,10 @@ import javax.inject.Named;
 import org.primefaces.event.RowEditEvent;
 
 import com.precise_service.project_one.entity.Cislo;
+import com.precise_service.project_one.entity.NajemniSmlouva;
 import com.precise_service.project_one.entity.PolozkaTyp;
+import com.precise_service.project_one.entity.osoba.Osoba;
+import com.precise_service.project_one.entity.predavaci_protokol.PredavaciProtokol;
 import com.precise_service.project_one.entity.vyuctovani.Vyuctovani;
 import com.precise_service.project_one.entity.vyuctovani.VyuctovaniPolozka;
 import com.precise_service.project_one.web.AbstractBean;
@@ -68,24 +74,12 @@ public class VyuctovaniDetailBean extends AbstractBean {
       spotreba.setJednotka(vyuctovaniPolozka.getKoncovyStav().getJednotka());
       vyuctovaniPolozka.setSpotreba(spotreba);
 
-      if (vyuctovaniPolozka.getZalohy() == null) {
-        Cislo zalohy = new Cislo();
-        zalohy.setMnozstvi(0.0);
-        zalohy.setJednotka("Kč");
-        vyuctovaniPolozka.setZalohy(zalohy);
-      }
-
       if (vyuctovaniPolozka.getNaklady() == null) {
         Cislo zalohy = new Cislo();
         zalohy.setMnozstvi(0.0);
         zalohy.setJednotka("Kč");
         vyuctovaniPolozka.setNaklady(zalohy);
       }
-
-      Cislo rozdil = new Cislo();
-      rozdil.setMnozstvi(vyuctovaniPolozka.getZalohy().getMnozstvi() - vyuctovaniPolozka.getNaklady().getMnozstvi());
-      rozdil.setJednotka(vyuctovaniPolozka.getNaklady().getJednotka());
-      vyuctovaniPolozka.setRozdil(rozdil);
 
       vyuctovaniPolozkaService.putVyuctovaniPolozka(vyuctovaniPolozka);
     }
@@ -98,9 +92,7 @@ public class VyuctovaniDetailBean extends AbstractBean {
     celkemNaklady = 0.0;
     celkemRozdil = 0.0;
     for (VyuctovaniPolozka polozka : radkyVyuctovani){
-      celkemZalohy += polozka.getZalohy().getMnozstvi();
       celkemNaklady += polozka.getNaklady().getMnozstvi();
-      celkemRozdil += polozka.getRozdil().getMnozstvi();
     }
   }
 
@@ -111,12 +103,12 @@ public class VyuctovaniDetailBean extends AbstractBean {
     vyuctovaniPolozkaService.putVyuctovaniPolozka(vyuctovaniPolozka);
     init();
 
-    showInfoMessage("Uložena úprava řádky", vyuctovaniPolozka.getNazev());
+    showInfoMessage("Uložena úprava řádky", vyuctovaniPolozka.getPolozkaTyp().getNazev());
   }
 
   public void onRowCancel(RowEditEvent event) {
     log.trace("onRowCancel()");
-    showInfoMessage("Zrušena úprava řádky", ((VyuctovaniPolozka) event.getObject()).getNazev());
+    showInfoMessage("Zrušena úprava řádky", ((VyuctovaniPolozka) event.getObject()).getPolozkaTyp().getNazev());
   }
 
   public void addRow() {
@@ -124,7 +116,6 @@ public class VyuctovaniDetailBean extends AbstractBean {
 
     VyuctovaniPolozka vyuctovaniPolozka = new VyuctovaniPolozka();
 
-    vyuctovaniPolozka.setNazev("- zadejte -");
     vyuctovaniPolozka.setVyuctovani(vyuctovani);
     vyuctovaniPolozka.setPolozkaTyp(null);
     vyuctovaniPolozka.setUzivatel(loginBean.getPrihlasenyUzivatel());
@@ -138,7 +129,6 @@ public class VyuctovaniDetailBean extends AbstractBean {
     Cislo vychoziZalohyNeboNaklady = new Cislo();
     vychoziZalohyNeboNaklady.setMnozstvi(0.0);
     vychoziZalohyNeboNaklady.setJednotka("Kč");
-    vyuctovaniPolozka.setZalohy(vychoziZalohyNeboNaklady);
     vyuctovaniPolozka.setNaklady(vychoziZalohyNeboNaklady);
 
     VyuctovaniPolozka saved = vyuctovaniPolozkaService.postVyuctovaniPolozka(vyuctovaniPolozka);
@@ -158,7 +148,94 @@ public class VyuctovaniDetailBean extends AbstractBean {
 
     vyuctovaniPolozkaService.deleteVyuctovaniPolozka(deletedVyuctovaniPolozka.getId());
 
-    showInfoMessage("Smazán řádek", deletedVyuctovaniPolozka.getNazev());
+    showInfoMessage("Smazán řádek", deletedVyuctovaniPolozka.getPolozkaTyp().getNazev());
     init();
+  }
+
+  public List<PredavaciProtokol> getPredavaciProkokolInList() {
+    // jenom obalovaci metoda, abych mohl jediny predavaci protokol zobrazit v DataTable
+    return Arrays.asList(vyuctovani.getPredavaciProtokol());
+  }
+
+  public List<PlatbaNajemneho> getPlatbaNajemnehoList(){
+    List<PlatbaNajemneho> platbaNajemnehoList = new ArrayList<>();
+
+    PlatbaNajemneho platbaNajemneho1 = new PlatbaNajemneho();
+    platbaNajemneho1.setDatumPlatby(new Date());
+    Cislo platba = new Cislo();
+    platba.setMnozstvi(123.0);
+    platba.setJednotka("Kč");
+    platbaNajemneho1.setPlatba(platba);
+    platbaNajemneho1.setNajemnik(osobaService.getOsoba("5bdb0c7b4f0e8eb71860baab"));
+    platbaNajemnehoList.add(platbaNajemneho1);
+
+    PlatbaNajemneho platbaNajemneho2 = new PlatbaNajemneho();
+    platbaNajemneho2.setDatumPlatby(new Date());
+    Cislo platba2 = new Cislo();
+    platba2.setMnozstvi(456.0);
+    platba2.setJednotka("Kč");
+    platbaNajemneho2.setPlatba(platba2);
+    platbaNajemneho2.setNajemnik(osobaService.getOsoba("5bdb0c7b4f0e8eb71860baab"));
+    platbaNajemnehoList.add(platbaNajemneho2);
+
+    return platbaNajemnehoList;
+  }
+
+  @Data
+  public class PlatbaNajemneho {
+    private Date datumPlatby;
+    private Cislo platba;
+    private Osoba najemnik;
+    private NajemniSmlouva najemniSmlouva;
+  }
+
+  public Cislo getPlatbaNajemnehoCelkem() {
+    Cislo platbaNajemnehoCelkem = new Cislo();
+    platbaNajemnehoCelkem.setMnozstvi(0.0);
+    platbaNajemnehoCelkem.setJednotka("Kč");
+
+    List<PlatbaNajemneho> platbaNajemnehoList = getPlatbaNajemnehoList();
+    for (PlatbaNajemneho platbaNajemneho : platbaNajemnehoList) {
+      // TODO: zkontrolovat měnu / jednotku
+      platbaNajemnehoCelkem.setMnozstvi(platbaNajemnehoCelkem.getMnozstvi() + platbaNajemneho.getPlatba().getMnozstvi());
+    }
+    return platbaNajemnehoCelkem;
+  }
+
+  public List<VyuctovaniPolozka> getVyuctovaniPolozkaList() {
+
+    List<PolozkaTyp> polozkaTypList = polozkaTypService.getPolozkaTypListByIdNemovitost(vyuctovani.getNemovitost().getId());
+
+    List<VyuctovaniPolozka> vyuctovaniPolozkaList = new ArrayList<>();
+    for (PolozkaTyp polozkaTyp : polozkaTypList) {
+      vyuctovaniPolozkaList.addAll(vyuctovaniPolozkaService.getVyuctovaniPolozkaList(polozkaTyp.getId(), vyuctovani.getId()));
+    }
+
+    return vyuctovaniPolozkaList;
+  }
+
+
+  public List<CelkoveVyuctovani> getCelkoveVyuctovani() {
+    List<CelkoveVyuctovani> celkoveVyuctovaniList = new ArrayList<>();
+    CelkoveVyuctovani celkoveVyuctovani = new CelkoveVyuctovani();
+    celkoveVyuctovani.setZalohyCelkem(getPlatbaNajemnehoCelkem());
+    Cislo nakladyCelkem = new Cislo();
+    nakladyCelkem.setMnozstvi(celkemNaklady);
+    nakladyCelkem.setJednotka("Kč");
+    celkoveVyuctovani.setNakladyCelkem(nakladyCelkem);
+
+    Cislo rozdil = new Cislo();
+    rozdil.setMnozstvi(celkoveVyuctovani.getZalohyCelkem().getMnozstvi() - celkoveVyuctovani.getNakladyCelkem().getMnozstvi());
+    rozdil.setJednotka("Kč");
+    celkoveVyuctovani.setRozdil(rozdil);
+    celkoveVyuctovaniList.add(celkoveVyuctovani);
+    return celkoveVyuctovaniList;
+  }
+
+  @Data
+  public class CelkoveVyuctovani {
+    private Cislo zalohyCelkem;
+    private Cislo nakladyCelkem;
+    private Cislo rozdil;
   }
 }

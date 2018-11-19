@@ -47,9 +47,10 @@ public class VyuctovaniGeneratorBean extends AbstractBean {
       zuctovaciObdobi.setKonec(dateFormatterBean.parseDate("31-12-2017"));
     }
 
-    nemovitostList = nemovitostService.getNemovitostAll();
-    seznamNajemniku = osobaService.getOsobaAll();
-    predavaciProtokolList = predavaciProtokolService.getPredavaciProtokolAll();
+    Osoba prihlasenyUzivatel = loginBean.getPrihlasenyUzivatel();
+    nemovitostList = nemovitostService.getNemovitostAll(prihlasenyUzivatel.getId());
+    seznamNajemniku = osobaService.getOsobaAll(prihlasenyUzivatel.getId());
+    predavaciProtokolList = predavaciProtokolService.getPredavaciProtokolAll(prihlasenyUzivatel.getId());
   }
 
   public void generate() throws IOException {

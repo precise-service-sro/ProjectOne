@@ -97,7 +97,7 @@
         </p:column>
 
         <p:column>
-          <p:commandButton icon="ui-icon-circle-zoomin" actionListener="#{fakturaPrehledBean.showFakturaDetailBean(faktura)}" title="Upravit / Podrobnosti"/>
+          <p:commandButton icon="ui-icon-circle-zoomin" actionListener="#{routerBean.goToFakturaDetailBean(faktura)}" title="Upravit / Podrobnosti"/>
           <p:commandButton update="form :form:msgs" icon="ui-icon-circle-minus" actionListener="#{fakturaPrehledBean.deleteRow(faktura)}" title="Odebrat"/>
         </p:column>
 

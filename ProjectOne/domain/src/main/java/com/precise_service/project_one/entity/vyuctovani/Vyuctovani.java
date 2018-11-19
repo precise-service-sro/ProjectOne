@@ -12,6 +12,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.precise_service.project_one.entity.BaseEntity;
 import com.precise_service.project_one.entity.CasovyInterval;
+import com.precise_service.project_one.entity.NajemniSmlouva;
 import com.precise_service.project_one.entity.faktura.Faktura;
 import com.precise_service.project_one.entity.nemovitost.Nemovitost;
 import com.precise_service.project_one.entity.osoba.Osoba;
@@ -43,9 +44,9 @@ public class Vyuctovani extends BaseEntity {
   private Osoba najemnik;
 
   @DBRef(lazy = true)
-  @JsonProperty("pronajimatel")
+  @JsonProperty("najemniSmlouva")
   @JsonInclude(JsonInclude.Include.NON_NULL)
-  private Osoba pronajimatel;
+  private NajemniSmlouva najemniSmlouva;
 
   @DBRef(lazy = true)
   @JsonProperty("seznamVychozichFaktur")

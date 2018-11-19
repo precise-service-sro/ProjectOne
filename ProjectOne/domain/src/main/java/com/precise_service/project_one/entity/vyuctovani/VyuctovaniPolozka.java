@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.precise_service.project_one.entity.BaseEntity;
+import com.precise_service.project_one.entity.CasovyInterval;
 import com.precise_service.project_one.entity.Cislo;
 import com.precise_service.project_one.entity.PolozkaTyp;
 
@@ -17,19 +18,14 @@ import lombok.Data;
 @Document(collection = "vyuctovaniPolozka")
 public class VyuctovaniPolozka extends BaseEntity {
 
-  @JsonProperty("nazev")
-  @JsonInclude(JsonInclude.Include.NON_NULL)
-  private String nazev;
-
-  @DBRef(lazy = true)
-  @JsonProperty("vyuctovani")
-  @JsonInclude(JsonInclude.Include.NON_NULL)
-  private Vyuctovani vyuctovani;
-
   @DBRef(lazy = true)
   @JsonProperty("polozkaTyp")
   @JsonInclude(JsonInclude.Include.NON_NULL)
   private PolozkaTyp polozkaTyp;
+
+  @JsonProperty("zuctovaciObdobi")
+  @JsonInclude(JsonInclude.Include.NON_NULL)
+  private CasovyInterval zuctovaciObdobi;
 
   @JsonProperty("pocatecniStav")
   @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -43,15 +39,12 @@ public class VyuctovaniPolozka extends BaseEntity {
   @JsonInclude(JsonInclude.Include.NON_NULL)
   private Cislo spotreba;
 
-  @JsonProperty("zalohy")
-  @JsonInclude(JsonInclude.Include.NON_NULL)
-  private Cislo zalohy;
-
   @JsonProperty("naklady")
   @JsonInclude(JsonInclude.Include.NON_NULL)
   private Cislo naklady;
 
-  @JsonProperty("rozdil")
+  @DBRef(lazy = true)
+  @JsonProperty("vyuctovani")
   @JsonInclude(JsonInclude.Include.NON_NULL)
-  private Cislo rozdil;
+  private Vyuctovani vyuctovani;
 }

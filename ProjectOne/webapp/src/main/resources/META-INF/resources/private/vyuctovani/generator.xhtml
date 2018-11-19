@@ -27,6 +27,7 @@
           <td>
             <h:selectOneMenu value="#{vyuctovaniGeneratorBean.nemovitost}" style="width: 200px; height: 40px;" converter="#{nemovitostConverter}">
               <f:selectItems value="#{vyuctovaniGeneratorBean.nemovitostList}" var="nemovitost" itemLabel="#{nemovitost.nazev}" itemValue="#{nemovitost}"/>
+              <p:ajax event="change" update="pronajimatel" />
             </h:selectOneMenu>
           </td>
         </tr>
@@ -36,9 +37,7 @@
             <p>Pronajímatel:</p>
           </th>
           <td>
-            <p:outputPanel autoUpdate="true">
-              <h:outputText value="#{vyuctovaniGeneratorBean.nemovitost.vlastnik.getCeleJmeno()}"/>
-            </p:outputPanel>
+              <h:outputText id="pronajimatel" value="#{vyuctovaniGeneratorBean.nemovitost.vlastnik.getCeleJmeno()}"/>
           </td>
         </tr>
 

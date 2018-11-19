@@ -86,12 +86,6 @@ public class PredavaciProtokolPrehledBean extends AbstractBean {
     init();
   }
 
-  public void showPredavaciProtokolDetailBean(PredavaciProtokol predavaciProtokol) throws IOException {
-    predavaciProtokolDetailBean.setPredavaciProtokol(predavaciProtokol);
-    Faces.getFlash().setRedirect(true);
-    Faces.redirect(PREDAVACI_PROTOKOL_DETAIL_URL);
-  }
-
   public int getPredavaciProtokolListSize() {
     if (predavaciProtokolList == null) {
       return 0;

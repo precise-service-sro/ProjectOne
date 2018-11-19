@@ -9,14 +9,123 @@
 
 <h:body>
   <ui:composition>
-    <h:form id="form2">
-      <p:growl id="msgs2" showDetail="true"/>
+
+    <div class="vyuctovaniTab">
       <div class="pageContentTitle">
         <p>Seznam vstupních dokumentů pro vytvoření vyúčtování:</p>
       </div>
-      - Tady si vylistuju alespon nazvy vsech vstupních dokumentů s odkazy (poklik pres jmeno) a v další verzi si ten proklik udelam pres ty dilci tabulky
+
       <br/>
-    </h:form>
+
+      <p>Předávací protokol:</p>
+
+      <p:dataTable id="vyuctovaniDetailBeanPredavaciProtokolDataTable"
+                   var="predavaciProtokol"
+                   widgetVar="vyuctovaniDetailBeanPredavaciProtokolDataTable"
+                   value="#{vyuctovaniDetailBean.getPredavaciProkokolInList()}"
+                   sortBy="#{1}"
+                   rendered="#{not empty vyuctovaniDetailBean.getPredavaciProkokolInList()}"
+      >
+
+        <p:columnGroup type="header">
+          <p:row>
+            <p:column headerText="Nemovitost" filterBy="#{predavaciProtokol.nemovitost.getIdentifikaceNemovitosti()}" filterMatchMode="contains"
+                      style="width: 400px;" filterStyle="display:none" sortBy="#{predavaciProtokol.nemovitost.getIdentifikaceNemovitosti()}"/>
+            <p:column headerText="Nájemník" filterBy="#{predavaciProtokol.najemnik.getCeleJmeno()}" filterMatchMode="contains" style="width: 200px;"
+                      filterStyle="display:none" sortBy="#{predavaciProtokol.najemnik.getCeleJmeno()}"/>
+            <p:column headerText="Datum podpisu" filterBy="#{dateFormatterBean.formatDate(predavaciProtokol.datumPodpisu)}" filterMatchMode="contains"
+                      style="width: 200px;" filterStyle="display:none" sortBy="#{dateFormatterBean.formatDate(predavaciProtokol.datumPodpisu)}"/>
+            <p:column headerText="Status (je platný)" filterBy="#{predavaciProtokol.najemnik.getCeleJmeno()}" filterMatchMode="contains" style="width: 100%;"
+                      filterStyle="display:none" sortBy="#{predavaciProtokol.najemnik.getCeleJmeno()}"/>
+            <p:column headerText="" colspan="1" rowspan="2" style="width: 45px;"/>
+          </p:row>
+        </p:columnGroup>
+
+        <p:column>
+          <h:outputText value="#{predavaciProtokol.nemovitost.getIdentifikaceNemovitosti()}"
+                        title="#{predavaciProtokol.nemovitost.getIdentifikaceNemovitosti()}"/>
+        </p:column>
+
+        <p:column>
+          <h:outputText value="#{predavaciProtokol.najemnik.getCeleJmeno()}"/>
+        </p:column>
+
+        <p:column style="text-align: center;">
+          <h:outputText value="#{dateFormatterBean.formatDate(predavaciProtokol.datumPodpisu)}"/>
+        </p:column>
+
+        <p:column>
+          <h:outputText value="#{predavaciProtokol.jeAktualni()}"/>
+        </p:column>
+
+        <p:column>
+          <p:commandButton icon="ui-icon-circle-zoomin" actionListener="#{routerBean.goToPredavaciProtokolDetailBean(predavaciProtokol)}" title="Podrobnosti"/>
+        </p:column>
+
+      </p:dataTable>
+
+      <br/>
+
+      <p>Faktury:</p>
+
+      <p:dataTable
+              id="vyuctovaniDetailBeanSeznamVychozichFakturDataTable"
+              var="faktura"
+              widgetVar="vyuctovaniDetailBeanSeznamVychozichFakturDataTable"
+              value="#{vyuctovaniDetailBean.vyuctovani.seznamVychozichFaktur}"
+              sortBy="#{1}"
+              rendered="#{not empty vyuctovaniDetailBean.vyuctovani.seznamVychozichFaktur}"
+      >
+
+        <p:columnGroup type="header">
+          <p:row>
+            <p:column headerText="Id:" rowspan="2" style="width: 230px;"/>
+            <p:column headerText="Dodavatel" rowspan="2" sortBy="#{faktura.dodavatel}" filterBy="#{faktura.dodavatel}" filterMatchMode="contains"
+                      filterStyle="display:none" style="width: 100%;"/>
+            <p:column headerText="Nemovitost" rowspan="2" sortBy="#{faktura.nemovitost.getIdentifikaceNemovitosti()}"
+                      filterBy="#{faktura.nemovitost.getIdentifikaceNemovitosti()}" filterMatchMode="contains" filterStyle="display:none"
+                      style="width: 550px;"/>
+            <p:column headerText="Zúčtovací období" colspan="2" style="width: 300px;"/>
+            <p:column headerText="" rowspan="2" colspan="1" style="width: 45px;"/>
+          </p:row>
+
+          <p:row>
+            <p:column headerText="Začátek" sortBy="#{dateFormatterBean.formatDate(faktura.zuctovaciObdobi.zacatek)}"
+                      filterBy="#{dateFormatterBean.formatDate(faktura.zuctovaciObdobi.zacatek)}" filterMatchMode="contains"
+                      filterStyle="display:none"/>
+            <p:column headerText="Konec" sortBy="#{dateFormatterBean.formatDate(faktura.zuctovaciObdobi.konec)}"
+                      filterBy="#{dateFormatterBean.formatDate(faktura.zuctovaciObdobi.konec)}" filterMatchMode="contains"
+                      filterStyle="display:none"/>
+          </p:row>
+
+        </p:columnGroup>
+
+        <p:column>
+          <h:outputText value="#{faktura.id}"/>
+        </p:column>
+
+        <p:column>
+          <h:outputText value="#{faktura.dodavatel}"/>
+        </p:column>
+
+        <p:column>
+          <h:outputText value="#{faktura.nemovitost.getIdentifikaceNemovitosti()}" title="#{faktura.nemovitost.getIdentifikaceNemovitosti()}"/>
+        </p:column>
+
+        <p:column>
+          <h:outputText value="#{dateFormatterBean.formatDate(faktura.zuctovaciObdobi.zacatek)}"/>
+        </p:column>
+
+        <p:column>
+          <h:outputText value="#{dateFormatterBean.formatDate(faktura.zuctovaciObdobi.konec)}"/>
+        </p:column>
+
+        <p:column>
+          <p:commandButton icon="ui-icon-circle-zoomin" actionListener="#{routerBean.goToFakturaDetailBean(faktura)}" title="Podrobnosti"/>
+        </p:column>
+
+      </p:dataTable>
+    </div>
   </ui:composition>
 </h:body>
 </html>
