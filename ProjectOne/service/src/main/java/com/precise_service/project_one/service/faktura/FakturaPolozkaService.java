@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.precise_service.project_one.entity.faktura.Faktura;
 import com.precise_service.project_one.entity.faktura.FakturaPolozka;
 import com.precise_service.project_one.repository.FakturaPolozkaRepository;
 import com.precise_service.project_one.service.faktura.IFakturaPolozkaService;
@@ -18,16 +19,38 @@ public class FakturaPolozkaService implements IFakturaPolozkaService {
   @Autowired
   private FakturaPolozkaRepository fakturaPolozkaRepository;
 
+  @Autowired
+  private IFakturaService fakturaService;
+
   @Override
-  public FakturaPolozka postFakturaPolozka(FakturaPolozka faktura) {
+  public FakturaPolozka postFakturaPolozka(FakturaPolozka fakturaPolozka) {
     log.trace("postFakturaPolozka()");
-    return fakturaPolozkaRepository.save(faktura);
+    return fakturaPolozkaRepository.save(fakturaPolozka);
   }
 
   @Override
-  public FakturaPolozka putFakturaPolozka(FakturaPolozka faktura) {
+  public FakturaPolozka zduplikovatFakturaPolozka(FakturaPolozka fakturaPolozka) {
+    log.trace("zduplikovatFakturaPolozka()");
+    fakturaPolozka.setId(null);
+    return fakturaPolozkaRepository.save(fakturaPolozka);
+  }
+
+  @Override
+  public void zduplikovatFakturaPolozkaList(String idFakturaOriginal, Faktura novaFaktura) {
+    log.trace("zduplikovatFakturaPolozkaList()");
+
+    List<FakturaPolozka> fakturaPolozkaAll = getFakturaPolozkaAll(idFakturaOriginal);
+    for (FakturaPolozka fakturaPolozka : fakturaPolozkaAll) {
+      fakturaPolozka.setId(null);
+      fakturaPolozka.setFaktura(novaFaktura);
+      fakturaPolozkaRepository.save(fakturaPolozka);
+    }
+  }
+
+  @Override
+  public FakturaPolozka putFakturaPolozka(FakturaPolozka fakturaPolozka) {
     log.trace("putFakturaPolozka()");
-    return fakturaPolozkaRepository.save(faktura);
+    return fakturaPolozkaRepository.save(fakturaPolozka);
   }
 
   @Override

@@ -23,10 +23,10 @@
         <table>
           <tr>
             <th>
-              <p>Název:</p>
+              <p>Dodavatel:</p>
             </th>
             <td>
-              <p:inputText value="#{fakturaDetailBean.faktura.nazev}" placeholder="- zadejte -"/>
+              <p:inputText value="#{fakturaDetailBean.faktura.dodavatel}" placeholder="- zadejte -"/>
             </td>
             <th>
               <p>Nemovitost:</p>
@@ -42,13 +42,42 @@
               <p>Začátek zúčtovacího období:</p>
             </th>
             <td>
-              <p:calendar id="fakturaZuctovaciObdobiZacatek" value="#{fakturaDetailBean.faktura.zuctovaciObdobi.zacatek}" pattern="dd-MM-yyyy"/>
+              <p:calendar id="fakturaZuctovaciObdobiZacatek" value="#{fakturaDetailBean.faktura.zuctovaciObdobi.zacatek}" pattern="dd-MM-yyyy" placeholder="- zadejte -"/>
             </td>
             <th>
               <p>Konec zúčtovacího období:</p>
             </th>
             <td>
-              <p:calendar id="fakturaZuctovaciObdobiKonec" value="#{fakturaDetailBean.faktura.zuctovaciObdobi.konec}" pattern="dd-MM-yyyy"/>
+              <p:calendar id="fakturaZuctovaciObdobiKonec" value="#{fakturaDetailBean.faktura.zuctovaciObdobi.konec}" pattern="dd-MM-yyyy" placeholder="- zadejte -"/>
+            </td>
+          </tr>
+
+          <tr>
+            <th>
+              <p>Datum splatnosti:</p>
+            </th>
+            <td>
+              <p:calendar id="fakturaDatumSplatnosti" value="#{fakturaDetailBean.faktura.datumSplatnosti}" pattern="dd-MM-yyyy" placeholder="- zadejte -"/>
+            </td>
+            <th>
+              <p>Variabilní symbol:</p>
+            </th>
+            <td>
+              <p:inputText value="#{fakturaDetailBean.faktura.variabilniSymbol}" placeholder="- zadejte -"/>
+            </td>
+          </tr>
+          <tr>
+            <th>
+              <p>Specifický symbol:</p>
+            </th>
+            <td>
+              <p:inputText value="#{fakturaDetailBean.faktura.specifickySymbol}" placeholder="- zadejte -"/>
+            </td>
+            <th>
+              <p>Konstantní symbol:</p>
+            </th>
+            <td>
+              <p:inputText value="#{fakturaDetailBean.faktura.konstantniSymbol}" placeholder="- zadejte -"/>
             </td>
           </tr>
         </table>
@@ -56,7 +85,9 @@
     </ui:define>
 
     <ui:define name="detailPagePridavaciTlacitko">
-      <p:commandButton value="Přidat položku na fakturu" icon="ui-icon-circle-plus" process="@this" actionListener="#{fakturaDetailBean.addRow()}"
+      <p:commandButton value="Přidat položku na fakturu" icon="ui-icon-circle-plus" process="@this" actionListener="#{fakturaDetailBean.pridatFakturaPolozka()}"
+                       update="form :form:msgs"/>
+      <p:commandButton value="Zduplikovat fakturu" icon="ui-icon-circle-plus" process="@this" actionListener="#{fakturaDetailBean.zduplikovatFakturu()}"
                        update="form :form:msgs"/>
     </ui:define>
 
@@ -258,11 +289,11 @@
     </ui:define>
 
     <ui:define name="detailPageUkladaciTlacitka">
-      <p:commandButton value="Uložit změny a vrátit se zpět" icon="ui-icon-disk" process="@form" actionListener="#{fakturaDetailBean.ulozitZmenuFaktury(true)}"
+      <p:commandButton value="Uložit změny a vrátit na přehled" icon="ui-icon-disk" process="@form" actionListener="#{fakturaDetailBean.ulozitZmenuFaktury(true)}"
                        update="form :form:msgs"/>
       <p:commandButton value="Uložit změny a zůstat" icon="ui-icon-disk" process="@form" actionListener="#{fakturaDetailBean.ulozitZmenuFaktury(false)}"
                        update="form :form:msgs"/>
-      <p:commandButton value="Zrušit změny" icon="ui-icon-cancel" process="@this" actionListener="#{fakturaDetailBean.zrusitZmenuFaktury()}"
+      <p:commandButton value="Zrušit změny a vrátit na přehled" icon="ui-icon-cancel" process="@this" actionListener="#{fakturaDetailBean.zrusitZmenuFaktury()}"
                        update="form :form:msgs"/>
     </ui:define>
 

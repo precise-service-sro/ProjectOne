@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.faces.event.AjaxBehaviorEvent;
 import javax.inject.Named;
 
 import com.precise_service.project_one.entity.adresa.Stat;
@@ -67,5 +68,9 @@ public class NemovitostDetailBean extends AbstractBean {
     log.trace("zrusitZmenuNemovitosti()");
     showInfoMessage("Zrušeno", "Přidání/úprava nemovitosti byla zrušena");
     routerBean.goToNemovitostPrehledBean();
+  }
+
+  public void zmenaVybraneNemovitosti(final AjaxBehaviorEvent event)  {
+    showInfoMessage("Změněno", "Byla vybráná nemovitost " + nemovitost.getIdentifikaceNemovitosti());
   }
 }

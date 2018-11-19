@@ -147,21 +147,6 @@ table td select {
     margin-right: 250px;
 }
 
-
-.pageTitle {
-    width: 100%;
-}
-
-.pageTitle p {
-    font-size: 25px;
-    font-weight: bold;
-    display: inline;
-}
-
-.pageTitleLeft {
-    float: left;
-}
-
 .tabTitle {
     margin-top: 20px;
     margin-right: 10px;
@@ -176,18 +161,6 @@ table td select {
     font-weight: bold;
     display: inline;
     margin-top: 20px;
-}
-
-.pageTitleLeft select {
-    width: 200px;
-    margin-left: 20px;
-    font-size: x-large;
-}
-
-.pageTitleRight {
-    text-align: right;
-    margin-bottom: 20px;
-    width: 100%;
 }
 
 .tabicko {

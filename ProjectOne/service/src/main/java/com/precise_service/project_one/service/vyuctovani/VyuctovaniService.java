@@ -125,7 +125,7 @@ public class VyuctovaniService implements IVyuctovaniService {
     PolozkaTyp polozkaTyp = vyuctovaniPolozka.getPolozkaTyp();
 
     for (Faktura faktura : fakturaList) {
-      log.debug("Zpracovávám fakturu: " + faktura.getNazev());
+      log.debug("Zpracovávám fakturu: " + faktura.getDodavatel());
       List<FakturaPolozka> fakturaPolozkaAll = fakturaPolozkaService.getFakturaPolozkaAll(faktura.getId());
       for (FakturaPolozka fakturaPolozka : fakturaPolozkaAll) {
         if (fakturaPolozka.getPolozkaTyp().getId().equals(polozkaTyp.getId())) {

@@ -52,6 +52,11 @@ public class LoginBean extends AbstractBean {
       return;
     }
 
+    if (!prihlasenyUzivatel.getMuzeSePrihlasit()) {
+      showErrorMessage("Špatné přihlašovací údaje!","Uživatelský účet nemá povolené přihlašování!");
+      return;
+    }
+
     HttpSession httpSession = getHttpSession();
     httpSession.setAttribute(SESSION_ATTRIBUTE_PRIHLASENY_UZIVATEL, prihlasenyUzivatel);
     // po prihlaseni me to meruje na stranku se kterou pracuji / upravuji

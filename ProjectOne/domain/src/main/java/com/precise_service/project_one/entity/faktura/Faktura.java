@@ -20,9 +20,21 @@ import lombok.Data;
 @Document(collection = "faktura")
 public class Faktura extends BaseEntity {
 
-  @JsonProperty("nazev")
+  @JsonProperty("dodavatel")
   @JsonInclude(JsonInclude.Include.NON_NULL)
-  private String nazev;
+  private String dodavatel;
+
+  @JsonProperty("konstantniSymbol")
+  @JsonInclude(JsonInclude.Include.NON_NULL)
+  private String konstantniSymbol;
+
+  @JsonProperty("specifickySymbol")
+  @JsonInclude(JsonInclude.Include.NON_NULL)
+  private String specifickySymbol;
+
+  @JsonProperty("variabilniSymbol")
+  @JsonInclude(JsonInclude.Include.NON_NULL)
+  private String variabilniSymbol;
 
   @JsonProperty("zuctovaciObdobi")
   @JsonInclude(JsonInclude.Include.NON_NULL)

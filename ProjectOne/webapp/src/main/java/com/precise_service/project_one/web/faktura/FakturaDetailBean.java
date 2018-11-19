@@ -124,12 +124,12 @@ public class FakturaDetailBean extends AbstractBean {
     FacesContext.getCurrentInstance().addMessage(null, msg);
   }
 
-  public void addRow() {
-    log.trace("addRow()");
+  public void pridatFakturaPolozka() {
+    log.trace("pridatFakturaPolozka()");
 
     FakturaPolozka fakturaPolozka = new FakturaPolozka();
 
-    fakturaPolozka.setNazev("!!! Upravit název !!!");
+    fakturaPolozka.setNazev("- zadejte -");
     fakturaPolozka.setFaktura(faktura);
     fakturaPolozka.setPolozkaTyp(null);
     fakturaPolozka.setUzivatel(loginBean.getPrihlasenyUzivatel());
@@ -149,7 +149,7 @@ public class FakturaDetailBean extends AbstractBean {
     FakturaPolozka saved = fakturaPolozkaService.postFakturaPolozka(fakturaPolozka);
     init();
 
-    FacesMessage msg = new FacesMessage("Přidána nová řádka", saved.getId());
+    FacesMessage msg = new FacesMessage("Přidána nová položka", saved.getId());
     FacesContext.getCurrentInstance().addMessage(null, msg);
   }
 
@@ -164,7 +164,7 @@ public class FakturaDetailBean extends AbstractBean {
 
     fakturaPolozkaService.deleteFakturaPolozka(deletedFakturaPolozka.getId());
 
-    FacesMessage msg = new FacesMessage("Smazán řádek", deletedFakturaPolozka.getNazev());
+    FacesMessage msg = new FacesMessage("Smazán položka", deletedFakturaPolozka.getNazev());
     FacesContext.getCurrentInstance().addMessage(null, msg);
     init();
   }
@@ -172,7 +172,7 @@ public class FakturaDetailBean extends AbstractBean {
   public void ulozitZmenuFaktury(boolean presmerovatZpetNaPrehledFaktur) throws IOException {
     log.trace("ulozitZmenuFaktury()");
     faktura = fakturaService.putFaktura(faktura);
-    showInfoMessage("Uloženo", "Úprava faktury " + faktura.getNazev() + " byla uložena");
+    showInfoMessage("Uloženo", "Úprava faktury " + faktura.getDodavatel() + " byla uložena");
     if (presmerovatZpetNaPrehledFaktur) {
       routerBean.goToFakturaPrehledBean();
     }
@@ -180,7 +180,7 @@ public class FakturaDetailBean extends AbstractBean {
 
   public void zrusitZmenuFaktury() throws IOException {
     log.trace("zrusitZmenuFaktury()");
-    showInfoMessage("Zrušeno", "Úprava faktury " + faktura.getNazev() + " byla zrušena");
+    showInfoMessage("Zrušeno", "Úprava faktury " + faktura.getDodavatel() + " byla zrušena");
     routerBean.goToFakturaPrehledBean();
   }
 
@@ -197,5 +197,16 @@ public class FakturaDetailBean extends AbstractBean {
       return getFakturaPolozkaListSize();
     }
     return filtrovanyFakturaPolozkaList.size();
+  }
+
+  public void zduplikovatFakturu() {
+    log.trace("zduplikovatFakturu()");
+
+    String idFakturaOriginal = faktura.getId();
+    Faktura novaFaktura = fakturaService.zduplikovatFaktura(faktura);
+    fakturaPolozkaService.zduplikovatFakturaPolozkaList(idFakturaOriginal, novaFaktura);
+    faktura = novaFaktura;
+
+    showInfoMessage("Zduplikováno", "Faktura od dodavatele " + faktura.getDodavatel() + " byla zduplikována");
   }
 }

@@ -1,7 +1,5 @@
 package com.precise_service.project_one.service.faktura;
 
-import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +22,13 @@ public class FakturaService implements IFakturaService {
   @Override
   public Faktura postFaktura(Faktura faktura) {
     log.trace("postFaktura()");
+    return fakturaRepository.save(faktura);
+  }
+
+  @Override
+  public Faktura zduplikovatFaktura(Faktura faktura) {
+    log.trace("zduplikovatFaktura()");
+    faktura.setId(null);
     return fakturaRepository.save(faktura);
   }
 

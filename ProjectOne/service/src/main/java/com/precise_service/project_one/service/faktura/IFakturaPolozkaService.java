@@ -2,11 +2,16 @@ package com.precise_service.project_one.service.faktura;
 
 import java.util.List;
 
+import com.precise_service.project_one.entity.faktura.Faktura;
 import com.precise_service.project_one.entity.faktura.FakturaPolozka;
 
 public interface IFakturaPolozkaService {
 
   FakturaPolozka postFakturaPolozka(FakturaPolozka fakturaPolozka);
+
+  FakturaPolozka zduplikovatFakturaPolozka(FakturaPolozka fakturaPolozka);
+
+  void zduplikovatFakturaPolozkaList(String idFakturaOriginal, Faktura novaFaktura);
 
   FakturaPolozka putFakturaPolozka(FakturaPolozka fakturaPolozka);
 

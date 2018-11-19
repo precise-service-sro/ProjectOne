@@ -1,0 +1,25 @@
+.pageTitle {
+    width: 100%;
+}
+
+.pageTitle p {
+    font-size: 25px;
+    font-weight: bold;
+    display: inline;
+}
+
+.pageTitleLeft {
+    float: left;
+}
+
+.pageTitleLeft select {
+    width: 800px;
+    margin-left: 20px;
+    font-size: x-large;
+}
+
+.pageTitleRight {
+    text-align: right;
+    margin-bottom: 20px;
+    width: 100%;
+}

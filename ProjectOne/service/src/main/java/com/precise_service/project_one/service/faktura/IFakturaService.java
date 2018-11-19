@@ -10,6 +10,8 @@ public interface IFakturaService {
 
   Faktura postFaktura(Faktura faktura);
 
+  Faktura zduplikovatFaktura(Faktura faktura);
+
   Faktura putFaktura(Faktura faktura);
 
   Faktura getFaktura(String idFaktura);

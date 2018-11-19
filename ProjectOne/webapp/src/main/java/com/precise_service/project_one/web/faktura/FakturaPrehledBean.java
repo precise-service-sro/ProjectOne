@@ -60,13 +60,13 @@ public class FakturaPrehledBean extends AbstractBean {
 
     fakturaService.putFaktura(faktura);
 
-    FacesMessage msg = new FacesMessage("Uložena úprava řádky", faktura.getNazev());
+    FacesMessage msg = new FacesMessage("Uložena úprava řádky", faktura.getDodavatel());
     FacesContext.getCurrentInstance().addMessage(null, msg);
   }
 
   public void onRowCancel(RowEditEvent event) {
     log.trace("onRowCancel()");
-    FacesMessage msg = new FacesMessage("Zrušena úprava řádky", ((Faktura) event.getObject()).getNazev());
+    FacesMessage msg = new FacesMessage("Zrušena úprava řádky", ((Faktura) event.getObject()).getDodavatel());
     FacesContext.getCurrentInstance().addMessage(null, msg);
   }
 
@@ -81,7 +81,7 @@ public class FakturaPrehledBean extends AbstractBean {
 
     Faktura faktura = new Faktura();
 
-    faktura.setNazev(null);
+    faktura.setDodavatel(null);
     faktura.setNemovitost(null);
     faktura.setZuctovaciObdobi(new CasovyInterval());
     faktura.setUzivatel(loginBean.getPrihlasenyUzivatel());
@@ -103,7 +103,7 @@ public class FakturaPrehledBean extends AbstractBean {
 
     fakturaService.deleteFaktura(deletedFaktura.getId());
 
-    showInfoMessage("Faktura smazána", deletedFaktura.getNazev());
+    showInfoMessage("Faktura smazána", deletedFaktura.getDodavatel());
     init();
   }
 

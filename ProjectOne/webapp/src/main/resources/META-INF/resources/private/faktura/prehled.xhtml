@@ -30,7 +30,7 @@
     </ui:define>
 
     <ui:define name="prehledPagePridavaciTlacitko">
-      <p:commandButton value="Přidat" icon="ui-icon-circle-plus" process="@this" update="form :form:msgs" actionListener="#{fakturaPrehledBean.addRow()}"/>
+      <p:commandButton value="Přidat faktury" icon="ui-icon-circle-plus" process="@this" update="form :form:msgs" actionListener="#{fakturaPrehledBean.addRow()}"/>
     </ui:define>
 
     <ui:define name="prehledPageDataTable">
@@ -57,7 +57,8 @@
 
         <p:columnGroup type="header">
           <p:row>
-            <p:column headerText="Dodavatel" rowspan="2" sortBy="#{faktura.nazev}" filterBy="#{faktura.nazev}" filterMatchMode="contains"
+            <p:column headerText="Id:" rowspan="2" style="width: 230px;" />
+            <p:column headerText="Dodavatel" rowspan="2" sortBy="#{faktura.dodavatel}" filterBy="#{faktura.dodavatel}" filterMatchMode="contains"
                       filterStyle="display:none" style="width: 100%;"/>
             <p:column headerText="Nemovitost" rowspan="2" sortBy="#{faktura.nemovitost.getIdentifikaceNemovitosti()}"
                       filterBy="#{faktura.nemovitost.getIdentifikaceNemovitosti()}" filterMatchMode="contains" filterStyle="display:none"
@@ -76,7 +77,11 @@
         </p:columnGroup>
 
         <p:column>
-          <h:outputText value="#{faktura.nazev}"/>
+          <h:outputText value="#{faktura.id}"/>
+        </p:column>
+
+        <p:column>
+          <h:outputText value="#{faktura.dodavatel}"/>
         </p:column>
 
         <p:column>
