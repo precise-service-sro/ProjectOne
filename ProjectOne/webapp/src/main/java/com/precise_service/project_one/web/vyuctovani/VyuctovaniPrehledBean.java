@@ -29,7 +29,10 @@ public class VyuctovaniPrehledBean extends AbstractBean {
 
   private CasovyInterval zuctovaciObdobi;
   private List<Vyuctovani> vyuctovaniList;
+  private List<Vyuctovani> filtrovanyVyuctovaniList;
   private List<Nemovitost> nemovitostList;
+  private int vyuctovaniListSize;
+  private int filtrovanyVyuctovaniListSize;
 
   public void init() {
 
@@ -104,5 +107,19 @@ public class VyuctovaniPrehledBean extends AbstractBean {
   public void zuctovaciObdobiKonecDateSelect(SelectEvent event) {
     showInfoMessage("Zvolen nový konec zúčtovacího období", dateFormatterBean.formatDate((Date) event.getObject()));
     init();
+  }
+
+  public int getVyuctovaniListSize() {
+    if (vyuctovaniList == null) {
+      return 0;
+    }
+    return vyuctovaniList.size();
+  }
+
+  public int getFiltrovanyVyuctovaniListSize() {
+    if (filtrovanyVyuctovaniList == null) {
+      return getVyuctovaniListSize();
+    }
+    return filtrovanyVyuctovaniList.size();
   }
 }

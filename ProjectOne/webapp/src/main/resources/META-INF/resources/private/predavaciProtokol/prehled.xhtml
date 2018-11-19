@@ -53,10 +53,12 @@
         </p:columnGroup>
 
         <f:facet name="header">
-          <p:outputPanel style="float: left; margin-top: 5px;">Předávací protokoly:</p:outputPanel>
+          <p:outputPanel id="globalFilterHeader" style="float: left; margin-top: 5px;">Předávací protokoly: (nalezených: <h:outputText value="#{predavaciProtokolPrehledBean.filtrovanyPredavaciProtokolListSize}"/> z celkem <h:outputText value="#{predavaciProtokolPrehledBean.predavaciProtokolListSize}"/>  předávacích protokolů)</p:outputPanel>
           <p:outputPanel style="text-align: right;">
             <p:inputText id="globalFilter" onkeyup="PF('predavaciProtokolPrehledBeanTable').filter()" style="width:235px"
-                         placeholder="- zadejte text pro vyhledání -"/>
+                         placeholder="- zadejte text pro vyhledání -">
+              <p:ajax event="keyup" update="globalFilterHeader" />
+            </p:inputText>
           </p:outputPanel>
         </f:facet>
 

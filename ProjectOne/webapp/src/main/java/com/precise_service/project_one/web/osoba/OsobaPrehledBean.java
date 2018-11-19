@@ -80,7 +80,7 @@ public class OsobaPrehledBean extends AbstractBean {
 
   public int getFiltrovanyOsobaListSize() {
     if (filtrovanyOsobaList == null) {
-      return osobaList.size();
+      return getOsobaListSize();
     }
     return filtrovanyOsobaList.size();
   }

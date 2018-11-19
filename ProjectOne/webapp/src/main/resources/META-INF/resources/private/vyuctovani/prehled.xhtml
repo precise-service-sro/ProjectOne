@@ -36,13 +36,17 @@
                    value="#{vyuctovaniPrehledBean.vyuctovaniList}"
                    sortBy="#{1}"
                    rendered="#{not empty vyuctovaniPrehledBean.vyuctovaniList}"
+                   emptyMessage="Nebylé nalezeny žádné vyúčtování pro nájemníky"
+                   filteredValue="#{vyuctovaniPrehledBean.filtrovanyVyuctovaniList}"
       >
 
         <f:facet name="header">
-          <p:outputPanel style="float: left; margin-top: 5px;">Vyúčtování:</p:outputPanel>
+          <p:outputPanel id="globalFilterHeader" style="float: left; margin-top: 5px;">Vyúčtování: (nalezených: <h:outputText value="#{vyuctovaniPrehledBean.filtrovanyVyuctovaniListSize}"/> z celkem <h:outputText value="#{vyuctovaniPrehledBean.vyuctovaniListSize}"/>  vyúčtování)</p:outputPanel>
           <p:outputPanel style="text-align: right;">
             <p:inputText id="globalFilter" onkeyup="PF('vyuctovaniPrehledBeanTable').filter()" style="width:235px"
-                         placeholder="- zadejte text pro vyhledání -"/>
+                         placeholder="- zadejte text pro vyhledání -">
+              <p:ajax event="keyup" update="globalFilterHeader" />
+            </p:inputText>
           </p:outputPanel>
         </f:facet>
 
@@ -56,7 +60,7 @@
                       filterStyle="display:none" sortBy="#{vyuctovani.najemnik.getCeleJmeno()}"/>
             <p:column headerText="Datum vystavení" rowspan="2" style="width: 170px;" filterBy="#{dateFormatterBean.formatDate(vyuctovani.datumVystaveni)}"
                       filterMatchMode="contains" filterStyle="display:none" sortBy="#{dateFormatterBean.formatDate(vyuctovani.datumVystaveni)}"/>
-            <p:column headerText="Zúčtovací období" colspan="2" style="width: 400px;"/>
+            <p:column headerText="Zúčtovací období" colspan="2" style="width: 300px;"/>
             <p:column headerText="Ovládání" colspan="1" rowspan="2" style="width: 90px;"/>
           </p:row>
           <p:row>

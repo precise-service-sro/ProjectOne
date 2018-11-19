@@ -46,10 +46,12 @@
       >
 
         <f:facet name="header">
-          <p:outputPanel style="float: left; margin-top: 5px;">Faktury:</p:outputPanel>
+          <p:outputPanel id="globalFilterHeader" style="float: left; margin-top: 5px;">Faktury: (nalezených: <h:outputText value="#{fakturaPrehledBean.filtrovanyFakturaListSize}"/> z celkem <h:outputText value="#{fakturaPrehledBean.fakturaListSize}"/>  faktur)</p:outputPanel>
           <p:outputPanel style="text-align: right;">
             <p:inputText id="globalFilter" onkeyup="PF('fakturaPrehledBeanTable').filter()" style="width:235px"
-                         placeholder="- zadejte text pro vyhledání -"/>
+                         placeholder="- zadejte text pro vyhledání -">
+              <p:ajax event="keyup" update="globalFilterHeader" />
+            </p:inputText>
           </p:outputPanel>
         </f:facet>
 
@@ -59,8 +61,8 @@
                       filterStyle="display:none" style="width: 100%;"/>
             <p:column headerText="Nemovitost" rowspan="2" sortBy="#{faktura.nemovitost.getIdentifikaceNemovitosti()}"
                       filterBy="#{faktura.nemovitost.getIdentifikaceNemovitosti()}" filterMatchMode="contains" filterStyle="display:none"
-                      style="width: 400px;"/>
-            <p:column headerText="Zúčtovací období" colspan="2" style="width: 400px;"/>
+                      style="width: 550px;"/>
+            <p:column headerText="Zúčtovací období" colspan="2" style="width: 300px;"/>
             <p:column headerText="Ovládání" rowspan="2" colspan="1" style="width: 90px;"/>
           </p:row>
 

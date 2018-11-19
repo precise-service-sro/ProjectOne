@@ -30,6 +30,8 @@ public class FakturaPrehledBean extends AbstractBean {
   private List<Faktura> fakturaList;
   private List<Nemovitost> nemovitostList;
   private List<Faktura> filtrovanyFakturaList;
+  private int fakturaListSize;
+  private int filtrovanyFakturaListSize;
 
   public void init() {
     Osoba prihlasenyUzivatel = loginBean.getPrihlasenyUzivatel();
@@ -115,5 +117,19 @@ public class FakturaPrehledBean extends AbstractBean {
     log.trace("zuctovaciObdobiKonecDateSelect()");
     showInfoMessage("Zvolen nový konec zúčtovacího období", dateFormatterBean.formatDate(zuctovaciObdobi.getKonec()));
     init();
+  }
+
+  public int getFakturaListSize() {
+    if (fakturaList == null) {
+      return 0;
+    }
+    return fakturaList.size();
+  }
+
+  public int getFiltrovanyFakturaListSize() {
+    if (filtrovanyFakturaList == null) {
+      return getFakturaListSize();
+    }
+    return filtrovanyFakturaList.size();
   }
 }

@@ -28,6 +28,8 @@ public class PredavaciProtokolPrehledBean extends AbstractBean {
   private List<PredavaciProtokol> filtrovanyPredavaciProtokolList;
   private List<Nemovitost> nemovitostList;
   private List<Osoba> seznamNajemniku;
+  private int predavaciProtokolListSize;
+  private int filtrovanyPredavaciProtokolListSize;
 
   public void init() {
     log.trace("init()");
@@ -88,5 +90,19 @@ public class PredavaciProtokolPrehledBean extends AbstractBean {
     predavaciProtokolDetailBean.setPredavaciProtokol(predavaciProtokol);
     Faces.getFlash().setRedirect(true);
     Faces.redirect(PREDAVACI_PROTOKOL_DETAIL_URL);
+  }
+
+  public int getPredavaciProtokolListSize() {
+    if (predavaciProtokolList == null) {
+      return 0;
+    }
+    return predavaciProtokolList.size();
+  }
+
+  public int getFiltrovanyPredavaciProtokolListSize() {
+    if (filtrovanyPredavaciProtokolList == null) {
+      return getPredavaciProtokolListSize();
+    }
+    return filtrovanyPredavaciProtokolList.size();
   }
 }

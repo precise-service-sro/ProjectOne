@@ -69,7 +69,7 @@ public class NemovitostPrehledBean extends AbstractBean {
 
   public int getFiltrovanyNemovitostListSize() {
     if (filtrovanyNemovitostList == null) {
-      return nemovitostList.size();
+      return getNemovitostListSize();
     }
     return filtrovanyNemovitostList.size();
   }

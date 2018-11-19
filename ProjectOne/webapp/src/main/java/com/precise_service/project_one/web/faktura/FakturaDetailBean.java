@@ -29,6 +29,8 @@ public class FakturaDetailBean extends AbstractBean {
   private List<PolozkaTyp> polozkaTypList;
   private List<FakturaPolozka> fakturaPolozkaList;
   private List<FakturaPolozka> filtrovanyFakturaPolozkaList;
+  private int fakturaPolozkaListSize;
+  private int filtrovanyFakturaPolozkaListSize;
 
   // TODO: tyhle celkovy soucty spocitat a ulozit na entitu celeho faktura, at se to tu nedela pokazde znova
   private Double celkemZalohy;
@@ -180,5 +182,20 @@ public class FakturaDetailBean extends AbstractBean {
     log.trace("zrusitZmenuFaktury()");
     showInfoMessage("Zrušeno", "Úprava faktury " + faktura.getNazev() + " byla zrušena");
     routerBean.goToFakturaPrehledBean();
+  }
+
+
+  public int getFakturaPolozkaListSize() {
+    if (fakturaPolozkaList == null) {
+      return 0;
+    }
+    return fakturaPolozkaList.size();
+  }
+
+  public int getFiltrovanyFakturaPolozkaListSize() {
+    if (filtrovanyFakturaPolozkaList == null) {
+      return getFakturaPolozkaListSize();
+    }
+    return filtrovanyFakturaPolozkaList.size();
   }
 }

@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.Serializable;
 
 import javax.faces.application.FacesMessage;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import javax.servlet.http.HttpSession;
@@ -73,10 +74,20 @@ public class LoginBean extends AbstractBean {
 
   public void setPrihlasenyUzivatel(Osoba prihlasenyUzivatel) {
     HttpSession session = getHttpSession();
-    session.setAttribute(LoginBean.SESSION_ATTRIBUTE_PRIHLASENY_UZIVATEL, prihlasenyUzivatel);
+    if (session != null) {
+      session.setAttribute(LoginBean.SESSION_ATTRIBUTE_PRIHLASENY_UZIVATEL, prihlasenyUzivatel);
+    }
   }
 
   private HttpSession getHttpSession() {
-    return (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+    FacesContext currentInstance = FacesContext.getCurrentInstance();
+    if (currentInstance == null) {
+      return null;
+    }
+    ExternalContext externalContext = currentInstance.getExternalContext();
+    if (externalContext == null) {
+      return null;
+    }
+    return (HttpSession) externalContext.getSession(false);
   }
 }
