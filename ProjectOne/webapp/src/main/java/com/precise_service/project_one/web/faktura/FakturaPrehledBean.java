@@ -1,6 +1,7 @@
 package com.precise_service.project_one.web.faktura;
 
 import java.io.IOException;
+import java.util.Collections;
 import java.util.List;
 
 import javax.faces.application.FacesMessage;
@@ -9,9 +10,12 @@ import javax.inject.Named;
 
 import org.omnifaces.util.Faces;
 import org.primefaces.event.RowEditEvent;
+import org.springframework.util.CollectionUtils;
 
 import com.precise_service.project_one.entity.CasovyInterval;
+import com.precise_service.project_one.entity.Cislo;
 import com.precise_service.project_one.entity.faktura.Faktura;
+import com.precise_service.project_one.entity.faktura.FakturaPolozka;
 import com.precise_service.project_one.entity.nemovitost.Nemovitost;
 import com.precise_service.project_one.entity.osoba.Osoba;
 import com.precise_service.project_one.web.AbstractBean;
@@ -124,5 +128,18 @@ public class FakturaPrehledBean extends AbstractBean {
       return getFakturaListSize();
     }
     return filtrovanyFakturaList.size();
+  }
+
+  public Cislo spocitatCelkoveNakladyFaktury(String idFaktura) {
+    Cislo celkoveNaklady = new Cislo();
+    celkoveNaklady.setJednotka("Kč");
+    List<FakturaPolozka> fakturaPolozkaAll = fakturaPolozkaService.getFakturaPolozkaAll(idFaktura);
+    if (!CollectionUtils.isEmpty(fakturaPolozkaAll)) {
+      for (FakturaPolozka fakturaPolozka : fakturaPolozkaAll) {
+        celkoveNaklady.setMnozstvi(celkoveNaklady.getMnozstvi() + fakturaPolozka.getNaklady().getMnozstvi());
+        celkoveNaklady.setJednotka(fakturaPolozka.getNaklady().getJednotka());
+      }
+    }
+    return celkoveNaklady;
   }
 }

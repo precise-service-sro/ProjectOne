@@ -63,6 +63,8 @@
             <p:column headerText="Nemovitost" rowspan="2" sortBy="#{faktura.nemovitost.getIdentifikaceNemovitosti()}"
                       filterBy="#{faktura.nemovitost.getIdentifikaceNemovitosti()}" filterMatchMode="contains" filterStyle="display:none"
                       style="width: 550px;"/>
+            <p:column headerText="Náklady" rowspan="2" sortBy="#{fakturaPrehledBean.spocitatCelkoveNakladyFaktury(faktura)}" filterBy="#{fakturaPrehledBean.spocitatCelkoveNakladyFaktury(faktura)}" filterMatchMode="contains"
+                      filterStyle="display:none" style="width: 100%;"/>
             <p:column headerText="Zúčtovací období" colspan="2" style="width: 300px;"/>
             <p:column headerText="Ovládání" rowspan="2" colspan="1" style="width: 90px;"/>
           </p:row>
@@ -86,6 +88,12 @@
 
         <p:column>
           <h:outputText value="#{faktura.nemovitost.getIdentifikaceNemovitosti()}" title="#{faktura.nemovitost.getIdentifikaceNemovitosti()}"/>
+        </p:column>
+
+        <p:column style="text-align: right;">
+          <h:outputText value="#{fakturaPrehledBean.spocitatCelkoveNakladyFaktury(faktura.id).mnozstvi}">
+            <f:convertNumber pattern="#0.00"/>
+          </h:outputText>&nbsp;<h:outputText value="#{fakturaPrehledBean.spocitatCelkoveNakladyFaktury(faktura.id).jednotka}"/>
         </p:column>
 
         <p:column>

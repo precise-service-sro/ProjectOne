@@ -135,6 +135,7 @@ public class VyuctovaniService implements IVyuctovaniService {
           vyuctovaniPolozka.setPolozkaTyp(polozkaTyp);
           vyuctovaniPolozka.setVyuctovani(vyuctovani);
           vyuctovaniPolozka.setUzivatel(prihlasenyUzivatel);
+          vyuctovaniPolozka.setZdroj("Faktura: ");
 
           vyuctovaniPolozka.setPocatecniStav(fakturaPolozka.getPocatecniStav());
           vyuctovaniPolozka.setKoncovyStav(fakturaPolozka.getKoncovyStav());
@@ -154,6 +155,7 @@ public class VyuctovaniService implements IVyuctovaniService {
         vyuctovaniPolozka.setPolozkaTyp(polozkaTyp);
         vyuctovaniPolozka.setVyuctovani(vyuctovani);
         vyuctovaniPolozka.setUzivatel(prihlasenyUzivatel);
+        vyuctovaniPolozka.setZdroj("Předávací protokol: ");
 
         Cislo pocatecniStav = new Cislo();
         pocatecniStav.setMnozstvi(Double.valueOf(predavaciProtokolPolozka.getStavMeraku()));
@@ -168,5 +170,35 @@ public class VyuctovaniService implements IVyuctovaniService {
         vyuctovaniPolozkaService.postVyuctovaniPolozka(vyuctovaniPolozka);
       }
     }
+
+
+    // vypocet vyuctovani dane polozky
+    VyuctovaniPolozka vyuctovaniPolozka = new VyuctovaniPolozka();
+    vyuctovaniPolozka.setPolozkaTyp(polozkaTyp);
+    vyuctovaniPolozka.setVyuctovani(vyuctovani);
+    vyuctovaniPolozka.setUzivatel(prihlasenyUzivatel);
+    vyuctovaniPolozka.setZvyraznit(true);
+    vyuctovaniPolozka.setZdroj("Vypočteno: ");
+
+    Cislo pocatecniStav = new Cislo();
+    // TODO: zvolit mensi
+    pocatecniStav.setMnozstvi(Double.valueOf("123"));
+    pocatecniStav.setJednotka("kWh");
+    vyuctovaniPolozka.setPocatecniStav(pocatecniStav);
+    // TODO: zvolit, dle vyšší faktury
+    Cislo koncovyStav = new Cislo();
+    koncovyStav.setMnozstvi(Double.valueOf("456"));
+    koncovyStav.setJednotka("kWh");
+    vyuctovaniPolozka.setKoncovyStav(koncovyStav);
+    // TODO: dopočítat
+    Cislo spotreba = new Cislo();
+    spotreba.setMnozstvi(koncovyStav.getMnozstvi() - pocatecniStav.getMnozstvi());
+    spotreba.setJednotka(koncovyStav.getJednotka());
+    vyuctovaniPolozka.setSpotreba(spotreba);
+    Cislo naklady = new Cislo();
+    naklady.setMnozstvi(Double.valueOf("333"));
+    naklady.setJednotka("Kč");
+    vyuctovaniPolozka.setNaklady(naklady);
+    vyuctovaniPolozkaService.postVyuctovaniPolozka(vyuctovaniPolozka);
   }
 }

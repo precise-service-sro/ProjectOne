@@ -9,6 +9,12 @@ import lombok.Data;
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Cislo {
+
+  public Cislo() {
+    this.mnozstvi = 0.0;
+    this.jednotka = "";
+  }
+
   @JsonProperty("mnozstvi")
   @JsonInclude(JsonInclude.Include.NON_NULL)
   private Double mnozstvi;

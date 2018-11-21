@@ -38,14 +38,14 @@ public class VyuctovaniDetailBean extends AbstractBean {
   public void init() {
     log.trace("init()");
 
-    polozkaTypList = polozkaTypService.getPolozkaTypAll();
+    polozkaTypList = polozkaTypService.getPolozkaTypListByIdNemovitost(vyuctovani.getNemovitost().getId());
 
     if (vyuctovani == null) {
       log.error("Není vybráno žádné vyúčtování pro zobrazení detailů");
       return;
     }
 
-    radkyVyuctovani = vyuctovaniPolozkaService.getVyuctovaniPolozkaAll(vyuctovani.getId());
+    radkyVyuctovani = vyuctovaniPolozkaService.getVyuctovaniPolozkaZvyrazneneList(vyuctovani.getId());
 
     for (VyuctovaniPolozka vyuctovaniPolozka : radkyVyuctovani) {
       if (vyuctovaniPolozka.getPocatecniStav() == null) {
@@ -202,14 +202,14 @@ public class VyuctovaniDetailBean extends AbstractBean {
     return platbaNajemnehoCelkem;
   }
 
-  public List<VyuctovaniPolozka> getVyuctovaniPolozkaList() {
+  public List<VyuctovaniPolozka> getVyuctovaniPolozkaList(PolozkaTyp polozkaTyp) {
 
-    List<PolozkaTyp> polozkaTypList = polozkaTypService.getPolozkaTypListByIdNemovitost(vyuctovani.getNemovitost().getId());
+    //List<PolozkaTyp> polozkaTypList = polozkaTypService.getPolozkaTypListByIdNemovitost(vyuctovani.getNemovitost().getId());
 
     List<VyuctovaniPolozka> vyuctovaniPolozkaList = new ArrayList<>();
-    for (PolozkaTyp polozkaTyp : polozkaTypList) {
-      vyuctovaniPolozkaList.addAll(vyuctovaniPolozkaService.getVyuctovaniPolozkaList(polozkaTyp.getId(), vyuctovani.getId()));
-    }
+    //for (PolozkaTyp polozkaTyp : polozkaTypList) {
+    //}
+    vyuctovaniPolozkaList.addAll(vyuctovaniPolozkaService.getVyuctovaniPolozkaList(polozkaTyp.getId(), vyuctovani.getId()));
 
     return vyuctovaniPolozkaList;
   }

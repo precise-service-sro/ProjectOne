@@ -47,4 +47,12 @@ public class VyuctovaniPolozka extends BaseEntity {
   @JsonProperty("vyuctovani")
   @JsonInclude(JsonInclude.Include.NON_NULL)
   private Vyuctovani vyuctovani;
+
+  @JsonProperty("zdroj")
+  @JsonInclude(JsonInclude.Include.NON_NULL)
+  private String zdroj;
+
+  @JsonProperty("zvyraznit")
+  @JsonInclude(JsonInclude.Include.NON_NULL)
+  private Boolean zvyraznit;
 }

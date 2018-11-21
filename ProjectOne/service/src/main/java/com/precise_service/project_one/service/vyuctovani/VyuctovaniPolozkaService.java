@@ -54,6 +54,13 @@ public class VyuctovaniPolozkaService implements IVyuctovaniPolozkaService {
   }
 
   @Override
+  public List<VyuctovaniPolozka> getVyuctovaniPolozkaZvyrazneneList(String idVyuctovani) {
+    log.trace("getVyuctovaniPolozkaZvyrazneneList()");
+    return vyuctovaniPolozkaRepository.getVyuctovaniPolozkaZvyrazneneList(idVyuctovani);
+  }
+
+
+  @Override
   public void deleteVyuctovaniPolozka(String idVyuctovaniPolozka) {
     log.trace("deleteVyuctovaniPolozka()");
     vyuctovaniPolozkaRepository.deleteById(idVyuctovaniPolozka);

@@ -18,6 +18,8 @@ public interface IVyuctovaniPolozkaService {
 
   List<VyuctovaniPolozka> getVyuctovaniPolozkaAll(String idVyuctovani);
 
+  List<VyuctovaniPolozka> getVyuctovaniPolozkaZvyrazneneList(String idVyuctovani);
+
   void deleteVyuctovaniPolozka(String idVyuctovaniPolozka);
 
   void deleteVyuctovaniPolozkaAll();
