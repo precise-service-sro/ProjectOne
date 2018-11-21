@@ -49,28 +49,8 @@ public class VyuctovaniPrehledBean extends AbstractBean {
     nemovitostList = nemovitostService.getNemovitostAll(prihlasenyUzivatel.getId());
   }
 
-  public void onRowEdit(RowEditEvent event) {
-    log.trace("onRowEdit()");
-    Vyuctovani vyuctovani = (Vyuctovani) event.getObject();
-
-    vyuctovaniService.putVyuctovani(vyuctovani);
-
-    showInfoMessage("Uložena úprava řádky", vyuctovani.getNazev());
-  }
-
-  public void onRowCancel(RowEditEvent event) {
-    log.trace("onRowCancel()");
-    showInfoMessage("Zrušena úprava řádky", ((Vyuctovani) event.getObject()).getNazev());
-  }
-
-  public void showVyuctovaniDetailBean(Vyuctovani vyuctovani) throws IOException {
-    vyuctovaniDetailBean.setVyuctovani(vyuctovani);
-    Faces.getFlash().setRedirect(true);
-    Faces.redirect(VYUCTOVANI_DETAIL_URL);
-  }
-
-  public void addRow() {
-    log.trace("addRow()");
+  public void pridatVyuctovani() {
+    log.trace("pridatVyuctovani()");
 
     Vyuctovani vyuctovani = new Vyuctovani();
 
@@ -85,8 +65,8 @@ public class VyuctovaniPrehledBean extends AbstractBean {
     init();
   }
 
-  public void deleteRow(Vyuctovani deletedVyuctovani) {
-    log.trace("deleteRow()");
+  public void smazatVyuctovani(Vyuctovani deletedVyuctovani) {
+    log.trace("smazatVyuctovani()");
 
     if (deletedVyuctovani == null) {
       log.trace("deleted row is null");
@@ -95,7 +75,8 @@ public class VyuctovaniPrehledBean extends AbstractBean {
     log.trace("deleting row with: " + deletedVyuctovani.toString());
 
     vyuctovaniService.deleteVyuctovani(deletedVyuctovani.getId());
-    showInfoMessage("Smazáno", "Vyúčtování " + deletedVyuctovani.getNazev() + " bylo smazáno");
+    vyuctovaniPolozkaService.deleteVyuctovaniPolozkaAll(deletedVyuctovani.getId());
+    showInfoMessage("Smazáno", "Vyúčtování " + deletedVyuctovani.getId() + " bylo smazáno včetně všech jeho položek");
     init();
   }
 

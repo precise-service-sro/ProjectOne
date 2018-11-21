@@ -40,6 +40,7 @@
 
         <p:columnGroup type="header">
           <p:row>
+            <p:column headerText="Id:" style="width: 230px;" />
             <p:column headerText="Nemovitost" filterBy="#{predavaciProtokol.nemovitost.getIdentifikaceNemovitosti()}" filterMatchMode="contains"
                       style="width: 400px;" filterStyle="display:none" sortBy="#{predavaciProtokol.nemovitost.getIdentifikaceNemovitosti()}"/>
             <p:column headerText="Nájemník" filterBy="#{predavaciProtokol.najemnik.getCeleJmeno()}" filterMatchMode="contains" style="width: 200px;"
@@ -61,6 +62,10 @@
             </p:inputText>
           </p:outputPanel>
         </f:facet>
+
+        <p:column>
+          <h:outputText value="#{predavaciProtokol.id}"/>
+        </p:column>
 
         <p:column>
           <h:outputText value="#{predavaciProtokol.nemovitost.getIdentifikaceNemovitosti()}"

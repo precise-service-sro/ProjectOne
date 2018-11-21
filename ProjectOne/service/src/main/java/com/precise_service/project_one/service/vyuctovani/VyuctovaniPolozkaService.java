@@ -71,4 +71,13 @@ public class VyuctovaniPolozkaService implements IVyuctovaniPolozkaService {
     log.trace("deleteVyuctovaniPolozkaAll()");
     vyuctovaniPolozkaRepository.deleteAll();
   }
+
+  @Override
+  public void deleteVyuctovaniPolozkaAll(String idVyuctovani) {
+    log.trace("deleteVyuctovaniPolozkaAll()");
+    List<VyuctovaniPolozka> vyuctovaniPolozkaAll = vyuctovaniPolozkaRepository.getVyuctovaniPolozkaAll(idVyuctovani);
+    for (VyuctovaniPolozka vyuctovaniPolozka : vyuctovaniPolozkaAll) {
+      vyuctovaniPolozkaRepository.deleteById(vyuctovaniPolozka.getId());
+    }
+  }
 }

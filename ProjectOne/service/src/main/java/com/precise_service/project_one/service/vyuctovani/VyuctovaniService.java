@@ -123,8 +123,58 @@ public class VyuctovaniService implements IVyuctovaniService {
     return vyuctovani;
   }
 
-  private void vypocetVyuctovaniPolozka(PolozkaTyp polozkaTyp, Vyuctovani vyuctovani, Osoba prihlasenyUzivatel) {
-    log.trace("vypocetVyuctovaniPolozka()");
+  private VyuctovaniPolozka zpracovatPosledniVyuctovani(PolozkaTyp polozkaTyp, Vyuctovani vyuctovani, Osoba prihlasenyUzivatel) {
+    log.trace("zpracovatPosledniVyuctovani()");
+    // TODO: nalelezi posledniho vyuctovani a polozek (z minuleho zuctovaciho obdobi)
+    return null;
+  }
+
+  private VyuctovaniPolozka zpracovatPredavaciProtokol(PolozkaTyp polozkaTyp, Vyuctovani vyuctovani, Osoba prihlasenyUzivatel) {
+    log.trace("zpracovatPredavaciProtokol()");
+
+    PredavaciProtokol predavaciProtokol = vyuctovani.getPredavaciProtokol();
+    List<PredavaciProtokolPolozka> predavaciProtokolPolozkaAll = predavaciProtokolPolozkaService.getPredavaciProtokolPolozkaAll(predavaciProtokol.getId());
+    for (PredavaciProtokolPolozka predavaciProtokolPolozka : predavaciProtokolPolozkaAll) {
+
+      if (predavaciProtokolPolozka.getPolozkaTyp().getId().equals(polozkaTyp.getId())) {
+        VyuctovaniPolozka vyuctovaniPolozka = new VyuctovaniPolozka();
+        vyuctovaniPolozka.setPolozkaTyp(polozkaTyp);
+        vyuctovaniPolozka.setVyuctovani(vyuctovani);
+        vyuctovaniPolozka.setUzivatel(prihlasenyUzivatel);
+        vyuctovaniPolozka.setZdroj("Předávací protokol: ");
+        CasovyInterval zuctovaciObdobi = new CasovyInterval();
+        zuctovaciObdobi.setZacatek(predavaciProtokol.getDatumPodpisu());
+        zuctovaciObdobi.setKonec(new Date());
+        vyuctovaniPolozka.setZuctovaciObdobi(zuctovaciObdobi);
+
+        Cislo pocatecniStav = new Cislo();
+        pocatecniStav.setMnozstvi(Double.valueOf(predavaciProtokolPolozka.getStavMeraku()));
+        pocatecniStav.setJednotka(predavaciProtokolPolozka.getJednotka());
+        vyuctovaniPolozka.setPocatecniStav(pocatecniStav);
+        // TODO: zvolit, dle vyšší faktury
+        //vyuctovaniPolozka.setKoncovyStav(fakturaPolozka.getKoncovyStav());
+        // TODO: dopočítat
+        //vyuctovaniPolozka.setSpotreba(fakturaPolozka.getSpotreba());
+        //vyuctovaniPolozka.setNaklady(fakturaPolozka.getNaklady());
+
+        return vyuctovaniPolozkaService.postVyuctovaniPolozka(vyuctovaniPolozka);
+      }
+    }
+    return null;
+  }
+
+  private VyuctovaniPolozka zpracovatFaktury(PolozkaTyp polozkaTyp, Vyuctovani vyuctovani, Osoba prihlasenyUzivatel) {
+    log.trace("zpracovatFaktury()");
+    VyuctovaniPolozka prumernaVyuctovaniPolozkaDleFaktur = new VyuctovaniPolozka();
+    prumernaVyuctovaniPolozkaDleFaktur.setPolozkaTyp(polozkaTyp);
+    prumernaVyuctovaniPolozkaDleFaktur.setVyuctovani(vyuctovani);
+    prumernaVyuctovaniPolozkaDleFaktur.setUzivatel(prihlasenyUzivatel);
+    prumernaVyuctovaniPolozkaDleFaktur.setZdroj("Souhrn faktur: ");
+    prumernaVyuctovaniPolozkaDleFaktur.setPocatecniStav(new Cislo());
+    prumernaVyuctovaniPolozkaDleFaktur.setKoncovyStav(new Cislo());
+    prumernaVyuctovaniPolozkaDleFaktur.setSpotreba(new Cislo());
+    prumernaVyuctovaniPolozkaDleFaktur.setNaklady(new Cislo());
+    prumernaVyuctovaniPolozkaDleFaktur.setZuctovaciObdobi(new CasovyInterval());
 
     for (Faktura faktura : vyuctovani.getSeznamVychozichFaktur()) {
       List<FakturaPolozka> fakturaPolozkaAll = fakturaPolozkaService.getFakturaPolozkaAll(faktura.getId());
@@ -137,39 +187,55 @@ public class VyuctovaniService implements IVyuctovaniService {
           vyuctovaniPolozka.setUzivatel(prihlasenyUzivatel);
           vyuctovaniPolozka.setZdroj("Faktura: ");
 
+          vyuctovaniPolozka.setZuctovaciObdobi(faktura.getZuctovaciObdobi());
+          if (prumernaVyuctovaniPolozkaDleFaktur.getZuctovaciObdobi().getZacatek() == null || faktura.getZuctovaciObdobi().getZacatek().before(prumernaVyuctovaniPolozkaDleFaktur.getZuctovaciObdobi().getZacatek())) {
+            prumernaVyuctovaniPolozkaDleFaktur.getZuctovaciObdobi().setZacatek(faktura.getZuctovaciObdobi().getZacatek());
+          }
+          if (prumernaVyuctovaniPolozkaDleFaktur.getZuctovaciObdobi().getKonec() == null || prumernaVyuctovaniPolozkaDleFaktur.getZuctovaciObdobi().getKonec().before(faktura.getZuctovaciObdobi().getKonec())) {
+            prumernaVyuctovaniPolozkaDleFaktur.getZuctovaciObdobi().setKonec(faktura.getZuctovaciObdobi().getKonec());
+          }
+
           vyuctovaniPolozka.setPocatecniStav(fakturaPolozka.getPocatecniStav());
+          prumernaVyuctovaniPolozkaDleFaktur.getPocatecniStav().setMnozstvi(prumernaVyuctovaniPolozkaDleFaktur.getPocatecniStav().getMnozstvi() + fakturaPolozka.getPocatecniStav().getMnozstvi());
+          prumernaVyuctovaniPolozkaDleFaktur.getPocatecniStav().setJednotka(fakturaPolozka.getPocatecniStav().getJednotka());
+
           vyuctovaniPolozka.setKoncovyStav(fakturaPolozka.getKoncovyStav());
+          prumernaVyuctovaniPolozkaDleFaktur.getKoncovyStav().setMnozstvi(prumernaVyuctovaniPolozkaDleFaktur.getKoncovyStav().getMnozstvi() + fakturaPolozka.getKoncovyStav().getMnozstvi());
+          prumernaVyuctovaniPolozkaDleFaktur.getKoncovyStav().setJednotka(fakturaPolozka.getKoncovyStav().getJednotka());
+
           vyuctovaniPolozka.setSpotreba(fakturaPolozka.getSpotreba());
+          prumernaVyuctovaniPolozkaDleFaktur.getSpotreba().setMnozstvi(prumernaVyuctovaniPolozkaDleFaktur.getSpotreba().getMnozstvi() + fakturaPolozka.getSpotreba().getMnozstvi());
+          prumernaVyuctovaniPolozkaDleFaktur.getSpotreba().setJednotka(fakturaPolozka.getSpotreba().getJednotka());
+
           vyuctovaniPolozka.setNaklady(fakturaPolozka.getNaklady());
+          prumernaVyuctovaniPolozkaDleFaktur.getNaklady().setMnozstvi(prumernaVyuctovaniPolozkaDleFaktur.getNaklady().getMnozstvi() + fakturaPolozka.getNaklady().getMnozstvi());
+          prumernaVyuctovaniPolozkaDleFaktur.getNaklady().setJednotka(fakturaPolozka.getNaklady().getJednotka());
+
+          Cislo prumernaCenaZaJednotku = new Cislo();
+          prumernaCenaZaJednotku.setMnozstvi(vyuctovaniPolozka.getNaklady().getMnozstvi() / vyuctovaniPolozka.getSpotreba().getMnozstvi());
+          prumernaCenaZaJednotku.setJednotka(vyuctovaniPolozka.getNaklady().getJednotka());
+          vyuctovaniPolozka.setPrumernaCenaZaJednotku(prumernaCenaZaJednotku);
 
           vyuctovaniPolozkaService.postVyuctovaniPolozka(vyuctovaniPolozka);
         }
       }
     }
+    Cislo prumernaCenaZaJednotku = new Cislo();
+    prumernaCenaZaJednotku.setMnozstvi(prumernaVyuctovaniPolozkaDleFaktur.getNaklady().getMnozstvi() / prumernaVyuctovaniPolozkaDleFaktur.getSpotreba().getMnozstvi());
+    prumernaCenaZaJednotku.setJednotka(prumernaVyuctovaniPolozkaDleFaktur.getNaklady().getJednotka());
+    prumernaVyuctovaniPolozkaDleFaktur.setPrumernaCenaZaJednotku(prumernaCenaZaJednotku);
+    return vyuctovaniPolozkaService.postVyuctovaniPolozka(prumernaVyuctovaniPolozkaDleFaktur);
+  }
 
-    List<PredavaciProtokolPolozka> predavaciProtokolPolozkaAll = predavaciProtokolPolozkaService.getPredavaciProtokolPolozkaAll(vyuctovani.getPredavaciProtokol().getId());
-    for (PredavaciProtokolPolozka predavaciProtokolPolozka : predavaciProtokolPolozkaAll) {
+  private void vypocetVyuctovaniPolozka(PolozkaTyp polozkaTyp, Vyuctovani vyuctovani, Osoba prihlasenyUzivatel) {
+    log.trace("vypocetVyuctovaniPolozka()");
 
-      if (predavaciProtokolPolozka.getPolozkaTyp().getId().equals(polozkaTyp.getId())) {
-        VyuctovaniPolozka vyuctovaniPolozka = new VyuctovaniPolozka();
-        vyuctovaniPolozka.setPolozkaTyp(polozkaTyp);
-        vyuctovaniPolozka.setVyuctovani(vyuctovani);
-        vyuctovaniPolozka.setUzivatel(prihlasenyUzivatel);
-        vyuctovaniPolozka.setZdroj("Předávací protokol: ");
+    // vytahnuti a vygenerovani VyuctovaniPolozka z predavaciho protokolu (ale v pripade, ze u me nekde bydli delsi dobu, tak uz pro vyuctovani nezohlednuju predavaci protokol, ale posledni/predchozi vyuctovani)
+    VyuctovaniPolozka prumerPoslenihoVyuctovani = zpracovatPosledniVyuctovani(polozkaTyp, vyuctovani, prihlasenyUzivatel);
 
-        Cislo pocatecniStav = new Cislo();
-        pocatecniStav.setMnozstvi(Double.valueOf(predavaciProtokolPolozka.getStavMeraku()));
-        pocatecniStav.setJednotka(predavaciProtokolPolozka.getJednotka());
-        vyuctovaniPolozka.setPocatecniStav(pocatecniStav);
-        // TODO: zvolit, dle vyšší faktury
-        //vyuctovaniPolozka.setKoncovyStav(fakturaPolozka.getKoncovyStav());
-        // TODO: dopočítat
-        //vyuctovaniPolozka.setSpotreba(fakturaPolozka.getSpotreba());
-        //vyuctovaniPolozka.setNaklady(fakturaPolozka.getNaklady());
+    VyuctovaniPolozka prumerPredavacihoProtokolu = zpracovatPredavaciProtokol(polozkaTyp, vyuctovani, prihlasenyUzivatel);
 
-        vyuctovaniPolozkaService.postVyuctovaniPolozka(vyuctovaniPolozka);
-      }
-    }
+    VyuctovaniPolozka prumerFaktur = zpracovatFaktury(polozkaTyp, vyuctovani, prihlasenyUzivatel);
 
 
     // vypocet vyuctovani dane polozky
@@ -179,16 +245,23 @@ public class VyuctovaniService implements IVyuctovaniService {
     vyuctovaniPolozka.setUzivatel(prihlasenyUzivatel);
     vyuctovaniPolozka.setZvyraznit(true);
     vyuctovaniPolozka.setZdroj("Vypočteno: ");
+    vyuctovaniPolozka.setZuctovaciObdobi(vyuctovani.getZuctovaciObdobi());
 
     Cislo pocatecniStav = new Cislo();
-    // TODO: zvolit mensi
-    pocatecniStav.setMnozstvi(Double.valueOf("123"));
-    pocatecniStav.setJednotka("kWh");
+    // TODO: zvolit bud tu z predavaciho protokolu anebo z posledniho vyuctovani
+
+    List<PredavaciProtokolPolozka> predavaciProtokolPolozkaList = predavaciProtokolPolozkaService.getPredavaciProtokolPolozkaList(vyuctovani.getPredavaciProtokol().getId(), polozkaTyp.getId());
+
+    // TODO: udelat nejaky souhrnny radek
+    PredavaciProtokolPolozka predavaciProtokolPolozka = predavaciProtokolPolozkaList.get(0);
+
+    pocatecniStav.setMnozstvi(Double.valueOf(predavaciProtokolPolozka.getStavMeraku()));
+    pocatecniStav.setJednotka(predavaciProtokolPolozka.getJednotka());
     vyuctovaniPolozka.setPocatecniStav(pocatecniStav);
     // TODO: zvolit, dle vyšší faktury
     Cislo koncovyStav = new Cislo();
-    koncovyStav.setMnozstvi(Double.valueOf("456"));
-    koncovyStav.setJednotka("kWh");
+    koncovyStav.setMnozstvi(Double.valueOf("10000"));
+    koncovyStav.setJednotka(pocatecniStav.getJednotka());
     vyuctovaniPolozka.setKoncovyStav(koncovyStav);
     // TODO: dopočítat
     Cislo spotreba = new Cislo();
@@ -196,9 +269,15 @@ public class VyuctovaniService implements IVyuctovaniService {
     spotreba.setJednotka(koncovyStav.getJednotka());
     vyuctovaniPolozka.setSpotreba(spotreba);
     Cislo naklady = new Cislo();
-    naklady.setMnozstvi(Double.valueOf("333"));
-    naklady.setJednotka("Kč");
+    naklady.setMnozstvi(spotreba.getMnozstvi() * prumerFaktur.getPrumernaCenaZaJednotku().getMnozstvi());
+    naklady.setJednotka(prumerFaktur.getPrumernaCenaZaJednotku().getJednotka());
     vyuctovaniPolozka.setNaklady(naklady);
+
+    Cislo prumernaCenaZaJednotku = new Cislo();
+    prumernaCenaZaJednotku.setMnozstvi(prumerFaktur.getPrumernaCenaZaJednotku().getMnozstvi());
+    prumernaCenaZaJednotku.setJednotka(prumerFaktur.getPrumernaCenaZaJednotku().getJednotka());
+    vyuctovaniPolozka.setPrumernaCenaZaJednotku(prumernaCenaZaJednotku);
+
     vyuctovaniPolozkaService.postVyuctovaniPolozka(vyuctovaniPolozka);
   }
 }

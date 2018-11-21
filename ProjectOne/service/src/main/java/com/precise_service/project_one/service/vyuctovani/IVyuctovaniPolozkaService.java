@@ -23,4 +23,6 @@ public interface IVyuctovaniPolozkaService {
   void deleteVyuctovaniPolozka(String idVyuctovaniPolozka);
 
   void deleteVyuctovaniPolozkaAll();
+
+  void deleteVyuctovaniPolozkaAll(String idVyuctovani);
 }

@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.precise_service.project_one.entity.PolozkaTyp;
 import com.precise_service.project_one.entity.predavaci_protokol.PredavaciProtokolPolozka;
 import com.precise_service.project_one.repository.PredavaciProtokolPolozkaRepository;
 
@@ -40,6 +41,13 @@ public class PredavaciProtokolPolozkaService implements IPredavaciProtokolPolozk
     log.trace("getPredavaciProtokolPolozka()");
     return predavaciProtokolPolozkaRepository.findById(idPredavaciProtokolPolozka).get();
   }
+
+  @Override
+  public List<PredavaciProtokolPolozka> getPredavaciProtokolPolozkaList(String idPredavaciProtokol, String idPolozkaTyp) {
+    log.trace("getPredavaciProtokolPolozka()");
+    return predavaciProtokolPolozkaRepository.getPredavaciProtokolPolozkaList(idPredavaciProtokol, idPolozkaTyp);
+  }
+
 
   @Override
   public List<PredavaciProtokolPolozka> getPredavaciProtokolPolozkaAll() {

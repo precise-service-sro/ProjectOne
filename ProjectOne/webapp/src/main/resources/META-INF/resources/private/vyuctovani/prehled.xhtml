@@ -23,7 +23,7 @@
 
     <ui:define name="prehledPagePridavaciTlacitko">
       <p:commandButton value="Přidat prázdné vyúčtovaní" icon="ui-icon-circle-plus" process="@this" update="form :form:msgs"
-                       actionListener="#{vyuctovaniPrehledBean.addRow()}"/>
+                       actionListener="#{vyuctovaniPrehledBean.pridatVyuctovani()}"/>
       <p:commandButton value="Vygenerovat nové vyúčtovaní" icon="ui-icon-circle-plus" process="@this" update="form :form:msgs"
                        actionListener="#{routerBean.goToVyuctovaniGeneratorBean()}"/>
     </ui:define>
@@ -115,9 +115,9 @@
         </p:column>
 
         <p:column>
-          <p:commandButton icon="ui-icon-circle-zoomin" actionListener="#{vyuctovaniPrehledBean.showVyuctovaniDetailBean(vyuctovani)}"
+          <p:commandButton icon="ui-icon-circle-zoomin" actionListener="#{routerBean.goToVyuctovaniDetailBean(vyuctovani)}"
                            title="Upravit / Podrobnosti"/>
-          <p:commandButton update="@form :form:msgs" icon="ui-icon-circle-minus" actionListener="#{vyuctovaniPrehledBean.deleteRow(vyuctovani)}"
+          <p:commandButton update="form :form:msgs" icon="ui-icon-circle-minus" actionListener="#{vyuctovaniPrehledBean.smazatVyuctovani(vyuctovani)}"
                            title="Odebrat"/>
         </p:column>
 

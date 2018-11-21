@@ -55,4 +55,8 @@ public class VyuctovaniPolozka extends BaseEntity {
   @JsonProperty("zvyraznit")
   @JsonInclude(JsonInclude.Include.NON_NULL)
   private Boolean zvyraznit;
+
+  @JsonProperty("prumernaCenaZaJednotku")
+  @JsonInclude(JsonInclude.Include.NON_NULL)
+  private Cislo prumernaCenaZaJednotku;
 }

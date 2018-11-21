@@ -38,13 +38,21 @@
 
           <p:columnGroup type="header">
             <p:row>
-              <p:column headerText="Název"/>
-              <p:column headerText="Jednotka" style="width: 80px;"/>
-              <p:column headerText="Poč. stav" style="width: 100px;"/>
-              <p:column headerText="Kon. stav" style="width: 100px;"/>
-              <p:column headerText="Spotřeba" style="width: 100px;"/>
-              <p:column headerText="Náklady" style="width: 100px;"/>
-              <p:column headerText="Ovládání" colspan="2" style="width: 90px;"/>
+              <p:column headerText="Název" rowspan="2" style="width: 100%" />
+              <p:column headerText="Zúčtovací období" colspan="2" style="width: 300px;"/>
+              <p:column headerText="Spotřeba (#{polozkaTyp.jednotka})" colspan="3" style="width: 300px;"/>
+              <p:column headerText="Náklady"  colspan="2" style="width: 240px;"/>
+              <p:column headerText="Ovládání" rowspan="2" colspan="2" style="width: 90px;"/>
+            </p:row>
+            <p:row>
+              <p:column headerText="Začátek"/>
+              <p:column headerText="Konec"/>
+              <p:column headerText="Poč. stav"/>
+              <p:column headerText="Kon. stav"/>
+              <p:column headerText="Rozdíl"/>
+              <p:column headerText="Celkem"/>
+              <p:column headerText="Za jednotku"/>
+
             </p:row>
           </p:columnGroup>
 
@@ -65,16 +73,11 @@
           </p:column>
 
           <p:column style="text-align: center;">
-            <p:cellEditor>
-              <f:facet name="output">
-                <h:outputText value="#{vyuctovaniPolozka.polozkaTyp.jednotka}"/>
-              </f:facet>
-              <f:facet name="input">
-                <div style="text-align: left">
-                  <p:inputText id="jednotkaInput" value="#{vyuctovaniPolozka.polozkaTyp.jednotka}"/>
-                </div>
-              </f:facet>
-            </p:cellEditor>
+            <h:outputText value="#{dateFormatterBean.formatDate(vyuctovaniPolozka.zuctovaciObdobi.zacatek)}" />
+          </p:column>
+
+          <p:column style="text-align: center;">
+            <h:outputText value="#{dateFormatterBean.formatDate(vyuctovaniPolozka.zuctovaciObdobi.konec)}" />
           </p:column>
 
           <p:column style="text-align: right;">
@@ -123,6 +126,21 @@
               <f:facet name="input">
                 <div style="text-align: left">
                   <p:inputText id="nakladyInput" value="#{vyuctovaniPolozka.naklady.mnozstvi}"/>
+                </div>
+              </f:facet>
+            </p:cellEditor>
+          </p:column>
+
+          <p:column style="text-align: right">
+            <p:cellEditor>
+              <f:facet name="output">
+                <h:outputText value="#{vyuctovaniPolozka.prumernaCenaZaJednotku.mnozstvi}">
+                  <f:convertNumber pattern="#0.00 Kč"/>
+                </h:outputText>
+              </f:facet>
+              <f:facet name="input">
+                <div style="text-align: left">
+                  <p:inputText id="naklady2Input" value="#{vyuctovaniPolozka.prumernaCenaZaJednotku.mnozstvi}"/>
                 </div>
               </f:facet>
             </p:cellEditor>

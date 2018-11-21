@@ -12,4 +12,6 @@ public interface PredavaciProtokolPolozkaRepository extends MongoRepository<Pred
   @Query("{ 'predavaciProtokol.id' : ?0 }")
   List<PredavaciProtokolPolozka> getPredavaciProtokolPolozkaAll(String idPredavaciProtokol);
 
+  @Query("{ $and: [ { 'predavaciProtokol.id' : ?0 }, { 'polozkaTyp.id' : ?1 } ] }")
+  List<PredavaciProtokolPolozka> getPredavaciProtokolPolozkaList(String idPredavaciProtokol, String idPolozkaTyp);
 }
