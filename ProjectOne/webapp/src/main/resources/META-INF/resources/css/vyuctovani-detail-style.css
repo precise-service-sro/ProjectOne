@@ -32,3 +32,9 @@
 .vyuctovaniPaticka {
   text-align: center;
 }
+
+.noBorder .ui-widget-content {
+  border: 0px solid #a8a8a8;
+  background: #fff;
+  color: #4f4f4f;
+}

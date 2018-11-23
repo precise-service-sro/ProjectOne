@@ -43,7 +43,7 @@ public class VyuctovaniGeneratorBean extends AbstractBean {
 
     if (zuctovaciObdobi == null) {
       zuctovaciObdobi = new CasovyInterval();
-      zuctovaciObdobi.setZacatek(dateFormatterBean.parseDate("01-01-2017"));
+      zuctovaciObdobi.setZacatek(dateFormatterBean.parseDate("01-03-2017"));
       zuctovaciObdobi.setKonec(dateFormatterBean.parseDate("31-12-2017"));
     }
 

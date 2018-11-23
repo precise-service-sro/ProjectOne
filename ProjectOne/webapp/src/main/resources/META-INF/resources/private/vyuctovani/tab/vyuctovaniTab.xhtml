@@ -86,14 +86,17 @@
 
               <p:columnGroup type="header">
                 <p:row>
-                  <p:column headerText="Název služby" style="width: 150px;"/>
-                  <p:column headerText="Jednotka" style="width: 80px;"/>
-                  <p:column headerText="Poč. stav" style="width: 100px;"/>
-                  <p:column headerText="Kon. stav" style="width: 100px;"/>
-                  <p:column headerText="Spotřeba" style="width: 100px;"/>
-                  <p:column headerText="Náklady" style="width: 100px;"/>
-                  <p:column headerText="Ovládání" colspan="2" style="width: 90px;"/>
+                  <p:column headerText="Název služby" rowspan="2" style="width: 200px;"/>
+                  <p:column headerText="Stav" colspan="2" style="width: 200px;"/>
+                  <p:column headerText="Spotřeba" rowspan="2" colspan="1" style="width: 100px;"/>
+                  <p:column headerText="Jednotka" rowspan="2" style="width: 80px;"/>
+                  <p:column headerText="Náklady" rowspan="2" style="width: 150px;"/>
+                  <p:column headerText="Ovládání" rowspan="2" colspan="2" style="width: 90px;"/>
                   <p:column headerText="Smazat" style="width: 100%;"/>
+                </p:row>
+                <p:row>
+                  <p:column headerText="Počáteční" />
+                  <p:column headerText="Koncový" />
                 </p:row>
               </p:columnGroup>
 
@@ -106,19 +109,6 @@
                     <h:selectOneMenu value="#{polozka.polozkaTyp}" style="width:100%" converter="#{polozkaTypConverter}">
                       <f:selectItems value="#{vyuctovaniDetailBean.polozkaTypList}" var="polozkaTyp" itemLabel="#{polozkaTyp.nazev}" itemValue="#{polozkaTyp}"/>
                     </h:selectOneMenu>
-                  </f:facet>
-                </p:cellEditor>
-              </p:column>
-
-              <p:column style="text-align: center;">
-                <p:cellEditor>
-                  <f:facet name="output">
-                    <h:outputText value="#{polozka.polozkaTyp.jednotka}"/>
-                  </f:facet>
-                  <f:facet name="input">
-                    <div style="text-align: left">
-                      <p:inputText id="jednotkaInput" value="#{polozka.polozkaTyp.jednotka}"/>
-                    </div>
                   </f:facet>
                 </p:cellEditor>
               </p:column>
@@ -154,11 +144,23 @@
               </p:column>
 
               <p:column style="text-align: right">
-                <h:outputText value="#{polozka.spotreba.mnozstvi}">
+                <h:outputText value="#{polozka.celkovaSpotreba.mnozstvi}">
                   <f:convertNumber pattern="#0.00"/>
                 </h:outputText>
               </p:column>
 
+              <p:column style="text-align: center;">
+                <p:cellEditor>
+                  <f:facet name="output">
+                    <h:outputText value="#{polozka.polozkaTyp.jednotka}"/>
+                  </f:facet>
+                  <f:facet name="input">
+                    <div style="text-align: left">
+                      <p:inputText id="jednotkaInput" value="#{polozka.polozkaTyp.jednotka}"/>
+                    </div>
+                  </f:facet>
+                </p:cellEditor>
+              </p:column>
 
               <p:column style="text-align: right">
                 <p:cellEditor>

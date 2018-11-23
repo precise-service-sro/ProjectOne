@@ -21,6 +21,8 @@ public interface IFakturaPolozkaService {
 
   List<FakturaPolozka> getFakturaPolozkaAll(String idFaktura);
 
+  boolean existujeNaFakturePolozkaDanehoTypu(String idFaktura, String idPolozkaTyp);
+
   void deleteFakturaPolozka(String idFakturaPolozka);
 
   void deleteFakturaPolozkaAll();

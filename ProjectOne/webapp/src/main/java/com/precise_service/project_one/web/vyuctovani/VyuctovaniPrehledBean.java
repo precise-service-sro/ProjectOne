@@ -1,14 +1,11 @@
 package com.precise_service.project_one.web.vyuctovani;
 
-import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
 import javax.inject.Named;
 
-import org.omnifaces.util.Faces;
-import org.primefaces.event.RowEditEvent;
 import org.primefaces.event.SelectEvent;
 
 import com.precise_service.project_one.entity.CasovyInterval;
@@ -19,8 +16,6 @@ import com.precise_service.project_one.web.AbstractBean;
 
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
-
-import static com.precise_service.project_one.web.URL_CONST.VYUCTOVANI_DETAIL_URL;
 
 @Slf4j
 @Data
@@ -55,10 +50,17 @@ public class VyuctovaniPrehledBean extends AbstractBean {
     Vyuctovani vyuctovani = new Vyuctovani();
 
     vyuctovani.setNazev("Manuáně vytvořené vyúčtování ze dne: " + LocalDateTime.now().toString());
-    vyuctovani.setNemovitost(null);
     vyuctovani.setZuctovaciObdobi(new CasovyInterval());
     vyuctovani.setDatumVystaveni(new Date());
-    vyuctovani.setUzivatel(loginBean.getPrihlasenyUzivatel());
+    Osoba prihlasenyUzivatel = loginBean.getPrihlasenyUzivatel();
+    vyuctovani.setUzivatel(prihlasenyUzivatel);
+
+    List<Nemovitost> nemovitostiPrihlasenehoUzivatele = nemovitostService.getNemovitostAll(prihlasenyUzivatel.getId());
+    if (nemovitostiPrihlasenehoUzivatele.isEmpty()) {
+      showInfoMessage("Chyba", "Není povoleno vytvářet vyúčtování bez existující nemovitosti !!!");
+      return;
+    }
+    vyuctovani.setNemovitost(nemovitostiPrihlasenehoUzivatele.get(0));
 
     Vyuctovani saved = vyuctovaniService.postVyuctovani(vyuctovani);
     showInfoMessage("Přidáno", "Přidáno nové vyúčtování (" + saved.getId() + ")");

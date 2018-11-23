@@ -40,14 +40,13 @@ public class FakturaDetailBean extends AbstractBean {
   public void init() {
     log.trace("init()");
 
-    polozkaTypList = polozkaTypService.getPolozkaTypAll();
-    nemovitostList = nemovitostService.getNemovitostAll(loginBean.getPrihlasenyUzivatel().getId());
-
     if (faktura == null) {
-      faktura = fakturaService.getFaktura(loginBean.getPrihlasenyUzivatel().getId());
       log.error("Není vybraná žádná faktura k zobrazení detailu");
       return;
     }
+
+    polozkaTypList = polozkaTypService.getPolozkaTypListByIdNemovitost(faktura.getNemovitost().getId());
+    nemovitostList = nemovitostService.getNemovitostAll(loginBean.getPrihlasenyUzivatel().getId());
 
     fakturaPolozkaList = fakturaPolozkaService.getFakturaPolozkaAll(faktura.getId());
 

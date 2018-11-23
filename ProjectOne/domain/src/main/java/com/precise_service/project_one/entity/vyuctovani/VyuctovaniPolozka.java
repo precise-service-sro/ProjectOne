@@ -1,5 +1,7 @@
 package com.precise_service.project_one.entity.vyuctovani;
 
+import javax.validation.constraints.NotNull;
+
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -23,6 +25,7 @@ public class VyuctovaniPolozka extends BaseEntity {
   @JsonInclude(JsonInclude.Include.NON_NULL)
   private PolozkaTyp polozkaTyp;
 
+  @NotNull
   @JsonProperty("zuctovaciObdobi")
   @JsonInclude(JsonInclude.Include.NON_NULL)
   private CasovyInterval zuctovaciObdobi;
@@ -35,9 +38,13 @@ public class VyuctovaniPolozka extends BaseEntity {
   @JsonInclude(JsonInclude.Include.NON_NULL)
   private Cislo koncovyStav;
 
-  @JsonProperty("spotreba")
+  @JsonProperty("celkovaSpotreba")
   @JsonInclude(JsonInclude.Include.NON_NULL)
-  private Cislo spotreba;
+  private Cislo celkovaSpotreba;
+
+  @JsonProperty("vyuctovatelnaSpotreba")
+  @JsonInclude(JsonInclude.Include.NON_NULL)
+  private Cislo vyuctovatelnaSpotreba;
 
   @JsonProperty("naklady")
   @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -59,4 +66,12 @@ public class VyuctovaniPolozka extends BaseEntity {
   @JsonProperty("prumernaCenaZaJednotku")
   @JsonInclude(JsonInclude.Include.NON_NULL)
   private Cislo prumernaCenaZaJednotku;
+
+  @JsonProperty("prumernaSpotrebaZaDen")
+  @JsonInclude(JsonInclude.Include.NON_NULL)
+  private Cislo prumernaSpotrebaZaDen;
+
+  @JsonProperty("pocetVyuctovanychDnu")
+  @JsonInclude(JsonInclude.Include.NON_NULL)
+  private int pocetVyuctovanychDnu;
 }

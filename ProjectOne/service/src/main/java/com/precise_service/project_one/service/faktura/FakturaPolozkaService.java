@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 import com.precise_service.project_one.entity.faktura.Faktura;
 import com.precise_service.project_one.entity.faktura.FakturaPolozka;
@@ -69,6 +70,12 @@ public class FakturaPolozkaService implements IFakturaPolozkaService {
   public List<FakturaPolozka> getFakturaPolozkaAll(String idFaktura) {
     log.trace("getFakturaPolozkaAll()");
     return fakturaPolozkaRepository.getFakturaPolozkaAll(idFaktura);
+  }
+
+  @Override
+  public boolean existujeNaFakturePolozkaDanehoTypu(String idFaktura, String idPolozkaTyp) {
+    log.trace("existujeNaFakturePolozkaDanehoTypu()");
+    return (!fakturaPolozkaRepository.findFakturaPolozkaList(idFaktura, idPolozkaTyp).isEmpty());
   }
 
   @Override

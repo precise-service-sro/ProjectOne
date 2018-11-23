@@ -9,6 +9,7 @@ import javax.inject.Named;
 
 import org.primefaces.event.RowEditEvent;
 
+import com.precise_service.project_one.commons.DateFormatter;
 import com.precise_service.project_one.entity.Cislo;
 import com.precise_service.project_one.entity.NajemniSmlouva;
 import com.precise_service.project_one.entity.PolozkaTyp;
@@ -38,51 +39,13 @@ public class VyuctovaniDetailBean extends AbstractBean {
   public void init() {
     log.trace("init()");
 
-    polozkaTypList = polozkaTypService.getPolozkaTypListByIdNemovitost(vyuctovani.getNemovitost().getId());
-
     if (vyuctovani == null) {
       log.error("Není vybráno žádné vyúčtování pro zobrazení detailů");
       return;
     }
 
     radkyVyuctovani = vyuctovaniPolozkaService.getVyuctovaniPolozkaZvyrazneneList(vyuctovani.getId());
-
-    for (VyuctovaniPolozka vyuctovaniPolozka : radkyVyuctovani) {
-      if (vyuctovaniPolozka.getPocatecniStav() == null) {
-        Cislo pocatecniStav = new Cislo();
-        pocatecniStav.setMnozstvi(0.0);
-        pocatecniStav.setJednotka("ks");
-        vyuctovaniPolozka.setPocatecniStav(pocatecniStav);
-
-        if (vyuctovaniPolozka.getKoncovyStav() == null) {
-          Cislo koncovyStav = new Cislo();
-          koncovyStav.setMnozstvi(1.0);
-          koncovyStav.setJednotka(pocatecniStav.getJednotka());
-          vyuctovaniPolozka.setKoncovyStav(koncovyStav);
-        }
-      }
-
-      if (vyuctovaniPolozka.getKoncovyStav() == null) {
-        Cislo koncovyStav = new Cislo();
-        koncovyStav.setMnozstvi(0.0);
-        koncovyStav.setJednotka(vyuctovaniPolozka.getPocatecniStav().getJednotka());
-        vyuctovaniPolozka.setKoncovyStav(koncovyStav);
-      }
-
-      Cislo spotreba = new Cislo();
-      spotreba.setMnozstvi(vyuctovaniPolozka.getKoncovyStav().getMnozstvi() - vyuctovaniPolozka.getPocatecniStav().getMnozstvi());
-      spotreba.setJednotka(vyuctovaniPolozka.getKoncovyStav().getJednotka());
-      vyuctovaniPolozka.setSpotreba(spotreba);
-
-      if (vyuctovaniPolozka.getNaklady() == null) {
-        Cislo zalohy = new Cislo();
-        zalohy.setMnozstvi(0.0);
-        zalohy.setJednotka("Kč");
-        vyuctovaniPolozka.setNaklady(zalohy);
-      }
-
-      vyuctovaniPolozkaService.putVyuctovaniPolozka(vyuctovaniPolozka);
-    }
+    polozkaTypList = polozkaTypService.getPolozkaTypListByIdNemovitost(vyuctovani.getNemovitost().getId());
 
     spocitatSoucty();
   }
@@ -160,25 +123,29 @@ public class VyuctovaniDetailBean extends AbstractBean {
   public List<PlatbaNajemneho> getPlatbaNajemnehoList(){
     List<PlatbaNajemneho> platbaNajemnehoList = new ArrayList<>();
 
-    PlatbaNajemneho platbaNajemneho1 = new PlatbaNajemneho();
-    platbaNajemneho1.setDatumPlatby(new Date());
-    Cislo platba = new Cislo();
-    platba.setMnozstvi(123.0);
-    platba.setJednotka("Kč");
-    platbaNajemneho1.setPlatba(platba);
-    platbaNajemneho1.setNajemnik(osobaService.getOsoba("5bdb0c7b4f0e8eb71860baab"));
-    platbaNajemnehoList.add(platbaNajemneho1);
-
-    PlatbaNajemneho platbaNajemneho2 = new PlatbaNajemneho();
-    platbaNajemneho2.setDatumPlatby(new Date());
-    Cislo platba2 = new Cislo();
-    platba2.setMnozstvi(456.0);
-    platba2.setJednotka("Kč");
-    platbaNajemneho2.setPlatba(platba2);
-    platbaNajemneho2.setNajemnik(osobaService.getOsoba("5bdb0c7b4f0e8eb71860baab"));
-    platbaNajemnehoList.add(platbaNajemneho2);
+    platbaNajemnehoList.add(vytvoritPlatbaNajemneho(dateFormatterBean.parseDate("27-02-2017")));
+    platbaNajemnehoList.add(vytvoritPlatbaNajemneho(dateFormatterBean.parseDate("16-03-2017")));
+    platbaNajemnehoList.add(vytvoritPlatbaNajemneho(dateFormatterBean.parseDate("18-04-2017")));
+    platbaNajemnehoList.add(vytvoritPlatbaNajemneho(dateFormatterBean.parseDate("16-05-2017")));
+    platbaNajemnehoList.add(vytvoritPlatbaNajemneho(dateFormatterBean.parseDate("26-06-2017")));
+    platbaNajemnehoList.add(vytvoritPlatbaNajemneho(dateFormatterBean.parseDate("20-07-2017")));
+    platbaNajemnehoList.add(vytvoritPlatbaNajemneho(dateFormatterBean.parseDate("17-08-2017")));
+    platbaNajemnehoList.add(vytvoritPlatbaNajemneho(dateFormatterBean.parseDate("14-09-2017")));
+    platbaNajemnehoList.add(vytvoritPlatbaNajemneho(dateFormatterBean.parseDate("20-10-2017")));
+    platbaNajemnehoList.add(vytvoritPlatbaNajemneho(dateFormatterBean.parseDate("20-11-2017")));
 
     return platbaNajemnehoList;
+  }
+
+  private PlatbaNajemneho vytvoritPlatbaNajemneho(Date datumPlatby) {
+    PlatbaNajemneho platbaNajemneho = new PlatbaNajemneho();
+    platbaNajemneho.setDatumPlatby(datumPlatby);
+    Cislo platba = new Cislo();
+    platba.setMnozstvi(2800.0);
+    platba.setJednotka("Kč");
+    platbaNajemneho.setPlatba(platba);
+    platbaNajemneho.setNajemnik(osobaService.getOsoba("5bdb0c7b4f0e8eb71860baab"));
+    return platbaNajemneho;
   }
 
   @Data

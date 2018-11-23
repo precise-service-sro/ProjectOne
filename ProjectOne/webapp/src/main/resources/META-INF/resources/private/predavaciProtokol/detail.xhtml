@@ -55,7 +55,7 @@
     </ui:define>
 
     <ui:define name="detailPagePridavaciTlacitko">
-      <p:commandButton value="Přidat" icon="ui-icon-circle-plus" process="@this" update="form :form:msgs"
+      <p:commandButton value="Přidat" icon="ui-icon-circle-plus" process="@this" update="form predavaciProtokolPolozkaDataTable :form:msgs"
                        actionListener="#{predavaciProtokolDetailBean.addRow()}"/>
     </ui:define>
 
@@ -66,14 +66,13 @@
                    value="#{predavaciProtokolDetailBean.predavaciProtokolPolozkaList}"
                    sortBy="#{1}"
                    editable="true"
-                   rowIndexVar="index"
                    rendered="#{not empty predavaciProtokolDetailBean.predavaciProtokolPolozkaList}"
                    emptyMessage="Nebyly nalezeny žádné položky předávacího protokolu"
                    filteredValue="#{predavaciProtokolDetailBean.filtrovanyPredavaciProtokolPolozkaList}"
       >
 
-        <p:ajax event="rowEdit" listener="#{predavaciProtokolDetailBean.onRowEdit}" update=":form:msgs"/>
-        <p:ajax event="rowEditCancel" listener="#{predavaciProtokolDetailBean.onRowCancel}" update=":form:msgs"/>
+        <p:ajax event="rowEdit" listener="#{predavaciProtokolDetailBean.onRowEdit}" update="predavaciProtokolPolozkaDataTable :form:msgs"/>
+        <p:ajax event="rowEditCancel" listener="#{predavaciProtokolDetailBean.onRowCancel}" update="predavaciProtokolPolozkaDataTable :form:msgs"/>
 
         <p:columnGroup type="header">
           <p:row>

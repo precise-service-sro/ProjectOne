@@ -46,6 +46,7 @@ public class PredavaciProtokolDetailBean extends AbstractBean {
     Osoba prihlasenyUzivatel = loginBean.getPrihlasenyUzivatel();
     nemovitostList = nemovitostService.getNemovitostAll(prihlasenyUzivatel.getId());
     osobaList = osobaService.getOsobaAll(prihlasenyUzivatel.getId());
+    filtrovanyPredavaciProtokolPolozkaList = null;
   }
 
   public void onRowEdit(RowEditEvent event) {

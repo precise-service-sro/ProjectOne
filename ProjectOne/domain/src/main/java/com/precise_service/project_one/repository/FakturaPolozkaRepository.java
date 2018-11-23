@@ -12,4 +12,6 @@ public interface FakturaPolozkaRepository extends MongoRepository<FakturaPolozka
   @Query("{ 'faktura.id' : ?0 }")
   List<FakturaPolozka> getFakturaPolozkaAll(String idFaktura);
 
+  @Query("{ $and: [ { 'faktura.id' : ?0 }, { 'polozkaTyp.id' : ?1 } ] }")
+  List<FakturaPolozka> findFakturaPolozkaList(String idFaktura, String idPolozkaTyp);
 }

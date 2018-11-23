@@ -103,8 +103,8 @@
                    filteredValue="#{fakturaDetailBean.filtrovanyFakturaPolozkaList}"
       >
 
-        <p:ajax event="rowEdit" listener="#{fakturaDetailBean.onRowEdit}" update="form :form:msgs"/>
-        <p:ajax event="rowEditCancel" listener="#{fakturaDetailBean.onRowCancel}" update=":form:msgs"/>
+        <p:ajax event="rowEdit" listener="#{fakturaDetailBean.onRowEdit}" update="fakturaPolozkaDataTable :form:msgs"/>
+        <p:ajax event="rowEditCancel" listener="#{fakturaDetailBean.onRowCancel}" update="fakturaPolozkaDataTable :form:msgs"/>
 
         <p:columnGroup type="header">
           <p:row>
