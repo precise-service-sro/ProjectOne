@@ -22,8 +22,8 @@
     </ui:define>
 
     <ui:define name="prehledPagePridavaciTlacitko">
-      <p:commandButton value="Přidat" icon="ui-icon-circle-plus" process="@this" update="form :form:msgs"
-                       actionListener="#{platbaNajemnehoPrehledBean.addRow()}"/>
+      <p:commandButton value="Přidat platbu nájemného" icon="ui-icon-circle-plus" process="@this" update="form :form:msgs"
+                       actionListener="#{platbaNajemnehoPrehledBean.pridatPlatbaNajemneho()}"/>
     </ui:define>
 
     <ui:define name="prehledPageDataTable">
@@ -57,9 +57,15 @@
             <p:column headerText="Příjemce"
                       filterBy="#{platbaNajemneho.prijemce.getCeleJmeno()}"
                       filterMatchMode="contains"
-                      style="width: 100%;"
+                      style="width: 200px;"
                       filterStyle="display:none"
                       sortBy="#{platbaNajemneho.prijemce.getCeleJmeno()}"/>
+            <p:column headerText="Částka"
+                      filterBy="#{platbaNajemneho.castka.mnozstvi}"
+                      filterMatchMode="contains"
+                      style="width: 100%;"
+                      filterStyle="display:none"
+                      sortBy="#{platbaNajemneho.castka.mnozstvi}"/>
             <p:column headerText="Ovládání"
                       colspan="1"
                       rowspan="2"
@@ -91,6 +97,12 @@
 
         <p:column>
           <h:outputText value="#{platbaNajemneho.prijemce.getCeleJmeno()}"/>
+        </p:column>
+
+        <p:column style="text-align: right;">
+          <h:outputText value="#{platbaNajemneho.castka.mnozstvi}">
+            <f:convertNumber type="currency" pattern="#0.00"/>
+          </h:outputText>&nbsp;<h:outputText value="#{platbaNajemneho.castka.jednotka}"/>
         </p:column>
 
         <p:column>

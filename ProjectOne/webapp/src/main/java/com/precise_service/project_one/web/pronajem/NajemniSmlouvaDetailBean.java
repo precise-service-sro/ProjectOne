@@ -14,6 +14,7 @@ import com.precise_service.project_one.entity.PolozkaTyp;
 import com.precise_service.project_one.entity.faktura.Faktura;
 import com.precise_service.project_one.entity.faktura.FakturaPolozka;
 import com.precise_service.project_one.entity.nemovitost.Nemovitost;
+import com.precise_service.project_one.entity.pronajem.NajemniSmlouva;
 import com.precise_service.project_one.web.AbstractBean;
 
 import lombok.Data;
@@ -24,6 +25,7 @@ import lombok.extern.slf4j.Slf4j;
 @Named
 public class NajemniSmlouvaDetailBean extends AbstractBean {
 
+  private NajemniSmlouva najemniSmlouva;
   private List<Nemovitost> nemovitostList;
   private Faktura faktura;
   private List<PolozkaTyp> polozkaTypList;

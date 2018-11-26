@@ -9,6 +9,8 @@ import org.omnifaces.util.Faces;
 import com.precise_service.project_one.entity.faktura.Faktura;
 import com.precise_service.project_one.entity.nemovitost.Nemovitost;
 import com.precise_service.project_one.entity.osoba.Osoba;
+import com.precise_service.project_one.entity.pronajem.NajemniSmlouva;
+import com.precise_service.project_one.entity.pronajem.PlatbaNajemneho;
 import com.precise_service.project_one.entity.pronajem.PredavaciProtokol;
 import com.precise_service.project_one.entity.pronajem.Vyuctovani;
 import com.precise_service.project_one.web.AbstractBean;
@@ -18,10 +20,14 @@ import lombok.extern.slf4j.Slf4j;
 
 import static com.precise_service.project_one.web.URL_CONST.FAKTURA_DETAIL_URL;
 import static com.precise_service.project_one.web.URL_CONST.FAKTURA_PREHLED_URL;
+import static com.precise_service.project_one.web.URL_CONST.NAJEMNI_SMLOUVA_DETAIL_URL;
+import static com.precise_service.project_one.web.URL_CONST.NAJEMNI_SMLOUVA_PREHLED_URL;
 import static com.precise_service.project_one.web.URL_CONST.NEMOVITOST_DETAIL_URL;
 import static com.precise_service.project_one.web.URL_CONST.NEMOVITOST_PREHLED_URL;
 import static com.precise_service.project_one.web.URL_CONST.OSOBA_DETAIL_URL;
 import static com.precise_service.project_one.web.URL_CONST.OSOBA_PREHLED_URL;
+import static com.precise_service.project_one.web.URL_CONST.PLATBA_NAJEMNEHO_DETAIL_URL;
+import static com.precise_service.project_one.web.URL_CONST.PLATBA_NAJEMNEHO_PREHLED_URL;
 import static com.precise_service.project_one.web.URL_CONST.PREDAVACI_PROTOKOL_DETAIL_URL;
 import static com.precise_service.project_one.web.URL_CONST.PREDAVACI_PROTOKOL_PREHLED_URL;
 import static com.precise_service.project_one.web.URL_CONST.VYUCTOVANI_DETAIL_URL;
@@ -59,6 +65,19 @@ public class RouterBean extends AbstractBean {
     Faces.redirect(NEMOVITOST_DETAIL_URL);
   }
 
+  public void goToNajemniSmlouvaPrehledBean() throws IOException {
+    log.trace("goToNajemniSmlouvaPrehledBean()");
+    Faces.getFlash().setRedirect(true);
+    Faces.redirect(NAJEMNI_SMLOUVA_PREHLED_URL);
+  }
+
+  public void goToNajemniSmlouvaDetailBean(NajemniSmlouva najemniSmlouva) throws IOException {
+    log.trace("goToNemovitostDetailBean()");
+    najemniSmlouvaDetailBean.setNajemniSmlouva(najemniSmlouva);
+    Faces.getFlash().setRedirect(true);
+    Faces.redirect(NAJEMNI_SMLOUVA_DETAIL_URL);
+  }
+
   public void goToOsobaPrehledBean() throws IOException {
     log.trace("goToOsobaPrehledBean()");
     Faces.getFlash().setRedirect(true);
@@ -83,6 +102,19 @@ public class RouterBean extends AbstractBean {
     predavaciProtokolDetailBean.setPredavaciProtokol(predavaciProtokol);
     Faces.getFlash().setRedirect(true);
     Faces.redirect(PREDAVACI_PROTOKOL_DETAIL_URL);
+  }
+
+  public void goToPlatbaNajemnehoPrehledBean() throws IOException {
+    log.trace("goToPlatbaNajemnehoPrehledBean()");
+    Faces.getFlash().setRedirect(true);
+    Faces.redirect(PLATBA_NAJEMNEHO_PREHLED_URL);
+  }
+
+  public void goToPlatbaNajemnehoDetailBean(PlatbaNajemneho platbaNajemneho) throws IOException {
+    log.trace("goToPlatbaNajemnehoDetailBean()");
+    platbaNajemnehoDetailBean.setPlatbaNajemneho(platbaNajemneho);
+    Faces.getFlash().setRedirect(true);
+    Faces.redirect(PLATBA_NAJEMNEHO_DETAIL_URL);
   }
 
   public void goToVyuctovaniPrehledBean() throws IOException {

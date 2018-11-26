@@ -9,12 +9,17 @@ public class URL_CONST {
   public static final String NEMOVITOST_DETAIL_URL = "/private/nemovitost/detail.xhtml";
   public static final String NEMOVITOST_PREHLED_URL = "/private/nemovitost/prehled.xhtml";
 
+  public static final String NAJEMNI_SMLOUVA_PREHLED_URL = "/private/najemniSmlouva/prehled.xhtml";
+  public static final String NAJEMNI_SMLOUVA_DETAIL_URL = "/private/najemniSmlouva/detail.xhtml";
 
   public static final String OSOBA_DETAIL_URL = "/private/osoba/detail.xhtml";
   public static final String OSOBA_PREHLED_URL = "/private/osoba/prehled.xhtml";
 
   public static final String PREDAVACI_PROTOKOL_DETAIL_URL = "/private/predavaciProtokol/detail.xhtml";
   public static final String PREDAVACI_PROTOKOL_PREHLED_URL = "/private/predavaciProtokol/prehled.xhtml";
+
+  public static final String PLATBA_NAJEMNEHO_PREHLED_URL = "/private/platbaNajemneho/prehled.xhtml";
+  public static final String PLATBA_NAJEMNEHO_DETAIL_URL = "/private/platbaNajemneho/detail.xhtml";
 
   public static final String VYUCTOVANI_DETAIL_URL = "/private/vyuctovani/detail.xhtml";
   public static final String VYUCTOVANI_PREHLED_URL = "/private/vyuctovani/prehled.xhtml";

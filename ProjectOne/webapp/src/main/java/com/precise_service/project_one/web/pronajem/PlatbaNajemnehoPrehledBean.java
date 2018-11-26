@@ -20,8 +20,8 @@ public class PlatbaNajemnehoPrehledBean extends AbstractBean {
   private CasovyInterval zuctovaciObdobi;
   private List<PlatbaNajemneho> platbaNajemnehoList;
   private List<PlatbaNajemneho> filtrovanyPlatbaNajemnehoList;
-  private int fakturaListSize;
-  private int filtrovanyFakturaListSize;
+  private int platbaNajemnehoListSize;
+  private int filtrovanyPlatbaNajemnehoListSize;
 
   public void init() {
     Osoba prihlasenyUzivatel = loginBean.getPrihlasenyUzivatel();
@@ -66,7 +66,7 @@ public class PlatbaNajemnehoPrehledBean extends AbstractBean {
 
   public int getFiltrovanyPlatbaNajemnehoListSize() {
     if (filtrovanyPlatbaNajemnehoList == null) {
-      return getFakturaListSize();
+      return this.getPlatbaNajemnehoListSize();
     }
     return filtrovanyPlatbaNajemnehoList.size();
   }

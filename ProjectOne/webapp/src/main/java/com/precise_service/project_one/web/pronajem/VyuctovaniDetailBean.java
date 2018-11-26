@@ -119,32 +119,8 @@ public class VyuctovaniDetailBean extends AbstractBean {
   }
 
   public List<PlatbaNajemneho> getPlatbaNajemnehoList(){
-    List<PlatbaNajemneho> platbaNajemnehoList = new ArrayList<>();
-
-    platbaNajemnehoList.add(vytvoritPlatbaNajemneho(dateFormatterBean.parseDate("27-02-2017")));
-    platbaNajemnehoList.add(vytvoritPlatbaNajemneho(dateFormatterBean.parseDate("16-03-2017")));
-    platbaNajemnehoList.add(vytvoritPlatbaNajemneho(dateFormatterBean.parseDate("18-04-2017")));
-    platbaNajemnehoList.add(vytvoritPlatbaNajemneho(dateFormatterBean.parseDate("16-05-2017")));
-    platbaNajemnehoList.add(vytvoritPlatbaNajemneho(dateFormatterBean.parseDate("26-06-2017")));
-    platbaNajemnehoList.add(vytvoritPlatbaNajemneho(dateFormatterBean.parseDate("20-07-2017")));
-    platbaNajemnehoList.add(vytvoritPlatbaNajemneho(dateFormatterBean.parseDate("17-08-2017")));
-    platbaNajemnehoList.add(vytvoritPlatbaNajemneho(dateFormatterBean.parseDate("14-09-2017")));
-    platbaNajemnehoList.add(vytvoritPlatbaNajemneho(dateFormatterBean.parseDate("20-10-2017")));
-    platbaNajemnehoList.add(vytvoritPlatbaNajemneho(dateFormatterBean.parseDate("20-11-2017")));
-
-    return platbaNajemnehoList;
-  }
-
-  private PlatbaNajemneho vytvoritPlatbaNajemneho(Date datumPlatby) {
-    PlatbaNajemneho platbaNajemneho = new PlatbaNajemneho();
-    platbaNajemneho.setDatumPlatby(datumPlatby);
-    Cislo castka = new Cislo();
-    castka.setMnozstvi(2800.0);
-    castka.setJednotka("Kč");
-    platbaNajemneho.setCastka(castka);
-    platbaNajemneho.setOdesilatel(osobaService.getOsoba("5bdb0c7b4f0e8eb71860baab"));
-    platbaNajemneho.setPrijemce(loginBean.getPrihlasenyUzivatel());
-    return platbaNajemneho;
+    // TODO: pridelat filtrovani dle nemovitosti, najemni smlouvy, lidi atd
+    return platbaNajemnehoService.getPlatbaNajemnehoAll();
   }
 
   public Cislo getPlatbaNajemnehoCelkem() {

@@ -26,6 +26,8 @@ import com.precise_service.project_one.web.faktura.FakturaDetailBean;
 import com.precise_service.project_one.web.login.LoginBean;
 import com.precise_service.project_one.web.nemovitost.NemovitostDetailBean;
 import com.precise_service.project_one.web.osoba.OsobaDetailBean;
+import com.precise_service.project_one.web.pronajem.NajemniSmlouvaDetailBean;
+import com.precise_service.project_one.web.pronajem.PlatbaNajemnehoDetailBean;
 import com.precise_service.project_one.web.pronajem.PredavaciProtokolDetailBean;
 import com.precise_service.project_one.web.pronajem.VyuctovaniDetailBean;
 
@@ -59,8 +61,10 @@ public abstract class AbstractBean implements Serializable {
   @Autowired protected FakturaDetailBean fakturaDetailBean;
   @Autowired protected LoginBean loginBean;
   @Autowired protected NemovitostDetailBean nemovitostDetailBean;
+  @Autowired protected NajemniSmlouvaDetailBean najemniSmlouvaDetailBean;
   @Autowired protected OsobaDetailBean osobaDetailBean;
   @Autowired protected PredavaciProtokolDetailBean predavaciProtokolDetailBean;
+  @Autowired protected PlatbaNajemnehoDetailBean platbaNajemnehoDetailBean;
   @Autowired protected RouterBean routerBean;
   @Autowired protected VyuctovaniDetailBean vyuctovaniDetailBean;
 

@@ -132,7 +132,7 @@ public class VyuctovaniService implements IVyuctovaniService {
       }
 
       if (!existujiNezbytneFaktury) {
-        log.debug("Přeskakuji polozku2: " + polozkaTyp.getNazev());
+        log.warn("Přeskakuji položku bez faktur: " + polozkaTyp.getNazev());
         continue;
       }
 

@@ -121,10 +121,10 @@
 
         <p:column>
           <p:commandButton icon="ui-icon-circle-zoomin"
-                           actionListener="#{routerBean.goToPredavaciProtokolDetailBean(predavaciProtokol)}"
+                           actionListener="#{routerBean.goToNajemniSmlouvaDetailBean(najemniSmlouva)}"
                            title="Upravit / Podrobnosti"/>
           <p:commandButton update="@form :form:msgs" icon="ui-icon-circle-minus"
-                           actionListener="#{predavaciProtokolPrehledBean.deleteRow(predavaciProtokol)}"
+                           actionListener="#{najemniSmlouvaPrehledBean.smazatNajemniSmlouva(najemniSmlouva)}"
                            title="Odebrat"/>
         </p:column>
 

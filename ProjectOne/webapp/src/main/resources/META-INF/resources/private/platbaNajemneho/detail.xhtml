@@ -11,174 +11,67 @@
   <ui:composition template="/template/detailPageLayout.xhtml">
 
     <ui:define name="title">
-      ProjectOne - Detail předávacího protokolu
+      ProjectOne - Detail platby nájemného
     </ui:define>
 
     <ui:define name="pageContentTitle">
-      <h:outputText value="#{predavaciProtokolDetailBean.init()}"/>
-      <p>Detailní informace o konkrétním předávacím protokolu:</p>
+      <h:outputText value="#{platbaNajemnehoDetailBean.init()}"/>
+      <p>Detailní informace o platbě nájemného:</p>
     </ui:define>
 
     <ui:define name="detailPageData">
       <table>
         <tr>
           <th>
-            <p>Nemovitost:</p>
+            <p>Datum platby:</p>
           </th>
           <td>
-            <h:selectOneMenu value="#{predavaciProtokolDetailBean.predavaciProtokol.nemovitost}" style="width:100%" converter="#{nemovitostConverter}">
-              <f:selectItems value="#{predavaciProtokolDetailBean.nemovitostList}" var="nemovitost" itemLabel="#{nemovitost.nazev}" itemValue="#{nemovitost}"/>
+            <p:calendar id="datumPlatby" value="#{platbaNajemnehoDetailBean.platbaNajemneho.datumPlatby}" pattern="dd-MM-yyyy"/>
+          </td>
+          <th>
+            <p>Částka:</p>
+          </th>
+          <td>
+            <p:inputText id="castka" value="#{platbaNajemnehoDetailBean.platbaNajemneho.castka.mnozstvi}" />
+          </td>
+          <th>
+            <p>Jednotka:</p>
+          </th>
+          <td>
+            <p:inputText id="jednotka" value="#{platbaNajemnehoDetailBean.platbaNajemneho.castka.jednotka}" />
+          </td>
+          <th>
+            <p>Odesílatel:</p>
+          </th>
+          <td>
+            <h:selectOneMenu value="#{platbaNajemnehoDetailBean.platbaNajemneho.odesilatel}" style="width:100%" converter="#{osobaConverter}">
+              <f:selectItems value="#{platbaNajemnehoDetailBean.osobaList}" var="osoba" itemLabel="#{osoba.getCeleJmeno()}" itemValue="#{osoba}"/>
+            </h:selectOneMenu>
+          </td>
+          <th>
+            <p>Příjemce:</p>
+          </th>
+          <td>
+            <h:selectOneMenu value="#{platbaNajemnehoDetailBean.platbaNajemneho.prijemce}" style="width:100%" converter="#{osobaConverter}">
+              <f:selectItems value="#{platbaNajemnehoDetailBean.osobaList}" var="osoba" itemLabel="#{osoba.getCeleJmeno()}" itemValue="#{osoba}"/>
             </h:selectOneMenu>
           </td>
         </tr>
 
-        <tr>
-          <th>
-            <p>Nájemník:</p>
-          </th>
-          <td>
-            <h:selectOneMenu value="#{predavaciProtokolDetailBean.predavaciProtokol.najemnik}" style="width:100%" converter="#{osobaConverter}">
-              <f:selectItems value="#{predavaciProtokolDetailBean.osobaList}" var="osoba" itemLabel="#{osoba.getCeleJmeno()}" itemValue="#{osoba}"/>
-            </h:selectOneMenu>
-          </td>
-        </tr>
-
-        <tr>
-          <th>
-            <p>Datum podpisu:</p>
-          </th>
-          <td>
-            <p:calendar id="datumPodpisu" value="#{predavaciProtokolDetailBean.predavaciProtokol.datumPodpisu}" pattern="dd-MM-yyyy"/>
-          </td>
-        </tr>
       </table>
     </ui:define>
 
     <ui:define name="detailPagePridavaciTlacitko">
-      <p:commandButton value="Přidat" icon="ui-icon-circle-plus" process="@this" update="form predavaciProtokolPolozkaDataTable :form:msgs"
-                       actionListener="#{predavaciProtokolDetailBean.addRow()}"/>
     </ui:define>
 
     <ui:define name="detailPageDataTable">
-      <p:dataTable id="predavaciProtokolPolozkaDataTable"
-                   widgetVar="predavaciProtokolPolozkaDataTable"
-                   var="polozka"
-                   value="#{predavaciProtokolDetailBean.predavaciProtokolPolozkaList}"
-                   sortBy="#{1}"
-                   editable="true"
-                   rendered="#{not empty predavaciProtokolDetailBean.predavaciProtokolPolozkaList}"
-                   emptyMessage="Nebyly nalezeny žádné položky předávacího protokolu"
-                   filteredValue="#{predavaciProtokolDetailBean.filtrovanyPredavaciProtokolPolozkaList}"
-      >
-
-        <p:ajax event="rowEdit" listener="#{predavaciProtokolDetailBean.onRowEdit}" update="predavaciProtokolPolozkaDataTable :form:msgs"/>
-        <p:ajax event="rowEditCancel" listener="#{predavaciProtokolDetailBean.onRowCancel}" update="predavaciProtokolPolozkaDataTable :form:msgs"/>
-
-        <p:columnGroup type="header">
-          <p:row>
-            <p:column headerText="Id:" style="width: 230px;" />
-            <p:column headerText="Název" filterBy="#{polozka.nazev}" filterMatchMode="contains" filterStyle="display:none" sortBy="#{polozka.nazev}"
-                      style="width: 100%"/>
-            <p:column headerText="Vyúčtovat jako" filterBy="#{polozka.polozkaTyp.nazev}" filterMatchMode="contains" filterStyle="display:none"
-                      sortBy="#{polozka.polozkaTyp.nazev}" style="width: 150px;"/>
-            <p:column headerText="Číslo měřáku" filterBy="#{polozka.cisloMeraku}" filterMatchMode="contains" filterStyle="display:none"
-                      sortBy="#{polozka.cisloMeraku}" style="width: 150px;"/>
-            <p:column headerText="Stav" filterBy="#{polozka.stavMeraku}" filterMatchMode="contains" filterStyle="display:none" sortBy="#{polozka.stavMeraku}"
-                      style="width: 120px;"/>
-            <p:column headerText="Jednotka" filterBy="#{polozka.jednotka}" filterMatchMode="contains" filterStyle="display:none" sortBy="#{polozka.jednotka}"
-                      style="width: 100px;"/>
-            <p:column headerText="Ovládání" colspan="2" style="width: 90px;"/>
-          </p:row>
-        </p:columnGroup>
-
-        <f:facet name="header">
-          <p:outputPanel style="float: left; margin-top: 5px;">Položky předávacího protokolu:</p:outputPanel>
-          <p:outputPanel style="text-align: right;">
-            <p:inputText id="globalFilter" onkeyup="PF('predavaciProtokolPolozkaDataTable').filter()" style="width:235px"
-                         placeholder="- zadejte text pro vyhledání -"/>
-          </p:outputPanel>
-        </f:facet>
-
-        <p:column>
-          <h:outputText value="#{polozka.id}"/>
-        </p:column>
-
-        <p:column>
-          <p:cellEditor>
-            <f:facet name="output">
-              <h:outputText value="#{polozka.nazev}"/>
-            </f:facet>
-            <f:facet name="input">
-              <p:inputText id="nazevInput" value="#{polozka.nazev}" style="width:100%"/>
-            </f:facet>
-          </p:cellEditor>
-        </p:column>
-
-        <p:column style="text-align: center;">
-          <p:cellEditor>
-            <f:facet name="output">
-              <h:outputText value="#{polozka.polozkaTyp.nazev}" title="#{polozka.polozkaTyp.popis}"/>
-            </f:facet>
-            <f:facet name="input">
-              <h:selectOneMenu value="#{polozka.polozkaTyp}" style="width:100%" converter="#{polozkaTypConverter}">
-                <f:selectItems value="#{predavaciProtokolDetailBean.polozkaTypList}" var="polozkaTyp" itemLabel="#{polozkaTyp.nazev}"
-                               itemValue="#{polozkaTyp}"/>
-              </h:selectOneMenu>
-            </f:facet>
-          </p:cellEditor>
-        </p:column>
-
-        <p:column>
-          <p:cellEditor>
-            <f:facet name="output">
-              <h:outputText value="#{polozka.cisloMeraku}"/>
-            </f:facet>
-            <f:facet name="input">
-              <p:inputText id="cisloMerakuInput" value="#{polozka.cisloMeraku}"/>
-            </f:facet>
-          </p:cellEditor>
-        </p:column>
-
-        <p:column style="text-align: right;">
-          <p:cellEditor>
-            <f:facet name="output">
-              <h:outputText value="#{polozka.stavMeraku}">
-              </h:outputText>
-            </f:facet>
-            <f:facet name="input">
-              <div style="text-align: left">
-                <p:inputText id="stavMerakuInput" value="#{polozka.stavMeraku}"/>
-              </div>
-            </f:facet>
-          </p:cellEditor>
-        </p:column>
-
-        <p:column style="text-align: center;">
-          <p:cellEditor>
-            <f:facet name="output">
-              <h:outputText value="#{polozka.jednotka}"/>
-            </f:facet>
-            <f:facet name="input">
-              <div style="text-align: left">
-                <p:inputText id="jednotkaInput" value="#{polozka.jednotka}"/>
-              </div>
-            </f:facet>
-          </p:cellEditor>
-        </p:column>
-
-        <p:column>
-          <p:rowEditor/>
-        </p:column>
-
-        <p:column>
-          <p:commandButton update="@form :form:msgs" icon="ui-icon-circle-minus" actionListener="#{predavaciProtokolDetailBean.deleteRow(polozka)}"/>
-        </p:column>
-      </p:dataTable>
     </ui:define>
 
     <ui:define name="detailPageUkladaciTlacitka">
-      <p:commandButton value="Uložit" actionListener="#{predavaciProtokolDetailBean.ulozitZmenuPredavacihoProtokolu()}" update="form :form:msgs"/>
-      <p:commandButton value="Zrušit" actionListener="#{predavaciProtokolDetailBean.zrusitZmenuPredavacihoProtokolu()}" update="form :form:msgs"/>
+      <p:commandButton value="Zduplikovat platbu" actionListener="#{platbaNajemnehoDetailBean.zduplikovatPlatbaNajemneho()}" update="form :form:msgs"/>
+      ---
+      <p:commandButton value="Uložit změny" actionListener="#{platbaNajemnehoDetailBean.ulozitZmenuPlatbaNajemneho()}" update="form :form:msgs"/>
+      <p:commandButton value="Zrušit změny" actionListener="#{platbaNajemnehoDetailBean.zrusitZmenuPlatbaNajemneho()}" update="form :form:msgs"/>
     </ui:define>
 
   </ui:composition>

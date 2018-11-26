@@ -20,6 +20,10 @@ import lombok.Data;
 @Document(collection = "platbaNajemneho")
 public class PlatbaNajemneho extends BaseEntity {
 
+  public PlatbaNajemneho() {
+    castka = new Cislo();
+  }
+
   @JsonProperty("datumPlatby")
   @JsonInclude(JsonInclude.Include.NON_NULL)
   @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
