@@ -13,7 +13,6 @@ public abstract class BaseEntity {
   @Id
   public String id;
 
-  @DBRef(lazy = true)
-  @JsonProperty("uzivatel")
-  private Osoba uzivatel;
+  @JsonProperty("idOsoba")
+  private String idOsoba;
 }

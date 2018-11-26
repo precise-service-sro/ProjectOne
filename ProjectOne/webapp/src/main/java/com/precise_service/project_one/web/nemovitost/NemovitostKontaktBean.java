@@ -39,7 +39,7 @@ public class NemovitostKontaktBean extends AbstractBean {
     nemovitostKontakt.setPrijmeni("- zadejte -");
     nemovitostKontakt.setTelefon("- zadejte -");
     nemovitostKontakt.setEmail("- zadejte -");
-    nemovitostKontakt.setUzivatel(loginBean.getPrihlasenyUzivatel());
+    nemovitostKontakt.setIdOsoba(loginBean.getPrihlasenyUzivatel().getId());
     nemovitostKontakt.setNemovitost(nemovitost);
 
     NemovitostKontakt saved = nemovitostKontaktService.postNemovitostKontakt(nemovitostKontakt);

@@ -9,6 +9,6 @@ import com.precise_service.project_one.entity.nemovitost.NemovitostKontakt;
 
 public interface NemovitostKontaktRepository extends MongoRepository<NemovitostKontakt, String> {
 
-  @Query("{ $and: [ { 'nemovitost.id' : ?0 }, { 'uzivatel.id' : ?1 } ] }")
+  @Query("{ $and: [ { 'nemovitost.id' : ?0 }, { 'idOsoba' : ?1 } ] }")
   List<NemovitostKontakt> getNemovitostKontaktAll(String idNemovitost, String idPrihlasenyUzivatel);
 }

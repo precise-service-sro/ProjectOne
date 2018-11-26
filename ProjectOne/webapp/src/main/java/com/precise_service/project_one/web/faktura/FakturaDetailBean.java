@@ -131,7 +131,7 @@ public class FakturaDetailBean extends AbstractBean {
     fakturaPolozka.setNazev("- zadejte -");
     fakturaPolozka.setFaktura(faktura);
     fakturaPolozka.setPolozkaTyp(null);
-    fakturaPolozka.setUzivatel(loginBean.getPrihlasenyUzivatel());
+    fakturaPolozka.setIdOsoba(loginBean.getPrihlasenyUzivatel().getId());
 
     Cislo vychoziStav = new Cislo();
     vychoziStav.setMnozstvi(0.0);

@@ -1,14 +1,9 @@
 package com.precise_service.project_one.web.faktura;
 
-import java.io.IOException;
-import java.util.Collections;
 import java.util.List;
 
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
-import org.omnifaces.util.Faces;
 import org.primefaces.event.RowEditEvent;
 import org.springframework.util.CollectionUtils;
 
@@ -23,8 +18,6 @@ import com.precise_service.project_one.web.AbstractBean;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 
-import static com.precise_service.project_one.web.URL_CONST.FAKTURA_DETAIL_URL;
-
 @Slf4j
 @Data
 @Named
@@ -38,23 +31,10 @@ public class FakturaPrehledBean extends AbstractBean {
   private int filtrovanyFakturaListSize;
 
   public void init() {
-    Osoba prihlasenyUzivatel = loginBean.getPrihlasenyUzivatel();
     zuctovaciObdobi = new CasovyInterval();
-
-    if (zuctovaciObdobi == null || zuctovaciObdobi.getZacatek() == null || zuctovaciObdobi.getKonec() == null) {
-      // nemuzu filrovat a musim zobrazit vsechny faktury
-      /*
-      zuctovaciObdobi = new CasovyInterval();
-      zuctovaciObdobi.setZacatek(DateFormatterBean.parseDate("01-01-2017"));
-      zuctovaciObdobi.setKonec(DateFormatterBean.parseDate("31-12-2017"));
-      */
-      fakturaList = fakturaService.getSeznamFaktur(prihlasenyUzivatel);
-
-    } else {
-      fakturaList = fakturaService.getSeznamFakturVeZuctovacimObdobi(prihlasenyUzivatel, zuctovaciObdobi);
-    }
-
+    Osoba prihlasenyUzivatel = loginBean.getPrihlasenyUzivatel();
     nemovitostList = nemovitostService.getNemovitostAll(prihlasenyUzivatel.getId());
+    fakturaList = fakturaService.getSeznamFaktur(prihlasenyUzivatel);
     filtrovanyFakturaList = null;
   }
 
@@ -81,7 +61,7 @@ public class FakturaPrehledBean extends AbstractBean {
     faktura.setDodavatel(null);
     faktura.setNemovitost(null);
     faktura.setZuctovaciObdobi(new CasovyInterval());
-    faktura.setUzivatel(loginBean.getPrihlasenyUzivatel());
+    faktura.setIdOsoba(loginBean.getPrihlasenyUzivatel().getId());
 
     Faktura saved = fakturaService.postFaktura(faktura);
     showInfoMessage("Přidána nová faktura", saved.getId());

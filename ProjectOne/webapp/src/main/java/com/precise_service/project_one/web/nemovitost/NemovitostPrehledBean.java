@@ -37,7 +37,7 @@ public class NemovitostPrehledBean extends AbstractBean {
     nemovitost.setNazev("- zadejte -");
     nemovitost.setAdresa(new Adresa());
     nemovitost.setNemovitostTyp(NemovitostTyp.BYT);
-    nemovitost.setUzivatel(loginBean.getPrihlasenyUzivatel());
+    nemovitost.setIdOsoba(loginBean.getPrihlasenyUzivatel().getId());
 
     Nemovitost saved = nemovitostService.postNemovitost(nemovitost);
 

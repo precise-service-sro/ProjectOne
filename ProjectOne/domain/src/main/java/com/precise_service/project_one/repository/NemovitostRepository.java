@@ -9,6 +9,6 @@ import com.precise_service.project_one.entity.nemovitost.Nemovitost;
 
 public interface NemovitostRepository extends MongoRepository<Nemovitost, String> {
 
-  @Query("{ 'uzivatel.id' : ?0 }")
+  @Query("{ 'idOsoba' : ?0 }")
   List<Nemovitost> getNemovitostAll(String idPrihlasenyUzivatel);
 }

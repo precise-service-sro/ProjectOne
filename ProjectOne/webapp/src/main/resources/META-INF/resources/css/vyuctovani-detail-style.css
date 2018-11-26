@@ -38,3 +38,18 @@
   background: #fff;
   color: #4f4f4f;
 }
+
+.prehledPlatebDiv {
+  width: 300px;
+}
+.prehledPlatebDataTableDiv {}
+
+.vyuctovaniSpotrebyDiv {
+  width: 900px;
+}
+.vyuctovaniSpotrebyDataTableDiv {}
+
+.celkoveVyuctovaniDiv {
+  width: 600px;
+}
+.celkoveVyuctovaniDataTableDiv {}

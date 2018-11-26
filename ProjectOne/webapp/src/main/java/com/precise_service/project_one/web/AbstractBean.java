@@ -13,20 +13,21 @@ import com.precise_service.project_one.service.faktura.IFakturaService;
 import com.precise_service.project_one.service.nemovitost.INemovitostKontaktService;
 import com.precise_service.project_one.service.nemovitost.INemovitostService;
 import com.precise_service.project_one.service.osoba.IOsobaService;
-import com.precise_service.project_one.service.predavaci_protokol.IPredavaciProtokolPolozkaService;
-import com.precise_service.project_one.service.predavaci_protokol.IPredavaciProtokolService;
-import com.precise_service.project_one.service.vyuctovani.IPolozkaTypService;
-import com.precise_service.project_one.service.vyuctovani.IVyuctovaniPolozkaService;
-import com.precise_service.project_one.service.vyuctovani.IVyuctovaniService;
+import com.precise_service.project_one.service.pronajem.INajemniSmlouvaService;
+import com.precise_service.project_one.service.pronajem.IPlatbaNajemnehoService;
+import com.precise_service.project_one.service.pronajem.IPredavaciProtokolPolozkaService;
+import com.precise_service.project_one.service.pronajem.IPredavaciProtokolService;
+import com.precise_service.project_one.service.IPolozkaTypService;
+import com.precise_service.project_one.service.pronajem.IVyuctovaniPolozkaService;
+import com.precise_service.project_one.service.pronajem.IVyuctovaniService;
 import com.precise_service.project_one.web.common.RouterBean;
 import com.precise_service.project_one.web.common.formatter.DateFormatterBean;
 import com.precise_service.project_one.web.faktura.FakturaDetailBean;
-import com.precise_service.project_one.web.login.AuthorizationFilterBean;
 import com.precise_service.project_one.web.login.LoginBean;
 import com.precise_service.project_one.web.nemovitost.NemovitostDetailBean;
 import com.precise_service.project_one.web.osoba.OsobaDetailBean;
-import com.precise_service.project_one.web.predavaci_protokol.PredavaciProtokolDetailBean;
-import com.precise_service.project_one.web.vyuctovani.VyuctovaniDetailBean;
+import com.precise_service.project_one.web.pronajem.PredavaciProtokolDetailBean;
+import com.precise_service.project_one.web.pronajem.VyuctovaniDetailBean;
 
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
@@ -38,6 +39,8 @@ public abstract class AbstractBean implements Serializable {
   @Autowired protected IFakturaService fakturaService;
   @Autowired protected IFakturaPolozkaService fakturaPolozkaService;
 
+  @Autowired protected INajemniSmlouvaService najemniSmlouvaService;
+
   @Autowired protected INemovitostService nemovitostService;
   @Autowired protected INemovitostKontaktService nemovitostKontaktService;
 
@@ -47,6 +50,8 @@ public abstract class AbstractBean implements Serializable {
 
   @Autowired protected IPredavaciProtokolService predavaciProtokolService;
   @Autowired protected IPredavaciProtokolPolozkaService predavaciProtokolPolozkaService;
+
+  @Autowired protected IPlatbaNajemnehoService platbaNajemnehoService;
   
   @Autowired protected IVyuctovaniService vyuctovaniService;
   @Autowired protected IVyuctovaniPolozkaService vyuctovaniPolozkaService;

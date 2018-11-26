@@ -50,7 +50,7 @@ public class PolozkaTypBean extends AbstractBean {
     polozkaTyp.setNazev("- zadejte -");
     polozkaTyp.setJednotka("- zadejte -");
     polozkaTyp.setPopis("- zadejte -");
-    polozkaTyp.setUzivatel(loginBean.getPrihlasenyUzivatel());
+    polozkaTyp.setIdOsoba(loginBean.getPrihlasenyUzivatel().getId());
     polozkaTyp.setNemovitost(nemovitost);
 
     PolozkaTyp saved = polozkaTypService.postPolozkaTyp(polozkaTyp);

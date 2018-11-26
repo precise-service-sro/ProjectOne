@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.precise_service.project_one.entity.PolozkaTyp;
-import com.precise_service.project_one.service.vyuctovani.IPolozkaTypService;
+import com.precise_service.project_one.service.IPolozkaTypService;
 
 import lombok.extern.slf4j.Slf4j;
 

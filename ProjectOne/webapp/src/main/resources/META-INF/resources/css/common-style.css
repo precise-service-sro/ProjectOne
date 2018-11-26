@@ -99,6 +99,8 @@
 .divDataTable {
     margin-left: 10px;
     margin-right: 10px;
+    overflow-y: scroll;
+    height: 330px;
 }
 
 .divTable table {

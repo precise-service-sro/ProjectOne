@@ -6,12 +6,10 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.ConverterException;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
-import com.precise_service.project_one.entity.predavaci_protokol.PredavaciProtokol;
-import com.precise_service.project_one.service.predavaci_protokol.IPredavaciProtokolService;
+import com.precise_service.project_one.entity.pronajem.PredavaciProtokol;
 import com.precise_service.project_one.web.AbstractBean;
 
 @Service("predavaciProtokolConverter")

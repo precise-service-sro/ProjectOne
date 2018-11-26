@@ -9,8 +9,8 @@ import org.omnifaces.util.Faces;
 import com.precise_service.project_one.entity.faktura.Faktura;
 import com.precise_service.project_one.entity.nemovitost.Nemovitost;
 import com.precise_service.project_one.entity.osoba.Osoba;
-import com.precise_service.project_one.entity.predavaci_protokol.PredavaciProtokol;
-import com.precise_service.project_one.entity.vyuctovani.Vyuctovani;
+import com.precise_service.project_one.entity.pronajem.PredavaciProtokol;
+import com.precise_service.project_one.entity.pronajem.Vyuctovani;
 import com.precise_service.project_one.web.AbstractBean;
 
 import lombok.Data;

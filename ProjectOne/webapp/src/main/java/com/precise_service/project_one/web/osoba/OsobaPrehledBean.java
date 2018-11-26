@@ -47,7 +47,7 @@ public class OsobaPrehledBean extends AbstractBean {
     log.trace("addRow()");
 
     Osoba osoba = new Osoba();
-    osoba.setUzivatel(loginBean.getPrihlasenyUzivatel());
+    osoba.setIdOsoba(loginBean.getPrihlasenyUzivatel().getId());
     osoba.setTrvaleBydliste(new Adresa());
 
     Osoba saved = osobaService.postOsoba(osoba);
