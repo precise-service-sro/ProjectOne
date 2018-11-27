@@ -19,6 +19,7 @@
   <h:form>
     <p:dock position="bottom">
       <p:menuitem value="Přihlášení"                           icon="/icons/prihlaseni.png"             url="#{request.contextPath}/public/index.xhtml"/>
+      <p:menuitem value="Cashflow"                             icon="/icons/cashflow.png"               url="#{request.contextPath}/private/cashflow.xhtml"/>
       <p:menuitem value="Můj profil"                           icon="/icons/mujProfil.png"              actionListener="#{routerBean.goToOsobaDetailBean(loginBean.prihlasenyUzivatel)}" />
       <p:menuitem value="Nemovitosti"                          icon="/icons/nemovitost.png"             url="#{request.contextPath}/private/nemovitost/prehled.xhtml"/>
       <p:menuitem value="Faktury od dodavatelů"                icon="/icons/faktury.png"                url="#{request.contextPath}/private/faktura/prehled.xhtml"/>

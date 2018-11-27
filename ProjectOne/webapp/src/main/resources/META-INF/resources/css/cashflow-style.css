@@ -1,0 +1,241 @@
+.hospodarskaVysledovkaDiv {
+  border: 5px solid #000;
+  width: 45%;
+  padding: 20px;
+}
+
+.hospodarskaVysledovkaDiv > p {
+  font-size: 50px;
+  font-style: italic;
+  text-align: center;
+  margin-top: 0px;
+  margin-bottom: 20px;
+}
+
+.hospodarskaVysledovkaDiv table {
+  height: 350px;
+}
+
+.hospodarskaVysledovkaDiv th {
+  text-align: left;
+  border-bottom: 1px solid #000;
+  padding-left: 20px;
+}
+
+.hospodarskaVysledovkaDiv td {
+  text-align: right;
+  padding-right: 30px;
+  border-bottom: 1px solid #000;
+}
+
+.prijmyDiv {
+  border: 2px solid #000;
+}
+
+.prijmyDiv table {
+  width: 100%;
+}
+
+.prijmyDiv p {
+  font-size: 35px;
+  font-style: oblique;
+  font-weight: bold;
+  background-color: black;
+  color: white;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  padding-top: 3px;
+  padding-left: 10px;
+  padding-bottom: 3px;
+  text-align: center;
+}
+
+.vydajeDiv {
+  border: 2px solid #000;
+}
+
+.vydajeDiv table {
+  width: 100%;
+}
+
+.vydajeDiv p {
+  font-size: 35px;
+  font-style: oblique;
+  font-weight: bold;
+  background-color: black;
+  color: white;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  padding-top: 3px;
+  padding-left: 10px;
+  padding-bottom: 3px;
+  text-align: center;
+}
+
+.pravyDiv {
+  border: 5px solid black;
+  width: 45%;
+  float: right;
+  padding: 20px;
+}
+
+.pravyDiv > p {
+  font-size: 50px;
+  font-style: italic;
+  text-align: center;
+  margin-top: 0px;
+  margin-bottom: 20px;
+}
+
+.celkovePrijmyDiv {
+  border: 2px solid #000;
+  height: 376px;
+  padding: 10px;
+}
+
+.pasivniPrijemDiv {
+  margin-bottom: 80px;
+}
+
+.pasivniPrijemDiv table {
+  width: 100%;
+  font-size: 30px;
+}
+
+.pasivniPrijemDiv th {
+  text-align: right;
+}
+
+.td_underline {
+  border-bottom: 5px solid #000;
+}
+
+.celkovePrijmySubDiv {
+  float: right;
+  font-size: 30px;
+}
+
+.celkovePrijmyDiv td {
+  text-align: center;
+}
+
+.celkoveVydajeDiv {
+  border: 2px solid #000;
+  height: 376px;
+  padding: 10px;
+}
+
+.detiSubDiv {
+  border: 2px solid #000;
+  width: 60%;
+  padding: 10px;
+  font-size: 20px;
+  margin-bottom: 25px;
+}
+
+.detiSubDiv table {
+  width: 100%;
+}
+
+.celkoveVydajeSubDiv {
+  float: right;
+  width: 300px;
+  font-size: 30px;
+}
+
+.celkoveVydajeDiv td {
+  text-align: center;
+}
+
+.bilancniRozvahaDiv > p {
+  font-size: 50px;
+  font-style: italic;
+  text-align: center;
+  margin-top: 0px;
+  margin-bottom: 20px;
+}
+
+.bilancniRozvahaDiv {
+  margin-top: 30px;
+  border: 5px solid black;
+  padding: 20px;
+}
+
+.aktivaDiv {
+  width: 48%;
+  height: 240px;
+}
+
+.aktivaDiv p {
+  font-size: 35px;
+  font-style: oblique;
+  font-weight: bold;
+  background-color: black;
+  color: white;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  padding-top: 3px;
+  padding-left: 10px;
+  padding-bottom: 3px;
+  text-align: center;
+}
+
+.aktivaDiv table {
+  width: 100%;
+}
+
+.aktivaDiv th {
+  border-bottom: 1px solid #000;
+  text-align: center;
+}
+
+.aktivaDiv td {
+  border-bottom: 1px solid #000;
+  text-align: center;
+}
+
+.pasivaDiv {
+  width: 48%;
+  float: right;
+  height: 240px;
+}
+
+.pasivaDiv p {
+  font-size: 35px;
+  font-style: oblique;
+  font-weight: bold;
+  background-color: black;
+  color: white;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  padding-top: 3px;
+  padding-left: 10px;
+  padding-bottom: 3px;
+  text-align: center;
+}
+
+.pasivaDiv table {
+  width: 100%;
+}
+
+.pasivaDiv th {
+  text-align: left;
+  padding-left: 20px;
+  border-bottom: 1px solid #000;
+}
+
+.pasivaDiv td {
+  text-align: right;
+  padding-right: 20px;
+  border-bottom: 1px solid #000;
+}
+
+.cashflowDiv table {
+  font-size: 40px;
+  margin-top: 30px;
+  padding-left: 53%;
+}
+
+.cashflowDiv td {
+  text-align: center;
+}
