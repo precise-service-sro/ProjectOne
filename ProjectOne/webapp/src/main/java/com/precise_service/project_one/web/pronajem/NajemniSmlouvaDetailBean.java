@@ -48,7 +48,7 @@ public class NajemniSmlouvaDetailBean extends AbstractBean {
     }
 
     polozkaTypList = polozkaTypService.getPolozkaTypListByIdNemovitost(faktura.getNemovitost().getId());
-    nemovitostList = nemovitostService.getNemovitostAll(loginBean.getPrihlasenyUzivatel().getId());
+    nemovitostList = nemovitostService.getNemovitostListByVlastnik(loginBean.getPrihlasenyUzivatel().getId());
 
     fakturaPolozkaList = fakturaPolozkaService.getFakturaPolozkaAll(faktura.getId());
 

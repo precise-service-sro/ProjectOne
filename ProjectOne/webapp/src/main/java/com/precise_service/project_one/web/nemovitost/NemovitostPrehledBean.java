@@ -25,7 +25,7 @@ public class NemovitostPrehledBean extends AbstractBean {
 
   public void init() {
     Osoba prihlasenyUzivatel = loginBean.getPrihlasenyUzivatel();
-    nemovitostList = nemovitostService.getNemovitostAll(prihlasenyUzivatel.getId());
+    nemovitostList = nemovitostService.getNemovitostListByVlastnik(prihlasenyUzivatel.getId());
     filtrovanyNemovitostList = null;
   }
 

@@ -42,8 +42,8 @@ public class NemovitostService implements INemovitostService {
   }
 
   @Override
-  public List<Nemovitost> getNemovitostAll(String idPrihlasenyUzivatel) {
-    return nemovitostRepository.getNemovitostAll(idPrihlasenyUzivatel);
+  public List<Nemovitost> getNemovitostListByVlastnik(String idVlastnik) {
+    return nemovitostRepository.getNemovitostListByVlastnik(idVlastnik);
   }
 
   @Override

@@ -48,7 +48,7 @@ public class VyuctovaniGeneratorBean extends AbstractBean {
     }
 
     Osoba prihlasenyUzivatel = loginBean.getPrihlasenyUzivatel();
-    nemovitostList = nemovitostService.getNemovitostAll(prihlasenyUzivatel.getId());
+    nemovitostList = nemovitostService.getNemovitostListByVlastnik(prihlasenyUzivatel.getId());
     seznamNajemniku = osobaService.getOsobaAll(prihlasenyUzivatel.getId());
     predavaciProtokolList = predavaciProtokolService.getPredavaciProtokolAll(prihlasenyUzivatel.getId());
   }

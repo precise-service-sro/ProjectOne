@@ -41,7 +41,7 @@ public class VyuctovaniPrehledBean extends AbstractBean {
     Osoba prihlasenyUzivatel = loginBean.getPrihlasenyUzivatel();
     vyuctovaniList = vyuctovaniService.getVyuctovaniListInRange(prihlasenyUzivatel);
 
-    nemovitostList = nemovitostService.getNemovitostAll(prihlasenyUzivatel.getId());
+    nemovitostList = nemovitostService.getNemovitostListByVlastnik(prihlasenyUzivatel.getId());
   }
 
   public void pridatVyuctovani() {
@@ -55,7 +55,7 @@ public class VyuctovaniPrehledBean extends AbstractBean {
     Osoba prihlasenyUzivatel = loginBean.getPrihlasenyUzivatel();
     vyuctovani.setIdOsoba(prihlasenyUzivatel.getId());
 
-    List<Nemovitost> nemovitostiPrihlasenehoUzivatele = nemovitostService.getNemovitostAll(prihlasenyUzivatel.getId());
+    List<Nemovitost> nemovitostiPrihlasenehoUzivatele = nemovitostService.getNemovitostListByVlastnik(prihlasenyUzivatel.getId());
     if (nemovitostiPrihlasenehoUzivatele.isEmpty()) {
       showInfoMessage("Chyba", "Není povoleno vytvářet vyúčtování bez existující nemovitosti !!!");
       return;

@@ -41,7 +41,7 @@ public class NemovitostDetailBean extends AbstractBean {
 
     Osoba prihlasenyUzivatel = loginBean.getPrihlasenyUzivatel();
     osobaList = osobaService.getOsobaAll(prihlasenyUzivatel.getId());
-    nemovitostList = nemovitostService.getNemovitostAll(prihlasenyUzivatel.getId());
+    nemovitostList = nemovitostService.getNemovitostListByVlastnik(prihlasenyUzivatel.getId());
 
     nemovitostTypList = Arrays.asList(NemovitostTyp.values());
     statList = Arrays.asList(Stat.values());

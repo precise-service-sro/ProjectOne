@@ -33,7 +33,7 @@ public class FakturaPrehledBean extends AbstractBean {
   public void init() {
     zuctovaciObdobi = new CasovyInterval();
     Osoba prihlasenyUzivatel = loginBean.getPrihlasenyUzivatel();
-    nemovitostList = nemovitostService.getNemovitostAll(prihlasenyUzivatel.getId());
+    nemovitostList = nemovitostService.getNemovitostListByVlastnik(prihlasenyUzivatel.getId());
     fakturaList = fakturaService.getSeznamFaktur(prihlasenyUzivatel);
     filtrovanyFakturaList = null;
   }

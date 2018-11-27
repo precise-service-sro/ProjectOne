@@ -44,7 +44,7 @@ public class PredavaciProtokolDetailBean extends AbstractBean {
     polozkaTypList = (nemovitost != null) ? polozkaTypService.getPolozkaTypListByIdNemovitost(nemovitost.getId()) : new ArrayList<>(0);
 
     Osoba prihlasenyUzivatel = loginBean.getPrihlasenyUzivatel();
-    nemovitostList = nemovitostService.getNemovitostAll(prihlasenyUzivatel.getId());
+    nemovitostList = nemovitostService.getNemovitostListByVlastnik(prihlasenyUzivatel.getId());
     osobaList = osobaService.getOsobaAll(prihlasenyUzivatel.getId());
     filtrovanyPredavaciProtokolPolozkaList = null;
   }

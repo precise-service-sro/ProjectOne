@@ -32,7 +32,7 @@ public class PredavaciProtokolPrehledBean extends AbstractBean {
 
     Osoba prihlasenyUzivatel = loginBean.getPrihlasenyUzivatel();
     predavaciProtokolList = predavaciProtokolService.getPredavaciProtokolAll(prihlasenyUzivatel.getId());
-    nemovitostList = nemovitostService.getNemovitostAll(prihlasenyUzivatel.getId());
+    nemovitostList = nemovitostService.getNemovitostListByVlastnik(prihlasenyUzivatel.getId());
 
     // TODO: filtrovat tyto osoby / najemniky dle existence a platnosti najemni smlouvy
     seznamNajemniku = osobaService.getOsobaAll(prihlasenyUzivatel.getId());
