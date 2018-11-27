@@ -16,7 +16,7 @@
         </div>
         <div class="tabTitleRight">
           <div class="addButtonDiv">
-            <p:commandButton value="Přidat" icon="ui-icon-circle-plus" process="@this" update="form :form:msgs"
+            <p:commandButton value="Přidat vyúčtovávanou položku" icon="ui-icon-circle-plus" process="@this" update="form :form:msgs"
                              actionListener="#{polozkaTypBean.pridatPolozkaTyp()}"/>
           </div>
         </div>
@@ -24,22 +24,59 @@
       <div class="divDataTable">
         <h:outputText value="#{polozkaTypBean.init(nemovitostDetailBean.nemovitost.id)}"/>
 
-        <p:dataTable id="polozkaTypTable" widgetVar="polozkaTypTable"
-                     var="polozkaTyp" value="#{polozkaTypBean.polozkaTypList}"
-                     editable="true" rowIndexVar="index"
+        <p:dataTable id="polozkaTypTable"
+                     widgetVar="polozkaTypTable"
+                     var="polozkaTyp"
+                     value="#{polozkaTypBean.polozkaTypList}"
+                     editable="true"
+                     rowIndexVar="index"
                      rendered="#{not empty polozkaTypBean.polozkaTypList}"
-                     emptyMessage="Nebyly nalezeny žádné vyúčtovávané položky" filteredValue="#{polozkaTypBean.filtrovanyPolozkaTypList}">
+                     emptyMessage="Nebyly nalezeny žádné vyúčtovávané položky"
+                     filteredValue="#{polozkaTypBean.filtrovanyPolozkaTypList}">
 
           <p:ajax event="rowEdit" listener="#{polozkaTypBean.ulozitUpravuPolozkaTyp}" update=":form:msgs"/>
           <p:ajax event="rowEditCancel" listener="#{polozkaTypBean.zrusitUpravuPolozkaTyp}" update=":form:msgs"/>
           <p:ajax event="page" update=":form:tabViewNemovitostDetail:polozkaTypTable"/>
 
+          <f:facet name="header">
+            <p:outputPanel id="globalFilterHeader" style="float: left; margin-top: 5px;">Nalezeno:
+              <h:outputText value="#{polozkaTypBean.filtrovanyPolozkaTypListSize}"/>
+              z
+              <h:outputText value="#{polozkaTypBean.polozkaTypListSize}"/>
+            </p:outputPanel>
+            <p:outputPanel style="text-align: right;">
+              <p:inputText id="globalFilter"
+                           onkeyup="PF('polozkaTypTable').filter()"
+                           style="width:235px"
+                           placeholder="- zadejte text pro vyhledání -">
+                <p:ajax event="keyup" update="globalFilterHeader"/>
+              </p:inputText>
+            </p:outputPanel>
+          </f:facet>
+
           <p:columnGroup type="header">
             <p:row>
-              <p:column headerText="Název" style="width: 150px;"/>
-              <p:column headerText="Jednotka" style="width: 100px;"/>
-              <p:column headerText="Popis" style="width: 100%;"/>
-              <p:column headerText="Ovládání" colspan="2" style="width: 90px;"/>
+              <p:column headerText="Název"
+                        style="width: 150px;"
+                        filterBy="#{polozkaTyp.nazev}"
+                        filterMatchMode="contains"
+                        filterStyle="display:none"
+                        sortBy="#{polozkaTyp.nazev}"/>
+              <p:column headerText="Jednotka"
+                        style="width: 100px;"
+                        filterBy="#{polozkaTyp.jednotka}"
+                        filterMatchMode="contains"
+                        filterStyle="display:none"
+                        sortBy="#{polozkaTyp.jednotka}"/>
+              <p:column headerText="Popis"
+                        style="width: 100%;"
+                        filterBy="#{polozkaTyp.popis}"
+                        filterMatchMode="contains"
+                        filterStyle="display:none"
+                        sortBy="#{polozkaTyp.popis}"/>
+              <p:column headerText="Ovládání"
+                        colspan="2"
+                        style="width: 90px;"/>
             </p:row>
           </p:columnGroup>
 

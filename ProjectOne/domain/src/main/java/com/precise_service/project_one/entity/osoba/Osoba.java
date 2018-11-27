@@ -89,6 +89,10 @@ public class Osoba extends BaseEntity {
   @JsonInclude(JsonInclude.Include.NON_NULL)
   private String email;
 
+  @JsonProperty("bankovniUcet")
+  @JsonInclude(JsonInclude.Include.NON_NULL)
+  private String bankovniUcet;
+
   @JsonProperty("muzeSePrihlasit")
   @JsonInclude(JsonInclude.Include.NON_NULL)
   private Boolean muzeSePrihlasit;

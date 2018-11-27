@@ -21,6 +21,8 @@ public class PolozkaTypBean extends AbstractBean {
   private Nemovitost nemovitost;
   private List<PolozkaTyp> polozkaTypList;
   private List<PolozkaTyp> filtrovanyPolozkaTypList;
+  private int polozkaTypListSize;
+  private int filtrovanyPolozkaTypListSize;
 
   public void init(String idNemovitost) {
     log.trace("init()");
@@ -70,5 +72,19 @@ public class PolozkaTypBean extends AbstractBean {
     polozkaTypService.deletePolozkaTyp(deletedPolozkaTyp.getId());
     showInfoMessage("Smazán typ vyúčtovávané položky", deletedPolozkaTyp.getNazev());
     init(nemovitost.getId());
+  }
+
+  public int getPolozkaTypListSize() {
+    if (polozkaTypList == null) {
+      return 0;
+    }
+    return polozkaTypList.size();
+  }
+
+  public int getFiltrovanyPolozkaTypListSize() {
+    if (filtrovanyPolozkaTypList == null) {
+      return getPolozkaTypListSize();
+    }
+    return filtrovanyPolozkaTypList.size();
   }
 }

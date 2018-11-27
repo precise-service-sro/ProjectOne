@@ -52,8 +52,8 @@ public class PredavaciProtokolPrehledBean extends AbstractBean {
     showInfoMessage("Zrušena úprava řádky", ((PredavaciProtokol) event.getObject()).getNazev());
   }
 
-  public void addRow() {
-    log.trace("addRow()");
+  public void pridatPredavaciProtokol() {
+    log.trace("pridatPredavaciProtokol()");
 
     PredavaciProtokol predavaciProtokol = new PredavaciProtokol();
 
@@ -61,14 +61,14 @@ public class PredavaciProtokolPrehledBean extends AbstractBean {
     predavaciProtokol.setDatumPodpisu(new Date());
     predavaciProtokol.setIdOsoba(loginBean.getPrihlasenyUzivatel().getId());
 
-    PredavaciProtokol saved = predavaciProtokolService.postPredavaciProtokol(predavaciProtokol);
+    predavaciProtokolService.postPredavaciProtokol(predavaciProtokol);
     init();
 
-    showInfoMessage("Přidána nová řádka", saved.getId());
+    showInfoMessage("Přidán", "Přidán nový předávací protokol");
   }
 
-  public void deleteRow(PredavaciProtokol deletedPredavaciProtokol) {
-    log.trace("deleteRow()");
+  public void smazatPredavaciProtokol(PredavaciProtokol deletedPredavaciProtokol) {
+    log.trace("smazatPredavaciProtokol()");
 
     if (deletedPredavaciProtokol == null) {
       log.trace("deleted row is null");
@@ -78,7 +78,7 @@ public class PredavaciProtokolPrehledBean extends AbstractBean {
 
     predavaciProtokolService.deletePredavaciProtokol(deletedPredavaciProtokol.getId());
 
-    showInfoMessage("Smazán řádek", deletedPredavaciProtokol.getNazev());
+    showInfoMessage("Smazán", "Smazán předávací protokol");
     init();
   }
 

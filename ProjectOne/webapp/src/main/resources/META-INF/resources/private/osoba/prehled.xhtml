@@ -22,7 +22,7 @@
     </ui:define>
 
     <ui:define name="prehledPagePridavaciTlacitko">
-      <p:commandButton value="Přidat" icon="ui-icon-circle-plus" process="@this" update="form :form:msgs" actionListener="#{osobaPrehledBean.addRow()}"/>
+      <p:commandButton value="Přidat osobu" icon="ui-icon-circle-plus" process="@this" update="form :form:msgs" actionListener="#{osobaPrehledBean.pridatOsoba()}"/>
     </ui:define>
 
     <ui:define name="prehledPageDataTable">
@@ -91,7 +91,7 @@
 
         <p:column>
           <p:commandButton icon="ui-icon-circle-zoomin" actionListener="#{routerBean.goToOsobaDetailBean(osoba)}" title="Podrobnosti"/>
-          <p:commandButton update="form :form:msgs" icon="ui-icon-circle-minus" actionListener="#{osobaPrehledBean.deleteRow(osoba)}" title="Odebrat"/>
+          <p:commandButton update="form :form:msgs" icon="ui-icon-circle-minus" actionListener="#{osobaPrehledBean.smazatOsoba(osoba)}" title="Odebrat"/>
         </p:column>
 
       </p:dataTable>

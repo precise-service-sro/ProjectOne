@@ -16,7 +16,7 @@
         </div>
         <div class="tabTitleRight">
           <div class="addButtonDiv">
-            <p:commandButton value="Přidat" icon="ui-icon-circle-plus" process="@this" update="form :form:msgs" editable="true"
+            <p:commandButton value="Přidat kontaktní osobu" icon="ui-icon-circle-plus" process="@this" update="form :form:msgs" editable="true"
                              actionListener="#{nemovitostKontaktBean.pridatNemovitostKontakt()}"/>
           </div>
         </div>
@@ -34,14 +34,58 @@
           <p:ajax event="rowEditCancel" listener="#{nemovitostKontaktBean.zrusitUpravuNemovitostKontakt}" update=":form:msgs"/>
           <p:ajax event="page" update=":form:tabViewNemovitostDetail:nemovitostKontaktBeanTable"/>
 
+          <f:facet name="header">
+            <p:outputPanel id="globalFilterHeader" style="float: left; margin-top: 5px;">Nalezeno:
+              <h:outputText value="#{nemovitostKontaktBean.filtrovanyNemovitostKontaktListSize}"/>
+              z
+              <h:outputText value="#{nemovitostKontaktBean.nemovitostKontaktListSize}"/>
+            </p:outputPanel>
+            <p:outputPanel style="text-align: right;">
+              <p:inputText id="globalFilter"
+                           onkeyup="PF('nemovitostKontaktBeanTable').filter()"
+                           style="width:235px"
+                           placeholder="- zadejte text pro vyhledání -">
+                <p:ajax event="keyup" update="globalFilterHeader"/>
+              </p:inputText>
+            </p:outputPanel>
+          </f:facet>
+
           <p:columnGroup type="header">
             <p:row>
-              <p:column headerText="Jméno" style="width: 120px;"/>
-              <p:column headerText="Příjmení" style="width: 120px;"/>
-              <p:column headerText="Telefon" style="width: 150px;"/>
-              <p:column headerText="Email" style="width: 250px;"/>
-              <p:column headerText="Poznámka" style="width: 100%;"/>
-              <p:column headerText="Ovládání" colspan="2" rowspan="2" style="width: 90px;"/>
+              <p:column headerText="Jméno"
+                        style="width: 120px;"
+                        filterBy="#{kontakt.jmeno}"
+                        filterMatchMode="contains"
+                        filterStyle="display:none"
+                        sortBy="#{kontakt.jmeno}"/>
+              <p:column headerText="Příjmení"
+                        style="width: 120px;"
+                        filterBy="#{kontakt.prijmeni}"
+                        filterMatchMode="contains"
+                        filterStyle="display:none"
+                        sortBy="#{kontakt.prijmeni}"/>
+              <p:column headerText="Telefon"
+                        style="width: 150px;"
+                        filterBy="#{kontakt.telefon}"
+                        filterMatchMode="contains"
+                        filterStyle="display:none"
+                        sortBy="#{kontakt.telefon}"/>
+              <p:column headerText="Email"
+                        style="width: 250px;"
+                        filterBy="#{kontakt.email}"
+                        filterMatchMode="contains"
+                        filterStyle="display:none"
+                        sortBy="#{kontakt.email}"/>
+              <p:column headerText="Poznámka"
+                        style="width: 100%;"
+                        filterBy="#{kontakt.poznamky}"
+                        filterMatchMode="contains"
+                        filterStyle="display:none"
+                        sortBy="#{kontakt.poznamky}"/>
+              <p:column headerText="Ovládání"
+                        colspan="2"
+                        rowspan="2"
+                        style="width: 90px;"/>
             </p:row>
           </p:columnGroup>
 

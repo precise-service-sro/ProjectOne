@@ -1,0 +1,286 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:component="http://java.sun.com/jsf/composite/private/common/component"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+>
+
+<h:body>
+  <ui:composition>
+
+
+    <div class="divTable">
+      <div class="tabTitle">
+        <div class="tabTitleLeft">
+          <p class="tableCaption">Cashflow:</p>
+        </div>
+        <div class="tabTitleRight">
+          <div class="addButtonDiv">
+            <p:commandButton value="Tisk" icon="ui-icon-circle-plus" />
+          </div>
+        </div>
+      </div>
+      <div class="divDataTable">
+
+        <div class="pravyDiv">
+          <p>&nbsp;</p>
+
+          <div class="celkovePrijmyDiv">
+
+            <div class="pasivniPrijemDiv">
+              <table>
+                <tr>
+                  <th><p>Pasivní příjem:</p></th>
+                  <td class="td_underline">0.00</td>
+                </tr>
+                <tr>
+                  <td colspan="2"><p>(Tok pěněz z úroků + divident + nemovitostí + podnikání)</p></td>
+                </tr>
+              </table>
+            </div>
+
+            <div class="celkovePrijmySubDiv">
+              <table class="celkovePrijmyTable">
+                <tr>
+                  <th><p>Celkový příjem:</p></th>
+                  <td class="td_underline"><p>0.00</p></td>
+                </tr>
+              </table>
+            </div>
+          </div>
+
+          <div class="celkoveVydajeDiv">
+
+            <div class="detiSubDiv">
+              <table>
+                <tr>
+                  <th><p>Počet dětí:</p></th>
+                  <td class="td_underline">0</td>
+                </tr>
+                <tr>
+                  <td colspan="2"><p>(Hru začněte s 0 dětmi)</p></td>
+                </tr>
+                <tr>
+                  <th><p>Výdaje za dítě:</p></th>
+                  <td class="td_underline">0.00</td>
+                </tr>
+              </table>
+            </div>
+
+            <div class="celkoveVydajeSubDiv">
+              <table class="celkoveVydateTable">
+                <tr>
+                  <th><p>Celkové výdaje:</p></th>
+                  <td class="td_underline"><p>0.00</p></td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div class="hospodarskaVysledovkaDiv">
+          <p>Hospodářská výsledovka</p>
+          <div class="prijmyDiv">
+            <p>Příjmy</p>
+            <table>
+              <tr>
+                <th>Plat</th>
+                <td>&nbsp;</td>
+              </tr>
+              <tr>
+                <th>Úrok</th>
+                <td>&nbsp;</td>
+              </tr>
+              <tr>
+                <th>Dividendy</th>
+                <td>&nbsp;</td>
+              </tr>
+              <tr>
+                <th>&nbsp;</th>
+                <td>&nbsp;</td>
+              </tr>
+              <tr>
+                <th>Nemovitosti</th>
+                <td>Cashflow (Tok peněz)</td>
+              </tr>
+              <tr>
+                <th>&nbsp;</th>
+                <td>&nbsp;</td>
+              </tr>
+              <tr>
+                <th>&nbsp;</th>
+                <td>&nbsp;</td>
+              </tr>
+              <tr>
+                <th>&nbsp;</th>
+                <td>&nbsp;</td>
+              </tr>
+              <tr>
+                <th>Podnikání</th>
+                <td>Cashflow (Tok peněz)</td>
+              </tr>
+              <tr>
+                <th>&nbsp;</th>
+                <td>&nbsp;</td>
+              </tr>
+            </table>
+          </div>
+          <div class="vydajeDiv">
+            <p>Výdaje</p>
+            <table>
+              <tr>
+                <th>Daně</th>
+                <td>&nbsp;</td>
+              </tr>
+              <tr>
+                <th>Hypotéka</th>
+                <td>&nbsp;</td>
+              </tr>
+              <tr>
+                <th>Splátky úvěrů na studium</th>
+                <td>&nbsp;</td>
+              </tr>
+              <tr>
+                <th>Splátky automobilu</th>
+                <td>&nbsp;</td>
+              </tr>
+              <tr>
+                <th>Splátky kreditní karty</th>
+                <td>&nbsp;</td>
+              </tr>
+              <tr>
+                <th>Platby v obchodě</th>
+                <td>&nbsp;</td>
+              </tr>
+              <tr>
+                <th>Jiné výdaje</th>
+                <td>&nbsp;</td>
+              </tr>
+              <tr>
+                <th>Výdaje na děti</th>
+                <td>&nbsp;</td>
+              </tr>
+              <tr>
+                <th>Splátky bankovního úvěru</th>
+                <td>&nbsp;</td>
+              </tr>
+              <tr>
+                <th>&nbsp;</th>
+                <td>&nbsp;</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+
+        <div class="cashflowDiv">
+          <table>
+            <tr>
+              <th>Měsíční CashFlow (tok peněz):</th>
+              <td class="td_underline">0.00</td>
+            </tr>
+          </table>
+        </div>
+
+        <div class="bilancniRozvahaDiv">
+          <p>Bilanční rozvaha</p>
+          <div class="pasivaDiv">
+            <p>Pasiva</p>
+            <table>
+              <tr>
+                <th>Hypotéka</th>
+                <td>&nbsp;</td>
+              </tr>
+              <tr>
+                <th>Úvěry na studium</th>
+                <td>&nbsp;</td>
+              </tr>
+              <tr>
+                <th>Úvěry na automobil</th>
+                <td>&nbsp;</td>
+              </tr>
+              <tr>
+                <th>Kreditní karty</th>
+                <td>&nbsp;</td>
+              </tr>
+              <tr>
+                <th>Maloobchodní dluh</th>
+                <td>&nbsp;</td>
+              </tr>
+              <tr>
+                <th>Hypotéká z nemovitostí</th>
+                <td>&nbsp;</td>
+              </tr>
+              <tr>
+                <th>Pasiva (podnikání)</th>
+                <td>&nbsp;</td>
+              </tr>
+              <tr>
+                <th>Bankovní úvěr</th>
+                <td>&nbsp;</td>
+              </tr>
+              <tr>
+                <th>&nbsp;</th>
+                <td>&nbsp;</td>
+              </tr>
+            </table>
+          </div>
+
+          <div class="aktivaDiv">
+            <p>Aktiva</p>
+            <table>
+              <tr>
+                <th>Úspory</th>
+                <td>0.00</td>
+                <td>&nbsp;</td>
+              </tr>
+              <tr>
+                <th>Akcie/Spol.fondy/VL</th>
+                <th>Počet akcií</th>
+                <th>Cena za akcii</th>
+              </tr>
+              <tr>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+              </tr>
+              <tr>
+                <th>Nemovitosti</th>
+                <th>Platba v hotovosti</th>
+                <th>Cena</th>
+              </tr>
+              <tr>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+              </tr>
+              <tr>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+              </tr>
+              <tr>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+              </tr>
+              <tr>
+                <th>Podnikání</th>
+                <th>Platba v hotovosti</th>
+                <th>Cena</th>
+              </tr>
+              <tr>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </ui:composition>
+</h:body>
+</html>

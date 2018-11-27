@@ -1,0 +1,138 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:component="http://java.sun.com/jsf/composite/private/common/component"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+>
+
+<h:body>
+  <ui:composition>
+
+
+    <div class="divTable">
+      <div class="tabTitle">
+        <div class="tabTitleLeft">
+          <p class="tableCaption">Faktury:</p>
+        </div>
+        <div class="tabTitleRight">
+          <div class="addButtonDiv">
+            <p:commandButton value="Přidat fakturu" icon="ui-icon-circle-plus" process="@this" update="form :form:msgs" editable="true"
+                             actionListener="#{fakturaPrehledBean.pridatFaktura()}"/>
+          </div>
+        </div>
+      </div>
+      <div class="divDataTable">
+        <h:outputText value="#{fakturaPrehledBean.init()}"/>
+
+        <p:dataTable
+                id="fakturaPrehledBeanTable"
+                var="faktura"
+                widgetVar="fakturaPrehledBeanTable"
+                value="#{fakturaPrehledBean.fakturaList}"
+                sortBy="#{1}"
+                rendered="#{not empty fakturaPrehledBean.fakturaList}"
+                emptyMessage="Nebyly nalezeny žádné faktury"
+                filteredValue="#{fakturaPrehledBean.filtrovanyFakturaList}"
+        >
+
+          <f:facet name="header">
+            <p:outputPanel id="globalFilterHeader" style="float: left; margin-top: 5px;">Nalezeno: <h:outputText value="#{fakturaPrehledBean.filtrovanyFakturaListSize}"/> z <h:outputText value="#{fakturaPrehledBean.fakturaListSize}"/></p:outputPanel>
+            <p:outputPanel style="text-align: right;">
+              <p:inputText id="globalFilter" onkeyup="PF('fakturaPrehledBeanTable').filter()" style="width:235px"
+                           placeholder="- zadejte text pro vyhledání -">
+                <p:ajax event="keyup" update="globalFilterHeader" />
+              </p:inputText>
+            </p:outputPanel>
+          </f:facet>
+
+          <p:columnGroup type="header">
+            <p:row>
+              <p:column headerText="Dodavatel"
+                        rowspan="2"
+                        sortBy="#{faktura.dodavatel}"
+                        filterBy="#{faktura.dodavatel}"
+                        filterMatchMode="contains"
+                        filterStyle="display:none"
+                        style="width: 100%;"/>
+              <p:column headerText="Náklady"
+                        rowspan="2"
+                        sortBy="#{fakturaPrehledBean.spocitatCelkoveNakladyFaktury(faktura)}"
+                        filterBy="#{fakturaPrehledBean.spocitatCelkoveNakladyFaktury(faktura)}"
+                        filterMatchMode="contains"
+                        filterStyle="display:none"
+                        style="width: 100px;"/>
+              <p:column headerText="Zúčtovací období"
+                        colspan="2"
+                        style="width: 300px;"/>
+              <p:column headerText="Datum splatnosti"
+                        rowspan="2"
+                        sortBy="#{fakturaPrehledBean.spocitatCelkoveNakladyFaktury(faktura)}"
+                        filterBy="#{fakturaPrehledBean.spocitatCelkoveNakladyFaktury(faktura)}"
+                        filterMatchMode="contains"
+                        filterStyle="display:none"
+                        style="width: 100px;"/>
+              <p:column headerText="Stav"
+                        rowspan="2"
+                        sortBy="#{fakturaPrehledBean.spocitatCelkoveNakladyFaktury(faktura)}"
+                        filterBy="#{fakturaPrehledBean.spocitatCelkoveNakladyFaktury(faktura)}"
+                        filterMatchMode="contains"
+                        filterStyle="display:none"
+                        style="width: 100px;"/>
+              <p:column headerText="Ovládání"
+                        rowspan="2"
+                        colspan="1"
+                        style="width: 90px;"/>
+            </p:row>
+            <p:row>
+              <p:column headerText="Začátek"
+                        sortBy="#{dateFormatterBean.formatDate(faktura.zuctovaciObdobi.zacatek)}"
+                        filterBy="#{dateFormatterBean.formatDate(faktura.zuctovaciObdobi.zacatek)}"
+                        filterMatchMode="contains"
+                        filterStyle="display:none"/>
+              <p:column headerText="Konec" sortBy="#{dateFormatterBean.formatDate(faktura.zuctovaciObdobi.konec)}"
+                        filterBy="#{dateFormatterBean.formatDate(faktura.zuctovaciObdobi.konec)}"
+                        filterMatchMode="contains"
+                        filterStyle="display:none"/>
+            </p:row>
+          </p:columnGroup>
+
+          <p:column>
+            <h:outputText value="#{faktura.dodavatel}"/>
+          </p:column>
+
+          <p:column style="text-align: right;">
+            <h:outputText value="#{fakturaPrehledBean.spocitatCelkoveNakladyFaktury(faktura.id).mnozstvi}">
+              <f:convertNumber pattern="#0.00"/>
+            </h:outputText>&nbsp;<h:outputText value="#{fakturaPrehledBean.spocitatCelkoveNakladyFaktury(faktura.id).jednotka}"/>
+          </p:column>
+
+          <p:column>
+            <h:outputText value="#{dateFormatterBean.formatDate(faktura.zuctovaciObdobi.zacatek)}" />
+          </p:column>
+
+          <p:column>
+            <h:outputText value="#{dateFormatterBean.formatDate(faktura.zuctovaciObdobi.konec)}" />
+          </p:column>
+
+          <p:column>
+            <h:outputText value="#{dateFormatterBean.formatDate(faktura.datumSplatnosti)}" />
+          </p:column>
+
+
+          <p:column>
+            <h:outputText value="#{dateFormatterBean.formatDate(faktura.zuctovaciObdobi.zacatek)}" />
+          </p:column>
+
+          <p:column>
+            <p:commandButton icon="ui-icon-circle-zoomin" actionListener="#{routerBean.goToFakturaDetailBean(faktura)}" title="Upravit / Podrobnosti"/>
+            <p:commandButton update="form :form:msgs" icon="ui-icon-circle-minus" actionListener="#{fakturaPrehledBean.smazatFaktura(faktura)}" title="Odebrat"/>
+          </p:column>
+
+        </p:dataTable>
+      </div>
+    </div>
+  </ui:composition>
+</h:body>
+</html>

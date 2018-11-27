@@ -43,21 +43,21 @@ public class OsobaPrehledBean extends AbstractBean {
     filtrovanyOsobaList = null;
   }
 
-  public void addRow() {
-    log.trace("addRow()");
+  public void pridatOsoba() {
+    log.trace("pridatOsoba()");
 
     Osoba osoba = new Osoba();
     osoba.setIdOsoba(loginBean.getPrihlasenyUzivatel().getId());
     osoba.setTrvaleBydliste(new Adresa());
 
-    Osoba saved = osobaService.postOsoba(osoba);
+    osobaService.postOsoba(osoba);
     init();
 
-    showInfoMessage("Přidána nová osoba", saved.getId());
+    showInfoMessage("Přidán", "Přidáná nová osoba");
   }
 
-  public void deleteRow(Osoba deletedOsoba) {
-    log.trace("deleteRow()");
+  public void smazatOsoba(Osoba deletedOsoba) {
+    log.trace("smazatOsoba()");
 
     if (deletedOsoba == null) {
       log.trace("deleted row is null");
@@ -67,7 +67,7 @@ public class OsobaPrehledBean extends AbstractBean {
 
     osobaService.deleteOsoba(deletedOsoba.getId());
 
-    showInfoMessage("Smazán osoba", deletedOsoba.getCeleJmeno());
+    showInfoMessage("Smazán", "Smazána osoba " + deletedOsoba.getCeleJmeno());
     init();
   }
 

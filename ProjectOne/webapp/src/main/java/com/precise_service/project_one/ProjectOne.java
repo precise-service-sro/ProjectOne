@@ -4,6 +4,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
+import org.springframework.boot.web.servlet.ServletContextInitializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.mongodb.config.AbstractMongoConfiguration;
 import org.springframework.data.mongodb.gridfs.GridFsTemplate;
@@ -54,5 +55,17 @@ public class ProjectOne extends AbstractMongoConfiguration implements CommandLin
   @Bean
   public MongoClient mongoClient() {
     return new MongoClient("127.0.0.1");
+  }
+
+  @Bean
+  public ServletContextInitializer servletContextInitializer() {
+    return servletContext -> {
+      servletContext.setInitParameter("com.sun.faces.forceLoadConfiguration", Boolean.TRUE.toString());
+      servletContext.setInitParameter("primefaces.THEME", "bootstrap");
+      servletContext.setInitParameter("primefaces.CLIENT_SIDE_VALIDATION", Boolean.TRUE.toString());
+      servletContext.setInitParameter("javax.faces.FACELETS_SKIP_COMMENTS", Boolean.TRUE.toString());
+      servletContext.setInitParameter("primefaces.FONT_AWESOME", Boolean.TRUE.toString());
+      servletContext.setInitParameter("primefaces.UPLOADER", "commons");
+    };
   }
 }

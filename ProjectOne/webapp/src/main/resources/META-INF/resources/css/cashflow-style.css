@@ -20,11 +20,12 @@
   text-align: left;
   border-bottom: 1px solid #000;
   padding-left: 20px;
+  width: 200px;
 }
 
 .hospodarskaVysledovkaDiv td {
   text-align: right;
-  padding-right: 30px;
+  padding-inline-end: 20px;
   border-bottom: 1px solid #000;
 }
 
@@ -94,7 +95,7 @@
 }
 
 .pasivniPrijemDiv {
-  margin-bottom: 80px;
+  margin-bottom: -25px;
 }
 
 .pasivniPrijemDiv table {
@@ -113,6 +114,7 @@
 .celkovePrijmySubDiv {
   float: right;
   font-size: 30px;
+  width: 300px;
 }
 
 .celkovePrijmyDiv td {
@@ -130,7 +132,6 @@
   width: 60%;
   padding: 10px;
   font-size: 20px;
-  margin-bottom: 25px;
 }
 
 .detiSubDiv table {
@@ -163,7 +164,8 @@
 
 .aktivaDiv {
   width: 48%;
-  height: 240px;
+  height: 250px;
+  border: 2px solid #000;
 }
 
 .aktivaDiv p {
@@ -197,7 +199,8 @@
 .pasivaDiv {
   width: 48%;
   float: right;
-  height: 240px;
+  height: 250px;
+  border: 2px solid #000;
 }
 
 .pasivaDiv p {
@@ -222,6 +225,7 @@
   text-align: left;
   padding-left: 20px;
   border-bottom: 1px solid #000;
+  width: 250px;
 }
 
 .pasivaDiv td {
@@ -231,11 +235,13 @@
 }
 
 .cashflowDiv table {
-  font-size: 40px;
+  font-size: 28px;
   margin-top: 30px;
-  padding-left: 53%;
+  padding-left: 49%;
+  width: 100%;
 }
 
 .cashflowDiv td {
-  text-align: center;
+  text-align: right;
+  padding-right: 100px;
 }

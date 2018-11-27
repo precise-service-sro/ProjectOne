@@ -20,6 +20,53 @@
     </ui:define>
 
     <ui:define name="detailPageData">
+
+      <p:breadCrumb>
+        <p:menuitem value="Categories" url="#" />
+        <p:menuitem value="Sports" url="#" />
+        <p:menuitem value="Basketball" url="#" />
+        <p:menuitem value="NBA" url="#" disabled="true" />
+        <p:menuitem value="Teams" url="#" />
+        <p:menuitem value="L.A. Lakers" url="#" />
+        <p:menuitem value="Roster" url="#" />
+        <p:menuitem value="Kobe Bryant" url="#" />
+      </p:breadCrumb>
+
+      <p:tabView id="tabViewNemovitostDetail" orientation="left" dynamic="true" cache="false" class="tabicko">
+
+        <p:tab id="tabNajemniSmlouva" title="Nájemní smlouva - detaily">
+          Detaily nájemní smlouvy, cena, datum podpisu
+        </p:tab>
+
+        <p:tab id="tabNemovitost" title="Nemovitost">
+          Detail nemovitosti
+        </p:tab>
+
+        <p:tab id="tabPredavaciProtokol" title="Předávací protokol">
+          Detail předávacího protokolu
+        </p:tab>
+
+        <p:tab id="tabPronajimatel" title="Pronajímatel">
+          Detail pronajímatele
+        </p:tab>
+
+        <p:tab id="tabNajemnik" title="Nájemník">
+          Detail nájemníka
+        </p:tab>
+
+        <p:tab id="tabPrilohy" title="Přílohy">
+          Detailní přílohy - fotografie nemovitosti => ty by měli být přece součástí předávacího protokolu
+        </p:tab>
+
+        <p:tab id="tabDokumenty" title="Dokumenty">
+          Detailní dokumenty - uploadovaná podepsaná nájemní smlouva, podepsaný předávací proto
+        </p:tab>
+
+        <p:tab id="tabPoznamky" title="Poznámky">
+          Detail nájemníka
+        </p:tab>
+      </p:tabView>
+
       <table>
         <tr>
           <th>

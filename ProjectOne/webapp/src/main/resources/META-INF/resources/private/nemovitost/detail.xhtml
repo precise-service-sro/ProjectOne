@@ -46,15 +46,45 @@
             </ui:insert>
           </p:tab>
 
+          <p:tab id="tabCashflow" title="Cashflow">
+            <ui:insert name="cashflow" >
+              <ui:include src="tab/cashflowTab.xhtml" />
+            </ui:insert>
+          </p:tab>
+
+          <p:tab id="tabDokumenty" title="Dokumenty">
+            <ui:insert name="dokumenty" >
+              <ui:include src="tab/dokumentyTab.xhtml" />
+            </ui:insert>
+          </p:tab>
+
+          <p:tab id="tabFaktury" title="Faktury">
+            <ui:insert name="faktury" >
+              <ui:include src="tab/fakturyTab.xhtml" />
+            </ui:insert>
+          </p:tab>
+
           <p:tab id="tabKontaktniOsoby" title="Kontaktní osoby">
             <ui:insert name="kontaktniOsoby" >
               <ui:include src="tab/kontaktniOsobyTab.xhtml" />
             </ui:insert>
           </p:tab>
 
-          <p:tab id="tabVyucotavanePolozky" title="Vyúčtovávané položky">
-            <ui:insert name="vyuctovavanePolozky" >
-              <ui:include src="tab/vyuctovavanePolozkyTab.xhtml" />
+          <p:tab id="tabNajemniSmlouvy" title="Nájemní smlouvy">
+            <ui:insert name="najemniSmlouvy" >
+              <ui:include src="tab/najemniSmlouvyTab.xhtml" />
+            </ui:insert>
+          </p:tab>
+
+          <p:tab id="tabNajemnici" title="Nájemníci">
+            <ui:insert name="najemnici" >
+              <ui:include src="tab/najemniciTab.xhtml" />
+            </ui:insert>
+          </p:tab>
+
+          <p:tab id="tabPlatbyNajemnoho" title="Platby nájemného">
+            <ui:insert name="platbyNajemneho" >
+              <ui:include src="tab/platbyNajemnehoTab.xhtml" />
             </ui:insert>
           </p:tab>
 
@@ -64,20 +94,32 @@
             </ui:insert>
           </p:tab>
 
-          <p:tab id="tabNajemnici" title="Nájemníci">
+          <p:tab id="tabPredavaciProtokoly" title="Předávací protokoly">
+            <ui:insert>
+              <ui:include src="tab/predavaciProtokolyTab.xhtml" />
+            </ui:insert>
           </p:tab>
 
-          <p:tab id="tabPredavaciProtokoly" title="PředávacíProtokoly">
+
+
+          <p:tab id="tabVlastnik" title="Vlastník">
+            <ui:insert name="vlastnik" >
+              <ui:include src="tab/vlastnikTab.xhtml" />
+            </ui:insert>
           </p:tab>
 
-          <p:tab id="tabFaktury" title="Faktury">
+          <p:tab id="tabVyuctovani" title="Vyúčtování">
+            <ui:insert name="vyuctovani" >
+              <ui:include src="tab/vyuctovaniTab.xhtml" />
+            </ui:insert>
           </p:tab>
 
-          <p:tab id="tabUvery" title="Úvěry">
+          <p:tab id="tabVyucotavanePolozky" title="Vyúčtovávané položky">
+            <ui:insert name="vyuctovavanePolozky" >
+              <ui:include src="tab/vyuctovavanePolozkyTab.xhtml" />
+            </ui:insert>
           </p:tab>
 
-          <p:tab id="tabSpotreby" title="Spotřeby">
-          </p:tab>
         </p:tabView>
       </h:form>
 

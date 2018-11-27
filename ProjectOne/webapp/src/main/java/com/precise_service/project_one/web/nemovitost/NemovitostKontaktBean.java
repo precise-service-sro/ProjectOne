@@ -24,6 +24,8 @@ public class NemovitostKontaktBean extends AbstractBean {
 
   private List<NemovitostKontakt> nemovitostKontaktList;
   private List<NemovitostKontakt> filtrovanyNemovitostKontaktList;
+  private int nemovitostKontaktListSize;
+  private int filtrovanyNemovitostKontaktListSize;
 
   public void init(String idNemovitost) {
     nemovitost = nemovitostService.getNemovitost(idNemovitost);
@@ -76,5 +78,19 @@ public class NemovitostKontaktBean extends AbstractBean {
   public void zrusitUpravuNemovitostKontakt(RowEditEvent event) {
     log.trace("zrusitUpravuNemovitostKontakt()");
     showInfoMessage("Zrušena úprava kontaktu", ((NemovitostKontakt) event.getObject()).getCeleJmeno());
+  }
+
+  public int getNemovitostKontaktListSize() {
+    if (nemovitostKontaktList == null) {
+      return 0;
+    }
+    return nemovitostKontaktList.size();
+  }
+
+  public int getFiltrovanyNemovitostKontaktListSize() {
+    if (filtrovanyNemovitostKontaktList == null) {
+      return getNemovitostKontaktListSize();
+    }
+    return filtrovanyNemovitostKontaktList.size();
   }
 }
