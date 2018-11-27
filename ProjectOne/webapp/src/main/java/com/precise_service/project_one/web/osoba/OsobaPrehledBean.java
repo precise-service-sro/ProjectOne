@@ -1,6 +1,7 @@
 package com.precise_service.project_one.web.osoba;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.faces.context.FacesContext;
@@ -13,6 +14,7 @@ import org.springframework.data.mongodb.core.query.Query;
 
 import com.mongodb.client.gridfs.model.GridFSFile;
 import com.precise_service.project_one.entity.adresa.Adresa;
+import com.precise_service.project_one.entity.nemovitost.Nemovitost;
 import com.precise_service.project_one.entity.osoba.Osoba;
 import com.precise_service.project_one.web.AbstractBean;
 
@@ -40,6 +42,11 @@ public class OsobaPrehledBean extends AbstractBean {
   public void init() {
     Osoba prihlasenyUzivatel = loginBean.getPrihlasenyUzivatel();
     osobaList = osobaService.getOsobaAll(prihlasenyUzivatel.getId());
+    filtrovanyOsobaList = null;
+  }
+
+  public void initJakoVlastnikNemovitosti(Nemovitost nemovitost) {
+    osobaList = Arrays.asList(nemovitost.getVlastnik());
     filtrovanyOsobaList = null;
   }
 
