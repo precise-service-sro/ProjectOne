@@ -40,16 +40,36 @@
 
         <p:columnGroup type="header">
           <p:row>
-            <p:column headerText="Id:" style="width: 230px;" />
-            <p:column headerText="Nemovitost" filterBy="#{predavaciProtokol.nemovitost.getIdentifikaceNemovitosti()}" filterMatchMode="contains"
-                      style="width: 400px;" filterStyle="display:none" sortBy="#{predavaciProtokol.nemovitost.getIdentifikaceNemovitosti()}"/>
-            <p:column headerText="Nájemník" filterBy="#{predavaciProtokol.najemnik.getCeleJmeno()}" filterMatchMode="contains" style="width: 200px;"
-                      filterStyle="display:none" sortBy="#{predavaciProtokol.najemnik.getCeleJmeno()}"/>
-            <p:column headerText="Datum podpisu" filterBy="#{dateFormatterBean.formatDate(predavaciProtokol.datumPodpisu)}" filterMatchMode="contains"
-                      style="width: 200px;" filterStyle="display:none" sortBy="#{dateFormatterBean.formatDate(predavaciProtokol.datumPodpisu)}"/>
-            <p:column headerText="Status (je platný)" filterBy="#{predavaciProtokol.najemnik.getCeleJmeno()}" filterMatchMode="contains" style="width: 100%;"
-                      filterStyle="display:none" sortBy="#{predavaciProtokol.najemnik.getCeleJmeno()}"/>
-            <p:column headerText="Ovládání" colspan="1" rowspan="2" style="width: 90px;"/>
+            <p:column headerText="Id:"
+                      style="width: 230px;" />
+            <p:column headerText="Nemovitost"
+                      filterBy="#{predavaciProtokol.nemovitost.getIdentifikaceNemovitosti()}"
+                      filterMatchMode="contains"
+                      style="width: 400px;"
+                      filterStyle="display:none"
+                      sortBy="#{predavaciProtokol.nemovitost.getIdentifikaceNemovitosti()}"/>
+            <p:column headerText="Nájemník"
+                      filterBy="#{predavaciProtokol.najemnik.getCeleJmeno()}"
+                      filterMatchMode="contains"
+                      style="width: 200px;"
+                      filterStyle="display:none"
+                      sortBy="#{predavaciProtokol.najemnik.getCeleJmeno()}"/>
+            <p:column headerText="Datum podpisu"
+                      filterBy="#{dateFormatterBean.formatDate(predavaciProtokol.datumPodpisu)}"
+                      filterMatchMode="contains"
+                      style="width: 200px;"
+                      filterStyle="display:none"
+                      sortBy="#{dateFormatterBean.formatDate(predavaciProtokol.datumPodpisu)}"/>
+            <p:column headerText="Status (je platný)"
+                      filterBy="#{predavaciProtokol.najemnik.getCeleJmeno()}"
+                      filterMatchMode="contains"
+                      style="width: 100%;"
+                      filterStyle="display:none"
+                      sortBy="#{predavaciProtokol.najemnik.getCeleJmeno()}"/>
+            <p:column headerText="Ovládání"
+                      colspan="1"
+                      rowspan="2"
+                      style="width: 90px;"/>
           </p:row>
         </p:columnGroup>
 

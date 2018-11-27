@@ -8,6 +8,8 @@ import javax.faces.context.FacesContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.gridfs.GridFsTemplate;
 
+import com.precise_service.project_one.service.IPolozkaTypService;
+import com.precise_service.project_one.service.common.ICalculatorService;
 import com.precise_service.project_one.service.faktura.IFakturaPolozkaService;
 import com.precise_service.project_one.service.faktura.IFakturaService;
 import com.precise_service.project_one.service.nemovitost.INemovitostKontaktService;
@@ -17,11 +19,10 @@ import com.precise_service.project_one.service.pronajem.INajemniSmlouvaService;
 import com.precise_service.project_one.service.pronajem.IPlatbaNajemnehoService;
 import com.precise_service.project_one.service.pronajem.IPredavaciProtokolPolozkaService;
 import com.precise_service.project_one.service.pronajem.IPredavaciProtokolService;
-import com.precise_service.project_one.service.IPolozkaTypService;
 import com.precise_service.project_one.service.pronajem.IVyuctovaniPolozkaService;
 import com.precise_service.project_one.service.pronajem.IVyuctovaniService;
+import com.precise_service.project_one.web.common.DateFormatterBean;
 import com.precise_service.project_one.web.common.RouterBean;
-import com.precise_service.project_one.web.common.formatter.DateFormatterBean;
 import com.precise_service.project_one.web.faktura.FakturaDetailBean;
 import com.precise_service.project_one.web.login.LoginBean;
 import com.precise_service.project_one.web.nemovitost.NemovitostDetailBean;
@@ -71,6 +72,7 @@ public abstract class AbstractBean implements Serializable {
   @Autowired protected GridFsTemplate gridFsTemplate;
 
   @Autowired protected DateFormatterBean dateFormatterBean;
+  @Autowired protected ICalculatorService calculatorService;
 
   protected void showInfoMessage(String messageSummary, String messageText) {
     showInfo(FacesMessage.SEVERITY_INFO, messageSummary, messageText);

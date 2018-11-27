@@ -2,7 +2,6 @@ package com.precise_service.project_one.web.pronajem;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 
 import javax.inject.Named;
@@ -128,8 +127,7 @@ public class VyuctovaniDetailBean extends AbstractBean {
     platbaNajemnehoCelkem.setMnozstvi(0.0);
     platbaNajemnehoCelkem.setJednotka("Kč");
 
-    List<PlatbaNajemneho> platbaNajemnehoList = getPlatbaNajemnehoList();
-    for (PlatbaNajemneho platbaNajemneho : platbaNajemnehoList) {
+    for (PlatbaNajemneho platbaNajemneho : getPlatbaNajemnehoList()) {
       // TODO: zkontrolovat měnu / jednotku
       platbaNajemnehoCelkem.setMnozstvi(platbaNajemnehoCelkem.getMnozstvi() + platbaNajemneho.getCastka().getMnozstvi());
     }
@@ -141,18 +139,19 @@ public class VyuctovaniDetailBean extends AbstractBean {
   }
 
   public List<CelkoveVyuctovani> getCelkoveVyuctovani() {
-    List<CelkoveVyuctovani> celkoveVyuctovaniList = new ArrayList<>();
-    CelkoveVyuctovani celkoveVyuctovani = new CelkoveVyuctovani();
-    celkoveVyuctovani.setZalohyCelkem(getPlatbaNajemnehoCelkem());
+    vyuctovani.setCelkoveZalohy(getPlatbaNajemnehoCelkem());
     Cislo nakladyCelkem = new Cislo();
     nakladyCelkem.setMnozstvi(celkemNaklady);
     nakladyCelkem.setJednotka("Kč");
-    celkoveVyuctovani.setNakladyCelkem(nakladyCelkem);
+    vyuctovani.setCelkoveNaklady(nakladyCelkem);
+    vyuctovani.setVysledekVyuctovani(calculatorService.odecist(vyuctovani.getCelkoveZalohy(), vyuctovani.getCelkoveNaklady()));
+    vyuctovani = vyuctovaniService.putVyuctovani(vyuctovani);
 
-    Cislo rozdil = new Cislo();
-    rozdil.setMnozstvi(celkoveVyuctovani.getZalohyCelkem().getMnozstvi() - celkoveVyuctovani.getNakladyCelkem().getMnozstvi());
-    rozdil.setJednotka("Kč");
-    celkoveVyuctovani.setRozdil(rozdil);
+    List<CelkoveVyuctovani> celkoveVyuctovaniList = new ArrayList<>();
+    CelkoveVyuctovani celkoveVyuctovani = new CelkoveVyuctovani();
+    celkoveVyuctovani.setZalohyCelkem(vyuctovani.getCelkoveZalohy());
+    celkoveVyuctovani.setNakladyCelkem(vyuctovani.getCelkoveNaklady());
+    celkoveVyuctovani.setRozdil(vyuctovani.getVysledekVyuctovani());
     celkoveVyuctovaniList.add(celkoveVyuctovani);
     return celkoveVyuctovaniList;
   }

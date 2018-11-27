@@ -12,6 +12,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.precise_service.project_one.entity.BaseEntity;
 import com.precise_service.project_one.entity.CasovyInterval;
+import com.precise_service.project_one.entity.Cislo;
 import com.precise_service.project_one.entity.pronajem.NajemniSmlouva;
 import com.precise_service.project_one.entity.faktura.Faktura;
 import com.precise_service.project_one.entity.nemovitost.Nemovitost;
@@ -62,4 +63,21 @@ public class Vyuctovani extends BaseEntity {
   @JsonInclude(JsonInclude.Include.NON_NULL)
   @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
   private Date datumVystaveni;
+
+  @JsonProperty("celkoveZalohy")
+  @JsonInclude(JsonInclude.Include.NON_NULL)
+  private Cislo celkoveZalohy;
+
+  @JsonProperty("celkoveNaklady")
+  @JsonInclude(JsonInclude.Include.NON_NULL)
+  private Cislo celkoveNaklady;
+
+  @JsonProperty("vysledekVyuctovani")
+  @JsonInclude(JsonInclude.Include.NON_NULL)
+  private Cislo vysledekVyuctovani;
+
+  @JsonProperty("datumVyrovnani")
+  @JsonInclude(JsonInclude.Include.NON_NULL)
+  @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
+  private Date datumVyrovnani;
 }

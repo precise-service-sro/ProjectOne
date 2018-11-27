@@ -27,7 +27,7 @@ public class NemovitostConverter extends AbstractBean implements Converter {
   }
 
   public String getAsString(FacesContext fc, UIComponent uic, Object object) {
-    if(object == null || !(object instanceof Nemovitost)) {
+    if(object  == null) {
       return null;
     }
     return String.valueOf(((Nemovitost) object).getId());

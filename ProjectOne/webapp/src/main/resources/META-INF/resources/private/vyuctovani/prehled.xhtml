@@ -52,32 +52,73 @@
 
         <p:columnGroup type="header">
           <p:row>
-            <p:column headerText="Nemovitost" rowspan="2" style="width: 100%;" filterBy="#{vyuctovani.nemovitost.getIdentifikaceNemovitosti()}"
-                      filterMatchMode="contains" filterStyle="display:none" sortBy="#{vyuctovani.nemovitost.getIdentifikaceNemovitosti()}"/>
-            <p:column headerText="Pronajímatel" rowspan="2" style="width: 170px;" filterBy="#{vyuctovani.nemovitost.vlastnik.getCeleJmeno()}"
-                      filterMatchMode="contains" filterStyle="display:none" sortBy="#{vyuctovani.nemovitost.vlastnik.getCeleJmeno()}"/>
-            <p:column headerText="Nájemník" rowspan="2" style="width: 170px;" filterBy="#{vyuctovani.najemnik.getCeleJmeno()}" filterMatchMode="contains"
-                      filterStyle="display:none" sortBy="#{vyuctovani.najemnik.getCeleJmeno()}"/>
-            <p:column headerText="Datum vystavení" rowspan="2" style="width: 170px;" filterBy="#{dateFormatterBean.formatDate(vyuctovani.datumVystaveni)}"
-                      filterMatchMode="contains" filterStyle="display:none" sortBy="#{dateFormatterBean.formatDate(vyuctovani.datumVystaveni)}"/>
-            <p:column headerText="Zúčtovací období" colspan="2" style="width: 300px;"/>
-            <p:column headerText="Ovládání" colspan="1" rowspan="2" style="width: 90px;"/>
+            <p:column headerText="Id:"
+                      rowspan="2"
+                      style="width: 230px;" />
+            <p:column headerText="Nemovitost"
+                      rowspan="2"
+                      style="width: 100%;"
+                      filterBy="#{vyuctovani.nemovitost.getIdentifikaceNemovitosti()}"
+                      filterMatchMode="contains"
+                      filterStyle="display:none"
+                      sortBy="#{vyuctovani.nemovitost.getIdentifikaceNemovitosti()}"/>
+            <p:column headerText="Nájemník"
+                      rowspan="2"
+                      style="width: 170px;"
+                      filterBy="#{vyuctovani.najemnik.getCeleJmeno()}"
+                      filterMatchMode="contains"
+                      filterStyle="display:none"
+                      sortBy="#{vyuctovani.najemnik.getCeleJmeno()}"/>
+            <p:column headerText="Zúčtovací období"
+                      colspan="2"
+                      style="width: 260px;"/>
+            <p:column headerText="Výsledek"
+                      rowspan="2"
+                      style="width: 120px;"
+                      filterBy="#{vyuctovani.vysledekVyuctovani.mnozstvi}"
+                      filterMatchMode="contains"
+                      filterStyle="display:none"
+                      sortBy="#{vyuctovani.vysledekVyuctovani.mnozstvi}"/>
+            <p:column headerText="Vystaveno"
+                      rowspan="2"
+                      style="width: 120px;"
+                      filterBy="#{dateFormatterBean.formatDate(vyuctovani.datumVystaveni)}"
+                      filterMatchMode="contains"
+                      filterStyle="display:none"
+                      sortBy="#{dateFormatterBean.formatDate(vyuctovani.datumVystaveni)}"/>
+            <p:column headerText="Vyrovnáno"
+                      rowspan="2"
+                      style="width: 130px;"
+                      filterBy="#{dateFormatterBean.formatDate(vyuctovani.datumVyrovnani)}"
+                      filterMatchMode="contains"
+                      filterStyle="display:none"
+                      sortBy="#{dateFormatterBean.formatDate(vyuctovani.datumVyrovnani)}"/>
+            <p:column headerText="Ovládání"
+                      colspan="1"
+                      rowspan="2"
+                      style="width: 90px;"/>
           </p:row>
           <p:row>
-            <p:column headerText="Začátek" filterBy="#{vyuctovani.zuctovaciObdobi.zacatek}" filterMatchMode="contains" filterStyle="display:none"
-                      sortBy="#{vyuctovani.zuctovaciObdobi.zacatek}"/>
-            <p:column headerText="Konec" filterBy="#{vyuctovani.zuctovaciObdobi.konec}" filterMatchMode="contains" filterStyle="display:none"
-                      sortBy="#{vyuctovani.zuctovaciObdobi.konec}"/>
+            <p:column headerText="Začátek"
+                      filterBy="#{dateFormatterBean.formatDate(vyuctovani.zuctovaciObdobi.zacatek)}"
+                      filterMatchMode="contains"
+                      filterStyle="display:none"
+                      sortBy="#{dateFormatterBean.formatDate(vyuctovani.zuctovaciObdobi.zacatek)}"/>
+            <p:column headerText="Konec"
+                      filterBy="#{dateFormatterBean.formatDate(vyuctovani.zuctovaciObdobi.konec)}"
+                      filterMatchMode="contains"
+                      filterStyle="display:none"
+                      sortBy="#{dateFormatterBean.formatDate(vyuctovani.zuctovaciObdobi.konec)}"/>
           </p:row>
         </p:columnGroup>
 
 
         <p:column>
-          <h:outputText value="#{vyuctovani.nemovitost.getIdentifikaceNemovitosti()}" title="#{vyuctovani.nemovitost.getIdentifikaceNemovitosti()}"/>
+          <h:outputText value="#{vyuctovani.id}"/>
         </p:column>
 
         <p:column>
-          <h:outputText value="#{vyuctovani.nemovitost.vlastnik.getCeleJmeno()}" title="#{vyuctovani.nemovitost.vlastnik.getCeleJmeno()}"/>
+          <h:outputText value="#{vyuctovani.nemovitost.getIdentifikaceNemovitosti()}" title="#{vyuctovani.nemovitost.getIdentifikaceNemovitosti()}"/>
         </p:column>
 
         <p:column>
@@ -85,33 +126,25 @@
         </p:column>
 
         <p:column style="text-align: center;">
+          <h:outputText value="#{dateFormatterBean.formatDate(vyuctovani.zuctovaciObdobi.zacatek)}" />
+        </p:column>
+
+        <p:column style="text-align: center;">
+          <h:outputText value="#{dateFormatterBean.formatDate(vyuctovani.zuctovaciObdobi.konec)}" />
+        </p:column>
+
+        <p:column style="text-align: center;">
+          <h:outputText value="#{vyuctovani.vysledekVyuctovani.mnozstvi}">
+            <f:convertNumber pattern="#0.00"/>
+          </h:outputText>
+        </p:column>
+
+        <p:column style="text-align: center;">
           <h:outputText value="#{dateFormatterBean.formatDate(vyuctovani.datumVystaveni)}"/>
         </p:column>
 
         <p:column style="text-align: center;">
-          <p:cellEditor>
-            <f:facet name="output">
-              <h:outputText value="#{vyuctovani.zuctovaciObdobi.zacatek}">
-                <f:convertDateTime pattern="dd-MM-yyyy"/>
-              </h:outputText>
-            </f:facet>
-            <f:facet name="input">
-              <p:calendar id="zuctovaciObdobiZacatekInput" value="#{vyuctovani.zuctovaciObdobi.zacatek}" pattern="dd-MM-yyyy" style="width:100%"/>
-            </f:facet>
-          </p:cellEditor>
-        </p:column>
-
-        <p:column style="text-align: center;">
-          <p:cellEditor>
-            <f:facet name="output">
-              <h:outputText value="#{vyuctovani.zuctovaciObdobi.konec}">
-                <f:convertDateTime pattern="dd-MM-yyyy"/>
-              </h:outputText>
-            </f:facet>
-            <f:facet name="input">
-              <p:calendar id="zuctovaciObdobiKonecInput" value="#{vyuctovani.zuctovaciObdobi.konec}" pattern="dd-MM-yyyy" style="width:100%"/>
-            </f:facet>
-          </p:cellEditor>
+          <h:outputText value="#{dateFormatterBean.formatDate(vyuctovani.datumVyrovnani)}"/>
         </p:column>
 
         <p:column>

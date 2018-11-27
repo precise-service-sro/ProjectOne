@@ -1,4 +1,4 @@
-package com.precise_service.project_one.web.common.formatter;
+package com.precise_service.project_one.web.common;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
