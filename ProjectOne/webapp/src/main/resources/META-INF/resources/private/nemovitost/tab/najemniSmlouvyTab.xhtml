@@ -40,17 +40,17 @@
             <p:row>
               <p:column headerText="Id:"
                         style="width: 230px;" rendered="false"/>
-              <p:column headerText="Nájemník"
-                        filterBy="#{najemniSmlouva.najemnik.getCeleJmeno()}"
+              <p:column headerText="Nájemníci"
+                        filterBy="#{najemniSmlouvaPrehledBean.getSeznamJmenVsechNajemniku(najemniSmlouva)}"
                         filterMatchMode="contains"
-                        style="width: 200px;"
+                        style="width: 300px;"
                         filterStyle="display:none"
-                        sortBy="#{najemniSmlouva.najemnik.getCeleJmeno()}"
+                        sortBy="#{najemniSmlouvaPrehledBean.getSeznamJmenVsechNajemniku(najemniSmlouva)}"
               />
               <p:column headerText="Datum podpisu"
                         filterBy="#{dateFormatterBean.formatDate(najemniSmlouva.datumPodpisu)}"
                         filterMatchMode="contains"
-                        style="width: 200px;"
+                        style="width: 100px;"
                         filterStyle="display:none"
                         sortBy="#{dateFormatterBean.formatDate(najemniSmlouva.datumPodpisu)}"
               />
@@ -90,10 +90,7 @@
           </p:column>
 
           <p:column>
-            <h:outputText value="#{najemniSmlouva.najemnik.getCeleJmeno()}"/>
-            <ui:remove>
-              <h:outputText value="#{najemniSmlouva.id}"/>
-            </ui:remove>
+            <h:outputText value="#{najemniSmlouvaPrehledBean.getSeznamJmenVsechNajemniku(najemniSmlouva)}"/>
           </p:column>
 
           <p:column style="text-align: center;">

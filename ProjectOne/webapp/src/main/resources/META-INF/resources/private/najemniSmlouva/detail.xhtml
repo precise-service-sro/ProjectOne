@@ -15,7 +15,7 @@
     </ui:define>
 
     <ui:define name="pageContentTitle">
-      <h:outputText value="#{predavaciProtokolDetailBean.init()}"/>
+      <h:outputText value="#{najemniSmlouvaDetailBean.init()}"/>
       <p>Detailní informace o konkrétním nájemní smlouvě:</p>
     </ui:define>
 
@@ -29,10 +29,28 @@
           <table>
             <tr>
               <th>
+                <p>Začátek platnosti:</p>
+              </th>
+              <td>
+                <p:calendar id="zacatekPlatnosti" value="#{najemniSmlouvaDetailBean.najemniSmlouva.platnost.zacatek}" pattern="dd-MM-yyyy"/>
+              </td>
+            </tr>
+
+            <tr>
+              <th>
+                <p>Konec platnosti:</p>
+              </th>
+              <td>
+                <p:calendar id="konecPlatnosti" value="#{najemniSmlouvaDetailBean.najemniSmlouva.platnost.konec}" pattern="dd-MM-yyyy"/>
+              </td>
+            </tr>
+
+            <tr>
+              <th>
                 <p>Datum podpisu:</p>
               </th>
               <td>
-                <p:calendar id="datumPodpisu" value="#{predavaciProtokolDetailBean.predavaciProtokol.datumPodpisu}" pattern="dd-MM-yyyy"/>
+                <p:calendar id="datumPodpisu" value="#{najemniSmlouvaDetailBean.najemniSmlouva.datumPodpisu}" pattern="dd-MM-yyyy"/>
               </td>
             </tr>
 
@@ -41,7 +59,7 @@
                 <p>Nájemné:</p>
               </th>
               <td>
-                <p:inputText id="najemne" value="#{predavaciProtokolDetailBean.predavaciProtokol.datumPodpisu}" />
+                <p:inputText id="najemne" value="#{najemniSmlouvaDetailBean.najemniSmlouva.najemne.mnozstvi}" />
               </td>
             </tr>
 
@@ -50,7 +68,7 @@
                 <p>Zálohy:</p>
               </th>
               <td>
-                <p:inputText id="zalohy" value="#{predavaciProtokolDetailBean.predavaciProtokol.datumPodpisu}" />
+                <p:inputText id="zalohy" value="#{najemniSmlouvaDetailBean.najemniSmlouva.zalohy.mnozstvi}" />
               </td>
             </tr>
 
@@ -59,8 +77,8 @@
                 <p>Nemovitost:</p>
               </th>
               <td>
-                <h:selectOneMenu value="#{predavaciProtokolDetailBean.predavaciProtokol.nemovitost}" style="width:100%" converter="#{nemovitostConverter}">
-                  <f:selectItems value="#{predavaciProtokolDetailBean.nemovitostList}" var="nemovitost" itemLabel="#{nemovitost.nazev}"
+                <h:selectOneMenu value="#{najemniSmlouvaDetailBean.najemniSmlouva.nemovitost}" style="width:100%" converter="#{nemovitostConverter}">
+                  <f:selectItems value="#{najemniSmlouvaDetailBean.nemovitostList}" var="nemovitost" itemLabel="#{nemovitost.getIdentifikaceNemovitosti()}"
                                  itemValue="#{nemovitost}"/>
                 </h:selectOneMenu>
               </td>
@@ -71,23 +89,24 @@
                 <p>Předávací protokol:</p>
               </th>
               <td>
-                <h:selectOneMenu value="#{predavaciProtokolDetailBean.predavaciProtokol.najemnik}" style="width:100%" converter="#{osobaConverter}">
-                  <f:selectItems value="#{predavaciProtokolDetailBean.osobaList}" var="osoba" itemLabel="#{osoba.getCeleJmeno()}" itemValue="#{osoba}"/>
+                <h:selectOneMenu value="#{najemniSmlouvaDetailBean.najemniSmlouva.predavaciProtokol}" style="width:100%" converter="#{predavaciProtokolConverter}">
+                  <f:selectItems value="#{najemniSmlouvaDetailBean.predavaciProtokolList}" var="predavaciProtokol" itemLabel="#{predavaciProtokol.nazev}" itemValue="#{predavaciProtokol}"/>
                 </h:selectOneMenu>
               </td>
             </tr>
 
             <tr>
               <th>
-                <p>Pronajímatel:</p>
+                <p>Typ dokumentu:</p>
               </th>
               <td>
-                <h:selectOneMenu value="#{predavaciProtokolDetailBean.predavaciProtokol.najemnik}" style="width:100%" converter="#{osobaConverter}">
-                  <f:selectItems value="#{predavaciProtokolDetailBean.osobaList}" var="osoba" itemLabel="#{osoba.getCeleJmeno()}" itemValue="#{osoba}"/>
+                <h:selectOneMenu value="#{najemniSmlouvaDetailBean.najemniSmlouva.dokumentTyp}" style="width:100%" converter="#{dokumentTypConverter}">
+                  <f:selectItems value="#{najemniSmlouvaDetailBean.dokumentTypList}" var="dokumentTyp" itemLabel="#{dokumentTyp.popis}" itemValue="#{dokumentTyp}"/>
                 </h:selectOneMenu>
               </td>
             </tr>
 
+            <!--
             <tr>
               <th>
                 <p>Nájemník:</p>
@@ -109,6 +128,7 @@
                 </h:selectOneMenu>
               </td>
             </tr>
+            -->
           </table>
         </p:tab>
 
@@ -444,8 +464,6 @@
     </ui:define>
 
     <ui:define name="detailPagePridavaciTlacitko">
-      <p:commandButton value="Přidat" icon="ui-icon-circle-plus" process="@this" update="form predavaciProtokolPolozkaDataTable :form:msgs"
-                       actionListener="#{predavaciProtokolDetailBean.addRow()}"/>
     </ui:define>
 
     <ui:define name="detailPageDataTable">
@@ -566,8 +584,8 @@
     </ui:define>
 
     <ui:define name="detailPageUkladaciTlacitka">
-      <p:commandButton value="Uložit" actionListener="#{predavaciProtokolDetailBean.ulozitZmenuPredavacihoProtokolu()}" update="form :form:msgs"/>
-      <p:commandButton value="Zrušit" actionListener="#{predavaciProtokolDetailBean.zrusitZmenuPredavacihoProtokolu()}" update="form :form:msgs"/>
+      <p:commandButton value="Uložit změny" actionListener="#{najemniSmlouvaDetailBean.ulozitZmenuNajemniSmlouva()}" update="form :form:msgs"/>
+      <p:commandButton value="Zrušit změny" actionListener="#{najemniSmlouvaDetailBean.zrusitZmenuNajemniSmlouva()}" update="form :form:msgs"/>
     </ui:define>
 
   </ui:composition>

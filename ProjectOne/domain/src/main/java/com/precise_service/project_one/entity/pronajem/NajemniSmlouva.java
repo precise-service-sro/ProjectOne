@@ -1,5 +1,6 @@
 package com.precise_service.project_one.entity.pronajem;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -34,14 +35,14 @@ public class NajemniSmlouva extends BaseEntity {
   private Nemovitost nemovitost;
 
   @DBRef(lazy = true)
-  @JsonProperty("najemnik")
+  @JsonProperty("predavaciProtokol")
   @JsonInclude(JsonInclude.Include.NON_NULL)
-  private Osoba najemnik;
+  private PredavaciProtokol predavaciProtokol;
 
   @DBRef(lazy = true)
   @JsonProperty("seznamNajemniku")
   @JsonInclude(JsonInclude.Include.NON_NULL)
-  private List<Osoba> seznamNajemniku;
+  private List<Osoba> seznamNajemniku = new ArrayList<>(0);
 
   @JsonProperty("datumPodpisu")
   @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -50,13 +51,17 @@ public class NajemniSmlouva extends BaseEntity {
 
   @JsonProperty("platnost")
   @JsonInclude(JsonInclude.Include.NON_NULL)
-  private CasovyInterval platnost;
+  private CasovyInterval platnost = new CasovyInterval();
 
   @JsonProperty("najemne")
   @JsonInclude(JsonInclude.Include.NON_NULL)
-  private Cislo najemne;
+  private Cislo najemne = new Cislo();
 
   @JsonProperty("zalohy")
   @JsonInclude(JsonInclude.Include.NON_NULL)
-  private Cislo zalohy;
+  private Cislo zalohy = new Cislo();
+
+  @JsonProperty("dokumentTyp")
+  @JsonInclude(JsonInclude.Include.NON_NULL)
+  private DokumentTyp dokumentTyp;
 }

@@ -36,14 +36,14 @@ public class NajemniSmlouvaPrehledBean extends AbstractBean {
     najemniSmlouva.setDatumPodpisu(new Date());
     najemniSmlouva.setIdOsoba(loginBean.getPrihlasenyUzivatel().getId());
 
-    NajemniSmlouva saved = najemniSmlouvaService.postNajemniSmlouva(najemniSmlouva);
-    showInfoMessage("Přidána nová nájemní smlouva", saved.getId());
+    najemniSmlouvaService.postNajemniSmlouva(najemniSmlouva);
+    showInfoMessage("Přidáno", "Přidána nová nájemní smlouva");
 
     init();
   }
 
-  public void deleteRow(NajemniSmlouva deletedNajemniSmlouva) {
-    log.trace("deleteRow()");
+  public void smazatNajemniSmlouva(NajemniSmlouva deletedNajemniSmlouva) {
+    log.trace("smazatNajemniSmlouva()");
 
     if (deletedNajemniSmlouva == null) {
       log.trace("deleted row is null");
@@ -53,7 +53,7 @@ public class NajemniSmlouvaPrehledBean extends AbstractBean {
 
     najemniSmlouvaService.deleteNajemniSmlouva(deletedNajemniSmlouva.getId());
 
-    showInfoMessage("Nájemní smlouvou smazána", deletedNajemniSmlouva.getId());
+    showInfoMessage("Smazána", "Nájemní smlouvou byla smazána");
     init();
   }
 

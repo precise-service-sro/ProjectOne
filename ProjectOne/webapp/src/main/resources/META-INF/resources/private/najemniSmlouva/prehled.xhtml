@@ -22,11 +22,11 @@
     </ui:define>
 
     <ui:define name="prehledPagePridavaciTlacitko">
-      <p:commandButton value="Přidat"
+      <p:commandButton value="Přidat novou nájemní smlouvu"
                        icon="ui-icon-circle-plus"
                        process="@this"
                        update="form :form:msgs"
-                       actionListener="#{predavaciProtokolPrehledBean.addRow()}"
+                       actionListener="#{najemniSmlouvaPrehledBean.pridatNajemniSmlouva()}"
       />
     </ui:define>
 
@@ -46,6 +46,13 @@
           <p:row>
             <p:column headerText="Id:"
                       style="width: 230px;" />
+            <p:column headerText="Typ Dokumentu"
+                      filterBy="#{najemniSmlouva.nemovitost.getIdentifikaceNemovitosti()}"
+                      filterMatchMode="contains"
+                      style="width: 100%;"
+                      filterStyle="display:none"
+                      sortBy="#{najemniSmlouva.nemovitost.getIdentifikaceNemovitosti()}"
+            />
             <p:column headerText="Nemovitost"
                       filterBy="#{najemniSmlouva.nemovitost.getIdentifikaceNemovitosti()}"
                       filterMatchMode="contains"
@@ -60,12 +67,19 @@
                       filterStyle="display:none"
                       sortBy="#{najemniSmlouvaPrehledBean.getSeznamJmenVsechNajemniku(najemniSmlouva)}"
             />
-            <p:column headerText="Datum podpisu"
-                      filterBy="#{dateFormatterBean.formatDate(najemniSmlouva.datumPodpisu)}"
+            <p:column headerText="Začátek"
+                      filterBy="#{dateFormatterBean.formatDate(najemniSmlouva.platnost.zacatek)}"
                       filterMatchMode="contains"
                       style="width: 100px;"
                       filterStyle="display:none"
-                      sortBy="#{dateFormatterBean.formatDate(najemniSmlouva.datumPodpisu)}"
+                      sortBy="#{najemniSmlouva.platnost.zacatek.time}"
+            />
+            <p:column headerText="Konec"
+                      filterBy="#{dateFormatterBean.formatDate(najemniSmlouva.platnost.konec)}"
+                      filterMatchMode="contains"
+                      style="width: 100px;"
+                      filterStyle="display:none"
+                      sortBy="#{najemniSmlouva.platnost.konec.time}"
             />
             <p:column headerText="Status (je platný)"
                       filterBy="#{najemniSmlouva.najemnik.getCeleJmeno()}"
@@ -97,6 +111,10 @@
         </p:column>
 
         <p:column>
+          <h:outputText value="#{najemniSmlouva.dokumentTyp.popis}"/>
+        </p:column>
+
+        <p:column>
           <h:outputText value="#{najemniSmlouva.nemovitost.getIdentifikaceNemovitosti()}"
                         title="#{najemniSmlouva.nemovitost.getIdentifikaceNemovitosti()}"/>
         </p:column>
@@ -106,7 +124,11 @@
         </p:column>
 
         <p:column style="text-align: center;">
-          <h:outputText value="#{dateFormatterBean.formatDate(najemniSmlouva.datumPodpisu)}"/>
+          <h:outputText value="#{dateFormatterBean.formatDate(najemniSmlouva.platnost.zacatek)}"/>
+        </p:column>
+
+        <p:column style="text-align: center;">
+          <h:outputText value="#{dateFormatterBean.formatDate(najemniSmlouva.platnost.konec)}"/>
         </p:column>
 
         <p:column style="text-align: center;">
