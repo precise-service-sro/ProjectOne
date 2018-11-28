@@ -5,6 +5,9 @@ import java.util.List;
 
 import javax.inject.Named;
 
+import org.springframework.util.CollectionUtils;
+
+import com.precise_service.project_one.entity.osoba.Osoba;
 import com.precise_service.project_one.entity.pronajem.NajemniSmlouva;
 import com.precise_service.project_one.web.AbstractBean;
 
@@ -66,5 +69,18 @@ public class NajemniSmlouvaPrehledBean extends AbstractBean {
       return getNajemniSmlouvaListSize();
     }
     return filtrovanyNajemniSmlouvaList.size();
+  }
+
+  public String getSeznamJmenVsechNajemniku(NajemniSmlouva najemniSmlouva) {
+    String seznamJmenVsechNajemniku = "";
+
+    if (najemniSmlouva == null || CollectionUtils.isEmpty(najemniSmlouva.getSeznamNajemniku())) {
+      return seznamJmenVsechNajemniku;
+    }
+
+    for (Osoba osoba : najemniSmlouva.getSeznamNajemniku()) {
+      seznamJmenVsechNajemniku += osoba.getCeleJmeno() + ", ";
+    }
+    return seznamJmenVsechNajemniku;
   }
 }

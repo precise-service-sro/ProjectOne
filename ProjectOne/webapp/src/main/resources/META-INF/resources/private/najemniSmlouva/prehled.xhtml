@@ -49,28 +49,28 @@
             <p:column headerText="Nemovitost"
                       filterBy="#{najemniSmlouva.nemovitost.getIdentifikaceNemovitosti()}"
                       filterMatchMode="contains"
-                      style="width: 400px;"
+                      style="width: 100%;"
                       filterStyle="display:none"
                       sortBy="#{najemniSmlouva.nemovitost.getIdentifikaceNemovitosti()}"
             />
-            <p:column headerText="Nájemník"
-                      filterBy="#{najemniSmlouva.najemnik.getCeleJmeno()}"
+            <p:column headerText="Nájemníci"
+                      filterBy="#{najemniSmlouvaPrehledBean.getSeznamJmenVsechNajemniku(najemniSmlouva)}"
                       filterMatchMode="contains"
-                      style="width: 200px;"
+                      style="width: 300px;"
                       filterStyle="display:none"
-                      sortBy="#{najemniSmlouva.najemnik.getCeleJmeno()}"
+                      sortBy="#{najemniSmlouvaPrehledBean.getSeznamJmenVsechNajemniku(najemniSmlouva)}"
             />
             <p:column headerText="Datum podpisu"
                       filterBy="#{dateFormatterBean.formatDate(najemniSmlouva.datumPodpisu)}"
                       filterMatchMode="contains"
-                      style="width: 200px;"
+                      style="width: 100px;"
                       filterStyle="display:none"
                       sortBy="#{dateFormatterBean.formatDate(najemniSmlouva.datumPodpisu)}"
             />
             <p:column headerText="Status (je platný)"
                       filterBy="#{najemniSmlouva.najemnik.getCeleJmeno()}"
                       filterMatchMode="contains"
-                      style="width: 100%;"
+                      style="width: 100px;"
                       filterStyle="display:none"
                       sortBy="#{najemniSmlouva.najemnik.getCeleJmeno()}"
             />
@@ -102,7 +102,7 @@
         </p:column>
 
         <p:column>
-          <h:outputText value="#{najemniSmlouva.najemnik.getCeleJmeno()}"/>
+          <h:outputText value="#{najemniSmlouvaPrehledBean.getSeznamJmenVsechNajemniku(najemniSmlouva)}"/>
         </p:column>
 
         <p:column style="text-align: center;">

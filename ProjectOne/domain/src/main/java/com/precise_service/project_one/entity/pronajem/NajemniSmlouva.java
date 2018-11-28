@@ -1,6 +1,7 @@
 package com.precise_service.project_one.entity.pronajem;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -36,6 +37,11 @@ public class NajemniSmlouva extends BaseEntity {
   @JsonProperty("najemnik")
   @JsonInclude(JsonInclude.Include.NON_NULL)
   private Osoba najemnik;
+
+  @DBRef(lazy = true)
+  @JsonProperty("seznamNajemniku")
+  @JsonInclude(JsonInclude.Include.NON_NULL)
+  private List<Osoba> seznamNajemniku;
 
   @JsonProperty("datumPodpisu")
   @JsonInclude(JsonInclude.Include.NON_NULL)
