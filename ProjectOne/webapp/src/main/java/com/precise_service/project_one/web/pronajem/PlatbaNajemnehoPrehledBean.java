@@ -36,8 +36,8 @@ public class PlatbaNajemnehoPrehledBean extends AbstractBean {
     PlatbaNajemneho platbaNajemneho = new PlatbaNajemneho();
     platbaNajemneho.setIdOsoba(loginBean.getPrihlasenyUzivatel().getId());
 
-    PlatbaNajemneho saved = platbaNajemnehoService.postPlatbaNajemneho(platbaNajemneho);
-    showInfoMessage("Přidána nová platba nájemného", saved.getId());
+    platbaNajemnehoService.postPlatbaNajemneho(platbaNajemneho);
+    showInfoMessage("Přidáno", "Přidána nová platba nájemného");
 
     init();
   }
@@ -53,7 +53,7 @@ public class PlatbaNajemnehoPrehledBean extends AbstractBean {
 
     platbaNajemnehoService.deletePlatbaNajemneho(platbaNajemneho.getId());
 
-    showInfoMessage("Platba nájemného smazána", platbaNajemneho.getId());
+    showInfoMessage("Smazáno", "Platba nájemného smazána");
     init();
   }
 

@@ -46,7 +46,7 @@ public class Osoba extends BaseEntity {
   private String prijmeni;
 
   public String getCeleJmeno(){
-    return "" + (StringUtils.isNotBlank(jmeno) ? jmeno : "") + (StringUtils.isNotBlank(prijmeni) ? " " + prijmeni : "");
+    return "" + (StringUtils.isNotBlank(prijmeni) ? prijmeni : "") + (StringUtils.isNotBlank(jmeno) ? " " + jmeno: "");
   }
 
   @JsonProperty("datumNarozeni")

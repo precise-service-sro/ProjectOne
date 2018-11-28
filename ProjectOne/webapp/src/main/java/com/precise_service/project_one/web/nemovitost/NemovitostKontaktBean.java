@@ -37,8 +37,7 @@ public class NemovitostKontaktBean extends AbstractBean {
     log.trace("pridatNemovitostKontakt()");
 
     NemovitostKontakt nemovitostKontakt = new NemovitostKontakt();
-    nemovitostKontakt.setJmeno("- zadejte -");
-    nemovitostKontakt.setPrijmeni("- zadejte -");
+    nemovitostKontakt.setNazev("- zadejte -");
     nemovitostKontakt.setTelefon("- zadejte -");
     nemovitostKontakt.setEmail("- zadejte -");
     nemovitostKontakt.setIdOsoba(loginBean.getPrihlasenyUzivatel().getId());
@@ -62,7 +61,7 @@ public class NemovitostKontaktBean extends AbstractBean {
 
     nemovitostKontaktService.deleteNemovitostKontakt(deletedNemovitostKontakt.getId());
 
-    showInfoMessage("Smazán kontakt", deletedNemovitostKontakt.getCeleJmeno());
+    showInfoMessage("Smazán kontakt", deletedNemovitostKontakt.getNazev());
     init(nemovitost.getId());
   }
 
@@ -72,12 +71,12 @@ public class NemovitostKontaktBean extends AbstractBean {
 
     nemovitostKontaktService.putNemovitostKontakt(nemovitostKontakt);
 
-    showInfoMessage("Uložena úprava kontaktu", nemovitostKontakt.getCeleJmeno());
+    showInfoMessage("Uložena úprava kontaktu", nemovitostKontakt.getNazev());
   }
 
   public void zrusitUpravuNemovitostKontakt(RowEditEvent event) {
     log.trace("zrusitUpravuNemovitostKontakt()");
-    showInfoMessage("Zrušena úprava kontaktu", ((NemovitostKontakt) event.getObject()).getCeleJmeno());
+    showInfoMessage("Zrušena úprava kontaktu", ((NemovitostKontakt) event.getObject()).getNazev());
   }
 
   public int getNemovitostKontaktListSize() {

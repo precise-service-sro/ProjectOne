@@ -21,37 +21,410 @@
 
     <ui:define name="detailPageData">
 
-      <p:breadCrumb>
-        <p:menuitem value="Categories" url="#" />
-        <p:menuitem value="Sports" url="#" />
-        <p:menuitem value="Basketball" url="#" />
-        <p:menuitem value="NBA" url="#" disabled="true" />
-        <p:menuitem value="Teams" url="#" />
-        <p:menuitem value="L.A. Lakers" url="#" />
-        <p:menuitem value="Roster" url="#" />
-        <p:menuitem value="Kobe Bryant" url="#" />
-      </p:breadCrumb>
-
       <p:tabView id="tabViewNemovitostDetail" orientation="left" dynamic="true" cache="false" class="tabicko">
 
         <p:tab id="tabNajemniSmlouva" title="Nájemní smlouva - detaily">
           Detaily nájemní smlouvy, cena, datum podpisu
+
+          <table>
+            <tr>
+              <th>
+                <p>Datum podpisu:</p>
+              </th>
+              <td>
+                <p:calendar id="datumPodpisu" value="#{predavaciProtokolDetailBean.predavaciProtokol.datumPodpisu}" pattern="dd-MM-yyyy"/>
+              </td>
+            </tr>
+
+            <tr>
+              <th>
+                <p>Nájemné:</p>
+              </th>
+              <td>
+                <p:inputText id="najemne" value="#{predavaciProtokolDetailBean.predavaciProtokol.datumPodpisu}" />
+              </td>
+            </tr>
+
+            <tr>
+              <th>
+                <p>Zálohy:</p>
+              </th>
+              <td>
+                <p:inputText id="zalohy" value="#{predavaciProtokolDetailBean.predavaciProtokol.datumPodpisu}" />
+              </td>
+            </tr>
+
+            <tr>
+              <th>
+                <p>Nemovitost:</p>
+              </th>
+              <td>
+                <h:selectOneMenu value="#{predavaciProtokolDetailBean.predavaciProtokol.nemovitost}" style="width:100%" converter="#{nemovitostConverter}">
+                  <f:selectItems value="#{predavaciProtokolDetailBean.nemovitostList}" var="nemovitost" itemLabel="#{nemovitost.nazev}"
+                                 itemValue="#{nemovitost}"/>
+                </h:selectOneMenu>
+              </td>
+            </tr>
+
+            <tr>
+              <th>
+                <p>Předávací protokol:</p>
+              </th>
+              <td>
+                <h:selectOneMenu value="#{predavaciProtokolDetailBean.predavaciProtokol.najemnik}" style="width:100%" converter="#{osobaConverter}">
+                  <f:selectItems value="#{predavaciProtokolDetailBean.osobaList}" var="osoba" itemLabel="#{osoba.getCeleJmeno()}" itemValue="#{osoba}"/>
+                </h:selectOneMenu>
+              </td>
+            </tr>
+
+            <tr>
+              <th>
+                <p>Pronajímatel:</p>
+              </th>
+              <td>
+                <h:selectOneMenu value="#{predavaciProtokolDetailBean.predavaciProtokol.najemnik}" style="width:100%" converter="#{osobaConverter}">
+                  <f:selectItems value="#{predavaciProtokolDetailBean.osobaList}" var="osoba" itemLabel="#{osoba.getCeleJmeno()}" itemValue="#{osoba}"/>
+                </h:selectOneMenu>
+              </td>
+            </tr>
+
+            <tr>
+              <th>
+                <p>Nájemník:</p>
+              </th>
+              <td>
+                <h:selectOneMenu value="#{predavaciProtokolDetailBean.predavaciProtokol.najemnik}" style="width:100%" converter="#{osobaConverter}">
+                  <f:selectItems value="#{predavaciProtokolDetailBean.osobaList}" var="osoba" itemLabel="#{osoba.getCeleJmeno()}" itemValue="#{osoba}"/>
+                </h:selectOneMenu>
+              </td>
+            </tr>
+
+            <tr>
+              <th>
+                <p>Přebírací protokol:</p>
+              </th>
+              <td>
+                <h:selectOneMenu value="#{predavaciProtokolDetailBean.predavaciProtokol.najemnik}" style="width:100%" converter="#{osobaConverter}">
+                  <f:selectItems value="#{predavaciProtokolDetailBean.osobaList}" var="osoba" itemLabel="#{osoba.getCeleJmeno()}" itemValue="#{osoba}"/>
+                </h:selectOneMenu>
+              </td>
+            </tr>
+          </table>
         </p:tab>
 
         <p:tab id="tabNemovitost" title="Nemovitost">
           Detail nemovitosti
+          <p:dataTable
+                  id="nemovitostPrehledBeanTable"
+                  var="nemovitost"
+                  widgetVar="nemovitostPrehledBeanTable"
+                  value="#{nemovitostPrehledBean.nemovitostList}"
+                  sortBy="#{1}"
+                  rendered="#{not empty nemovitostPrehledBean.nemovitostList}"
+                  emptyMessage="Nebyly nalezeny žádné nemovitosti"
+                  filteredValue="#{nemovitostPrehledBean.filtrovanyNemovitostList}"
+                  rowIndexVar="cisloRadky"
+          >
+
+            <f:facet name="header">
+              <p:outputPanel id="globalFilterHeader" style="float: left; margin-top: 5px;">Nemovitosti: (nalezených:
+                <h:outputText value="#{nemovitostPrehledBean.filtrovanyNemovitostListSize}"/>
+                z celkem
+                <h:outputText value="#{nemovitostPrehledBean.nemovitostListSize}"/>
+                nemovitostí)
+              </p:outputPanel>
+              <p:outputPanel style="text-align: right;">
+                <p:inputText id="globalFilter" onkeyup="PF('nemovitostPrehledBeanTable').filter()" style="width:235px"
+                             placeholder="- zadejte text pro vyhledání -">
+                  <p:ajax event="keyup" update="globalFilterHeader"/>
+                </p:inputText>
+              </p:outputPanel>
+            </f:facet>
+
+            <p:columnGroup type="header">
+              <p:row>
+
+                <p:column headerText="Id:" style="width: 230px;"/>
+                <p:column headerText="Typ" filterBy="#{nemovitost.nemovitostTyp}" filterMatchMode="contains" filterStyle="display:none" style="width: 100px;"
+                          sortBy="#{nemovitost.nemovitostTyp}"/>
+                <p:column headerText="Adresa" filterBy="#{nemovitost.adresa.getCelaAdresa()}" filterMatchMode="contains" filterStyle="display:none"
+                          style="width: 100%;" sortBy="#{nemovitost.adresa.getCelaAdresa()}"/>
+                <p:column headerText="Vlastník" filterBy="#{nemovitost.vlastnik.getCeleJmeno()}" filterMatchMode="contains" filterStyle="display:none"
+                          style="width: 200px;" sortBy="#{nemovitost.vlastnik.getCeleJmeno()}"/>
+                <p:column headerText="Ovládání" colspan="1" rowspan="2" style="width: 90px;"/>
+              </p:row>
+            </p:columnGroup>
+
+            <p:column>
+              <!--<h:outputText value="#{cisloRadky+1}"/> -->
+              <h:outputText value="#{nemovitost.id}"/>
+            </p:column>
+
+            <p:column>
+              <h:outputText value="#{nemovitost.nemovitostTyp.hodnota}"/>
+            </p:column>
+
+            <p:column>
+              <h:outputText value="#{nemovitost.adresa.getCelaAdresa()}"/>
+            </p:column>
+
+            <p:column>
+              <h:outputText value="#{nemovitost.vlastnik.getCeleJmeno()}"/>
+            </p:column>
+
+            <p:column>
+              <p:commandButton icon="ui-icon-circle-zoomin" actionListener="#{routerBean.goToNemovitostDetailBean(nemovitost)}"
+                               title="Upravit / Podrobnosti"/>
+              <p:commandButton update="form :form:msgs" icon="ui-icon-circle-minus" actionListener="#{nemovitostPrehledBean.deleteRow(nemovitost)}"
+                               title="Odebrat"/>
+            </p:column>
+
+          </p:dataTable>
         </p:tab>
 
         <p:tab id="tabPredavaciProtokol" title="Předávací protokol">
           Detail předávacího protokolu
+          <p:dataTable id="predavaciProtokolPrehledBeanTable"
+                       var="predavaciProtokol"
+                       widgetVar="predavaciProtokolPrehledBeanTable"
+                       value="#{predavaciProtokolPrehledBean.predavaciProtokolList}"
+                       sortBy="#{1}"
+                       rendered="#{not empty predavaciProtokolPrehledBean.predavaciProtokolList}"
+                       emptyMessage="Nebyly nalezeny žádné předávací protokoly"
+                       filteredValue="#{predavaciProtokolPrehledBean.filtrovanyPredavaciProtokolList}"
+          >
+
+            <p:columnGroup type="header">
+              <p:row>
+                <p:column headerText="Id:"
+                          style="width: 230px;"/>
+                <p:column headerText="Nemovitost"
+                          style="width: 400px;"
+                          filterBy="#{predavaciProtokol.nemovitost.getIdentifikaceNemovitosti()}"
+                          filterMatchMode="contains"
+                          filterStyle="display:none"
+                          sortBy="#{predavaciProtokol.nemovitost.getIdentifikaceNemovitosti()}"/>
+                <p:column headerText="Nájemník"
+                          filterBy="#{predavaciProtokol.najemnik.getCeleJmeno()}"
+                          filterMatchMode="contains"
+                          style="width: 200px;"
+                          filterStyle="display:none"
+                          sortBy="#{predavaciProtokol.najemnik.getCeleJmeno()}"/>
+                <p:column headerText="Datum podpisu"
+                          filterBy="#{dateFormatterBean.formatDate(predavaciProtokol.datumPodpisu)}"
+                          filterMatchMode="contains"
+                          style="width: 200px;"
+                          filterStyle="display:none"
+                          sortBy="#{dateFormatterBean.formatDate(predavaciProtokol.datumPodpisu)}"/>
+                <p:column headerText="Status (je platný)"
+                          filterBy="#{predavaciProtokol.najemnik.getCeleJmeno()}"
+                          filterMatchMode="contains"
+                          style="width: 100%;"
+                          filterStyle="display:none"
+                          sortBy="#{predavaciProtokol.najemnik.getCeleJmeno()}"/>
+                <p:column headerText="Ovládání"
+                          colspan="1"
+                          rowspan="2"
+                          style="width: 90px;"/>
+              </p:row>
+            </p:columnGroup>
+
+            <f:facet name="header">
+              <p:outputPanel id="globalFilterHeader" style="float: left; margin-top: 5px;">Předávací protokoly: (nalezených:
+                <h:outputText value="#{predavaciProtokolPrehledBean.filtrovanyPredavaciProtokolListSize}"/>
+                z celkem
+                <h:outputText value="#{predavaciProtokolPrehledBean.predavaciProtokolListSize}"/>
+                předávacích protokolů)
+              </p:outputPanel>
+              <p:outputPanel style="text-align: right;">
+                <p:inputText id="globalFilter" onkeyup="PF('predavaciProtokolPrehledBeanTable').filter()" style="width:235px"
+                             placeholder="- zadejte text pro vyhledání -">
+                  <p:ajax event="keyup" update="globalFilterHeader"/>
+                </p:inputText>
+              </p:outputPanel>
+            </f:facet>
+
+            <p:column>
+              <h:outputText value="#{predavaciProtokol.id}"/>
+            </p:column>
+
+            <p:column>
+              <h:outputText value="#{predavaciProtokol.nemovitost.getIdentifikaceNemovitosti()}"
+                            title="#{predavaciProtokol.nemovitost.getIdentifikaceNemovitosti()}"/>
+            </p:column>
+
+            <p:column>
+              <h:outputText value="#{predavaciProtokol.najemnik.getCeleJmeno()}"/>
+            </p:column>
+
+            <p:column style="text-align: center;">
+              <h:outputText value="#{dateFormatterBean.formatDate(predavaciProtokol.datumPodpisu)}"/>
+            </p:column>
+
+            <p:column>
+              <h:outputText value="#{predavaciProtokol.jeAktualni()}"/>
+            </p:column>
+
+            <p:column>
+              <p:commandButton icon="ui-icon-circle-zoomin"
+                               actionListener="#{routerBean.goToPredavaciProtokolDetailBean(predavaciProtokol)}"
+                               title="Upravit / Podrobnosti"/>
+              <p:commandButton update="@form :form:msgs" icon="ui-icon-circle-minus"
+                               actionListener="#{predavaciProtokolPrehledBean.smazatPredavaciProtokol(predavaciProtokol)}"
+                               title="Odebrat"/>
+            </p:column>
+
+          </p:dataTable>
         </p:tab>
 
         <p:tab id="tabPronajimatel" title="Pronajímatel">
           Detail pronajímatele
+          <p:dataTable id="pronajimatelOsobaPrehledBeanTable"
+                       var="osoba"
+                       widgetVar="pronajimatelOsobaPrehledBeanTable"
+                       value="#{osobaPrehledBean.osobaList}"
+                       sortBy="#{1}"
+                       rendered="#{not empty osobaPrehledBean.osobaList}"
+                       emptyMessage="Nebyly nalezeny žádné osoby"
+                       filteredValue="#{osobaPrehledBean.filtrovanyOsobaList}"
+          >
+
+            <f:facet name="header">
+              <p:outputPanel id="globalFilterHeader" style="float: left; margin-top: 5px;">Osoby: (nalezených:
+                <h:outputText value="#{osobaPrehledBean.filtrovanyOsobaListSize}"/>
+                z celkem
+                <h:outputText value="#{osobaPrehledBean.osobaListSize}"/>
+                osob)
+              </p:outputPanel>
+              <p:outputPanel style="text-align: right;">
+                <p:inputText id="globalFilter" onkeyup="PF('pronajimatelOsobaPrehledBeanTable').filter()" style="width:235px"
+                             placeholder="- zadejte text pro vyhledání -">
+                  <p:ajax event="keyup" update="globalFilterHeader"/>
+                </p:inputText>
+              </p:outputPanel>
+            </f:facet>
+
+            <p:columnGroup type="header">
+              <p:row>
+                <p:column headerText="Id:" style="width: 230px;"/>
+                <p:column headerText="Fotka / Avatar" style="width: 150px;"/>
+                <p:column headerText="Jméno a Přijmení / Název" style="width: 250px;" filterBy="#{osoba.getCeleJmeno()}" filterMatchMode="contains"
+                          filterStyle="display:none" sortBy="#{osoba.getCeleJmeno()}"/>
+                <p:column headerText="Datum narození" style="width: 150px;" filterBy="#{dateFormatterBean.formatDate(osoba.datumNarozeni)}"
+                          filterMatchMode="contains" filterStyle="display:none"
+                          sortBy="#{dateFormatterBean.formatDate(osoba.datumNarozeni)}"/>
+                <p:column headerText="Telefon" style="width: 180px;" filterBy="#{osoba.telefon}" filterMatchMode="contains" filterStyle="display:none"
+                          sortBy="#{osoba.telefon}"/>
+                <p:column headerText="Email" style="width: 100%;" filterBy="#{osoba.email}" filterMatchMode="contains" filterStyle="display:none"
+                          sortBy="#{osoba.email}"/>
+                <p:column headerText="Ovládání" colspan="1" rowspan="2" style="width: 90px;"/>
+              </p:row>
+            </p:columnGroup>
+
+            <p:column>
+              <h:outputText value="#{osoba.id}"/>
+            </p:column>
+
+            <p:column style="text-align: center;">
+              <p:graphicImage value="#{osobaPrehledBean.avatarFotoStreamedContent}" style="height: 100px;" cache="FALSE">
+                <f:param name="idOsoba" value="#{osoba.id}"/>
+              </p:graphicImage>
+            </p:column>
+
+            <p:column>
+              <h:outputText value="#{osoba.getCeleJmeno()}"/>
+            </p:column>
+
+            <p:column style="text-align: center;">
+              <h:outputText value="#{dateFormatterBean.formatDate(osoba.datumNarozeni)}"/>
+            </p:column>
+
+            <p:column style="text-align: center;">
+              <h:outputText value="#{osoba.telefon}"/>
+            </p:column>
+
+            <p:column>
+              <h:outputText value="#{osoba.email}"/>
+            </p:column>
+
+            <p:column>
+              <p:commandButton icon="ui-icon-circle-zoomin" actionListener="#{routerBean.goToOsobaDetailBean(osoba)}" title="Podrobnosti"/>
+              <p:commandButton update="form :form:msgs" icon="ui-icon-circle-minus" actionListener="#{osobaPrehledBean.smazatOsoba(osoba)}" title="Odebrat"/>
+            </p:column>
+
+          </p:dataTable>
         </p:tab>
 
         <p:tab id="tabNajemnik" title="Nájemník">
           Detail nájemníka
+          <p:dataTable id="najemnikOosobaPrehledBeanTable"
+                       var="osoba"
+                       widgetVar="najemnikOosobaPrehledBeanTable"
+                       value="#{osobaPrehledBean.osobaList}"
+                       sortBy="#{1}"
+                       rendered="#{not empty osobaPrehledBean.osobaList}"
+                       emptyMessage="Nebyly nalezeny žádné osoby"
+                       filteredValue="#{osobaPrehledBean.filtrovanyOsobaList}"
+          >
+
+            <f:facet name="header">
+              <p:outputPanel id="globalFilterHeader" style="float: left; margin-top: 5px;">Osoby: (nalezených: <h:outputText value="#{osobaPrehledBean.filtrovanyOsobaListSize}"/> z celkem <h:outputText value="#{osobaPrehledBean.osobaListSize}"/>  osob)</p:outputPanel>
+              <p:outputPanel style="text-align: right;">
+                <p:inputText id="globalFilter" onkeyup="PF('najemnikOosobaPrehledBeanTable').filter()" style="width:235px"
+                             placeholder="- zadejte text pro vyhledání -">
+                  <p:ajax event="keyup" update="globalFilterHeader" />
+                </p:inputText>
+              </p:outputPanel>
+            </f:facet>
+
+            <p:columnGroup type="header">
+              <p:row>
+                <p:column headerText="Id:" style="width: 230px;" />
+                <p:column headerText="Fotka / Avatar" style="width: 150px;"/>
+                <p:column headerText="Jméno a Přijmení / Název" style="width: 250px;" filterBy="#{osoba.getCeleJmeno()}" filterMatchMode="contains"
+                          filterStyle="display:none" sortBy="#{osoba.getCeleJmeno()}"/>
+                <p:column headerText="Datum narození" style="width: 150px;" filterBy="#{dateFormatterBean.formatDate(osoba.datumNarozeni)}" filterMatchMode="contains" filterStyle="display:none"
+                          sortBy="#{dateFormatterBean.formatDate(osoba.datumNarozeni)}"/>
+                <p:column headerText="Telefon" style="width: 180px;" filterBy="#{osoba.telefon}" filterMatchMode="contains" filterStyle="display:none"
+                          sortBy="#{osoba.telefon}"/>
+                <p:column headerText="Email" style="width: 100%;" filterBy="#{osoba.email}" filterMatchMode="contains" filterStyle="display:none"
+                          sortBy="#{osoba.email}"/>
+                <p:column headerText="Ovládání" colspan="1" rowspan="2" style="width: 90px;"/>
+              </p:row>
+            </p:columnGroup>
+
+            <p:column>
+              <h:outputText value="#{osoba.id}"/>
+            </p:column>
+
+            <p:column style="text-align: center;">
+              <p:graphicImage value="#{osobaPrehledBean.avatarFotoStreamedContent}" style="height: 100px;" cache="FALSE">
+                <f:param name="idOsoba" value="#{osoba.id}" />
+              </p:graphicImage>
+            </p:column>
+
+            <p:column>
+              <h:outputText value="#{osoba.getCeleJmeno()}"/>
+            </p:column>
+
+            <p:column style="text-align: center;">
+              <h:outputText value="#{dateFormatterBean.formatDate(osoba.datumNarozeni)}" />
+            </p:column>
+
+            <p:column style="text-align: center;">
+              <h:outputText value="#{osoba.telefon}"/>
+            </p:column>
+
+            <p:column>
+              <h:outputText value="#{osoba.email}"/>
+            </p:column>
+
+            <p:column>
+              <p:commandButton icon="ui-icon-circle-zoomin" actionListener="#{routerBean.goToOsobaDetailBean(osoba)}" title="Podrobnosti"/>
+              <p:commandButton update="form :form:msgs" icon="ui-icon-circle-minus" actionListener="#{osobaPrehledBean.smazatOsoba(osoba)}" title="Odebrat"/>
+            </p:column>
+
+          </p:dataTable>
         </p:tab>
 
         <p:tab id="tabPrilohy" title="Přílohy">
@@ -67,38 +440,7 @@
         </p:tab>
       </p:tabView>
 
-      <table>
-        <tr>
-          <th>
-            <p>Nemovitost:</p>
-          </th>
-          <td>
-            <h:selectOneMenu value="#{predavaciProtokolDetailBean.predavaciProtokol.nemovitost}" style="width:100%" converter="#{nemovitostConverter}">
-              <f:selectItems value="#{predavaciProtokolDetailBean.nemovitostList}" var="nemovitost" itemLabel="#{nemovitost.nazev}" itemValue="#{nemovitost}"/>
-            </h:selectOneMenu>
-          </td>
-        </tr>
 
-        <tr>
-          <th>
-            <p>Nájemník:</p>
-          </th>
-          <td>
-            <h:selectOneMenu value="#{predavaciProtokolDetailBean.predavaciProtokol.najemnik}" style="width:100%" converter="#{osobaConverter}">
-              <f:selectItems value="#{predavaciProtokolDetailBean.osobaList}" var="osoba" itemLabel="#{osoba.getCeleJmeno()}" itemValue="#{osoba}"/>
-            </h:selectOneMenu>
-          </td>
-        </tr>
-
-        <tr>
-          <th>
-            <p>Datum podpisu:</p>
-          </th>
-          <td>
-            <p:calendar id="datumPodpisu" value="#{predavaciProtokolDetailBean.predavaciProtokol.datumPodpisu}" pattern="dd-MM-yyyy"/>
-          </td>
-        </tr>
-      </table>
     </ui:define>
 
     <ui:define name="detailPagePridavaciTlacitko">
@@ -123,7 +465,7 @@
 
         <p:columnGroup type="header">
           <p:row>
-            <p:column headerText="Id:" style="width: 230px;" />
+            <p:column headerText="Id:" style="width: 230px;"/>
             <p:column headerText="Název" filterBy="#{polozka.nazev}" filterMatchMode="contains" filterStyle="display:none" sortBy="#{polozka.nazev}"
                       style="width: 100%"/>
             <p:column headerText="Vyúčtovat jako" filterBy="#{polozka.polozkaTyp.nazev}" filterMatchMode="contains" filterStyle="display:none"

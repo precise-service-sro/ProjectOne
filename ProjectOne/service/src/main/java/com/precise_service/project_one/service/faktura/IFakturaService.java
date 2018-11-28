@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.precise_service.project_one.entity.CasovyInterval;
 import com.precise_service.project_one.entity.faktura.Faktura;
+import com.precise_service.project_one.entity.nemovitost.Nemovitost;
 import com.precise_service.project_one.entity.osoba.Osoba;
 
 public interface IFakturaService {
@@ -25,4 +26,6 @@ public interface IFakturaService {
   void deleteFaktura(String idFaktura);
 
   void deleteFakturaAll();
+
+  List<Faktura> getAllFakturaListByNemovitost(Nemovitost nemovitost);
 }

@@ -30,7 +30,7 @@
                      var="predavaciProtokol"
                      widgetVar="predavaciProtokolPrehledBeanTable"
                      value="#{predavaciProtokolPrehledBean.predavaciProtokolList}"
-                     sortBy="#{1}"
+                     sortBy="#{predavaciProtokol.najemnik.getCeleJmeno()}"
                      rendered="#{not empty predavaciProtokolPrehledBean.predavaciProtokolList}"
                      emptyMessage="Nebyly nalezeny žádné předávací protokoly"
                      filteredValue="#{predavaciProtokolPrehledBean.filtrovanyPredavaciProtokolList}"
@@ -47,7 +47,7 @@
               <p:column headerText="Datum podpisu"
                         filterBy="#{dateFormatterBean.formatDate(predavaciProtokol.datumPodpisu)}"
                         filterMatchMode="contains"
-                        style="width: 200px;"
+                        style="width: 120px;"
                         filterStyle="display:none"
                         sortBy="#{dateFormatterBean.formatDate(predavaciProtokol.datumPodpisu)}"/>
               <p:column headerText="Status (je platný)"

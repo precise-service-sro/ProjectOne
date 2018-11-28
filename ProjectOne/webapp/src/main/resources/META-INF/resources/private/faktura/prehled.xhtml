@@ -30,7 +30,7 @@
     </ui:define>
 
     <ui:define name="prehledPagePridavaciTlacitko">
-      <p:commandButton value="Přidat faktury" icon="ui-icon-circle-plus" process="@this" update="form :form:msgs" actionListener="#{fakturaPrehledBean.addRow()}"/>
+      <p:commandButton value="Přidat faktury" icon="ui-icon-circle-plus" process="@this" update="form :form:msgs" actionListener="#{fakturaPrehledBean.pridatFaktura()}"/>
     </ui:define>
 
     <ui:define name="prehledPageDataTable">
@@ -106,7 +106,7 @@
 
         <p:column>
           <p:commandButton icon="ui-icon-circle-zoomin" actionListener="#{routerBean.goToFakturaDetailBean(faktura)}" title="Upravit / Podrobnosti"/>
-          <p:commandButton update="form :form:msgs" icon="ui-icon-circle-minus" actionListener="#{fakturaPrehledBean.deleteRow(faktura)}" title="Odebrat"/>
+          <p:commandButton update="form :form:msgs" icon="ui-icon-circle-minus" actionListener="#{fakturaPrehledBean.smazatFaktura(faktura)}" title="Odebrat"/>
         </p:column>
 
       </p:dataTable>

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.precise_service.project_one.entity.CasovyInterval;
 import com.precise_service.project_one.entity.faktura.Faktura;
+import com.precise_service.project_one.entity.nemovitost.Nemovitost;
 import com.precise_service.project_one.entity.osoba.Osoba;
 import com.precise_service.project_one.repository.FakturaRepository;
 
@@ -72,5 +73,11 @@ public class FakturaService implements IFakturaService {
   public void deleteFakturaAll() {
     log.trace("deleteFakturaAll()");
     fakturaRepository.deleteAll();
+  }
+
+  @Override
+  public List<Faktura> getAllFakturaListByNemovitost(Nemovitost nemovitost) {
+    log.trace("getAllFakturaListByNemovitost()");
+    return fakturaRepository.getAllFakturaListByNemovitost(nemovitost.getId());
   }
 }

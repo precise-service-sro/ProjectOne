@@ -24,8 +24,12 @@
       <div class="divDataTable">
         <h:outputText value="#{nemovitostKontaktBean.init(nemovitostDetailBean.nemovitost.id)}"/>
 
-        <p:dataTable id="nemovitostKontaktBeanTable" var="kontakt" widgetVar="nemovitostKontaktBeanTable"
-                     value="#{nemovitostKontaktBean.nemovitostKontaktList}" resizableColumns="true" sortBy="#{1}" editable="true"
+        <p:dataTable id="nemovitostKontaktBeanTable"
+                     var="kontakt"
+                     widgetVar="nemovitostKontaktBeanTable"
+                     value="#{nemovitostKontaktBean.nemovitostKontaktList}"
+                     sortBy="#{kontakt.nazev}"
+                     editable="true"
                      rendered="#{not empty nemovitostKontaktBean.nemovitostKontaktList}"
                      emptyMessage="Nebyly nalezeny žádné kontakty" filteredValue="#{nemovitostKontaktBean.filtrovanyNemovitostKontaktList}">
 
@@ -52,18 +56,12 @@
 
           <p:columnGroup type="header">
             <p:row>
-              <p:column headerText="Jméno"
-                        style="width: 120px;"
-                        filterBy="#{kontakt.jmeno}"
+              <p:column headerText="Název"
+                        style="width: 200px;"
+                        filterBy="#{kontakt.nazev}"
                         filterMatchMode="contains"
                         filterStyle="display:none"
-                        sortBy="#{kontakt.jmeno}"/>
-              <p:column headerText="Příjmení"
-                        style="width: 120px;"
-                        filterBy="#{kontakt.prijmeni}"
-                        filterMatchMode="contains"
-                        filterStyle="display:none"
-                        sortBy="#{kontakt.prijmeni}"/>
+                        sortBy="#{kontakt.nazev}"/>
               <p:column headerText="Telefon"
                         style="width: 150px;"
                         filterBy="#{kontakt.telefon}"
@@ -92,21 +90,10 @@
           <p:column>
             <p:cellEditor>
               <f:facet name="output">
-                <h:outputText value="#{kontakt.jmeno}" title="#{kontakt.jmeno}"/>
+                <h:outputText value="#{kontakt.nazev}" title="#{kontakt.nazev}"/>
               </f:facet>
               <f:facet name="input">
-                <p:inputText id="kontaktJmenoInput" value="#{kontakt.jmeno}" style="width:100%"/>
-              </f:facet>
-            </p:cellEditor>
-          </p:column>
-
-          <p:column>
-            <p:cellEditor>
-              <f:facet name="output">
-                <h:outputText value="#{kontakt.prijmeni}" title="#{kontakt.prijmeni}"/>
-              </f:facet>
-              <f:facet name="input">
-                <p:inputText id="kontaktPrijmeniInput" value="#{kontakt.prijmeni}" style="width:100%"/>
+                <p:inputText id="kontaktNazevInput" value="#{kontakt.nazev}" style="width:100%"/>
               </f:facet>
             </p:cellEditor>
           </p:column>

@@ -1,5 +1,6 @@
 package com.precise_service.project_one.entity.nemovitost;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -16,17 +17,9 @@ import lombok.Data;
 @Document(collection = "nemovitostKontakt")
 public class NemovitostKontakt extends BaseEntity {
 
-  @JsonProperty("jmeno")
+  @JsonProperty("nazev")
   @JsonInclude(JsonInclude.Include.NON_NULL)
-  private String jmeno;
-
-  @JsonProperty("prijmeni")
-  @JsonInclude(JsonInclude.Include.NON_NULL)
-  private String prijmeni;
-
-  public String getCeleJmeno(){
-    return "" + jmeno + " " + prijmeni;
-  }
+  private String nazev;
 
   @JsonProperty("telefon")
   @JsonInclude(JsonInclude.Include.NON_NULL)

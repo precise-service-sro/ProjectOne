@@ -25,7 +25,6 @@ public class FakturaPrehledBean extends AbstractBean {
 
   private CasovyInterval zuctovaciObdobi;
   private List<Faktura> fakturaList;
-  private List<Nemovitost> nemovitostList;
   private List<Faktura> filtrovanyFakturaList;
   private int fakturaListSize;
   private int filtrovanyFakturaListSize;
@@ -33,8 +32,13 @@ public class FakturaPrehledBean extends AbstractBean {
   public void init() {
     zuctovaciObdobi = new CasovyInterval();
     Osoba prihlasenyUzivatel = loginBean.getPrihlasenyUzivatel();
-    nemovitostList = nemovitostService.getNemovitostListByVlastnik(prihlasenyUzivatel.getId());
     fakturaList = fakturaService.getSeznamFaktur(prihlasenyUzivatel);
+    filtrovanyFakturaList = null;
+  }
+
+  public void initPodleNemovitosti(Nemovitost nemovitost) {
+    zuctovaciObdobi = new CasovyInterval();
+    fakturaList = fakturaService.getAllFakturaListByNemovitost(nemovitost);
     filtrovanyFakturaList = null;
   }
 
@@ -53,8 +57,8 @@ public class FakturaPrehledBean extends AbstractBean {
     showInfoMessage("Zrušena úprava řádky", ((Faktura) event.getObject()).getDodavatel());
   }
 
-  public void addRow() {
-    log.trace("addRow()");
+  public void pridatFaktura() {
+    log.trace("pridatFaktura()");
 
     Faktura faktura = new Faktura();
 
@@ -63,14 +67,14 @@ public class FakturaPrehledBean extends AbstractBean {
     faktura.setZuctovaciObdobi(new CasovyInterval());
     faktura.setIdOsoba(loginBean.getPrihlasenyUzivatel().getId());
 
-    Faktura saved = fakturaService.postFaktura(faktura);
-    showInfoMessage("Přidána nová faktura", saved.getId());
+    fakturaService.postFaktura(faktura);
+    showInfoMessage("Přidáno", "Přidána nová faktura");
 
     init();
   }
 
-  public void deleteRow(Faktura deletedFaktura) {
-    log.trace("deleteRow()");
+  public void smazatFaktura(Faktura deletedFaktura) {
+    log.trace("smazatFaktura()");
 
     if (deletedFaktura == null) {
       log.trace("deleted row is null");
@@ -80,7 +84,7 @@ public class FakturaPrehledBean extends AbstractBean {
 
     fakturaService.deleteFaktura(deletedFaktura.getId());
 
-    showInfoMessage("Faktura smazána", deletedFaktura.getDodavatel());
+    showInfoMessage("Smazáno", "Faktura smazána");
     init();
   }
 

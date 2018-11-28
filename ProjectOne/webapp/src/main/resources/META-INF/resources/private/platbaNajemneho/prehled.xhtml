@@ -32,7 +32,8 @@
                    var="platbaNajemneho"
                    widgetVar="platbaNajemnehoPrehledBeanTable"
                    value="#{platbaNajemnehoPrehledBean.platbaNajemnehoList}"
-                   sortBy="#{1}"
+                   sortBy="#{platbaNajemneho.datumPlatby.time}"
+                   sortOrder="descending"
                    emptyMessage="Nebyly nalezeny žádné platby nájemného"
                    filteredValue="#{platbaNajemnehoPrehledBean.filtrovanyPlatbaNajemnehoList}"
                    rendered="#{not empty platbaNajemnehoPrehledBean.platbaNajemnehoList}"
@@ -47,7 +48,7 @@
                       filterMatchMode="contains"
                       style="width: 200px;"
                       filterStyle="display:none"
-                      sortBy="#{dateFormatterBean.formatDate(platbaNajemneho.datumPlatby)}"/>
+                      sortBy="#{platbaNajemneho.datumPlatby.time}"/>
             <p:column headerText="Odesílatel"
                       filterBy="#{platbaNajemneho.odesilatel.getCeleJmeno()}"
                       filterMatchMode="contains"

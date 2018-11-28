@@ -18,4 +18,7 @@ public interface FakturaRepository extends MongoRepository<Faktura, String> {
 
   @Query("{ 'idOsoba' : ?0 }")
   List<Faktura> getSeznamFaktur(String idPrihlasenyUzivatel);
+
+  @Query("{ 'nemovitost.id' : ?0 }")
+  List<Faktura> getAllFakturaListByNemovitost(String idNemovitost);
 }

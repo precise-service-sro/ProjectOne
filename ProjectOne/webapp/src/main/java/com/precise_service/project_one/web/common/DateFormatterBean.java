@@ -13,7 +13,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Named
-public class DateFormatterBean {
+public class  DateFormatterBean {
 
   private final String DATE_FORMAT = "dd-MM-yyyy";
   private final SimpleDateFormat simpleDateFormat = new SimpleDateFormat(DATE_FORMAT);
