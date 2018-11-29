@@ -3,10 +3,14 @@ package com.precise_service.project_one.service.pronajem;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
 
-import com.precise_service.project_one.entity.pronajem.PlatbaNajemneho;
+import com.precise_service.project_one.entity.filter.DatovyFilter;
 import com.precise_service.project_one.entity.osoba.Osoba;
+import com.precise_service.project_one.entity.pronajem.PlatbaNajemneho;
 import com.precise_service.project_one.repository.pronajem.PlatbaNajemnehoRepository;
 
 import lombok.extern.slf4j.Slf4j;
@@ -17,6 +21,9 @@ public class PlatbaNajemnehoService implements IPlatbaNajemnehoService {
 
   @Autowired
   private PlatbaNajemnehoRepository platbaNajemnehoRepository;
+
+  @Autowired
+  private MongoTemplate mongoTemplate;
 
   @Override
   public PlatbaNajemneho postPlatbaNajemneho(PlatbaNajemneho platbaNajemneho) {
@@ -37,9 +44,25 @@ public class PlatbaNajemnehoService implements IPlatbaNajemnehoService {
   }
 
   @Override
-  public List<PlatbaNajemneho> getPlatbaNajemnehoAll() {
-    log.trace("getPlatbaNajemnehoAll()");
-    return platbaNajemnehoRepository.findAll();
+  public List<PlatbaNajemneho> getPlatbaNajemnehoList(DatovyFilter datovyFilter) {
+    log.trace("getPlatbaNajemnehoList()");
+
+    Query query = new Query();
+
+    if (datovyFilter.getNemovitostFilter() != null && datovyFilter.getNemovitostFilter().getIdNemovitost() != null) {
+      query.addCriteria(Criteria.where("nemovitost.id").is(datovyFilter.getNemovitostFilter().getIdNemovitost()));
+    }
+
+    if (datovyFilter.getPlatbaNajemnehoFilter() != null && datovyFilter.getPlatbaNajemnehoFilter().getIdOdesilatel() != null) {
+      query.addCriteria(Criteria.where("odesilatel.id").is(datovyFilter.getPlatbaNajemnehoFilter().getIdOdesilatel()));
+    }
+
+
+    List<PlatbaNajemneho> platbaNajemnehoList = mongoTemplate.find(query, PlatbaNajemneho.class);
+
+
+
+    return platbaNajemnehoList;
   }
 
   @Override

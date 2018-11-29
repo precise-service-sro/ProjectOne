@@ -9,6 +9,8 @@ import javax.inject.Named;
 import org.primefaces.event.RowEditEvent;
 
 import com.precise_service.project_one.entity.Cislo;
+import com.precise_service.project_one.entity.filter.DatovyFilter;
+import com.precise_service.project_one.entity.filter.typ.PlatbaNajemnehoFilter;
 import com.precise_service.project_one.entity.pronajem.PlatbaNajemneho;
 import com.precise_service.project_one.entity.PolozkaTyp;
 import com.precise_service.project_one.entity.pronajem.PredavaciProtokol;
@@ -26,7 +28,7 @@ public class VyuctovaniDetailBean extends AbstractBean {
 
   private List<PolozkaTyp> polozkaTypList;
   private Vyuctovani vyuctovani;
-  private List<VyuctovaniPolozka> radkyVyuctovani;
+  private List<VyuctovaniPolozka> vypocitanaVyuctovaniPolozkaList;
 
   // TODO: tyhle celkovy soucty spocitat a ulozit na entitu celeho vyuctovani, at se to tu nedela pokazde znova
   private Double celkemZalohy;
@@ -41,7 +43,7 @@ public class VyuctovaniDetailBean extends AbstractBean {
       return;
     }
 
-    radkyVyuctovani = vyuctovaniPolozkaService.getVyuctovaniPolozkaZvyrazneneList(vyuctovani.getId());
+    vypocitanaVyuctovaniPolozkaList = vyuctovaniPolozkaService.getVypocitanaVyuctovaniPolozkaList(vyuctovani.getId());
     polozkaTypList = polozkaTypService.getPolozkaTypListByIdNemovitost(vyuctovani.getNemovitost().getId());
 
     spocitatSoucty();
@@ -51,7 +53,7 @@ public class VyuctovaniDetailBean extends AbstractBean {
     celkemZalohy = 0.0;
     celkemNaklady = 0.0;
     celkemRozdil = 0.0;
-    for (VyuctovaniPolozka polozka : radkyVyuctovani){
+    for (VyuctovaniPolozka polozka : vypocitanaVyuctovaniPolozkaList){
       celkemNaklady += polozka.getNaklady().getMnozstvi();
     }
   }
@@ -119,7 +121,13 @@ public class VyuctovaniDetailBean extends AbstractBean {
 
   public List<PlatbaNajemneho> getPlatbaNajemnehoList(){
     // TODO: pridelat filtrovani dle nemovitosti, najemni smlouvy, lidi atd
-    return platbaNajemnehoService.getPlatbaNajemnehoAll();
+    DatovyFilter datovyFilter = new DatovyFilter();
+    PlatbaNajemnehoFilter platbaNajemnehoFilter = new PlatbaNajemnehoFilter();
+    platbaNajemnehoFilter.setIdOdesilatel("5bdb0c7b4f0e8eb71860baab");
+    datovyFilter.setPlatbaNajemnehoFilter(platbaNajemnehoFilter);
+
+    // TODO: tady musim jeste nejak poslat pouze zalohy, nikoliv cely najem
+    return platbaNajemnehoService.getPlatbaNajemnehoList(datovyFilter);
   }
 
   public Cislo getPlatbaNajemnehoCelkem() {

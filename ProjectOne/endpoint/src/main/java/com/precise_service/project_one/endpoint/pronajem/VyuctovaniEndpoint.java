@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.precise_service.project_one.entity.pronajem.Vyuctovani;
-import com.precise_service.project_one.request.RangeRequest;
 import com.precise_service.project_one.service.pronajem.IVyuctovaniService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -46,12 +45,6 @@ public class VyuctovaniEndpoint {
   List<Vyuctovani> getVyuctovaniAll() {
     log.trace("getVyuctovaniAll()");
     return vyuctovaniService.getVyuctovaniAll();
-  }
-
-  @RequestMapping(value = "/!inRange", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-  List<Vyuctovani> getVyuctovaniInRange(@RequestBody RangeRequest request) {
-    log.trace("getVyuctovaniInRange()" + request.getFrom().toString() + " - " + request.getTo().toString());
-    return vyuctovaniService.getVyuctovaniInRange(request.getFrom(), request.getTo());
   }
 
   @RequestMapping(value = "/{idVyuctovani}", method = RequestMethod.DELETE)

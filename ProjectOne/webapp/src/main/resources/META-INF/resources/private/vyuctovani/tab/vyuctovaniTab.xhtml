@@ -66,10 +66,10 @@
           <p>Vyúčtování spotřeby:</p>
         </div>
         <div class="vyuctovaniSpotrebyDataTableDiv">
-          <p:dataTable id="vyuctovaniDetailTable2"
-                       widgetVar="vyuctovaniDetailTable2"
-                       var="polozka"
-                       value="#{vyuctovaniDetailBean.getRadkyVyuctovani()}"
+          <p:dataTable id="vypocitanaVyuctovaniPolozkaDataTable"
+                       widgetVar="vypocitanaVyuctovaniPolozkaDataTable"
+                       var="vyuctovaniPolozka"
+                       value="#{vyuctovaniDetailBean.vypocitanaVyuctovaniPolozkaList}"
                        sortBy="#{1}"
           >
 
@@ -88,33 +88,33 @@
             </p:columnGroup>
 
             <p:column>
-              <h:outputText value="#{polozka.polozkaTyp.nazev}" title="#{polozka.polozkaTyp.popis}"/>
+              <h:outputText value="#{vyuctovaniPolozka.polozkaTyp.nazev}" title="#{vyuctovaniPolozka.polozkaTyp.popis}"/>
             </p:column>
 
             <p:column style="text-align: right;">
-              <h:outputText value="#{polozka.pocatecniStav.mnozstvi}">
+              <h:outputText value="#{vyuctovaniPolozka.pocatecniStav.mnozstvi}">
                 <f:convertNumber pattern="#0.00"/>
               </h:outputText>
             </p:column>
 
             <p:column style="text-align: right">
-              <h:outputText value="#{polozka.koncovyStav.mnozstvi}">
+              <h:outputText value="#{vyuctovaniPolozka.koncovyStav.mnozstvi}">
                 <f:convertNumber pattern="#0.00"/>
               </h:outputText>
             </p:column>
 
             <p:column style="text-align: right">
-              <h:outputText value="#{polozka.celkovaSpotreba.mnozstvi}">
+              <h:outputText value="#{vyuctovaniPolozka.celkovaSpotreba.mnozstvi}">
                 <f:convertNumber pattern="#0.00"/>
               </h:outputText>
             </p:column>
 
             <p:column style="text-align: center;">
-              <h:outputText value="#{polozka.polozkaTyp.jednotka}"/>
+              <h:outputText value="#{vyuctovaniPolozka.polozkaTyp.jednotka}"/>
             </p:column>
 
             <p:column style="text-align: right">
-              <h:outputText value="#{polozka.naklady.mnozstvi}">
+              <h:outputText value="#{vyuctovaniPolozka.naklady.mnozstvi}">
                 <f:convertNumber pattern="#0.00 Kč"/>
               </h:outputText>
             </p:column>

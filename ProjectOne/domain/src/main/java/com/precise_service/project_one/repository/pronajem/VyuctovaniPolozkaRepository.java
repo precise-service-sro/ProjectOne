@@ -13,7 +13,7 @@ public interface VyuctovaniPolozkaRepository extends MongoRepository<VyuctovaniP
   List<VyuctovaniPolozka> getVyuctovaniPolozkaAll(String idVyuctovani);
 
   @Query("{ $and: [ { 'vyuctovani.id' : ?0 }, { 'zvyraznit' : true } ] }")
-  List<VyuctovaniPolozka> getVyuctovaniPolozkaZvyrazneneList(String idVyuctovani);
+  List<VyuctovaniPolozka> getVypocitanaVyuctovaniPolozkaList(String idVyuctovani);
 
   @Query("{ $and: [ { 'polozkaTyp.id' : ?0 } , { 'vyuctovani.id' : ?1 } ] }")
   List<VyuctovaniPolozka> getVyuctovaniPolozkaList(String idPolozkaTyp, String idVyuctovani);

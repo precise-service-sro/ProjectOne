@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.precise_service.project_one.entity.faktura.Faktura;
-import com.precise_service.project_one.request.RangeRequest;
 import com.precise_service.project_one.service.faktura.IFakturaService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -47,14 +46,6 @@ public class FakturaEndpoint {
     log.trace("getFakturaAll()");
     return fakturaService.getFakturaAll();
   }
-
-  /*
-  @RequestMapping(value = "/!inRange", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-  List<Faktura> getFakturaListInRange(@RequestBody RangeRequest request) {
-    log.trace("getFakturaListInRange()");
-    return fakturaService.getSeznamFakturVeZuctovacimObdobi(request.getFrom(), request.getTo());
-  }
-  */
 
   @RequestMapping(value = "/{idFaktura}", method = RequestMethod.DELETE)
   void deleteFaktura(@PathVariable String idFaktura) {
