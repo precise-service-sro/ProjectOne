@@ -25,26 +25,28 @@
         <div class="prehledPlatebDataTableDiv">
           <p:dataTable id="vyuctovaniDetailTable"
                        widgetVar="vyuctovaniDetailTable"
-                       var="polozka"
+                       var="platbaNajemneho"
                        value="#{vyuctovaniDetailBean.getPlatbaNajemnehoList()}"
                        sortBy="#{1}"
           >
 
             <p:columnGroup type="header">
               <p:row>
-                <p:column headerText="Datum" style="width: 100px;"/>
-                <p:column headerText="Zaplacené zálohy" style="width: 100%;"/>
+                <p:column headerText="Datum"
+                          style="width: 100px;"/>
+                <p:column headerText="Zaplacené zálohy"
+                          style="width: 100%;"/>
               </p:row>
             </p:columnGroup>
 
             <p:column>
-              <h:outputText value="#{dateFormatterBean.formatDate(polozka.datumPlatby)}"/>
+              <h:outputText value="#{dateFormatterBean.formatDate(platbaNajemneho.datumPlatby)}"/>
             </p:column>
 
             <p:column style="text-align: right;">
-              <h:outputText value="#{polozka.castka.mnozstvi}">
+              <h:outputText value="#{platbaNajemneho.castka.mnozstvi}">
                 <f:convertNumber type="currency" pattern="#0.00"/>
-              </h:outputText>&nbsp;<h:outputText value="#{polozka.castka.jednotka}"/>
+              </h:outputText>&nbsp;<h:outputText value="#{platbaNajemneho.castka.jednotka}"/>
             </p:column>
 
             <p:summaryRow>

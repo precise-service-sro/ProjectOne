@@ -19,6 +19,10 @@
       <groupId>com.precise_service.project_one</groupId>
       <artifactId>domain</artifactId>
     </dependency>
+    <dependency>
+      <groupId>com.precise_service.project_one</groupId>
+      <artifactId>commons</artifactId>
+    </dependency>
 
     <!-- Spring boot -->
     <dependency>

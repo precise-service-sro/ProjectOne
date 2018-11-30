@@ -4,16 +4,15 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
-import org.springframework.data.mongodb.core.query.Criteria;
-import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
 
-import com.precise_service.project_one.entity.filter.DatovyFilter;
-import com.precise_service.project_one.entity.osoba.Osoba;
+import com.precise_service.project_one.entity.filter.DataFilter;
 import com.precise_service.project_one.entity.pronajem.PlatbaNajemneho;
 import com.precise_service.project_one.repository.pronajem.PlatbaNajemnehoRepository;
 
 import lombok.extern.slf4j.Slf4j;
+
+import static com.precise_service.project_one.commons.MongoQueryBuilder.getQuery;
 
 @Slf4j
 @Service
@@ -44,31 +43,9 @@ public class PlatbaNajemnehoService implements IPlatbaNajemnehoService {
   }
 
   @Override
-  public List<PlatbaNajemneho> getPlatbaNajemnehoList(DatovyFilter datovyFilter) {
+  public List<PlatbaNajemneho> getPlatbaNajemnehoList(DataFilter dataFilter) {
     log.trace("getPlatbaNajemnehoList()");
-
-    Query query = new Query();
-
-    if (datovyFilter.getNemovitostFilter() != null && datovyFilter.getNemovitostFilter().getIdNemovitost() != null) {
-      query.addCriteria(Criteria.where("nemovitost.id").is(datovyFilter.getNemovitostFilter().getIdNemovitost()));
-    }
-
-    if (datovyFilter.getPlatbaNajemnehoFilter() != null && datovyFilter.getPlatbaNajemnehoFilter().getIdOdesilatel() != null) {
-      query.addCriteria(Criteria.where("odesilatel.id").is(datovyFilter.getPlatbaNajemnehoFilter().getIdOdesilatel()));
-    }
-
-
-    List<PlatbaNajemneho> platbaNajemnehoList = mongoTemplate.find(query, PlatbaNajemneho.class);
-
-
-
-    return platbaNajemnehoList;
-  }
-
-  @Override
-  public List<PlatbaNajemneho> getPlatbaNajemnehoList(Osoba prihlasenyUzivatel) {
-    log.trace("getPlatbaNajemnehoAll()");
-    return platbaNajemnehoRepository.getPlatbaNajemnehoList(prihlasenyUzivatel.getId());
+    return mongoTemplate.find(getQuery(dataFilter), PlatbaNajemneho.class);
   }
 
   @Override

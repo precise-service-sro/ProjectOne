@@ -32,9 +32,9 @@
 
     <ui:define name="prehledPageDataTable">
 
-      <p:dataTable id="najemniSmlouvaPrehledBeanTable"
+      <p:dataTable id="najemniSmlouvaPrehledBeanDataTable"
                    var="najemniSmlouva"
-                   widgetVar="najemniSmlouvaPrehledBeanTable"
+                   widgetVar="najemniSmlouvaPrehledBeanDataTable"
                    value="#{najemniSmlouvaPrehledBean.najemniSmlouvaList}"
                    sortBy="#{1}"
                    rendered="#{not empty najemniSmlouvaPrehledBean.najemniSmlouvaList}"
@@ -47,11 +47,11 @@
             <p:column headerText="Id:"
                       style="width: 230px;" />
             <p:column headerText="Typ Dokumentu"
-                      filterBy="#{najemniSmlouva.nemovitost.getIdentifikaceNemovitosti()}"
+                      filterBy="#{najemniSmlouva.dokumentTyp.popis}"
                       filterMatchMode="contains"
                       style="width: 100%;"
                       filterStyle="display:none"
-                      sortBy="#{najemniSmlouva.nemovitost.getIdentifikaceNemovitosti()}"
+                      sortBy="#{najemniSmlouva.dokumentTyp.popis}"
             />
             <p:column headerText="Nemovitost"
                       filterBy="#{najemniSmlouva.nemovitost.getIdentifikaceNemovitosti()}"
@@ -81,13 +81,6 @@
                       filterStyle="display:none"
                       sortBy="#{najemniSmlouva.platnost.konec.time}"
             />
-            <p:column headerText="Status (je platný)"
-                      filterBy="#{najemniSmlouva.najemnik.getCeleJmeno()}"
-                      filterMatchMode="contains"
-                      style="width: 100px;"
-                      filterStyle="display:none"
-                      sortBy="#{najemniSmlouva.najemnik.getCeleJmeno()}"
-            />
             <p:column headerText="Ovládání"
                       colspan="1"
                       rowspan="2"
@@ -99,7 +92,7 @@
         <f:facet name="header">
           <p:outputPanel id="globalFilterHeader" style="float: left; margin-top: 5px;">Nájemní smlouvy: (nalezených: <h:outputText value="#{najemniSmlouvaPrehledBean.filtrovanyNajemniSmlouvaListSize}"/> z celkem <h:outputText value="#{najemniSmlouvaPrehledBean.najemniSmlouvaListSize}"/>  smluv)</p:outputPanel>
           <p:outputPanel style="text-align: right;">
-            <p:inputText id="globalFilter" onkeyup="PF('najemniSmlouvaPrehledBeanTable').filter()" style="width:235px"
+            <p:inputText id="globalFilter" onkeyup="PF('najemniSmlouvaPrehledBeanDataTable').filter()" style="width:235px"
                          placeholder="- zadejte text pro vyhledání -">
               <p:ajax event="keyup" update="globalFilterHeader" />
             </p:inputText>
@@ -110,7 +103,7 @@
           <h:outputText value="#{najemniSmlouva.id}"/>
         </p:column>
 
-        <p:column>
+        <p:column styleClass="#{najemniSmlouvaPrehledBean.vypocitatBarvuNajemniSmlouva(najemniSmlouva)}">
           <h:outputText value="#{najemniSmlouva.dokumentTyp.popis}"/>
         </p:column>
 
@@ -130,16 +123,6 @@
         <p:column style="text-align: center;">
           <h:outputText value="#{dateFormatterBean.formatDate(najemniSmlouva.platnost.konec)}"/>
         </p:column>
-
-        <p:column style="text-align: center;">
-          <h:outputText value="#{dateFormatterBean.formatDate(najemniSmlouva.datumPodpisu)}"/>
-        </p:column>
-
-        <!--
-        <p:column>
-          <h:outputText value="#{predavaciProtokol.jeAktualni()}"/>
-        </p:column>
-        -->
 
         <p:column>
           <p:commandButton icon="ui-icon-circle-zoomin"

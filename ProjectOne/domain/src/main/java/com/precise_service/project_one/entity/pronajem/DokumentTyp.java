@@ -22,10 +22,8 @@ public enum DokumentTyp {
   // VYPIS_Z_KATASTRU
   // OSOBNI_DOKLADY (OP, ŘP, PAS, POVOLENÍ_K_POBYTU)
   //
-
   ;
 
   private final String nazev;
   private final String popis;
-
 }

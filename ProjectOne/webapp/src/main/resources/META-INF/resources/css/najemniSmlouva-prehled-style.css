@@ -1,0 +1,17 @@
+.cervenaNajemniSmlouva {
+    background-color: red;
+}
+
+.oranzovaNajemniSmlouva {
+    background-color: orange;
+}
+
+.zelenaNajemniSmlouva {
+    background-color: #8FBC8F;
+    opacity: 0.5;
+}
+
+.bledeZelenaNajemniSmlouva {
+    background-color: #8FBC8F;
+    opacity: 0.3;
+}

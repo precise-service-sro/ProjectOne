@@ -8,9 +8,10 @@ import javax.inject.Named;
 
 import org.primefaces.event.RowEditEvent;
 
+import com.precise_service.project_one.entity.CasovyInterval;
 import com.precise_service.project_one.entity.Cislo;
-import com.precise_service.project_one.entity.filter.DatovyFilter;
-import com.precise_service.project_one.entity.filter.typ.PlatbaNajemnehoFilter;
+import com.precise_service.project_one.entity.filter.DataFilter;
+import com.precise_service.project_one.entity.filter.PlatbaNajemnehoFilter;
 import com.precise_service.project_one.entity.pronajem.PlatbaNajemneho;
 import com.precise_service.project_one.entity.PolozkaTyp;
 import com.precise_service.project_one.entity.pronajem.PredavaciProtokol;
@@ -120,14 +121,11 @@ public class VyuctovaniDetailBean extends AbstractBean {
   }
 
   public List<PlatbaNajemneho> getPlatbaNajemnehoList(){
-    // TODO: pridelat filtrovani dle nemovitosti, najemni smlouvy, lidi atd
-    DatovyFilter datovyFilter = new DatovyFilter();
-    PlatbaNajemnehoFilter platbaNajemnehoFilter = new PlatbaNajemnehoFilter();
-    platbaNajemnehoFilter.setIdOdesilatel("5bdb0c7b4f0e8eb71860baab");
-    datovyFilter.setPlatbaNajemnehoFilter(platbaNajemnehoFilter);
-
-    // TODO: tady musim jeste nejak poslat pouze zalohy, nikoliv cely najem
-    return platbaNajemnehoService.getPlatbaNajemnehoList(datovyFilter);
+    return platbaNajemnehoService.getPlatbaNajemnehoList(
+        new PlatbaNajemnehoFilter()
+            .setIdOdesilatel(vyuctovani.getNajemnik().getId())
+            .setCasovyInterval(vyuctovani.getZuctovaciObdobi())
+    );
   }
 
   public Cislo getPlatbaNajemnehoCelkem() {

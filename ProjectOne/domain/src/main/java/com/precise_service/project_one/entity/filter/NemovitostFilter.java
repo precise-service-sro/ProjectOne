@@ -1,4 +1,4 @@
-package com.precise_service.project_one.entity.filter.typ;
+package com.precise_service.project_one.entity.filter;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -9,14 +9,12 @@ import com.precise_service.project_one.entity.nemovitost.NemovitostDruhVlastnict
 import com.precise_service.project_one.entity.nemovitost.NemovitostTyp;
 
 import lombok.Data;
+import lombok.experimental.Accessors;
 
 @Data
+@Accessors(chain = true)
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class NemovitostFilter {
-
-  @JsonProperty("idNemovitost")
-  @JsonInclude(JsonInclude.Include.NON_NULL)
-  private String idNemovitost;
+public class NemovitostFilter extends DataFilter{
 
   @JsonProperty("nemovitostDruhVlastnictvi")
   @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -25,10 +23,6 @@ public class NemovitostFilter {
   @JsonProperty("nemovitostDispozice")
   @JsonInclude(JsonInclude.Include.NON_NULL)
   private NemovitostDispozice nemovitostDispozice;
-
-  @JsonProperty("idNemovitostKontakt")
-  @JsonInclude(JsonInclude.Include.NON_NULL)
-  private String idNemovitostKontakt;
 
   @JsonProperty("nemovitostTyp")
   @JsonInclude(JsonInclude.Include.NON_NULL)

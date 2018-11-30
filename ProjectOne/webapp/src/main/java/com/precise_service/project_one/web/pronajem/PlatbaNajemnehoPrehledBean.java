@@ -5,6 +5,7 @@ import java.util.List;
 import javax.inject.Named;
 
 import com.precise_service.project_one.entity.CasovyInterval;
+import com.precise_service.project_one.entity.filter.PlatbaNajemnehoFilter;
 import com.precise_service.project_one.entity.pronajem.PlatbaNajemneho;
 import com.precise_service.project_one.entity.osoba.Osoba;
 import com.precise_service.project_one.web.AbstractBean;
@@ -26,7 +27,9 @@ public class PlatbaNajemnehoPrehledBean extends AbstractBean {
   public void init() {
     Osoba prihlasenyUzivatel = loginBean.getPrihlasenyUzivatel();
     zuctovaciObdobi = new CasovyInterval();
-    platbaNajemnehoList = platbaNajemnehoService.getPlatbaNajemnehoList(prihlasenyUzivatel);
+    PlatbaNajemnehoFilter platbaNajemnehoFilter = new PlatbaNajemnehoFilter();
+    platbaNajemnehoFilter.setIdPrihlasenyUzivatel(prihlasenyUzivatel.getId());
+    platbaNajemnehoList = platbaNajemnehoService.getPlatbaNajemnehoList(platbaNajemnehoFilter);
     filtrovanyPlatbaNajemnehoList = null;
   }
 

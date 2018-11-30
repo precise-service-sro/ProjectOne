@@ -8,6 +8,7 @@ import javax.inject.Named;
 import org.springframework.util.CollectionUtils;
 
 import com.precise_service.project_one.entity.osoba.Osoba;
+import com.precise_service.project_one.entity.pronajem.DokumentTyp;
 import com.precise_service.project_one.entity.pronajem.NajemniSmlouva;
 import com.precise_service.project_one.web.AbstractBean;
 
@@ -82,5 +83,21 @@ public class NajemniSmlouvaPrehledBean extends AbstractBean {
       seznamJmenVsechNajemniku += osoba.getCeleJmeno() + ", ";
     }
     return seznamJmenVsechNajemniku;
+  }
+
+  public String vypocitatBarvuNajemniSmlouva(NajemniSmlouva najemniSmlouva) {
+    if (najemniSmlouva == null) {
+      return null;
+    }
+
+    if (najemniSmlouva.getDokumentTyp() == DokumentTyp.NAJEMNI_SMLOUVA_DODATEK) {
+      return "bledeZelenaNajemniSmlouva";
+    }
+
+    if (najemniSmlouva.getPlatnost() != null && najemniSmlouva.getPlatnost().getKonec() != null) {
+      return "zelenaNajemniSmlouva";
+    }
+
+    return "cervenaNajemniSmlouva";
   }
 }

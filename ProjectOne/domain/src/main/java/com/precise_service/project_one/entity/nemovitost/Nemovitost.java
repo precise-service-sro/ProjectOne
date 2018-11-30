@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.precise_service.project_one.entity.BaseEntity;
+import com.precise_service.project_one.entity.CasovyInterval;
 import com.precise_service.project_one.entity.adresa.Adresa;
 import com.precise_service.project_one.entity.osoba.Osoba;
 
@@ -49,6 +50,10 @@ public class Nemovitost extends BaseEntity {
   @JsonProperty("nemovitostDruhVlastnictvi")
   @JsonInclude(JsonInclude.Include.NON_NULL)
   private NemovitostDruhVlastnictvi nemovitostDruhVlastnictvi;
+
+  @JsonProperty("obdobiVlastnictvi")
+  @JsonInclude(JsonInclude.Include.NON_NULL)
+  private CasovyInterval obdobiVlastnictvi = new CasovyInterval();
 
   public String getIdentifikaceNemovitosti() {
     return "" + nemovitostTyp.getHodnota() + ", " + adresa.getCelaAdresa();

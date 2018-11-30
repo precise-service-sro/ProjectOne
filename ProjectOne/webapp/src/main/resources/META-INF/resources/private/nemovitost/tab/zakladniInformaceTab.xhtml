@@ -92,6 +92,25 @@
             </div>
           </td>
         </tr>
+        <tr>
+          <th class="prvniSloupec">
+            <div><p>Datum nákupu:</p></div>
+          </th>
+          <td>
+            <div>
+              <p:calendar id="datumNakupu" value="#{nemovitostDetailBean.nemovitost.obdobiVlastnictvi.zacatek}" pattern="dd-MM-yyyy"/>
+            </div>
+          </td>
+
+          <th>
+            <div><p>Datum prodeje:</p></div>
+          </th>
+          <td>
+            <div>
+              <p:calendar id="datumProdeje" value="#{nemovitostDetailBean.nemovitost.obdobiVlastnictvi.konec}" pattern="dd-MM-yyyy"/>
+            </div>
+          </td>
+        </tr>
       </table>
     </div>
   </ui:composition>

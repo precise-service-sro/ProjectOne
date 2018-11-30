@@ -22,7 +22,7 @@
     </ui:define>
 
     <ui:define name="prehledPagePridavaciTlacitko">
-      <p:commandButton value="Přidat" icon="ui-icon-circle-plus" process="@this" update="form :form:msgs" actionListener="#{nemovitostPrehledBean.addRow()}"/>
+      <p:commandButton value="Přidat nemovitost" icon="ui-icon-circle-plus" process="@this" update="form :form:msgs" actionListener="#{nemovitostPrehledBean.addRow()}"/>
     </ui:define>
 
     <ui:define name="prehledPageDataTable">
@@ -51,14 +51,42 @@
         <p:columnGroup type="header">
           <p:row>
 
-            <p:column headerText="Id:" style="width: 230px;" />
-            <p:column headerText="Typ" filterBy="#{nemovitost.nemovitostTyp}" filterMatchMode="contains" filterStyle="display:none" style="width: 100px;"
+            <p:column headerText="Id:"
+                      style="width: 230px;" />
+            <p:column headerText="Typ"
+                      filterBy="#{nemovitost.nemovitostTyp}"
+                      filterMatchMode="contains"
+                      filterStyle="display:none"
+                      style="width: 100px;"
                       sortBy="#{nemovitost.nemovitostTyp}"/>
-            <p:column headerText="Adresa" filterBy="#{nemovitost.adresa.getCelaAdresa()}" filterMatchMode="contains" filterStyle="display:none"
-                      style="width: 100%;" sortBy="#{nemovitost.adresa.getCelaAdresa()}"/>
-            <p:column headerText="Vlastník" filterBy="#{nemovitost.vlastnik.getCeleJmeno()}" filterMatchMode="contains" filterStyle="display:none"
-                      style="width: 200px;" sortBy="#{nemovitost.vlastnik.getCeleJmeno()}"/>
-            <p:column headerText="Ovládání" colspan="1" rowspan="2" style="width: 90px;"/>
+            <p:column headerText="Adresa"
+                      filterBy="#{nemovitost.adresa.getCelaAdresa()}"
+                      filterMatchMode="contains"
+                      filterStyle="display:none"
+                      style="width: 100%;"
+                      sortBy="#{nemovitost.adresa.getCelaAdresa()}"/>
+            <p:column headerText="Vlastník"
+                      filterBy="#{nemovitost.vlastnik.getCeleJmeno()}"
+                      filterMatchMode="contains"
+                      filterStyle="display:none"
+                      style="width: 200px;"
+                      sortBy="#{nemovitost.vlastnik.getCeleJmeno()}"/>
+            <p:column headerText="Datum nákupu"
+                      filterBy="#{dateFormatterBean.formatDate(nemovitost.obdobiVlastnictvi.zacatek)}"
+                      filterMatchMode="contains"
+                      filterStyle="display:none"
+                      style="width: 100px;"
+                      sortBy="#{nemovitost.obdobiVlastnictvi.zacatek.time}"/>
+            <p:column headerText="Datum prodeje"
+                      filterBy="#{dateFormatterBean.formatDate(nemovitost.obdobiVlastnictvi.konec)}"
+                      filterMatchMode="contains"
+                      filterStyle="display:none"
+                      style="width: 100px;"
+                      sortBy="#{nemovitost.obdobiVlastnictvi.konec.time}"/>
+            <p:column headerText="Ovládání"
+                      colspan="1"
+                      rowspan="2"
+                      style="width: 90px;"/>
           </p:row>
         </p:columnGroup>
 
@@ -77,6 +105,14 @@
 
         <p:column>
           <h:outputText value="#{nemovitost.vlastnik.getCeleJmeno()}"/>
+        </p:column>
+
+        <p:column>
+          <h:outputText value="#{dateFormatterBean.formatDate(nemovitost.obdobiVlastnictvi.zacatek)}"/>
+        </p:column>
+
+        <p:column>
+          <h:outputText value="#{dateFormatterBean.formatDate(nemovitost.obdobiVlastnictvi.konec)}"/>
         </p:column>
 
         <p:column>
