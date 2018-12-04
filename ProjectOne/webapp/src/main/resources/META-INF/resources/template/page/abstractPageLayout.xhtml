@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+>
+
+<h:head>
+  <!-- formatovani tabulek, hlavne sirce sloupcu -->
+  <h:outputStylesheet name="tabulky-style.css" library="css"/>
+
+  <h:outputStylesheet name="common-style.css" library="css"/>
+
+  <h:outputStylesheet name="common-header-style.css" library="css"/>
+
+  <h:outputStylesheet name="cashflow-style.css" library="css"/>
+  <h:outputStylesheet name="nemovitost-detail-style.css" library="css"/>
+  <h:outputStylesheet name="najemniSmlouva-prehled-style.css" library="css"/>
+  <h:outputStylesheet name="osoba-detail-style.css" library="css"/>
+  <h:outputStylesheet name="vyuctovani-detail-style.css" library="css"/>
+
+  <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
+  <title>
+    <ui:insert name="title">ProjectOne</ui:insert>
+  </title>
+
+  <script type="text/javascript">
+      function start() {
+          PF('statusDialog').show();
+      }
+
+      function stop() {
+          PF('statusDialog').hide();
+      }
+
+
+  </script>
+</h:head>
+
+<h:body>
+  <h:outputStylesheet name="primefaces-override-style.css" library="css"/>
+  <div id="page">
+
+    <div id="header">
+      <ui:insert name="header">
+        <ui:include src="/template/page/parts/commonHeader.xhtml"/>
+      </ui:insert>
+    </div>
+
+    <div id="content">
+      <h:form id="form">
+        <p:growl id="msgs" showDetail="true"/>
+        <ui:insert name="content">
+          <ui:include src="/template/page/parts/commonContent.xhtml"/>
+        </ui:insert>
+      </h:form>
+    </div>
+
+    <div id="footer">
+      <ui:insert name="footer">
+        <ui:include src="/template/page/parts/commonFooter.xhtml"/>
+      </ui:insert>
+    </div>
+
+  </div>
+
+</h:body>
+</html>

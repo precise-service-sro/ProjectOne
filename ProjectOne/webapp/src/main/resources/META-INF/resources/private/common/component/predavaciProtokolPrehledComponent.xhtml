@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:composite="http://java.sun.com/jsf/composite"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+>
+
+<composite:interface>
+
+  <composite:attribute name="vstupniData"/>
+
+</composite:interface>
+
+<composite:implementation>
+
+  <ui:decorate template="/template/component/prehledComponentLayout.xhtml">
+    <ui:define name="pageContentTitle">
+      <p class="tableCaption">Přehled předávacích protokolů:</p>
+    </ui:define>
+
+    <ui:define name="prehledPagePridavaciTlacitko">
+      <p:commandButton value="Přidat předávací protokol"
+                       icon="ui-icon-circle-plus"
+                       process="@this"
+                       actionListener="#{predavaciProtokolPrehledBean.pridatPredavaciProtokol()}"
+      >
+        <f:ajax update="@all" render="@all"/>
+      </p:commandButton>
+    </ui:define>
+
+    <ui:define name="prehledPageData">
+    </ui:define>
+
+    <ui:define name="prehledPageDataTable">
+      <p:dataTable id="predavaciProtokolPrehledBeanTable"
+                   var="predavaciProtokol"
+                   widgetVar="predavaciProtokolPrehledBeanTable"
+                   value="#{cc.attrs.vstupniData}"
+                   sortBy="#{1}"
+                   rendered="#{not empty predavaciProtokolPrehledBean.predavaciProtokolList}"
+                   emptyMessage="Nebyly nalezeny žádné předávací protokoly"
+                   filteredValue="#{predavaciProtokolPrehledBean.filtrovanyPredavaciProtokolList}"
+      >
+
+        <p:columnGroup type="header">
+          <p:row>
+            <p:column headerText="Id:"
+                      style="width: 230px;" />
+            <p:column headerText="Nemovitost"
+                      style="width: 400px;"
+                      filterBy="#{predavaciProtokol.nemovitost.getIdentifikaceNemovitosti()}"
+                      filterMatchMode="contains"
+                      filterStyle="display:none"
+                      sortBy="#{predavaciProtokol.nemovitost.getIdentifikaceNemovitosti()}"/>
+            <p:column headerText="Nájemník"
+                      filterBy="#{predavaciProtokol.najemnik.getCeleJmeno()}"
+                      filterMatchMode="contains"
+                      style="width: 200px;"
+                      filterStyle="display:none"
+                      sortBy="#{predavaciProtokol.najemnik.getCeleJmeno()}"/>
+            <p:column headerText="Datum podpisu"
+                      filterBy="#{dateFormatterBean.formatDate(predavaciProtokol.datumPodpisu)}"
+                      filterMatchMode="contains"
+                      style="width: 100px;"
+                      filterStyle="display:none"
+                      sortBy="#{dateFormatterBean.formatDate(predavaciProtokol.datumPodpisu)}"/>
+            <p:column headerText="Status (je platný)"
+                      filterBy="#{predavaciProtokol.najemnik.getCeleJmeno()}"
+                      filterMatchMode="contains"
+                      style="width: 100%;"
+                      filterStyle="display:none"
+                      sortBy="#{predavaciProtokol.najemnik.getCeleJmeno()}"/>
+            <p:column headerText="Ovládání"
+                      colspan="1"
+                      rowspan="2"
+                      style="width: 90px;"/>
+          </p:row>
+        </p:columnGroup>
+
+        <f:facet name="header">
+          <p:outputPanel id="globalFilterHeader" style="float: left; margin-top: 5px;">Předávací protokoly: (nalezených: <h:outputText value="#{predavaciProtokolPrehledBean.filtrovanyPredavaciProtokolListSize}"/> z celkem <h:outputText value="#{predavaciProtokolPrehledBean.predavaciProtokolListSize}"/>  předávacích protokolů)</p:outputPanel>
+          <p:outputPanel style="text-align: right;">
+            <p:inputText id="globalFilter" onkeyup="PF('predavaciProtokolPrehledBeanTable').filter()" style="width:235px"
+                         placeholder="- zadejte text pro vyhledání -">
+              <p:ajax event="keyup" update="globalFilterHeader" />
+            </p:inputText>
+          </p:outputPanel>
+        </f:facet>
+
+        <p:column>
+          <h:outputText value="#{predavaciProtokol.id}"/>
+        </p:column>
+
+        <p:column>
+          <h:outputText value="#{predavaciProtokol.nemovitost.getIdentifikaceNemovitosti()}"
+                        title="#{predavaciProtokol.nemovitost.getIdentifikaceNemovitosti()}"/>
+        </p:column>
+
+        <p:column>
+          <h:outputText value="#{predavaciProtokol.najemnik.getCeleJmeno()}"/>
+        </p:column>
+
+        <p:column style="text-align: center;">
+          <h:outputText value="#{dateFormatterBean.formatDate(predavaciProtokol.datumPodpisu)}"/>
+        </p:column>
+
+        <p:column>
+          <h:outputText value="#{predavaciProtokol.jeAktualni()}"/>
+        </p:column>
+
+        <p:column>
+          <p:commandButton icon="ui-icon-circle-zoomin"
+                           actionListener="#{routerBean.goToPredavaciProtokolDetailBean(predavaciProtokol)}"
+                           title="Upravit / Podrobnosti"
+          >
+            <f:ajax update="@all" render="@all"/>
+          </p:commandButton>
+          <p:commandButton icon="ui-icon-circle-minus"
+                           actionListener="#{predavaciProtokolPrehledBean.smazatPredavaciProtokol(predavaciProtokol)}"
+                           title="Odebrat"
+          >
+            <f:ajax update="@all" render="@all"/>
+          </p:commandButton>
+        </p:column>
+
+      </p:dataTable>
+    </ui:define>
+  </ui:decorate>
+
+</composite:implementation>
+
+</html>

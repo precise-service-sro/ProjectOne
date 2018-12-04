@@ -16,8 +16,14 @@
         </div>
         <div class="tabTitleRight">
           <div class="addButtonDiv">
-            <p:commandButton value="Přidat vyúčtovávanou položku" icon="ui-icon-circle-plus" process="@this" update="form :form:msgs"
-                             actionListener="#{polozkaTypBean.pridatPolozkaTyp()}"/>
+            <p:commandButton value="Přidat vyúčtovávanou položku"
+                             icon="ui-icon-circle-plus"
+                             process="@this"
+                             update="@form"
+                             actionListener="#{polozkaTypBean.pridatPolozkaTyp()}"
+            >
+              <f:ajax update="@all" render="@all"/>
+            </p:commandButton>
           </div>
         </div>
       </div>
@@ -36,7 +42,6 @@
 
           <p:ajax event="rowEdit" listener="#{polozkaTypBean.ulozitUpravuPolozkaTyp}" update=":form:msgs"/>
           <p:ajax event="rowEditCancel" listener="#{polozkaTypBean.zrusitUpravuPolozkaTyp}" update=":form:msgs"/>
-          <p:ajax event="page" update=":form:tabViewNemovitostDetail:polozkaTypTable"/>
 
           <f:facet name="header">
             <p:outputPanel id="globalFilterHeader" style="float: left; margin-top: 5px;">Nalezeno:
@@ -118,9 +123,13 @@
           </p:column>
 
           <p:column>
-            <p:commandButton update=":form:tabViewNemovitostDetail:polozkaTypTable :form:msgs" icon="ui-icon-circle-minus"
+            <p:commandButton update="form :form:msgs"
+                             icon="ui-icon-circle-minus"
                              actionListener="#{polozkaTypBean.smazatPolozkaTyp(polozkaTyp)}"
-                             title="Odebrat vyúčtovávanou položku"/>
+                             title="Odebrat vyúčtovávanou položku"
+            >
+              <f:ajax update="@all" render="@all"/>
+            </p:commandButton>
           </p:column>
         </p:dataTable>
       </div>

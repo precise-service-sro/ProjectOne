@@ -29,24 +29,25 @@ public class NemovitostPrehledBean extends AbstractBean {
     filtrovanyNemovitostList = null;
   }
 
-  public void addRow() {
-    log.trace("addRow()");
+  public void pridatNemovitost() {
+    log.trace("pridatNemovitost()");
 
     Nemovitost nemovitost = new Nemovitost();
 
     nemovitost.setNazev("- zadejte -");
     nemovitost.setAdresa(new Adresa());
     nemovitost.setNemovitostTyp(NemovitostTyp.BYT);
+    nemovitost.setVlastnik(loginBean.getPrihlasenyUzivatel());
     nemovitost.setIdOsoba(loginBean.getPrihlasenyUzivatel().getId());
 
-    Nemovitost saved = nemovitostService.postNemovitost(nemovitost);
+    nemovitostService.postNemovitost(nemovitost);
 
-    showInfoMessage("Přidána nová nemovitost", saved.getId());
+    showInfoMessage("Přidáno", "Nová nemovitost byla přidána");
     init();
   }
 
-  public void deleteRow(Nemovitost deletedNemovitost) {
-    log.trace("deleteRow()");
+  public void smazatNemovitost(Nemovitost deletedNemovitost) {
+    log.trace("smazatNemovitost()");
 
     if (deletedNemovitost == null) {
       log.trace("deleted row is null");
@@ -56,7 +57,7 @@ public class NemovitostPrehledBean extends AbstractBean {
 
     nemovitostService.deleteNemovitost(deletedNemovitost.getId());
 
-    showInfoMessage("Smazán řádek", deletedNemovitost.getNazev());
+    showInfoMessage("Smazáno", "Nemovist byla smazána");
     init();
   }
 

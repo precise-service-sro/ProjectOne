@@ -8,18 +8,12 @@
 >
 
 <h:body>
-  <ui:composition template="/template/prehledPageLayout.xhtml">
+  <ui:composition template="/template/page/prehledPageLayout.xhtml">
     <ui:define name="title">
       ProjectOne - Cashflow
     </ui:define>
 
-    <ui:define name="pageContentTitle">
-      <h:outputText value="#{nemovitostPrehledBean.init()}"/>
-      <p>Cashflow:</p>
-    </ui:define>
-
-    <ui:define name="prehledPageData">
-
+    <ui:define name="content">
       <div class="pravyDiv">
         <p>&nbsp;</p>
 
@@ -285,13 +279,6 @@
         </div>
       </div>
     </ui:define>
-
-    <ui:define name="prehledPagePridavaciTlacitko">
-    </ui:define>
-
-    <ui:define name="prehledPageDataTable">
-    </ui:define>
-
   </ui:composition>
 </h:body>
 </html>

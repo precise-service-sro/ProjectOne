@@ -1,5 +1,7 @@
 package com.precise_service.project_one.entity.filter;
 
+import org.springframework.data.domain.Sort;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -12,6 +14,14 @@ import lombok.experimental.Accessors;
 @Accessors(chain = true)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public abstract class DataFilter {
+
+  @JsonProperty("seraditVzestupnePodle")
+  @JsonInclude(JsonInclude.Include.NON_NULL)
+  private String seraditVzestupnePodle;
+
+  @JsonProperty("seraditSestupnePodle")
+  @JsonInclude(JsonInclude.Include.NON_NULL)
+  private String seraditSestupnePodle;
 
   @JsonProperty("idPrihlasenyUzivatel")
   @JsonInclude(JsonInclude.Include.NON_NULL)

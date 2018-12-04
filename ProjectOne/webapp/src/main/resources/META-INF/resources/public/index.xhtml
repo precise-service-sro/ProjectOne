@@ -8,7 +8,7 @@
 >
 
 <h:body>
-  <ui:composition template="/template/commonLayout.xhtml">
+  <ui:composition template="/template/page/abstractPageLayout.xhtml">
     <ui:define name="title">ProjectOne - Vítejte</ui:define>
 
     <ui:define name="content">
@@ -33,7 +33,7 @@
       <br/>
       <br/>
 
-      <component:dockMenu rendered="#{loginBean.getPrihlasenyUzivatel() != null}"/>
+      <component:dockMenuComponent rendered="#{loginBean.getPrihlasenyUzivatel() != null}"/>
     </ui:define>
 
   </ui:composition>

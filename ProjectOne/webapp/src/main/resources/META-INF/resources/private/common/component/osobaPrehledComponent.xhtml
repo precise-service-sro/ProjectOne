@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:composite="http://java.sun.com/jsf/composite"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+>
+
+<composite:interface>
+
+  <composite:attribute name="vstupniData"/>
+
+</composite:interface>
+
+<composite:implementation>
+
+  <ui:decorate template="/template/component/prehledComponentLayout.xhtml">
+    <ui:define name="pageContentTitle">
+      <p class="tableCaption">Přehled osob:</p>
+    </ui:define>
+
+    <ui:define name="prehledPagePridavaciTlacitko">
+      <p:commandButton value="Přidat osobu"
+                       icon="ui-icon-circle-plus"
+                       process="@this"
+                       actionListener="#{osobaPrehledBean.pridatOsoba()}"
+      >
+        <f:ajax update="@all" render="@all"/>
+      </p:commandButton>
+    </ui:define>
+
+    <ui:define name="prehledPageData">
+    </ui:define>
+
+    <ui:define name="prehledPageDataTable">
+
+      <p:dataTable id="osobaPrehledBeanTable"
+                   var="osoba"
+                   widgetVar="osobaPrehledBeanTable"
+                   value="#{cc.attrs.vstupniData}"
+                   sortBy="#{1}"
+                   rendered="#{not empty osobaPrehledBean.osobaList}"
+                   emptyMessage="Nebyly nalezeny žádné osoby"
+                   filteredValue="#{osobaPrehledBean.filtrovanyOsobaList}"
+      >
+
+        <f:facet name="header">
+          <p:outputPanel id="globalFilterHeader" style="float: left; margin-top: 5px;">Osoby: (nalezených:
+            <h:outputText value="#{osobaPrehledBean.filtrovanyOsobaListSize}"/>
+            z celkem
+            <h:outputText value="#{osobaPrehledBean.osobaListSize}"/>
+            osob)
+          </p:outputPanel>
+          <p:outputPanel style="text-align: right;">
+            <p:inputText id="globalFilter" onkeyup="PF('osobaPrehledBeanTable').filter()" style="width:235px"
+                         placeholder="- zadejte text pro vyhledání -">
+              <p:ajax event="keyup" update="globalFilterHeader"/>
+            </p:inputText>
+          </p:outputPanel>
+        </f:facet>
+
+        <p:columnGroup type="header">
+          <p:row>
+            <p:column headerText="Id:" style="width: 230px;"/>
+            <p:column headerText="Fotka / Avatar" style="width: 150px;"/>
+            <p:column headerText="Jméno a Přijmení / Název" style="width: 250px;" filterBy="#{osoba.getCeleJmeno()}" filterMatchMode="contains"
+                      filterStyle="display:none" sortBy="#{osoba.getCeleJmeno()}"/>
+            <p:column headerText="Datum narození" style="width: 150px;" filterBy="#{dateFormatterBean.formatDate(osoba.datumNarozeni)}"
+                      filterMatchMode="contains" filterStyle="display:none"
+                      sortBy="#{dateFormatterBean.formatDate(osoba.datumNarozeni)}"/>
+            <p:column headerText="Telefon" style="width: 180px;" filterBy="#{osoba.telefon}" filterMatchMode="contains" filterStyle="display:none"
+                      sortBy="#{osoba.telefon}"/>
+            <p:column headerText="Email" style="width: 100%;" filterBy="#{osoba.email}" filterMatchMode="contains" filterStyle="display:none"
+                      sortBy="#{osoba.email}"/>
+            <p:column headerText="Ovládání" colspan="1" rowspan="2" style="width: 90px;"/>
+          </p:row>
+        </p:columnGroup>
+
+        <p:column>
+          <h:outputText value="#{osoba.id}"/>
+        </p:column>
+
+        <p:column style="text-align: center;">
+          <p:graphicImage value="#{osobaPrehledBean.avatarFotoStreamedContent}" style="height: 100px;" cache="FALSE">
+            <f:param name="idOsoba" value="#{osoba.id}"/>
+          </p:graphicImage>
+        </p:column>
+
+        <p:column>
+          <h:outputText value="#{osoba.getCeleJmeno()}"/>
+        </p:column>
+
+        <p:column style="text-align: center;">
+          <h:outputText value="#{dateFormatterBean.formatDate(osoba.datumNarozeni)}"/>
+        </p:column>
+
+        <p:column style="text-align: center;">
+          <h:outputText value="#{osoba.telefon}"/>
+        </p:column>
+
+        <p:column>
+          <h:outputText value="#{osoba.email}"/>
+        </p:column>
+
+        <p:column>
+          <p:commandButton icon="ui-icon-circle-zoomin"
+                           actionListener="#{routerBean.goToOsobaDetailBean(osoba)}"
+                           title="Podrobnosti"
+          >
+            <f:ajax update="@all" render="@all"/>
+          </p:commandButton>
+          <p:commandButton icon="ui-icon-circle-minus"
+                           actionListener="#{osobaPrehledBean.smazatOsoba(osoba)}"
+                           title="Odebrat"
+          >
+            <f:ajax update="@all" render="@all"/>
+          </p:commandButton>
+        </p:column>
+
+      </p:dataTable>
+    </ui:define>
+  </ui:decorate>
+
+</composite:implementation>
+
+</html>

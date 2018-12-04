@@ -11,12 +11,11 @@
 }
 
 #content{
-  padding: 2%;
-  width: 96%;
-  margin-right:16px;
-  margin-bottom:16px;
+  padding: 1%;
+  width: 98%;
+  margin-right: 10px;
+  margin-bottom: 16px;
   border: 1px solid #000;
-  padding-bottom: 150px;
 }
 
 #footer{

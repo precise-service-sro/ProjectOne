@@ -8,123 +8,14 @@
 >
 
 <h:body>
-  <ui:composition template="/template/prehledPageLayout.xhtml">
+  <ui:composition template="/template/page/abstractPageLayout.xhtml">
     <ui:define name="title">
-      ProjectOne - Přehled nemovitostí
+      ProjectOne - Přehled nemovitostí prehled.xhtml
     </ui:define>
-
-    <ui:define name="pageContentTitle">
+    <ui:define name="content">
       <h:outputText value="#{nemovitostPrehledBean.init()}"/>
-      <p>Přehled nemovitostí:</p>
+      <component:nemovitostPrehledComponent vstupniData="#{nemovitostPrehledBean.nemovitostList}" />
     </ui:define>
-
-    <ui:define name="prehledPageData">
-    </ui:define>
-
-    <ui:define name="prehledPagePridavaciTlacitko">
-      <p:commandButton value="Přidat nemovitost" icon="ui-icon-circle-plus" process="@this" update="form :form:msgs" actionListener="#{nemovitostPrehledBean.addRow()}"/>
-    </ui:define>
-
-    <ui:define name="prehledPageDataTable">
-      <p:dataTable
-              id="nemovitostPrehledBeanTable"
-              var="nemovitost"
-              widgetVar="nemovitostPrehledBeanTable"
-              value="#{nemovitostPrehledBean.nemovitostList}"
-              sortBy="#{1}"
-              rendered="#{not empty nemovitostPrehledBean.nemovitostList}"
-              emptyMessage="Nebyly nalezeny žádné nemovitosti"
-              filteredValue="#{nemovitostPrehledBean.filtrovanyNemovitostList}"
-              rowIndexVar="cisloRadky"
-      >
-
-        <f:facet name="header">
-          <p:outputPanel id="globalFilterHeader" style="float: left; margin-top: 5px;">Nemovitosti: (nalezených: <h:outputText value="#{nemovitostPrehledBean.filtrovanyNemovitostListSize}"/> z celkem <h:outputText value="#{nemovitostPrehledBean.nemovitostListSize}"/>  nemovitostí)</p:outputPanel>
-          <p:outputPanel style="text-align: right;">
-            <p:inputText id="globalFilter" onkeyup="PF('nemovitostPrehledBeanTable').filter()" style="width:235px"
-                         placeholder="- zadejte text pro vyhledání -">
-              <p:ajax event="keyup" update="globalFilterHeader" />
-            </p:inputText>
-          </p:outputPanel>
-        </f:facet>
-
-        <p:columnGroup type="header">
-          <p:row>
-
-            <p:column headerText="Id:"
-                      style="width: 230px;" />
-            <p:column headerText="Typ"
-                      filterBy="#{nemovitost.nemovitostTyp}"
-                      filterMatchMode="contains"
-                      filterStyle="display:none"
-                      style="width: 100px;"
-                      sortBy="#{nemovitost.nemovitostTyp}"/>
-            <p:column headerText="Adresa"
-                      filterBy="#{nemovitost.adresa.getCelaAdresa()}"
-                      filterMatchMode="contains"
-                      filterStyle="display:none"
-                      style="width: 100%;"
-                      sortBy="#{nemovitost.adresa.getCelaAdresa()}"/>
-            <p:column headerText="Vlastník"
-                      filterBy="#{nemovitost.vlastnik.getCeleJmeno()}"
-                      filterMatchMode="contains"
-                      filterStyle="display:none"
-                      style="width: 200px;"
-                      sortBy="#{nemovitost.vlastnik.getCeleJmeno()}"/>
-            <p:column headerText="Datum nákupu"
-                      filterBy="#{dateFormatterBean.formatDate(nemovitost.obdobiVlastnictvi.zacatek)}"
-                      filterMatchMode="contains"
-                      filterStyle="display:none"
-                      style="width: 100px;"
-                      sortBy="#{nemovitost.obdobiVlastnictvi.zacatek.time}"/>
-            <p:column headerText="Datum prodeje"
-                      filterBy="#{dateFormatterBean.formatDate(nemovitost.obdobiVlastnictvi.konec)}"
-                      filterMatchMode="contains"
-                      filterStyle="display:none"
-                      style="width: 100px;"
-                      sortBy="#{nemovitost.obdobiVlastnictvi.konec.time}"/>
-            <p:column headerText="Ovládání"
-                      colspan="1"
-                      rowspan="2"
-                      style="width: 90px;"/>
-          </p:row>
-        </p:columnGroup>
-
-        <p:column>
-          <!--<h:outputText value="#{cisloRadky+1}"/> -->
-          <h:outputText value="#{nemovitost.id}"/>
-        </p:column>
-
-        <p:column>
-          <h:outputText value="#{nemovitost.nemovitostTyp.hodnota}"/>
-        </p:column>
-
-        <p:column>
-          <h:outputText value="#{nemovitost.adresa.getCelaAdresa()}"/>
-        </p:column>
-
-        <p:column>
-          <h:outputText value="#{nemovitost.vlastnik.getCeleJmeno()}"/>
-        </p:column>
-
-        <p:column>
-          <h:outputText value="#{dateFormatterBean.formatDate(nemovitost.obdobiVlastnictvi.zacatek)}"/>
-        </p:column>
-
-        <p:column>
-          <h:outputText value="#{dateFormatterBean.formatDate(nemovitost.obdobiVlastnictvi.konec)}"/>
-        </p:column>
-
-        <p:column>
-          <p:commandButton icon="ui-icon-circle-zoomin" actionListener="#{routerBean.goToNemovitostDetailBean(nemovitost)}"
-                           title="Upravit / Podrobnosti"/>
-          <p:commandButton update="form :form:msgs" icon="ui-icon-circle-minus" actionListener="#{nemovitostPrehledBean.deleteRow(nemovitost)}"
-                           title="Odebrat"/>
-        </p:column>
-
-      </p:dataTable>
-    </ui:define>
-
   </ui:composition>
 </h:body>
 </html>

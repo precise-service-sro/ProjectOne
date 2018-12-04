@@ -33,6 +33,18 @@ public class PlatbaNajemneho extends BaseEntity {
   @JsonInclude(JsonInclude.Include.NON_NULL)
   private Cislo castka;
 
+  @JsonProperty("najemne")
+  @JsonInclude(JsonInclude.Include.NON_NULL)
+  private Cislo najemne;
+
+  @JsonProperty("celkovaCastka")
+  @JsonInclude(JsonInclude.Include.NON_NULL)
+  private Cislo celkovaCastka;
+
+  @JsonProperty("zalohyZaSluzby")
+  @JsonInclude(JsonInclude.Include.NON_NULL)
+  private Cislo zalohyZaSluzby;
+
   @DBRef(lazy = true)
   @JsonProperty("odesilatel")
   @JsonInclude(JsonInclude.Include.NON_NULL)

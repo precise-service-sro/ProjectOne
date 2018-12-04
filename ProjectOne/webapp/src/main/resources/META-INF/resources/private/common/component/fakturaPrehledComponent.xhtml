@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:composite="http://java.sun.com/jsf/composite"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+>
+
+<composite:interface>
+
+  <composite:attribute name="vstupniData"/>
+
+</composite:interface>
+
+<composite:implementation>
+
+  <ui:decorate template="/template/component/prehledComponentLayout.xhtml">
+    <ui:define name="pageContentTitle">
+      <p class="tableCaption">Přehled faktur:</p>
+    </ui:define>
+
+    <ui:define name="prehledPagePridavaciTlacitko">
+      <p:commandButton value="Přidat fakturu"
+                       icon="ui-icon-circle-plus"
+                       process="@this"
+                       actionListener="#{fakturaPrehledBean.pridatFaktura()}"
+      >
+        <f:ajax update="@all" render="@all"/>
+      </p:commandButton>
+    </ui:define>
+
+    <ui:define name="prehledPageData">
+      <div style="float: left;">
+        <p style="display: inline; margin-right: 20px; font-size: 20px;">Začátek zúčtovacího období:</p>
+        <p:calendar id="zuctovaciObdobiFilterZacatek" value="#{fakturaPrehledBean.zuctovaciObdobi.zacatek}" pattern="dd-MM-yyyy"/>
+      </div>
+      <div class="divTableRow" style="float: left;">
+        <p style="display: inline; margin-left: 20px; margin-right: 20px; font-size: 20px;">Konec zúčtovacího období:</p>
+        <p:calendar id="zuctovaciObdobiFilterKonec" value="#{fakturaPrehledBean.zuctovaciObdobi.konec}" pattern="dd-MM-yyyy"/>
+      </div>
+    </ui:define>
+
+    <ui:define name="prehledPageDataTable">
+      <p:dataTable
+              id="fakturaPrehledBeanTable"
+              var="faktura"
+              widgetVar="fakturaPrehledBeanTable"
+              value="#{cc.attrs.vstupniData}"
+              sortBy="#{1}"
+              rendered="#{not empty fakturaPrehledBean.fakturaList}"
+              emptyMessage="Nebyly nalezeny žádné faktury"
+              filteredValue="#{fakturaPrehledBean.filtrovanyFakturaList}"
+      >
+
+        <f:facet name="header">
+          <p:outputPanel id="globalFilterHeader" style="float: left; margin-top: 5px;">Faktury: (nalezených:
+            <h:outputText value="#{fakturaPrehledBean.filtrovanyFakturaListSize}"/>
+            z celkem
+            <h:outputText value="#{fakturaPrehledBean.fakturaListSize}"/>
+            faktur)
+          </p:outputPanel>
+          <p:outputPanel style="text-align: right;">
+            <p:inputText id="globalFilter" onkeyup="PF('fakturaPrehledBeanTable').filter()" style="width:235px"
+                         placeholder="- zadejte text pro vyhledání -">
+              <p:ajax event="keyup" update="globalFilterHeader"/>
+            </p:inputText>
+          </p:outputPanel>
+        </f:facet>
+
+        <p:columnGroup type="header">
+          <p:row>
+            <p:column headerText="Id:" rowspan="2" style="width: 230px;"/>
+            <p:column headerText="Dodavatel" rowspan="2" sortBy="#{faktura.dodavatel}" filterBy="#{faktura.dodavatel}" filterMatchMode="contains"
+                      filterStyle="display:none" style="width: 100%;"/>
+            <p:column headerText="Nemovitost" rowspan="2" sortBy="#{faktura.nemovitost.getIdentifikaceNemovitosti()}"
+                      filterBy="#{faktura.nemovitost.getIdentifikaceNemovitosti()}" filterMatchMode="contains" filterStyle="display:none"
+                      style="width: 550px;"/>
+            <p:column headerText="Náklady" rowspan="2" sortBy="#{fakturaPrehledBean.spocitatCelkoveNakladyFaktury(faktura)}"
+                      filterBy="#{fakturaPrehledBean.spocitatCelkoveNakladyFaktury(faktura)}" filterMatchMode="contains"
+                      filterStyle="display:none" style="width: 100%;"/>
+            <p:column headerText="Zúčtovací období" colspan="2" style="width: 300px;"/>
+            <p:column headerText="Ovládání" rowspan="2" colspan="1" style="width: 90px;"/>
+          </p:row>
+
+          <p:row>
+            <p:column headerText="Začátek" sortBy="#{dateFormatterBean.formatDate(faktura.zuctovaciObdobi.zacatek)}"
+                      filterBy="#{dateFormatterBean.formatDate(faktura.zuctovaciObdobi.zacatek)}" filterMatchMode="contains"
+                      filterStyle="display:none"/>
+            <p:column headerText="Konec" sortBy="#{dateFormatterBean.formatDate(faktura.zuctovaciObdobi.konec)}"
+                      filterBy="#{dateFormatterBean.formatDate(faktura.zuctovaciObdobi.konec)}" filterMatchMode="contains"
+                      filterStyle="display:none"/>
+          </p:row>
+
+        </p:columnGroup>
+
+        <p:column>
+          <h:outputText value="#{faktura.id}"/>
+        </p:column>
+
+        <p:column>
+          <h:outputText value="#{faktura.dodavatel}"/>
+        </p:column>
+
+        <p:column>
+          <h:outputText value="#{faktura.nemovitost.getIdentifikaceNemovitosti()}" title="#{faktura.nemovitost.getIdentifikaceNemovitosti()}"/>
+        </p:column>
+
+        <p:column style="text-align: right;">
+          <h:outputText value="#{fakturaPrehledBean.spocitatCelkoveNakladyFaktury(faktura.id).mnozstvi}">
+            <f:convertNumber pattern="#0.00"/>
+          </h:outputText>&nbsp;<h:outputText value="#{fakturaPrehledBean.spocitatCelkoveNakladyFaktury(faktura.id).jednotka}"/>
+        </p:column>
+
+        <p:column>
+          <h:outputText value="#{dateFormatterBean.formatDate(faktura.zuctovaciObdobi.zacatek)}"/>
+        </p:column>
+
+        <p:column>
+          <h:outputText value="#{dateFormatterBean.formatDate(faktura.zuctovaciObdobi.konec)}"/>
+        </p:column>
+
+        <p:column>
+          <p:commandButton icon="ui-icon-circle-zoomin"
+                           actionListener="#{routerBean.goToFakturaDetailBean(faktura)}"
+                           title="Upravit / Podrobnosti"
+          >
+            <f:ajax update="@all" render="@all"/>
+          </p:commandButton>
+          <p:commandButton icon="ui-icon-circle-minus"
+                           actionListener="#{fakturaPrehledBean.smazatFaktura(faktura)}"
+                           title="Odebrat"
+          >
+            <f:ajax update="@all" render="@all"/>
+          </p:commandButton>
+        </p:column>
+
+      </p:dataTable>
+
+
+    </ui:define>
+  </ui:decorate>
+
+</composite:implementation>
+
+</html>

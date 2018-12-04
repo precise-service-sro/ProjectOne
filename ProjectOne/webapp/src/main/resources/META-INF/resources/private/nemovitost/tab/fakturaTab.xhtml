@@ -8,14 +8,9 @@
 >
 
 <h:body>
-  <ui:composition template="/template/page/prehledPageLayout.xhtml">
-    <ui:define name="title">
-      ProjectOne - Přehled osob prehled.xhtml
-    </ui:define>
-    <ui:define name="content">
-      <h:outputText value="#{osobaPrehledBean.init()}"/>
-      <component:osobaPrehledComponent vstupniData="#{osobaPrehledBean.osobaList}" />
-    </ui:define>
+  <ui:composition>
+    <h:outputText value="#{fakturaPrehledBean.initPodleNemovitosti(nemovitostDetailBean.nemovitost)}"/>
+    <component:fakturaPrehledComponent vstupniData="#{fakturaPrehledBean.fakturaList}"/>
   </ui:composition>
 </h:body>
 </html>

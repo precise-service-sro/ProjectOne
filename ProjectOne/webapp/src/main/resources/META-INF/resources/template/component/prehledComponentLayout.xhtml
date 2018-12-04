@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+>
+<h:body>
+
+  <h:form id="form">
+    <p:growl id="msgs" showDetail="true"/>
+
+    <div class="divTable">
+      <div class="tabTitle">
+        <div class="tabTitleLeft">
+          <ui:insert name="pageContentTitle">
+            prehledPageLayout.xhtml => pageContentTitle
+          </ui:insert>
+        </div>
+        <div class="tabTitleRight">
+          <div id="prehledPagePridavaciTlacitkoDiv" class="prehledPagePridavaciTlacitkoDiv">
+            <div class="addButtonDiv">
+              <ui:insert name="prehledPagePridavaciTlacitko">
+                prehledPageLayout.xhtml => prehledPagePridavaciTlacitko
+              </ui:insert>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="divDataTable">
+        <div id="prehledPageDataDiv" class="prehledPageDataDiv">
+          <ui:insert name="prehledPageData">
+            prehledPageLayout.xhtml => prehledPageData
+          </ui:insert>
+        </div>
+
+        <div id="prehledPageDataTableDiv" class="prehledPageDataTableDiv">
+          <ui:insert name="prehledPageDataTable">
+            prehledPageLayout.xhtml => prehledPageDataTable
+          </ui:insert>
+        </div>
+      </div>
+    </div>
+  </h:form>
+
+</h:body>
+</html>

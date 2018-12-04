@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:composite="http://java.sun.com/jsf/composite"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+>
+
+<composite:interface>
+
+  <composite:attribute name="vstupniData"/>
+
+</composite:interface>
+
+<composite:implementation>
+
+  <ui:decorate template="/template/component/prehledComponentLayout.xhtml">
+    <ui:define name="pageContentTitle">
+      <p class="tableCaption">Platby nájemného:</p>
+    </ui:define>
+
+    <ui:define name="prehledPagePridavaciTlacitko">
+      <p:commandButton value="Přidat platbu nájemného"
+                       icon="ui-icon-circle-plus"
+                       process="@this"
+                       actionListener="#{platbaNajemnehoPrehledBean.pridatPlatbaNajemneho()}"
+      >
+        <f:ajax update="@all" render="@all"/>
+      </p:commandButton>
+    </ui:define>
+
+    <ui:define name="prehledPageData">
+    </ui:define>
+
+    <ui:define name="prehledPageDataTable">
+      <p:dataTable id="platbaNajemnehoPrehledBeanTable"
+                   var="platbaNajemneho"
+                   widgetVar="platbaNajemnehoPrehledBeanTable"
+                   value="#{cc.attrs.vstupniData}"
+                   sortBy="#{platbaNajemneho.datumPlatby.time}"
+                   sortOrder="descending"
+                   emptyMessage="Nebyly nalezeny žádné platby nájemného COMPO"
+                   filteredValue="#{platbaNajemnehoPrehledBean.filtrovanyPlatbaNajemnehoList}"
+                   rendered="#{not empty platbaNajemnehoPrehledBean.platbaNajemnehoList}"
+      >
+
+        <p:columnGroup type="header">
+          <p:row>
+            <p:column headerText="Id:"
+                      style="width: 230px;"/>
+            <p:column headerText="Datum platby"
+                      filterBy="#{dateFormatterBean.formatDate(platbaNajemneho.datumPlatby)}"
+                      filterMatchMode="contains"
+                      style="width: 100px;"
+                      filterStyle="display:none"
+                      sortBy="#{platbaNajemneho.datumPlatby.time}"/>
+            <p:column headerText="Odesílatel"
+                      filterBy="#{platbaNajemneho.odesilatel.getCeleJmeno()}"
+                      filterMatchMode="contains"
+                      style="width: 200px;"
+                      filterStyle="display:none"
+                      sortBy="#{platbaNajemneho.odesilatel.getCeleJmeno()}"/>
+            <p:column headerText="Příjemce"
+                      filterBy="#{platbaNajemneho.prijemce.getCeleJmeno()}"
+                      filterMatchMode="contains"
+                      style="width: 200px;"
+                      filterStyle="display:none"
+                      sortBy="#{platbaNajemneho.prijemce.getCeleJmeno()}"/>
+            <p:column headerText="Částka"
+                      filterBy="#{platbaNajemneho.castka.mnozstvi}"
+                      filterMatchMode="contains"
+                      style="width: 100%;"
+                      filterStyle="display:none"
+                      sortBy="#{platbaNajemneho.castka.mnozstvi}"/>
+            <p:column headerText="Ovládání"
+                      colspan="1"
+                      rowspan="2"
+                      style="width: 90px;"/>
+          </p:row>
+        </p:columnGroup>
+
+        <f:facet name="header">
+          <p:outputPanel id="globalFilterHeader" style="float: left; margin-top: 5px;">Platby nájemného: (nalezených:
+            <h:outputText value="#{platbaNajemnehoPrehledBean.filtrovanyPlatbaNajemnehoListSize}"/>
+            z celkem
+            <h:outputText value="#{platbaNajemnehoPrehledBean.platbaNajemnehoListSize}"/>
+            plateb)
+          </p:outputPanel>
+          <p:outputPanel style="text-align: right;">
+            <p:inputText id="globalFilter" onkeyup="PF('platbaNajemnehoPrehledBeanTable').filter()" style="width:235px"
+                         placeholder="- zadejte text pro vyhledání -">
+              <p:ajax event="keyup" update="globalFilterHeader"/>
+            </p:inputText>
+          </p:outputPanel>
+        </f:facet>
+
+        <p:column>
+          <h:outputText value="#{platbaNajemneho.id}"/>
+        </p:column>
+
+        <p:column style="text-align: center;">
+          <h:outputText value="#{dateFormatterBean.formatDate(platbaNajemneho.datumPlatby)}"/>
+        </p:column>
+
+        <p:column>
+          <h:outputText value="#{platbaNajemneho.odesilatel.getCeleJmeno()}"/>
+        </p:column>
+
+        <p:column>
+          <h:outputText value="#{platbaNajemneho.prijemce.getCeleJmeno()}"/>
+        </p:column>
+
+        <p:column style="text-align: right;">
+          <h:outputText value="#{platbaNajemneho.castka.mnozstvi}">
+            <f:convertNumber type="currency" pattern="#0.00"/>
+          </h:outputText>&nbsp;<h:outputText value="#{platbaNajemneho.castka.jednotka}"/>
+        </p:column>
+
+        <p:column>
+          <p:commandButton icon="ui-icon-circle-zoomin"
+                           actionListener="#{routerBean.goToPlatbaNajemnehoDetailBean(platbaNajemneho)}"
+                           title="Upravit / Podrobnosti"
+          >
+            <f:ajax update="@all" render="@all"/>
+          </p:commandButton>
+          <p:commandButton icon="ui-icon-circle-minus"
+                           actionListener="#{platbaNajemnehoPrehledBean.smazatPlatbaNajemneho(platbaNajemneho)}"
+                           title="Odebrat"
+          >
+            <f:ajax update="@all" render="@all"/>
+          </p:commandButton>
+        </p:column>
+      </p:dataTable>
+    </ui:define>
+  </ui:decorate>
+
+</composite:implementation>
+
+</html>

@@ -8,7 +8,7 @@
 >
 
 <h:body>
-  <ui:composition template="/template/commonLayout.xhtml">
+  <ui:composition template="/template/page/abstractPageLayout.xhtml">
     <ui:define name="title">
       ProjectOne - Detail nemovitosti
     </ui:define>
@@ -58,51 +58,50 @@
             </ui:insert>
           </p:tab>
 
-          <p:tab id="tabFaktury" title="Faktury">
+          <p:tab id="fakturaTAb" title="Faktury">
             <ui:insert name="faktury" >
-              <ui:include src="tab/fakturyTab.xhtml" />
+              <ui:include src="tab/fakturaTab.xhtml" />
             </ui:insert>
           </p:tab>
 
-          <p:tab id="tabKontaktniOsoby" title="Kontaktní osoby">
+          <p:tab id="kontaktniOsobyTab" title="Kontaktní osoby">
             <ui:insert name="kontaktniOsoby" >
               <ui:include src="tab/kontaktniOsobyTab.xhtml" />
             </ui:insert>
           </p:tab>
 
-          <p:tab id="tabNajemniSmlouvy" title="Nájemní smlouvy">
+          <p:tab id="najemniSmlouvyTab" title="Nájemní smlouvy">
             <ui:insert name="najemniSmlouvy" >
-              <ui:include src="tab/najemniSmlouvyTab.xhtml" />
+              <ui:include src="tab/najemniSmlouvaTab.xhtml" />
             </ui:insert>
           </p:tab>
 
-          <p:tab id="tabNajemnici" title="Nájemníci">
+          <p:tab id="najemniciTab" title="Nájemníci">
             <ui:insert name="najemnici" >
               <ui:include src="tab/najemniciTab.xhtml" />
             </ui:insert>
           </p:tab>
 
-          <p:tab id="tabPlatbyNajemnoho" title="Platby nájemného">
+          <p:tab id="platbaNajemnehoTab" title="Platby nájemného">
             <ui:insert name="platbyNajemneho" >
-              <ui:include src="tab/platbyNajemnehoTab.xhtml" />
+              <ui:include src="tab/platbaNajemnehoTab.xhtml" />
             </ui:insert>
           </p:tab>
 
-          <p:tab id="tabPoznamky" title="Poznámky">
+          <p:tab id="poznamkyTab" title="Poznámky">
             <ui:insert name="poznamky" >
               <ui:include src="tab/poznamkyTab.xhtml" />
             </ui:insert>
           </p:tab>
 
-          <p:tab id="tabPredavaciProtokoly" title="Předávací protokoly">
+          <p:tab id="predavaciProtokolTab" title="Předávací protokoly">
             <ui:insert>
-              <ui:include src="tab/predavaciProtokolyTab.xhtml" />
+              <ui:include src="tab/predavaciProtokolTab.xhtml" />
             </ui:insert>
           </p:tab>
 
-
-
-          <p:tab id="tabVlastnik" title="Vlastník">
+          <p:tab id="vlastnikTab" title="Vlastník">
+            <h:outputText value="#{osobaPrehledBean.initJakoVlastnikNemovitosti(nemovitostDetailBean.nemovitost)}"/>
             <ui:insert name="vlastnik" >
               <ui:include src="tab/vlastnikTab.xhtml" />
             </ui:insert>
@@ -114,9 +113,9 @@
             </ui:insert>
           </p:tab>
 
-          <p:tab id="tabVyucotavanePolozky" title="Vyúčtovávané položky">
+          <p:tab id="vyuctovaniPolozkaTypTab" title="Vyúčtovávané položky">
             <ui:insert name="vyuctovavanePolozky" >
-              <ui:include src="tab/vyuctovavanePolozkyTab.xhtml" />
+              <ui:include src="tab/vyuctovaniPolozkaTypTab.xhtml" />
             </ui:insert>
           </p:tab>
 

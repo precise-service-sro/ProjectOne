@@ -125,6 +125,7 @@ public class VyuctovaniDetailBean extends AbstractBean {
         new PlatbaNajemnehoFilter()
             .setIdOdesilatel(vyuctovani.getNajemnik().getId())
             .setCasovyInterval(vyuctovani.getZuctovaciObdobi())
+            .setSeraditVzestupnePodle("datumPlatby")
     );
   }
 

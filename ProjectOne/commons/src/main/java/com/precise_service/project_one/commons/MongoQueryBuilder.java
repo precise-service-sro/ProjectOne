@@ -35,6 +35,12 @@ public class MongoQueryBuilder {
         else if (dataFilter.getCasovyInterval().getKonec() != null) {
           query.addCriteria(Criteria.where("datumPlatby").lte(dataFilter.getCasovyInterval().getKonec()));
         }
+
+        if ("datumPlatby".equals(dataFilter.getSeraditVzestupnePodle())) {
+          query.with(new Sort(Sort.Direction.ASC, "datumPlatby"));
+        } else if ("datumPlatby".equals(dataFilter.getSeraditSestupnePodle()))  {
+          query.with(new Sort(Sort.Direction.DESC, "datumPlatby"));
+        }
       }
       PlatbaNajemnehoFilter platbaNajemnehoFilter = (PlatbaNajemnehoFilter) dataFilter;
       if (platbaNajemnehoFilter.getIdOdesilatel() != null) {
@@ -43,14 +49,7 @@ public class MongoQueryBuilder {
       if (platbaNajemnehoFilter.getIdPrijemce() != null) {
         query.addCriteria(Criteria.where("prijemce.id").is(platbaNajemnehoFilter.getIdPrijemce()));
       }
-
-      if (true) {
-        query.with(new Sort(Sort.Direction.ASC, "datumPlatby"));
-      } else {
-        query.with(new Sort(Sort.Direction.DESC, "datumPlatby"));
-      }
     }
-
     return query;
   }
 }

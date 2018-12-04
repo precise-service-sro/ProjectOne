@@ -8,134 +8,14 @@
 >
 
 <h:body>
-  <ui:composition template="/template/prehledPageLayout.xhtml">
+  <ui:composition template="/template/page/abstractPageLayout.xhtml">
     <ui:define name="title">
-      ProjectOne - Přehled nájemních smluv
+      ProjectOne - Přehled nájemních smluv prehled.xhtml
     </ui:define>
-
-    <ui:define name="pageContentTitle">
+    <ui:define name="content">
       <h:outputText value="#{najemniSmlouvaPrehledBean.init()}"/>
-      <p>Přehled nájemní smluv:</p>
+      <component:najemniSmlouvaPrehledComponent vstupniData="#{najemniSmlouvaPrehledBean.najemniSmlouvaList}" />
     </ui:define>
-
-    <ui:define name="prehledPageData">
-    </ui:define>
-
-    <ui:define name="prehledPagePridavaciTlacitko">
-      <p:commandButton value="Přidat novou nájemní smlouvu"
-                       icon="ui-icon-circle-plus"
-                       process="@this"
-                       update="form :form:msgs"
-                       actionListener="#{najemniSmlouvaPrehledBean.pridatNajemniSmlouva()}"
-      />
-    </ui:define>
-
-    <ui:define name="prehledPageDataTable">
-
-      <p:dataTable id="najemniSmlouvaPrehledBeanDataTable"
-                   var="najemniSmlouva"
-                   widgetVar="najemniSmlouvaPrehledBeanDataTable"
-                   value="#{najemniSmlouvaPrehledBean.najemniSmlouvaList}"
-                   sortBy="#{1}"
-                   rendered="#{not empty najemniSmlouvaPrehledBean.najemniSmlouvaList}"
-                   emptyMessage="Nebyly nalezeny žádné předávací protokoly"
-                   filteredValue="#{najemniSmlouvaPrehledBean.filtrovanyNajemniSmlouvaList}"
-      >
-
-        <p:columnGroup type="header">
-          <p:row>
-            <p:column headerText="Id:"
-                      style="width: 230px;" />
-            <p:column headerText="Typ Dokumentu"
-                      filterBy="#{najemniSmlouva.dokumentTyp.popis}"
-                      filterMatchMode="contains"
-                      style="width: 100%;"
-                      filterStyle="display:none"
-                      sortBy="#{najemniSmlouva.dokumentTyp.popis}"
-            />
-            <p:column headerText="Nemovitost"
-                      filterBy="#{najemniSmlouva.nemovitost.getIdentifikaceNemovitosti()}"
-                      filterMatchMode="contains"
-                      style="width: 100%;"
-                      filterStyle="display:none"
-                      sortBy="#{najemniSmlouva.nemovitost.getIdentifikaceNemovitosti()}"
-            />
-            <p:column headerText="Nájemníci"
-                      filterBy="#{najemniSmlouvaPrehledBean.getSeznamJmenVsechNajemniku(najemniSmlouva)}"
-                      filterMatchMode="contains"
-                      style="width: 300px;"
-                      filterStyle="display:none"
-                      sortBy="#{najemniSmlouvaPrehledBean.getSeznamJmenVsechNajemniku(najemniSmlouva)}"
-            />
-            <p:column headerText="Začátek"
-                      filterBy="#{dateFormatterBean.formatDate(najemniSmlouva.platnost.zacatek)}"
-                      filterMatchMode="contains"
-                      style="width: 100px;"
-                      filterStyle="display:none"
-                      sortBy="#{najemniSmlouva.platnost.zacatek.time}"
-            />
-            <p:column headerText="Konec"
-                      filterBy="#{dateFormatterBean.formatDate(najemniSmlouva.platnost.konec)}"
-                      filterMatchMode="contains"
-                      style="width: 100px;"
-                      filterStyle="display:none"
-                      sortBy="#{najemniSmlouva.platnost.konec.time}"
-            />
-            <p:column headerText="Ovládání"
-                      colspan="1"
-                      rowspan="2"
-                      style="width: 90px;"
-            />
-          </p:row>
-        </p:columnGroup>
-
-        <f:facet name="header">
-          <p:outputPanel id="globalFilterHeader" style="float: left; margin-top: 5px;">Nájemní smlouvy: (nalezených: <h:outputText value="#{najemniSmlouvaPrehledBean.filtrovanyNajemniSmlouvaListSize}"/> z celkem <h:outputText value="#{najemniSmlouvaPrehledBean.najemniSmlouvaListSize}"/>  smluv)</p:outputPanel>
-          <p:outputPanel style="text-align: right;">
-            <p:inputText id="globalFilter" onkeyup="PF('najemniSmlouvaPrehledBeanDataTable').filter()" style="width:235px"
-                         placeholder="- zadejte text pro vyhledání -">
-              <p:ajax event="keyup" update="globalFilterHeader" />
-            </p:inputText>
-          </p:outputPanel>
-        </f:facet>
-
-        <p:column>
-          <h:outputText value="#{najemniSmlouva.id}"/>
-        </p:column>
-
-        <p:column styleClass="#{najemniSmlouvaPrehledBean.vypocitatBarvuNajemniSmlouva(najemniSmlouva)}">
-          <h:outputText value="#{najemniSmlouva.dokumentTyp.popis}"/>
-        </p:column>
-
-        <p:column>
-          <h:outputText value="#{najemniSmlouva.nemovitost.getIdentifikaceNemovitosti()}"
-                        title="#{najemniSmlouva.nemovitost.getIdentifikaceNemovitosti()}"/>
-        </p:column>
-
-        <p:column>
-          <h:outputText value="#{najemniSmlouvaPrehledBean.getSeznamJmenVsechNajemniku(najemniSmlouva)}"/>
-        </p:column>
-
-        <p:column style="text-align: center;">
-          <h:outputText value="#{dateFormatterBean.formatDate(najemniSmlouva.platnost.zacatek)}"/>
-        </p:column>
-
-        <p:column style="text-align: center;">
-          <h:outputText value="#{dateFormatterBean.formatDate(najemniSmlouva.platnost.konec)}"/>
-        </p:column>
-
-        <p:column>
-          <p:commandButton icon="ui-icon-circle-zoomin"
-                           actionListener="#{routerBean.goToNajemniSmlouvaDetailBean(najemniSmlouva)}"
-                           title="Upravit / Podrobnosti"/>
-          <p:commandButton update="@form :form:msgs" icon="ui-icon-circle-minus"
-                           actionListener="#{najemniSmlouvaPrehledBean.smazatNajemniSmlouva(najemniSmlouva)}"
-                           title="Odebrat"/>
-        </p:column>
-
-      </p:dataTable>
-    </ui:define>
-
   </ui:composition>
 </h:body>
 </html>
