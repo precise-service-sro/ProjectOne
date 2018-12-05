@@ -83,11 +83,10 @@
         </p:columnGroup>
 
         <f:facet name="header">
-          <p:outputPanel id="globalFilterHeader" style="float: left; margin-top: 5px;">Platby nájemného: (nalezených:
+          <p:outputPanel id="globalFilterHeader" style="float: left; margin-top: 5px;">Nalezeno:
             <h:outputText value="#{platbaNajemnehoPrehledBean.filtrovanyPlatbaNajemnehoListSize}"/>
-            z celkem
+            z
             <h:outputText value="#{platbaNajemnehoPrehledBean.platbaNajemnehoListSize}"/>
-            plateb)
           </p:outputPanel>
           <p:outputPanel style="text-align: right;">
             <p:inputText id="globalFilter" onkeyup="PF('platbaNajemnehoPrehledBeanTable').filter()" style="width:235px"

@@ -1,11 +1,14 @@
 package com.precise_service.project_one.web.nemovitost;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import javax.faces.event.AjaxBehaviorEvent;
 import javax.inject.Named;
+
+import org.primefaces.model.StreamedContent;
 
 import com.precise_service.project_one.entity.adresa.Stat;
 import com.precise_service.project_one.entity.nemovitost.Nemovitost;
@@ -32,7 +35,27 @@ public class NemovitostDetailBean extends AbstractBean {
   private List<NemovitostDispozice> nemovitostDispoziceList;
   private List<Stat> statList;
 
+  // seznam zobrazovanych obrazku
+  private List<String> images;
+  private StreamedContent zobrazitObrazek;
+
+  public StreamedContent zobrazitObrazek(Object id) {
+    return osobaDetailBean.getAvatarFotoStreamedContent();
+  }
+
+  public List<String> getImages() {
+    if (images == null) {
+      images = new ArrayList<>();
+      for (int i = 1; i < 5; i++) {
+        images.add("nature" + i + ".jpg");
+      }
+    }
+    return images;
+  }
+
   public void init() {
+
+
     // pokud nemam vybranou zadnou nemovitost, tak vytahuji prvni nemovitost z DB
     if (nemovitost == null) {
       log.error("Není vybrána žádná nemovitosti pro zobrazení detailu");
@@ -70,7 +93,7 @@ public class NemovitostDetailBean extends AbstractBean {
     routerBean.goToNemovitostPrehledBean();
   }
 
-  public void zmenaVybraneNemovitosti(final AjaxBehaviorEvent event)  {
+  public void zmenaVybraneNemovitosti(final AjaxBehaviorEvent event) {
     showInfoMessage("Změněno", "Byla vybráná nemovitost " + nemovitost.getIdentifikaceNemovitosti());
   }
 }

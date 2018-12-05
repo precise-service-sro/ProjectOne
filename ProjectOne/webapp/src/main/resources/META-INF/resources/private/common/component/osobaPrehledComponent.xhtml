@@ -19,7 +19,7 @@
 
   <ui:decorate template="/template/component/prehledComponentLayout.xhtml">
     <ui:define name="pageContentTitle">
-      <p class="tableCaption">Přehled osob:</p>
+      <p class="tableCaption">Osoby:</p>
     </ui:define>
 
     <ui:define name="prehledPagePridavaciTlacitko">
@@ -48,11 +48,10 @@
       >
 
         <f:facet name="header">
-          <p:outputPanel id="globalFilterHeader" style="float: left; margin-top: 5px;">Osoby: (nalezených:
+          <p:outputPanel id="globalFilterHeader" style="float: left; margin-top: 5px;">Nalezeno:
             <h:outputText value="#{osobaPrehledBean.filtrovanyOsobaListSize}"/>
-            z celkem
+            z
             <h:outputText value="#{osobaPrehledBean.osobaListSize}"/>
-            osob)
           </p:outputPanel>
           <p:outputPanel style="text-align: right;">
             <p:inputText id="globalFilter" onkeyup="PF('osobaPrehledBeanTable').filter()" style="width:235px"

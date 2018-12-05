@@ -19,7 +19,7 @@
 
   <ui:decorate template="/template/component/prehledComponentLayout.xhtml">
     <ui:define name="pageContentTitle">
-      <p class="tableCaption">Přehled faktur:</p>
+      <p class="tableCaption">Faktury:</p>
     </ui:define>
 
     <ui:define name="prehledPagePridavaciTlacitko">
@@ -56,11 +56,10 @@
       >
 
         <f:facet name="header">
-          <p:outputPanel id="globalFilterHeader" style="float: left; margin-top: 5px;">Faktury: (nalezených:
+          <p:outputPanel id="globalFilterHeader" style="float: left; margin-top: 5px;">Nalezeno:
             <h:outputText value="#{fakturaPrehledBean.filtrovanyFakturaListSize}"/>
-            z celkem
+            z
             <h:outputText value="#{fakturaPrehledBean.fakturaListSize}"/>
-            faktur)
           </p:outputPanel>
           <p:outputPanel style="text-align: right;">
             <p:inputText id="globalFilter" onkeyup="PF('fakturaPrehledBeanTable').filter()" style="width:235px"

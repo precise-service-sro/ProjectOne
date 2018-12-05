@@ -9,8 +9,7 @@
 
 <h:body>
   <ui:composition>
-    <h:outputText value="#{nemovitostKontaktBean.init(nemovitostDetailBean.nemovitost.id)}"/>
-    <component:nemovitostKontaktPrehledComponent vstupniData="#{nemovitostKontaktBean.nemovitostKontaktList}"/>
+    <component:fotografiePrehledComponent vstupniData="#{nemovitostKontaktBean.nemovitostKontaktList}"/>
   </ui:composition>
 </h:body>
 </html>

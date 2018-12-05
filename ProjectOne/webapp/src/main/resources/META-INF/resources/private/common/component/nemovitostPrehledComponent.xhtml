@@ -19,7 +19,7 @@
 
   <ui:decorate template="/template/component/prehledComponentLayout.xhtml">
     <ui:define name="pageContentTitle">
-      <p class="tableCaption">Přehled nemovitostí:</p>
+      <p class="tableCaption">Nemovitosti:</p>
     </ui:define>
 
     <ui:define name="prehledPagePridavaciTlacitko">
@@ -49,11 +49,15 @@
       >
 
         <f:facet name="header">
-          <p:outputPanel id="globalFilterHeader" style="float: left; margin-top: 5px;">Nemovitosti: (nalezených: <h:outputText value="#{nemovitostPrehledBean.filtrovanyNemovitostListSize}"/> z celkem <h:outputText value="#{nemovitostPrehledBean.nemovitostListSize}"/>  nemovitostí)</p:outputPanel>
+          <p:outputPanel id="globalFilterHeader" style="float: left; margin-top: 5px;">Nalezeno:
+            <h:outputText value="#{nemovitostPrehledBean.filtrovanyNemovitostListSize}"/>
+            z
+            <h:outputText value="#{nemovitostPrehledBean.nemovitostListSize}"/>
+          </p:outputPanel>
           <p:outputPanel style="text-align: right;">
             <p:inputText id="globalFilter" onkeyup="PF('nemovitostPrehledBeanTable').filter()" style="width:235px"
                          placeholder="- zadejte text pro vyhledání -">
-              <p:ajax event="keyup" update="globalFilterHeader" />
+              <p:ajax event="keyup" update="globalFilterHeader"/>
             </p:inputText>
           </p:outputPanel>
         </f:facet>
@@ -62,7 +66,7 @@
           <p:row>
 
             <p:column headerText="Id:"
-                      style="width: 230px;" />
+                      style="width: 230px;"/>
             <p:column headerText="Typ"
                       filterBy="#{nemovitost.nemovitostTyp}"
                       filterMatchMode="contains"

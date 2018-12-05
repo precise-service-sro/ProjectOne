@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:composite="http://java.sun.com/jsf/composite"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+>
+
+<composite:interface>
+
+  <composite:attribute name="vstupniData"/>
+
+</composite:interface>
+
+<composite:implementation>
+
+  <ui:decorate template="/template/component/prehledComponentLayout.xhtml">
+    <ui:define name="pageContentTitle">
+      <p class="tableCaption">Fotografie:</p>
+    </ui:define>
+
+    <ui:define name="prehledPagePridavaciTlacitko">
+      <p:commandButton value="Přidat fotografii"
+                       icon="ui-icon-circle-plus"
+                       process="@this"
+                       actionListener="#{nemovitostKontaktBean.pridatNemovitostKontakt()}"
+      >
+        <f:ajax update="@all" render="@all"/>
+      </p:commandButton>
+    </ui:define>
+
+    <ui:define name="prehledPageData">
+    </ui:define>
+
+    <ui:define name="prehledPageDataTable">
+      Možná tady udělat klasickou dataTable s nahledy a popisy a nebo vymyslet jak je editovat, pridavat a odebirat
+      <br />
+      <br />
+      <br />
+      <h:outputText value="#{osobaDetailBean.init()}"/>
+      <p:galleria value="#{nemovitostDetailBean.images}" var="image" panelWidth="500" panelHeight="313" showCaption="true">
+        <p:graphicImage value="#{nemovitostDetailBean.zobrazitObrazek(image)}" title="" alt="Budova zepředu"/>
+      </p:galleria>
+    </ui:define>
+  </ui:decorate>
+
+</composite:implementation>
+
+</html>

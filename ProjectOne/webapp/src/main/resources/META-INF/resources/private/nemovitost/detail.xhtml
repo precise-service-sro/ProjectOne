@@ -23,7 +23,9 @@
             <p>Nemovitost:</p>
             <h:selectOneMenu value="#{nemovitostDetailBean.nemovitost}" converter="#{nemovitostConverter}">
               <f:selectItems value="#{nemovitostDetailBean.nemovitostList}" var="nemovitost" itemLabel="#{nemovitost.getIdentifikaceNemovitosti()}" itemValue="#{nemovitost}"/>
-              <p:ajax event="change" update="form msgs" listener="#{nemovitostDetailBean.zmenaVybraneNemovitosti}" />
+              <p:ajax event="change" update="tabViewNemovitostDetail" listener="#{nemovitostDetailBean.zmenaVybraneNemovitosti}" />
+
+
             </h:selectOneMenu>
           </div>
           <div class="pageTitleRight">
@@ -52,9 +54,9 @@
             </ui:insert>
           </p:tab>
 
-          <p:tab id="tabDokumenty" title="Dokumenty">
-            <ui:insert name="dokumenty" >
-              <ui:include src="tab/dokumentyTab.xhtml" />
+          <p:tab id="fotografieTab" title="Fotografie">
+            <ui:insert name="fotografie" >
+              <ui:include src="tab/fotografieTab.xhtml" />
             </ui:insert>
           </p:tab>
 

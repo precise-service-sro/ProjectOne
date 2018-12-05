@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:composite="http://java.sun.com/jsf/composite"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+>
+
+<composite:interface>
+
+  <composite:attribute name="vstupniData"/>
+
+</composite:interface>
+
+<composite:implementation>
+
+  <ui:decorate template="/template/component/prehledComponentLayout.xhtml">
+    <ui:define name="pageContentTitle">
+      <p class="tableCaption">Kontaktní osoby:</p>
+    </ui:define>
+
+    <ui:define name="prehledPagePridavaciTlacitko">
+      <p:commandButton value="Přidat kontaktní osobu"
+                       icon="ui-icon-circle-plus"
+                       process="@this"
+                       actionListener="#{nemovitostKontaktBean.pridatNemovitostKontakt()}"
+      >
+        <f:ajax update="@all" render="@all"/>
+      </p:commandButton>
+    </ui:define>
+
+    <ui:define name="prehledPageData">
+    </ui:define>
+
+    <ui:define name="prehledPageDataTable">
+      <p:dataTable id="nemovitostKontaktBeanTable"
+                   var="kontakt"
+                   widgetVar="nemovitostKontaktBeanTable"
+                   value="#{cc.attrs.vstupniData}"
+                   sortBy="#{kontakt.nazev}"
+                   editable="true"
+                   rendered="#{not empty nemovitostKontaktBean.nemovitostKontaktList}"
+                   emptyMessage="Nebyly nalezeny žádné kontakty"
+                   filteredValue="#{nemovitostKontaktBean.filtrovanyNemovitostKontaktList}"
+      >
+
+        <p:ajax event="rowEdit" listener="#{nemovitostKontaktBean.ulozitUpravuNemovitostKontakt}" update=":form:msgs"/>
+        <p:ajax event="rowEditCancel" listener="#{nemovitostKontaktBean.zrusitUpravuNemovitostKontakt}" update=":form:msgs"/>
+
+        <f:facet name="header">
+          <p:outputPanel id="globalFilterHeader" style="float: left; margin-top: 5px;">Nalezeno:
+            <h:outputText value="#{nemovitostKontaktBean.filtrovanyNemovitostKontaktListSize}"/>
+            z
+            <h:outputText value="#{nemovitostKontaktBean.nemovitostKontaktListSize}"/>
+          </p:outputPanel>
+          <p:outputPanel style="text-align: right;">
+            <p:inputText id="globalFilter"
+                         onkeyup="PF('nemovitostKontaktBeanTable').filter()"
+                         style="width:235px"
+                         placeholder="- zadejte text pro vyhledání -">
+              <p:ajax event="keyup" update="globalFilterHeader"/>
+            </p:inputText>
+          </p:outputPanel>
+        </f:facet>
+
+        <p:columnGroup type="header">
+          <p:row>
+            <p:column headerText="Název"
+                      style="width: 200px;"
+                      filterBy="#{kontakt.nazev}"
+                      filterMatchMode="contains"
+                      filterStyle="display:none"
+                      sortBy="#{kontakt.nazev}"/>
+            <p:column headerText="Telefon"
+                      style="width: 150px;"
+                      filterBy="#{kontakt.telefon}"
+                      filterMatchMode="contains"
+                      filterStyle="display:none"
+                      sortBy="#{kontakt.telefon}"/>
+            <p:column headerText="Email"
+                      style="width: 250px;"
+                      filterBy="#{kontakt.email}"
+                      filterMatchMode="contains"
+                      filterStyle="display:none"
+                      sortBy="#{kontakt.email}"/>
+            <p:column headerText="Poznámka"
+                      style="width: 100%;"
+                      filterBy="#{kontakt.poznamky}"
+                      filterMatchMode="contains"
+                      filterStyle="display:none"
+                      sortBy="#{kontakt.poznamky}"/>
+            <p:column headerText="Ovládání"
+                      colspan="2"
+                      rowspan="2"
+                      style="width: 90px;"/>
+          </p:row>
+        </p:columnGroup>
+
+        <p:column>
+          <p:cellEditor>
+            <f:facet name="output">
+              <h:outputText value="#{kontakt.nazev}" title="#{kontakt.nazev}"/>
+            </f:facet>
+            <f:facet name="input">
+              <p:inputText id="kontaktNazevInput" value="#{kontakt.nazev}" style="width:100%"/>
+            </f:facet>
+          </p:cellEditor>
+        </p:column>
+
+        <p:column>
+          <p:cellEditor>
+            <f:facet name="output">
+              <h:outputText value="#{kontakt.telefon}" title="#{kontakt.telefon}"/>
+            </f:facet>
+            <f:facet name="input">
+              <p:inputText id="kontaktTelefonInput" value="#{kontakt.telefon}" style="width:100%"/>
+            </f:facet>
+          </p:cellEditor>
+        </p:column>
+
+        <p:column>
+          <p:cellEditor>
+            <f:facet name="output">
+              <h:outputText value="#{kontakt.email}" title="#{kontakt.email}"/>
+            </f:facet>
+            <f:facet name="input">
+              <p:inputText id="kontaktEmailInput" value="#{kontakt.email}" style="width:100%"/>
+            </f:facet>
+          </p:cellEditor>
+        </p:column>
+
+        <p:column>
+          <p:cellEditor>
+            <f:facet name="output">
+              <h:outputText value="#{kontakt.poznamky}" title="#{kontakt.poznamky}"/>
+            </f:facet>
+            <f:facet name="input">
+              <p:inputText id="kontaktPoznamkyInput" value="#{kontakt.poznamky}" style="width:100%"/>
+            </f:facet>
+          </p:cellEditor>
+        </p:column>
+
+        <p:column>
+          <p:rowEditor/>
+        </p:column>
+
+        <p:column>
+          <p:commandButton icon="ui-icon-circle-minus"
+                           actionListener="#{nemovitostKontaktBean.smazatNemovitostKontakt(kontakt)}"
+                           title="Odebrat kontaktní osobu"
+          >
+            <f:ajax update="@all" render="@all"/>
+          </p:commandButton>
+        </p:column>
+
+      </p:dataTable>
+    </ui:define>
+  </ui:decorate>
+
+</composite:implementation>
+
+</html>

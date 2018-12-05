@@ -19,7 +19,7 @@
 
   <ui:decorate template="/template/component/prehledComponentLayout.xhtml">
     <ui:define name="pageContentTitle">
-      <p class="tableCaption">Přehled nájemních smluv:</p>
+      <p class="tableCaption">Nájemní smlouvy:</p>
     </ui:define>
 
     <ui:define name="prehledPagePridavaciTlacitko">
@@ -94,11 +94,10 @@
         </p:columnGroup>
 
         <f:facet name="header">
-          <p:outputPanel id="globalFilterHeader" style="float: left; margin-top: 5px;">Nájemní smlouvy: (nalezených:
+          <p:outputPanel id="globalFilterHeader" style="float: left; margin-top: 5px;">Nalezeno:
             <h:outputText value="#{najemniSmlouvaPrehledBean.filtrovanyNajemniSmlouvaListSize}"/>
-            z celkem
+            z
             <h:outputText value="#{najemniSmlouvaPrehledBean.najemniSmlouvaListSize}"/>
-            smluv)
           </p:outputPanel>
           <p:outputPanel style="text-align: right;">
             <p:inputText id="globalFilter" onkeyup="PF('najemniSmlouvaPrehledBeanDataTable').filter()" style="width:235px"
