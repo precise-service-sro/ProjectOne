@@ -8,6 +8,8 @@ import lombok.RequiredArgsConstructor;
 public enum SouborTyp {
   AVATAR_FOTO                     ("Avatar / Foto", "Osobní fotka uživatele"),
 
+  FOTOGRAFIE_NEMOVITOSTI          ("Fotografie nemovitosti", "Fotografie nemovitosti"),
+
   NAJEMNI_SMLOUVA                 ("", ""),
   PREDAVACI_PROTOKOL              ("", ""),
   DOKLAD_O_POJISTENI_ODPOVEDNOSTI ("", ""),

@@ -23,10 +23,28 @@
     </ui:define>
 
     <ui:define name="prehledPagePridavaciTlacitko">
-      <p:commandButton value="Přidat fotografii"
+      <div style="
+                  width: 200px;
+                  padding-right: 200px;
+                  display: inline-block;
+                  height: 0px;
+      ">
+
+
+        <p:fileUpload fileUploadListener="#{nemovitostDetailBean.nastavitAvatarFoto2}"
+                      label="Přidat fotografii"
+                      mode="advanced"
+                      auto="true"
+                      update="fotky1 fotky2 fotky3"
+                      allowTypes="/(\.|\/)(gif|jpe?g|png)$/">
+        </p:fileUpload>
+
+      </div>
+
+      <p:commandButton value="Smazat fotografii"
                        icon="ui-icon-circle-plus"
                        process="@this"
-                       actionListener="#{nemovitostKontaktBean.pridatNemovitostKontakt()}"
+                       actionListener="#{nemovitostDetailBean.smazatFotografii()}"
       >
         <f:ajax update="@all" render="@all"/>
       </p:commandButton>
@@ -36,14 +54,39 @@
     </ui:define>
 
     <ui:define name="prehledPageDataTable">
-      Možná tady udělat klasickou dataTable s nahledy a popisy a nebo vymyslet jak je editovat, pridavat a odebirat
-      <br />
-      <br />
-      <br />
-      <h:outputText value="#{osobaDetailBean.init()}"/>
-      <p:galleria value="#{nemovitostDetailBean.images}" var="image" panelWidth="500" panelHeight="313" showCaption="true">
-        <p:graphicImage value="#{nemovitostDetailBean.zobrazitObrazek(image)}" title="" alt="Budova zepředu"/>
-      </p:galleria>
+
+      <div style="min-height: 300px; text-align: center; padding-top: 80px;">
+
+        <div style="
+                    height: 350px;
+                    text-align: center;
+                ">
+          <p:graphicImage id="fotky1" value="#{nemovitostDetailBean.zobrazit()}" style="width: 260px;" cache="false"/>
+        </div>
+
+        <br/>
+
+        <p:commandButton actionListener="#{nemovitostDetailBean.posunoutDozadu()}"
+                         icon="ui-icon-arrowthick-1-w"
+                         style="margin-bottom: 5px"
+        >
+          <f:ajax update="@all" render="@all"/>
+        </p:commandButton>
+        -
+        (
+        <h:outputText id="fotky2" value="#{nemovitostDetailBean.fotografieIndex + 1}"/>
+        z
+        <h:outputText id="fotky3" value="#{nemovitostDetailBean.nemovitost.fotografie.size()}"/>
+        )
+        -
+        <p:commandButton actionListener="#{nemovitostDetailBean.posunoutDopredu()}"
+                         icon="ui-icon-arrowthick-1-e"
+                         style="margin-bottom: 5px"
+        >
+          <f:ajax update="@all" render="@all"/>
+        </p:commandButton>
+      </div>
+
     </ui:define>
   </ui:decorate>
 

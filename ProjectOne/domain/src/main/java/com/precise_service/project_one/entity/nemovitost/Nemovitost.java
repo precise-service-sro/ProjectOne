@@ -1,5 +1,9 @@
 package com.precise_service.project_one.entity.nemovitost;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -58,4 +62,8 @@ public class Nemovitost extends BaseEntity {
   public String getIdentifikaceNemovitosti() {
     return "" + nemovitostTyp.getHodnota() + ", " + adresa.getCelaAdresa();
   }
+
+  @JsonProperty("avatarFotoObjectId")
+  @JsonInclude(JsonInclude.Include.NON_NULL)
+  private List<ObjectId> fotografie = new ArrayList<>();
 }

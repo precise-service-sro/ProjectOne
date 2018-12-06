@@ -72,7 +72,7 @@ public class OsobaDetailBean extends AbstractBean {
   public void nastavitAvatarFoto(FileUploadEvent event) {
     // nahrany obrazek
     UploadedFile avatarFotoUploadedFile = event.getFile();
-    showInfoMessage("Succesful", avatarFotoUploadedFile.getFileName() + " is uploaded.");
+    showInfoMessage("Nahráno", "Obrázek " + avatarFotoUploadedFile.getFileName() + " byl nahrán.");
 
     ObjectId avatarFotoObjectId = storeFileIntoDatabase(avatarFotoUploadedFile);
 
