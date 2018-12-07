@@ -23,14 +23,7 @@
     </ui:define>
 
     <ui:define name="prehledPagePridavaciTlacitko">
-      <div style="
-                  width: 200px;
-                  padding-right: 200px;
-                  display: inline-block;
-                  height: 0px;
-      ">
-
-
+      <div class="upload">
         <p:fileUpload fileUploadListener="#{nemovitostDetailBean.nastavitAvatarFoto2}"
                       label="Přidat fotografii"
                       mode="advanced"
@@ -42,6 +35,13 @@
       </div>
 
       <p:commandButton value="Smazat fotografii"
+                       icon="ui-icon-circle-plus"
+                       process="@this"
+                       actionListener="#{nemovitostDetailBean.smazatFotografii()}"
+      >
+        <f:ajax update="@all" render="@all"/>
+      </p:commandButton>
+      <p:commandButton value="Stáhnout fotografii"
                        icon="ui-icon-circle-plus"
                        process="@this"
                        actionListener="#{nemovitostDetailBean.smazatFotografii()}"
@@ -61,7 +61,7 @@
                     height: 350px;
                     text-align: center;
                 ">
-          <p:graphicImage id="fotky1" value="#{nemovitostDetailBean.zobrazit()}" style="width: 260px;" cache="false"/>
+          <p:graphicImage id="fotky1" value="#{nemovitostDetailBean.zobrazit()}" style="width: 260px;" cache="false" rendered="#{nemovitostDetailBean.nemovitost.fotografie.size() > 0}"/>
         </div>
 
         <br/>

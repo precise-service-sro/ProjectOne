@@ -112,6 +112,9 @@ public class NemovitostDetailBean extends AbstractBean {
   }
 
   public StreamedContent zobrazit() {
+    if (fotografieIndex >= nemovitost.getFotografie().size()) {
+      fotografieIndex = 0;
+    }
     ObjectId objectId = nemovitost.getFotografie().get(fotografieIndex);
     return zobrazitObrazek(objectId);
   }

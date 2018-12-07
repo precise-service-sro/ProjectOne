@@ -23,3 +23,25 @@
     margin-bottom: 20px;
     width: 100%;
 }
+
+
+.upload {
+  width: 260px;
+  display: inline-block;
+  height: 0px;
+  margin-right: -3px;
+}
+
+.upload .ui-fileupload-content {
+  visibility: hidden;
+}
+
+.upload .ui-fileupload-buttonbar .ui-button {
+  visibility: visible;
+}
+
+.upload .ui-fileupload-buttonbar {
+  padding: 0px;
+  visibility: hidden;
+}
+
