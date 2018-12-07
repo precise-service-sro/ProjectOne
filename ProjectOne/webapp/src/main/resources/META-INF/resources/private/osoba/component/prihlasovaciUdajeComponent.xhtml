@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:composite="http://java.sun.com/jsf/composite"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+>
+
+<composite:interface>
+  <composite:attribute name="vstupniData"/>
+</composite:interface>
+
+<composite:implementation>
+  <ui:decorate template="/template/component/prehledComponentLayout.xhtml">
+    <ui:define name="pageContentTitle">
+      <p class="tableCaption">Přihlašovací údaje:</p>
+    </ui:define>
+
+    <ui:define name="prehledPagePridavaciTlacitko">
+    </ui:define>
+
+    <ui:define name="prehledPageData">
+      <div class="divOsobaDetailTable">
+        <table>
+          <tr>
+            <th>
+              <p>Může se přihlášovat:</p>
+            </th>
+            <td>
+              <p:selectBooleanButton id="value2" value="#{osobaDetailBean.osoba.muzeSePrihlasit}" onLabel="Ano" offLabel="Ne" onIcon="pi pi-check"
+                                     offIcon="pi pi-times" style="width:80px">
+                <p:ajax update="form"/>
+              </p:selectBooleanButton>
+            </td>
+          </tr>
+
+          <p:outputPanel id="prihlasovaciUdaje" widgetVar="prihlasovaciUdaje" rendered="#{osobaDetailBean.osoba.muzeSePrihlasit}" autoUpdate="true">
+            <tr>
+              <th>
+                <p>Přihlašovací jméno:</p>
+              </th>
+              <td>
+                <p:inputText value="#{osobaDetailBean.osoba.prihlasovaciJmeno}" placeholder="- zadejte -"/>
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <p>Heslo:</p>
+              </th>
+              <td>
+                <p:inputText value="#{osobaDetailBean.osoba.heslo}" placeholder="- zadejte -"/>
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <p>Heslo pro ověření:</p>
+              </th>
+              <td>
+                <p:inputText value="#{osobaDetailBean.osoba.heslo}" placeholder="- zadejte -"/>
+              </td>
+            </tr>
+          </p:outputPanel>
+        </table>
+      </div>
+    </ui:define>
+
+    <ui:define name="prehledPageDataTable">
+    </ui:define>
+
+  </ui:decorate>
+</composite:implementation>
+</html>

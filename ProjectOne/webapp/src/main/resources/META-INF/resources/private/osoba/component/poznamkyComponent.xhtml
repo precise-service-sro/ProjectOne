@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:composite="http://java.sun.com/jsf/composite"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+>
+
+<composite:interface>
+  <composite:attribute name="vstupniData"/>
+</composite:interface>
+
+<composite:implementation>
+  <ui:decorate template="/template/component/prehledComponentLayout.xhtml">
+    <ui:define name="pageContentTitle">
+      <p class="tableCaption">Poznámky:</p>
+    </ui:define>
+
+    <ui:define name="prehledPagePridavaciTlacitko">
+    </ui:define>
+
+    <ui:define name="prehledPageData">
+      <div class="divOsobaDetailTable">
+        <div>
+          <p:textEditor widgetVar="editorTextuVar" value="#{osobaDetailBean.osoba.poznamky}" height="300" style="margin-bottom:30px"/>
+        </div>
+      </div>
+    </ui:define>
+
+    <ui:define name="prehledPageDataTable">
+    </ui:define>
+
+  </ui:decorate>
+</composite:implementation>
+</html>

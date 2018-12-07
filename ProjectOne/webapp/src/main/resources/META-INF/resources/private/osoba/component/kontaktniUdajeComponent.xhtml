@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:composite="http://java.sun.com/jsf/composite"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+>
+
+<composite:interface>
+  <composite:attribute name="vstupniData"/>
+</composite:interface>
+
+<composite:implementation>
+  <ui:decorate template="/template/component/prehledComponentLayout.xhtml">
+    <ui:define name="pageContentTitle">
+      <p class="tableCaption">Kontaktní údaje:</p>
+    </ui:define>
+
+    <ui:define name="prehledPagePridavaciTlacitko">
+    </ui:define>
+
+    <ui:define name="prehledPageData">
+      <div class="divOsobaDetailTable">
+        <table>
+          <tr>
+            <th>
+              <p>Telefon:</p>
+            </th>
+            <td>
+
+              <p:inputMask id="phoneWithExt" value="#{osobaDetailBean.osoba.telefon}" mask="(+999) 999 999 999" placeholder="- zadejte -"/>
+            </td>
+            <th>
+              <p>Email:</p>
+            </th>
+            <td>
+              <p:inputText value="#{osobaDetailBean.osoba.email}" placeholder="- zadejte -"/>
+            </td>
+            <th>
+              <p>Bankovní účet:</p>
+            </th>
+            <td>
+              <p:inputText value="#{osobaDetailBean.osoba.bankovniUcet}" placeholder="- zadejte -"/>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </ui:define>
+
+    <ui:define name="prehledPageDataTable">
+    </ui:define>
+
+  </ui:decorate>
+</composite:implementation>
+</html>

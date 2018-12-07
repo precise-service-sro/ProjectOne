@@ -8,14 +8,8 @@
 >
 
 <h:body>
-  <ui:composition template="/template/page/abstractPageLayout.xhtml">
-    <ui:define name="title">
-      ProjectOne - Detail osoby
-    </ui:define>
-    <ui:define name="content">
-      <h:outputText value="#{osobaDetailBean.init()}"/>
-      <osobaComponent:osobaDetailComponent />
-    </ui:define>
+  <ui:composition>
+    <osobaComponent:kontaktniUdajeComponent/>
   </ui:composition>
 </h:body>
 </html>

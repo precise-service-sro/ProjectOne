@@ -37,6 +37,7 @@ public class OsobaDetailBean extends AbstractBean {
 
   private Osoba osoba;
   private List<Stat> statList;
+  private List<Osoba> osobaList;
 
   // zobrazovany obrazek
   private StreamedContent avatarFotoStreamedContent;
@@ -47,6 +48,7 @@ public class OsobaDetailBean extends AbstractBean {
       log.trace("Není vybraná žádná osoba ke zobrazení detailů. (zobrazuji aktuálního přihlášeného uživatele)");
     }
     statList = Arrays.asList(Stat.values());
+    osobaList = osobaService.getOsobaAll(loginBean.getPrihlasenyUzivatel().getId());
   }
 
   public void ulozitZmenuOsoby() throws IOException {
