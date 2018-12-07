@@ -3,19 +3,21 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:component="http://java.sun.com/jsf/composite/private/common/component"
+      xmlns:osobaComponent="http://java.sun.com/jsf/composite/private/osoba/component"
       xmlns:ui="http://java.sun.com/jsf/facelets"
 >
 
 <h:body>
+
   <ui:composition template="/template/page/abstractPageLayout.xhtml">
     <ui:define name="title">
-      ProjectOne - Přehled předávacích protokolů
+      ProjectOne - Detail osoby
     </ui:define>
     <ui:define name="content">
-      <h:outputText value="#{predavaciProtokolPrehledBean.init()}"/>
-      <component:predavaciProtokolPrehledComponent vstupniData="#{predavaciProtokolPrehledBean.predavaciProtokolList}"/>
+      <h:outputText value="#{osobaPrehledBean.init()}"/>
+      <osobaComponent:osobaDetailComponent vstupniData="#{osobaDetailBean.osobaList}"/>
     </ui:define>
   </ui:composition>
+
 </h:body>
 </html>

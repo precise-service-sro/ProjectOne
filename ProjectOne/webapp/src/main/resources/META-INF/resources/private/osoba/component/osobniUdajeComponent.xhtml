@@ -8,18 +8,49 @@
 >
 
 <h:body>
-  <ui:composition template="/template/page/detailPageLayout.xhtml">
+  <ui:composition template="/template/component/prehledComponentLayout.xhtml">
 
     <ui:define name="title">
-      ProjectOne - Detail osoby
+      ProjectOne - Osoba
     </ui:define>
 
     <ui:define name="pageContentTitle">
-      <h:outputText value="#{osobaDetailBean.init()}"/>
-      <p>Detailní informace o konkrétní osobě:</p>
+      <p class="tableCaption">tttttOsoba:</p>
     </ui:define>
 
     <ui:define name="detailPageData">
+
+      <h:outputText value="#{osobaDetailBean.init()}"/>
+
+      <div class="pageTitle">
+        <div class="pageTitleLeft">
+          <h:outputText value="#{nemovitostDetailBean.init()}"/>
+          <p class="tableCaption">Osoba:</p>
+          <h:selectOneMenu value="#{nemovitostDetailBean.nemovitost}" converter="#{nemovitostConverter}">
+            <f:selectItems value="#{nemovitostDetailBean.nemovitostList}" var="nemovitost" itemLabel="#{nemovitost.getIdentifikaceNemovitosti()}"
+                           itemValue="#{nemovitost}"/>
+            <p:ajax event="change" update="tabViewNemovitostDetail" listener="#{nemovitostDetailBean.zmenaVybraneNemovitosti}"/>
+
+
+          </h:selectOneMenu>
+        </div>
+        <div class="pageTitleRight">
+          <p:commandButton value="Uložit" actionListener="#{nemovitostDetailBean.ulozitZmenuNemovitosti()}" update="form :form:msgs"/>
+          <p:commandButton value="Zrušit" actionListener="#{nemovitostDetailBean.zrusitZmenuNemovitosti()}" update="form :form:msgs"/>
+        </div>
+      </div>
+
+      <p:tabView id="tabViewNemovitostDetail" orientation="left" dynamic="true" cache="false" class="tabicko">
+
+      <p:tab id="osobniUdajeTab" title="Osobní údaje">
+        <ui:insert name="osobniUdaje">
+          <ui:include src="tab/osobniUdajeTab.xhtml"/>
+        </ui:insert>
+      </p:tab>
+
+      </p:tabView>
+
+
       <div class="divOsobaDetailTable">
         <table>
           <tr>

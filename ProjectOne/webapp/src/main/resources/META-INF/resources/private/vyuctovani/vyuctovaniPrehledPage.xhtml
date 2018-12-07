@@ -3,7 +3,7 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:component="http://java.sun.com/jsf/composite/private/common/component"
+      xmlns:vyuctovaniComponent="http://java.sun.com/jsf/composite/private/vyuctovani/component"
       xmlns:ui="http://java.sun.com/jsf/facelets"
 >
 
@@ -14,7 +14,7 @@
     </ui:define>
     <ui:define name="content">
       <h:outputText value="#{vyuctovaniPrehledBean.init()}"/>
-      <component:vyuctovaniPrehledComponent vstupniData="#{vyuctovaniPrehledBean.vyuctovaniList}"/>
+      <vyuctovaniComponent:vyuctovaniPrehledComponent vstupniData="#{vyuctovaniPrehledBean.vyuctovaniList}"/>
     </ui:define>
   </ui:composition>
 </h:body>

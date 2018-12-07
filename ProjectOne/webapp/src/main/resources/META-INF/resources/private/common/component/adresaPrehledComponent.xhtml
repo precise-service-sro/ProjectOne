@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:composite="http://java.sun.com/jsf/composite"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+>
+
+<composite:interface>
+
+  <composite:attribute name="vstupniData"/>
+
+</composite:interface>
+
+<composite:implementation>
+
+  <ui:decorate template="/template/component/prehledComponentLayout.xhtml">
+    <ui:define name="pageContentTitle">
+      <p class="tableCaption">Fotografie:</p>
+    </ui:define>
+
+    <ui:define name="prehledPagePridavaciTlacitko">
+      <div class="upload">
+        <p:fileUpload fileUploadListener="#{nemovitostDetailBean.nastavitAvatarFoto2}"
+                      label="Přidat fotografii"
+                      mode="advanced"
+                      auto="true"
+                      update="fotky1 fotky2 fotky3"
+                      allowTypes="/(\.|\/)(gif|jpe?g|png)$/">
+        </p:fileUpload>
+
+      </div>
+
+      <p:commandButton value="Smazat fotografii"
+                       icon="ui-icon-circle-plus"
+                       process="@this"
+                       actionListener="#{nemovitostDetailBean.smazatFotografii()}"
+      >
+        <f:ajax update="@all" render="@all"/>
+      </p:commandButton>
+      <p:commandButton value="Stáhnout fotografii"
+                       icon="ui-icon-circle-plus"
+                       process="@this"
+                       actionListener="#{nemovitostDetailBean.smazatFotografii()}"
+      >
+        <f:ajax update="@all" render="@all"/>
+      </p:commandButton>
+    </ui:define>
+
+    <ui:define name="prehledPageData">
+    </ui:define>
+
+    <ui:define name="prehledPageDataTable">
+
+      <div style="min-height: 300px; text-align: center; padding-top: 80px;">
+
+        <div style="
+                    height: 350px;
+                    text-align: center;
+                ">
+          <p:graphicImage id="fotky1" value="#{nemovitostDetailBean.zobrazit()}" style="width: 260px;" cache="false" rendered="#{nemovitostDetailBean.nemovitost.fotografie.size() > 0}"/>
+        </div>
+
+        <br/>
+
+        <p:commandButton actionListener="#{nemovitostDetailBean.posunoutDozadu()}"
+                         icon="ui-icon-arrowthick-1-w"
+                         style="margin-bottom: 5px"
+        >
+          <f:ajax update="@all" render="@all"/>
+        </p:commandButton>
+        -
+        (
+        <h:outputText id="fotky2" value="#{nemovitostDetailBean.fotografieIndex + 1}"/>
+        z
+        <h:outputText id="fotky3" value="#{nemovitostDetailBean.nemovitost.fotografie.size()}"/>
+        )
+        -
+        <p:commandButton actionListener="#{nemovitostDetailBean.posunoutDopredu()}"
+                         icon="ui-icon-arrowthick-1-e"
+                         style="margin-bottom: 5px"
+        >
+          <f:ajax update="@all" render="@all"/>
+        </p:commandButton>
+      </div>
+
+    </ui:define>
+  </ui:decorate>
+
+</composite:implementation>
+
+</html>

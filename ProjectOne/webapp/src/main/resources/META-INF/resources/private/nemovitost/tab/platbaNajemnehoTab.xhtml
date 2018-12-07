@@ -3,14 +3,14 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:component="http://java.sun.com/jsf/composite/private/common/component"
+      xmlns:platbaNajemnehoComponent="http://java.sun.com/jsf/composite/private/platbaNajemneho/component"
       xmlns:ui="http://java.sun.com/jsf/facelets"
 >
 
 <h:body>
   <ui:composition>
     <h:outputText value="#{platbaNajemnehoPrehledBean.init()}"/>
-    <component:platbaNajemnehoPrehledComponent vstupniData="#{platbaNajemnehoPrehledBean.platbaNajemnehoList}" />
+    <platbaNajemnehoComponent:platbaNajemnehoPrehledComponent vstupniData="#{platbaNajemnehoPrehledBean.platbaNajemnehoList}" />
   </ui:composition>
 </h:body>
 </html>

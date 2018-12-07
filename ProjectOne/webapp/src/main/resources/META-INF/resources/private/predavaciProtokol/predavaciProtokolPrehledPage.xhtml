@@ -8,9 +8,14 @@
 >
 
 <h:body>
-  <ui:composition>
-    <h:outputText value="#{predavaciProtokolPrehledBean.init()}"/>
-    <predavaciProtokolComponent:predavaciProtokolPrehledComponent vstupniData="#{predavaciProtokolPrehledBean.predavaciProtokolList}"/>
+  <ui:composition template="/template/page/abstractPageLayout.xhtml">
+    <ui:define name="title">
+      ProjectOne - Přehled předávacích protokolů
+    </ui:define>
+    <ui:define name="content">
+      <h:outputText value="#{predavaciProtokolPrehledBean.init()}"/>
+      <predavaciProtokolComponent:predavaciProtokolPrehledComponent vstupniData="#{predavaciProtokolPrehledBean.predavaciProtokolList}"/>
+    </ui:define>
   </ui:composition>
 </h:body>
 </html>

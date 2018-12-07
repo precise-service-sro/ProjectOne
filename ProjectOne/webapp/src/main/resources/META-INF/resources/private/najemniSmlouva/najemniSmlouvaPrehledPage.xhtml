@@ -3,18 +3,18 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:component="http://java.sun.com/jsf/composite/private/common/component"
+      xmlns:najemniSmlouvaComponent="http://java.sun.com/jsf/composite/private/najemniSmlouva/component"
       xmlns:ui="http://java.sun.com/jsf/facelets"
 >
 
 <h:body>
   <ui:composition template="/template/page/abstractPageLayout.xhtml">
     <ui:define name="title">
-      ProjectOne - Přehled nemovitostí prehled.xhtml
+      ProjectOne - Přehled nájemních smluv
     </ui:define>
     <ui:define name="content">
-      <h:outputText value="#{nemovitostPrehledBean.init()}"/>
-      <component:nemovitostPrehledComponent vstupniData="#{nemovitostPrehledBean.nemovitostList}" />
+      <h:outputText value="#{najemniSmlouvaPrehledBean.init()}"/>
+      <najemniSmlouvaComponent:najemniSmlouvaPrehledComponent vstupniData="#{najemniSmlouvaPrehledBean.najemniSmlouvaList}" />
     </ui:define>
   </ui:composition>
 </h:body>

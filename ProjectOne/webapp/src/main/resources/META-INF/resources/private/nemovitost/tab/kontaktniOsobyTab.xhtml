@@ -3,14 +3,14 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:component="http://java.sun.com/jsf/composite/private/common/component"
+      xmlns:nemovitostComponent="http://java.sun.com/jsf/composite/private/nemovitost/component"
       xmlns:ui="http://java.sun.com/jsf/facelets"
 >
 
 <h:body>
   <ui:composition>
     <h:outputText value="#{nemovitostKontaktBean.init(nemovitostDetailBean.nemovitost.id)}"/>
-    <component:nemovitostKontaktPrehledComponent vstupniData="#{nemovitostKontaktBean.nemovitostKontaktList}"/>
+    <nemovitostComponent:nemovitostKontaktPrehledComponent vstupniData="#{nemovitostKontaktBean.nemovitostKontaktList}"/>
   </ui:composition>
 </h:body>
 </html>

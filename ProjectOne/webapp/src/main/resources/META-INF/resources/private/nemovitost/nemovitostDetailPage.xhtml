@@ -1,0 +1,131 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:component="http://java.sun.com/jsf/composite/private/common/component"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+>
+
+<h:body>
+  <ui:composition template="/template/page/abstractPageLayout.xhtml">
+    <ui:define name="title">
+      ProjectOne - Detail nemovitosti
+    </ui:define>
+
+    <ui:define name="content">
+
+      <div class="pageTitle">
+        <div class="pageTitleLeft">
+          <h:outputText value="#{nemovitostDetailBean.init()}"/>
+          <p class="tableCaption">Nemovitost:</p>
+          <h:selectOneMenu value="#{nemovitostDetailBean.nemovitost}" converter="#{nemovitostConverter}">
+            <f:selectItems value="#{nemovitostDetailBean.nemovitostList}" var="nemovitost" itemLabel="#{nemovitost.getIdentifikaceNemovitosti()}"
+                           itemValue="#{nemovitost}"/>
+            <p:ajax event="change" update="tabViewNemovitostDetail" listener="#{nemovitostDetailBean.zmenaVybraneNemovitosti}"/>
+
+
+          </h:selectOneMenu>
+        </div>
+        <div class="pageTitleRight">
+          <p:commandButton value="Uložit" actionListener="#{nemovitostDetailBean.ulozitZmenuNemovitosti()}" update="form :form:msgs"/>
+          <p:commandButton value="Zrušit" actionListener="#{nemovitostDetailBean.zrusitZmenuNemovitosti()}" update="form :form:msgs"/>
+        </div>
+      </div>
+
+      <p:tabView id="tabViewNemovitostDetail" orientation="left" dynamic="true" cache="false" class="tabicko">
+
+        <p:tab id="zakladniInformaceTab" title="Základní informace">
+          <ui:insert name="zakladniInformace">
+            <ui:include src="tab/zakladniInformaceTab.xhtml"/>
+          </ui:insert>
+        </p:tab>
+
+        <p:tab id="adresaTab" title="Adresa">
+          <ui:insert name="adresa">
+            <ui:include src="tab/adresaTab.xhtml"/>
+          </ui:insert>
+        </p:tab>
+
+        <p:tab id="cashflowTab" title="Cashflow">
+          <ui:insert name="cashflow">
+            <ui:include src="tab/cashflowTab.xhtml"/>
+          </ui:insert>
+        </p:tab>
+
+        <p:tab id="fotografieTab" title="Fotografie">
+          <ui:insert name="fotografie">
+            <ui:include src="tab/fotografieTab.xhtml"/>
+          </ui:insert>
+        </p:tab>
+
+        <p:tab id="fakturaTab" title="Faktury">
+          <ui:insert name="faktury">
+            <ui:include src="tab/fakturaTab.xhtml"/>
+          </ui:insert>
+        </p:tab>
+
+        <p:tab id="kontaktniOsobyTab" title="Kontaktní osoby">
+          <ui:insert name="kontaktniOsoby">
+            <ui:include src="tab/kontaktniOsobyTab.xhtml"/>
+          </ui:insert>
+        </p:tab>
+
+        <p:tab id="najemniSmlouvyTab" title="Nájemní smlouvy">
+          <ui:insert name="najemniSmlouvy">
+            <ui:include src="tab/najemniSmlouvaTab.xhtml"/>
+          </ui:insert>
+        </p:tab>
+
+        <p:tab id="najemniciTab" title="Nájemníci">
+          <ui:insert name="najemnici">
+            <ui:include src="tab/najemniciTab.xhtml"/>
+          </ui:insert>
+        </p:tab>
+
+        <p:tab id="platbaNajemnehoTab" title="Platby nájemného">
+          <ui:insert name="platbyNajemneho">
+            <ui:include src="tab/platbaNajemnehoTab.xhtml"/>
+          </ui:insert>
+        </p:tab>
+
+        <p:tab id="poznamkyTab" title="Poznámky">
+          <ui:insert name="poznamky">
+            <ui:include src="tab/poznamkyTab.xhtml"/>
+          </ui:insert>
+        </p:tab>
+
+        <p:tab id="predavaciProtokolTab" title="Předávací protokoly">
+          <ui:insert>
+            <ui:include src="tab/predavaciProtokolTab.xhtml"/>
+          </ui:insert>
+        </p:tab>
+
+        <p:tab id="vlastnikTab" title="Vlastník">
+          <h:outputText value="#{osobaPrehledBean.initJakoVlastnikNemovitosti(nemovitostDetailBean.nemovitost)}"/>
+          <ui:insert name="vlastnik">
+            <ui:include src="tab/vlastnikTab.xhtml"/>
+          </ui:insert>
+        </p:tab>
+
+        <p:tab id="tabVyuctovani" title="Vyúčtování">
+          <ui:insert name="vyuctovani">
+            <ui:include src="tab/vyuctovaniTab.xhtml"/>
+          </ui:insert>
+        </p:tab>
+
+        <p:tab id="vyuctovaniPolozkaTypTab" title="Vyúčtovávané položky">
+          <ui:insert name="vyuctovavanePolozky">
+            <ui:include src="tab/vyuctovaniPolozkaTypTab.xhtml"/>
+          </ui:insert>
+        </p:tab>
+
+      </p:tabView>
+    </ui:define>
+
+    <ui:define name="detailPageUkladaciTlacitka">
+    </ui:define>
+
+  </ui:composition>
+</h:body>
+</html>

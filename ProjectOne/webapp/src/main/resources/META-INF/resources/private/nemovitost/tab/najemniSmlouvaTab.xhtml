@@ -3,14 +3,14 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:component="http://java.sun.com/jsf/composite/private/common/component"
+      xmlns:najemniSmlouvaComponent="http://java.sun.com/jsf/composite/private/najemniSmlouva/component"
       xmlns:ui="http://java.sun.com/jsf/facelets"
 >
 
 <h:body>
   <ui:composition>
     <h:outputText value="#{najemniSmlouvaPrehledBean.init()}"/>
-    <component:najemniSmlouvaPrehledComponent vstupniData="#{najemniSmlouvaPrehledBean.najemniSmlouvaList}" />
+    <najemniSmlouvaComponent:najemniSmlouvaPrehledComponent vstupniData="#{najemniSmlouvaPrehledBean.najemniSmlouvaList}" />
   </ui:composition>
 </h:body>
 </html>

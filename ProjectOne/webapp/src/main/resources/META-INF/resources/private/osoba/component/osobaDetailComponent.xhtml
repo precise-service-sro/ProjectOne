@@ -1,0 +1,287 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:component="http://java.sun.com/jsf/composite/private/common/component"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+>
+
+<h:body>
+  <ui:composition template="/template/component/prehledComponentLayout.xhtml">
+
+
+    osobaDetailComponent.xhtml
+
+    <ui:define name="title">
+      ProjectOne - Osoba
+    </ui:define>
+
+    <ui:define name="pageContentTitle">
+      <p class="tableCaption">tttttOsoba:</p>
+    </ui:define>
+
+    <ui:define name="detailPageData">
+
+      <h:outputText value="#{osobaDetailBean.init()}"/>
+
+      <div class="pageTitle">
+        <div class="pageTitleLeft">
+          <h:outputText value="#{nemovitostDetailBean.init()}"/>
+          <p class="tableCaption">Osoba:</p>
+          <h:selectOneMenu value="#{nemovitostDetailBean.nemovitost}" converter="#{nemovitostConverter}">
+            <f:selectItems value="#{nemovitostDetailBean.nemovitostList}" var="nemovitost" itemLabel="#{nemovitost.getIdentifikaceNemovitosti()}"
+                           itemValue="#{nemovitost}"/>
+            <p:ajax event="change" update="tabViewNemovitostDetail" listener="#{nemovitostDetailBean.zmenaVybraneNemovitosti}"/>
+
+
+          </h:selectOneMenu>
+        </div>
+        <div class="pageTitleRight">
+          <p:commandButton value="Uložit" actionListener="#{nemovitostDetailBean.ulozitZmenuNemovitosti()}" update="form :form:msgs"/>
+          <p:commandButton value="Zrušit" actionListener="#{nemovitostDetailBean.zrusitZmenuNemovitosti()}" update="form :form:msgs"/>
+        </div>
+      </div>
+
+      <p:tabView id="tabViewNemovitostDetail" orientation="left" dynamic="true" cache="false" class="tabicko">
+
+      <p:tab id="osobniUdajeTab" title="Osobní údaje">
+        <ui:insert name="osobniUdaje">
+          <ui:include src="tab/osobniUdajeTab.xhtml"/>
+        </ui:insert>
+      </p:tab>
+
+      </p:tabView>
+
+
+      <div class="divOsobaDetailTable">
+        <table>
+          <tr>
+            <th>
+              <p>Osobní údaje:</p>
+            </th>
+            <td></td>
+            <th>
+              <p>Fotka / Avatar:</p>
+            </th>
+            <td rowspan="3">
+              <div class="osobaDetailAvatarFotoDiv">
+                <p:panel rendered="#{osobaDetailBean.osoba.avatarFotoObjectId != null}">
+                  <p:graphicImage value="#{osobaDetailBean.avatarFotoStreamedContent}" style="width: 100px;" cache="FALSE"/>
+                  <p:commandButton value="Smazat obrázek" process="@form" update="form" action="#{osobaDetailBean.smazatAvatarFoto()}"/>
+                </p:panel>
+
+                <p:panel rendered="#{osobaDetailBean.osoba.avatarFotoObjectId == null}">
+                  <p:fileUpload fileUploadListener="#{osobaDetailBean.nastavitAvatarFoto}" label="Nahrát obrázek" mode="advanced" update="form msgs" auto="true"
+                                allowTypes="/(\.|\/)(gif|jpe?g|png)$/"/>
+                </p:panel>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <th>
+              <p>Jméno:</p>
+            </th>
+            <td>
+              <p:inputText value="#{osobaDetailBean.osoba.jmeno}" placeholder="- zadejte -"/>
+            </td>
+          </tr>
+
+          <tr>
+            <th>
+              <p>Přijmení:</p>
+            </th>
+            <td>
+              <p:inputText value="#{osobaDetailBean.osoba.prijmeni}" placeholder="- zadejte -"/>
+            </td>
+          </tr>
+
+          <tr>
+            <th>
+              <p>Datum narození:</p>
+            </th>
+            <td>
+              <p:calendar id="datumNarozeni" value="#{osobaDetailBean.osoba.datumNarozeni}" pattern="dd-MM-yyyy" placeholder="- zadejte -"/>
+            </td>
+            <th>
+              <p>Rodné číslo:</p>
+            </th>
+            <td>
+              <p:inputText value="#{osobaDetailBean.osoba.rodneCislo}" placeholder="- zadejte -"/>
+            </td>
+          </tr>
+          <tr>
+            <th>
+              <p>Číslo OP:</p>
+            </th>
+            <td>
+              <p:inputText value="#{osobaDetailBean.osoba.cisloOP}" placeholder="- zadejte -"/>
+            </td>
+            <th>
+              <p>Zaměstnání:</p>
+            </th>
+            <td>
+              <p:inputText value="#{osobaDetailBean.osoba.zamestnani}" placeholder="- zadejte -"/>
+            </td>
+          </tr>
+
+          <tr>
+            <th>&nbsp;</th>
+          </tr>
+          <tr>
+            <th>
+              <p>Adresa trvalého bydliště:</p>
+            </th>
+          </tr>
+          <tr>
+            <th>
+              <p>Ulice:</p>
+            </th>
+            <td>
+              <p:inputText value="#{osobaDetailBean.osoba.trvaleBydliste.ulice}" placeholder="- zadejte -"/>
+            </td>
+            <th>
+              <p>Číslo popisné:</p>
+            </th>
+            <td>
+              <p:inputText value="#{osobaDetailBean.osoba.trvaleBydliste.cisloPopisne}" placeholder="- zadejte -"/>
+            </td>
+            <th>
+              <p>Číslo orientační:</p>
+            </th>
+            <td>
+              <p:inputText value="#{osobaDetailBean.osoba.trvaleBydliste.cisloOrientacni}" placeholder="- zadejte -"/>
+            </td>
+          </tr>
+          <tr>
+            <th>
+              <p>Město:</p>
+            </th>
+            <td>
+              <p:inputText value="#{osobaDetailBean.osoba.trvaleBydliste.mesto}" placeholder="- zadejte -"/>
+            </td>
+            <th>
+              <p>PSČ:</p>
+            </th>
+            <td>
+              <p:inputText value="#{osobaDetailBean.osoba.trvaleBydliste.psc}" placeholder="- zadejte -"/>
+            </td>
+            <th>
+              <p>Stát:</p>
+            </th>
+            <td>
+              <h:selectOneMenu value="#{osobaDetailBean.osoba.trvaleBydliste.stat}" converter="#{statConverter}">
+                <f:selectItems value="#{osobaDetailBean.statList}" var="stat"
+                               itemLabel="#{stat.hodnota}"
+                               itemValue="#{stat}"/>
+              </h:selectOneMenu>
+            </td>
+          </tr>
+
+          <tr>
+            <th>&nbsp;</th>
+          </tr>
+          <tr>
+            <th>
+              <p>Kontakty:</p>
+            </th>
+          </tr>
+          <tr>
+            <th>
+              <p>Telefon:</p>
+            </th>
+            <td>
+
+              <p:inputMask id="phoneWithExt" value="#{osobaDetailBean.osoba.telefon}" mask="(+999) 999 999 999" placeholder="- zadejte -"/>
+            </td>
+            <th>
+              <p>Email:</p>
+            </th>
+            <td>
+              <p:inputText value="#{osobaDetailBean.osoba.email}" placeholder="- zadejte -"/>
+            </td>
+            <th>
+              <p>Bankovní účet:</p>
+            </th>
+            <td>
+              <p:inputText value="#{osobaDetailBean.osoba.bankovniUcet}" placeholder="- zadejte -"/>
+            </td>
+          </tr>
+
+          <tr>
+            <th>&nbsp;</th>
+          </tr>
+          <tr>
+            <th>
+              <p>Přihlašovací údaje:</p>
+            </th>
+            <td>
+            </td>
+          </tr>
+
+          <tr>
+            <th>
+              <p>Může se přihlášovat:</p>
+            </th>
+            <td>
+              <p:selectBooleanButton id="value2" value="#{osobaDetailBean.osoba.muzeSePrihlasit}" onLabel="Ano" offLabel="Ne" onIcon="pi pi-check"
+                                     offIcon="pi pi-times" style="width:80px">
+                <p:ajax update="form"/>
+              </p:selectBooleanButton>
+            </td>
+          </tr>
+
+          <p:outputPanel id="prihlasovaciUdaje" widgetVar="prihlasovaciUdaje" rendered="#{osobaDetailBean.osoba.muzeSePrihlasit}" autoUpdate="true">
+            <tr>
+              <th>
+                <p>Přihlašovací jméno:</p>
+              </th>
+              <td>
+                <p:inputText value="#{osobaDetailBean.osoba.prihlasovaciJmeno}" placeholder="- zadejte -"/>
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <p>Heslo:</p>
+              </th>
+              <td>
+                <p:inputText value="#{osobaDetailBean.osoba.heslo}" placeholder="- zadejte -"/>
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <p>Heslo pro ověření:</p>
+              </th>
+              <td>
+                <p:inputText value="#{osobaDetailBean.osoba.heslo}" placeholder="- zadejte -"/>
+              </td>
+            </tr>
+          </p:outputPanel>
+          <tr>
+            <th>
+              <p>Poznámky:</p>
+            </th>
+          </tr>
+        </table>
+      </div>
+
+      <div>
+        <p:textEditor widgetVar="editorTextuVar" value="#{osobaDetailBean.osoba.poznamky}" height="300" style="margin-bottom:30px"/>
+      </div>
+
+    </ui:define>
+
+    <ui:define name="detailPagePridavaciTlacitko">
+      <p:commandButton value="Uložit" actionListener="#{osobaDetailBean.ulozitZmenuOsoby()}" update="form :form:msgs"/>
+      <p:commandButton value="Zrušit" actionListener="#{osobaDetailBean.zrusitZmenuOsoby()}" update="form :form:msgs"/>
+    </ui:define>
+
+    <ui:define name="detailPageDataTable">
+    </ui:define>
+
+    <ui:define name="detailPageUkladaciTlacitka">
+    </ui:define>
+
+  </ui:composition>
+</h:body>
+</html>

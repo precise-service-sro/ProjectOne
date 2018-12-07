@@ -3,18 +3,18 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:component="http://java.sun.com/jsf/composite/private/common/component"
+      xmlns:fakturaComponent="http://java.sun.com/jsf/composite/private/faktura/component"
       xmlns:ui="http://java.sun.com/jsf/facelets"
 >
 
 <h:body>
   <ui:composition template="/template/page/abstractPageLayout.xhtml">
     <ui:define name="title">
-      ProjectOne - Přehled faktur22
+      ProjectOne - Přehled faktur
     </ui:define>
     <ui:define name="content">
       <h:outputText value="#{fakturaPrehledBean.init()}"/>
-      <component:fakturaPrehledComponent vstupniData="#{fakturaPrehledBean.fakturaList}"/>
+      <fakturaComponent:fakturaPrehledComponent vstupniData="#{fakturaPrehledBean.fakturaList}"/>
     </ui:define>
   </ui:composition>
 </h:body>
