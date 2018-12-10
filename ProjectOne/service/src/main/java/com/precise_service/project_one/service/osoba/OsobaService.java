@@ -1,6 +1,7 @@
 package com.precise_service.project_one.service.osoba;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,8 +32,10 @@ public class OsobaService implements IOsobaService {
 
   @Override
   public Osoba getOsoba(String idOsoba) {
-    log.trace("getOsoba()");
-    return osobaRepository.findById(idOsoba).get();
+    log.trace("getOsoba() " + idOsoba);
+
+    Optional<Osoba> optionalOsoba = osobaRepository.findById(idOsoba);
+    return (optionalOsoba.isPresent()) ? optionalOsoba.get() : null;
   }
 
   @Override

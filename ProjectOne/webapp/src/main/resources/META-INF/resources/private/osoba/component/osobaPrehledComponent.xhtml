@@ -28,6 +28,7 @@
                        process="@this"
                        actionListener="#{osobaPrehledBean.pridatOsoba()}"
       >
+        <f:ajax update="osobaPrehledBeanTable" render="osobaPrehledBeanTable"/>
         <f:ajax update="@all" render="@all"/>
       </p:commandButton>
     </ui:define>
@@ -41,7 +42,7 @@
                    var="osoba"
                    widgetVar="osobaPrehledBeanTable"
                    value="#{cc.attrs.vstupniData}"
-                   sortBy="#{1}"
+                   sortBy="#{osoba.getCeleJmeno()}"
                    rendered="#{not empty osobaPrehledBean.osobaList}"
                    emptyMessage="Nebyly nalezeny žádné osoby"
                    filteredValue="#{osobaPrehledBean.filtrovanyOsobaList}"
@@ -109,12 +110,12 @@
                            actionListener="#{routerBean.goToOsobaDetailBean(osoba)}"
                            title="Podrobnosti"
           >
-            <f:ajax update="@all" render="@all"/>
           </p:commandButton>
           <p:commandButton icon="ui-icon-circle-minus"
                            actionListener="#{osobaPrehledBean.smazatOsoba(osoba)}"
                            title="Odebrat"
           >
+            <f:ajax update="osobaPrehledBeanTable" render="osobaPrehledBeanTable"/>
             <f:ajax update="@all" render="@all"/>
           </p:commandButton>
         </p:column>
