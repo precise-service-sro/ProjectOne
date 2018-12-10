@@ -74,129 +74,137 @@
 }
 
 .divPoznamky {
-    width: 100%;
-    margin-left: 20px;
-    margin-top: 20px;
+  width: 100%;
+  margin-left: 20px;
+  margin-top: 20px;
 }
 
 .editorTextu {
-    height: 290px;
-    padding-bottom: 40px;
-    margin-right: 40px;
-    background-color: white;
+  height: 500px;
+  margin-right: 40px;
+  background-color: white;
+}
+
+.editorTextu .ql-container {
+  box-sizing: border-box;
+  font-family: Helvetica,Arial,sans-serif;
+  font-size: 13px;
+  height: 460px;
+  margin: 0;
+  position: relative;
 }
 
 .divTable {
-    border: 5px solid #DFDFDF;
-    border-radius: 10px;
-    background-color: #DFDFDF;
-    margin-left: 2px;
-    margin-top: 1px;
-    min-height: 590px;
+  border: 5px solid #DFDFDF;
+  border-radius: 10px;
+  background-color: #DFDFDF;
+  margin-left: 2px;
+  margin-top: 1px;
+  height: 590px;
 }
 
 .divDataTable {
-    margin-left: 10px;
-    margin-right: 10px;
-    overflow-y: scroll;
-    height: 505px;
+  margin-left: 10px;
+  margin-right: 10px;
+  overflow-y: scroll;
+  height: 505px;
 }
 
 .divTable table {
-    table-layout: fixed;
+  table-layout: fixed;
 }
 
 .divTable th {
-    width: 100px;
-    text-align: left;
+width: 100px;
+text-align: left;
 }
 
 .prvniSloupec {
-    padding-left: 20px;
+  padding-left: 20px;
 }
 
 table td {
-    width: 220px;
+  width: 220px;
 }
 
 table td input {
-    width: 190px;
+  width: 190px;
 }
 
 table td select {
-    width: 200px;
+  width: 200px;
 }
 
 .tableCaption {
-    display: inline-block;
-    font-weight: bold;
-    text-decoration: underline;
-    font-size: 25px;
-    margin-top: 20px;
-    margin-left: 20px;
-    margin-bottom: 0px;
+  display: inline-block;
+  font-weight: bold;
+  text-decoration: underline;
+  font-size: 25px;
+  margin-top: 20px;
+  margin-left: 20px;
+  margin-bottom: 0px;
 }
 
 .buttons {
-    width: 1000px;
-    margin: auto;
-    padding-top: 20px;
+  width: 1000px;
+  margin: auto;
+  padding-top: 20px;
 }
 
 .buttons .process {
-    float: left;
-    margin-right: 250px;
+  float: left;
+  margin-right: 250px;
 }
 
 .tabTitle {
-    margin-top: 20px;
-    margin-right: 10px;
+  margin-top: 20px;
+  margin-right: 10px;
 }
 
 .tabTitleLeft {
-    float: left;
+  /* float: left; */
 }
 
 .tabTitle p {
-    font-size: 25px;
-    font-weight: bold;
-    display: inline;
-    margin-top: 20px;
+  font-size: 25px;
+  font-weight: bold;
+  display: inline;
+  margin-top: 20px;
 }
 
 .tabicko {
-    height: 600px;
+  height: 600px;
 }
 
 .divFakturaDetailTable {
-    width: 800px;
+  width: 800px;
 }
 
 .divFakturaDetailTable table {
-    width: 100%;
+  width: 100%;
 }
 
 .divFakturaDetailTable th {
-    text-align: left;
+  text-align: left;
 }
 
 .divFakturaDetailTable select {
-    font-size: large;
+  font-size: large;
 }
 
 .divOsobaDetailTable th {
-    text-align: left;
+  text-align: left;
 }
 
 .divOsobaDetailTable select {
-    font-size: large;
+  font-size: large;
 }
 
 
 .detailPageDataDiv th {
-    text-align: left;
+  text-align: left;
 }
 
 .detailPageDataDiv select {
-    font-size: large;
+  font-size: large;
 }

@@ -9,41 +9,37 @@
 >
 <h:body>
 
-  <h:form id="form">
-    <p:growl id="msgs" showDetail="true"/>
-
-    <div class="divTable">
-      <div class="tabTitle">
-        <div class="tabTitleLeft">
-          <ui:insert name="pageContentTitle">
-            prehledComponentLayout.xhtml => pageContentTitle
-          </ui:insert>
-        </div>
-        <div class="tabTitleRight">
-          <div id="prehledPagePridavaciTlacitkoDiv" class="prehledPagePridavaciTlacitkoDiv">
-            <div class="addButtonDiv">
-              <ui:insert name="prehledPagePridavaciTlacitko">
-                prehledComponentLayout.xhtml => prehledPagePridavaciTlacitko
-              </ui:insert>
-            </div>
+  <div class="divTable">
+    <div class="tabTitle">
+      <div class="tabTitleLeft">
+        <ui:insert name="pageContentTitle">
+          prehledComponentLayout.xhtml => pageContentTitle
+        </ui:insert>
+      </div>
+      <div class="tabTitleRight">
+        <div id="prehledPagePridavaciTlacitkoDiv" class="prehledPagePridavaciTlacitkoDiv">
+          <div class="addButtonDiv">
+            <ui:insert name="prehledPagePridavaciTlacitko">
+              prehledComponentLayout.xhtml => prehledPagePridavaciTlacitko
+            </ui:insert>
           </div>
         </div>
       </div>
-      <div class="divDataTable">
-        <div id="prehledPageDataDiv" class="prehledPageDataDiv">
-          <ui:insert name="prehledPageData">
-            prehledComponentLayout.xhtml => prehledPageData
-          </ui:insert>
-        </div>
+    </div>
+    <div class="divDataTable">
+      <div id="prehledPageDataDiv" class="prehledPageDataDiv">
+        <ui:insert name="prehledPageData">
+          prehledComponentLayout.xhtml => prehledPageData
+        </ui:insert>
+      </div>
 
-        <div id="prehledPageDataTableDiv" class="prehledPageDataTableDiv">
-          <ui:insert name="prehledPageDataTable">
-            prehledComponentLayout.xhtml => prehledPageDataTable
-          </ui:insert>
-        </div>
+      <div id="prehledPageDataTableDiv" class="prehledPageDataTableDiv">
+        <ui:insert name="prehledPageDataTable">
+          prehledComponentLayout.xhtml => prehledPageDataTable
+        </ui:insert>
       </div>
     </div>
-  </h:form>
+  </div>
 
 </h:body>
 </html>

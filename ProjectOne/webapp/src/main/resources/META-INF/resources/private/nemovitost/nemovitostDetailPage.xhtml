@@ -28,8 +28,8 @@
           </h:selectOneMenu>
         </div>
         <div class="pageTitleRight">
-          <p:commandButton value="Uložit" actionListener="#{nemovitostDetailBean.ulozitZmenuNemovitosti()}" update="form :form:msgs"/>
-          <p:commandButton value="Zrušit" actionListener="#{nemovitostDetailBean.zrusitZmenuNemovitosti()}" update="form :form:msgs"/>
+          <p:commandButton value="Uložit změny" actionListener="#{nemovitostDetailBean.ulozitZmenuNemovitosti()}" update="@form @form:msgs"/>
+          <p:commandButton value="Zrušit změny" actionListener="#{nemovitostDetailBean.zrusitZmenuNemovitosti()}" update="@form @form:msgs"/>
         </div>
       </div>
 

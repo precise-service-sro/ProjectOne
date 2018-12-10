@@ -33,14 +33,13 @@
       <p:commandButton value="Uložit změny"
                        actionListener="#{osobaDetailBean.ulozitZmenuOsoby()}"
                        icon="ui-icon-circle-plus"
-                       process="@this"
+                       process=":formAbstractPageLayout"
       >
-        <f:ajax update="@all" render="@all"/>
       </p:commandButton>
       <p:commandButton value="Zrušit změny"
                        actionListener="#{osobaDetailBean.zrusitZmenuOsoby()}"
                        icon="ui-icon-circle-plus"
-                       process="@this"
+                       process="@all"
       >
         <f:ajax update="@all" render="@all"/>
       </p:commandButton>
@@ -50,7 +49,9 @@
     </ui:define>
 
     <ui:define name="prehledPageDataTable">
-      <p:tabView id="osobaDetailTabView" orientation="left" dynamic="true" cache="false" class="tabicko">
+      <p:tabView id="osobaDetailTabView" widgetVar="osobaDetailTabView" orientation="left" dynamic="false" cache="false" class="tabicko">
+
+        <p:ajax event="tabChange" listener="#{osobaDetailBean.tabChanged}" />
 
         <p:tab id="osobniUdajeTab" title="Osobní údaje">
           <ui:insert name="osobniUdaje">

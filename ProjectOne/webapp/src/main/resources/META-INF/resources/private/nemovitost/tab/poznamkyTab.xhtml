@@ -3,18 +3,13 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:component="http://java.sun.com/jsf/composite/private/common/component"
+      xmlns:commonComponent="http://java.sun.com/jsf/composite/private/common/component"
       xmlns:ui="http://java.sun.com/jsf/facelets"
 >
 
 <h:body>
   <ui:composition>
-    <div class="divTable">
-      <p class="tableCaption">Poznámky:</p>
-      <div class="divPoznamky">
-        <p:textEditor class="editorTextu" widgetVar="editorTextuVar" value="#{nemovitostDetailBean.nemovitost.poznamky}" style="height:100% !important" />
-      </div>
-    </div>
+    <commonComponent:poznamkyDetailComponent vstupniData="#{nemovitostDetailBean.nemovitost.poznamky}"/>
   </ui:composition>
 </h:body>
 </html>

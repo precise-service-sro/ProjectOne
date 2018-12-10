@@ -33,13 +33,13 @@
             </th>
             <td rowspan="3">
               <div class="osobaDetailAvatarFotoDiv">
-                <p:panel rendered="#{osobaDetailBean.osoba.avatarFotoObjectId != null}">
+                <p:panel id="osobaDetailAvatarFotoPanel" rendered="#{osobaDetailBean.osoba.avatarFotoObjectId != null}">
                   <p:graphicImage value="#{osobaDetailBean.avatarFotoStreamedContent}" style="width: 100px;" cache="FALSE"/>
-                  <p:commandButton value="Smazat obrázek" process="@form" update="form" action="#{osobaDetailBean.smazatAvatarFoto()}"/>
+                  <p:commandButton value="Smazat obrázek" process="@form" update="@form" action="#{osobaDetailBean.smazatAvatarFoto()}"/>
                 </p:panel>
 
-                <p:panel rendered="#{osobaDetailBean.osoba.avatarFotoObjectId == null}">
-                  <p:fileUpload fileUploadListener="#{osobaDetailBean.nastavitAvatarFoto}" label="Nahrát obrázek" mode="advanced" update="form msgs" auto="true"
+                <p:panel id="osobaDetailAvatarFotoUploadPanel" rendered="#{osobaDetailBean.osoba.avatarFotoObjectId == null}">
+                  <p:fileUpload fileUploadListener="#{osobaDetailBean.nastavitAvatarFoto}" label="Nahrát obrázek" mode="advanced" update="@form @form:msgs" auto="true"
                                 allowTypes="/(\.|\/)(gif|jpe?g|png)$/"/>
                 </p:panel>
               </div>

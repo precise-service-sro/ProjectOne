@@ -3,13 +3,13 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:osobaComponent="http://java.sun.com/jsf/composite/private/osoba/component"
+      xmlns:commonComponent="http://java.sun.com/jsf/composite/private/common/component"
       xmlns:ui="http://java.sun.com/jsf/facelets"
 >
 
 <h:body>
   <ui:composition>
-    <osobaComponent:poznamkyComponent/>
+    <commonComponent:poznamkyDetailComponent id="osobaPoznamkyComponent" vstupniData="#{osobaDetailBean.osoba.poznamky}"/>
   </ui:composition>
 </h:body>
 </html>

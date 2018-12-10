@@ -16,7 +16,7 @@
 
 <composite:implementation>
 
-  <h:form>
+  <h:form id="formDockMenuComponent">
     <p:dock position="bottom">
       <p:menuitem value="Přihlášení"                           icon="/icons/prihlaseni.png"             url="#{request.contextPath}/public/index.xhtml"/>
       <p:menuitem value="Můj profil"                           icon="/icons/mujProfil.png"              actionListener="#{routerBean.goToOsobaDetailBean(loginBean.prihlasenyUzivatel)}" />

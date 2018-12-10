@@ -36,6 +36,8 @@
                      value="#{polozkaTypBean.polozkaTypList}"
                      editable="true"
                      rowIndexVar="index"
+                     sortBy="#{polozkaTyp.nazev}"
+                     sortOrder="ascending"
                      rendered="#{not empty polozkaTypBean.polozkaTypList}"
                      emptyMessage="Nebyly nalezeny žádné vyúčtovávané položky"
                      filteredValue="#{polozkaTypBean.filtrovanyPolozkaTypList}">
@@ -62,7 +64,7 @@
           <p:columnGroup type="header">
             <p:row>
               <p:column headerText="Název"
-                        style="width: 150px;"
+                        style="width: 160px;"
                         filterBy="#{polozkaTyp.nazev}"
                         filterMatchMode="contains"
                         filterStyle="display:none"

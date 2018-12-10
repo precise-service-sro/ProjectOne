@@ -103,7 +103,7 @@ public class OsobaPrehledBean extends AbstractBean {
     Osoba osoba = osobaService.getOsoba(idOsoba);
 
     if (osoba == null) {
-      return null;
+      return new DefaultStreamedContent();
     }
 
     GridFSFile gridFSFile = gridFsTemplate.findOne(
@@ -114,7 +114,7 @@ public class OsobaPrehledBean extends AbstractBean {
     );
 
     if (gridFSFile == null) {
-      return null;
+      return new DefaultStreamedContent();
     }
     String filename = gridFSFile.getFilename();
     String contentType = (String) gridFSFile.getMetadata().get(METADATA_QUERY_PREFIX + METADATA_ATTRIBUTE_CONTENT_TYPE);
@@ -123,6 +123,6 @@ public class OsobaPrehledBean extends AbstractBean {
     } catch (IOException e) {
       e.printStackTrace();
     }
-    return null;
+    return new DefaultStreamedContent();
   }
 }

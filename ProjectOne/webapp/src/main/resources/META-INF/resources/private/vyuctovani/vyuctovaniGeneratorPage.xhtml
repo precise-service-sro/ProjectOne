@@ -58,7 +58,7 @@
           </th>
           <td>
             <p:calendar id="vyuctovaniZuctovaciObdobiFilterZacatekInput" value="#{vyuctovaniGeneratorBean.zuctovaciObdobi.zacatek}" pattern="dd-MM-yyyy">
-              <p:ajax event="dateSelect" listener="#{vyuctovaniGeneratorBean.zuctovaciObdobiZacatekDateSelect}" update=":form:msgs"/>
+              <p:ajax event="dateSelect" listener="#{vyuctovaniGeneratorBean.zuctovaciObdobiZacatekDateSelect}" update="@form:msgs"/>
             </p:calendar>
           </td>
         </tr>
@@ -69,7 +69,7 @@
           </th>
           <td>
             <p:calendar id="vyuctovaniZuctovaciObdobiFilterKonecInput" value="#{vyuctovaniGeneratorBean.zuctovaciObdobi.konec}" pattern="dd-MM-yyyy">
-              <p:ajax event="dateSelect" listener="#{vyuctovaniGeneratorBean.zuctovaciObdobiKonecDateSelect}" update=":form:msgs"/>
+              <p:ajax event="dateSelect" listener="#{vyuctovaniGeneratorBean.zuctovaciObdobiKonecDateSelect}" update="@form:msgs"/>
             </p:calendar>
           </td>
         </tr>
@@ -96,7 +96,7 @@
     </ui:define>
 
     <ui:define name="detailPageUkladaciTlacitka">
-      <p:commandButton value="Generovat vyúčtování" update=":form:msgs" icon="ui-icon-circle-triangle-e"
+      <p:commandButton value="Generovat vyúčtování" update="@form:msgs" icon="ui-icon-circle-triangle-e"
                        actionListener="#{vyuctovaniGeneratorBean.generate()}"/>
     </ui:define>
 

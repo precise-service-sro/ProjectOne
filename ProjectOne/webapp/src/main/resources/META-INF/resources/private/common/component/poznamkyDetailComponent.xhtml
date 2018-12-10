@@ -23,10 +23,8 @@
     </ui:define>
 
     <ui:define name="prehledPageData">
-      <div class="divOsobaDetailTable">
-        <div>
-          <p:textEditor widgetVar="editorTextuVar" value="#{osobaDetailBean.osoba.poznamky}" height="300" style="margin-bottom:30px"/>
-        </div>
+      <div class="divPoznamky">
+        <p:textEditor class="editorTextu" widgetVar="editorTextuVar" value="#{cc.attrs.vstupniData}"/>
       </div>
     </ui:define>
 

@@ -4,10 +4,12 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.faces.event.AjaxBehaviorEvent;
 import javax.inject.Named;
 
 import org.bson.types.ObjectId;
 import org.primefaces.event.FileUploadEvent;
+import org.primefaces.event.TabChangeEvent;
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
 import org.primefaces.model.UploadedFile;
@@ -49,6 +51,10 @@ public class OsobaDetailBean extends AbstractBean {
     }
     statList = Arrays.asList(Stat.values());
     osobaList = osobaService.getOsobaAll(loginBean.getPrihlasenyUzivatel().getId());
+  }
+
+  public void tabChanged(TabChangeEvent event) {
+    log.trace("tabChanged()");
   }
 
   public void ulozitZmenuOsoby() throws IOException {
@@ -122,7 +128,7 @@ public class OsobaDetailBean extends AbstractBean {
 
   public StreamedContent getAvatarFotoStreamedContent() {
     if (osoba == null) {
-      return null;
+      return new DefaultStreamedContent();
     }
 
     GridFSFile gridFSFile = gridFsTemplate.findOne(
@@ -133,7 +139,7 @@ public class OsobaDetailBean extends AbstractBean {
     );
 
     if (gridFSFile == null) {
-      return null;
+      return new DefaultStreamedContent();
     }
     String filename = gridFSFile.getFilename();
     String contentType = (String) gridFSFile.getMetadata().get(METADATA_QUERY_PREFIX + METADATA_ATTRIBUTE_CONTENT_TYPE);
@@ -142,6 +148,10 @@ public class OsobaDetailBean extends AbstractBean {
     } catch (IOException e) {
       e.printStackTrace();
     }
-    return null;
+    return new DefaultStreamedContent();
+  }
+
+  public void zmenaVybraneOsoby(final AjaxBehaviorEvent event) {
+    showInfoMessage("Změněno", "Byla vybráná osoba " + osoba.getCeleJmeno());
   }
 }
