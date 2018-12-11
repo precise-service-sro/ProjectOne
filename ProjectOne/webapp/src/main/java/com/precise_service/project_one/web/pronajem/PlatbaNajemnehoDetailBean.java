@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.inject.Named;
 
+import com.precise_service.project_one.entity.filter.OsobaFilter;
 import com.precise_service.project_one.entity.osoba.Osoba;
 import com.precise_service.project_one.entity.pronajem.PlatbaNajemneho;
 import com.precise_service.project_one.web.AbstractBean;
@@ -27,7 +28,9 @@ public class PlatbaNajemnehoDetailBean extends AbstractBean {
       log.error("Není vybraná žádná platba k zobrazení detailu");
       return;
     }
-    osobaList = osobaService.getOsobaAll(loginBean.getPrihlasenyUzivatel().getId());
+    osobaList = osobaService.getOsobaList(new OsobaFilter()
+        .setIdPrihlasenyUzivatel(loginBean.getPrihlasenyUzivatel().getId())
+    );
   }
 
   public void ulozitZmenuPlatbaNajemneho() throws IOException {

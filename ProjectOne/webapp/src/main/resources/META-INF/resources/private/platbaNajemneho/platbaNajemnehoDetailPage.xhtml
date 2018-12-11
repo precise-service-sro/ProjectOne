@@ -68,10 +68,10 @@
     </ui:define>
 
     <ui:define name="detailPageUkladaciTlacitka">
-      <p:commandButton value="Zduplikovat platbu" actionListener="#{platbaNajemnehoDetailBean.zduplikovatPlatbaNajemneho()}" update="form :form:msgs"/>
+      <p:commandButton value="Zduplikovat platbu" actionListener="#{platbaNajemnehoDetailBean.zduplikovatPlatbaNajemneho()}" update="@form @form:msgs"/>
       ---
-      <p:commandButton value="Uložit změny" actionListener="#{platbaNajemnehoDetailBean.ulozitZmenuPlatbaNajemneho()}" update="form :form:msgs"/>
-      <p:commandButton value="Zrušit změny" actionListener="#{platbaNajemnehoDetailBean.zrusitZmenuPlatbaNajemneho()}" update="form :form:msgs"/>
+      <p:commandButton value="Uložit změny" actionListener="#{platbaNajemnehoDetailBean.ulozitZmenuPlatbaNajemneho()}" update="@form @form:msgs"/>
+      <p:commandButton value="Zrušit změny" actionListener="#{platbaNajemnehoDetailBean.zrusitZmenuPlatbaNajemneho()}" update="@form @form:msgs"/>
     </ui:define>
 
   </ui:composition>

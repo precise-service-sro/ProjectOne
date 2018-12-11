@@ -19,4 +19,12 @@ public class OsobaFilter extends DataFilter {
   @JsonProperty("prijmeni")
   @JsonInclude(JsonInclude.Include.NON_NULL)
   private String prijmeni;
+
+  @JsonProperty("prihlasovaciJmeno")
+  @JsonInclude(JsonInclude.Include.NON_NULL)
+  private String prihlasovaciJmeno;
+
+  @JsonProperty("heslo")
+  @JsonInclude(JsonInclude.Include.NON_NULL)
+  private String heslo;
 }

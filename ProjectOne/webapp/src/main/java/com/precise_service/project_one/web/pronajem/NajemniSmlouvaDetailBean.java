@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.inject.Named;
 
+import com.precise_service.project_one.entity.filter.OsobaFilter;
 import com.precise_service.project_one.entity.nemovitost.Nemovitost;
 import com.precise_service.project_one.entity.osoba.Osoba;
 import com.precise_service.project_one.entity.pronajem.DokumentTyp;
@@ -38,7 +39,9 @@ public class NajemniSmlouvaDetailBean extends AbstractBean {
 
     String idPrihlasenyUzivatel = loginBean.getPrihlasenyUzivatel().getId();
     nemovitostList = nemovitostService.getNemovitostListByVlastnik(idPrihlasenyUzivatel);
-    osobaList = osobaService.getOsobaAll(idPrihlasenyUzivatel);
+    osobaList = osobaService.getOsobaList(new OsobaFilter()
+        .setIdPrihlasenyUzivatel(idPrihlasenyUzivatel)
+    );
     predavaciProtokolList = predavaciProtokolService.getPredavaciProtokolAll(idPrihlasenyUzivatel);
     dokumentTypList = Arrays.asList(DokumentTyp.values());
   }

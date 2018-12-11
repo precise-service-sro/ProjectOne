@@ -2,20 +2,20 @@ package com.precise_service.project_one.service.pronajem;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.precise_service.project_one.entity.filter.DataFilter;
 import com.precise_service.project_one.entity.pronajem.NajemniSmlouva;
-import com.precise_service.project_one.repository.pronajem.NajemniSmlouvaRepository;
+import com.precise_service.project_one.entity.pronajem.PlatbaNajemneho;
+import com.precise_service.project_one.service.common.AbstractService;
 
 import lombok.extern.slf4j.Slf4j;
 
+import static com.precise_service.project_one.commons.MongoQueryBuilder.getQuery;
+
 @Slf4j
 @Service
-public class NajemniSmlouvaService implements INajemniSmlouvaService {
-
-  @Autowired
-  private NajemniSmlouvaRepository najemniSmlouvaRepository;
+public class NajemniSmlouvaService extends AbstractService implements INajemniSmlouvaService {
 
   @Override
   public NajemniSmlouva postNajemniSmlouva(NajemniSmlouva najemniSmlouva) {
@@ -36,9 +36,9 @@ public class NajemniSmlouvaService implements INajemniSmlouvaService {
   }
 
   @Override
-  public List<NajemniSmlouva> getNajemniSmlouvaAll() {
-    log.trace("getNajemniSmlouvaAll()");
-    return najemniSmlouvaRepository.findAll();
+  public List<NajemniSmlouva> getNajemniSmlouvaList(DataFilter dataFilter) {
+    log.trace("getNajemniSmlouvaList()");
+    return mongoTemplate.find(getQuery(dataFilter), NajemniSmlouva.class);
   }
 
   @Override

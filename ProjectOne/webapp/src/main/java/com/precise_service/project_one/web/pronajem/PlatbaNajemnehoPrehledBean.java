@@ -27,9 +27,7 @@ public class PlatbaNajemnehoPrehledBean extends AbstractBean {
   public void init() {
     Osoba prihlasenyUzivatel = loginBean.getPrihlasenyUzivatel();
     zuctovaciObdobi = new CasovyInterval();
-    PlatbaNajemnehoFilter platbaNajemnehoFilter = new PlatbaNajemnehoFilter();
-    platbaNajemnehoFilter.setIdPrihlasenyUzivatel(prihlasenyUzivatel.getId());
-    platbaNajemnehoList = platbaNajemnehoService.getPlatbaNajemnehoList(platbaNajemnehoFilter);
+    platbaNajemnehoList = platbaNajemnehoService.getPlatbaNajemnehoList(new PlatbaNajemnehoFilter().setIdPrihlasenyUzivatel(prihlasenyUzivatel.getId()));
     filtrovanyPlatbaNajemnehoList = null;
   }
 

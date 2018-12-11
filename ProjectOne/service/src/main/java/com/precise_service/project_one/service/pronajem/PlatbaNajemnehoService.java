@@ -2,13 +2,11 @@ package com.precise_service.project_one.service.pronajem;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Service;
 
 import com.precise_service.project_one.entity.filter.DataFilter;
 import com.precise_service.project_one.entity.pronajem.PlatbaNajemneho;
-import com.precise_service.project_one.repository.pronajem.PlatbaNajemnehoRepository;
+import com.precise_service.project_one.service.common.AbstractService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -16,13 +14,7 @@ import static com.precise_service.project_one.commons.MongoQueryBuilder.getQuery
 
 @Slf4j
 @Service
-public class PlatbaNajemnehoService implements IPlatbaNajemnehoService {
-
-  @Autowired
-  private PlatbaNajemnehoRepository platbaNajemnehoRepository;
-
-  @Autowired
-  private MongoTemplate mongoTemplate;
+public class PlatbaNajemnehoService extends AbstractService implements IPlatbaNajemnehoService {
 
   @Override
   public PlatbaNajemneho postPlatbaNajemneho(PlatbaNajemneho platbaNajemneho) {

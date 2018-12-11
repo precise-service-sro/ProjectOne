@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.precise_service.project_one.entity.filter.OsobaFilter;
 import com.precise_service.project_one.entity.osoba.Osoba;
 import com.precise_service.project_one.service.osoba.IOsobaService;
 
@@ -44,7 +45,7 @@ public class OsobaEndpoint {
   @RequestMapping(value = "/!all", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
   List<Osoba> getOsobaAll() {
     log.trace("getOsobaAll()");
-    return osobaService.getOsobaAll();
+    return osobaService.getOsobaList(new OsobaFilter());
   }
 
   @RequestMapping(value = "/{idOsoba}", method = RequestMethod.DELETE)

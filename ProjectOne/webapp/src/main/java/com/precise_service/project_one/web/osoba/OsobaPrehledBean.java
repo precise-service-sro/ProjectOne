@@ -14,6 +14,7 @@ import org.springframework.data.mongodb.core.query.Query;
 
 import com.mongodb.client.gridfs.model.GridFSFile;
 import com.precise_service.project_one.entity.adresa.Adresa;
+import com.precise_service.project_one.entity.filter.OsobaFilter;
 import com.precise_service.project_one.entity.nemovitost.Nemovitost;
 import com.precise_service.project_one.entity.osoba.Osoba;
 import com.precise_service.project_one.web.AbstractBean;
@@ -41,7 +42,9 @@ public class OsobaPrehledBean extends AbstractBean {
 
   public void init() {
     Osoba prihlasenyUzivatel = loginBean.getPrihlasenyUzivatel();
-    osobaList = osobaService.getOsobaAll(prihlasenyUzivatel.getId());
+    osobaList = osobaService.getOsobaList(new OsobaFilter()
+        .setIdPrihlasenyUzivatel(prihlasenyUzivatel.getId())
+    );
     filtrovanyOsobaList = null;
   }
 

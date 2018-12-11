@@ -11,6 +11,7 @@ import com.precise_service.project_one.entity.CasovyInterval;
 import com.precise_service.project_one.entity.Cislo;
 import com.precise_service.project_one.entity.faktura.Faktura;
 import com.precise_service.project_one.entity.faktura.FakturaPolozka;
+import com.precise_service.project_one.entity.filter.FakturaFilter;
 import com.precise_service.project_one.entity.nemovitost.Nemovitost;
 import com.precise_service.project_one.entity.osoba.Osoba;
 import com.precise_service.project_one.web.AbstractBean;
@@ -32,13 +33,17 @@ public class FakturaPrehledBean extends AbstractBean {
   public void init() {
     zuctovaciObdobi = new CasovyInterval();
     Osoba prihlasenyUzivatel = loginBean.getPrihlasenyUzivatel();
-    fakturaList = fakturaService.getSeznamFaktur(prihlasenyUzivatel);
+    fakturaList = fakturaService.getFakturaList(new FakturaFilter()
+        .setIdPrihlasenyUzivatel(prihlasenyUzivatel.getId())
+    );
     filtrovanyFakturaList = null;
   }
 
   public void initPodleNemovitosti(Nemovitost nemovitost) {
     zuctovaciObdobi = new CasovyInterval();
-    fakturaList = fakturaService.getAllFakturaListByNemovitost(nemovitost);
+    fakturaList = fakturaService.getFakturaList(new FakturaFilter()
+        .setIdNemovitost(nemovitost.getId())
+    );
     filtrovanyFakturaList = null;
   }
 

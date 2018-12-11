@@ -2,26 +2,17 @@ package com.precise_service.project_one.service.faktura;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.util.CollectionUtils;
 
 import com.precise_service.project_one.entity.faktura.Faktura;
 import com.precise_service.project_one.entity.faktura.FakturaPolozka;
-import com.precise_service.project_one.repository.FakturaPolozkaRepository;
-import com.precise_service.project_one.service.faktura.IFakturaPolozkaService;
+import com.precise_service.project_one.service.common.AbstractService;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Service
-public class FakturaPolozkaService implements IFakturaPolozkaService {
-
-  @Autowired
-  private FakturaPolozkaRepository fakturaPolozkaRepository;
-
-  @Autowired
-  private IFakturaService fakturaService;
+public class FakturaPolozkaService extends AbstractService implements IFakturaPolozkaService {
 
   @Override
   public FakturaPolozka postFakturaPolozka(FakturaPolozka fakturaPolozka) {

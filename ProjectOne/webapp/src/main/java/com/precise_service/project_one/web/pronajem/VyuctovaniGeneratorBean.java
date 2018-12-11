@@ -12,6 +12,8 @@ import org.primefaces.event.SelectEvent;
 
 import com.precise_service.project_one.entity.CasovyInterval;
 import com.precise_service.project_one.entity.faktura.Faktura;
+import com.precise_service.project_one.entity.filter.FakturaFilter;
+import com.precise_service.project_one.entity.filter.OsobaFilter;
 import com.precise_service.project_one.entity.nemovitost.Nemovitost;
 import com.precise_service.project_one.entity.osoba.Osoba;
 import com.precise_service.project_one.entity.pronajem.PredavaciProtokol;
@@ -49,7 +51,10 @@ public class VyuctovaniGeneratorBean extends AbstractBean {
 
     Osoba prihlasenyUzivatel = loginBean.getPrihlasenyUzivatel();
     nemovitostList = nemovitostService.getNemovitostListByVlastnik(prihlasenyUzivatel.getId());
-    seznamNajemniku = osobaService.getOsobaAll(prihlasenyUzivatel.getId());
+    seznamNajemniku = osobaService.getOsobaList(new OsobaFilter()
+        .setIdPrihlasenyUzivatel(prihlasenyUzivatel.getId())
+        .setSeraditVzestupnePodle("prijmeni")
+    );
     predavaciProtokolList = predavaciProtokolService.getPredavaciProtokolAll(prihlasenyUzivatel.getId());
   }
 
@@ -57,9 +62,15 @@ public class VyuctovaniGeneratorBean extends AbstractBean {
     log.trace("generate()");
 
     Osoba prihlasenyUzivatel = loginBean.getPrihlasenyUzivatel();
-    List<Faktura> fakturaList = fakturaService.getSeznamFakturVeZuctovacimObdobi(prihlasenyUzivatel, zuctovaciObdobi);
+
+    List<Faktura> fakturaList = fakturaService.getFakturaList(new FakturaFilter()
+        .setIdPrihlasenyUzivatel(prihlasenyUzivatel.getId())
+        .setIdNemovitost(nemovitost.getId())
+        .setCasovyInterval(zuctovaciObdobi)
+    );
 
     String nazev = "Vygenerované vyúčtování ze dne: " + LocalDateTime.now().toString();
+
     Vyuctovani vyuctovani = vyuctovaniService.generovatVyuctovani(nazev, zuctovaciObdobi, nemovitost, najemnik, fakturaList, predavaciProtokol, null, loginBean.getPrihlasenyUzivatel());
 
     vyuctovaniDetailBean.setVyuctovani(vyuctovani);

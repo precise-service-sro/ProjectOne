@@ -2,20 +2,16 @@ package com.precise_service.project_one.service;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.precise_service.project_one.entity.PolozkaTyp;
-import com.precise_service.project_one.repository.PolozkaTypRepository;
+import com.precise_service.project_one.service.common.AbstractService;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Service
-public class PolozkaTypService implements IPolozkaTypService {
-
-  @Autowired
-  private PolozkaTypRepository polozkaTypRepository;
+public class PolozkaTypService extends AbstractService implements IPolozkaTypService {
 
   @Override
   public PolozkaTyp postPolozkaTyp(PolozkaTyp polozkaTyp) {

@@ -45,8 +45,8 @@
                    filteredValue="#{nemovitostKontaktBean.filtrovanyNemovitostKontaktList}"
       >
 
-        <p:ajax event="rowEdit" listener="#{nemovitostKontaktBean.ulozitUpravuNemovitostKontakt}" update=":form:msgs"/>
-        <p:ajax event="rowEditCancel" listener="#{nemovitostKontaktBean.zrusitUpravuNemovitostKontakt}" update=":form:msgs"/>
+        <p:ajax event="rowEdit" listener="#{nemovitostKontaktBean.ulozitUpravuNemovitostKontakt}" update="@form:msgs"/>
+        <p:ajax event="rowEditCancel" listener="#{nemovitostKontaktBean.zrusitUpravuNemovitostKontakt}" update="@form:msgs"/>
 
         <f:facet name="header">
           <p:outputPanel id="globalFilterHeader" style="float: left; margin-top: 5px;">Nalezeno:

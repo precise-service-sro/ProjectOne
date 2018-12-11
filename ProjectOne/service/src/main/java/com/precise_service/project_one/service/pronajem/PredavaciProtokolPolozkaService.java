@@ -2,20 +2,16 @@ package com.precise_service.project_one.service.pronajem;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.precise_service.project_one.entity.pronajem.PredavaciProtokolPolozka;
-import com.precise_service.project_one.repository.pronajem.PredavaciProtokolPolozkaRepository;
+import com.precise_service.project_one.service.common.AbstractService;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Service
-public class PredavaciProtokolPolozkaService implements IPredavaciProtokolPolozkaService {
-
-  @Autowired
-  private PredavaciProtokolPolozkaRepository predavaciProtokolPolozkaRepository;
+public class PredavaciProtokolPolozkaService extends AbstractService implements IPredavaciProtokolPolozkaService {
 
   @Override
   public PredavaciProtokolPolozka postPredavaciProtokolPolozka(PredavaciProtokolPolozka predavaciProtokol) {

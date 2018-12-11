@@ -4,7 +4,6 @@ import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.precise_service.project_one.entity.CasovyInterval;
@@ -19,30 +18,13 @@ import com.precise_service.project_one.entity.pronajem.PredavaciProtokol;
 import com.precise_service.project_one.entity.pronajem.PredavaciProtokolPolozka;
 import com.precise_service.project_one.entity.pronajem.Vyuctovani;
 import com.precise_service.project_one.entity.pronajem.VyuctovaniPolozka;
-import com.precise_service.project_one.repository.pronajem.VyuctovaniRepository;
-import com.precise_service.project_one.service.faktura.IFakturaPolozkaService;
-import com.precise_service.project_one.service.IPolozkaTypService;
+import com.precise_service.project_one.service.common.AbstractService;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Service
-public class VyuctovaniService implements IVyuctovaniService {
-
-  @Autowired
-  private VyuctovaniRepository vyuctovaniRepository;
-
-  @Autowired
-  private IPolozkaTypService polozkaTypService;
-
-  @Autowired
-  private IFakturaPolozkaService fakturaPolozkaService;
-
-  @Autowired
-  private IVyuctovaniPolozkaService vyuctovaniPolozkaService;
-
-  @Autowired
-  private IPredavaciProtokolPolozkaService predavaciProtokolPolozkaService;
+public class VyuctovaniService extends AbstractService implements IVyuctovaniService {
 
   @Override
   public Vyuctovani postVyuctovani(Vyuctovani vyuctovani) {

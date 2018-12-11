@@ -19,6 +19,7 @@ import org.springframework.data.mongodb.core.query.Query;
 import com.mongodb.BasicDBObject;
 import com.mongodb.client.gridfs.model.GridFSFile;
 import com.precise_service.project_one.entity.adresa.Stat;
+import com.precise_service.project_one.entity.filter.OsobaFilter;
 import com.precise_service.project_one.entity.osoba.Osoba;
 import com.precise_service.project_one.web.AbstractBean;
 
@@ -50,7 +51,9 @@ public class OsobaDetailBean extends AbstractBean {
       log.trace("Není vybraná žádná osoba ke zobrazení detailů. (zobrazuji aktuálního přihlášeného uživatele)");
     }
     statList = Arrays.asList(Stat.values());
-    osobaList = osobaService.getOsobaAll(loginBean.getPrihlasenyUzivatel().getId());
+    osobaList = osobaService.getOsobaList(new OsobaFilter()
+        .setIdPrihlasenyUzivatel(loginBean.getPrihlasenyUzivatel().getId())
+    );
   }
 
   public void tabChanged(TabChangeEvent event) {

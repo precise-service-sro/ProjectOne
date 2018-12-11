@@ -8,7 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Service
-public class CalculatorService implements ICalculatorService {
+public class CalculatorService extends AbstractService implements ICalculatorService {
 
   public Cislo secist(Cislo cislo1, Cislo cislo2) {
     Cislo soucetCislo = new Cislo();

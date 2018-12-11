@@ -2,24 +2,16 @@ package com.precise_service.project_one.service.nemovitost;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.precise_service.project_one.entity.nemovitost.Nemovitost;
 import com.precise_service.project_one.entity.nemovitost.NemovitostKontakt;
-import com.precise_service.project_one.repository.NemovitostKontaktRepository;
+import com.precise_service.project_one.service.common.AbstractService;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Service
-public class NemovitostKontaktService implements INemovitostKontaktService {
-
-  @Autowired
-  private NemovitostService nemovitostService;
-
-  @Autowired
-  private NemovitostKontaktRepository nemovitostKontaktRepository;
+public class NemovitostKontaktService extends AbstractService implements INemovitostKontaktService {
 
   @Override
   public NemovitostKontakt postNemovitostKontakt(NemovitostKontakt nemovitostKontakt) {

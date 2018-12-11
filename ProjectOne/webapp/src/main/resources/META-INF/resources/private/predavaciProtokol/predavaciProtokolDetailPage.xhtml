@@ -55,7 +55,7 @@
     </ui:define>
 
     <ui:define name="detailPagePridavaciTlacitko">
-      <p:commandButton value="Přidat" icon="ui-icon-circle-plus" process="@this" update="form predavaciProtokolPolozkaDataTable :form:msgs"
+      <p:commandButton value="Přidat" icon="ui-icon-circle-plus" process="@this" update="@form predavaciProtokolPolozkaDataTable @form:msgs"
                        actionListener="#{predavaciProtokolDetailBean.addRow()}"/>
     </ui:define>
 
@@ -71,8 +71,8 @@
                    filteredValue="#{predavaciProtokolDetailBean.filtrovanyPredavaciProtokolPolozkaList}"
       >
 
-        <p:ajax event="rowEdit" listener="#{predavaciProtokolDetailBean.onRowEdit}" update="predavaciProtokolPolozkaDataTable :form:msgs"/>
-        <p:ajax event="rowEditCancel" listener="#{predavaciProtokolDetailBean.onRowCancel}" update="predavaciProtokolPolozkaDataTable :form:msgs"/>
+        <p:ajax event="rowEdit" listener="#{predavaciProtokolDetailBean.onRowEdit}" update="predavaciProtokolPolozkaDataTable @form:msgs"/>
+        <p:ajax event="rowEditCancel" listener="#{predavaciProtokolDetailBean.onRowCancel}" update="predavaciProtokolPolozkaDataTable @form:msgs"/>
 
         <p:columnGroup type="header">
           <p:row>
@@ -171,14 +171,14 @@
         </p:column>
 
         <p:column>
-          <p:commandButton update="@form :form:msgs" icon="ui-icon-circle-minus" actionListener="#{predavaciProtokolDetailBean.deleteRow(polozka)}"/>
+          <p:commandButton update="@form @form:msgs" icon="ui-icon-circle-minus" actionListener="#{predavaciProtokolDetailBean.deleteRow(polozka)}"/>
         </p:column>
       </p:dataTable>
     </ui:define>
 
     <ui:define name="detailPageUkladaciTlacitka">
-      <p:commandButton value="Uložit" actionListener="#{predavaciProtokolDetailBean.ulozitZmenuPredavacihoProtokolu()}" update="form :form:msgs"/>
-      <p:commandButton value="Zrušit" actionListener="#{predavaciProtokolDetailBean.zrusitZmenuPredavacihoProtokolu()}" update="form :form:msgs"/>
+      <p:commandButton value="Uložit" actionListener="#{predavaciProtokolDetailBean.ulozitZmenuPredavacihoProtokolu()}" update="@form @form:msgs"/>
+      <p:commandButton value="Zrušit" actionListener="#{predavaciProtokolDetailBean.zrusitZmenuPredavacihoProtokolu()}" update="@form @form:msgs"/>
     </ui:define>
 
   </ui:composition>

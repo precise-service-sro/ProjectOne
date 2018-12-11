@@ -7,6 +7,8 @@ import javax.inject.Named;
 
 import org.springframework.util.CollectionUtils;
 
+import com.precise_service.project_one.entity.filter.PlatbaNajemnehoFilter;
+import com.precise_service.project_one.entity.nemovitost.Nemovitost;
 import com.precise_service.project_one.entity.osoba.Osoba;
 import com.precise_service.project_one.entity.pronajem.DokumentTyp;
 import com.precise_service.project_one.entity.pronajem.NajemniSmlouva;
@@ -24,11 +26,20 @@ public class NajemniSmlouvaPrehledBean extends AbstractBean {
   private List<NajemniSmlouva> filtrovanyNajemniSmlouvaList;
   private int najemniSmlouvaListSize;
   private int filtrovanyNajemniSmlouvaListSize;
+  private Nemovitost nemovitost;
 
   public void init() {
-    najemniSmlouvaList = najemniSmlouvaService.getNajemniSmlouvaAll();
+    init(null);
+  }
+
+  public void init(Nemovitost nemovitost) {
+    najemniSmlouvaList = najemniSmlouvaService.getNajemniSmlouvaList(new PlatbaNajemnehoFilter()
+        .setIdPrihlasenyUzivatel(loginBean.getPrihlasenyUzivatel().getId())
+        .setIdNemovitost((nemovitost != null) ? nemovitost.getId() : null)
+    );
     filtrovanyNajemniSmlouvaList = null;
   }
+
 
   public void pridatNajemniSmlouva() {
     log.trace("pridatNajemniSmlouva()");

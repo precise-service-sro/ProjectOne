@@ -195,7 +195,7 @@
             <p:column>
               <p:commandButton icon="ui-icon-circle-zoomin" actionListener="#{routerBean.goToNemovitostDetailBean(nemovitost)}"
                                title="Upravit / Podrobnosti"/>
-              <p:commandButton update="form :form:msgs" icon="ui-icon-circle-minus" actionListener="#{nemovitostPrehledBean.deleteRow(nemovitost)}"
+              <p:commandButton update="@form @form:msgs" icon="ui-icon-circle-minus" actionListener="#{nemovitostPrehledBean.deleteRow(nemovitost)}"
                                title="Odebrat"/>
             </p:column>
 
@@ -289,7 +289,7 @@
               <p:commandButton icon="ui-icon-circle-zoomin"
                                actionListener="#{routerBean.goToPredavaciProtokolDetailBean(predavaciProtokol)}"
                                title="Upravit / Podrobnosti"/>
-              <p:commandButton update="@form :form:msgs" icon="ui-icon-circle-minus"
+              <p:commandButton update="@form @form:msgs" icon="ui-icon-circle-minus"
                                actionListener="#{predavaciProtokolPrehledBean.smazatPredavaciProtokol(predavaciProtokol)}"
                                title="Odebrat"/>
             </p:column>
@@ -369,7 +369,7 @@
 
             <p:column>
               <p:commandButton icon="ui-icon-circle-zoomin" actionListener="#{routerBean.goToOsobaDetailBean(osoba)}" title="Podrobnosti"/>
-              <p:commandButton update="form :form:msgs" icon="ui-icon-circle-minus" actionListener="#{osobaPrehledBean.smazatOsoba(osoba)}" title="Odebrat"/>
+              <p:commandButton update="@form @form:msgs" icon="ui-icon-circle-minus" actionListener="#{osobaPrehledBean.smazatOsoba(osoba)}" title="Odebrat"/>
             </p:column>
 
           </p:dataTable>
@@ -441,7 +441,7 @@
 
             <p:column>
               <p:commandButton icon="ui-icon-circle-zoomin" actionListener="#{routerBean.goToOsobaDetailBean(osoba)}" title="Podrobnosti"/>
-              <p:commandButton update="form :form:msgs" icon="ui-icon-circle-minus" actionListener="#{osobaPrehledBean.smazatOsoba(osoba)}" title="Odebrat"/>
+              <p:commandButton update="@form @form:msgs" icon="ui-icon-circle-minus" actionListener="#{osobaPrehledBean.smazatOsoba(osoba)}" title="Odebrat"/>
             </p:column>
 
           </p:dataTable>
@@ -478,8 +478,8 @@
                    filteredValue="#{predavaciProtokolDetailBean.filtrovanyPredavaciProtokolPolozkaList}"
       >
 
-        <p:ajax event="rowEdit" listener="#{predavaciProtokolDetailBean.onRowEdit}" update="predavaciProtokolPolozkaDataTable :form:msgs"/>
-        <p:ajax event="rowEditCancel" listener="#{predavaciProtokolDetailBean.onRowCancel}" update="predavaciProtokolPolozkaDataTable :form:msgs"/>
+        <p:ajax event="rowEdit" listener="#{predavaciProtokolDetailBean.onRowEdit}" update="predavaciProtokolPolozkaDataTable @form:msgs"/>
+        <p:ajax event="rowEditCancel" listener="#{predavaciProtokolDetailBean.onRowCancel}" update="predavaciProtokolPolozkaDataTable @form:msgs"/>
 
         <p:columnGroup type="header">
           <p:row>
@@ -578,14 +578,14 @@
         </p:column>
 
         <p:column>
-          <p:commandButton update="@form :form:msgs" icon="ui-icon-circle-minus" actionListener="#{predavaciProtokolDetailBean.deleteRow(polozka)}"/>
+          <p:commandButton update="@form @form:msgs" icon="ui-icon-circle-minus" actionListener="#{predavaciProtokolDetailBean.deleteRow(polozka)}"/>
         </p:column>
       </p:dataTable>
     </ui:define>
 
     <ui:define name="detailPageUkladaciTlacitka">
-      <p:commandButton value="Uložit změny" actionListener="#{najemniSmlouvaDetailBean.ulozitZmenuNajemniSmlouva()}" update="form :form:msgs"/>
-      <p:commandButton value="Zrušit změny" actionListener="#{najemniSmlouvaDetailBean.zrusitZmenuNajemniSmlouva()}" update="form :form:msgs"/>
+      <p:commandButton value="Uložit změny" actionListener="#{najemniSmlouvaDetailBean.ulozitZmenuNajemniSmlouva()}" update="@form @form:msgs"/>
+      <p:commandButton value="Zrušit změny" actionListener="#{najemniSmlouvaDetailBean.zrusitZmenuNajemniSmlouva()}" update="@form @form:msgs"/>
     </ui:define>
 
   </ui:composition>

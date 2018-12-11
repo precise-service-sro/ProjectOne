@@ -23,8 +23,11 @@
             <h:outputText value="#{polozkaTyp.nazev}"/>
 
             <div class="addButtonDiv">
-              <p:commandButton value="Přidat" icon="ui-icon-circle-plus" process="@this"
-                               actionListener="#{vyuctovaniDetailBean.addRow()}" update="form :form:msgs"/>
+              <p:commandButton value="Přidat"
+                               icon="ui-icon-circle-plus"
+                               process="@this"
+                               actionListener="#{vyuctovaniDetailBean.addRow()}"
+                               update="@form @form:msgs"/>
             </div>
 
             <p:dataTable id="vyuctovaniDetailTable2"
@@ -37,7 +40,7 @@
             >
 
               <p:ajax event="rowEdit" listener="#{vyuctovaniDetailBean.onRowEdit}" update=""/>
-              <p:ajax event="rowEditCancel" listener="#{vyuctovaniDetailBean.onRowCancel}" update=":form:msgs"/>
+              <p:ajax event="rowEditCancel" listener="#{vyuctovaniDetailBean.onRowCancel}" update="@form:msgs"/>
 
               <p:columnGroup type="header">
                 <p:row>
@@ -163,7 +166,10 @@
               </p:column>
 
               <p:column>
-                <p:commandButton update="form :form:msgs" icon="ui-icon-circle-minus" actionListener="#{vyuctovaniDetailBean.deleteRow(vyuctovaniPolozka)}"/>
+                <p:commandButton update="@form @form:msgs"
+                                 icon="ui-icon-circle-minus"
+                                 actionListener="#{vyuctovaniDetailBean.deleteRow(vyuctovaniPolozka)}"
+                />
               </p:column>
 
             </p:dataTable>

@@ -9,6 +9,7 @@ import javax.inject.Named;
 import org.primefaces.event.RowEditEvent;
 
 import com.precise_service.project_one.entity.PolozkaTyp;
+import com.precise_service.project_one.entity.filter.OsobaFilter;
 import com.precise_service.project_one.entity.nemovitost.Nemovitost;
 import com.precise_service.project_one.entity.osoba.Osoba;
 import com.precise_service.project_one.entity.pronajem.PredavaciProtokol;
@@ -45,7 +46,9 @@ public class PredavaciProtokolDetailBean extends AbstractBean {
 
     Osoba prihlasenyUzivatel = loginBean.getPrihlasenyUzivatel();
     nemovitostList = nemovitostService.getNemovitostListByVlastnik(prihlasenyUzivatel.getId());
-    osobaList = osobaService.getOsobaAll(prihlasenyUzivatel.getId());
+    osobaList = osobaService.getOsobaList(new OsobaFilter()
+        .setIdPrihlasenyUzivatel(prihlasenyUzivatel.getId())
+    );
     filtrovanyPredavaciProtokolPolozkaList = null;
   }
 

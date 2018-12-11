@@ -9,7 +9,7 @@
 
 <h:body>
   <ui:composition>
-    <h:outputText value="#{najemniSmlouvaPrehledBean.init()}"/>
+    <h:outputText value="#{najemniSmlouvaPrehledBean.init(nemovitostDetailBean.nemovitost)}"/>
     <najemniSmlouvaComponent:najemniSmlouvaPrehledComponent vstupniData="#{najemniSmlouvaPrehledBean.najemniSmlouvaList}" />
   </ui:composition>
 </h:body>

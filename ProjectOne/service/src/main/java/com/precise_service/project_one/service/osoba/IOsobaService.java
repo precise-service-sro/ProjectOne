@@ -2,6 +2,7 @@ package com.precise_service.project_one.service.osoba;
 
 import java.util.List;
 
+import com.precise_service.project_one.entity.filter.DataFilter;
 import com.precise_service.project_one.entity.osoba.Osoba;
 
 public interface IOsobaService {
@@ -14,9 +15,7 @@ public interface IOsobaService {
 
   Osoba getOsobaByPrihlasovaciJmenoAndHeslo(String prihlasovaciJmeno, String heslo);
 
-  List<Osoba> getOsobaAll(String idPrihlasenyUzivatel);
-
-  List<Osoba> getOsobaAll();
+  List<Osoba> getOsobaList(DataFilter dataFilter);
 
   void deleteOsobaAll();
 

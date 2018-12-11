@@ -86,9 +86,9 @@
 
     <ui:define name="detailPagePridavaciTlacitko">
       <p:commandButton value="Přidat položku na fakturu" icon="ui-icon-circle-plus" process="@this" actionListener="#{fakturaDetailBean.pridatFakturaPolozka()}"
-                       update="form :form:msgs"/>
+                       update="@form @form:msgs"/>
       <p:commandButton value="Zduplikovat fakturu" icon="ui-icon-circle-plus" process="@this" actionListener="#{fakturaDetailBean.zduplikovatFakturu()}"
-                       update="form :form:msgs"/>
+                       update="@form @form:msgs"/>
     </ui:define>
 
     <ui:define name="detailPageDataTable">
@@ -103,8 +103,8 @@
                    filteredValue="#{fakturaDetailBean.filtrovanyFakturaPolozkaList}"
       >
 
-        <p:ajax event="rowEdit" listener="#{fakturaDetailBean.onRowEdit}" update="fakturaPolozkaDataTable :form:msgs"/>
-        <p:ajax event="rowEditCancel" listener="#{fakturaDetailBean.onRowCancel}" update="fakturaPolozkaDataTable :form:msgs"/>
+        <p:ajax event="rowEdit" listener="#{fakturaDetailBean.onRowEdit}" update="fakturaPolozkaDataTable @form:msgs"/>
+        <p:ajax event="rowEditCancel" listener="#{fakturaDetailBean.onRowCancel}" update="fakturaPolozkaDataTable @form:msgs"/>
 
         <p:columnGroup type="header">
           <p:row>
@@ -261,7 +261,7 @@
         </p:column>
 
         <p:column>
-          <p:commandButton update="@form :form:msgs" icon="ui-icon-circle-minus" actionListener="#{fakturaDetailBean.deleteRow(polozka)}"/>
+          <p:commandButton update="@form @form:msgs" icon="ui-icon-circle-minus" actionListener="#{fakturaDetailBean.deleteRow(polozka)}"/>
         </p:column>
 
         <p:summaryRow>
@@ -290,11 +290,11 @@
 
     <ui:define name="detailPageUkladaciTlacitka">
       <p:commandButton value="Uložit změny a vrátit na přehled" icon="ui-icon-disk" process="@form" actionListener="#{fakturaDetailBean.ulozitZmenuFaktury(true)}"
-                       update="form :form:msgs"/>
+                       update="@form @form:msgs"/>
       <p:commandButton value="Uložit změny a zůstat" icon="ui-icon-disk" process="@form" actionListener="#{fakturaDetailBean.ulozitZmenuFaktury(false)}"
-                       update="form :form:msgs"/>
+                       update="@form @form:msgs"/>
       <p:commandButton value="Zrušit změny a vrátit na přehled" icon="ui-icon-cancel" process="@this" actionListener="#{fakturaDetailBean.zrusitZmenuFaktury()}"
-                       update="form :form:msgs"/>
+                       update="@form @form:msgs"/>
     </ui:define>
 
   </ui:composition>

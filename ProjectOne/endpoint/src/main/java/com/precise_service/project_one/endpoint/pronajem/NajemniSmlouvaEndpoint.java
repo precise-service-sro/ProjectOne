@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.precise_service.project_one.entity.filter.NajemniSmlouvaFilter;
+import com.precise_service.project_one.entity.filter.PlatbaNajemnehoFilter;
 import com.precise_service.project_one.entity.pronajem.NajemniSmlouva;
 import com.precise_service.project_one.service.pronajem.INajemniSmlouvaService;
 
@@ -44,7 +46,7 @@ public class NajemniSmlouvaEndpoint {
   @RequestMapping(value = "/!all", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
   List<NajemniSmlouva> getNajemniSmlouvaAll() {
     log.trace("getNajemniSmlouvaAll()");
-    return najemniSmlouvaService.getNajemniSmlouvaAll();
+    return najemniSmlouvaService.getNajemniSmlouvaList(new NajemniSmlouvaFilter());
   }
 
   @RequestMapping(value = "/{idNajemniSmlouva}", method = RequestMethod.DELETE)

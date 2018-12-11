@@ -43,9 +43,9 @@
     </ui:define>
 
     <ui:define name="prehledPageDataTable">
-      <p:dataTable id="vyuctovaniPrehledBeanTable"
+      <p:dataTable id="vyuctovaniPrehledBeanDataTable"
                    var="vyuctovani"
-                   widgetVar="vyuctovaniPrehledBeanTable"
+                   widgetVar="vyuctovaniPrehledBeanDataTable"
                    value="#{cc.attrs.vstupniData}"
                    sortBy="#{1}"
                    rendered="#{not empty vyuctovaniPrehledBean.vyuctovaniList}"
@@ -60,7 +60,7 @@
             <h:outputText value="#{vyuctovaniPrehledBean.vyuctovaniListSize}"/>
           </p:outputPanel>
           <p:outputPanel style="text-align: right;">
-            <p:inputText id="globalFilter" onkeyup="PF('vyuctovaniPrehledBeanTable').filter()" style="width:235px"
+            <p:inputText id="globalFilter" onkeyup="PF('vyuctovaniPrehledBeanDataTable').filter()" style="width:235px"
                          placeholder="- zadejte text pro vyhledání -">
               <p:ajax event="keyup" update="globalFilterHeader"/>
             </p:inputText>
@@ -169,12 +169,12 @@
                            actionListener="#{routerBean.goToVyuctovaniDetailBean(vyuctovani)}"
                            title="Upravit / Podrobnosti"
           >
-            <f:ajax update="@all" render="@all"/>
           </p:commandButton>
           <p:commandButton icon="ui-icon-circle-minus"
                            actionListener="#{vyuctovaniPrehledBean.smazatVyuctovani(vyuctovani)}"
                            title="Odebrat"
           >
+            <f:ajax update="vyuctovaniPrehledBeanDataTable" render="vyuctovaniPrehledBeanDataTable"/>
             <f:ajax update="@all" render="@all"/>
           </p:commandButton>
         </p:column>

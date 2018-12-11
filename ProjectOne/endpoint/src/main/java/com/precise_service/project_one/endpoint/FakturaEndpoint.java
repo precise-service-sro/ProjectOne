@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.precise_service.project_one.entity.faktura.Faktura;
+import com.precise_service.project_one.entity.filter.FakturaFilter;
 import com.precise_service.project_one.service.faktura.IFakturaService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -44,7 +45,7 @@ public class FakturaEndpoint {
   @RequestMapping(value = "/!all", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
   List<Faktura> getFakturaAll() {
     log.trace("getFakturaAll()");
-    return fakturaService.getFakturaAll();
+    return fakturaService.getFakturaList(new FakturaFilter());
   }
 
   @RequestMapping(value = "/{idFaktura}", method = RequestMethod.DELETE)
