@@ -12,6 +12,10 @@ import static org.apache.commons.lang3.StringUtils.*;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Adresa {
 
+  @JsonProperty("adresaTyp")
+  @JsonInclude(JsonInclude.Include.NON_NULL)
+  private AdresaTyp adresaTyp;
+
   @JsonProperty("ulice")
   @JsonInclude(JsonInclude.Include.NON_NULL)
   private String ulice;

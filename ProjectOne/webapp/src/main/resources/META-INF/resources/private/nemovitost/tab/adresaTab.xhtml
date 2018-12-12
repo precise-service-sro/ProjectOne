@@ -3,77 +3,13 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:component="http://java.sun.com/jsf/composite/private/common/component"
+      xmlns:commonComponent="http://java.sun.com/jsf/composite/private/common/component"
       xmlns:ui="http://java.sun.com/jsf/facelets"
 >
 
 <h:body>
   <ui:composition>
-    <div class="divTable">
-      <p class="tableCaption">Adresa:</p>
-      <table class="table_with_3_columns">
-        <tr>
-          <th class="prvniSloupec">
-            <div><p>Ulice:</p></div>
-          </th>
-          <td>
-            <div>
-              <p:inputText value="#{nemovitostDetailBean.nemovitost.adresa.ulice}"/>
-            </div>
-          </td>
-
-          <th>
-            <div><p>Číslo popisné:</p></div>
-          </th>
-          <td>
-            <div>
-              <p:inputText value="#{nemovitostDetailBean.nemovitost.adresa.cisloPopisne}"/>
-            </div>
-          </td>
-
-          <th>
-            <div><p>Číslo orientační:</p></div>
-          </th>
-          <td>
-            <div>
-              <p:inputText value="#{nemovitostDetailBean.nemovitost.adresa.cisloOrientacni}"/>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <th class="prvniSloupec">
-            <div><p>Město:</p></div>
-          </th>
-          <td>
-            <div>
-              <p:inputText value="#{nemovitostDetailBean.nemovitost.adresa.mesto}"/>
-            </div>
-          </td>
-
-          <th>
-            <div><p>PSČ:</p></div>
-          </th>
-          <td>
-            <div>
-              <p:inputText value="#{nemovitostDetailBean.nemovitost.adresa.psc}"/>
-            </div>
-          </td>
-
-          <th>
-            <div><p>Stát:</p></div>
-          </th>
-          <td>
-            <div>
-              <h:selectOneMenu value="#{nemovitostDetailBean.nemovitost.adresa.stat}" converter="#{statConverter}">
-                <f:selectItems value="#{nemovitostDetailBean.statList}" var="stat"
-                               itemLabel="#{stat.hodnota}"
-                               itemValue="#{stat}"/>
-              </h:selectOneMenu>
-            </div>
-          </td>
-        </tr>
-      </table>
-    </div>
+    <commonComponent:adresaDetailComponent id="adresaDetailComponent" vstupniData="#{nemovitostDetailBean.nemovitost.adresa}"/>
   </ui:composition>
 </h:body>
 </html>

@@ -18,6 +18,7 @@ import org.springframework.data.mongodb.core.query.Query;
 
 import com.mongodb.BasicDBObject;
 import com.mongodb.client.gridfs.model.GridFSFile;
+import com.precise_service.project_one.entity.adresa.AdresaTyp;
 import com.precise_service.project_one.entity.adresa.Stat;
 import com.precise_service.project_one.entity.filter.OsobaFilter;
 import com.precise_service.project_one.entity.osoba.Osoba;
@@ -41,6 +42,7 @@ public class OsobaDetailBean extends AbstractBean {
   private Osoba osoba;
   private List<Stat> statList;
   private List<Osoba> osobaList;
+  private List<AdresaTyp> adresaTypList;
 
   // zobrazovany obrazek
   private StreamedContent avatarFotoStreamedContent;
@@ -54,6 +56,7 @@ public class OsobaDetailBean extends AbstractBean {
     osobaList = osobaService.getOsobaList(new OsobaFilter()
         .setIdPrihlasenyUzivatel(loginBean.getPrihlasenyUzivatel().getId())
     );
+    adresaTypList = Arrays.asList(AdresaTyp.values());
   }
 
   public void tabChanged(TabChangeEvent event) {

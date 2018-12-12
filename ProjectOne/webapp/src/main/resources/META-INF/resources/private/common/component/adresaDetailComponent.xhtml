@@ -10,84 +10,86 @@
 >
 
 <composite:interface>
-
   <composite:attribute name="vstupniData"/>
-
 </composite:interface>
 
 <composite:implementation>
 
   <ui:decorate template="/template/component/prehledComponentLayout.xhtml">
     <ui:define name="pageContentTitle">
-      <p class="tableCaption">Detail adresy:</p>
+      <h:outputText value="#{adresaDetailBean.init()}" />
+      <p class="tableCaption">Adresa:</p>
     </ui:define>
 
     <ui:define name="prehledPagePridavaciTlacitko">
-      <div class="upload">
-        <p:fileUpload fileUploadListener="#{nemovitostDetailBean.nastavitAvatarFoto2}"
-                      label="Přidat fotografii"
-                      mode="advanced"
-                      auto="true"
-                      update="fotky1 fotky2 fotky3"
-                      allowTypes="/(\.|\/)(gif|jpe?g|png)$/">
-        </p:fileUpload>
-
-      </div>
-
-      <p:commandButton value="Smazat fotografii"
-                       icon="ui-icon-circle-plus"
-                       process="@this"
-                       actionListener="#{nemovitostDetailBean.smazatFotografii()}"
-      >
-        <f:ajax update="@all" render="@all"/>
-      </p:commandButton>
-      <p:commandButton value="Stáhnout fotografii"
-                       icon="ui-icon-circle-plus"
-                       process="@this"
-                       actionListener="#{nemovitostDetailBean.smazatFotografii()}"
-      >
-        <f:ajax update="@all" render="@all"/>
-      </p:commandButton>
     </ui:define>
 
     <ui:define name="prehledPageData">
+      <div class="divOsobaDetailTable">
+        <table>
+          <tr>
+            <th>
+              <p>Typ adresy:</p>
+            </th>
+            <td>
+              <h:selectOneMenu value="#{cc.attrs.vstupniData.adresaTyp}" converter="#{adresaTypConverter}">
+                <f:selectItems value="#{adresaDetailBean.adresaTypList}" var="adresaTyp"
+                               itemLabel="#{adresaTyp.hodnota}"
+                               itemValue="#{adresaTyp}"/>
+              </h:selectOneMenu>
+            </td>
+          </tr>
+          <tr>
+            <th>
+              <p>Ulice:</p>
+            </th>
+            <td>
+              <p:inputText id="ulice" value="#{cc.attrs.vstupniData.ulice}" placeholder="- zadejte -"/>
+            </td>
+            <th>
+              <p>Číslo popisné:</p>
+            </th>
+            <td>
+              <p:inputText value="#{cc.attrs.vstupniData.cisloPopisne}" placeholder="- zadejte -"/>
+            </td>
+            <th>
+              <p>Číslo orientační:</p>
+            </th>
+            <td>
+              <p:inputText value="#{cc.attrs.vstupniData.cisloOrientacni}" placeholder="- zadejte -"/>
+            </td>
+          </tr>
+          <tr>
+            <th>
+              <p>Město:</p>
+            </th>
+            <td>
+              <p:inputText value="#{cc.attrs.vstupniData.mesto}" placeholder="- zadejte -"/>
+            </td>
+            <th>
+              <p>PSČ:</p>
+            </th>
+            <td>
+              <p:inputText value="#{cc.attrs.vstupniData.psc}" placeholder="- zadejte -"/>
+            </td>
+            <th>
+              <p>Stát:</p>
+            </th>
+            <td>
+              <h:selectOneMenu value="#{cc.attrs.vstupniData.stat}" converter="#{statConverter}">
+                <f:selectItems value="#{adresaDetailBean.statList}" var="stat"
+                               itemLabel="#{stat.hodnota}"
+                               itemValue="#{stat}"/>
+              </h:selectOneMenu>
+            </td>
+          </tr>
+        </table>
+      </div>
     </ui:define>
 
     <ui:define name="prehledPageDataTable">
-
-      <div style="min-height: 300px; text-align: center; padding-top: 80px;">
-
-        <div style="
-                    height: 350px;
-                    text-align: center;
-                ">
-          <p:graphicImage id="fotky1" value="#{nemovitostDetailBean.zobrazit()}" style="width: 260px;" cache="false" rendered="#{nemovitostDetailBean.nemovitost.fotografie.size() > 0}"/>
-        </div>
-
-        <br/>
-
-        <p:commandButton actionListener="#{nemovitostDetailBean.posunoutDozadu()}"
-                         icon="ui-icon-arrowthick-1-w"
-                         style="margin-bottom: 5px"
-        >
-          <f:ajax update="@all" render="@all"/>
-        </p:commandButton>
-        -
-        (
-        <h:outputText id="fotky2" value="#{nemovitostDetailBean.fotografieIndex + 1}"/>
-        z
-        <h:outputText id="fotky3" value="#{nemovitostDetailBean.nemovitost.fotografie.size()}"/>
-        )
-        -
-        <p:commandButton actionListener="#{nemovitostDetailBean.posunoutDopredu()}"
-                         icon="ui-icon-arrowthick-1-e"
-                         style="margin-bottom: 5px"
-        >
-          <f:ajax update="@all" render="@all"/>
-        </p:commandButton>
-      </div>
-
     </ui:define>
+
   </ui:decorate>
 
 </composite:implementation>
