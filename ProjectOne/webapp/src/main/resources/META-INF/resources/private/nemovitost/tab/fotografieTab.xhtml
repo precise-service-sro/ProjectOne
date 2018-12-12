@@ -9,7 +9,8 @@
 
 <h:body>
   <ui:composition>
-    <commomComponent:fotografiePrehledComponent/>
+    <h:outputText value="#{fotografieDetailBean.init(nemovitostDetailBean.nemovitost)}" />
+    <commomComponent:fotografieDetailComponent id="fotografieDetailComponent" />
   </ui:composition>
 </h:body>
 </html>

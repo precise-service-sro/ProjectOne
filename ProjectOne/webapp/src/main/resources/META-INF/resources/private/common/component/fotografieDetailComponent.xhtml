@@ -10,21 +10,19 @@
 >
 
 <composite:interface>
-
   <composite:attribute name="vstupniData"/>
-
 </composite:interface>
 
 <composite:implementation>
 
   <ui:decorate template="/template/component/prehledComponentLayout.xhtml">
     <ui:define name="pageContentTitle">
-      <p class="tableCaption">Detail fotografie:</p>
+      <p class="tableCaption">Fotografie:</p>
     </ui:define>
 
     <ui:define name="prehledPagePridavaciTlacitko">
       <div class="upload">
-        <p:fileUpload fileUploadListener="#{nemovitostDetailBean.nastavitAvatarFoto2}"
+        <p:fileUpload fileUploadListener="#{fotografieDetailBean.nastavitAvatarFoto2}"
                       label="Přidat fotografii"
                       mode="advanced"
                       auto="true"
@@ -37,14 +35,14 @@
       <p:commandButton value="Smazat fotografii"
                        icon="ui-icon-circle-plus"
                        process="@this"
-                       actionListener="#{nemovitostDetailBean.smazatFotografii()}"
+                       actionListener="#{fotografieDetailBean.smazatFotografii()}"
       >
         <f:ajax update="@all" render="@all"/>
       </p:commandButton>
       <p:commandButton value="Stáhnout fotografii"
                        icon="ui-icon-circle-plus"
                        process="@this"
-                       actionListener="#{nemovitostDetailBean.smazatFotografii()}"
+                       actionListener="#{fotografieDetailBean.stahnoutFotografii()}"
       >
         <f:ajax update="@all" render="@all"/>
       </p:commandButton>
@@ -61,12 +59,12 @@
                     height: 350px;
                     text-align: center;
                 ">
-          <p:graphicImage id="fotky1" value="#{nemovitostDetailBean.zobrazit()}" style="width: 260px;" cache="false" rendered="#{nemovitostDetailBean.nemovitost.fotografie.size() > 0}"/>
+          <p:graphicImage id="fotky1" value="#{fotografieDetailBean.zobrazit()}" style="width: 260px;" cache="false" rendered="#{fotografieDetailBean.nemovitost.fotografie.size() > 0}"/>
         </div>
 
         <br/>
 
-        <p:commandButton actionListener="#{nemovitostDetailBean.posunoutDozadu()}"
+        <p:commandButton actionListener="#{fotografieDetailBean.posunoutDozadu()}"
                          icon="ui-icon-arrowthick-1-w"
                          style="margin-bottom: 5px"
         >
@@ -74,12 +72,12 @@
         </p:commandButton>
         -
         (
-        <h:outputText id="fotky2" value="#{nemovitostDetailBean.fotografieIndex + 1}"/>
+        <h:outputText id="fotky2" value="#{fotografieDetailBean.fotografieIndex + 1}"/>
         z
-        <h:outputText id="fotky3" value="#{nemovitostDetailBean.nemovitost.fotografie.size()}"/>
+        <h:outputText id="fotky3" value="#{fotografieDetailBean.nemovitost.fotografie.size()}"/>
         )
         -
-        <p:commandButton actionListener="#{nemovitostDetailBean.posunoutDopredu()}"
+        <p:commandButton actionListener="#{fotografieDetailBean.posunoutDopredu()}"
                          icon="ui-icon-arrowthick-1-e"
                          style="margin-bottom: 5px"
         >
