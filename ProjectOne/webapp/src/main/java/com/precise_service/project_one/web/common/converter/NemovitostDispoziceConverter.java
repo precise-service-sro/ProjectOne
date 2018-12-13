@@ -1,16 +1,13 @@
 package com.precise_service.project_one.web.common.converter;
 
-import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
-import javax.faces.convert.ConverterException;
 
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import com.precise_service.project_one.entity.nemovitost.NemovitostDispozice;
-import com.precise_service.project_one.entity.nemovitost.NemovitostTyp;
 import com.precise_service.project_one.web.AbstractBean;
 
 @Service("nemovitostDispoziceConverter")
@@ -20,15 +17,11 @@ public class NemovitostDispoziceConverter extends AbstractBean implements Conver
     if (StringUtils.isEmpty(value)) {
       return null;
     }
-    try {
-      return NemovitostDispozice.valueOf(value);
-    } catch(NumberFormatException e) {
-      throw new ConverterException(new FacesMessage(FacesMessage.SEVERITY_ERROR, "Conversion Error", "Not a valid theme."));
-    }
+    return NemovitostDispozice.valueOf(value);
   }
 
   public String getAsString(FacesContext fc, UIComponent uic, Object object) {
-    if(object == null) {
+    if (object == null) {
       return null;
     }
     return String.valueOf(((NemovitostDispozice) object).name());

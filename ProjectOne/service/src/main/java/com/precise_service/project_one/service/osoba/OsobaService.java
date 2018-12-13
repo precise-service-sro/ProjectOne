@@ -11,7 +11,7 @@ import com.precise_service.project_one.service.common.AbstractService;
 
 import lombok.extern.slf4j.Slf4j;
 
-import static com.precise_service.project_one.commons.MongoQueryBuilder.getQuery;
+import static com.precise_service.project_one.MongoQueryBuilder.getQuery;
 
 @Slf4j
 @Service

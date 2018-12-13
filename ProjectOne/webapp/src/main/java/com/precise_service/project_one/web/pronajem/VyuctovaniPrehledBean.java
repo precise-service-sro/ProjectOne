@@ -9,6 +9,7 @@ import javax.inject.Named;
 import org.primefaces.event.SelectEvent;
 
 import com.precise_service.project_one.entity.CasovyInterval;
+import com.precise_service.project_one.entity.filter.NemovitostFilter;
 import com.precise_service.project_one.entity.nemovitost.Nemovitost;
 import com.precise_service.project_one.entity.osoba.Osoba;
 import com.precise_service.project_one.entity.pronajem.Vyuctovani;
@@ -40,8 +41,9 @@ public class VyuctovaniPrehledBean extends AbstractBean {
     // getVyuctovaniInRange
     Osoba prihlasenyUzivatel = loginBean.getPrihlasenyUzivatel();
     vyuctovaniList = vyuctovaniService.getVyuctovaniListInRange(prihlasenyUzivatel);
-
-    nemovitostList = nemovitostService.getNemovitostListByVlastnik(prihlasenyUzivatel.getId());
+    nemovitostList = nemovitostService.getNemovitostList(new NemovitostFilter()
+        .setIdOsobaVlastnika(prihlasenyUzivatel.getId())
+    );
   }
 
   public void pridatVyuctovani() {
@@ -55,7 +57,7 @@ public class VyuctovaniPrehledBean extends AbstractBean {
     Osoba prihlasenyUzivatel = loginBean.getPrihlasenyUzivatel();
     vyuctovani.setIdOsoba(prihlasenyUzivatel.getId());
 
-    List<Nemovitost> nemovitostiPrihlasenehoUzivatele = nemovitostService.getNemovitostListByVlastnik(prihlasenyUzivatel.getId());
+    List<Nemovitost> nemovitostiPrihlasenehoUzivatele = nemovitostService.getNemovitostList(new NemovitostFilter().setIdOsobaVlastnika(prihlasenyUzivatel.getId()));
     if (nemovitostiPrihlasenehoUzivatele.isEmpty()) {
       showInfoMessage("Chyba", "Není povoleno vytvářet vyúčtování bez existující nemovitosti !!!");
       return;

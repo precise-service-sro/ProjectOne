@@ -3,7 +3,6 @@ package com.precise_service.project_one.entity.filter;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.precise_service.project_one.entity.CasovyInterval;
 import com.precise_service.project_one.entity.nemovitost.NemovitostDispozice;
 import com.precise_service.project_one.entity.nemovitost.NemovitostDruhVlastnictvi;
 import com.precise_service.project_one.entity.nemovitost.NemovitostTyp;
@@ -15,6 +14,10 @@ import lombok.experimental.Accessors;
 @Accessors(chain = true)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class NemovitostFilter extends DataFilter{
+
+  @JsonProperty("idOsobaVlastnika")
+  @JsonInclude(JsonInclude.Include.NON_NULL)
+  private String idOsobaVlastnika;
 
   @JsonProperty("nemovitostDruhVlastnictvi")
   @JsonInclude(JsonInclude.Include.NON_NULL)

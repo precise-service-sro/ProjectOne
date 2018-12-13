@@ -1,4 +1,4 @@
-package com.precise_service.project_one.commons;
+package com.precise_service.project_one;
 
 
 import org.springframework.data.domain.Sort;

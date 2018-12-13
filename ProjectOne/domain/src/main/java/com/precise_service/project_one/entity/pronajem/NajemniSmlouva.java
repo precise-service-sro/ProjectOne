@@ -64,4 +64,8 @@ public class NajemniSmlouva extends BaseEntity {
   @JsonProperty("dokumentTyp")
   @JsonInclude(JsonInclude.Include.NON_NULL)
   private DokumentTyp dokumentTyp;
+
+  public String getIdentifikace() {
+    return "" + dokumentTyp.getNazev() + ", " + nemovitost.getIdentifikaceNemovitosti() + ", " + platnost.getIdentifikace();
+  }
 }

@@ -2,7 +2,6 @@ package com.precise_service.project_one.entity.pronajem;
 
 import java.util.Date;
 
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 

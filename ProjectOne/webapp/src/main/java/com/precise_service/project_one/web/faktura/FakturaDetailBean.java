@@ -13,6 +13,7 @@ import com.precise_service.project_one.entity.Cislo;
 import com.precise_service.project_one.entity.PolozkaTyp;
 import com.precise_service.project_one.entity.faktura.Faktura;
 import com.precise_service.project_one.entity.faktura.FakturaPolozka;
+import com.precise_service.project_one.entity.filter.NemovitostFilter;
 import com.precise_service.project_one.entity.nemovitost.Nemovitost;
 import com.precise_service.project_one.web.AbstractBean;
 
@@ -46,7 +47,9 @@ public class FakturaDetailBean extends AbstractBean {
     }
 
     polozkaTypList = polozkaTypService.getPolozkaTypListByIdNemovitost(faktura.getNemovitost().getId());
-    nemovitostList = nemovitostService.getNemovitostListByVlastnik(loginBean.getPrihlasenyUzivatel().getId());
+    nemovitostList = nemovitostService.getNemovitostList(new NemovitostFilter()
+        .setIdOsobaVlastnika(loginBean.getPrihlasenyUzivatel().getId())
+    );
 
     fakturaPolozkaList = fakturaPolozkaService.getFakturaPolozkaAll(faktura.getId());
 

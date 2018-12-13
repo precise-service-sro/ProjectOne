@@ -4,10 +4,13 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.precise_service.project_one.entity.filter.DataFilter;
 import com.precise_service.project_one.entity.nemovitost.Nemovitost;
 import com.precise_service.project_one.service.common.AbstractService;
 
 import lombok.extern.slf4j.Slf4j;
+
+import static com.precise_service.project_one.MongoQueryBuilder.getQuery;
 
 @Slf4j
 @Service
@@ -38,8 +41,9 @@ public class NemovitostService extends AbstractService implements INemovitostSer
   }
 
   @Override
-  public List<Nemovitost> getNemovitostListByVlastnik(String idVlastnik) {
-    return nemovitostRepository.getNemovitostListByVlastnik(idVlastnik);
+  public List<Nemovitost> getNemovitostList(DataFilter dataFilter) {
+    log.trace("getNemovitostList()");
+    return mongoTemplate.find(getQuery(dataFilter), Nemovitost.class);
   }
 
   @Override

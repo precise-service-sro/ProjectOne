@@ -13,6 +13,7 @@ import org.primefaces.event.SelectEvent;
 import com.precise_service.project_one.entity.CasovyInterval;
 import com.precise_service.project_one.entity.faktura.Faktura;
 import com.precise_service.project_one.entity.filter.FakturaFilter;
+import com.precise_service.project_one.entity.filter.NemovitostFilter;
 import com.precise_service.project_one.entity.filter.OsobaFilter;
 import com.precise_service.project_one.entity.nemovitost.Nemovitost;
 import com.precise_service.project_one.entity.osoba.Osoba;
@@ -50,7 +51,9 @@ public class VyuctovaniGeneratorBean extends AbstractBean {
     }
 
     Osoba prihlasenyUzivatel = loginBean.getPrihlasenyUzivatel();
-    nemovitostList = nemovitostService.getNemovitostListByVlastnik(prihlasenyUzivatel.getId());
+    nemovitostList = nemovitostService.getNemovitostList(new NemovitostFilter()
+        .setIdOsobaVlastnika(prihlasenyUzivatel.getId())
+    );
     seznamNajemniku = osobaService.getOsobaList(new OsobaFilter()
         .setIdPrihlasenyUzivatel(prihlasenyUzivatel.getId())
         .setSeraditVzestupnePodle("prijmeni")

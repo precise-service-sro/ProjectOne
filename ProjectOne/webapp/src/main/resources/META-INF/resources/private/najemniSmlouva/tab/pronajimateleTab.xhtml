@@ -1,0 +1,16 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:osobaComponent="http://java.sun.com/jsf/composite/private/osoba/component"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+>
+
+<h:body>
+  <ui:composition>
+    <h:outputText value="#{osobaPrehledBean.initJakoVlastnikNemovitosti(najemniSmlouvaDetailBean.najemniSmlouva.nemovitost)}"/>
+    <osobaComponent:osobaPrehledComponent vstupniData="#{osobaPrehledBean.osobaList}"/>
+  </ui:composition>
+</h:body>
+</html>

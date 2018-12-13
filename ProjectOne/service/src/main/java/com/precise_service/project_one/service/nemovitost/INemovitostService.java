@@ -2,6 +2,7 @@ package com.precise_service.project_one.service.nemovitost;
 
 import java.util.List;
 
+import com.precise_service.project_one.entity.filter.DataFilter;
 import com.precise_service.project_one.entity.nemovitost.Nemovitost;
 
 public interface INemovitostService {
@@ -14,7 +15,7 @@ public interface INemovitostService {
 
   List<Nemovitost> getNemovitostAll();
 
-  List<Nemovitost> getNemovitostListByVlastnik(String idVlastnik);
+  List<Nemovitost> getNemovitostList(DataFilter dataFilter);
 
   void deleteNemovitost(String idNemovitost);
 

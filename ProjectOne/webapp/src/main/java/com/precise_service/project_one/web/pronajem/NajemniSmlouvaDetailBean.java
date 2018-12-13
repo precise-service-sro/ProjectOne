@@ -4,8 +4,13 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.faces.event.AjaxBehaviorEvent;
 import javax.inject.Named;
 
+import org.primefaces.event.TabChangeEvent;
+
+import com.precise_service.project_one.entity.filter.NajemniSmlouvaFilter;
+import com.precise_service.project_one.entity.filter.NemovitostFilter;
 import com.precise_service.project_one.entity.filter.OsobaFilter;
 import com.precise_service.project_one.entity.nemovitost.Nemovitost;
 import com.precise_service.project_one.entity.osoba.Osoba;
@@ -23,6 +28,7 @@ import lombok.extern.slf4j.Slf4j;
 public class NajemniSmlouvaDetailBean extends AbstractBean {
 
   private NajemniSmlouva najemniSmlouva;
+  private List<NajemniSmlouva> najemniSmlouvaList;
 
   private List<Nemovitost> nemovitostList;
   private List<Osoba> osobaList;
@@ -38,7 +44,12 @@ public class NajemniSmlouvaDetailBean extends AbstractBean {
     }
 
     String idPrihlasenyUzivatel = loginBean.getPrihlasenyUzivatel().getId();
-    nemovitostList = nemovitostService.getNemovitostListByVlastnik(idPrihlasenyUzivatel);
+    najemniSmlouvaList = najemniSmlouvaService.getNajemniSmlouvaList(new NajemniSmlouvaFilter()
+        .setIdPrihlasenyUzivatel(idPrihlasenyUzivatel)
+    );
+    nemovitostList = nemovitostService.getNemovitostList(new NemovitostFilter()
+        .setIdOsobaVlastnika(idPrihlasenyUzivatel)
+    );
     osobaList = osobaService.getOsobaList(new OsobaFilter()
         .setIdPrihlasenyUzivatel(idPrihlasenyUzivatel)
     );
@@ -46,16 +57,24 @@ public class NajemniSmlouvaDetailBean extends AbstractBean {
     dokumentTypList = Arrays.asList(DokumentTyp.values());
   }
 
-  public void ulozitZmenuNajemniSmlouva() throws IOException {
+  public void ulozitZmenuNajemniSmlouvy() throws IOException {
     log.trace("ulozitZmenuNajemniSmlouva()");
     najemniSmlouva = najemniSmlouvaService.putNajemniSmlouva(najemniSmlouva);
     showInfoMessage("Uloženo", "Úprava najemní smlouvy byla uložena");
     routerBean.goToNajemniSmlouvaPrehledBean();
   }
 
-  public void zrusitZmenuNajemniSmlouva() throws IOException {
+  public void zrusitZmenuNajemniSmlouvy() throws IOException {
     log.trace("zrusitZmenuNajemniSmlouva()");
     showInfoMessage("Zrušeno", "Úprava najemní smlouvy byla zrušena");
     routerBean.goToNajemniSmlouvaPrehledBean();
+  }
+
+  public void tabChanged(TabChangeEvent event) {
+    log.trace("tabChanged()");
+  }
+
+  public void zmenaVybraneNajemniSmlouvy(final AjaxBehaviorEvent event) {
+    showInfoMessage("Změněno", "Byla vybráná nájemní smlouva" + najemniSmlouva.getIdentifikace());
   }
 }

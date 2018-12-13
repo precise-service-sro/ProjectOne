@@ -1,0 +1,140 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:component="http://java.sun.com/jsf/composite/private/common/component"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+>
+
+<h:body>
+  <ui:composition>
+
+    <div class="divTable">
+      <p class="tableCaption">Základní informace:</p>
+      <table>
+
+        <tr>
+          <th class="prvniSloupec">
+            <div>
+              <p>Typ dokumentu:</p>
+            </div>
+          </th>
+          <td>
+            <div>
+              &nbsp; (Např. nájemní smlouva / Dodatek / Výpověď ...)
+            </div>
+          </td>
+          <th>
+            <div>
+              <p>Datum podpisu:</p>
+            </div>
+          </th>
+          <td>
+            <div>
+              <p:calendar id="datumPodpisu" value="#{najemniSmlouvaDetailBean.najemniSmlouva.datumPodpisu}" pattern="dd-MM-yyyy"/>
+            </div>
+          </td>
+        </tr>
+
+        <tr>
+          <th class="prvniSloupec">
+            <div>
+              <p>Začátek platnosti:</p>
+            </div>
+          </th>
+          <td>
+            <div>
+              <p:calendar id="zacatekPlatnosti" value="#{najemniSmlouvaDetailBean.najemniSmlouva.platnost.zacatek}" pattern="dd-MM-yyyy"/>
+            </div>
+          </td>
+          <th>
+            <div>
+              <p>Konec platnosti:</p>
+            </div>
+          </th>
+          <td>
+            <div>
+              <p:calendar id="konecPlatnosti" value="#{najemniSmlouvaDetailBean.najemniSmlouva.platnost.konec}" pattern="dd-MM-yyyy"/>
+            </div>
+          </td>
+        </tr>
+
+        <tr>
+          <th class="prvniSloupec">
+            <div>
+              <p>Nájemné:</p>
+            </div>
+          </th>
+          <td>
+            <div>
+              <p:inputText id="najemne" value="#{najemniSmlouvaDetailBean.najemniSmlouva.najemne.mnozstvi}"/>
+            </div>
+          </td>
+          <th>
+            <div>
+              <p>Zálohy:</p>
+            </div>
+          </th>
+          <td>
+            <div>
+              <p:inputText id="zalohy" value="#{najemniSmlouvaDetailBean.najemniSmlouva.zalohy.mnozstvi}"/>
+            </div>
+          </td>
+          <th>
+            <div>
+              <p>Celková platba:</p>
+            </div>
+          </th>
+          <td>
+            <div>
+              <p:inputText id="celkovaPlatba" value="#{najemniSmlouvaDetailBean.najemniSmlouva.zalohy.mnozstvi}" disabled="true"/>
+            </div>
+          </td>
+        </tr>
+
+        <tr>
+          <th class="prvniSloupec">
+            <p>Nemovitost:</p>
+          </th>
+          <td>
+            <div>
+              &nbsp;
+            </div>
+          </td>
+        </tr>
+
+        <tr>
+          <th class="prvniSloupec">
+            <p>Předávací protokol:</p>
+          </th>
+          <td>
+            <div>
+              &nbsp; (Protokol o stavu bytu na záčátku pronájmu)
+            </div>
+          </td>
+        </tr>
+
+        <tr>
+          <th class="prvniSloupec">
+            <p>Seznam nájemníků:</p>
+          </th>
+          <td>
+            &nbsp;
+          </td>
+        </tr>
+
+        <tr>
+          <th class="prvniSloupec">
+            <p>Přebírací protokol:</p>
+          </th>
+          <td>
+            &nbsp; (Protokol o stavu bytu na konci pronájmu)
+          </td>
+        </tr>
+
+      </table>
+    </div>
+  </ui:composition>
+</h:body>
+</html>

@@ -1,10 +1,8 @@
 package com.precise_service.project_one.web.common.converter;
 
-import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
-import javax.faces.convert.ConverterException;
 
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -19,15 +17,11 @@ public class AdresaTypConverter extends AbstractBean implements Converter {
     if (StringUtils.isEmpty(value)) {
       return null;
     }
-    try {
-      return AdresaTyp.valueOf(value);
-    } catch(NumberFormatException e) {
-      throw new ConverterException(new FacesMessage(FacesMessage.SEVERITY_ERROR, "Conversion Error", "Not a valid theme."));
-    }
+    return AdresaTyp.valueOf(value);
   }
 
   public String getAsString(FacesContext fc, UIComponent uic, Object object) {
-    if(object == null) {
+    if (object == null) {
       return null;
     }
     return String.valueOf(((AdresaTyp) object).name());

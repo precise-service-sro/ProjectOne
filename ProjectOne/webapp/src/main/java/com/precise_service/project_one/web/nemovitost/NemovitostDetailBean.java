@@ -20,6 +20,7 @@ import org.springframework.data.mongodb.core.query.Query;
 import com.mongodb.BasicDBObject;
 import com.mongodb.client.gridfs.model.GridFSFile;
 import com.precise_service.project_one.entity.adresa.Stat;
+import com.precise_service.project_one.entity.filter.NemovitostFilter;
 import com.precise_service.project_one.entity.filter.OsobaFilter;
 import com.precise_service.project_one.entity.nemovitost.Nemovitost;
 import com.precise_service.project_one.entity.nemovitost.NemovitostDispozice;
@@ -185,7 +186,9 @@ public class NemovitostDetailBean extends AbstractBean {
     osobaList = osobaService.getOsobaList(new OsobaFilter()
         .setIdPrihlasenyUzivatel(prihlasenyUzivatel.getId())
     );
-    nemovitostList = nemovitostService.getNemovitostListByVlastnik(prihlasenyUzivatel.getId());
+    nemovitostList = nemovitostService.getNemovitostList(new NemovitostFilter()
+        .setIdOsobaVlastnika(prihlasenyUzivatel.getId())
+    );
 
     nemovitostTypList = Arrays.asList(NemovitostTyp.values());
     nemovitostDruhVlastnictviList = Arrays.asList(NemovitostDruhVlastnictvi.values());

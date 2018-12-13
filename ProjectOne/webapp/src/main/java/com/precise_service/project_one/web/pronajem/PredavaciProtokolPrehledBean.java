@@ -7,6 +7,7 @@ import javax.inject.Named;
 
 import org.primefaces.event.RowEditEvent;
 
+import com.precise_service.project_one.entity.filter.NemovitostFilter;
 import com.precise_service.project_one.entity.filter.OsobaFilter;
 import com.precise_service.project_one.entity.nemovitost.Nemovitost;
 import com.precise_service.project_one.entity.osoba.Osoba;
@@ -33,7 +34,9 @@ public class PredavaciProtokolPrehledBean extends AbstractBean {
 
     Osoba prihlasenyUzivatel = loginBean.getPrihlasenyUzivatel();
     predavaciProtokolList = predavaciProtokolService.getPredavaciProtokolAll(prihlasenyUzivatel.getId());
-    nemovitostList = nemovitostService.getNemovitostListByVlastnik(prihlasenyUzivatel.getId());
+    nemovitostList = nemovitostService.getNemovitostList(new NemovitostFilter()
+        .setIdOsobaVlastnika(prihlasenyUzivatel.getId())
+    );
 
     // TODO: filtrovat tyto osoby / najemniky dle existence a platnosti najemni smlouvy
     seznamNajemniku = osobaService.getOsobaList(new OsobaFilter()

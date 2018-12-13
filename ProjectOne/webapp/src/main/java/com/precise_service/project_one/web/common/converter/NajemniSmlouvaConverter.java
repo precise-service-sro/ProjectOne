@@ -7,23 +7,23 @@ import javax.faces.convert.Converter;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
-import com.precise_service.project_one.entity.nemovitost.NemovitostTyp;
+import com.precise_service.project_one.entity.pronajem.NajemniSmlouva;
 import com.precise_service.project_one.web.AbstractBean;
 
-@Service("nemovitostTypConverter")
-public class NemovitostTypConverter extends AbstractBean implements Converter {
+@Service("najemniSmlouvaConverter")
+public class NajemniSmlouvaConverter extends AbstractBean implements Converter {
 
   public Object getAsObject(FacesContext fc, UIComponent uic, String value) {
     if (StringUtils.isEmpty(value)) {
       return null;
     }
-    return NemovitostTyp.valueOf(value);
+    return najemniSmlouvaService.getNajemniSmlouva(value);
   }
 
   public String getAsString(FacesContext fc, UIComponent uic, Object object) {
     if (object == null) {
       return null;
     }
-    return String.valueOf(((NemovitostTyp) object).name());
+    return String.valueOf(((NajemniSmlouva) object).getId());
   }
 }

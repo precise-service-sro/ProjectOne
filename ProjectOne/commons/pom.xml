@@ -15,20 +15,12 @@
 
     <dependencies>
       <!-- Application modules -->
-      <dependency>
-        <groupId>com.precise_service.project_one</groupId>
-        <artifactId>domain</artifactId>
-      </dependency>
 
       <!-- Spring boot -->
 
       <!-- Front-end -->
 
       <!-- Others -->
-      <dependency>
-        <groupId>org.projectlombok</groupId>
-        <artifactId>lombok</artifactId>
-      </dependency>
     </dependencies>
 
     <build>

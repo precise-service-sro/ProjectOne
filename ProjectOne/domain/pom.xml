@@ -22,7 +22,6 @@
       <artifactId>spring-boot-starter-data-mongodb</artifactId>
     </dependency>
 
-
     <!-- Front-end -->
     <dependency>
       <groupId>org.joinfaces</groupId>

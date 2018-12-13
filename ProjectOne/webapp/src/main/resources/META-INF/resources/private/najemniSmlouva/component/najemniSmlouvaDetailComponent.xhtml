@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:composite="http://java.sun.com/jsf/composite"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+>
+
+<composite:interface>
+  <composite:attribute name="vstupniData"/>
+</composite:interface>
+
+<composite:implementation>
+
+  <ui:decorate template="/template/component/prehledComponentLayout.xhtml">
+    <ui:define name="pageContentTitle">
+      <div class="pageTitleLeft">
+        <p class="tableCaption">Nájemní smlouva:</p>
+        <h:selectOneMenu value="#{najemniSmlouvaDetailBean.najemniSmlouva}" converter="#{najemniSmlouvaConverter}">
+          <f:selectItems value="#{najemniSmlouvaDetailBean.najemniSmlouvaList}" var="najemniSmlouva" itemLabel="#{najemniSmlouva.getIdentifikace()}"
+                         itemValue="#{najemniSmlouva}"/>
+          <p:ajax event="change" update="najemniSmlouvaDetailTabView" listener="#{najemniSmlouvaDetailBean.zmenaVybraneNajemniSmlouvy}"/>
+
+
+        </h:selectOneMenu>
+      </div>
+    </ui:define>
+
+    <ui:define name="prehledPagePridavaciTlacitko">
+      <p:commandButton value="Uložit změny"
+                       actionListener="#{najemniSmlouvaDetailBean.ulozitZmenuNajemniSmlouvy()}"
+                       icon="ui-icon-circle-plus"
+                       process=":formAbstractPageLayout"
+      >
+      </p:commandButton>
+      <p:commandButton value="Zrušit změny"
+                       actionListener="#{najemniSmlouvaDetailBean.zrusitZmenuNajemniSmlouvy()}"
+                       icon="ui-icon-circle-plus"
+                       process="@all"
+      >
+        <f:ajax update="@all" render="@all"/>
+      </p:commandButton>
+    </ui:define>
+
+    <ui:define name="prehledPageData">
+    </ui:define>
+
+    <ui:define name="prehledPageDataTable">
+      <p:tabView id="najemniSmlouvaDetailTabView" widgetVar="najemniSmlouvaDetailTabView" orientation="left" dynamic="false" cache="false" class="tabicko">
+
+        <p:ajax event="tabChange" listener="#{najemniSmlouvaDetailBean.tabChanged}" />
+
+        <p:tab id="zakladniInformaceTab" title="Základní informace">
+          <ui:insert name="zakladniInformace">
+            <ui:include src="../tab/zakladniInformaceTab.xhtml"/>
+          </ui:insert>
+        </p:tab>
+
+        <p:tab id="nemovitostTab" title="Nemovitost">
+          Nemovitost:
+        </p:tab>
+
+        <p:tab id="pronajimateleTab" title="Pronajímatelé">
+          <ui:insert name="pronajimatele">
+            <ui:include src="../tab/pronajimateleTab.xhtml"/>
+          </ui:insert>
+        </p:tab>
+
+        <p:tab id="najemniciTab" title="Nájemníci">
+          Nájemníci:
+        </p:tab>
+
+        <p:tab id="predavaciProtokolTab" title="Předávací protokol">
+          Předávací protokol: (záčátek pronájmu)
+        </p:tab>
+
+        <p:tab id="prebiraciProtokolTab" title="Přebírací protokol">
+          Přebírací protokol: (ukončení pronájmu)
+        </p:tab>
+
+        <p:tab id="fotografieTab" title="Fotografie">
+          Fotografie:
+        </p:tab>
+
+        <p:tab id="poznamkyTab" title="Poznámky">
+          <ui:insert name="poznamky">
+            <ui:include src="../tab/poznamkyTab.xhtml"/>
+          </ui:insert>
+        </p:tab>
+
+      </p:tabView>
+    </ui:define>
+  </ui:decorate>
+</composite:implementation>
+</html>

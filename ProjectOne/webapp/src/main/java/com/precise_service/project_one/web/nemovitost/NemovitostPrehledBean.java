@@ -5,6 +5,7 @@ import java.util.List;
 import javax.inject.Named;
 
 import com.precise_service.project_one.entity.adresa.Adresa;
+import com.precise_service.project_one.entity.filter.NemovitostFilter;
 import com.precise_service.project_one.entity.nemovitost.Nemovitost;
 import com.precise_service.project_one.entity.nemovitost.NemovitostTyp;
 import com.precise_service.project_one.entity.osoba.Osoba;
@@ -25,7 +26,9 @@ public class NemovitostPrehledBean extends AbstractBean {
 
   public void init() {
     Osoba prihlasenyUzivatel = loginBean.getPrihlasenyUzivatel();
-    nemovitostList = nemovitostService.getNemovitostListByVlastnik(prihlasenyUzivatel.getId());
+    nemovitostList = nemovitostService.getNemovitostList(new NemovitostFilter()
+        .setIdOsobaVlastnika(prihlasenyUzivatel.getId())
+    );
     filtrovanyNemovitostList = null;
   }
 
