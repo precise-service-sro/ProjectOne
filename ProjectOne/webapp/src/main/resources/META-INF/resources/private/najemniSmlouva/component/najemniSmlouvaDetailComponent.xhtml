@@ -60,7 +60,9 @@
         </p:tab>
 
         <p:tab id="nemovitostTab" title="Nemovitost">
-          Nemovitost:
+          <ui:insert name="nemovitost">
+            <ui:include src="../tab/nemovitostTab.xhtml"/>
+          </ui:insert>
         </p:tab>
 
         <p:tab id="pronajimateleTab" title="Pronajímatelé">

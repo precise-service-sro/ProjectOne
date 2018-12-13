@@ -1,5 +1,6 @@
 package com.precise_service.project_one.web.nemovitost;
 
+import java.util.Arrays;
 import java.util.List;
 
 import javax.inject.Named;
@@ -29,6 +30,11 @@ public class NemovitostPrehledBean extends AbstractBean {
     nemovitostList = nemovitostService.getNemovitostList(new NemovitostFilter()
         .setIdOsobaVlastnika(prihlasenyUzivatel.getId())
     );
+    filtrovanyNemovitostList = null;
+  }
+
+  public void init(Nemovitost nemovitost) {
+    nemovitostList = Arrays.asList(nemovitost);
     filtrovanyNemovitostList = null;
   }
 
