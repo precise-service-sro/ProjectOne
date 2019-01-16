@@ -62,4 +62,8 @@ public class Nemovitost extends BaseEntity {
   @JsonProperty("avatarFotoObjectId")
   @JsonInclude(JsonInclude.Include.NON_NULL)
   private List<ObjectId> fotografie = new ArrayList<>();
+
+  public String getNemovitostTypToString() {
+    return "" + nemovitostTyp.getHodnota() + " (" + nemovitostDispozice.getHodnota() + ")";
+  }
 }

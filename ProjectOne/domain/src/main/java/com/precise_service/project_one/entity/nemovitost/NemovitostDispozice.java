@@ -6,7 +6,7 @@ import lombok.RequiredArgsConstructor;
 @Getter
 @RequiredArgsConstructor
 public enum NemovitostDispozice {
-  JEDNA_PLUS_KK     ("1+kk (Garsonka)", "Garsonka"),
+  JEDNA_PLUS_KK     ("1+kk", "1+kk (Garsonka)"),
   JEDNA_PLUS_JEDNA  ("1+1", ""),
 
   DVA_PLUS_KK       ("2+kk", ""),
